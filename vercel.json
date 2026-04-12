@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "npm install --production=false",
   "functions": {
     "api/chat.js": {
       "includeFiles": "chat/context.json"
