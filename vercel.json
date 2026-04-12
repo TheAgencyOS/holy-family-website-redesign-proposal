@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "mkdir -p public && find . -maxdepth 1 -mindepth 1 ! -name node_modules ! -name public ! -name .vercel ! -name .git ! -name api ! -name chat ! -name vercel.json ! -name package.json ! -name package-lock.json ! -name server.js ! -name .env ! -name .env.example ! -name .gitignore -exec cp -R {} public/ \\;",
+  "buildCommand": "bash build.sh",
   "outputDirectory": "public",
   "functions": {
     "api/chat.js": {
