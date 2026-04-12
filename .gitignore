@@ -1,0 +1,43 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# macOS
+.DS_Store
+
+# Build / cache
+.vercel
+.cache/
+dist/
+build/
+
+# Heavy QA/audit artifacts (77MB, not needed to run the site)
+audit/
+
+# Backup HTML files
+*.backup.html
+*.backup.pdf
+index-old-wrapper.html
+index.v2.backup.html
+index.v5.backup.html
+
+# Large proposal PDF — not linked from live pages (11MB each)
+HFU-Proposal.pdf
+HFU-Proposal.backup.pdf
+
+# Test PDFs — debug artifacts, not referenced
+test-*.pdf
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*

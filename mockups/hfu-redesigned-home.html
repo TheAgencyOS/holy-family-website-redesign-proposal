@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holy Family University · Redesigned Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── HFU brand tokens (sourced from holyfamily.edu) ──────────── */
+    :root {
+      --hfu-navy:        212 82% 13%;   /* #06213F (rgb 6 33 63) primary */
+      --hfu-navy-deep:   212 90% 7%;    /* deeper variant */
+      --hfu-blue:        204 100% 33%;  /* #0068A9 (rgb 0 104 169) link/CTA blue */
+      --hfu-yellow:      48 100% 54%;   /* #FFCC15 (rgb 255 204 21) accent */
+      --hfu-mist:        202 22% 76%;   /* #B2C6D1 decorative blue-gray */
+      --hfu-bg:          0 0% 99%;      /* near white */
+      --hfu-card:        0 0% 100%;
+      --hfu-fg:          212 60% 12%;   /* uses navy hue for warmth */
+      --hfu-fg-muted:    212 18% 32%;
+      --hfu-fg-subtle:   212 12% 48%;
+      --hfu-border:      212 18% 88%;
+      --hfu-border-soft: 212 18% 94%;
+
+      --display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --body:    'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      --gutter: clamp(1.5rem, 4vw, 4rem);
+      --section: clamp(4rem, 8vw, 8rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: hsl(var(--hfu-bg));
+      color: hsl(var(--hfu-fg));
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      color: hsl(var(--hfu-fg));
+    }
+    p { margin: 0; }
+
+    /* ── Top utility strip ─────────────────────────────────────────── */
+    .util {
+      background: hsl(var(--hfu-navy));
+      color: hsl(0 0% 100% / 0.85);
+      padding: 10px var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .util__contact { display: flex; gap: 24px; }
+    .util__contact span::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .util__social { display: flex; gap: 16px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── Main nav (HFU navy) ─────────────────────────────────────── */
+    .nav {
+      background: hsl(var(--hfu-navy));
+      padding: 18px var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 32px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 0 hsl(var(--hfu-navy-deep));
+    }
+    .nav__list {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(0 0% 100% / 0.78);
+    }
+    .nav__list a { transition: color 200ms ease; }
+    .nav__list a:hover { color: hsl(var(--hfu-yellow)); }
+    .nav__list--right { justify-content: flex-end; }
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav__brand img {
+      height: 56px;
+      width: auto;
+      display: block;
+    }
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy));
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: background 200ms ease, transform 200ms ease;
+      margin-left: 24px;
+    }
+    .nav__cta:hover { background: white; transform: translateY(-1px); }
+
+    /* ── Hero (full-bleed photo with overlay) ───────────────────── */
+    .hero {
+      position: relative;
+      min-height: 76vh;
+      background:
+        linear-gradient(180deg, hsl(var(--hfu-navy-deep) / 0.35) 0%, hsl(var(--hfu-navy-deep) / 0.75) 100%),
+        url('../assets/hfu-photos/newtown-east-square-sm.jpg') center / cover no-repeat;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: var(--section) var(--gutter);
+      color: white;
+    }
+    .hero__eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero__eyebrow::before,
+    .hero__eyebrow::after {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .hero__title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      color: white;
+      max-width: 18ch;
+      letter-spacing: -0.02em;
+    }
+    .hero__title em { font-style: italic; color: hsl(var(--hfu-yellow)); }
+    .hero__lede {
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      max-width: 56ch;
+      margin: 28px auto 0;
+      color: hsl(0 0% 100% / 0.88);
+      line-height: 1.55;
+    }
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 44px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-radius: 4px;
+      transition: all 200ms ease;
+      border: 2px solid transparent;
+    }
+    .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      border-color: hsl(var(--hfu-yellow));
+    }
+    .btn--primary:hover { background: white; border-color: white; }
+    .btn--ghost {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+    .btn--ghost:hover { background: white; color: hsl(var(--hfu-navy-deep)); }
+    .btn::after { content: '→'; font-size: 16px; transform: translateX(0); transition: transform 200ms ease; }
+    .btn:hover::after { transform: translateX(4px); }
+
+    /* ── Quick action cards (below hero, overlapping) ─────────────── */
+    .quick {
+      max-width: 1200px;
+      margin: -64px auto 0;
+      padding: 0 var(--gutter);
+      position: relative;
+      z-index: 5;
+    }
+    .quick__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: white;
+      border: 1px solid hsl(var(--hfu-border));
+      border-radius: 8px;
+      box-shadow: 0 24px 64px rgba(14, 34, 68, 0.18), 0 8px 24px rgba(14, 34, 68, 0.08);
+      overflow: hidden;
+    }
+    .quick__card {
+      padding: 36px 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      border-right: 1px solid hsl(var(--hfu-border-soft));
+      transition: background 200ms ease;
+    }
+    .quick__card:last-child { border-right: none; }
+    .quick__card:hover { background: hsl(var(--hfu-bg)); }
+    .quick__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      background: hsl(var(--hfu-navy));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 22px;
+      font-style: italic;
+      flex-shrink: 0;
+    }
+    .quick__title {
+      font-family: var(--display);
+      font-size: 22px;
+      line-height: 1.05;
+      color: hsl(var(--hfu-fg));
+      margin-bottom: 6px;
+    }
+    .quick__body {
+      font-size: 13px;
+      color: hsl(var(--hfu-fg-muted));
+      line-height: 1.5;
+    }
+    .quick__arrow {
+      font-size: 18px;
+      color: hsl(var(--hfu-navy));
+      margin-left: auto;
+      align-self: center;
+    }
+
+    /* ── Stats strip ──────────────────────────────────────────────── */
+    .stats {
+      max-width: 1200px;
+      margin: var(--section) auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border-block: 1px solid hsl(var(--hfu-border));
+    }
+    .stat {
+      padding: 36px 24px;
+      border-right: 1px solid hsl(var(--hfu-border-soft));
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat__num {
+      font-family: var(--display);
+      font-size: clamp(2.25rem, 3.6vw, 3.5rem);
+      line-height: 1;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.025em;
+    }
+    .stat__num em { font-style: italic; color: hsl(var(--hfu-yellow)); }
+    .stat__label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: hsl(var(--hfu-fg-subtle));
+      margin-top: 12px;
+    }
+
+    /* ── Mission section (text + photo) ───────────────────────────── */
+    .mission {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--gutter) var(--section);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .mission__photo {
+      aspect-ratio: 4 / 5;
+      border-radius: 8px;
+      overflow: hidden;
+      background: hsl(var(--hfu-border-soft));
+      position: relative;
+      box-shadow: 0 24px 64px rgba(14, 34, 68, 0.12);
+    }
+    .mission__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .mission__photo::after {
+      content: 'Established 1954';
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      padding: 10px 16px;
+      background: hsl(var(--hfu-navy));
+      color: white;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+    .mission__eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: hsl(var(--hfu-yellow));
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .mission__eyebrow::before { content: ''; width: 36px; height: 1px; background: hsl(var(--hfu-yellow)); }
+    .mission__title {
+      font-size: clamp(2.25rem, 3.6vw, 3.5rem);
+      line-height: 1;
+      max-width: 16ch;
+      margin-bottom: 28px;
+    }
+    .mission__title em { font-style: italic; color: hsl(var(--hfu-navy)); }
+    .mission__body {
+      font-size: 16px;
+      color: hsl(var(--hfu-fg-muted));
+      line-height: 1.65;
+      max-width: 52ch;
+      margin-bottom: 32px;
+    }
+    .mission__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      background: hsl(var(--hfu-navy));
+      color: white;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+    .mission__cta::after { content: '→'; }
+
+    /* ── Schools / Programs ─────────────────────────────────────── */
+    .schools {
+      background: hsl(220 25% 6%);
+      color: white;
+      padding: var(--section) var(--gutter);
+    }
+    .schools__inner { max-width: 1200px; margin: 0 auto; }
+    .schools__head { text-align: center; margin-bottom: 64px; }
+    .schools__eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: hsl(var(--hfu-yellow));
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .schools__eyebrow::before,
+    .schools__eyebrow::after { content: ''; width: 36px; height: 1px; background: hsl(var(--hfu-yellow)); }
+    .schools__title {
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      line-height: 0.95;
+      color: white;
+      max-width: 18ch;
+      margin: 0 auto;
+    }
+    .schools__title em { font-style: italic; color: hsl(var(--hfu-yellow)); }
+
+    .schools__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: hsl(0 0% 100% / 0.08);
+      border: 1px solid hsl(0 0% 100% / 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .school {
+      padding: 44px 36px;
+      background: hsl(220 25% 8%);
+      transition: background 300ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .school:hover { background: hsl(220 25% 11%); }
+    .school__count {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: hsl(var(--hfu-yellow));
+    }
+    .school__name {
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+      color: white;
+      line-height: 1.05;
+    }
+    .school__body {
+      font-size: 14px;
+      color: hsl(0 0% 100% / 0.65);
+      line-height: 1.6;
+      max-width: 48ch;
+    }
+    .school__cta {
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .school__cta::after { content: '→'; }
+
+    /* ── Mission quote (centered, large) ─────────────────────────── */
+    .quote {
+      padding: var(--section) var(--gutter);
+      background: hsl(var(--hfu-bg));
+      text-align: center;
+    }
+    .quote__inner { max-width: 900px; margin: 0 auto; }
+    .quote__mark {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 72px;
+      color: hsl(var(--hfu-yellow));
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .quote__body {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      line-height: 1.15;
+      color: hsl(var(--hfu-fg));
+      max-width: 24ch;
+      margin: 0 auto;
+    }
+    .quote__by {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-fg-subtle));
+      margin-top: 32px;
+    }
+
+    /* ── CTA banner (visit) ──────────────────────────────────────── */
+    .cta-banner {
+      position: relative;
+      padding: var(--section) var(--gutter);
+      background:
+        linear-gradient(135deg, hsl(var(--hfu-navy-deep) / 0.85), hsl(var(--hfu-navy) / 0.7)),
+        url('../assets/hfu-photos/8r1a1042.jpg') center / cover no-repeat;
+      color: white;
+      text-align: center;
+    }
+    .cta-banner__title {
+      font-size: clamp(2rem, 3.6vw, 3.25rem);
+      color: white;
+      max-width: 22ch;
+      margin: 0 auto 28px;
+      line-height: 1.05;
+    }
+    .cta-banner__title em { font-style: italic; color: hsl(var(--hfu-yellow)); }
+    .cta-banner__lede {
+      font-size: 16px;
+      color: hsl(0 0% 100% / 0.85);
+      max-width: 50ch;
+      margin: 0 auto 36px;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    .footer {
+      background: hsl(220 25% 6%);
+      color: hsl(0 0% 100% / 0.6);
+      padding: 64px var(--gutter) 32px;
+    }
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer__brand-name {
+      font-family: var(--display);
+      font-size: 22px;
+      color: white;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .footer__brand-tag {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 20px;
+    }
+    .footer__brand-addr { font-size: 13px; line-height: 1.6; }
+    .footer h4 {
+      font-family: var(--body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: hsl(var(--hfu-yellow));
+      margin: 0 0 16px;
+      font-weight: 600;
+    }
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .footer ul a:hover { color: white; }
+    .footer__bottom {
+      max-width: 1200px;
+      margin: 48px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid hsl(0 0% 100% / 0.08);
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: hsl(0 0% 100% / 0.4);
+    }
+
+    /* Tablet (≤900px): logo stays, nav links hide, Apply Now stays */
+    @media (max-width: 900px) {
+      .nav {
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+      }
+      .nav__list--left { display: none; }
+      .nav__list--right {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .nav__list--right li { display: none; }
+      .nav__list--right li:last-child { display: list-item; }
+      .nav__brand img { height: 48px; }
+
+      .quick__grid { grid-template-columns: 1fr; }
+      .quick { margin-top: -48px; }
+
+      .stats { grid-template-columns: repeat(3, 1fr); }
+
+      .mission { grid-template-columns: 1fr; gap: 48px; }
+      .mission__photo { aspect-ratio: 16 / 10; max-height: 420px; }
+
+      .schools__grid { grid-template-columns: 1fr 1fr; }
+      .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    /* Mobile (≤640px): single column, smaller chrome */
+    @media (max-width: 640px) {
+      .util { padding: 9px var(--gutter); font-size: 12px; }
+      .util__contact { gap: 14px; flex-wrap: wrap; }
+      .util__social { display: none; }
+
+      .nav { padding: 14px var(--gutter); gap: 12px; }
+      .nav__brand img { height: 40px; }
+      .nav__cta { padding: 9px 16px; font-size: 11px; margin-left: 0; }
+
+      .hero { min-height: 60vh; padding: var(--s-7) var(--gutter); }
+      .hero__title { font-size: clamp(2.25rem, 9vw, 3.25rem); }
+      .hero__lede { font-size: 15px; }
+
+      .quick { margin-top: -32px; padding-inline: var(--s-3); }
+      .quick__card { padding: 24px 20px; }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        margin: var(--s-6) auto var(--s-9);
+        padding: 16px var(--gutter) 0;
+        gap: 0;
+      }
+      .stat {
+        padding: 20px 12px;
+        border-right: 1px solid hsl(var(--border-soft, hsl(var(--hfu-border-soft))));
+        border-bottom: 1px solid hsl(var(--hfu-border-soft));
+      }
+      .stat:nth-child(2n) { border-right: none; }
+      .stat:nth-child(n+4) { border-bottom: none; }
+      .stat__num { font-size: clamp(1.875rem, 8vw, 2.5rem); }
+
+      .schools__grid { grid-template-columns: 1fr; }
+      .schools__title { font-size: clamp(2rem, 8vw, 2.5rem); }
+
+      .mission__title { font-size: clamp(2rem, 8vw, 2.5rem); }
+      .mission__photo::after { left: 16px; bottom: 16px; }
+
+      .school { padding: 28px 22px; }
+      .school__name { font-size: clamp(1.375rem, 5.5vw, 1.75rem); }
+
+      .quote__body { font-size: clamp(1.5rem, 6vw, 2rem); }
+      .quote__mark { font-size: 56px; }
+
+      .cta-banner__title { font-size: clamp(1.75rem, 6.5vw, 2.5rem); }
+      .cta-banner .hero__actions { flex-direction: column; align-items: stretch; }
+      .cta-banner .btn { justify-content: center; }
+
+      .footer__inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer__bottom { flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP UTILITY STRIP -->
+  <div class="util">
+    <div class="util__contact">
+      <span>admissions@holyfamily.edu</span>
+      <span>(267) 341-3000</span>
+    </div>
+    <div class="util__social">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">YouTube</a>
+      <a href="#">Facebook</a>
+    </div>
+  </div>
+
+  <!-- MAIN NAV -->
+  <header class="nav">
+    <ul class="nav__list nav__list--left">
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">Admissions</a></li>
+      <li><a href="#">Student Life</a></li>
+    </ul>
+    <a href="#" class="nav__brand">
+      <img src="../assets/hfu-logo.svg" alt="Holy Family University">
+    </a>
+    <ul class="nav__list nav__list--right">
+      <li><a href="#">About</a></li>
+      <li><a href="#">News</a></li>
+      <li><a href="#" class="nav__cta">Apply Now</a></li>
+    </ul>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero__eyebrow">Founded 1954 · Sisters of the Holy Family of Nazareth</div>
+      <h1 class="hero__title">A Catholic education<br>built on <em>purpose.</em></h1>
+      <p class="hero__lede">More than 3,600 students at undergraduate, graduate, and doctoral levels across four schools, on two Philadelphia campuses, in one community of learning that has not stopped growing in seventy years.</p>
+      <div class="hero__actions">
+        <a href="#" class="btn btn--primary">Schedule a Visit</a>
+        <a href="#" class="btn btn--ghost">Explore Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK ACTIONS (overlap hero) -->
+  <div class="quick">
+    <div class="quick__grid">
+      <a href="#" class="quick__card">
+        <div class="quick__icon">A</div>
+        <div>
+          <div class="quick__title">Apply</div>
+          <div class="quick__body">Undergraduate, graduate, and adult learner pathways. No application fee.</div>
+        </div>
+        <div class="quick__arrow">→</div>
+      </a>
+      <a href="#" class="quick__card">
+        <div class="quick__icon">V</div>
+        <div>
+          <div class="quick__title">Visit</div>
+          <div class="quick__body">Schedule a campus tour at Northeast Philadelphia or Newtown.</div>
+        </div>
+        <div class="quick__arrow">→</div>
+      </a>
+      <a href="#" class="quick__card">
+        <div class="quick__icon">R</div>
+        <div>
+          <div class="quick__title">Request Info</div>
+          <div class="quick__body">One smart form. Routed to your program of interest in real time.</div>
+        </div>
+        <div class="quick__arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats">
+    <div class="stat"><div class="stat__num">1954</div><div class="stat__label">Founded</div></div>
+    <div class="stat"><div class="stat__num">3,600<em>+</em></div><div class="stat__label">Students</div></div>
+    <div class="stat"><div class="stat__num">4</div><div class="stat__label">Schools</div></div>
+    <div class="stat"><div class="stat__num">92<em>%</em></div><div class="stat__label">Employed in 1 year</div></div>
+    <div class="stat"><div class="stat__num">A<em>−</em></div><div class="stat__label">S and P credit rating</div></div>
+  </div>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div>
+      <div class="mission__eyebrow">Our mission</div>
+      <h2 class="mission__title">A vibrant Catholic learning <em>community.</em></h2>
+      <p class="mission__body">Holy Family University educates the whole person for a life of integrity, service, and personal excellence. Founded in 1954 by the Sisters of the Holy Family of Nazareth, we are a four-school institution rooted in the Catholic intellectual tradition and tuned to the realities of working students in greater Philadelphia.</p>
+      <a href="#" class="mission__cta">Read Our Story</a>
+    </div>
+    <div class="mission__photo">
+      <img src="../assets/hfu-photos/student-life3-square-small.jpg" alt="Holy Family University students at a campus event">
+    </div>
+  </section>
+
+  <!-- SCHOOLS / PROGRAMS -->
+  <section class="schools">
+    <div class="schools__inner">
+      <div class="schools__head">
+        <div class="schools__eyebrow">Four schools, fifty plus programs</div>
+        <h2 class="schools__title">Find your <em>program.</em></h2>
+      </div>
+      <div class="schools__grid">
+        <article class="school">
+          <div class="school__count">School of Nursing and Health Sciences · 12 programs</div>
+          <div class="school__name">Nursing</div>
+          <p class="school__body">Forty percent of our student body. NCLEX pass rates that lead the region. Clinical placements across Philadelphia's largest health systems. BSN, MSN, DNP, and an accelerated second-degree track.</p>
+          <a href="#" class="school__cta">Explore Nursing</a>
+        </article>
+        <article class="school">
+          <div class="school__count">School of Business and Technology · 9 programs</div>
+          <div class="school__name">Business and Technology</div>
+          <p class="school__body">Undergraduate concentrations in accounting, finance, marketing, and management. Graduate cybersecurity, biotechnology, and an MBA evening cohort built for working professionals.</p>
+          <a href="#" class="school__cta">Explore Business and Tech</a>
+        </article>
+        <article class="school">
+          <div class="school__count">School of Education · 7 programs</div>
+          <div class="school__name">Education</div>
+          <p class="school__body">PA-certified teacher preparation in early childhood, elementary, secondary, and special education. Master's in counseling, reading, and educational leadership. Field placements from day one.</p>
+          <a href="#" class="school__cta">Explore Education</a>
+        </article>
+        <article class="school">
+          <div class="school__count">School of Arts and Sciences · 14 programs</div>
+          <div class="school__name">Arts and Sciences</div>
+          <p class="school__body">Liberal arts and sciences in the Catholic intellectual tradition. Psychology, biology, communication, criminal justice, and English. Doctoral programs in counseling psychology and clinical mental health.</p>
+          <a href="#" class="school__cta">Explore Arts and Sciences</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote">
+    <div class="quote__inner">
+      <div class="quote__mark">&ldquo;</div>
+      <blockquote class="quote__body">We educate the whole person for a life of integrity, service, and <em>personal excellence.</em></blockquote>
+      <div class="quote__by">From the university mission · Established 1954</div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <h2 class="cta-banner__title">Come see Holy Family <em>in person.</em></h2>
+    <p class="cta-banner__lede">Two campuses. Twelve weeks of open visit days from September through May. Walk through Newtown West, see the new innovation center, meet your program director.</p>
+    <div class="hero__actions">
+      <a href="#" class="btn btn--primary">Schedule Your Visit</a>
+      <a href="#" class="btn btn--ghost">Open House Calendar</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__brand-name">Holy Family University</div>
+        <div class="footer__brand-tag">Northeast Philadelphia · Newtown</div>
+        <div class="footer__brand-addr">
+          9801 Frankford Avenue<br>
+          Philadelphia, PA 19114<br>
+          (267) 341-3000
+        </div>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#">Schedule a tour</a></li>
+          <li><a href="#">Open house calendar</a></li>
+          <li><a href="#">Virtual tour</a></li>
+          <li><a href="#">Directions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Apply</h4>
+        <ul>
+          <li><a href="#">Undergraduate</a></li>
+          <li><a href="#">Graduate</a></li>
+          <li><a href="#">Adult learners</a></li>
+          <li><a href="#">International</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">News and stories</a></li>
+          <li><a href="#">Athletics</a></li>
+          <li><a href="#">Alumni</a></li>
+          <li><a href="#">Give to HFU</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Holy Family University</div>
+      <div>Privacy · Title IX · Accessibility</div>
+    </div>
+  </footer>
+
+</body>
+</html>

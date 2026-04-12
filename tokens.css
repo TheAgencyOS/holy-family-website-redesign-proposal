@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   HFU PROPOSAL:DESIGN TOKENS
+   Adapted from Agency OS Landing design system (warm editorial, restrained).
+   Plain CSS custom properties. No build step. Import this first.
+
+   Philosophy:
+     Warm, editorial, restrained. Monochromatic base with a single purposeful
+     accent (teal). Every token earns its place. No defaults, no generic.
+
+   Usage:
+     color: hsl(var(--text-primary));
+     background: hsl(var(--teal) / 0.08);        /* opacity with slash syntax */
+     font-family: var(--font-body);
+     padding: var(--space-6);
+     transition: transform var(--duration-fast) var(--zen);
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Font loading ──────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+
+:root {
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     COLOR
+     HSL space so we can do `hsl(var(--teal) / 0.5)` for opacity.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Brand accent (agency) */
+  /* NOTE 2026-04-10: darkened from 174 55% 40% (#2E9E9E) to satisfy WCAG 2.2 AA 4.5:1 body-text contrast. */
+  --teal:          174 62% 27%;   /* #2E9E9E:primary accent */
+  --teal-bright:   174 55% 45%;   /* hover state */
+  --teal-muted:    174 35% 55%;   /* disabled / subtle */
+
+  /* Surface (warm editorial cool-white) */
+  --bg:            0 0% 98%;      /* #FAFAFA:page background */
+  --bg-elevated:   0 0% 100%;     /* #FFFFFF:cards, popovers */
+  --fg:            220 13% 13%;   /* #1C1E24:charcoal */
+
+  /* Surface tints:alternating section backgrounds */
+  --surface-sage:      210 20% 96%;  /* #F1F4F7:process, methodology */
+  --surface-blush:     220 30% 97%;  /* #F4F5FA:testimonials, social proof */
+  --surface-lavender:  240 25% 97%;  /* #F3F4FA:FAQ, questions */
+  --surface-sand:      220 15% 95%;  /* #EFF1F5:portfolio, showcase */
+
+  /* Text hierarchy:4-tier, Linear-inspired */
+  --text-primary:     220 13% 13%;  /* charcoal:headings, emphasis */
+  --text-secondary:   220  9% 28%;  /* body copy */
+  --text-tertiary:    220  8% 42%;  /* captions, metadata */
+  --text-quaternary:  220  7% 58%;  /* disabled, hints */
+
+  /* Borders:ultra subtle */
+  --border:         220 9% 90%;
+  --border-strong:  220 9% 82%;   /* hover borders, dividers */
+  --border-focus:   174 55% 40%;  /* teal ring */
+
+  /* Feedback */
+  --success:  152 55% 42%;
+  --warning:   38 92% 50%;
+  --danger:     0 84% 60%;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Font families */
+  --font-display: 'Instrument Serif', 'New York', Georgia, 'Times New Roman', serif;
+  --font-body:    'Instrument Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale:Stripe-calibrated, fluid */
+  --text-hero:      clamp(2.75rem, 5.5vw, 3.75rem);  /* 44–60px */
+  --text-h2:        clamp(2rem,    3.5vw, 2.75rem);  /* 32–44px */
+  --text-h3:        clamp(1.375rem, 2.5vw, 1.75rem); /* 22–28px */
+  --text-h4:        1.125rem;    /* 18px */
+  --text-body:      1.0625rem;   /* 17px:Stripe body standard */
+  --text-body-sm:   0.9375rem;   /* 15px */
+  --text-caption:   0.8125rem;   /* 13px */
+  --text-label:     0.6875rem;   /* 11px:uppercase badges */
+  --text-micro:     0.625rem;    /* 10px */
+
+  /* Line height */
+  --leading-hero:     1.08;   /* large display */
+  --leading-heading:  1.15;   /* section headings */
+  --leading-tight:    1.25;   /* compact elements */
+  --leading-body:     1.65;   /* body copy:generous */
+
+  /* Letter spacing */
+  --tracking-display:  -0.025em;  /* large headings */
+  --tracking-heading:  -0.02em;   /* section headings */
+  --tracking-body:     -0.005em;  /* body text */
+  --tracking-label:     0.08em;   /* uppercase labels */
+  --tracking-wide:      0.12em;   /* mono badges */
+
+  /* Weight */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SPACING:8pt grid
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+
+  /* Rhythm stops:named vertical cadence */
+  --rhythm-section:       128px;  /* between major sections */
+  --rhythm-section-sm:     96px;  /* between minor sections */
+  --rhythm-label-heading:  16px;  /* label → heading */
+  --rhythm-heading-body:   20px;  /* heading → body */
+  --rhythm-body-cta:       32px;  /* body → CTA button */
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     RADIUS
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --radius-sm:    0.5rem;    /*  8px */
+  --radius:       0.75rem;   /* 12px:base */
+  --radius-lg:    1rem;      /* 16px */
+  --radius-xl:    1.25rem;   /* 20px */
+  --radius-2xl:   1.5rem;    /* 24px */
+  --radius-full:  9999px;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SHADOWS:Raycast-inspired multi-layer
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --shadow-xs:  0 1px 2px  rgba(0, 0, 0, 0.03);
+  --shadow-sm:  0 1px 3px  rgba(0, 0, 0, 0.04), 0 1px 2px  rgba(0, 0, 0, 0.02);
+  --shadow-md:  0 4px 16px rgba(0, 0, 0, 0.05), 0 1px 4px  rgba(0, 0, 0, 0.03);
+  --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px  rgba(0, 0, 0, 0.03);
+  --shadow-xl:  0 16px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     MOTION
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --duration-fast:    150ms;  /* micro-interactions */
+  --duration-normal:  300ms;  /* dropdowns, tooltips */
+  --duration-slow:    500ms;  /* panels, complex state */
+  --duration-reveal:  800ms;  /* scroll reveals */
+  --duration-hero:   1200ms;  /* hero entrance */
+
+  /* Easing:`--zen` is the house default */
+  --zen:          cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:      cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-spring:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     LAYOUT
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --container-narrow:  680px;   /* text-heavy sections */
+  --container:        1080px;   /* Stripe standard */
+  --container-wide:   1200px;   /* edge-to-edge features */
+  --container-padding:  24px;
+
+  /* Touch targets (WCAG 2.2 AA: 24px min; we use 44 for safety) */
+  --touch-min:    44px;
+  --touch-ideal:  48px;
+
+  /* Button heights */
+  --btn-sm:  32px;
+  --btn-md:  40px;   /* Stripe standard */
+  --btn-lg:  48px;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     Z-INDEX
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --z-sticky:   100;
+  --z-header:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-popover:  500;
+  --z-toast:    700;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     FOCUS / GLASS
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --focus-ring:       0 0 0 2px hsl(var(--bg)), 0 0 0 4px hsl(var(--border-focus));
+  --focus-ring-inset: inset 0 0 0 2px hsl(var(--border-focus));
+
+  --glass:              rgba(255, 255, 255, 0.60);
+  --glass-strong:       rgba(255, 255, 255, 0.82);
+  --glass-border:       rgba( 26,  20,  16, 0.06);
+  --glass-border-hover: rgba( 26,  20,  16, 0.12);
+  --glass-highlight:    inset 0 1px 0 0 rgba(255, 255, 255, 0.50);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   NOTES
+
+   Font gap:Roobert is not used here.
+     The parent design system's display font is Roobert (Displaay, licensed).
+     The .woff2 files are not in this repo, so we substitute Instrument Serif
+     for display. Both are from the Instrument family and pair natively with
+     Instrument Sans. If/when Roobert .woff2 files are available, add @font-face
+     declarations above and swap `--font-display` to 'Roobert', ...
+
+   Print export (Paged.js, later) —
+     Print-specific overrides live in a separate `print.css` that re-declares
+     select variables inside `@page` / `@media print`:
+       - force --bg to pure white
+       - tighter type scale
+       - remove shadows and glass effects
+       - set container max-width to letter content width (~6.5in)
+
+   Reduced motion —
+     Handled in styles.css, not here. Token file stays theme-only.
+   ═══════════════════════════════════════════════════════════════════════════════ */

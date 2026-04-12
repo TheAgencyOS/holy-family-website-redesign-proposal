@@ -1,0 +1,17 @@
+{
+  "name": "hfu-proposal-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Holy Family University website redesign proposal — Agency OS",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build:context": "node chat/build-context.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

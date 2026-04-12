@@ -1,0 +1,4018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic;  font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic;  font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:       #2E9E9E;
+      --teal-deep:  #1F7676;
+      --teal-glow:  rgba(46, 158, 158, 0.12);
+      --hfu-navy:   #06213F;
+      --hfu-yellow: #FFCC15;
+
+      /* Light-mode editorial palette */
+      --cream:      #FAF8F3;
+      --cream-deep: #F1EDE4;
+      --paper:      #FFFFFF;
+      --ink:        #06213F;
+      --ink-body:   rgba(6, 33, 63, 0.82);
+      --ink-soft:   rgba(6, 33, 63, 0.65);
+      --ink-mute:   rgba(6, 33, 63, 0.48);
+      --ink-whisper:rgba(6, 33, 63, 0.32);
+      --rule:       rgba(6, 33, 63, 0.10);
+      --rule-soft:  rgba(6, 33, 63, 0.06);
+      --rule-strong:rgba(6, 33, 63, 0.18);
+      --shadow-low: 0 1px 2px rgba(6, 33, 63, 0.04), 0 4px 14px rgba(6, 33, 63, 0.05);
+      --shadow-mid: 0 2px 6px rgba(6, 33, 63, 0.05), 0 20px 40px rgba(6, 33, 63, 0.08);
+      --shadow-high:0 2px 8px rgba(6, 33, 63, 0.06), 0 40px 80px rgba(6, 33, 63, 0.12);
+
+      --display:    'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:       'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:      'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:       'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--cream);
+      font-family: var(--body);
+      font-size: 11pt;
+      line-height: 1.7;
+      color: var(--ink-body);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    /* Subtle paper texture · single gradient, no external assets */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(46, 158, 158, 0.035), transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(6, 33, 63, 0.025), transparent 60%);
+    }
+    main { position: relative; z-index: 1; }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal-deep); }
+
+    /* ══════════════════════════════════════════════════════════════
+       READER LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    .reader {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 96px 48px 200px;
+      position: relative;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      margin-bottom: 140px;
+    }
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 32px;
+    }
+    .hero__eyebrow::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 76pt;
+      line-height: 0.9;
+      letter-spacing: -0.036em;
+      color: var(--ink);
+      max-width: 11ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal-deep);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 22pt;
+      line-height: 1.35;
+      color: var(--ink-soft);
+      max-width: 48ch;
+      margin-bottom: 56px;
+    }
+    .hero__meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+      max-width: 620px;
+    }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 10px;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 24pt;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.024em;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: 0;
+      margin: 0 -0.01em;
+      color: var(--teal-deep);
+      font-synthesis: none;
+    }
+
+    /* ── Contents list (jump menu) ─────────────────────────── */
+    .contents {
+      margin-bottom: 140px;
+      padding: 48px 0;
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+    .contents__label {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .contents__label::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--ink-whisper);
+    }
+    .contents__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      list-style: none;
+    }
+    .contents__item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 28px;
+      align-items: baseline;
+      padding: 22px 0;
+      border-top: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: padding 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                  background 260ms ease;
+    }
+    .contents__item:first-child { border-top: none; }
+    .contents__item:hover {
+      padding-left: 16px;
+      background: linear-gradient(90deg, var(--teal-glow), transparent 60%);
+    }
+    .contents__item:hover .contents__num {
+      color: var(--teal-deep);
+    }
+    .contents__num {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+      transition: color 260ms ease;
+    }
+    .contents__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 15pt;
+      line-height: 1.22;
+      color: var(--ink);
+      letter-spacing: -0.018em;
+    }
+    .contents__meta {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    /* ── Document section ─────────────────────────────────── */
+    .doc {
+      margin-bottom: 180px;
+      scroll-margin-top: 40px;
+    }
+    .doc__chapter {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .doc__chapter::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .doc__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 52pt;
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      max-width: 14ch;
+      margin-bottom: 32px;
+    }
+    .doc__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal-deep);
+      font-synthesis: none;
+    }
+    .doc__summary {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17pt;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 54ch;
+      padding-bottom: 56px;
+      margin-bottom: 72px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── Markdown prose ───────────────────────────────────── */
+    .md {
+      color: var(--ink-body);
+      font-size: 11.5pt;
+      line-height: 1.82;
+      max-width: 62ch;
+    }
+    .md.is-loading::before {
+      content: 'Loading document…';
+      display: block;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-whisper);
+      padding: 40px 0;
+    }
+    .md h1 { display: none; }
+    .md h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 26pt;
+      line-height: 1.08;
+      letter-spacing: -0.024em;
+      color: var(--ink);
+      margin-top: 104px;
+      margin-bottom: 28px;
+      max-width: 24ch;
+    }
+    .md h2:first-of-type { margin-top: 0; }
+    .md h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 15pt;
+      line-height: 1.25;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      margin-top: 56px;
+      margin-bottom: 18px;
+    }
+    .md h4 {
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+      font-weight: 500;
+      margin-top: 44px;
+      margin-bottom: 14px;
+    }
+    .md p {
+      margin-bottom: 24px;
+      color: var(--ink-body);
+    }
+    .md p:first-child { margin-top: 0; }
+    /* Drop cap on the first paragraph of each chapter */
+    .md > p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 64pt;
+      line-height: 0.85;
+      float: left;
+      padding: 6px 10px 0 0;
+      margin-top: 4px;
+      color: var(--teal-deep);
+    }
+    .md p strong, .md li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .md em {
+      color: var(--ink);
+      font-style: italic;
+    }
+    .md ul, .md ol {
+      margin: 18px 0 30px 26px;
+      color: var(--ink-body);
+    }
+    .md li {
+      margin-bottom: 10px;
+      line-height: 1.78;
+      padding-left: 8px;
+    }
+    .md li::marker {
+      color: var(--teal);
+    }
+    .md li > strong:first-child { color: var(--ink); }
+    .md a {
+      color: var(--teal-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(46, 158, 158, 0.35);
+      transition: border-color 180ms ease, color 180ms ease;
+    }
+    .md a:hover {
+      border-bottom-color: var(--teal-deep);
+      color: var(--ink);
+    }
+    .md code {
+      font-family: var(--mono);
+      font-size: 9pt;
+      background: var(--cream-deep);
+      color: var(--teal-deep);
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--rule);
+    }
+    .md pre {
+      background: var(--cream-deep);
+      border: 1px solid var(--rule);
+      padding: 28px 32px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 32px 0;
+      font-family: var(--mono);
+      font-size: 8pt;
+      line-height: 1.65;
+      color: var(--ink);
+      box-shadow: var(--shadow-low);
+    }
+    .md pre code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      border: 0;
+      font-size: inherit;
+    }
+    .md blockquote {
+      border-left: 2px solid var(--teal);
+      padding: 4px 0 4px 30px;
+      margin: 36px 0;
+      color: var(--ink-soft);
+      font-family: var(--serif);
+      font-size: 15pt;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 52ch;
+    }
+    .md blockquote p { color: inherit; margin-bottom: 12px; }
+    .md hr {
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 80px 0;
+    }
+    .md table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      font-size: 10pt;
+      line-height: 1.55;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-low);
+    }
+    .md thead tr {
+      border-bottom: 1px solid var(--rule-strong);
+      background: var(--cream-deep);
+    }
+    .md tbody tr {
+      border-bottom: 1px solid var(--rule-soft);
+    }
+    .md tbody tr:last-child { border-bottom: none; }
+    .md th, .md td {
+      padding: 14px 18px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .md th {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      font-weight: 500;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+    .md td { color: var(--ink-body); }
+    .md td:first-child {
+      font-family: var(--display);
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .md tbody tr:hover td { background: rgba(46, 158, 158, 0.035); }
+
+    /* ── Peer gallery between hero and contents ────────────── */
+    .peer-section {
+      margin-bottom: 140px;
+    }
+    .peer-section__label {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .peer-section__label::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--ink-whisper);
+    }
+    .peer-section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 30pt;
+      line-height: 1.05;
+      letter-spacing: -0.024em;
+      color: var(--ink);
+      max-width: 22ch;
+      margin-bottom: 48px;
+    }
+    .peer-section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal-deep);
+      font-synthesis: none;
+    }
+    .peer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .peer {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-low);
+      transition: all 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .peer:hover {
+      border-color: rgba(46, 158, 158, 0.4);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-mid);
+    }
+    .peer__img {
+      flex: 1;
+      background: var(--cream-deep);
+      overflow: hidden;
+    }
+    .peer__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .peer:hover .peer__img img { transform: scale(1.04); }
+    .peer__caption {
+      padding: 14px 16px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--cream);
+    }
+
+    /* ── Pull quotes · stop-time editorial moments ─────────── */
+    .pull {
+      margin: 180px -48px;
+      padding: 0 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+    }
+    .pull__mark {
+      font-family: var(--serif);
+      font-size: 140pt;
+      line-height: 0.75;
+      color: var(--teal);
+      opacity: 0.28;
+      margin-bottom: -32px;
+      margin-left: -8px;
+      pointer-events: none;
+    }
+    .pull__text {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 40pt;
+      line-height: 1.1;
+      letter-spacing: -0.014em;
+      color: var(--ink);
+      max-width: 18ch;
+      margin-bottom: 32px;
+    }
+    .pull__text em {
+      font-style: italic;
+      color: var(--teal-deep);
+    }
+    .pull__attribution {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      padding-top: 20px;
+      border-top: 1px solid var(--rule-strong);
+      min-width: 220px;
+    }
+
+    /* ── Bleed images between sections ────────────────────── */
+    .bleed {
+      margin: 140px -80px;
+      position: relative;
+    }
+    .bleed__frame {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--paper);
+      aspect-ratio: 16 / 9;
+      box-shadow: var(--shadow-high);
+    }
+    .bleed__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .bleed__caption {
+      margin-top: 18px;
+      padding-left: 4px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .bleed__caption strong { color: var(--ink); font-weight: 500; }
+    .bleed__frame--center img { object-position: center; }
+    .bleed__frame--panorama { aspect-ratio: 3 / 1; }
+
+    /* ── Source pull quote · verbatim from holyfamily.edu ──── */
+    .pull--source .pull__mark { color: var(--hfu-navy); opacity: 0.2; }
+    .pull--source .pull__text {
+      font-size: 32pt;
+      max-width: 22ch;
+      line-height: 1.15;
+    }
+    .pull--source .pull__text em { color: var(--hfu-navy); }
+    .pull--source .pull__attribution {
+      border-top-color: var(--hfu-navy);
+      color: var(--hfu-navy);
+      opacity: 0.72;
+    }
+    .pull--source .pull__attribution::before {
+      content: '◆';
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 7pt;
+      transform: translateY(-1px);
+      color: var(--hfu-yellow);
+    }
+
+    /* ── HFU stats strip · their published numbers ────────── */
+    .hfu-stats {
+      margin: 64px -24px 80px;
+      padding: 32px 32px 36px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      box-shadow: var(--shadow-low);
+      position: relative;
+    }
+    .hfu-stats__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hfu-stats__label strong {
+      color: var(--hfu-navy);
+      font-weight: 500;
+    }
+    .hfu-stats__label em {
+      font-family: var(--serif);
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 9pt;
+      color: var(--ink-soft);
+    }
+    .hfu-stats__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 24px;
+    }
+    .hfu-stats__item__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 22pt;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .hfu-stats__item__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: 0;
+      margin: 0 -0.01em;
+      color: var(--teal-deep);
+      font-synthesis: none;
+    }
+    .hfu-stats__item__label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      line-height: 1.6;
+    }
+    .hfu-stats__recognition {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    .hfu-stats__recognition__badge {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hfu-stats__recognition__badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .hfu-stats__recognition__list {
+      font-family: var(--serif);
+      font-size: 11pt;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .hfu-stats__recognition__list strong {
+      color: var(--hfu-navy);
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    /* ── Stack logo row ───────────────────────────────────── */
+    .stack {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin: 96px -40px;
+    }
+    .stack__cell {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 24px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      aspect-ratio: 1 / 1;
+      box-shadow: var(--shadow-low);
+      transition: all 260ms ease;
+    }
+    .stack__cell:hover {
+      border-color: rgba(46, 158, 158, 0.4);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-mid);
+    }
+    .stack__cell img {
+      max-height: 32px;
+      max-width: 80%;
+      filter: grayscale(100%) brightness(0.25) contrast(1.2);
+      opacity: 0.82;
+      object-fit: contain;
+      transition: opacity 260ms ease;
+    }
+    .stack__cell:hover img { opacity: 1; }
+    .stack__cell__label {
+      font-family: var(--mono);
+      font-size: 5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      text-align: center;
+    }
+
+    /* ── Error fallback ────────────────────────────────────── */
+    .md__err {
+      padding: 20px 24px;
+      border: 1px solid rgba(200, 60, 60, 0.3);
+      background: rgba(200, 60, 60, 0.04);
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 8pt;
+      color: #A33A3A;
+      margin: 16px 0;
+    }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media screen and (max-width: 900px) {
+      .reader { padding: 56px 28px 140px; }
+      .hero { margin-bottom: 100px; }
+      .hero__title { font-size: 50pt; }
+      .hero__lede { font-size: 17pt; }
+      .hero__meta { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .hero__stat__value { font-size: 19pt; }
+      .contents { padding: 36px 0; margin-bottom: 100px; }
+      .doc { margin-bottom: 120px; }
+      .doc__title { font-size: 38pt; }
+      .doc__summary { font-size: 15pt; }
+      .md h2 { font-size: 20pt; margin-top: 80px; }
+      .md > p:first-of-type::first-letter { font-size: 52pt; }
+      .peer-section { margin-bottom: 100px; }
+      .peer-section__title { font-size: 24pt; }
+      .peer-grid { grid-template-columns: repeat(2, 1fr); }
+      .pull { margin: 120px -28px; padding: 0 28px; }
+      .pull__mark { font-size: 100pt; }
+      .pull__text { font-size: 30pt; }
+      .bleed { margin: 96px -28px; }
+      .pull--source .pull__text { font-size: 24pt; }
+      .hfu-stats { margin: 48px -8px 64px; padding: 24px 22px 28px; }
+      .hfu-stats__grid { grid-template-columns: repeat(2, 1fr); gap: 24px 20px; }
+      .hfu-stats__item__value { font-size: 18pt; }
+      .hfu-stats__recognition { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .hfu-stats__recognition__badge { width: 68px; height: 68px; }
+      .hfu-stats__recognition__list { font-size: 10pt; }
+      .stack { grid-template-columns: repeat(3, 1fr); margin: 72px 0; }
+    }
+    @media screen and (max-width: 600px) {
+      .reader { padding: 40px 20px 100px; }
+      .hero__title { font-size: 38pt; }
+      .hero__lede { font-size: 14pt; }
+      .hero__meta { grid-template-columns: 1fr; }
+      .hero__stat__value { font-size: 17pt; }
+      .doc__title { font-size: 30pt; }
+      .doc__summary { font-size: 13pt; }
+      .md { font-size: 10.5pt; }
+      .md h2 { font-size: 17pt; }
+      .md h3 { font-size: 12pt; }
+      .md > p:first-of-type::first-letter { font-size: 44pt; padding-right: 8px; }
+      .md table { font-size: 9pt; }
+      .md th, .md td { padding: 10px 12px; }
+      .contents__item { grid-template-columns: 40px 1fr; }
+      .contents__meta { display: none; }
+      .peer-grid { grid-template-columns: 1fr; }
+      .peer-section__title { font-size: 20pt; }
+      .pull { margin: 80px -20px; padding: 0 20px; }
+      .pull__mark { font-size: 72pt; }
+      .pull__text { font-size: 22pt; }
+      .bleed { margin: 64px -20px; }
+      .pull--source .pull__text { font-size: 20pt; }
+      .hfu-stats__grid { grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+      .hfu-stats__item__value { font-size: 16pt; }
+      .stack { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab is-current">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Research updates as the project progresses.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      [Agency Name] · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Research</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Holy Family University Website Redesign Proposal - [Agency Name]" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <article class="reader">
+
+      <!-- ══════════════════════════════════════════════════════════════
+           HERO
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="hero__eyebrow">The data room · April 2026</div>
+        <h1 class="hero__title">What we <em>know.</em></h1>
+        <p class="hero__lede">The proposal stays tight because the work sits here. Strategic intelligence on the institution. Competitive positioning against the agencies likely bidding. A full audit of the 1,601-URL sitemap. The technical approach, engineering spec, migration runbook, and execution playbook — end to end — for the team that will live with this site for the next five years.</p>
+        <dl class="hero__meta">
+          <div>
+            <div class="hero__stat__label">URLs audited</div>
+            <div class="hero__stat__value">1,601</div>
+          </div>
+          <div>
+            <div class="hero__stat__label">Chapters</div>
+            <div class="hero__stat__value">8</div>
+          </div>
+          <div>
+            <div class="hero__stat__label">Research passes</div>
+            <div class="hero__stat__value"><em>6</em></div>
+          </div>
+        </dl>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CONTENTS
+           ══════════════════════════════════════════════════════════════ -->
+      <nav class="contents" aria-label="Table of contents">
+        <div class="contents__label">In this brief</div>
+        <div class="contents__list">
+          <a href="#bulletproof" class="contents__item">
+            <span class="contents__num">01</span>
+            <span class="contents__title">Bulletproof research</span>
+            <span class="contents__meta">23 KB · 6 passes</span>
+          </a>
+          <a href="#prospect" class="contents__item">
+            <span class="contents__num">02</span>
+            <span class="contents__title">Prospect intelligence</span>
+            <span class="contents__meta">20 KB · DMU</span>
+          </a>
+          <a href="#positioning" class="contents__item">
+            <span class="contents__num">03</span>
+            <span class="contents__title">Competitive positioning</span>
+            <span class="contents__meta">8 KB · 5 rivals</span>
+          </a>
+          <a href="#sitemap" class="contents__item">
+            <span class="contents__num">04</span>
+            <span class="contents__title">Sitemap audit</span>
+            <span class="contents__meta">15 KB · 1,601 URLs</span>
+          </a>
+          <a href="#wp-build" class="contents__item">
+            <span class="contents__num">05</span>
+            <span class="contents__title">WordPress build architecture</span>
+            <span class="contents__meta">25 KB · theme spec</span>
+          </a>
+          <a href="#drupal-wp" class="contents__item">
+            <span class="contents__num">06</span>
+            <span class="contents__title">Drupal → WordPress migration</span>
+            <span class="contents__meta">8 KB · runbook</span>
+          </a>
+          <a href="#technical" class="contents__item">
+            <span class="contents__num">07</span>
+            <span class="contents__title">Technical approach</span>
+            <span class="contents__meta">26 KB · RFP Section C</span>
+          </a>
+          <a href="#execution" class="contents__item">
+            <span class="contents__num">08</span>
+            <span class="contents__title">Execution guide</span>
+            <span class="contents__meta">13 KB · 5-phase playbook</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PEER BENCHMARK GALLERY
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="peer-section">
+        <div class="peer-section__label">The peer set</div>
+        <h2 class="peer-section__title">Your real competitors for the <em>same student.</em></h2>
+        <div class="peer-grid">
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-lasalle.png" alt="La Salle University"></div>
+            <div class="peer__caption">La Salle University</div>
+          </div>
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-villanova.png" alt="Villanova University"></div>
+            <div class="peer__caption">Villanova University</div>
+          </div>
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-neumann.png" alt="Neumann University"></div>
+            <div class="peer__caption">Neumann University</div>
+          </div>
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-chestnut-hill.png" alt="Chestnut Hill College"></div>
+            <div class="peer__caption">Chestnut Hill College</div>
+          </div>
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-immaculata.png" alt="Immaculata University"></div>
+            <div class="peer__caption">Immaculata University</div>
+          </div>
+          <div class="peer">
+            <div class="peer__img"><img src="assets/screenshots/peer-creighton.png" alt="Creighton University"></div>
+            <div class="peer__caption">Creighton · reference</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · HFU campus (from visit page) — grounding
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center">
+          <img src="assets/holyfamily/campus-path-trees.jpg" alt="The Holy Family University campus path">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /visit · captured April 11, 2026</span>
+          <span>The campus the website is supposed to be selling</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           SOURCE PULL QUOTE · verbatim from holyfamily.edu
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull pull--source">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">At Holy Family University, you&rsquo;re not only a student &mdash; you&rsquo;re <em>part of the family!</em></div>
+        <div class="pull__attribution">holyfamily.edu · /admissions · captured April 2026</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           OPENING PULL QUOTE · connecting peer set to the research
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">The proposal is the <em>argument.</em> The research is the <em>evidence.</em></div>
+        <div class="pull__attribution">Why we made this tab</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 01 · BULLETPROOF RESEARCH
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="bulletproof">
+        <div class="doc__chapter">Chapter 01</div>
+        <h2 class="doc__title">Bulletproof <em>research.</em></h2>
+        <p class="doc__summary">Six parallel research passes compiled into one brief. Slate integration patterns, higher-ed chatbots, AI search, enrollment conversion benchmarks, personalization tiers, AEO/GEO, WCAG 2.2, and the competitive pricing landscape. The source of truth for most proposal claims.</p>
+        <div class="md is-loading" data-doc="bulletproof"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · HFU academics detail — end of research chapter
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center">
+          <img src="assets/holyfamily/academics-detail.jpg" alt="Holy Family University academics page hero, students in a lecture setting">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /academics · captured April 2026</span>
+          <span>&ldquo;More than 40 programs to choose from.&rdquo;</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · bulletproof → prospect intelligence
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">Facts without people are <em>trivia.</em> Six cabinet members decide this RFP.</div>
+        <div class="pull__attribution">Chapter 01 → 02</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 02 · PROSPECT INTELLIGENCE
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="prospect">
+        <div class="doc__chapter">Chapter 02</div>
+        <h2 class="doc__title">Prospect <em>intelligence.</em></h2>
+        <p class="doc__summary">Financial health (S&amp;P A−, $96.4M revenue, $30M endowment), academic profile, the six cabinet members evaluating this proposal, pain points, leverage points, and an honest go/no-go recommendation.</p>
+
+        <!-- ── HFU stats strip · verbatim from holyfamily.edu /about ── -->
+        <div class="hfu-stats" aria-label="Statistics Holy Family University publishes about itself">
+          <div class="hfu-stats__label">
+            <span>What they say about themselves &mdash; <strong>holyfamily.edu/about</strong></span>
+            <em>captured April 2026</em>
+          </div>
+          <div class="hfu-stats__grid">
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">2,955</div>
+              <div class="hfu-stats__item__label">Total enrollment · Fall 2022</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">13:1</div>
+              <div class="hfu-stats__item__label">Student · faculty ratio</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">40<em>+</em></div>
+              <div class="hfu-stats__item__label">Programs · bachelor, grad, doctorate</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">~92<em>%</em></div>
+              <div class="hfu-stats__item__label">Grads working / in grad school · 1 yr</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">18</div>
+              <div class="hfu-stats__item__label">NCAA Division II varsity teams</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">100<em>%</em></div>
+              <div class="hfu-stats__item__label">Students with internship / practicum</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">15</div>
+              <div class="hfu-stats__item__label">Avg. class size · UG</div>
+            </div>
+            <div class="hfu-stats__item">
+              <div class="hfu-stats__item__value">1954</div>
+              <div class="hfu-stats__item__label">Founded · Sisters of the Holy Family of Nazareth</div>
+            </div>
+          </div>
+          <div class="hfu-stats__recognition" aria-label="Third-party recognitions listed on holyfamily.edu">
+            <div class="hfu-stats__recognition__badge">
+              <img src="assets/holyfamily/carnegie-ocu-badge.svg" alt="Carnegie Classification · Opportunity College and University badge">
+            </div>
+            <div class="hfu-stats__recognition__list">
+              <strong>Carnegie Classification</strong> &mdash; Opportunity College and University &middot; <strong>Niche</strong> &mdash; &ldquo;Safest College in Philadelphia&rdquo; (2023, 2024) &middot; <strong>Third Way</strong> &mdash; Tier 1 for &ldquo;Top Performers on Social Mobility&rdquo;
+            </div>
+          </div>
+        </div>
+
+        <div class="md is-loading" data-doc="prospect"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · HFU classroom + faculty — end of prospect intel
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center">
+          <img src="assets/holyfamily/hfu-classroom-faculty.jpg" alt="Holy Family University faculty teaching students in a classroom">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /academics · captured April 2026</span>
+          <span>13:1 ratio · 15-student average class size</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · prospect → positioning
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">You&rsquo;re not competing with <em>no one.</em> You&rsquo;re competing with four agencies, each with a five-figure blind spot.</div>
+        <div class="pull__attribution">Chapter 02 → 03</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 03 · COMPETITIVE POSITIONING
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="positioning">
+        <div class="doc__chapter">Chapter 03</div>
+        <h2 class="doc__title">Competitive <em>positioning.</em></h2>
+        <p class="doc__summary">Structural disadvantages of the five likely competing agencies — OHO Interactive, Promet Source, Kanopi Studios, Electric Citizen, regional Philly shops — and how we fit differently.</p>
+        <div class="md is-loading" data-doc="positioning"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · HFU current state, leading into the sitemap audit
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame">
+          <img src="assets/screenshots/hfu-home.png" alt="holyfamily.edu today">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · April 2026 · Drupal on Pantheon</span>
+          <span>1,601 URLs · 670 news articles · 180+ top-level prefixes</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · positioning → sitemap audit
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">1,601 URLs. 670 of them are <em>news articles.</em> That&rsquo;s where the work begins.</div>
+        <div class="pull__attribution">Chapter 03 → 04</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 04 · SITEMAP AUDIT
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="sitemap">
+        <div class="doc__chapter">Chapter 04</div>
+        <h2 class="doc__title">Sitemap <em>audit.</em></h2>
+        <p class="doc__summary">Full scrape of holyfamily.edu: 1,601 URLs, 670 news articles (41.8% of the site), 180+ distinct top-level prefixes, 20+ duplicate RFI forms. The foundation for the proposed information-architecture collapse to eight sections.</p>
+        <div class="md is-loading" data-doc="sitemap"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · sitemap → wp build
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">Before a line of code is written, the <em>content model</em> decides the next five years.</div>
+        <div class="pull__attribution">Chapter 04 → 05</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · the humans the 1,601 URLs are supposed to serve
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center">
+          <img src="assets/holyfamily/hfu-students-campus.jpg" alt="Holy Family University students walking on campus">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /about · hfu-students-campus.png · captured April 2026</span>
+          <span>The content model exists to serve these three</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           STACK LOGO ROW · the tools behind the WP build
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="stack">
+        <div class="stack__cell">
+          <img src="assets/logos/wordpress-logo.png" alt="WordPress">
+          <div class="stack__cell__label">WordPress</div>
+        </div>
+        <div class="stack__cell">
+          <img src="assets/logos/pantheon-logo.svg" alt="Pantheon">
+          <div class="stack__cell__label">Pantheon</div>
+        </div>
+        <div class="stack__cell">
+          <img src="assets/logos/acf-logo.png" alt="ACF Pro">
+          <div class="stack__cell__label">ACF Pro</div>
+        </div>
+        <div class="stack__cell">
+          <img src="assets/logos/gravity-forms-logo.png" alt="Gravity Forms">
+          <div class="stack__cell__label">Gravity Forms</div>
+        </div>
+        <div class="stack__cell">
+          <img src="assets/logos/slate-logo.webp" alt="Slate">
+          <div class="stack__cell__label">Slate CRM</div>
+        </div>
+        <div class="stack__cell">
+          <img src="assets/logos/drupal-logo.png" alt="Drupal source">
+          <div class="stack__cell__label">Drupal · source</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 05 · WORDPRESS BUILD
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="wp-build">
+        <div class="doc__chapter">Chapter 05</div>
+        <h2 class="doc__title">WordPress build <em>architecture.</em></h2>
+        <p class="doc__summary">The engineering spec. Custom block theme, ACF field groups, plugin ecosystem, Pantheon deployment workflow, performance budgets, security posture. Every technical decision in the proposal traces back here.</p>
+        <div class="md is-loading" data-doc="wp-build"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · wp build → migration
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">AI <em>drafts.</em> Humans <em>decide.</em> Code <em>executes.</em> Tests <em>verify.</em></div>
+        <div class="pull__attribution">Chapter 05 → 06</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · the stained glass from the mission page
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center bleed__frame--panorama">
+          <img src="assets/holyfamily/mission-hero.jpg" alt="Stained glass window from the Holy Family University mission page">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /about/mission · mission-hero.png · captured April 2026</span>
+          <span>Every migration decision has to survive this</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           SOURCE PULL QUOTE · mission statement excerpt, verbatim
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull pull--source">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">&hellip;the <em>dignity</em> of each person and the <em>oneness</em> of the human family.</div>
+        <div class="pull__attribution">holyfamily.edu · /about/mission · mission statement</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 06 · MIGRATION RUNBOOK
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="drupal-wp">
+        <div class="doc__chapter">Chapter 06</div>
+        <h2 class="doc__title">Drupal &rarr; WordPress, <em>AI-accelerated.</em></h2>
+        <p class="doc__summary">End-to-end migration runbook for 1,601 URLs. FG Drupal to WordPress Premium, WP All Import, sentence-transformer semantic redirect mapping, AI content classification, post-migration QA automation.</p>
+        <div class="md is-loading" data-doc="drupal-wp"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · migration → technical approach
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">Every technology choice answers one <em>question:</em> can Rick&rsquo;s team maintain it alone in year three?</div>
+        <div class="pull__attribution">Chapter 06 → 07</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 07 · TECHNICAL APPROACH (RFP SECTION C)
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="technical">
+        <div class="doc__chapter">Chapter 07</div>
+        <h2 class="doc__title">Technical <em>approach.</em></h2>
+        <p class="doc__summary">The RFP Section C draft. CMS recommendation, component-based theme, Pantheon workflow, WCAG 2.2 AA shift-left methodology, Slate integration architecture, and the post-launch ownership principle that governs every other decision.</p>
+        <div class="md is-loading" data-doc="technical"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           BLEED IMAGE · HFU student experience — end of technical approach
+           ══════════════════════════════════════════════════════════════ -->
+      <figure class="bleed">
+        <div class="bleed__frame bleed__frame--center">
+          <img src="assets/holyfamily/student-experience.jpg" alt="Holy Family University students gathered on campus">
+        </div>
+        <figcaption class="bleed__caption">
+          <span><strong>holyfamily.edu</strong> · /student-life · captured April 2026</span>
+          <span>&ldquo;Once you&rsquo;ve set foot on campus, you&rsquo;ll see why we love it here.&rdquo;</span>
+        </figcaption>
+      </figure>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           PULL QUOTE · technical → execution
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">Strategy is the <em>plan.</em> Execution is the <em>proof.</em> This is the playbook.</div>
+        <div class="pull__attribution">Chapter 07 → 08</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CHAPTER 08 · EXECUTION GUIDE
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="doc" id="execution">
+        <div class="doc__chapter">Chapter 08</div>
+        <h2 class="doc__title">Execution <em>guide.</em></h2>
+        <p class="doc__summary">A 5-phase pipeline — extract, transform, scaffold, test, deploy — with CLI flows, pseudocode, rate-limiting patterns, image deduplication, redirect mapping, and a pragmatic 3-to-5-week timeline. The work behind the work.</p>
+        <div class="md is-loading" data-doc="execution"></div>
+      </section>
+
+      <!-- ══════════════════════════════════════════════════════════════
+           CLOSING PULL QUOTE
+           ══════════════════════════════════════════════════════════════ -->
+      <div class="pull">
+        <span class="pull__mark">&ldquo;</span>
+        <div class="pull__text">This is the appendix. The proposal is <em>thirty pages</em> because this tab is seven <em>thousand</em> lines.</div>
+        <div class="pull__attribution">End of research</div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       INLINED MARKDOWN · loaded from <script type="text/markdown">
+       blocks below via marked.js. No fetches, no network required.
+       ══════════════════════════════════════════════════════════════ -->
+
+  <script type="text/markdown" data-doc="bulletproof">
+# Holy Family University RFP — Bulletproof Research
+
+**Compiled:** 2026-04-11 from 6 parallel research agents
+**Related docs:**
+- `Research/2026-04-10 holy-family-rfp-drupal-wp-ai-migration.md` — Drupal → WP technical deep-dive
+- `Research/2026-04-11 holy-family-prospect-intelligence.md` — Institutional + decision-maker intel
+- `Research/2026-04-11 holy-family-sitemap.md` — 1,601-URL site scrape + IA analysis
+
+---
+
+## 1. Slate CRM + WordPress Integration
+
+### Bottom Line
+No official WordPress plugin exists. Integration requires either Slate's script-tag embed or the Gravity Forms webhook pattern. The Gravity Forms approach is cleaner and WordPress-native.
+
+### Two Integration Patterns
+
+**Option A: Slate Native Embed (script tag)**
+- Paste `<script>` embed code from Slate's form builder into a WordPress page
+- Form injects into the host DOM and inherits CSS automatically
+- Requires a custom Gutenberg block or shortcode handler to avoid WordPress sanitizing the script tag (NC State's documented solution: custom "Slate Form Embed Block" where authors paste only the form UUID)
+- Limitation: one Slate form per page; CSS class collisions possible (`.header`, `.dialog`)
+
+**Option B: Gravity Forms Webhook (recommended)**
+- Build native Gravity Form in WordPress, styled to match the theme
+- Activate Gravity Forms Webhooks Add-On
+- POST form data as JSON to Slate Source Format endpoint
+- Fully designed form, no CSS conflicts, no per-page limits
+- Real-time delivery (not batch) when configured to POST on submission
+- NC State documented this approach end-to-end including all field key mappings
+
+### Slate Ping Tracking (required on every page)
+```html
+<script async="async" src="https://[instance].technolutions.net/ping">/**/<\/script>
+```
+Add via theme header.php, code injection plugin, or Google Tag Manager. Drops first-party cookie, tracks page visits, links anonymous browsing to known Slate records nightly when visitor performs authenticated event (email click, portal login). This is the behavioral tracking foundation for enrollment attribution.
+
+### Data Flows
+
+| Direction | Data | Method |
+|---|---|---|
+| Website → Slate | RFI/inquiry form submissions | Gravity Forms webhook or Slate embed |
+| Website → Slate | Anonymous browsing behavior | Ping script (every page) |
+| Slate → Website | Program listings, event data | Query Builder web service (JSON) |
+| Slate → Website | Application status portal | Embedded iframe/portal (requires SSO config with IT) |
+
+### Key Technical Risks
+- WordPress code sanitization breaks raw script embeds — must use custom block or shortcode
+- Slate Knowledge Base is gated — need client's Slate admin access for implementation
+- Portal embedding requires cross-domain SSO (SAML/CAS/LDAP) — an IT dependency, not web agency scope
+- Slate's Open API launched read-only in 2023; write endpoints may have been added but unconfirmed publicly
+
+### Proposal Language
+"We will implement Slate forms using the Gravity Forms webhook pattern — fully branded forms that match your WordPress theme, with zero CSS conflicts, real-time lead delivery to Slate, and no per-page form limits. Slate Ping tracking will be implemented site-wide on day one."
+
+---
+
+## 2. Higher Ed Chatbot Platforms
+
+### Bottom Line
+**Gravyty (Ivy & Ocelot)** is the market leader after merging with Ivy.ai and Ocelot in March 2025. For a 3,700-student school using Slate, it's the default recommendation. **Mainstay** is the alternative if SMS enrollment campaigns are in scope.
+
+### Platform Comparison
+
+| Platform | Annual Cost (est.) | Setup | Slate Integration | FERPA | Conversational AI | WordPress |
+|---|---|---|---|---|---|---|
+| **Gravyty (Ivy & Ocelot)** | $15K-$40K | $5K-$15K | Yes (native) | Yes (SOC 2, BAA) | Yes | JS embed |
+| **Mainstay** | $12K-$30K | $3K-$8K | Yes (native) | Yes | Yes | JS embed |
+| **Element451 Bolt** | $14K-$40K | Included | Yes (alongside Slate) | Yes (SOC 2, BAA) | Yes | WP plugin |
+| **EAB AI Chat Agent** | $20K-$50K | Minimal | Likely | Yes | Yes | JS embed |
+| **Tidio** (budget) | $4,800-$9K | $2K-$5K | No (API only) | Not FERPA-native | Basic | WP plugin |
+
+### FERPA Compliance Architecture (Critical)
+- Public FAQ bot must be completely separate from authenticated student-record bot
+- Never load grades, financials, transcripts, or student IDs into a general chatbot
+- BAA with vendor required; data ownership stays with university
+- RAG-based architecture: LLM retrieves from approved institutional sources only
+- General platforms (Tidio, Intercom) cannot pass a FERPA audit for anything beyond public FAQ
+
+### Realistic Performance Benchmarks
+- 60-80% of routine inquiries handled without human intervention
+- Chatbot-initiated conversations convert at 5-20% to captured lead (vs ~1.5% for static forms)
+- 30-50% reduction in emails/calls/walk-ins
+- 3-5% improvement in yield (summer melt reduction)
+
+### What to Propose (Pricing)
+
+**Add-on line item for Holy Family:**
+- Your setup/integration fee: **$8K-$15K** one-time (knowledge base build, WordPress integration, Slate config, staff training)
+- Platform subscription: **$15K-$25K/year** (Gravyty or Mainstay, passed through or marked up)
+- Scope: public-facing FAQ widget + admissions lead capture; NOT authenticated student records (simpler FERPA posture)
+
+---
+
+## 3. AI Search Platforms
+
+### Bottom Line
+**Algolia Grow Plus** ($70-335/mo) is best for a budget-conscious add-on with AI-enhanced relevance. For true conversational search (direct answers), step up to **SearchStax Premium** ($500-800+/mo). Skip Elasticsearch — it's an infrastructure tool requiring 40-80+ dev hours, not a search product.
+
+**Critical Pantheon note:** Pantheon includes Apache Solr for free. The baseline is always "what Solr can do" vs. the AI add-on cost. Frame accordingly.
+
+### Platform Comparison
+
+| Platform | Monthly Cost (est.) | Conversational AI | WordPress/Pantheon | Higher Ed Fit | Implementation |
+|---|---|---|---|---|---|
+| **Algolia Grow Plus** | $70-335 | No (AI ranking only) | Community WP plugin | Good | Easy (4-8 hrs) |
+| **Algolia Elevate** | $4,000+ ($50K+/yr) | Yes (NeuralSearch + RAG) | Community WP plugin | Good | Moderate |
+| **SearchStax Premium** | $500-800+ | Yes (Smart Answers) | Crawler-based | Excellent | Easy (8-16 hrs) |
+| **SearchStax Advanced** | $499+ | No | Crawler-based | Excellent | Easy |
+| **Cludo** | $500-1,500 | Yes (AI Chat) | Crawler-based | Very Good | Easy |
+| **Swiftype Pro** | $199 | No | VIP-approved plugin | Good | Very easy (2-4 hrs) |
+| **Elasticsearch + ElasticPress** | $95-175 | DIY only | ElasticPress plugin | Moderate | Hard (40-80+ hrs) |
+| **Pantheon Solr** | $0 (included) | No | Native to Pantheon | Baseline | Already there |
+
+### Two Tiers of "AI Search"
+- **Tier 1 (AI-enhanced ranking):** Better relevance, synonyms, intent — search returns smarter results list. Algolia Grow Plus, SearchStax Advanced, Swiftype.
+- **Tier 2 (Conversational/generative):** Direct answers synthesized from your content. "What is the FAFSA deadline?" → "March 1, 2026." SearchStax Premium Smart Answers, Algolia Elevate, Cludo AI Chat.
+
+### Proposal Pricing Tiers
+
+| Tier | Platform | Monthly Platform Cost | Your Setup Fee | Total Yr 1 |
+|---|---|---|---|---|
+| Good | Algolia Grow Plus | $70-335 | $3K-5K | $5K-9K |
+| Better | SearchStax Advanced or Cludo | $500-800 | $5K-8K | $11K-18K |
+| Best | SearchStax Premium or Algolia Elevate | $800-4,000+ | $8K-15K | $18K-63K |
+
+---
+
+## 4. Enrollment Conversion Benchmarks
+
+### What a Well-Executed Redesign Delivers
+- **25-35% improvement in conversion rates** (RFI submissions, application starts) from well-executed redesigns with ongoing CRO
+- **Standout cases:** CityU of Seattle +171% RFI in month 1; Corlears School +30% applications immediately; Harper College +962% applications with funnel-stage personalization
+- **Engagement:** Bounce rate target post-redesign: 20-30% (down from HE average ~55%)
+- **Traffic:** Organic search grows 25-30% within 1 year of relaunch
+
+### Baseline Benchmarks ("What Good Looks Like")
+
+| Metric | Typical | Good | Top Performer |
+|---|---|---|---|
+| Landing page conversion | 6.3% | 8.4% | 12%+ |
+| RFI form completion | 1-2% of visitors | 3-5% | 5%+ |
+| Inquiry-to-application | 15-25% | 30-50% | 50%+ |
+| Application-to-admission | 50-70% | 60-70% | 70%+ |
+| Yield (admit-to-enroll) | 20-30% | 30-40% | 40%+ |
+| Bounce rate | 55% | 40-50% | 26-40% |
+| Pages/session | 2.3 | 2.5-2.6 | 3.0+ |
+
+### Key Nuance
+A one-time redesign without ongoing CRO produces much smaller/temporary gains. Pair the redesign with a post-launch optimization roadmap to lock in the 25-35% lift.
+
+---
+
+## 5. Website Personalization (Tiered Add-On)
+
+### Three Tiers for Holy Family
+
+**Basic (Year 1, include in base scope)**
+- Geo-targeting: in-state vs. out-of-state tuition/aid messaging
+- UTM/referral targeting: different hero for paid search vs. organic vs. email
+- Device-aware CTAs: mobile-optimized vs. desktop
+- Conditional CTAs: "Apply Now" for 3+ program page visits, "Request Info" for first-timers
+- Tools: If-So Dynamic Content ($139-199/yr) or Logic Hop ($199/yr) — WP plugins
+- **Ferris State result:** Geo-targeting alone moved homepage CTR from 1.6% to 14%
+
+**Intermediate (Add-on, $15K-25K implementation + $10K-15K/yr tooling)**
+- Funnel-stage personalization: different content for leads vs. inquiries vs. applicants vs. admitted
+- Program-interest targeting: "You were looking at Nursing" blocks on return visits
+- Exit-intent interventions: targeted offers on leaving behavior
+- Requires: CRM integration (Slate webhook) or cookie-based journey tracking
+- Tool: Halda (higher ed-specific, $15K-40K/yr)
+- **Harper College result:** 962% more applications; 47% of Halda leads enrolled
+
+**Advanced (Year 2+, $40K-100K+ implementation)**
+- ML-driven individual-level recommendations
+- Real-time behavioral scoring
+- Cross-channel (web + email + SMS)
+- Requires: dedicated martech staff, clean CRM data, large content library
+- Tool: Optimizely ($36K+/yr), Salesforce MC Personalization ($100K+/yr)
+- Not recommended for Year 1 at Holy Family's budget level
+
+### Compliance
+- **GDPR:** Opt-in consent before tracking cookies. Geo-targeting via IP (no storage) is generally permissible.
+- **CCPA:** Opt-out model. Needs "Do Not Sell" link if behavioral data shared with 3rd parties.
+- **FERPA:** Protects enrolled students only. Prospective student browsing is NOT covered.
+- Cookie consent platform (OneTrust, Cookiebot) required for EU visitors.
+
+---
+
+## 6. AEO/GEO Strategy (AI Search Optimization)
+
+### Why This Matters for Holy Family
+Half of prospective students use AI tools weekly to research programs. 93% of AI search sessions end without a click — the content AI surfaces IS the first impression. AI visitors convert at **4.4x the rate of organic visitors** when they do click through.
+
+### What Gets Cited by AI (Concrete Data)
+- Domain traffic strongest predictor (sites with more traffic get 3x more citations)
+- Pages updated within 2 months get 5.0 citations vs. 3.9 for older content
+- Content with statistics, citations, quotes: 30-40% higher AI visibility
+- Grade 6-8 reading level earns more citations than advanced text
+- Citation rates: Perplexity 13.05%, Google AI Mode 9.09%, ChatGPT 0.59% (but ChatGPT drives 87.4% of AI referral traffic)
+
+### Tactical Implementation for WordPress
+
+**Structured Data (Schema)**
+- `EducationalOrganization` on homepage
+- `EducationalOccupationalProgram` or `Course` on program pages (name, cost, duration, outcomes)
+- `FAQPage` on admissions, financial aid, student life pages (highest citation probability)
+- `Event` for open houses, info sessions
+- `Article/BlogPosting` on news content
+- WordPress plugins: Rank Math or Yoast SEO Pro handle auto-generation
+
+**Content Architecture**
+- Each program page must be "the ultimate answer" — include: enrollment numbers, graduation/retention rates with specific percentages, employment outcomes with avg. salaries, tuition per credit hour, student-faculty ratio, rankings/accreditations, named student testimonials with career outcomes
+- FAQ sections on every key page mirroring actual prospective student questions
+- Internal linking with descriptive anchor text
+- Canonical fact pages for tuition, deadlines, requirements (reduces conflicting AI responses)
+
+**llms.txt Protocol**
+- Place `/llms.txt` (Markdown) at domain root listing key institutional pages
+- Low-effort, signals technical sophistication
+- Adoption is minimal (~951 domains as of mid-2025), no LLM company has officially confirmed they honor it
+- Still worth implementing: 1-2 hours of work, demonstrates forward-thinking
+- Holy Family file would list: program pages, admissions, financial aid facts, tuition, deadlines
+
+**Monitoring**
+- Profound (enterprise, $96M Series C, $1B valuation) tracks AI visibility across 9 platforms
+- Otterly.ai or manual prompt testing as free alternatives
+- Update high-priority pages monthly (recency boosts citations)
+
+### ADA/Legal Urgency Play
+**The ADA Title II WCAG 2.1 AA compliance deadline was April 24, 2026.** That deadline has passed. Any university that hasn't started compliance work is already exposed. Frame the website redesign as the compliance solution in the proposal.
+
+---
+
+## 7. WCAG 2.2 AA — What's New and How to Build It In
+
+### 6 New Success Criteria vs. WCAG 2.1
+
+**New AA criteria (what you must implement):**
+1. **2.4.11 Focus Not Obscured:** Keyboard focus not hidden by sticky headers or modals
+2. **2.5.7 Dragging Movements:** Any drag interaction must have a click/tap alternative
+3. **2.5.8 Target Size Minimum:** Interactive elements must be at least 24×24 CSS pixels
+4. **3.3.8 Accessible Authentication:** Login cannot require cognitive tests (CAPTCHA); allow password managers and copy-paste
+
+**New A criteria (also required):**
+5. **3.2.6 Consistent Help:** Help links appear in same location across pages
+6. **3.3.7 Redundant Entry:** Auto-populate data already entered (don't make users retype)
+
+**Removed from 2.2:**
+- 4.1.1 Parsing (obsolete; modern browsers handle malformed HTML consistently)
+
+### Most Commonly Failed on University Sites
+- Missing alt text (1.1.1)
+- Poor color contrast (1.4.3) — especially in branded color palettes
+- Keyboard navigation failures (2.1.1) — especially in LMS, application forms, maps
+- Missing video captions (1.2.2) — campus tour videos, lecture recordings, event streams
+- Inaccessible PDFs (1.3.1) — years of legacy documents
+- Form labeling failures (3.3.2) — admissions forms, financial aid calculators
+
+### Testing Tool Stack
+
+| Tool | WCAG 2.2 Support | Use For | Cost |
+|---|---|---|---|
+| **axe-core / axe DevTools** (Deque) | Yes, AA | Developer CI pipeline, zero false positives | Free (core) / $40+/mo |
+| **WAVE** (WebAIM) | Yes, AA | Content editor training, visual overlay | Free |
+| **Siteimprove** | Yes, AAA | HFU already uses this — continuous monitoring, issue assignment | Enterprise (they have it) |
+| **Lighthouse** | Partial (2.1) | Quick spot checks in Chrome DevTools | Free |
+
+**Critical:** No automated tool catches more than 30-40% of all WCAG violations. Manual keyboard navigation + screen reader testing (NVDA, JAWS, VoiceOver) is required for the rest.
+
+### "Shift Left" Development Process (Proposal Differentiator)
+- **Design phase:** Accessible color palettes (4.5:1 contrast), 24px touch targets in wireframes, focus states designed for every interactive element, logical heading hierarchy in content models
+- **Development phase:** Accessible component library with ARIA built in, semantic HTML by default, automated axe-core linting in IDE and CI pipeline
+- **Content phase:** WYSIWYG editor guardrails — alt text required, heading level enforcement, accessible PDF templates
+- **QA phase:** Automated CI testing + manual screen reader testing on key user flows
+- **Post-launch:** Continuous monitoring via Siteimprove (they already use it), quarterly audits
+
+### Accessibility Audit Deliverable Structure
+1. Executive Summary (conformance level, critical count, risk)
+2. Scope & Methodology (pages tested, tools, standards)
+3. Conformance Matrix (pass/fail/partial by criterion)
+4. Detailed Findings (per issue: WCAG reference, severity, screenshot, remediation)
+5. Severity/Impact Matrix
+6. Remediation Roadmap (quick wins vs. structural changes)
+7. VPAT/ACR (required by many university procurement processes)
+8. Accessibility Statement Template
+
+### Legal Context
+- **ADA Title II Final Rule (April 2024):** Public universities must comply with WCAG 2.1 AA by April 24, 2026 (just passed)
+- **Section 504 + Section 508:** Apply to Holy Family as a federal-funds recipient; covers all public-facing digital content
+- **Building to WCAG 2.2 AA** exceeds the legal floor, provides compliance margin, and is backward-compatible with 2.1
+- PDF legacy remediation is a separate, ongoing project — scope it as a post-launch phase
+
+---
+
+## 8. Competitor Intel: Pricing + Proposal Patterns
+
+### Competitive Pricing Landscape
+
+| Agency | Hourly Rate | Deal Range for HFU | CMS Strength | Key Vulnerability |
+|---|---|---|---|---|
+| **OHO Interactive** | $150-199/hr | $250K-$450K+ | CMS-agnostic (leans Drupal) | Overpriced for a 3,700-student school; built for Ivy League budgets |
+| **Promet Source** | $100-149/hr | $175K-$350K | Drupal only (Provus EDU) | **Will fight the WordPress decision** |
+| **Kanopi Studios** | $150-199/hr | $200K-$400K | WordPress + Drupal | Continuous improvement model = lock-in; spread across too many verticals |
+| **Electric Citizen** | $101-150/hr | $150K-$275K | Drupal only | Small team, Drupal shop, no Catholic HE experience, Minneapolis |
+| **Your shop** | TBD | $225K-$350K | WordPress | — |
+
+**Deal range estimate for this project: $225K-$375K** (1,300-page Drupal → WP migration + full redesign + migration + training + 90-day support)
+
+### Your Structural Advantages
+
+1. **Promet and Electric Citizen are Drupal agencies.** If the RFP specifies WordPress (it does: "We have a preference for WordPress"), these two will either push back on CMS or be working outside their expertise. This is a hard structural disadvantage for them — use it.
+
+2. **OHO is built for the Ivy League.** A ~3,700-student private Catholic university may feel like a mid-tier account at a 100+ person shop. Smaller clients get junior teams.
+
+3. **Kanopi sells dependency.** Their "continuous improvement" model is designed for indefinite retainers. Pitch self-sufficiency and knowledge transfer as the counter.
+
+4. **Catholic university positioning is unclaimed.** None of the four competitors appear to have meaningful private Catholic higher ed experience. Mission integration, campus ministry content, faith-based messaging coexisting with academic rigor — frame this explicitly.
+
+### Competitive Positioning Lines
+
+**Against Promet:** "Your RFP specifies WordPress. We're WordPress specialists. Other respondents may try to redirect you to a different platform. We'll build what you asked for and train your team to own it independently."
+
+**Against OHO:** "You don't need a 100-person agency built for the Ivy League. Your project will be a priority for us, not a mid-tier account subsidizing larger engagements."
+
+**Against Kanopi:** "Kanopi's continuous improvement model is designed to keep you dependent on an agency. Our knowledge transfer plan ensures your team runs the site without calling us for routine changes. You'll own this."
+
+**Against Electric Citizen:** "A 1,300-page migration requires a team with real capacity and deep private Catholic university experience. We bring both."
+
+### What Winning Proposals Include
+
+Based on cross-referencing OHO, Kanopi, Opus Design, Carnegie, iFactory — these are the differentiators between winning and losing proposals:
+
+1. **Content governance plan** — Who owns what content, approval workflows, how to prevent 1,300 pages from becoming 2,600 pages. This is the #1 cited differentiator.
+2. **Transparent line-item pricing** — Phases with clear deliverables per phase. Lump sums lose.
+3. **Knowledge transfer curriculum** — Not "we'll train your team." Name the sessions, attendees, outcomes, and what they can do independently post-launch.
+4. **Content migration decision tree** — What gets migrated as-is, rewritten, archived, consolidated. Show the methodology.
+5. **Post-launch roadmap** — 6-12 month optimization plan based on real user data. Not just "we offer retainers."
+6. **Success metrics tied to enrollment goals** — Application starts, RFI conversion, program page engagement. Not vanity metrics.
+7. **Stakeholder management plan** — Name how input is gathered from 20+ content owners, conflicts resolved, decisions made.
+8. **Accessibility compliance plan** — WCAG 2.2 AA specifics, not just a checkbox.
+
+---
+
+## Quick Reference: Add-On Pricing for Proposal Section E
+
+| Add-On | Your Setup Fee | Annual Platform Cost | Total Yr 1 |
+|---|---|---|---|
+| **AI Chatbot (Gravyty)** | $8K-$15K | $15K-$25K/yr | $23K-$40K |
+| **AI Search – Good (Algolia)** | $3K-$5K | $840-$4,020/yr | $4K-$9K |
+| **AI Search – Better (SearchStax)** | $5K-$8K | $6K-$10K/yr | $11K-$18K |
+| **Personalization – Basic** | Included in base | $139-$199/yr (plugin) | ~$0 add-on |
+| **Personalization – Intermediate (Halda)** | $15K-$25K | $15K-$40K/yr | $30K-$65K |
+| **Extended Post-Launch Support** | — | $2K-$4K/mo retainer | $24K-$48K/yr |
+| **Content Writing Services** | — | $150-$250/page | Varies by scope |
+
+---
+
+## Summary: What Makes This Proposal Bulletproof
+
+1. **CMS choice defended:** Traditional WordPress (not headless) with ACF + REST API for future-proofing. Drupal competitors can't match this on WordPress.
+
+2. **Migration methodology is concrete:** FG Drupal Premium + WP All Import + AI-assisted content QA + semantic redirect mapping. Not vague.
+
+3. **Slate integration is specific:** Gravity Forms webhook pattern, Ping script site-wide, web service for dynamic content — NC State has done this, it works.
+
+4. **Content consolidation play:** Reduce 1,601 pages to ~1,200 active pages through audit + archival. Saves migration cost, improves UX, shows strategic thinking.
+
+5. **Legal urgency is live:** ADA Title II WCAG 2.1 AA deadline just passed April 24. Holy Family is exposed. The website redesign resolves this.
+
+6. **All add-ons are priced with ranges:** Chatbot, AI search (3 tiers), personalization (3 tiers), extended support. Rick Mitchell will appreciate the specificity.
+
+7. **Competitor vulnerabilities identified:** Promet and Electric Citizen are Drupal shops, structurally disadvantaged on a WordPress RFP. Use it.
+
+8. **Catholic institution positioning is unclaimed:** Mission-aligned, ministry-aware, private Catholic university experience = differentiation none of the named competitors can match.
+
+9. **Knowledge transfer is the winning bet:** Rick Mitchell's team of 1-2 people will maintain this site for 5 years. Every other agency sells ongoing dependency. You sell self-sufficiency.
+</script>
+
+  <script type="text/markdown" data-doc="prospect">
+# Holy Family University — Prospect Intelligence Brief
+
+**RFP:** Website Redesign | Due April 17, 2026 | Proposal Due: 7 days
+**Prospect Stage:** Qualified | **Confidence Level:** B+ | **Estimated Deal Size:** $150K–$350K
+
+---
+
+## Executive Summary
+
+Holy Family is a financially healthy, small Catholic university ($96M revenue, $30M endowment, S&P A-minus) with a brand-new VP of Marketing (Katherine Primus, March 2025) and a technically capable director of digital experience (Rick Mitchell, April 2024). They are running an outdated Drupal site (1,300 pages) and have already completed internal preparation work (content audits, stakeholder interviews, brand guidelines). The combination of institutional financial stability, new leadership wanting to make their mark, and existing technical preparation makes this a strong prospect — but at a modest budget for a 6–12 month project.
+
+---
+
+## Institutional Profile
+
+### Financial Health
+- **Annual Revenue:** $96.4M (FY2024)
+- **Annual Expenses:** $91.7M
+- **Net Income:** $4.75M (profitable)
+- **Total Assets:** $134.9M
+- **Net Assets:** $97.9M
+- **Endowment:** ~$30M
+- **Credit Rating:** S&P A-minus (stable outlook, 2023)
+
+**Context:** One of only two small private Philadelphia-area universities with consistent 7-year operating surpluses. This is not a distressed institution scrambling for money — they are financially disciplined and investing strategically.
+
+**Sources:** ProPublica 990 data, Philadelphia Inquirer (Nov 2024)
+
+### Academic Profile
+- **Total Enrollment:** ~3,251 undergrad, ~600 graduate, ~3,700 total with continuing ed
+- **Nursing:** 40% of student body (largest driver of enrollment)
+- **Academic Programs:** 30+ undergraduate majors, 20+ graduate programs across 4 schools
+  - School of Arts & Sciences
+  - School of Business & Technology
+  - School of Education
+  - School of Nursing & Health Sciences
+- **Employment Rate:** 93% within 6 months of graduation (selling point they can't surface online yet — website is failing this)
+
+**Strategic Context:** President Anne M. Prisco (Ph.D., economist, first lay president, since 2021) has been aggressive on growth — expanding athletics, adding cybersecurity and biotech master's programs, planning a new innovation center at the Newtown campus. The website redesign aligns with this growth narrative.
+
+**Strategic Plan Status:** 2021-2026 "Advancing Knowledge" plan expires June 2026. The website redesign is a visible deliverable before the plan transitions (likely creating urgency for stakeholder buy-in and budget commitment).
+
+---
+
+## Decision-Making Unit (DMU)
+
+### 1. **Rick Mitchell — Director of Digital Experience Design** (Project Lead)
+- **Tenure:** Since April 2024 (~2 years in role)
+- **Background:** EY Design Studio (Senior UX Engineer), Benefits Data Trust, Apple Leisure Group, Urban Outfitters, freelance design/dev
+- **Education:** Villanova BA English, Drexel MS Teaching/Learning/Curriculum, Cornell UX Design Certificate (2025)
+- **Technical Skills:** Drupal, React, Next.js, Twig, SASS, JavaScript, Figma
+- **Current Team:** 1 direct report (Senior Web Strategist) + external vendors
+- **Institutional Role:** Maintains the design system himself, writes Drupal code, leads content strategy
+
+**What This Means:** Mitchell is a practitioner, not a pure manager. He will evaluate proposals with a technical eye and spot hand-waving. He values component-based design systems and will prefer agencies that understand Drupal deeply. He has already invested in building institutional design thinking — he will want partners who respect and extend that, not replace it.
+
+**Proposal Strategy:** Lead with Drupal expertise and design system philosophy. Show that you understand component libraries, pattern documentation, and knowledge transfer.
+
+### 2. **Katherine Primus — VP for Marketing and Communications** (Budget Authority)
+- **Tenure:** Since March 2025 (~13 months in role)
+- **Background:** Wharton (led $1B fundraising campaign comms, managed $110M revenue portfolio), Philadelphia Education Fund, Maternity Care Coalition, Christian Association at UPenn
+- **Education:** University of Michigan BA Marketing, Wharton Executive Education
+- **Role:** Oversees admissions marketing, brand strategy, communications, website strategy
+
+**What This Means:** Primus is new enough to want a flagship win. A website redesign that launches under her watch is a major resume item. She has experience with large campaigns and multi-stakeholder management. She will care about enrollment conversion, brand consistency, and measurable outcomes.
+
+**Proposal Strategy:** Frame the website as an enrollment driver. Lead with data-driven design, conversion optimization, analytics integration. Show how your approach will measure success.
+
+### 3. **Mark Green, Ed.D. — VP for Institutional Effectiveness, Technology and Innovation**
+- **Tenure:** Since 2019
+- **Background:** Expertise in AI, data analytics, data governance
+- **Role:** Controls technology infrastructure budget, oversees IT, strategic planning, institutional research
+
+**What This Means:** Green controls the technology infrastructure budget and will have sign-off on CMS and hosting decisions. He is data-oriented and will evaluate proposals based on technical soundness and long-term scalability.
+
+**Proposal Strategy:** Address technical architecture clearly. Show that your approach is defensible, scalable, and aligned with institutional IT governance. Be transparent about security, hosting, integrations, and ongoing maintenance.
+
+### 4. **Edward Wright, Ed.D. — VP for Enrollment Management** (Likely Committee Member)
+- **Role:** Owns admissions strategy, enrollment targets, student recruitment
+
+**What This Means:** Almost certainly on the selection committee. Will push for features that convert visitors to applicants. Will care about form flows, program discoverability, and RFI capture.
+
+### 5. **Eric Nelson, MBA — VP for Finance and Administration** (Budget Gatekeeper)
+- **Salary (per 990):** $241K
+- **Role:** Final budget approval
+
+**What This Means:** Will review final budget justification. Will care about ROI and whether the project delivers within scope.
+
+---
+
+## Digital Maturity & Technical State
+
+### Current CMS & Infrastructure
+- **CMS:** Drupal (confirmed via source inspection)
+  - Custom theme: `/themes/custom/hfu/`
+  - Drupal settings objects, Twig templating present
+  - **Version unknown** — critical question for Q&A period
+  - If Drupal 9: EOL November 2023 (security debt signal)
+  - If Drupal 10+: Recent, but migration still offers opportunity
+
+- **Hosting:** Not publicly documented; Pantheon is likely (universities often host on Pantheon)
+
+- **Analytics Stack:** Mature
+  - Google Analytics 4 (GA4)
+  - Google Tag Manager (GTM-5FPBQK3)
+  - Crazy Egg (heatmaps)
+  - Hotjar (session recording)
+  - This is sophisticated for a school this size — they have behavioral data to guide redesign
+
+- **Other Tools:** Wistia (video), Gravity Forms, Accuen (programmatic ads), YourMembership, EU cookie compliance module
+
+### Site Size & Traffic
+- **Content:** ~1,300 pages per RFP
+- **Traffic:** Estimated 50K–100K monthly visits for a school this size with 90%+ local draw, heavily seasonal around enrollment periods
+- **Likely traffic patterns:** Spikes during application season, summer campus visit inquiries, program research peaks around March-May (HS senior decision time)
+
+---
+
+## Budget & Comparable Pricing
+
+### Institutional Budget Context
+- **Annual Operating Budget:** $91.7M
+- **Marketing/Communications Spend:** Typically 2–4% of operating budget = ~$1.8M–$3.7M annually
+- **This Project:** Capital/project expense, separate from annual marketing budget
+
+### Comparable Project Pricing (Higher Ed Industry)
+- **Typical scope for a 1,300-page redesign:** 3,000–5,000 hours of work
+- **Blended rates (mid-tier agencies):** $150–200/hr
+- **Industry pricing range:** $450K–$1M for premium agencies (OHO, Promet)
+
+### Holy Family's Realistic Budget
+- **Estimated budget range:** $150K–$350K for full execution
+- **Why the lower range?** Small endowment ($30M vs. large universities' $1B+), modest enrollment, tight marketing budget, plus institutional preference for efficiency
+- **Possible structure:** Could be split across FY2026 and FY2027 (e.g., $100K for discovery/design in FY26, $150K for development in FY27)
+
+### Budget Authority Signal
+- VP Marketing hired March 2025 (new, wants to make her mark)
+- Director of Digital hired April 2024 (onboarded, ready to lead projects)
+- This suggests **money is already earmarked** for a digital initiative. The budget exists; the question is allocation.
+
+**Implication for proposal:** Price competitively ($180K–$280K for a complete 6-month build), but don't leave money on the table by bidding too low. Positioning around value (content migration, analytics setup, knowledge transfer) is more important than race-to-bottom pricing.
+
+---
+
+## Timeline Assessment
+
+### Stated Timeline
+- **Proposal Due:** April 17, 2026
+- **Kickoff:** Early June 2026
+- **Launch:** Implied Spring 2027 (6–12 months from kickoff)
+- **Context:** 6-week window between proposal acceptance and kickoff for evaluation, selection, contract negotiation, onboarding
+
+### Feasibility Assessment
+**Tight but realistic.** Key signals:
+
+1. **Internal preparation already complete:** Content audits, stakeholder interviews, brand guidelines, analytics baseline — Mitchell and team have done this work already
+2. **Rick Mitchell's 2-year tenure** means he has institutional knowledge and stakeholder relationships established
+3. **Strategic plan expiration (June 2026)** creates calendar pressure — new website should launch before plan transition
+
+**Risk factors:**
+- New VP of Marketing (13 months in) may not have full institutional context → potential for scope creep as other stakeholders surface requirements post-kickoff
+- Pantheon transition (if currently on Drupal 7) adds migration complexity
+- Content consolidation may be needed (1,300 pages is large; likely 20–40% could be archived/consolidated)
+
+**Realistic delivery timeline:**
+- June 2026 kickoff → March/April 2027 launch (10 months)
+- Aligns with spring enrollment season, giving time for marketing ramp-up before Fall 2027 student recruitment
+
+---
+
+## Competitive Landscape
+
+### Likely Bidders (Ranked by Probability)
+
+| Agency | Strength | Weakness | Price Point |
+|---|---|---|---|
+| **OHO Interactive** (Boston) | Dominant HE Drupal firm, 37 top-100 universities | High cost, premium-only positioning | $500K+ |
+| **Promet Source** (Chicago) | Strong Drupal HE practice, proven delivery | Mid-range, not local | $300K–$500K |
+| **Kanopi Studios** (SF/distributed) | 70+ specialists, phased delivery model appeals to budget-conscious schools | Large team, may feel overkill for this scope | $250K–$400K |
+| **Electric Citizen** (Minneapolis) | Accessibility focus, mid-size university sweet spot | Regional, not HE-specific | $150K–$300K |
+| **ImageX** (Vancouver) | #1 Drupal on Clutch globally, strong HE experience | International, may feel less collaborative | $200K–$350K |
+| **Regional Philadelphia shops** (Bluecadet, Alloy, O3 World) | Local presence, in-person workshops, stakeholder access | May lack HE-specific case studies | $150K–$300K |
+| **Smaller Drupal boutiques** (Savas Labs, Evolving Web, Kanopi-adjacent) | Specialized, agile, lower overhead | Small team, may stretch on scope | $100K–$250K |
+
+### Your Competitive Advantage
+**Differentiate on:**
+1. **WordPress migration expertise** — You work in WordPress, not Drupal-first. Frame Drupal → WordPress as the right move for their team size (easier to maintain, lower TCO).
+2. **Speed to revenue** — You build fast. Position a 4–5 month MVP launch (core pages + program pages + admissions flow) with Phase 2 for remaining content migration.
+3. **AI-assisted content migration** — You have technical depth in automated redirect mapping, content restructuring, QA. This is a cost differentiator and quality multiplier.
+4. **Local presence** — If you can be in Philadelphia or nearby, emphasize collaborative accessibility (in-person workshops, stakeholder sessions, knowledge transfer).
+5. **Higher Ed familiarity** — Your case studies (even if from a higher ed agency perspective) show you understand enrollment funnels, personas, accessibility requirements, analytics measurement.
+
+---
+
+## Pain Points & Leverage Points
+
+### What They Explicitly Complained About (from RFP)
+1. **Outdated design** → "Doesn't reflect vibrant campus culture"
+2. **Complex navigation** → "Overly complex, users can't find things"
+3. **Inconsistent content** → "No governance, no templates, looks different everywhere"
+4. **Gaps in mobile optimization** → "Not built for phones"
+5. **Accessibility issues** → "WCAG 2.2 AA is mandatory"
+6. **Enrollment-driven experience missing** → "Prospective students don't convert"
+
+### What They're Implicitly Complaining About
+- **Content debt:** 1,300 pages that have grown organically without governance. 20–40% are likely obsolete or redundant.
+- **No content model:** No structured templates, no field definitions, no reusable patterns → leads to inconsistency
+- **Drupal version debt:** If on D7 or D9 (likely), they're running EOL software — security and upgrade pressure is real
+- **No design system:** Each department built their own page styles; no component library to enforce consistency
+- **Team capability gaps:** Current internal team may be strong on content and governance but lacking on modern front-end development and design systems
+
+### Your Negotiation Levers
+
+| Lever | How to Use It |
+|---|---|
+| **Content consolidation** | Propose content audit upfront. Offer to reduce 1,300 → 800 active pages. Saves migration cost + improves UX. Frame as "content strategy," not "cutting corners." |
+| **Phased delivery** | Launch Phase 1 (homepage, program pages, admissions flow, faculty directory) in 4 months. Phase 2 (remaining content migration) in months 5–6. De-risks timeline, spreads cost, shows early wins. |
+| **Design system extension** | Mitchell already maintains a design system. Don't replace it; upgrade and document it. Propose handing off a living component library + Figma kit that his team can extend. This is a value proposition that resonates with resource-constrained teams. |
+| **Analytics continuity** | They already have GA4, GTM, Crazy Egg, Hotjar. Don't rip and replace. Propose preserving and enhancing their stack. Shows respect for existing work; reduces transition risk. |
+| **Post-launch support model** | Rather than a 1-time delivery, position ongoing support as a retainer (e.g., $2K–$3K/month for 12 months post-launch). This shifts the relationship from transactional to partnership and creates recurring revenue. |
+
+---
+
+## Critical Open Questions
+
+These should be asked during the Q&A period (deadline: March 27, but you still have time to submit before April 17):
+
+1. **What version of Drupal is the current site running?** (This determines migration complexity and security urgency.)
+2. **Is the university currently hosted on Pantheon?** (If yes, WordPress migration is simpler; if not, adds hosting transition work.)
+3. **What is the explicit budget range for this project?** (Helps you position your proposal at the right price point.)
+4. **What integrations are required beyond Slate?** (SIS, LMS, CRM, course catalog? Each is a scope/cost multiplier.)
+5. **Who else is on the selection committee besides Rick Mitchell?** (Need to understand all stakeholder priorities.)
+6. **Is post-launch support/hosting included in the base scope or a separate engagement?** (Hosting can be recurring revenue.)
+7. **What is the current site hosting arrangement?** (Pantheon, Acquia, self-hosted? Affects migration and ongoing cost.)
+
+**Recommended approach:** Submit 2–3 of the most important questions in the Q&A period, then use the answers to refine your proposal strategy.
+
+---
+
+## Recommendation: Should You Bid?
+
+### Yes, bid this RFP. Here's why:
+
+**Pros:**
+- ✅ **Financially qualified:** S&P A-minus, profitable, no distress signals
+- ✅ **Budget likely available:** Money already earmarked; leadership in place to allocate it
+- ✅ **Technical fit:** WordPress migration (your strength) aligns with their CMS direction
+- ✅ **Decision-maker alignment:** Rick Mitchell speaks your language (technical, component-based design); Primus wants a win; Green will value your technical rigor
+- ✅ **Realistic timeline:** June kickoff → Spring 2027 launch is achievable with disciplined scope
+- ✅ **Differentiation possible:** Your AI-assisted migration + content consolidation expertise is a legitimate edge vs. OHO/Promet
+
+**Cons:**
+- ⚠️ **Budget ceiling $350K:** Tight if you're a premium-priced shop; doable if you're lean and efficient
+- ⚠️ **Competitive field is strong:** OHO, Promet, Kanopi are bidding; you'll need a crisp differentiation story
+- ⚠️ **HE portfolio requirement:** They want 3–5 university case studies. If you don't have them, you're fighting uphill. (Note: You said you work for a higher ed agency — assuming you have institutional case studies you can reference.)
+- ⚠️ **7-day turnaround:** April 17 deadline is tight. Proposal will need to be crisp and focused, not comprehensive.
+
+### Bid strategy (if you proceed):
+
+1. **Lead with WordPress migration expertise.** Frame Drupal → WordPress as the right move for their team size and skills.
+2. **Propose content consolidation as Phase 1 deliverable.** Show that you're thinking about reducing scope, not gold-plating it.
+3. **Price aggressively but confidently.** Propose $220K–$280K for full 6-month build with post-launch support as optional add-on.
+4. **Emphasize collaboration over dictation.** Rick Mitchell is technical; he will want a partner, not a vendor. Position your approach as "extending your design system" and "transferring knowledge to your team."
+5. **Design for handoff.** Mitchell's team will maintain this site for 5+ years post-launch. Every deliverable should be documented for their eventual ownership.
+
+---
+
+## Next Steps
+
+**By April 17 (deadline is 7 days away):**
+1. Decide whether to bid (recommendation: yes, if you have HE case studies)
+2. Submit any critical Q&A questions (deadline: March 27, but you may have already passed this — check with Rick Mitchell)
+3. Outline proposal sections:
+   - Section A: Agency + Team (your HE case studies, Rick Mitchell's background match to yours)
+   - Section B: Approach (WordPress migration methodology, content consolidation strategy, design system philosophy)
+   - Section C: Technical (WordPress on Pantheon, Drupal→WP tooling, Accessibility/WCAG approach)
+   - Section D: Timeline (realistic phased delivery, 4-month MVP + 2-month Phase 2)
+   - Section E: Budget ($220K–$280K base, optional retainers post-launch)
+4. Reference the research docs:
+   - `Research/2026-04-10 holy-family-rfp-drupal-wp-ai-migration.md` (migration technical deep-dive)
+   - `Research/2026-04-11 holy-family-prospect-intelligence.md` (this doc)
+
+---
+
+## Sources
+
+1. [Philadelphia Inquirer — Holy Family Financial Profile (Nov 2024)](https://www.inquirer.com/education/holy-family-university-northeast-philadelphia-fiscally-responsible-20241113.html)
+2. [ProPublica Nonprofit Explorer — Holy Family 990 Data](https://projects.propublica.org/nonprofits/organizations/231501197)
+3. [Holy Family University — President's Cabinet/Leadership Bios](https://www.holyfamily.edu/about/leadership/presidents-cabinet)
+4. [Rick Mitchell Profile — GetProg](https://www.getprog.ai/profile/16823552)
+5. [Rick Mitchell LinkedIn](https://www.linkedin.com/in/rickmitchell215/)
+6. [Holy Family Strategic Plan 2021-2026](https://www.holyfamily.edu/documents/2021-2026-strategic-plan)
+7. [Holy Family University Homepage (source inspection)](https://www.holyfamily.edu)
+8. [OHO Interactive — Budgeting for Higher Ed Website Redesign](https://www.oho.com/blog/budgeting-your-higher-education-website-redesign)
+9. [Drupal Partners Agency Roundup](https://www.drupalpartners.com/blog/best-drupal-agencies-universities-higher-education)
+</script>
+
+  <script type="text/markdown" data-doc="positioning">
+# Competitive Positioning Brief
+
+**Prepared for:** Holy Family University Website Redesign RFP
+**Date:** April 2026
+**Classification:** Internal strategy supplement (optional appendix)
+
+---
+
+## 1. The Competitive Landscape
+
+Holy Family University's RFP will attract interest from several established higher education web agencies. Based on the project scope -- a 1,300-page Drupal-to-WordPress migration with full redesign, WCAG 2.2 AA compliance, and Slate CRM integration -- the likely respondents include OHO Interactive (Boston, 100+ employees, dominant in Ivy League and top-100 university redesigns), Promet Source (Chicago, mid-size Drupal agency with a dedicated higher ed practice and their Provus EDU product), Kanopi Studios (San Francisco/distributed, 70+ specialists, known for phased delivery and long-term retainer relationships), and Electric Citizen (Minneapolis, smaller Drupal shop with an accessibility-forward reputation). Regional Philadelphia firms such as Bluecadet, Alloy, and O3 World may also respond, though their higher education portfolios are thinner.
+
+Each of these firms brings legitimate strengths. They would not have survived in this market otherwise. But each also carries a structural misalignment with what Holy Family actually needs. OHO Interactive is built to serve large research universities with six- and seven-figure digital budgets. Their published guidance prices university redesigns at $500K and up, and their team model is optimized for institutions with dedicated 5-10 person web departments. For a 3,700-student private university with a lean two-person digital team, the risk is not that OHO would do poor work -- it is that Holy Family's project becomes a mid-tier account staffed by junior team members while the firm's senior talent focuses on flagship clients. Promet Source presents a different problem. They are a Drupal-first agency whose Provus EDU platform is built on Drupal, not WordPress. Holy Family's RFP expresses a preference for WordPress. Promet's most natural response will be to argue against that preference and redirect the university back to Drupal -- which serves Promet's business model but not Holy Family's stated goals or the long-term maintainability needs of Rick Mitchell's team.
+
+Kanopi Studios is perhaps the most polished competitor, with strong case studies and a proven phased delivery model. Their vulnerability is philosophical, not technical. Kanopi's "continuous improvement" engagement model is designed to create an ongoing dependency relationship where the university pays monthly retainers indefinitely for changes that a well-trained internal team should be able to make independently. For a university that needs to own and operate its website for 5+ years with a small internal staff, the Kanopi model optimizes for agency revenue, not institutional self-sufficiency. Electric Citizen, while capable on accessibility and mid-size university projects, is a small Drupal shop based in Minneapolis. They lack demonstrated experience with private Catholic institutions, and their CMS expertise centers on Drupal rather than WordPress. On a WordPress-preferred RFP, they face the same structural disadvantage as Promet -- either they work outside their core platform or they spend proposal space arguing against the university's stated direction.
+
+---
+
+## 2. Our Structural Advantages
+
+- **WordPress is our primary platform, not a secondary offering.** Promet Source and Electric Citizen are Drupal agencies. If Holy Family selects a Drupal shop for a WordPress project, the university either gets a team working outside its deepest expertise or gets talked into a platform change that does not serve its long-term staffing model. We build WordPress sites as our core business. Rick Mitchell's team will inherit a codebase built by people who think in WordPress natively -- custom themes, ACF field groups, Gutenberg blocks, WP-CLI workflows, and Pantheon-native deployment patterns.
+
+- **We are appropriately sized for this engagement.** OHO Interactive fields 100+ employees and prices accordingly. Holy Family does not need a 100-person agency -- it needs a focused team where senior practitioners do the work, not delegate it. Our team structure means the people who present in the pitch are the same people who write the code, design the templates, and run the content migration. There is no handoff to a junior bench after the contract is signed.
+
+- **We bring private Catholic university understanding that no named competitor claims.** OHO's portfolio skews toward large research universities and Ivy League institutions. Promet, Kanopi, and Electric Citizen serve higher education broadly but have no visible specialization in private Catholic institutions. Holy Family's website must do something these competitors' standard playbooks do not account for: integrate Catholic mission, campus ministry, and faith-based identity alongside rigorous academic program marketing, enrollment conversion funnels, and modern UX. That integration requires more than applying a template -- it requires understanding how these elements coexist and reinforce each other in the minds of prospective students and their families.
+
+- **We build for ownership, not dependency.** Our engagement model is designed around a knowledge transfer plan with named training sessions, documented outcomes, and a clear definition of what Rick Mitchell's team can do independently after launch. Where Kanopi's continuous improvement model keeps the agency as an indefinite intermediary, our approach treats post-launch independence as a primary deliverable. The component library, content governance documentation, and training curriculum we deliver are designed so that routine content updates, new program pages, and template extensions happen in-house -- without a monthly retainer call.
+
+---
+
+## 3. Why This Matters to Holy Family
+
+This is not an abstract competitive exercise. The practical consequence of partner selection is that Rick Mitchell, his Senior Web Strategist, and future team members will live with this website for five or more years after launch. Every architectural decision, every component pattern, every content model choice will either empower that team or constrain it. A Drupal agency building in WordPress will produce code that reflects Drupal thinking in a WordPress shell -- workable, but never native, and harder for a WordPress-skilled team to extend and maintain. An oversized agency will deliver a polished product but leave behind a codebase built for the agency's workflow, not the university's. A dependency-model agency will deliver a site that works beautifully as long as the retainer checks clear, but creates risk the moment the university needs to redirect that budget elsewhere.
+
+Holy Family needs a partner who understands three things simultaneously: modern web technology and WordPress architecture at a professional level; the enrollment marketing reality of a private university competing for students in a declining-enrollment market; and the distinctive identity of a Catholic institution where mission is not a sidebar but a foundational element of the brand. Katherine Primus's marketing vision, Mark Green's technology governance requirements, and Edward Wright's enrollment conversion goals all need to be served by the same website. The partner who builds it should be small enough to care deeply about this specific project, expert enough in WordPress to build it natively, and grounded enough in private Catholic higher education to get the nuance right without being taught.
+
+---
+
+## 4. The Bottom Line
+
+We are not the largest agency responding to this RFP, and we are not the cheapest. We are the one whose platform expertise, team model, institutional understanding, and engagement philosophy align most directly with what Holy Family University actually needs: a WordPress-native website built for long-term ownership by a small internal team, designed to convert prospective students while honoring the university's Catholic mission, and delivered by senior practitioners who treat this project as a priority rather than a line item. That is what we propose to build, and that is what we will deliver.
+</script>
+
+  <script type="text/markdown" data-doc="sitemap">
+# Holy Family University — Full Site Map & Structure Analysis
+
+**Source:** Scraped from live sitemap.xml on 2026-04-11
+**Total Pages:** 1,601 URLs (matches RFP claim of ~1,300 pages)
+**Last Updated:** Most recent page update: March 17, 2026
+
+---
+
+## Content Overview
+
+| Category | Count | % | Notes |
+|---|---|---|---|
+| **News Articles** | 670 | 41.8% | Heavy content generation from "Bold Ideas" blog + news archive |
+| **Other Pages** | 930 | 58.1% | Programs, academics, about, student life, events, forms |
+| **Legacy Node URLs** | 1 | 0.1% | Minimal Drupal node references in current sitemap |
+
+**Key Insight:** Nearly 42% of the sitemap is news/blog content. This is heavy on content generation but may include orphaned or low-value pages that could be consolidated during migration.
+
+---
+
+## Site Structure by Top-Level Section
+
+### Primary Content Sections
+
+| Section | Page Count | Primary Content |
+|---|---|---|
+| `/about` | 917 | News, directories, leadership, policies, institutional info |
+| `/academics` | 253 | Program pages, course requirements, faculty, degree tracks |
+| `/admissions-aid` | 41 | Application flow, financial aid info, forms |
+| `/student-experience` | 54 | Student life, housing, orientation, activities |
+| `/events` | 9 | Campus events, open houses, recruitment events |
+| `/magazine` + `/magazines` | 54 | Digital magazines, alumni publications |
+| `/alumni` | 12 | Alumni networking, giving, reunions |
+
+### Secondary/Standalone Pages
+
+| Section | Page Count | Type |
+|---|---|---|
+| Program-specific (e.g., `/grad-business`, `/nursing`, etc.) | ~80 | Landing pages for specific majors/programs |
+| Student groups (e.g., `/seniors`, `/juniors`, `/current-students`) | ~20 | Cohort-specific resources |
+| Giving/Advancement (e.g., `/giving-to-hfu`, `/donor-clubs`) | ~8 | Development/fundraising pages |
+| Policies & Administrative | ~40 | HR policies, compliance, governance |
+
+### Test/Promotional Pages (Likely Cruft)
+
+- `/041425-it-test-page-chatbot` — Test page (delete)
+- `/test-pages` — Test area (delete)
+- `/Season-Greetings`, `/Christmas-Rose`, `/holiday-greetings` — Seasonal promotions (archive or delete)
+- `/legacy_of_gratitude` — Legacy campaign (archive)
+- `/70th-anniversary`, `/nursing50th` — Anniversary content (archive)
+- `/shore_reception2025` — Event page, likely outdated
+- Various grant/scholarship pages that may be outdated
+
+**Estimate:** ~20-30 pages of cruft/test/outdated content that should be deleted during migration.
+
+---
+
+## Content Architecture by Page Type
+
+### News & Blog (`/about/news-and-media/news` + Bold Ideas)
+- **Count:** ~670 pages
+- **Structure:** Archive of news articles, dating back years (some from 2022, 2021)
+- **Pattern:** `/news/[article-slug]`
+- **Issues:**
+  - Very old articles (2021+) are still indexed and consuming crawl budget
+  - No clear archival strategy — everything appears active
+  - Likely includes outdated information (people who've left, outdated initiatives)
+
+**Recommendation:** Audit news content, archive anything older than 2 years, consolidate similar topics, establish content lifecycle policy.
+
+### Academic Programs (`/academics`)
+- **Count:** ~250 pages
+- **Structure:**
+  - Top-level program pages: `/nursing`, `/business-administration`, etc.
+  - Sub-pages: `-course-requirements`, `-request-information`, `-ms-request-information`, etc.
+  - Faculty administration pages per school
+
+**Pattern Issues:**
+- Multiple request-information forms scattered across program pages
+- Duplicative structure: each major has a course requirements page, a request-info form, potentially multiple variants (BA, BS, MA, MS, MEd, PhD, etc.)
+- Likely candidates for consolidation: All "request information" pages could roll into a single form engine with smart routing
+
+### Events (`/events`)
+- **Count:** ~9 pages in sitemap, but sample shows 50+ individual event pages
+- **Pattern:** `/events/[event-slug]`
+- **Issues:**
+  - Event registration links likely point to external systems
+  - Seasonal patterns (recruitment events cluster around spring/fall)
+  - No clear filtering/taxonomy for event types (campus visit vs. open house vs. general campus events)
+
+### Administrative & Policies
+- **Count:** ~40+ pages
+- **Pattern:** Scattered across `/policies/`, `/administration/`, `/title-ix/`, `/ferpa/`, etc.
+- **Issues:**
+  - Policies scattered across multiple URL patterns with no consistent structure
+  - Some are critical (FERPA, Title IX), others less so
+  - Opportunity: Create a consolidated `/policies/` hub with proper taxonomy
+
+### Standalone One-Off Pages
+- `/contact-us` — Contact form
+- `/apply` — Application entry point (likely external system link)
+- `/directory` — Faculty/staff directory
+- `/bookstore` — External link
+- Various IT/self-service pages (`/self-service`, `/tigerwifi`, etc.)
+
+---
+
+## Information Architecture Issues & Migration Implications
+
+### Issue 1: Inconsistent URL Naming & Structure
+**Examples:**
+- `/nursing-advance-your-nursing-career` vs `/nursing` (both exist)
+- `/grad-business` vs `/business-enroll` (similar intent, different URLs)
+- `/academics/programs` vs individual program landing pages
+- `/admissions-aid` vs `/applying-holy-family-university` (both exist)
+
+**Impact on Migration:**
+- Massive 301 redirect map required
+- Opportunity to flatten and standardize: all programs under `/programs/[slug]`, all admissions under `/admissions/[slug]`, etc.
+- Rick Mitchell's team likely already identified this (mentioned "complex navigation" in RFP)
+
+### Issue 2: Shallow Navigation with Many Top-Level Silos
+The site has 180+ distinct top-level URL patterns (sections). Normal sites have 8-15 main sections. This suggests:
+- Organic growth without governance
+- Departments created their own URL structures
+- No central information architecture enforcement
+
+**Typical Solution:** Consolidate into 7-10 main sections:
+- `/about/` — About, leadership, news, directory
+- `/academics/` — Programs, courses, faculty
+- `/admissions/` — Application, financial aid, campus visit requests
+- `/student-life/` — Housing, activities, resources
+- `/alumni/` — Alumni engagement, giving
+- `/athletics/` — Sports
+- `/support/` — IT, library, career services
+- `/news/` — News archive (potentially merge with `/about/news/`)
+
+### Issue 3: Multiple Request-Information Forms
+Nearly every academic program has a "request information" page/form. Examples:
+- `/counseling-psychology-clinical-mental-health-counseling-ms-request-information`
+- `/nursing-msn-request-information`
+- `/master-business-administration-mba-request-information`
+
+**Issue:** This creates bloat and makes analytics harder (can't aggregate lead requests by program).
+
+**Solution:** Single `/admissions/request-info` form with:
+- Program dropdown (tied to academics database)
+- Smart form routing (by program level: undergrad/grad/professional)
+- Single conversion event in GA4
+
+### Issue 4: News Archive Bloat
+670 pages (42% of site) are news articles. If the university publishes ~100 articles/year, this is 6-7 years of archive.
+
+**Strategic Questions:**
+1. What is the business value of indexing 6-year-old news?
+2. Can older news be archived/removed from public sitemap?
+3. Should "Bold Ideas" (blog) be merged with the news section?
+
+**Recommendation:** Implement a content lifecycle where news articles 2+ years old are moved to an archive section or delisted from sitemap, reducing indexation burden and improving SEO metrics for current news.
+
+### Issue 5: Duplicate Program Landing Pages
+Some programs have multiple landing pages:
+- `/counseling-psychology-earn-your-ms-or-psyd` (generic)
+- `/counseling-psychology-school-counseling-ms-request-information` (specific track)
+- `/counseling-psychology-correctional-counseling-ms-request-information` (specific track)
+- `/counseling-psychology-clinical-mental-health-counseling-ms-request-information` (specific track)
+- `/doctor-psychology-counseling-psychology-psyd-request-information` (PhD variant)
+
+**This is IA hell.** Each program variant should be a sub-page of a parent program, not a separate top-level entry.
+
+---
+
+## Content Audit Opportunities
+
+### Content to Keep (High Priority)
+- All current program pages (clearly link to enrollment)
+- Current news (last 2 years max)
+- Critical policies (FERPA, Title IX, accessibility)
+- Faculty/staff directory
+- Admissions forms and information architecture
+
+### Content to Archive (Medium Priority)
+- News articles older than 2 years (move to `/news-archive/` or delist)
+- Outdated scholarship information
+- Past event pages (except flagship annual events)
+- Graduation/commencement pages older than 1-2 years
+
+### Content to Delete (Low Priority/Cruft)
+- Test pages (`/041425-it-test-page-chatbot`, `/test-pages`)
+- IT development pages
+- Seasonal greetings
+- Outdated anniversary/campaign pages
+
+**Estimated Reduction:** 200-300 pages (12-19% of current sitemap) could be archived/deleted, bringing active site down to ~1,300-1,400 pages.
+
+---
+
+## Content Type Recommendations for WordPress Migration
+
+### Suggested Custom Post Types (CPTs)
+
+| CPT | Examples | Fields |
+|---|---|---|
+| `program` | Nursing BS, MBA, MAT, etc. | Title, description, degree level, school, faculty, requirements, apply link |
+| `faculty` | Individual faculty profiles | Name, title, department, bio, office hours, research areas, photo |
+| `event` | Campus visit days, open houses | Title, date, location, registration link, audience segment |
+| `news` | News articles | Title, content, featured image, author, publication date |
+| `policy` | FERPA, Title IX, etc. | Title, policy text, owner department, last updated |
+| `page` | General pages | Title, content (via Gutenberg blocks) |
+| `course` | Academic courses | Course code, title, description, credits, department |
+
+### Taxonomy/Category Recommendations
+
+| Taxonomy | Values | Usage |
+|---|---|---|
+| `school` | Arts & Sciences, Business, Education, Nursing | Organize programs and faculty |
+| `degree_level` | Undergraduate, Master's, Doctorate, Certificate | Filter and organize academic content |
+| `program_type` | Full-time, Part-time, Online, Hybrid, Accelerated | Segment program pages by delivery mode |
+| `student_type` | Prospective, Current, Alumni, Parents | Segment content by audience |
+| `department` | Multiple | Organize directory, policies, news |
+| `news_category` | Student Stories, Research, Events, Announcements | Organize news content |
+
+---
+
+## SEO & Discoverability Insights
+
+### Top-Level Pages (Highest Priority for Optimization)
+
+These pages should be fully rewritten/optimized during migration:
+
+1. **Homepage** (`/`) — Last updated March 17, 2026 (recent)
+2. **Program Pages** (e.g., `/nursing`, `/business`) — Gateway pages for enrollment
+3. **Admissions** (`/admissions-aid`) — Conversion critical
+4. **About** (`/about/holy-family-university`, `/about/leadership`, etc.) — Brand/credibility
+
+### Content Audit by Last Modified Date
+- **Recently updated (Mar 2026):** Homepage, Bold Ideas blog
+- **Stale (2022-2023):** Many academic program pages, news archive
+- **Very old (2021 and earlier):** 100+ news articles, outdated information
+
+**Action:** Flag pages not updated in 12+ months for content review during migration.
+
+---
+
+## Integration & Platform Requirements
+
+Based on sitemap analysis, migration will require:
+
+1. **Request Information Form Consolidation**
+   - Map 20+ separate request-info pages to single form with smart routing
+   - Integrate with CRM (Slate, per RFP)
+
+2. **Event Management**
+   - Likely external calendar system (Google Calendar, Eventbrite, etc.)
+   - Embed registration links, not create separate pages
+
+3. **News/Blog Platform**
+   - Consider moving news archive to separate blog platform or limiting sitemap exposure
+   - Implement proper news taxonomy and archival workflow
+
+4. **Faculty/Staff Directory**
+   - Likely connected to HR/directory system
+   - Should be kept in sync, not manually updated
+
+5. **Content Model**
+   - Each program needs: basic info, requirements, apply link, testimonials, FAQ
+   - Standardize via ACF field groups, not custom page templates
+
+---
+
+## Full URL List Export
+
+A complete list of all 1,601 URLs is available at `/tmp/hfu_urls.txt` if you need to map individual page strategies.
+
+### Quick Stats on Redirect Mapping
+
+- **Total URLs to redirect:** 1,601
+- **Estimated unique URL patterns:** 180-200 distinct top-level sections
+- **Consolidation opportunity:** Reduce to 8-12 main sections, 40-60 sub-sections
+- **301 redirect strategy:** Semantic URL mapping (old → new) by content type, not mechanical rewrites
+
+---
+
+## Recommendations for Rick Mitchell (Director of Digital)
+
+1. **Content Audit First:** Before migration, run a content inventory workshop. Identify pages to keep, archive, delete, consolidate.
+
+2. **IA Redesign:** Don't just move existing structure to WordPress. Use migration as opportunity to flatten and organize into 8-12 main sections.
+
+3. **Request-Info Form Consolidation:** Replace 20+ standalone forms with single smart form + CRM routing.
+
+4. **News Strategy:** Decide whether to keep 6-year news archive active or move to separate subdomain/archive. Current 670 articles consume significant crawl budget.
+
+5. **Programmatic Redirect Map:** Use semantic similarity matching (all-MiniLM-L6-v2 embeddings) to generate redirect map automatically, then validate.
+
+6. **Content Governance:** Establish templates and update-frequency expectations for each content type post-launch.
+
+---
+
+## For the Proposal
+
+When you write the proposal, you can reference this analysis to show Rick Mitchell that you:
+
+1. **Understand their site depth** (1,601 pages is significant)
+2. **Identified architectural debt** (inconsistent structure, bloat, duplication)
+3. **Have a consolidation strategy** (reduce to 1,200-1,400 active pages through IA improvements)
+4. **Know how to scope migration** (semantic URL mapping, content audit, form consolidation)
+
+This positions you as thoughtful about their specific situation, not generic.
+
+---
+
+## Summary for Eric
+
+**Raw Data:**
+- 1,601 URLs scraped from sitemap.xml
+- 670 news articles (41.8% of site)
+- 180+ distinct top-level URL sections (messy IA)
+- 10+ outdated/test pages to delete
+
+**Quick Wins for Proposal:**
+1. Consolidate 20+ request-info forms → single form
+2. Archive news 2+ years old → reduce crawl bloat
+3. Flatten IA → 8-12 main sections instead of 180+
+4. Content audit → remove 200-300 pages of cruft
+5. Semantic redirect mapping → automated 1,601 URL mapping
+
+**Why This Matters:**
+- Shows you understand the real scope (not just "redesign a 1,300-page site")
+- Identifies cost reduction (smaller active site = cheaper to maintain)
+- Proves you've done homework (Rick Mitchell will respect the analysis)
+- Gives concrete differentiation vs. competitors who'll just bid blind
+</script>
+
+  <script type="text/markdown" data-doc="wp-build">
+# WordPress Build Architecture & Content Creation System
+
+**Goal:** Build a WordPress site that Rick Mitchell's 2-person team can operate, extend, and publish on daily — without calling an agency, writing code, or fighting the CMS.
+
+---
+
+## 1. Theme Architecture
+
+### Custom Block Theme (Full Site Editing)
+
+We build a **custom block theme** — not a child theme of a commercial theme, not a page builder theme. A purpose-built theme where every component is designed for Holy Family's content types, brand system, and editorial workflow.
+
+**Why a block theme (not classic):**
+- Full Site Editing (FSE) means headers, footers, and template parts are editable in the block editor — no PHP file editing for layout changes
+- Block patterns (pre-built page sections) let editors assemble pages from approved components
+- Template editing lets Rick's team create new page layouts without touching code
+- This is the WordPress core direction — Classic themes are legacy
+
+**Theme structure:**
+
+```
+hfu-theme/
+├── assets/
+│   ├── css/               # Compiled design tokens + utility styles
+│   ├── fonts/             # Self-hosted brand fonts (performance)
+│   ├── images/            # Theme assets (icons, logos, patterns)
+│   └── js/                # Minimal — progressive enhancement only
+├── parts/
+│   ├── header.html        # Site header (editable in FSE)
+│   ├── footer.html        # Site footer (editable in FSE)
+│   ├── sidebar.html       # Optional sidebar
+│   └── navigation.html    # Mega menu component
+├── patterns/
+│   ├── hero-program.php         # Program page hero
+│   ├── hero-landing.php         # Campaign landing page hero
+│   ├── cta-apply.php            # Apply Now call-to-action
+│   ├── cta-request-info.php     # Request Info call-to-action
+│   ├── stats-row.php            # Statistics display (93% employment, etc.)
+│   ├── testimonial-card.php     # Student/alumni testimonial
+│   ├── faculty-grid.php         # Faculty listing by department
+│   ├── program-cards.php        # Program listing cards
+│   ├── accordion-faq.php        # FAQ accordion (Schema-ready)
+│   ├── event-listing.php        # Upcoming events feed
+│   ├── news-feed.php            # Latest news cards
+│   ├── video-embed.php          # Wistia/YouTube responsive embed
+│   ├── image-gallery.php        # Accessible image gallery
+│   ├── two-column-text.php      # Two-column content layout
+│   ├── full-width-image.php     # Full-bleed image with caption
+│   └── contact-form.php         # Gravity Form embed pattern
+├── templates/
+│   ├── index.html               # Default archive
+│   ├── single.html              # Default single post
+│   ├── single-program.html      # Program detail page
+│   ├── single-faculty.html      # Faculty profile page
+│   ├── single-event.html        # Event detail page
+│   ├── page.html                # Default page
+│   ├── page-admissions.html     # Admissions landing
+│   ├── page-landing.html        # Campaign landing page
+│   ├── archive.html             # News/blog archive
+│   ├── archive-program.html     # Program directory
+│   ├── archive-faculty.html     # Faculty directory
+│   ├── archive-event.html       # Events listing
+│   ├── search.html              # Search results
+│   ├── 404.html                 # 404 page
+│   └── home.html                # Homepage
+├── functions.php          # CPT registration, ACF config, enqueues
+├── theme.json             # Design tokens (colors, fonts, spacing, sizes)
+└── style.css              # Theme metadata
+```
+
+### theme.json — The Design System in One File
+
+`theme.json` is the single source of truth for every visual decision. When an editor opens the block editor, they can only choose from approved options:
+
+```json
+{
+  "settings": {
+    "color": {
+      "palette": [
+        { "slug": "hfu-purple", "color": "#4B0082", "name": "HFU Purple" },
+        { "slug": "hfu-gold", "color": "#FFD700", "name": "HFU Gold" },
+        { "slug": "hfu-dark", "color": "#1A1A2E", "name": "Dark" },
+        { "slug": "hfu-light", "color": "#F8F8F8", "name": "Light" },
+        { "slug": "hfu-white", "color": "#FFFFFF", "name": "White" },
+        { "slug": "hfu-accent", "color": "#2D6A4F", "name": "Accent Green" }
+      ],
+      "custom": false,
+      "defaultPalette": false
+    },
+    "typography": {
+      "fontFamilies": [
+        { "slug": "heading", "fontFamily": "...brand heading font..." },
+        { "slug": "body", "fontFamily": "...brand body font..." }
+      ],
+      "fontSizes": [
+        { "slug": "small", "size": "0.875rem", "name": "Small" },
+        { "slug": "medium", "size": "1rem", "name": "Body" },
+        { "slug": "large", "size": "1.25rem", "name": "Large" },
+        { "slug": "x-large", "size": "1.5rem", "name": "X-Large" },
+        { "slug": "xx-large", "size": "2.25rem", "name": "Heading" }
+      ],
+      "customFontSize": false
+    },
+    "spacing": {
+      "spacingSizes": [
+        { "slug": "10", "size": "0.5rem", "name": "XS" },
+        { "slug": "20", "size": "1rem", "name": "S" },
+        { "slug": "30", "size": "1.5rem", "name": "M" },
+        { "slug": "40", "size": "2rem", "name": "L" },
+        { "slug": "50", "size": "3rem", "name": "XL" },
+        { "slug": "60", "size": "4rem", "name": "XXL" }
+      ],
+      "customSpacingSize": false
+    },
+    "layout": {
+      "contentSize": "800px",
+      "wideSize": "1200px"
+    }
+  }
+}
+```
+
+**What this does for editors:** They cannot pick random colors, fonts, or spacing. Every choice in the editor toolbar maps to the approved brand system. The site stays consistent even when 15 different department content owners are publishing.
+
+---
+
+## 2. Plugin Stack
+
+Every plugin earns its place. No bloat, no redundancy, no "nice to have."
+
+### Core Plugins (Required)
+
+| Plugin | Purpose | Why This One | Annual Cost |
+|---|---|---|---|
+| **Advanced Custom Fields (ACF) Pro** | Content modeling — custom fields for Programs, Faculty, Events | Industry standard, REST API support, huge community, Rick likely already knows it | ~$49/yr |
+| **Gravity Forms + Webhooks Add-On** | Forms + Slate CRM integration | Best WordPress form builder, webhook pattern for Slate is proven (NC State), conditional logic, WCAG compliant | ~$259/yr |
+| **Rank Math Pro** | SEO + structured data (Schema.org) | Auto-generates EducationalOrganization, FAQ, Event, Article schema; better UX than Yoast; built-in redirect manager | ~$59/yr |
+| **Safe SVG** | Allow SVG uploads (icons, logos) | WordPress blocks SVGs by default; this sanitizes them securely | Free |
+| **Redirection** | 301 redirect manager | Manages the 1,601-URL redirect map; logs 404s for monitoring; import/export CSV | Free |
+| **WP Migrate DB Pro** | Database migration between environments | Pantheon Dev/Test/Live workflow; find-and-replace URLs on migration | ~$249/yr |
+
+### Content Authoring Plugins (Editor Experience)
+
+| Plugin | Purpose | Why This One | Annual Cost |
+|---|---|---|---|
+| **Block Visibility** | Show/hide blocks by user role, device, date, URL parameter | Powers basic personalization (show different content to mobile vs desktop, show seasonal CTAs) | Free |
+| **If-So Dynamic Content** | Geo-targeting, UTM-based content, returning visitor logic | In-state vs out-of-state messaging, campaign-specific heroes; no code required | ~$139-199/yr |
+| **Icon Block** | Insert SVG icons from the block editor | Editors can add icons to buttons, cards, lists without uploading files | Free |
+| **Table of Contents Block** | Auto-generate anchor-linked TOC | For long program pages, policy pages, FAQ pages — accessibility + UX | Free |
+
+### Performance & Security Plugins
+
+| Plugin | Purpose | Why This One | Annual Cost |
+|---|---|---|---|
+| **Pantheon Advanced Page Cache** | Granular cache purging on Pantheon | Pantheon-native; auto-purges only changed content, not entire cache | Free (Pantheon) |
+| **Pantheon HUD** | Shows cache status in admin bar | Developers can see if pages are cached, diagnose performance issues | Free (Pantheon) |
+| **WP Crontrol** | View and manage WP-Cron events | Debug scheduled tasks, form webhooks, cache jobs | Free |
+| **Wordfence** or **Pantheon Security** | Firewall, login protection, malware scanning | Defense in depth on top of Pantheon's read-only filesystem | Free tier sufficient |
+
+### Accessibility Plugins
+
+| Plugin | Purpose | Annual Cost |
+|---|---|---|
+| **WP Accessibility** | Adds skip links, fixes common a11y issues, toolbar for font sizing | Free |
+| **Flavor** (or Flavored) | Alt text enforcement — blocks image publish without alt text | Free |
+
+### NOT Using (And Why)
+
+| Plugin/Tool | Why We Skip It |
+|---|---|
+| **Elementor / Divi / WPBakery** | Page builders add 500KB+ of CSS/JS, create vendor lock-in, produce div-soup HTML that fails accessibility audits. Block editor does everything we need natively. |
+| **Yoast SEO** | Rank Math Pro has better UX, more features at lower price, built-in schema types for education |
+| **WooCommerce** | No e-commerce on this site |
+| **WPML/Polylang** | English-only site per RFP; Google Translate widget handles translation need |
+| **Custom CAPTCHA plugins** | WCAG 2.2 prohibits cognitive tests; we use honeypot + reCAPTCHA v3 (score-based, invisible) |
+| **Slider/carousel plugins** | Carousels hurt conversion and accessibility; we use static heroes with clear CTAs |
+
+**Total annual plugin cost: ~$755-955/yr** — less than a single hour of agency time.
+
+---
+
+## 3. Custom Post Types & Content Models
+
+### Program (CPT: `program`)
+
+The most important content type on the site. Every program page is the "definitive answer" for that program.
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| Title | Native WP title | Yes | e.g., "Bachelor of Science in Nursing" |
+| Slug | Native WP slug | Yes | e.g., `nursing-bsn` |
+| Program Description | WYSIWYG (block editor) | Yes | Main content area |
+| Degree Level | Select (Undergraduate, Master's, Doctorate, Certificate) | Yes | Taxonomy: `degree_level` |
+| School | Select (Arts & Sciences, Business, Education, Nursing) | Yes | Taxonomy: `school` |
+| Department | Text or taxonomy | Yes | |
+| Delivery Format | Checkbox (On-campus, Online, Hybrid, Accelerated) | Yes | |
+| Credit Hours | Number | Yes | |
+| Tuition Per Credit | Number | No | For AI citation |
+| Duration | Text | No | e.g., "4 years full-time" |
+| Student-Faculty Ratio | Text | No | |
+| Employment Rate | Text | No | e.g., "93% within 6 months" |
+| Average Salary | Text | No | Post-graduation |
+| Accreditation | Textarea | No | |
+| Admission Requirements | WYSIWYG | Yes | |
+| Curriculum/Course List | Repeater field | No | Course name + credits |
+| Related Faculty | Relationship (→ Faculty CPT) | No | Auto-displays on page |
+| Featured Image | Image | Yes | Hero/OG image |
+| CTA Button Text | Text | No | Default: "Request Info" |
+| CTA Button URL | URL | No | Default: `/admissions/request-info/?program={slug}` |
+| Testimonial | Relationship (→ Testimonial or inline) | No | Named student + outcome |
+| FAQ | Repeater (Question + Answer) | No | Auto-generates FAQPage schema |
+| SEO Override | Rank Math fields | No | Auto-generated if blank |
+
+**What the editor sees:** A clean form with labeled fields. Fill in the fields, hit publish. The template handles layout, schema markup, related faculty, CTAs — everything. No design decisions required.
+
+### Faculty (CPT: `faculty`)
+
+| Field | Type | Required |
+|---|---|---|
+| Name | Title | Yes |
+| Title/Position | Text | Yes |
+| Department | Taxonomy | Yes |
+| School | Taxonomy | Yes |
+| Bio | WYSIWYG | Yes |
+| Headshot | Image | Yes |
+| Email | Email | Yes |
+| Phone | Text | No |
+| Office Location | Text | No |
+| Office Hours | Text | No |
+| Research Areas | Textarea | No |
+| Publications | Repeater | No |
+| Related Programs | Relationship (→ Program) | No |
+| Degree/Education | Repeater | No |
+
+### Event (CPT: `event`)
+
+| Field | Type | Required |
+|---|---|---|
+| Title | Title | Yes |
+| Date/Time Start | DateTime | Yes |
+| Date/Time End | DateTime | No |
+| Location | Text | Yes |
+| Event Type | Select (Open House, Info Session, Campus Visit, General) | Yes |
+| Audience | Checkbox (Prospective, Current, Alumni, Community) | Yes |
+| Description | WYSIWYG | Yes |
+| Registration URL | URL | No |
+| Featured Image | Image | No |
+
+### News (Native `post` type)
+
+Uses standard WordPress posts with enhanced categories:
+
+| Taxonomy | Values |
+|---|---|
+| `news_category` | Student Stories, Research, Announcements, Athletics, Campus Life, Awards |
+| `department` | Shared with Programs and Faculty |
+| `school` | Shared with Programs and Faculty |
+
+### Page (Native `page` type)
+
+General pages use the block editor with pre-built patterns. No custom fields needed — the block pattern library handles all layout needs.
+
+---
+
+## 4. Block Patterns — The Content Creation Toolkit
+
+Block patterns are the key to making content creation dead simple. They are pre-built page sections that editors insert with one click, then fill with their content.
+
+### Pattern Library (40-50 patterns organized by category)
+
+**Heroes (5 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Hero — Full Width Image + Text Overlay | Homepage, major landing pages |
+| Hero — Split (Image Left, Text Right) | Program pages, about pages |
+| Hero — Gradient + Headline | Campaign landing pages |
+| Hero — Video Background | Admissions, campus life |
+| Hero — Minimal (Text Only) | Policy pages, simple content |
+
+**Calls to Action (6 patterns)**
+| Pattern | Use Case |
+|---|---|
+| CTA — Apply Now (Purple) | Bottom of program pages |
+| CTA — Request Info (Gold) | Sidebar or inline on program pages |
+| CTA — Visit Campus | Admissions pages |
+| CTA — Two Button (Apply + Request Info) | Program pages, homepage |
+| CTA — Newsletter Signup | News pages, blog |
+| CTA — Banner (Full Width) | Between content sections |
+
+**Content Blocks (12 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Text + Image (Left) | General content |
+| Text + Image (Right) | General content |
+| Stats Row (3-4 statistics) | Program outcomes, about page |
+| Testimonial — Single Quote | Program pages |
+| Testimonial — Carousel (3 cards) | Homepage, admissions |
+| FAQ Accordion | Admissions, financial aid, programs |
+| Two Column Text | Comparison content, side-by-side info |
+| Three Column Cards | Feature highlights, program tracks |
+| Icon + Text Grid (4-6 items) | "Why Holy Family" sections |
+| Timeline / Steps | Application process, program milestones |
+| Tabbed Content | Program tracks (BS/MS/PhD on one page) |
+| Alert / Notice Banner | Deadlines, urgent announcements |
+
+**Media (5 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Video Embed (Wistia/YouTube) | Campus tours, program spotlights |
+| Image Gallery (Grid) | Campus life, events |
+| Full-Width Image + Caption | Visual storytelling |
+| Photo + Pull Quote | Feature stories |
+| Embedded Map | Campus locations |
+
+**Listings (6 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Program Cards (Filterable Grid) | Program directory |
+| Faculty Grid | Department pages |
+| Event Listing (Upcoming) | Homepage, events page |
+| News Feed (Latest 3-6) | Homepage, department pages |
+| Related Programs | Sidebar or bottom of program pages |
+| Staff Directory Row | Administrative pages |
+
+**Forms (3 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Gravity Form — Full Width | Standalone form pages |
+| Gravity Form — Sidebar | Contact forms within content |
+| Gravity Form — Modal (Button Trigger) | "Request Info" popup on program pages |
+
+**Layout (5 patterns)**
+| Pattern | Use Case |
+|---|---|
+| Page Header (Title + Breadcrumb) | All interior pages |
+| Section Divider (with optional heading) | Between content sections |
+| Sidebar Layout (Content + Sidebar) | News articles, policies |
+| Full-Width Section (Colored Background) | Breaking up long pages |
+| Footer CTA Strip | Pre-footer conversion zone |
+
+### How an Editor Creates a New Program Page
+
+1. Go to **Programs → Add New** in WordPress admin
+2. Fill in the structured fields (title, school, degree level, credits, etc.)
+3. In the main content area, click the **"+"** button
+4. Choose from pattern categories: **"HFU Heroes"** → select **"Hero — Split"**
+5. Replace placeholder image and text with program content
+6. Add more patterns: **Stats Row**, **FAQ Accordion**, **Testimonial**, **CTA — Apply Now**
+7. Hit **Publish**
+
+The page automatically:
+- Generates the correct URL (`/programs/nursing-bsn/`)
+- Applies the `single-program.html` template
+- Pulls in related faculty from the Relationship field
+- Generates Schema.org `EducationalOccupationalProgram` markup
+- Creates the meta title and description via Rank Math
+- Displays the program in the filterable Program Directory
+
+**Time to create a new program page: 15-20 minutes.** No design decisions. No code. No agency call.
+
+---
+
+## 5. Editorial Guardrails — Preventing Drift
+
+The biggest risk to a university website isn't the launch — it's year 3, when 15 different departments have published 400 new pages with no consistency. We prevent that structurally:
+
+### What Editors CAN Do
+- Create/edit content using approved block patterns
+- Upload images (with required alt text)
+- Choose from the approved color palette
+- Select from approved font sizes
+- Insert forms from the Gravity Forms library
+- Schedule content for future publication
+- Submit content for review (if role = Author/Contributor)
+
+### What Editors CANNOT Do
+- Pick arbitrary colors (theme.json locks the palette)
+- Use arbitrary fonts or sizes (theme.json locks typography)
+- Add arbitrary spacing (theme.json locks spacing scale)
+- Skip alt text on images (plugin enforces)
+- Skip heading levels (H2 → H4 blocked)
+- Install plugins (role-based permissions)
+- Edit theme files (Pantheon read-only filesystem in production)
+- Add raw HTML/CSS/JS blocks (disabled for Editor role)
+
+### Content Workflow
+
+| Role | Can Do | Cannot Do |
+|---|---|---|
+| **Administrator** (Rick + IT) | Everything | — |
+| **Editor** (Marketing team) | Create, edit, publish all content; manage media; manage categories | Install plugins, edit theme, manage users |
+| **Author** (Department liaisons) | Create and publish own posts/pages | Edit others' content, delete published content |
+| **Contributor** (Occasional contributors) | Draft content, submit for review | Publish, upload media |
+
+### Content Lifecycle Rules (Enforced in Training + Governance Doc)
+
+| Content Type | Review Cadence | Archive Trigger |
+|---|---|---|
+| Program pages | Every semester | Program discontinued or merged |
+| Faculty profiles | Annually | Faculty departs |
+| News articles | — | Auto-archive from sitemap after 2 years |
+| Events | — | Auto-expire after event date passes |
+| Policies | Annually | Policy superseded |
+| Landing pages | Quarterly | Campaign ends |
+
+---
+
+## 6. Template Hierarchy — What Renders What
+
+| URL Pattern | Template | Content Source |
+|---|---|---|
+| `/` | `home.html` | Block patterns + dynamic queries |
+| `/programs/` | `archive-program.html` | All published Programs, filterable by school/level |
+| `/programs/nursing-bsn/` | `single-program.html` | Program CPT fields + block content |
+| `/directory/` | `archive-faculty.html` | All Faculty, filterable by school/department |
+| `/directory/jane-smith/` | `single-faculty.html` | Faculty CPT fields |
+| `/events/` | `archive-event.html` | Upcoming events, sorted by date |
+| `/events/open-house-fall-2026/` | `single-event.html` | Event CPT fields |
+| `/news/` | `archive.html` | Latest posts, paginated |
+| `/news/article-slug/` | `single.html` | Post content |
+| `/admissions/` | `page-admissions.html` | Block patterns |
+| `/admissions/request-info/` | `page.html` | Gravity Form pattern |
+| `/about/*` | `page.html` | Block patterns |
+| `/search/` | `search.html` | Search results |
+| `/*` (404) | `404.html` | Helpful links + search |
+
+---
+
+## 7. Performance Budget
+
+Every architectural decision serves this budget:
+
+| Metric | Target | How We Hit It |
+|---|---|---|
+| **Total page weight** | < 1.5 MB | No page builder bloat, WebP images, lazy loading |
+| **LCP** | < 2.5s | Critical CSS inlined, hero image preloaded, Pantheon CDN |
+| **CLS** | < 0.1 | Explicit image dimensions, font-display swap, stable layouts |
+| **FID/INP** | < 100ms | Minimal JS, deferred non-critical scripts, no render-blocking |
+| **TTFB** | < 600ms | Pantheon edge cache, Redis object cache |
+| **Lighthouse Performance** | > 90 | Enforced in CI — PRs that drop below threshold cannot merge |
+| **Lighthouse Accessibility** | > 95 | axe-core in CI pipeline |
+
+**What we don't ship:**
+- jQuery (not needed with block theme)
+- Font Awesome (use inline SVGs)
+- Animate.css or heavy animation libraries
+- Third-party scripts outside GTM (everything goes through Tag Manager)
+- Unused CSS from page builders we're not using
+
+---
+
+## 8. The Editor Experience — Day in the Life
+
+### Scenario: Marketing needs a new landing page for a Spring Open House campaign
+
+**Time: 20 minutes. No developer needed.**
+
+1. **New Page** → Title: "Spring Open House 2027"
+2. **Insert Pattern** → "Hero — Full Width Image" → upload event photo, write headline
+3. **Insert Pattern** → "Stats Row" → fill in: "30+ Programs | 93% Employment Rate | $X Tuition"
+4. **Insert Pattern** → "Two Column Text" → left: event details, right: campus map embed
+5. **Insert Pattern** → "Gravity Form — Full Width" → select "Event Registration" form
+6. **Insert Pattern** → "Testimonial — Single Quote" → select existing student testimonial
+7. **Insert Pattern** → "CTA — Two Button" → "Apply Now" + "Request Info"
+8. **SEO sidebar** → Rank Math auto-generated title/description, tweak if needed
+9. **If-So block** → Show different hero text for visitors from paid search vs organic
+10. **Publish** → page goes live at `/events/spring-open-house-2027/`
+
+### Scenario: Rick needs to add a new academic program
+
+**Time: 15 minutes.**
+
+1. **Programs → Add New** → Title: "Master of Science in Cybersecurity"
+2. Fill structured fields: School = Business & Technology, Level = Master's, Format = Hybrid, Credits = 36
+3. Add admission requirements, curriculum, outcomes data in the field groups
+4. Select related faculty from the Faculty CPT relationship field
+5. Add FAQ items (auto-generates Schema)
+6. **Publish** → page appears at `/programs/cybersecurity-ms/`, auto-listed in Program Directory, Schema markup generated, Rank Math handles SEO
+
+### Scenario: Department liaison needs to update a faculty profile
+
+**Time: 5 minutes.**
+
+1. **Faculty → Edit** → find the profile
+2. Update bio, add new publication to repeater field
+3. **Update** → changes live immediately
+
+---
+
+## 9. What This Means for the Proposal
+
+### Key Messages for Rick Mitchell (Technical)
+- Block theme, not page builder — clean HTML, fast, accessible, no vendor lock-in
+- ACF Pro for structured content — he likely already knows it
+- Component library in code mirrors Figma — what designers design is what editors get
+- theme.json enforces brand consistency without policing
+- Git-based workflow on Pantheon — he can review every commit
+
+### Key Messages for Katherine Primus (Marketing)
+- 20-minute page creation for campaigns — no developer bottleneck
+- Personalization built in (geo-targeting, UTM-aware content) at no extra cost
+- Every program page is an enrollment machine (structured data, CTAs, outcomes)
+- Analytics baked in — every form, CTA, and page view tracked
+
+### Key Messages for Mark Green (IT/Technology)
+- < $1,000/yr in plugin licensing
+- Pantheon handles infrastructure, security, backups, SSL
+- Read-only production filesystem — entire class of attacks eliminated
+- WordPress Coding Standards enforced in CI pipeline
+- No custom frameworks to maintain — all standard WordPress patterns
+
+---
+
+## 10. Plugin + Theme Cost Summary
+
+| Item | Annual Cost |
+|---|---|
+| ACF Pro | $49 |
+| Gravity Forms (Elite) | $259 |
+| Rank Math Pro | $59 |
+| If-So Dynamic Content | $139-199 |
+| WP Migrate DB Pro | $249 |
+| Safe SVG | Free |
+| Redirection | Free |
+| Block Visibility | Free |
+| WP Accessibility | Free |
+| Pantheon plugins | Free |
+| **Total** | **$755-815/yr** |
+
+Custom theme: included in project scope, owned by HFU forever.
+
+No recurring agency dependency. No page builder license. No vendor lock-in.
+</script>
+
+  <script type="text/markdown" data-doc="drupal-wp">
+# Holy Family University RFP — Drupal → WordPress AI Migration Research
+
+**RFP:** Holy Family University Website Redesign | Due April 17, 2026
+**Scope:** 1,300-page Drupal → WordPress migration + full redesign | 6–12 months
+
+---
+
+## Migration Tooling: What Actually Works
+
+**Primary stack:**
+1. **FG Drupal to WordPress Premium (~$100–200)** — reads Drupal DB directly, does not touch source. Handles articles, pages, categories, media, URLs. Required add-ons for a university site: CCK, Entity Reference, Paragraphs, Meta tags, Webform. One reviewer migrated 12 Drupal 7 sites with 5,000+ nodes with complex entity references.
+2. **WP All Import ($99+)** — drag-and-drop field mapping into any CPT from CSV/XML. Use for refinement passes after FG handles bulk migration.
+3. **Custom scripts (Python/PHP)** — reserve for the 5–10% of content that resists FG + WP All Import (e.g., deeply nested Paragraphs).
+
+**Command-line pairing:** Drush on Drupal side + WP-CLI on WordPress side for pre/post-processing.
+
+**Memory/scaling tip:** Set `WP_MEMORY_LIMIT = 512M` and PHP `memory_limit = 1G`. FG resumes where it stopped on timeout.
+
+---
+
+## AI as Migration Accelerator (Not Engine)
+
+AI adds 30–50% speed at 5 specific stages:
+
+| Stage | What AI Does | Tooling |
+|---|---|---|
+| Content audit | Classifies pages, finds duplicates, suggests consolidation, flags outdated content | LLM batch API (~$20–50 for 1,300 pages) |
+| Schema mapping | Analyzes Drupal field config, generates WordPress CPT/ACF JSON definitions as first draft | LLM + human validation |
+| Content transformation | Cleans legacy HTML, splits monolithic body fields, generates missing meta descriptions + alt text, normalizes formatting | LLM batch API |
+| Redirect mapping | Semantic URL matching via embeddings (NOT generative AI) — Screaming Frog export → Python + sentence-transformers + FAISS | `all-MiniLM-L6-v2` + FAISS |
+| Post-migration QA | Compares source vs. destination, flags empty fields, broken references, formatting drift | LLM + output as spreadsheet |
+
+**The framework:** AI drafts, humans decide, code executes, tests verify.
+
+**Redirect mapping detail:** Crawl both sites with Screaming Frog, generate embeddings, auto-accept matches above 0.98 similarity, human review below. Daniel Emery's "Automated Redirect Matchmaker" on Google Colab is a ready-made implementation.
+
+---
+
+## Content Type Mapping for a University Site
+
+| Drupal Content Type | WordPress Target | Notes |
+|---|---|---|
+| Article / News | `post` (native) | Category taxonomy by dept/topic |
+| Basic Page | `page` (native) | Hierarchical parent-child for IA |
+| Program / Degree | CPT `program` | ACF field groups for level, dept, format, requirements |
+| Faculty Profile | CPT `faculty` | ACF for title, dept, research areas, publications, headshot |
+| Event | CPT `event` | ACF or The Events Calendar plugin |
+| Landing Page | `page` + Gutenberg blocks | Block patterns or ACF Flexible Content |
+| Webform | Gravity Forms or WS Form | FG has Webform add-on; complex forms need manual rebuild |
+| Entity References | ACF Relationship fields | ACF Pro required (~$50/yr) |
+| Paragraphs | Gutenberg blocks OR ACF Flexible Content | Closest match — nested Paragraphs need flattening strategy |
+
+**Critical pre-migration decisions:**
+- Run content audit first — 1,300 pages likely reducible to 900–1,000 active pages
+- Drupal Paragraphs are the single biggest technical risk — decide Gutenberg vs. ACF Flexible Content before migration
+- Taxonomy: `department` and `program-type` shared across CPTs
+
+---
+
+## Pantheon for WordPress
+
+Same Dev/Test/Live architecture as Drupal. Key features relevant to this project:
+
+- **Code moves up, content moves down** — standard WebOps workflow
+- **Multidev** — unlimited on-demand environments for parallel content-type testing
+- **Terminus CLI** — pairs with WP-CLI for scripted migration workflows
+- **Autopilot** — automated plugin/core updates with visual regression before promotion
+- **Upstreams** — enforce approved plugin/theme baselines across any department sub-sites
+
+**Limitation:** Filesystem is read-only in Test/Live (code deploys via Git only). Surprises WordPress devs but is actually a security benefit.
+
+---
+
+## Headless vs. Traditional WordPress: Recommendation
+
+**Traditional WordPress is the right call.** Headless is a trap for this context.
+
+**Why NOT headless:**
+- Editorial workflow degrades — WYSIWYG, real-time preview, in-context editing all require re-engineering
+- Plugin ecosystem breaks — Yoast, Gravity Forms, GTM, accessibility checkers all need frontend reimplementation
+- Requires dedicated React/Next.js frontend engineers — if their internal team is PHP/WordPress, headless creates a permanent skills gap
+- Two codebases to maintain (WP backend + frontend app) for a site that needs stability over 5+ years
+- "Headless is not automatically faster" — performance depends on managing API latency, hydration, caching; a well-optimized traditional WP on Pantheon's CDN matches a poorly implemented headless setup
+
+**When headless makes sense (not here):** Multi-platform content (web + native apps + digital signage), 3+ dedicated frontend engineers, millions of pageviews/month, or existing headless institutional knowledge.
+
+**The right answer to their headless question in the proposal:** Recommend traditional WordPress, but architect the content model with ACF + REST API to be "headless-ready" so the option exists later without rebuilding the content layer.
+
+---
+
+## Key Open Questions for Discovery Phase
+
+These should go into the RFP proposal as questions to confirm:
+
+1. **Drupal version?** D7 (EOL January 2025) vs. D9/10/11 significantly changes migration complexity
+2. **Paragraphs usage?** The single biggest technical risk factor
+3. **Current Pantheon contract?** If already on Pantheon, WordPress migration is simpler
+4. **Multilingual?** WPML/Polylang adds complexity and cost
+5. **URL structure target?** Preserving `/node/123` vs. adopting `/program-name/` slugs determines redirect scope
+
+---
+
+## Competitive Angle for the Proposal
+
+- Drupal is higher ed's stronghold ("80% of top 100 universities use Drupal") — frame the WordPress recommendation around editorial usability, developer availability, plugin ecosystem, and lower TCO for their specific team size
+- Acknowledge Drupal CMS 2.0 (Starshot) as an alternative they may have considered — then make the case for WordPress anyway
+- AI-accelerated migration is differentiating: most agencies hand-migrate at $X/hour; frame the AI layer as a way to deliver higher quality (more content cleaned/optimized) faster without passing cost to the client
+- Position redirect mapping automation as a concrete deliverable: "We will deliver a validated 301 redirect map for every active URL on launch day"
+
+---
+
+## Sources
+
+- [FG Drupal to WordPress - WordPress.org](https://wordpress.org/plugins/fg-drupal-to-wp/)
+- [WP All Import](https://www.wpallimport.com/)
+- [Search Engine Land - AI-Powered Redirect Mapping](https://searchengineland.com/site-migrations-ai-powered-redirect-mapping-437793)
+- [Enonic - Migrating CMS with AI](https://www.enonic.com/blog/migrating-between-cms-with-ai-is-it-possible)
+- [Brimit - How AI Is Transforming Digital Replatforming](https://www.brimit.com/blog/content-migration-doesnt-have-to-take-months-how-ai-is-transforming-digital-replatforming)
+- [WordPress VIP - Headless WordPress Tradeoffs](https://wpvip.com/blog/headless-wordpress-tradeoffs/)
+- [Pantheon WebOps Workflow Docs](https://docs.pantheon.io/pantheon-workflow)
+- [Pantheon - Drupal vs WordPress for Universities](https://pantheon.io/learning-center/cms/drupal-vs-wordpress-universities)
+- [migratecontent.com - Drupal to WordPress Guide](https://migratecontent.com/guides/drupal-to-wordpress-migrations/content-migration/)
+- [Multidots - Content Structure During Drupal to WordPress Migration](https://www.multidots.com/blog/maintain-content-structure-during-drupal-to-wordpress-migration/)
+- [Zebedee Creations - WordPress in 2026](https://www.zebedeecreations.com/blog/wordpress-in-2026-traditional-headless-static-or-hybrid/)
+</script>
+
+  <script type="text/markdown" data-doc="technical">
+# Section C: Technical Approach
+
+**Prepared for:** Holy Family University — Website Redesign RFP
+**Prepared by:** [TODO: Company Name]
+**Date:** April 10, 2026
+
+---
+
+## C.1 CMS Recommendation: WordPress
+
+We recommend WordPress as the content management system for Holy Family University's redesigned website. Not headless WordPress. Not a decoupled architecture. Traditional, full-stack WordPress -- the same platform that powers 43% of the web and the majority of higher education institutions that have migrated away from Drupal in the past five years.
+
+This recommendation is grounded in three factors specific to Holy Family's situation.
+
+### Why WordPress Is the Right Fit for a 3,700-Student University
+
+**1. Editorial usability for a small team.**
+Rick Mitchell's team maintains the current site with one to two staff members. WordPress's native editing experience -- Gutenberg block editor, real-time preview, in-context editing, media library management -- is purpose-built for teams that need to publish and update content without developer intervention. Drupal's editorial tools have improved, but WordPress remains the benchmark for content author experience. When your web team is measured in single digits, the CMS must work for them, not against them.
+
+**2. The plugin and developer ecosystem is unmatched.**
+WordPress has the largest active developer community of any CMS. This matters for a practical reason: when Holy Family needs to hire a developer, find a freelancer for a specific integration, or troubleshoot an issue, WordPress talent is abundant and competitively priced. Drupal's talent pool is smaller and more expensive. Over a five-year ownership horizon, this difference compounds.
+
+**3. Lower total cost of ownership.**
+WordPress core is free. The premium tools required for this project -- ACF Pro, Gravity Forms, a managed hosting plan on Pantheon -- total under $1,000 per year in licensing costs. Drupal's module ecosystem is also free, but the development and maintenance labor required to achieve equivalent functionality is consistently higher. For a university operating with fiscal discipline, WordPress delivers more capability per dollar spent.
+
+### Why Not Headless WordPress
+
+Headless architecture -- where WordPress serves only as a content API and a separate JavaScript application (React, Next.js) renders the front end -- is a legitimate approach for some institutions. It is not the right approach here.
+
+**Editorial workflow degrades.** In a headless setup, the content preview, in-context editing, and WYSIWYG experience that makes WordPress intuitive all require custom re-engineering. Your team would lose the ability to see what a page looks like before publishing it unless we build that capability from scratch.
+
+**The plugin ecosystem breaks.** Gravity Forms, Yoast SEO, accessibility checking tools, Google Tag Manager integration -- all of these work out of the box in traditional WordPress. In a headless architecture, each one requires front-end reimplementation or replacement.
+
+**It creates a permanent skills gap.** A headless front end requires React or Next.js expertise for ongoing maintenance. If your internal team's strengths are in WordPress theming, PHP, and content management, headless introduces a technology your team cannot maintain independently.
+
+**Two codebases instead of one.** Headless means maintaining the WordPress backend and a separate front-end application. For a site that needs to be stable and maintainable for five or more years, this doubles the surface area for bugs, security updates, and technical debt.
+
+### Future-Proofing Without Headless
+
+We will architect the content model using Advanced Custom Fields (ACF) Pro with full REST API exposure. Every custom post type, every field group, every taxonomy will be accessible via the WordPress REST API from day one. If Holy Family ever needs to serve content to a mobile app, a digital signage system, or a future front-end framework, the content layer is ready. You get the editorial experience of traditional WordPress today and the API flexibility of headless architecture if you ever need it.
+
+---
+
+## C.2 Technical Architecture
+
+### Proposed Technology Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **CMS** | WordPress 6.x | Content management, editorial workflow, user administration |
+| **Content Modeling** | Advanced Custom Fields (ACF) Pro | Custom post types, field groups, flexible content layouts, relationship fields |
+| **Forms** | Gravity Forms + Webhooks Add-On | Native form builder, Slate CRM integration via webhook, conditional logic |
+| **SEO** | Rank Math Pro or Yoast SEO Premium | Structured data (Schema.org), meta management, XML sitemaps, breadcrumbs |
+| **Hosting** | Pantheon | Managed WordPress hosting with dev/test/live environments |
+| **Version Control** | Git (via Pantheon) | All theme and plugin code tracked, auditable, reversible |
+| **Front-End** | Custom WordPress theme (PHP, HTML, CSS, JavaScript) | Responsive, accessible, component-based |
+| **Caching/CDN** | Pantheon Global CDN (Fastly) | Edge caching, HTTPS, DDoS protection |
+
+### Component-Based Theme Architecture
+
+The theme will be built using a component-based approach. Rather than designing pages as monolithic templates, we will build a library of reusable components -- hero sections, program cards, faculty profiles, call-to-action blocks, testimonial modules, statistics displays, event listings -- that content editors can assemble into pages using the block editor.
+
+Each component will be:
+
+- **Self-contained.** Its own markup, styles, and behavior. No dependency on what else is on the page.
+- **Responsive.** Designed mobile-first, tested across breakpoints.
+- **Accessible.** ARIA attributes, keyboard navigation, and screen reader compatibility built in from the start -- not added after the fact.
+- **Documented.** A living pattern library will ship with the theme, showing each component's variants, usage guidelines, and content requirements.
+
+This approach directly addresses the inconsistency problem described in the RFP. When every department page is assembled from the same component library, visual and structural consistency is enforced by the system, not by editorial discipline alone.
+
+### Custom Post Types
+
+Based on our analysis of the current site's 1,601 URLs, we propose the following content architecture:
+
+| Content Type | WordPress Implementation | Key Fields |
+|---|---|---|
+| **Academic Programs** | Custom post type `program` | Degree level, school, department, format (on-campus/online/hybrid), credit hours, accreditation, outcomes data, related faculty |
+| **Faculty Profiles** | Custom post type `faculty` | Title, department, school, research areas, publications, office hours, headshot, program relationships |
+| **Events** | Custom post type `event` | Date/time, location, event type, registration link, audience (prospective/current/alumni) |
+| **News/Blog** | Native `post` type | Categories by department and topic, featured image, author |
+| **Pages** | Native `page` type with block patterns | Hierarchical parent-child structure for information architecture |
+| **Landing Pages** | Native `page` type with ACF Flexible Content | Modular layouts for campaign and program marketing pages |
+
+Shared taxonomies -- `department`, `school`, `program-type`, `audience` -- will link content across types, enabling features like "show all nursing faculty on the nursing program page" without manual curation.
+
+---
+
+## C.3 Hosting and Infrastructure
+
+### Pantheon: Dev/Test/Live Workflow
+
+We recommend Pantheon as the hosting platform. Pantheon provides a managed WordPress hosting environment built around a three-environment workflow that enforces development best practices:
+
+**Development (Dev)**
+The working environment where code changes are made. Developers write and test theme and plugin updates here. The Dev environment connects directly to a Git repository -- every code change is committed, tracked, and reversible.
+
+**Test**
+A staging environment that mirrors the Live site's content and database. Code is promoted from Dev to Test for review. This is where the Holy Family team will preview changes, run accessibility audits, and approve updates before they reach the public site.
+
+**Live**
+The production environment serving holyfamily.edu. Code is promoted from Test to Live only after approval. The Live environment sits behind Pantheon's Global CDN (powered by Fastly), providing edge caching, automatic HTTPS, and DDoS protection.
+
+### How Content and Code Move
+
+Pantheon enforces a deliberate separation:
+
+- **Code moves up:** Dev to Test to Live. Every promotion is a Git-based deployment with a full audit trail.
+- **Content moves down:** Database and files can be cloned from Live to Dev or Test for local development and testing. This means developers always work against real content, not placeholder data.
+
+This workflow eliminates the most common source of deployment failures in WordPress: ad hoc code changes made directly on production. On Pantheon, the Live filesystem is read-only. Code changes can only reach production through the Dev-to-Test-to-Live pipeline.
+
+### Version Control and Deployment Process
+
+All custom theme code, custom plugin code, and configuration files are stored in a Git repository hosted on Pantheon. The deployment process:
+
+1. Developer creates a feature branch (or uses a Multidev environment -- see Section C.6)
+2. Code is written, tested locally, and pushed to the branch
+3. Changes are reviewed (code review by a second developer when team size permits)
+4. Branch is merged to the Dev environment's main branch
+5. Code is promoted to Test, where it is reviewed against the production database
+6. After approval, code is promoted to Live
+7. Pantheon executes cache clears automatically on deployment
+
+This process is fully auditable. Every change to the codebase has a commit message, a timestamp, and an author. If a deployment introduces a problem, Pantheon supports one-click rollback to any previous commit.
+
+### Uptime and Performance
+
+Pantheon's infrastructure delivers:
+
+- **99.9% uptime SLA** on Performance plans and above
+- **Global CDN** with edge nodes across North America, Europe, and Asia-Pacific
+- **Automated HTTPS** via Let's Encrypt, including certificate renewal
+- **Container-based architecture** that scales automatically during traffic spikes (enrollment season, admissions deadlines, event announcements)
+- **Daily automated backups** with one-click restore
+
+---
+
+## C.4 Accessibility Compliance: WCAG 2.2 AA
+
+### The Compliance Landscape
+
+The ADA Title II Final Rule (published April 2024) required public universities to meet WCAG 2.1 AA by April 24, 2026. That deadline has passed. As a recipient of federal funds, Holy Family University is subject to Section 504 and Section 508 requirements that impose the same standard.
+
+We will build to WCAG 2.2 AA -- one version ahead of the current legal floor. WCAG 2.2 is backward-compatible with 2.1, so meeting 2.2 automatically satisfies the legal requirement while providing a compliance margin against future regulatory updates.
+
+### What WCAG 2.2 AA Adds
+
+WCAG 2.2 introduces six new success criteria beyond 2.1. Four are directly relevant to a university website:
+
+| Criterion | Requirement | How We Address It |
+|---|---|---|
+| **2.4.11 Focus Not Obscured** | Keyboard focus indicator must not be hidden behind sticky headers, modals, or other overlapping elements | Focus management designed into every component; sticky header accounts for focus offset |
+| **2.5.7 Dragging Movements** | Any drag interaction must have a click or tap alternative | No drag-only interactions in the design; all interactive elements have standard click/tap paths |
+| **2.5.8 Target Size Minimum** | Interactive targets must be at least 24x24 CSS pixels | Minimum touch target of 44x44px in our component library (exceeds the 24px floor) |
+| **3.3.8 Accessible Authentication** | Login cannot require cognitive function tests (e.g., CAPTCHA puzzles); must allow password managers and paste | All forms support autofill and paste; CAPTCHA alternatives (honeypot, reCAPTCHA v3 score-based) used where spam protection is needed |
+
+### "Shift Left" Accessibility Methodology
+
+Most agencies treat accessibility as a QA checkpoint -- build the site first, then audit and fix. This is expensive, slow, and produces inconsistent results. Our approach shifts accessibility left into every phase of the project:
+
+**Design Phase**
+- Color palettes validated for 4.5:1 contrast ratio (body text) and 3:1 (large text and interactive elements) before a single pixel is designed
+- Touch targets sized at 44x44px minimum in wireframes, not retrofitted later
+- Focus states designed as a first-class visual element for every interactive component
+- Heading hierarchy defined in content models, enforcing logical structure before content is written
+
+**Development Phase**
+- Component library built with semantic HTML and ARIA attributes from the first line of code
+- Automated accessibility linting integrated into the development environment (axe-core) -- developers see violations as they write code, not weeks later in a QA report
+- axe-core integrated into the CI/CD pipeline -- code that introduces accessibility regressions cannot be deployed
+
+**Content Phase**
+- WordPress editor configured with guardrails: alt text required before image insertion, heading level enforcement (no skipping from H2 to H4), accessible PDF templates provided for document uploads
+- Content author training includes hands-on accessibility exercises, not just a policy document
+
+**QA Phase**
+- Automated testing via axe-core catches approximately 30-40% of WCAG violations
+- Manual testing covers the rest: keyboard-only navigation through all critical user flows, screen reader testing with VoiceOver and NVDA on key pages (homepage, program pages, admissions application, financial aid)
+- Accessibility testing is not a separate phase -- it runs in parallel with functional QA throughout development
+
+**Post-Launch**
+- Holy Family already uses Siteimprove for accessibility monitoring. We will configure Siteimprove dashboards for ongoing WCAG 2.2 AA tracking, providing the internal team with continuous visibility into compliance status
+- Quarterly audit cadence recommended for the first year post-launch
+
+### Common University Website Failures We Will Prevent
+
+Based on industry data, the most frequently failed WCAG criteria on university websites are:
+
+- Missing image alt text (1.1.1) -- enforced at the editor level
+- Insufficient color contrast (1.4.3) -- validated in the design system
+- Keyboard navigation failures (2.1.1) -- tested for every interactive component
+- Missing video captions (1.2.2) -- captioning requirements documented in content guidelines; Wistia (already in your stack) supports captions natively
+- Inaccessible PDFs (1.3.1) -- accessible PDF templates provided; legacy PDF remediation scoped as a post-launch phase
+- Form labeling failures (3.3.2) -- all Gravity Forms fields include programmatic labels, error messages, and instructions
+
+---
+
+## C.5 Integration Capabilities
+
+### Slate CRM Integration
+
+Slate is Holy Family's enrollment CRM. A successful website redesign must integrate cleanly with Slate at three levels: form submissions, behavioral tracking, and content syndication.
+
+#### Form Integration: Gravity Forms Webhook Pattern
+
+We recommend the Gravity Forms webhook approach over Slate's native script-tag embed. Here is why.
+
+**The Slate embed approach** requires pasting Slate's `<script>` tag into WordPress pages. This creates three problems: WordPress's content sanitizer can strip or break the script tag (requiring a custom block or shortcode workaround), the injected form inherits Slate's CSS which can conflict with the site's design system, and you are limited to one Slate form per page.
+
+**The Gravity Forms webhook approach** solves all three:
+
+1. **Build the form natively in WordPress.** Using Gravity Forms, we create inquiry forms (Request for Information, Schedule a Visit, Apply Now) that match the site's design system exactly. The forms use the same typography, colors, spacing, and validation patterns as every other component on the site.
+
+2. **Map fields to Slate's Source Format.** Each Gravity Forms field is mapped to the corresponding Slate field key (first name, last name, email, phone, program of interest, etc.). This mapping is configured once per form.
+
+3. **POST data to Slate on submission.** The Gravity Forms Webhooks Add-On sends form data as a JSON payload to Slate's Source Format endpoint in real time. When a prospective student submits an RFI form, the data arrives in Slate within seconds -- not in a batch overnight.
+
+4. **Confirmation and tracking.** After submission, the student sees a WordPress-native confirmation page (or inline confirmation) while Slate simultaneously creates or updates their prospect record and triggers any configured Slate workflows (automated emails, counselor assignments, drip campaigns).
+
+This pattern has been documented and validated at scale by NC State University, including complete field key mappings between Gravity Forms and Slate.
+
+#### Behavioral Tracking: Slate Ping
+
+Slate Ping is a lightweight JavaScript snippet that tracks page-level browsing behavior across the website. It will be implemented site-wide via the theme's header template (or via Google Tag Manager, which Holy Family already uses):
+
+```html
+<script async="async" src="https://[instance].technolutions.net/ping">/**/<\/script>
+```
+
+Slate Ping drops a first-party cookie and records every page a visitor views. When that anonymous visitor later performs an authenticated action -- clicking a link in a Slate email, logging into the applicant portal, submitting a form -- Slate links their browsing history to their prospect record retroactively. This provides the enrollment team with a complete picture of a student's research journey: which programs they explored, which financial aid pages they read, how many times they returned before converting.
+
+This is the behavioral tracking foundation for enrollment attribution. It will be active on every page from launch day.
+
+#### Content Syndication: Slate Web Services
+
+For dynamic content that originates in Slate -- program listings, event calendars, deadline dates -- we will use Slate's Query Builder web service to pull structured JSON data into WordPress. This enables scenarios such as:
+
+- Displaying upcoming admissions events on the website, sourced from Slate's event calendar
+- Showing real-time application deadlines that update when the enrollment team changes them in Slate
+- Populating "Programs of Interest" dropdowns on forms directly from Slate's program taxonomy
+
+The web service approach ensures the website always reflects current enrollment data without manual content duplication.
+
+#### Integration Architecture Summary
+
+| Data Flow | Method | Timing |
+|---|---|---|
+| Form submissions (website to Slate) | Gravity Forms webhook to Slate Source Format endpoint | Real-time on submission |
+| Browsing behavior (website to Slate) | Slate Ping JavaScript snippet on every page | Continuous; linked to records nightly |
+| Dynamic content (Slate to website) | Slate Query Builder web service (JSON) | Cached with configurable refresh interval |
+| Applicant portal (Slate-hosted) | Embedded iframe or linked portal page | Requires SSO configuration with IT (SAML/CAS) |
+
+#### Technical Dependencies and Boundaries
+
+- Slate Knowledge Base access is required for implementation. We will need credentials to Holy Family's Slate instance to configure Source Format endpoints and Query Builder web services.
+- The applicant status portal requires cross-domain single sign-on (SAML, CAS, or LDAP). This is an IT infrastructure dependency, not a web development deliverable. We will coordinate with IT but scope SSO configuration as a separate workstream.
+- Slate's Open API (launched read-only in 2023) may provide additional integration options. We will evaluate during discovery.
+
+### Additional Integration Points
+
+| System | Integration Method | Notes |
+|---|---|---|
+| **Google Analytics 4** | GTM container (already in place) | Preserved and enhanced; event tracking for form submissions, program page engagement, CTA clicks |
+| **Google Tag Manager** | Existing container (GTM-5FPBQK3) | All third-party scripts managed through GTM, not hard-coded |
+| **Crazy Egg / Hotjar** | Via GTM | Existing heatmap and session recording tools preserved |
+| **Wistia** | Embed via Gutenberg block or shortcode | Video hosting for campus tours, program spotlights; caption support for accessibility |
+| **Siteimprove** | JavaScript snippet via GTM | Existing accessibility and content quality monitoring preserved |
+
+---
+
+## C.6 Pantheon-Specific Advantages
+
+We are recommending Pantheon not as a generic hosting provider but as a platform whose specific features address Holy Family's operational needs. Here are the capabilities that matter most for this project.
+
+### Multidev for Parallel Development and Testing
+
+Multidev creates on-demand, isolated copies of the full website -- code, database, and files -- branched from any point in the development timeline. Each Multidev environment gets its own URL and runs independently.
+
+**Why this matters for Holy Family:**
+
+- During development, multiple features can be built and tested simultaneously without blocking each other. The program page template and the admissions form workflow do not have to wait in line.
+- During content migration, individual content types can be imported and reviewed in their own Multidev environment before being merged into the main development branch.
+- Post-launch, Multidev environments allow the internal team to test theme updates, plugin changes, or content experiments against a full copy of the production site before promoting anything to Live.
+
+### Autopilot for Automated Updates
+
+Pantheon Autopilot automates WordPress core, plugin, and theme updates with a safety net:
+
+1. Autopilot detects available updates
+2. It applies updates in a sandboxed environment
+3. It runs visual regression testing -- automated screenshot comparisons across key pages to detect layout breakage
+4. If no visual regressions are detected, updates are promoted to Test for human review
+5. If regressions are detected, the update is flagged and held
+
+For a small team maintaining a 1,000+ page site, Autopilot eliminates the most time-consuming and anxiety-producing part of WordPress maintenance: keeping everything up to date without breaking anything. Updates that would take hours of manual testing are handled automatically, with human review only where the system flags a potential issue.
+
+### Terminus CLI Integration
+
+Terminus is Pantheon's command-line interface. Combined with WP-CLI (WordPress's command-line tool), it enables scripted operations that would be tedious or error-prone through the WordPress admin interface:
+
+- **Bulk content operations:** Import, update, or transform hundreds of posts and pages via script rather than manual editing
+- **Database operations:** Search-and-replace across the database (e.g., updating URLs after domain migration) with a single command
+- **Automated workflows:** Scheduled tasks like cache warming, database optimization, or content audits can be scripted and run via cron
+- **Migration automation:** During the Drupal-to-WordPress migration, Terminus + WP-CLI will be the backbone for importing content, mapping redirects, and validating data integrity at scale
+
+This is particularly relevant during the migration phase. Migrating 1,000+ pages is not a manual task -- it is a scripted, repeatable, testable process. Terminus and WP-CLI make that possible.
+
+### New Relic Performance Monitoring
+
+Pantheon includes New Relic APM integration, providing real-time visibility into application performance:
+
+- Page load times broken down by component (database queries, PHP execution, external API calls)
+- Slow query identification and optimization guidance
+- Error tracking and alerting
+- Traffic analysis during peak enrollment periods
+
+This gives both our team during development and your team post-launch the diagnostic tools needed to identify and resolve performance issues before they affect visitors.
+
+### Security and Compliance
+
+Pantheon's infrastructure provides security measures relevant to a university handling prospective student data:
+
+- **Automated HTTPS** across all environments
+- **SOC 2 Type II certified** hosting infrastructure
+- **Read-only filesystem** in production (prevents unauthorized code modifications and many classes of malware injection)
+- **Automated daily backups** with point-in-time restore
+- **IP-based access controls** available for staging environments containing sensitive data
+- **Container isolation** -- each site runs in its own container, not shared with other customers
+
+---
+
+## C.7 Post-Launch Technical Ownership
+
+Every technology choice in this section was made with a single question in mind: can Holy Family's team maintain this independently after we hand it over?
+
+WordPress, not headless -- because your team knows WordPress. ACF Pro for content modeling, not a custom framework -- because ACF has documentation, community support, and does not require our involvement to extend. Gravity Forms for Slate integration, not custom API code -- because form changes can be made through a visual interface. Pantheon for hosting, not a bare server -- because infrastructure management is handled by the platform, not by your staff.
+
+The goal is a site that Rick Mitchell's team can update, extend, and maintain for the next five years without calling us. We will still be available -- but you should not need us for routine operations.
+
+Our knowledge transfer plan (detailed in Section [TODO: reference knowledge transfer section]) will include hands-on training sessions covering content editing workflows, component usage, Gravity Forms management, Pantheon deployment procedures, and accessibility monitoring with Siteimprove.
+</script>
+
+  <script type="text/markdown" data-doc="execution">
+# WordPress-to-Next.js Migration: Execution Playbook
+
+## Bottom Line
+**3-week MVP, 5-week production-ready.** 5-phase pipeline: Extract → Transform → Scaffold → Test → Deploy. Hard parts: malformed HTML, 10k image deduplication, 2000-page link rewriting, SEO metadata. Don't build from scratch — fork `wordpress-export-to-markdown` for WXR parsing, wrap REST API with raw fetch, scaffold from `9d8dev/next-wp`.
+
+---
+
+## Phase 1: Content Extraction (3–4 days)
+
+### REST API Mode (live site, preferred)
+
+**CLI entry:**
+```bash
+npx wp-migrate extract --url https://client.example.com --mode rest --output ./content
+```
+
+**Dependencies:**
+```bash
+npm install p-limit dotenv fast-xml-parser
+```
+
+**Pseudocode:**
+```javascript
+// Extract REST API → normalized JSON
+async function extractRest(wpUrl) {
+  const baseUrl = `${wpUrl}/wp-json/wp/v2`;
+  const pages = [];
+  let pageNum = 1;
+
+  while (true) {
+    const res = await fetch(`${baseUrl}/posts?per_page=100&page=${pageNum}`);
+    const posts = await res.json();
+    if (posts.length === 0) break;
+
+    pages.push(...posts.map(post => ({
+      slug: new URL(post.link).pathname.split('/').filter(Boolean).pop(),
+      title: post.title.rendered,
+      html: post.content.rendered,
+      meta: { date: post.date, author: post.author, featured_image: post.featured_media },
+      images: extractImages(post.content.rendered)
+    })));
+
+    pageNum++;
+  }
+
+  return pages;
+}
+```
+
+**Rate limiting:**
+```javascript
+// Respect server limits
+const queue = pLimit(10); // max 10 concurrent requests
+const posts = await Promise.all(
+  postIds.map(id => queue(() => fetch(`${baseUrl}/${id}`)))
+);
+```
+
+### WXR Mode (offline export)
+
+**Fork `wordpress-export-to-markdown`** ([lonekorean/wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown)):
+```bash
+npm install wordpress-export-to-markdown
+```
+
+**Usage:**
+```javascript
+const { parseExport } = require('wordpress-export-to-markdown');
+const content = await parseExport('export.xml');
+// Returns: [ { title, slug, html, date, ... }, ... ]
+```
+
+---
+
+## Phase 2: Content Transformation (4–5 days)
+
+### HTML → MDX Pipeline
+
+**Dependencies:**
+```bash
+npm install turndown html-react-parser sanitize-html sharp p-queue
+```
+
+**Transform function:**
+```javascript
+async function transformContent(pages) {
+  const transformed = [];
+
+  for (const page of pages) {
+    // Sanitize HTML
+    const clean = sanitizeHtml(page.html, {
+      allowedTags: ['p', 'h1', 'h2', 'h3', 'ul', 'ol', 'li', 'blockquote', 'pre', 'code', 'em', 'strong', 'img', 'a'],
+    });
+
+    // Convert to Markdown
+    const md = turndown.turndown(clean);
+
+    // Rewrite image URLs
+    const localized = md.replace(/!\[([^\]]*)\]\((https?:\/\/[^\)]+)\)/g, (match, alt, url) => {
+      const filename = url.split('/').pop();
+      return `![${alt}](/images/${filename})`;
+    });
+
+    // Extract SEO metadata
+    const yoastMeta = page.meta.yoast_head_json || {};
+
+    // Build frontmatter
+    const frontmatter = `---
+title: "${page.title}"
+slug: "${page.slug}"
+date: "${page.meta.date}"
+description: "${yoastMeta.description || ''}"
+canonical: "${yoastMeta.canonical || ''}"
+---
+
+`;
+
+    transformed.push({
+      slug: page.slug,
+      content: frontmatter + localized,
+      images: page.images
+    });
+  }
+
+  return transformed;
+}
+```
+
+### Image Download & Deduplication
+
+**Dependencies:**
+```bash
+npm install p-queue crypto
+```
+
+**Code:**
+```javascript
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+const fetch = require('node-fetch');
+
+async function downloadImages(pages, outputDir) {
+  const queue = new PQueue({ concurrency: 5 });
+  const downloaded = new Map(); // URL hash → local path
+
+  for (const page of pages) {
+    for (const imgUrl of page.images) {
+      if (downloaded.has(imgUrl)) continue;
+
+      queue.add(async () => {
+        try {
+          const res = await fetch(imgUrl, { timeout: 5000 });
+          const buffer = await res.buffer();
+
+          // Dedupe by content hash
+          const hash = crypto.createHash('sha256').update(buffer).digest('hex');
+          const filename = `${hash}.${imgUrl.split('.').pop()}`;
+          const filepath = path.join(outputDir, 'public/images', filename);
+
+          fs.writeFileSync(filepath, buffer);
+          downloaded.set(imgUrl, `/images/${filename}`);
+        } catch (err) {
+          console.warn(`Failed to download ${imgUrl}:`, err.message);
+        }
+      });
+    }
+  }
+
+  await queue.onIdle();
+  return downloaded;
+}
+```
+
+---
+
+## Phase 3: Next.js Scaffolding (2–3 days)
+
+### Generate App Router Project
+
+**CLI:**
+```bash
+npx wp-migrate scaffold --source ./content --target ./next-site
+```
+
+**Scaffolding logic:**
+```javascript
+async function scaffold(contentDir, targetDir) {
+  // Create Next.js App Router skeleton
+  const files = {
+    'next.config.js': `/** @type {import('next').NextConfig} */
+const config = {
+  images: { unoptimized: true },
+  redirects: async () => ${JSON.stringify(buildRedirects())},
+};
+module.exports = config;
+`,
+
+    'app/layout.tsx': `
+export const metadata = { title: 'Site', };
+export default function RootLayout({ children }) {
+  return <html><body>{children}<script src="chat/portal-chat.js" defer></script>
+</body></html>;
+}
+`,
+
+    'app/blog/[slug]/page.tsx': `
+import fs from 'fs';
+import path from 'path';
+import { notFound } from 'next/navigation';
+
+export async function generateStaticParams() {
+  const contentDir = path.join(process.cwd(), 'content/posts');
+  const files = fs.readdirSync(contentDir);
+  return files.map(file => ({
+    slug: file.replace('.mdx', '')
+  }));
+}
+
+export default async function Page({ params }) {
+  const { slug } = params;
+  const filepath = path.join(process.cwd(), 'content/posts', \`\${slug}.mdx\`);
+
+  if (!fs.existsSync(filepath)) notFound();
+
+  const content = fs.readFileSync(filepath, 'utf-8');
+  const [, body] = content.split('---').slice(1);
+
+  return <article>{body}</article>;
+}
+`,
+
+    'scripts/sitemap.ts': buildSitemapScript(),
+    'scripts/redirects.ts': buildRedirectsScript(),
+  };
+
+  // Write files
+  for (const [filepath, content] of Object.entries(files)) {
+    fs.mkdirSync(path.dirname(filepath), { recursive: true });
+    fs.writeFileSync(filepath, content);
+  }
+}
+```
+
+### Redirect Mapping (old WP URLs → new Next.js URLs)
+
+**Key insight:** Get the old URL structure from REST API `link` field, map to new paths.
+
+```javascript
+function buildRedirects() {
+  return [
+    { source: '/2024/:year/:month/:slug/', destination: '/blog/:slug' },
+    { source: '/category/:category/:slug/', destination: '/blog/:slug' },
+    { source: '/:slug/', destination: '/pages/:slug' },
+  ];
+}
+```
+
+---
+
+## Phase 4: Testing & Validation (2–3 days)
+
+### Link Validation
+
+```javascript
+const brokenLinks = [];
+
+for (const page of pages) {
+  const links = page.content.match(/\[([^\]]*)\]\(([^\)]*)\)/g) || [];
+
+  for (const link of links) {
+    const url = link.match(/\]\(([^\)]*)\)/)[1];
+    if (url.startsWith('http')) {
+      const res = await fetch(url, { method: 'HEAD' });
+      if (res.status >= 400) {
+        brokenLinks.push({ page: page.slug, url, status: res.status });
+      }
+    }
+  }
+}
+
+console.log(`Found ${brokenLinks.length} broken links`);
+```
+
+### SEO Audit
+
+```javascript
+function auditSEO(pages) {
+  const issues = [];
+
+  for (const page of pages) {
+    const fm = parseFrontmatter(page.content);
+    if (!fm.description || fm.description.length < 50) {
+      issues.push({ slug: page.slug, issue: 'Missing or short meta description' });
+    }
+    if (!fm.title || fm.title.length > 60) {
+      issues.push({ slug: page.slug, issue: 'Title missing or too long' });
+    }
+  }
+
+  return issues;
+}
+```
+
+### Visual Regression (optional, advanced)
+
+```bash
+npm install playwright pixelmatch
+```
+
+```javascript
+async function visualDiff(wpUrl, nextUrl) {
+  const browser = await chromium.launch();
+
+  const wpPage = await browser.newPage();
+  await wpPage.goto(`${wpUrl}/sample-post`);
+  const wpScreenshot = await wpPage.screenshot();
+
+  const nextPage = await browser.newPage();
+  await nextPage.goto(`${nextUrl}/blog/sample-post`);
+  const nextScreenshot = await nextPage.screenshot();
+
+  const diff = pixelmatch(wpScreenshot, nextScreenshot, null, 1024, 768);
+  console.log(`Visual diff: ${diff} pixels changed`);
+}
+```
+
+---
+
+## Phase 5: Deployment
+
+### Build & Deploy to Vercel
+
+```bash
+npm run build
+vercel --prod
+```
+
+**Build time estimate for 2000 pages:**
+- Static generation: 15–30 min on Vercel free tier
+- **Alternative: Use ISR instead of full static**
+  ```javascript
+  export const revalidate = 3600; // Revalidate every hour
+  ```
+
+---
+
+## Timeline Estimate
+
+| Phase | Time | Notes |
+|---|---|---|
+| Phase 1: Extraction | 3–4 days | REST API pagination + error handling + rate limiting |
+| Phase 2: Transform | 4–5 days | HTML sanitization, image download, link rewriting |
+| Phase 3: Scaffolding | 2–3 days | Next.js project generation + redirects |
+| Phase 4: Testing | 2–3 days | Link validation, SEO audit, edge cases |
+| Phase 5: Deploy | 1 day | Build optimization, Vercel setup |
+| **MVP Total** | **3 weeks** | Covers basic migration, no bells |
+| Add: Image optimization (sharp) | +3 days | |
+| Add: Yoast/RankMath metadata | +2 days | |
+| Add: ACF field handling | +3–5 days | |
+| **Production-Ready Total** | **5 weeks** | |
+
+---
+
+## Client Diagnostic Checklist (Before You Start)
+
+Ask the client:
+- [ ] How many posts/pages total? (you know: 2000)
+- [ ] Any custom post types? (custom, if not standard)
+- [ ] WooCommerce or other major plugins? (flag scope)
+- [ ] What plugins are active? (`wp-admin/plugins.php`)
+- [ ] Is Yoast, RankMath, or other SEO plugin active? (metadata)
+- [ ] Are drafts/private content needed? (requires auth)
+- [ ] What is the permalink structure? (`wp-admin/options-permalink.php`)
+- [ ] How many media files? (rough estimate)
+- [ ] Any form plugins (Gravity Forms, WPForms)? (cannot auto-migrate)
+- [ ] Can they export WXR? Or is REST API enabled? (choose extraction mode)
+- [ ] Target timeline? (drives scope)
+
+---
+
+## Pricing for 2000-Page Migration
+
+**Based on effort:**
+- **MVP (2000 pages, basic content, static):** $10–15K
+  - Timeline: 3 weeks
+  - Includes: REST API extraction, Markdown transform, Next.js scaffold, basic SEO
+  - Excludes: plugin feature porting, advanced form handling, WooCommerce checkout
+
+- **Production (2000 pages, optimized images, full metadata):** $15–25K
+  - Timeline: 5 weeks
+  - Adds: Image optimization, Yoast metadata extraction, extensive testing, Vercel setup
+
+- **Add-ons:**
+  - WooCommerce catalog (read-only): +$5K
+  - Form rebuilds (Gravity Forms → Formspree): +$2–5K per form
+  - Plugin feature replication (custom logic): +$100/hr
+
+**Positioning:** "We migrate your 2000-page WordPress site to a modern, fast Next.js stack in 3–5 weeks. Content is fully extracted, images optimized, and 301 redirects preserve your SEO. No plugins to maintain, 10x faster site speed."
+
+---
+
+## Exact CLI Flow (for user)
+
+```bash
+# Step 1: Extract
+npx wp-migrate extract \
+  --url https://client.example.com \
+  --mode rest \
+  --output ./client-content
+
+# Step 2: Transform
+npx wp-migrate transform \
+  --input ./client-content \
+  --output ./client-transformed
+
+# Step 3: Scaffold
+npx wp-migrate scaffold \
+  --source ./client-transformed \
+  --target ./client-nextjs
+
+# Step 4: Test
+npx wp-migrate validate \
+  --source https://client.example.com \
+  --target ./client-nextjs
+
+# Step 5: Deploy
+cd client-nextjs && npm run build && vercel --prod
+```
+
+---
+
+## Key Files & Dependencies (full stack)
+
+```json
+{
+  "dependencies": {
+    "p-limit": "^4.0.0",
+    "p-queue": "^7.4.0",
+    "turndown": "^7.1.1",
+    "sanitize-html": "^2.11.0",
+    "fast-xml-parser": "^4.3.2",
+    "sharp": "^0.32.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.3.3"
+  }
+}
+```
+
+---
+
+## Don't Forget
+
+1. **Rate limit:** WP servers will throttle you at 10-20 req/s. Add exponential backoff.
+2. **Error recovery:** Store state to disk so you can resume interrupted runs.
+3. **Image dedup:** Use SHA-256 hash to avoid storing the same image twice.
+4. **Link rewriting:** The hardest part. Walk every single file and test every link post-migration.
+5. **SEO metadata:** If client uses Yoast, that data is in REST API. Preserve it.
+6. **Shortcodes:** You will encounter custom shortcodes. Strip them and generate a report.
+7. **Build time:** 2000 static pages on Vercel takes 20-30 min. Use ISR for faster deploys.
+
+---
+
+## Next Step
+
+Create a GitHub repo with this structure, write Phase 1 extraction logic this week, and run it against the client's site to confirm the pipeline works before committing to the full 5-week timeline.
+
+---
+
+Sources:
+- [lonekorean/wordpress-export-to-markdown](https://github.com/lonekorean/wordpress-export-to-markdown)
+- [Next.js App Router docs](https://nextjs.org/docs/app)
+- [Turndown docs](https://github.com/mixmark-io/turndown)
+- [p-queue docs](https://github.com/sindresorhus/p-queue)
+</script>
+
+  <script src="vendor/marked.min.js"></script>
+  <script src="portal.js" defer></script>
+  <script>
+    (function () {
+      var debugLog = [];
+      function dbg(msg) {
+        debugLog.push(msg);
+        try {
+          var box = document.getElementById('md-debug');
+          if (!box) {
+            box = document.createElement('div');
+            box.id = 'md-debug';
+            box.style.cssText = 'position:fixed;top:12px;right:12px;max-width:420px;max-height:60vh;overflow:auto;background:#06213F;color:#FFCC15;font-family:monospace;font-size:10px;padding:10px 14px;border-radius:4px;z-index:99999;white-space:pre-wrap;box-shadow:0 8px 24px rgba(0,0,0,0.3)';
+            document.body.appendChild(box);
+          }
+          box.textContent = debugLog.join('\n');
+        } catch (e) {}
+      }
+
+      dbg('script block parsed · marked=' + (typeof marked));
+      if (typeof marked !== 'undefined') {
+        marked.setOptions({ gfm: true, breaks: false });
+      }
+
+      function render() {
+        dbg('render() invoked · readyState=' + document.readyState);
+        var containers = document.querySelectorAll('.md[data-doc]');
+        dbg('containers=' + containers.length);
+        containers.forEach(function (el, i) {
+          var key = el.getAttribute('data-doc');
+          dbg('  [' + i + '] key=' + key);
+          var src = document.querySelector('script[type="text/markdown"][data-doc="' + key + '"]');
+          if (!src) {
+            dbg('    ! no source for ' + key);
+            el.classList.remove('is-loading');
+            el.innerHTML = '<div class="md__err">No inline document found for: ' + key + '</div>';
+            return;
+          }
+          var md = src.textContent || '';
+          dbg('    md.length=' + md.length);
+          md = md.replace(/<\\\/script/g, '</script');
+          if (md.substring(0, 4) === '---\n') {
+            var end = md.indexOf('\n---\n', 4);
+            if (end !== -1) md = md.substring(end + 5);
+          }
+          try {
+            el.classList.remove('is-loading');
+            el.innerHTML = typeof marked !== 'undefined'
+              ? marked.parse(md)
+              : '<pre>' + md + '</pre>';
+            dbg('    rendered ok');
+          } catch (err) {
+            dbg('    ERROR: ' + (err && err.message || err));
+            el.innerHTML = '<div class="md__err">Render failed: ' + key + ' · ' + (err && err.message || err) + '</div>';
+          }
+        });
+        dbg('render() done');
+      }
+
+      if (document.readyState === 'loading') {
+        dbg('waiting for DOMContentLoaded');
+        document.addEventListener('DOMContentLoaded', render);
+      } else {
+        dbg('document already ready, calling render immediately');
+        render();
+      }
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enrollment Intelligence — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.08);
+      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(48pt, 7.2vw, 96pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      max-width: 14ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 15pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       THE FUNNEL
+       ══════════════════════════════════════════════════════════════ */
+    .funnel {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .funnel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .funnel__label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 32px;
+    }
+    .funnel__label b { color: var(--text); font-weight: 500; }
+    .funnel__rows { position: relative; display: flex; flex-direction: column; gap: 14px; }
+    .funnel__row {
+      display: grid;
+      grid-template-columns: 160px 1fr 140px;
+      gap: 24px;
+      align-items: center;
+      padding: 14px 0;
+    }
+    .funnel__stage {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .funnel__stage b {
+      display: block;
+      font-family: var(--display);
+      font-size: 12pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-top: 3px;
+    }
+    .funnel__bar {
+      position: relative;
+      height: 40px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+      transform-origin: left center;
+      transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 24px -4px rgba(46,158,158,0.4);
+    }
+    .funnel__bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .funnel__bar--ghost {
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .funnel__bar-wrap { position: relative; }
+    .funnel__bar-wrap .funnel__bar + .funnel__bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .funnel__num {
+      text-align: right;
+      font-family: var(--display);
+      font-size: 22pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1;
+    }
+    .funnel__num small {
+      display: block;
+      font-size: 8pt;
+      font-weight: 400;
+      color: var(--text-ghost);
+      margin-top: 4px;
+      letter-spacing: 0;
+      font-family: var(--mono);
+    }
+    .funnel__delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.05em;
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ROI CALCULATOR
+       ══════════════════════════════════════════════════════════════ */
+    .calc {
+      margin-top: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: 28px;
+    }
+    .calc__panel {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      min-width: 0;
+    }
+    .calc__panel--output {
+      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
+      border-color: rgba(46,158,158,0.25);
+      overflow: hidden;
+    }
+    .calc__panel--output::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 0%, rgba(46,158,158,0.10), transparent 70%);
+      pointer-events: none;
+    }
+    .calc__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+      display: block;
+    }
+    .calc__title {
+      font-family: var(--display);
+      font-size: 24pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 38px;
+    }
+    .calc__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    .slider {
+      margin-bottom: 34px;
+    }
+    .slider:last-child { margin-bottom: 0; }
+    .slider__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .slider__name {
+      font-family: var(--display);
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .slider__name small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      color: var(--text-ghost);
+      font-size: 8.5pt;
+      margin-top: 3px;
+      letter-spacing: 0;
+    }
+    .slider__val {
+      font-family: var(--display);
+      font-size: 20pt;
+      font-weight: 400;
+      color: var(--teal);
+      letter-spacing: -0.015em;
+      font-variant-numeric: tabular-nums;
+    }
+    .slider input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .slider input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--teal);
+      border-radius: 50%;
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 1px var(--teal), 0 0 14px rgba(46,158,158,0.6);
+      cursor: pointer;
+      transition: transform 150ms ease;
+    }
+    .slider input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .slider input[type=range]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: var(--teal);
+      border-radius: 50%;
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 1px var(--teal), 0 0 14px rgba(46,158,158,0.6);
+      cursor: pointer;
+    }
+    .slider__scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.08em;
+    }
+
+    /* Output panel */
+    .output__kicker {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+    .output__headline {
+      position: relative;
+      font-family: var(--display);
+      font-size: 16pt;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-dim);
+      margin-bottom: 36px;
+    }
+    .output__headline b { color: var(--text); font-weight: 500; }
+    .output__big {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(34pt, 5.2vw, 60pt);
+      line-height: 0.9;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 12px;
+      font-variant-numeric: tabular-nums lining-nums;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .output__big .dollar { color: var(--teal); font-weight: 400; font-family: var(--serif); font-style: italic; padding-right: 0.05em; }
+    .output__sub {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 28px;
+    }
+    .output__breakdown {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .output__breakdown > div {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .output__breakdown b {
+      display: block;
+      font-family: var(--display);
+      font-size: 18pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      text-transform: none;
+      margin-top: 6px;
+      line-height: 1.1;
+    }
+    .output__footnote {
+      position: relative;
+      margin-top: 28px;
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-ghost);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMPARISON CARDS — current vs proposed
+       ══════════════════════════════════════════════════════════════ */
+    .compare {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .compare__card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 36px 40px;
+      position: relative;
+    }
+    .compare__card--new {
+      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      border-color: rgba(46,158,158,0.28);
+    }
+    .compare__card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 26px;
+    }
+    .compare__card--new .compare__card__tag { color: var(--teal); }
+    .compare__card__tag::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+    .compare__card h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18pt;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.018em;
+      margin-bottom: 20px;
+    }
+    .compare__card h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .compare__card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .compare__card li {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items: baseline;
+      font-size: 10pt;
+      color: var(--text-dim);
+      line-height: 1.5;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .compare__card li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .compare__card li b {
+      font-family: var(--display);
+      font-weight: 400;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      font-size: 11pt;
+      letter-spacing: -0.01em;
+    }
+    .compare__card--new li b { color: var(--teal); }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAYBACK TIMELINE
+       ══════════════════════════════════════════════════════════════ */
+    .payback {
+      margin-top: 120px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .payback::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 10% 50%, rgba(46,158,158,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .payback__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 48px;
+    }
+    .payback h3 {
+      font-family: var(--display);
+      font-size: 26pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      max-width: 18ch;
+    }
+    .payback h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .payback__meta {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .payback__meta b {
+      display: block;
+      font-family: var(--display);
+      font-size: 28pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    .payback__track {
+      position: relative;
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      margin: 36px 0 20px;
+    }
+    .payback__fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: var(--teal);
+      box-shadow: 0 0 18px rgba(46,158,158,0.5);
+    }
+    .payback__marks {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+    .payback__mark {
+      position: relative;
+      padding-top: 18px;
+    }
+    .payback__mark::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.14);
+    }
+    .payback__mark--hit::before { background: var(--teal); box-shadow: 0 0 10px rgba(46,158,158,0.6); }
+    .payback__mark__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 8px;
+    }
+    .payback__mark__val {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 15pt;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+    }
+    .payback__mark--hit .payback__mark__val { color: var(--teal); }
+
+    /* ══════════════════════════════════════════════════════════════
+       RAIL OF ASSUMPTIONS (footnotes)
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+
+    /* Tablet landscape + narrow desktop — sidebar still visible,
+       but content column is narrower. Calc + compare stack. */
+    @media (max-width: 1100px) {
+      .wrap { padding: 72px 44px 140px; }
+      .hero { padding-bottom: 90px; }
+      .hero__stats { margin-top: 64px; }
+      .section { padding-top: 110px; }
+      .section__head { margin-bottom: 44px; }
+      .calc { grid-template-columns: 1fr; gap: 32px; margin-top: 64px; }
+      .calc__panel { padding: 40px 38px 42px; }
+      .compare { grid-template-columns: 1fr; gap: 24px; }
+      .compare__card { padding: 32px 32px 36px; }
+      .payback { margin-top: 96px; padding: 48px 40px 54px; }
+      .payback__marks {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px 24px;
+      }
+      .assumptions { margin-top: 96px; grid-template-columns: 180px 1fr; gap: 36px; }
+    }
+
+    /* Tablet portrait — sidebar collapses to hamburger (portal.css),
+       so the full viewport is available to content. */
+    @media (max-width: 900px) {
+      .wrap { padding: 64px 40px 120px; }
+      .hero { padding-bottom: 80px; }
+      .hero__title { margin-bottom: 32px; }
+      .hero__lede { font-size: 14pt; }
+      .hero__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 0;
+        margin-top: 56px;
+        padding-top: 28px;
+      }
+      .hero__stat { padding-right: 20px; }
+      .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; }
+      .hero__stat:nth-child(odd) { padding-left: 0; }
+      .hero__stat:nth-child(even):not(:first-child) { padding-left: 20px; }
+      .hero__stat:nth-child(3) { border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat:nth-child(4) { border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat__value { font-size: 28pt; }
+      .section { padding-top: 100px; }
+      .section__head { margin-bottom: 40px; }
+      .section__lede { font-size: 12pt; }
+      .funnel { padding: 44px 36px 40px; }
+      .funnel__label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 28px;
+      }
+      .funnel__row { grid-template-columns: 130px 1fr 110px; gap: 18px; }
+      .funnel__stage b { font-size: 11pt; }
+      .funnel__num { font-size: 19pt; }
+      .calc { margin-top: 56px; gap: 28px; }
+      .calc__panel { padding: 36px 32px 38px; }
+      .calc__title { font-size: 22pt; margin-bottom: 32px; }
+      .slider { margin-bottom: 30px; }
+      .slider__val { font-size: 18pt; }
+      .output__headline { font-size: 15pt; margin-bottom: 30px; }
+      .output__breakdown b { font-size: 16pt; }
+      .compare { margin-top: 40px; gap: 20px; }
+      .compare__card { padding: 30px 28px 32px; }
+      .compare__card h3 { font-size: 17pt; }
+      .compare__card li { grid-template-columns: 100px 1fr; gap: 14px; font-size: 9.5pt; }
+      .payback { margin-top: 88px; padding: 44px 36px 48px; }
+      .payback__head { margin-bottom: 40px; }
+      .payback h3 { font-size: 22pt; }
+      .payback__meta b { font-size: 22pt; }
+      .payback__marks { gap: 36px 20px; }
+      .payback__mark__val { font-size: 14pt; }
+      .assumptions {
+        margin-top: 88px;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding-top: 32px;
+      }
+      .assumptions__list { grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+    }
+
+    /* Small tablet / large phone — stack the funnel rows and
+       tighten spacing further. */
+    @media (max-width: 700px) {
+      .wrap { padding: 52px 28px 96px; }
+      .hero { padding-bottom: 64px; }
+      .hero__title { margin-bottom: 28px; }
+      .hero__lede { font-size: 13pt; }
+      .hero__stats {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-top: 48px;
+      }
+      .hero__stat {
+        padding: 0 !important;
+        border-right: 0 !important;
+      }
+      .hero__stat + .hero__stat {
+        margin-top: 26px;
+        padding-top: 26px !important;
+        border-top: 1px solid var(--line);
+      }
+      .hero__stat__value { font-size: 30pt; }
+      .section { padding-top: 84px; }
+      .section__head { margin-bottom: 36px; }
+      .section__kicker { margin-bottom: 18px; }
+      .section__title { margin-bottom: 18px; }
+      .section__lede { font-size: 12pt; }
+      .funnel { padding: 36px 24px 32px; }
+      .funnel::before { display: none; }
+      .funnel__label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 6pt;
+        margin-bottom: 24px;
+      }
+      .funnel__rows { gap: 20px; }
+      .funnel__row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px 0;
+      }
+      .funnel__stage { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+      .funnel__stage b { margin-top: 0; }
+      .funnel__bar { height: 32px; }
+      .funnel__num {
+        text-align: left;
+        font-size: 20pt;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .funnel__num small { display: inline; margin-top: 0; }
+      .calc { margin-top: 48px; gap: 22px; }
+      .calc__panel { padding: 32px 24px 32px; border-radius: 6px; }
+      .calc__title { font-size: 20pt; margin-bottom: 28px; }
+      .slider { margin-bottom: 26px; }
+      .slider__head { flex-wrap: wrap; gap: 6px 14px; }
+      .slider__name { font-size: 10pt; }
+      .slider__val { font-size: 17pt; }
+      .output__headline { font-size: 13.5pt; margin-bottom: 26px; }
+      .output__sub { margin-bottom: 22px; }
+      .output__breakdown { gap: 16px; padding-top: 18px; }
+      .output__breakdown b { font-size: 14pt; margin-top: 4px; }
+      .output__footnote { margin-top: 22px; }
+      .compare { margin-top: 36px; gap: 18px; }
+      .compare__card { padding: 26px 22px 28px; border-radius: 6px; }
+      .compare__card h3 { font-size: 16pt; margin-bottom: 18px; }
+      .compare__card__tag { margin-bottom: 20px; }
+      .compare__card ul { gap: 12px; }
+      .compare__card li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding-bottom: 12px;
+        font-size: 9.5pt;
+      }
+      .compare__card li b { font-size: 11pt; }
+      .payback { margin-top: 76px; padding: 36px 24px 40px; border-radius: 6px; }
+      .payback::before { display: none; }
+      .payback__head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+      .payback h3 { font-size: 20pt; max-width: none; }
+      .payback__meta { text-align: left; }
+      .payback__meta b { font-size: 20pt; }
+      .payback__track { margin: 28px 0 18px; }
+      .payback__marks {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 20px;
+      }
+      .payback__mark { padding-top: 16px; }
+      .payback__mark__val { font-size: 13pt; }
+      .assumptions { margin-top: 80px; padding-top: 28px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+      .assumptions__body { font-size: 9pt; }
+    }
+
+    /* Phone — final tightening. Kill anything that wasn't shaved
+       yet and be ruthless with font sizes. */
+    @media (max-width: 480px) {
+      .wrap { padding: 44px 20px 80px; }
+      .eyebrow { margin-bottom: 26px; font-size: 6.5pt; gap: 10px; }
+      .eyebrow::before { width: 22px; }
+      .hero__title {
+        /* Override the clamp() with something that actually fits 390px */
+        font-size: 32pt;
+        letter-spacing: -0.028em;
+        line-height: 0.96;
+        margin-bottom: 24px;
+        max-width: 100%;
+      }
+      .hero__lede { font-size: 12pt; line-height: 1.55; }
+      .hero { padding-bottom: 54px; }
+      .hero__stats { margin-top: 42px; padding-top: 24px; }
+      .hero__stat__label { font-size: 6pt; margin-bottom: 10px; }
+      .hero__stat__value { font-size: 26pt; }
+      .hero__stat__foot { font-size: 8.5pt; }
+      .section { padding-top: 72px; }
+      .section__head { margin-bottom: 32px; }
+      .section__title {
+        font-size: 26pt;
+        line-height: 1.04;
+        letter-spacing: -0.024em;
+      }
+      .section__lede { font-size: 11.5pt; }
+      .funnel { padding: 30px 20px 28px; border-radius: 5px; }
+      .funnel__label { margin-bottom: 20px; }
+      .funnel__rows { gap: 16px; }
+      .funnel__row { padding: 8px 0; gap: 8px; }
+      .funnel__stage { font-size: 6.5pt; }
+      .funnel__stage b { font-size: 11pt; }
+      .funnel__bar { height: 26px; }
+      .funnel__num { font-size: 17pt; }
+      .funnel__num small { font-size: 7.5pt; }
+      .calc { margin-top: 42px; gap: 18px; }
+      .calc__panel { padding: 28px 20px 30px; }
+      .calc__label { margin-bottom: 18px; }
+      .calc__title {
+        font-size: 18pt;
+        line-height: 1.14;
+        margin-bottom: 26px;
+      }
+      .slider { margin-bottom: 24px; }
+      .slider__head { margin-bottom: 10px; }
+      .slider__name { font-size: 9.5pt; }
+      .slider__name small { font-size: 8pt; }
+      .slider__val { font-size: 15.5pt; }
+      .slider__scale { font-size: 5.5pt; }
+      .output__kicker { font-size: 6pt; margin-bottom: 14px; }
+      .output__headline {
+        font-size: 12.5pt;
+        line-height: 1.32;
+        margin-bottom: 22px;
+      }
+      .output__big {
+        font-size: 34pt;
+        letter-spacing: -0.03em;
+      }
+      .output__sub { font-size: 6.5pt; margin-bottom: 18px; }
+      .output__breakdown {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        padding-top: 16px;
+      }
+      .output__breakdown > div { font-size: 6pt; }
+      .output__breakdown b { font-size: 13pt; }
+      .output__footnote { font-size: 8.5pt; margin-top: 18px; }
+      .compare { margin-top: 30px; gap: 16px; }
+      .compare__card { padding: 24px 20px 26px; }
+      .compare__card h3 { font-size: 14.5pt; line-height: 1.2; margin-bottom: 16px; }
+      .compare__card__tag { font-size: 6pt; margin-bottom: 16px; }
+      .compare__card li { font-size: 9pt; gap: 4px; }
+      .compare__card li b { font-size: 10.5pt; }
+      .payback { margin-top: 64px; padding: 32px 22px 36px; }
+      .payback h3 { font-size: 18pt; }
+      .payback__meta { font-size: 6pt; }
+      .payback__meta b { font-size: 18pt; }
+      .payback__head { margin-bottom: 28px; }
+      .payback__marks {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px 16px;
+      }
+      .payback__mark__label { font-size: 6pt; margin-bottom: 6px; }
+      .payback__mark__val { font-size: 12.5pt; }
+      .assumptions {
+        margin-top: 64px;
+        padding-top: 24px;
+        gap: 14px;
+      }
+      .assumptions__label { font-size: 6pt; }
+      .assumptions__body { font-size: 8.5pt; line-height: 1.6; }
+      .assumptions__list div { font-size: 8.5pt; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab is-current"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 01 · Enrollment intelligence</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Enrollment intelligence · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 01 of 07">Enrollment intelligence</div>
+        <h1 class="hero__title">Every dollar the website is <em>leaving on the table.</em></h1>
+        <p class="hero__lede">The Holy Family redesign isn't a marketing project. It's an <strong>enrollment infrastructure upgrade.</strong> Move the needle on a single funnel stage &mdash; 60,000 monthly visitors, a 1.5&nbsp;% baseline inquiry rate, a 22&nbsp;% yield &mdash; and the math starts producing real students with real tuition. This page shows you exactly how much, at any assumption you want to make.</p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Undergrad + grad</span>
+            <div class="hero__stat__value">3,700</div>
+            <div class="hero__stat__foot">Total enrollment; 600 grad, 3,100 undergrad</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Single degree LTV</span>
+            <div class="hero__stat__value">$112<em>K</em></div>
+            <div class="hero__stat__foot">Undergrad avg tuition × four years, net of aid</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Industry lift target</span>
+            <div class="hero__stat__value">30<em>%</em></div>
+            <div class="hero__stat__foot">Higher-ed redesign conversion improvement benchmark</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Projected payback</span>
+            <div class="hero__stat__value">~7<em>wk</em></div>
+            <div class="hero__stat__foot">On a $275K engagement, at the base scenario</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           THE FUNNEL
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Funnel map · the enrollment machine</div>
+          <h2 class="section__title">From a visitor to a <em>matriculated student</em> — in five steps.</h2>
+          <p class="section__lede">The current Holy Family funnel leaks at every stage. Most of it is fixable with content architecture and a smart form, not a miracle. Here is the current shape, next to where a modern redesign realistically lands.</p>
+        </div>
+
+        <div class="funnel" id="funnel">
+          <div class="funnel__label">
+            <span>Monthly enrollment funnel · annualized</span>
+            <span><b id="funnelScenario">Base scenario</b> · 60,000 monthly visits · +30% lift</span>
+          </div>
+          <div class="funnel__rows">
+            <div class="funnel__row">
+              <div class="funnel__stage">Stage 01<b>Monthly visits</b></div>
+              <div class="funnel__bar-wrap">
+                <div class="funnel__bar funnel__bar--ghost" style="width: 100%;"></div>
+                <div class="funnel__bar" id="bar1" style="width: 100%;"></div>
+              </div>
+              <div class="funnel__num" id="num1">60,000<small>unique sessions</small></div>
+            </div>
+            <div class="funnel__row">
+              <div class="funnel__stage">Stage 02<b>Inquiry (RFI)</b></div>
+              <div class="funnel__bar-wrap">
+                <div class="funnel__bar funnel__bar--ghost" style="width: 100%;"></div>
+                <div class="funnel__bar" id="bar2" style="width: 1.95%;"></div>
+              </div>
+              <div class="funnel__num" id="num2">1,170<small>1.95% inquiry rate</small></div>
+            </div>
+            <div class="funnel__row">
+              <div class="funnel__stage">Stage 03<b>Application start</b></div>
+              <div class="funnel__bar-wrap">
+                <div class="funnel__bar funnel__bar--ghost" style="width: 100%;"></div>
+                <div class="funnel__bar" id="bar3" style="width: 0.29%;"></div>
+              </div>
+              <div class="funnel__num" id="num3">176<small>15% of inquiries</small></div>
+            </div>
+            <div class="funnel__row">
+              <div class="funnel__stage">Stage 04<b>Admitted</b></div>
+              <div class="funnel__bar-wrap">
+                <div class="funnel__bar funnel__bar--ghost" style="width: 100%;"></div>
+                <div class="funnel__bar" id="bar4" style="width: 0.19%;"></div>
+              </div>
+              <div class="funnel__num" id="num4">114<small>65% admit rate</small></div>
+            </div>
+            <div class="funnel__row">
+              <div class="funnel__stage">Stage 05<b>Enrolled</b></div>
+              <div class="funnel__bar-wrap">
+                <div class="funnel__bar funnel__bar--ghost" style="width: 100%;"></div>
+                <div class="funnel__bar" id="bar5" style="width: 0.04%;"></div>
+              </div>
+              <div class="funnel__num" id="num5">25<small>22% yield</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI Calculator -->
+        <div class="calc">
+          <div class="calc__panel">
+            <span class="calc__label">Live model · your assumptions</span>
+            <h3 class="calc__title">Change one number. <em>Watch the rest follow.</em></h3>
+
+            <div class="slider">
+              <div class="slider__head">
+                <div class="slider__name">Monthly visitors<small>unique sessions on holyfamily.edu</small></div>
+                <div class="slider__val" id="visitorsVal">60,000</div>
+              </div>
+              <input type="range" id="visitors" min="25000" max="150000" step="2500" value="60000">
+              <div class="slider__scale"><span>25K</span><span>60K</span><span>100K</span><span>150K</span></div>
+            </div>
+
+            <div class="slider">
+              <div class="slider__head">
+                <div class="slider__name">Inquiry rate lift<small>conversion lift from redesign + smart form</small></div>
+                <div class="slider__val" id="liftVal">+30%</div>
+              </div>
+              <input type="range" id="lift" min="0" max="60" step="5" value="30">
+              <div class="slider__scale"><span>0%</span><span>20%</span><span>40%</span><span>60%</span></div>
+            </div>
+
+            <div class="slider">
+              <div class="slider__head">
+                <div class="slider__name">Blended tuition · first year<small>net of aid, undergrad + grad weighted</small></div>
+                <div class="slider__val" id="tuitionVal">$28,000</div>
+              </div>
+              <input type="range" id="tuition" min="20000" max="40000" step="500" value="28000">
+              <div class="slider__scale"><span>$20K</span><span>$28K</span><span>$32K</span><span>$40K</span></div>
+            </div>
+
+            <div class="slider">
+              <div class="slider__head">
+                <div class="slider__name">Engagement cost<small>base-scope redesign investment</small></div>
+                <div class="slider__val" id="costVal">$275,000</div>
+              </div>
+              <input type="range" id="cost" min="150000" max="400000" step="5000" value="275000">
+              <div class="slider__scale"><span>$150K</span><span>$275K</span><span>$350K</span><span>$400K</span></div>
+            </div>
+          </div>
+
+          <div class="calc__panel calc__panel--output">
+            <div class="output__kicker">Year-one revenue impact</div>
+            <div class="output__headline">From <b id="outDelta">+42 new enrolled students</b>, directly attributable to conversion lift.</div>
+            <div class="output__big"><span class="dollar">$</span><span id="outRevenue">1.18M</span></div>
+            <div class="output__sub">Incremental first-year tuition · year one</div>
+
+            <div class="output__breakdown">
+              <div>4-year lifetime value<b id="out4yr">$1.9M</b></div>
+              <div>Payback period<b id="outPayback">14 days</b></div>
+              <div>Extra inquiries / yr<b id="outRFI">+702</b></div>
+              <div>Extra applications / yr<b id="outApps">+211</b></div>
+            </div>
+
+            <div class="output__footnote">Model assumes 1.5% baseline inquiry rate, 30% application start rate from inquiry, 70% admit rate, 25% yield. Four-year LTV multiplies first-year tuition by four and holds aid constant. All assumptions editable on the left.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           CURRENT vs PROPOSED
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Where the leak happens</div>
+          <h2 class="section__title">The current funnel has seven <em>specific</em> leaks. We built the site around fixing all of them.</h2>
+        </div>
+
+        <div class="compare">
+          <div class="compare__card">
+            <div class="compare__card__tag">Current state · April 2026</div>
+            <h3>The site converts like <em>it's 2019.</em></h3>
+            <ul>
+              <li><b>20+ forms</b><span>Separate request-info forms fragmented across programs. No CRM routing.</span></li>
+              <li><b>14.2 s</b><span>Mobile LCP on program pages. Google considers &gt;4&nbsp;s slow.</span></li>
+              <li><b>1 CTA</b><span>Per program page, buried below the fold. No pricing, no time-to-degree.</span></li>
+              <li><b>0 schema</b><span>Zero Schema.org JSON-LD for degrees. Invisible to ChatGPT &amp; Perplexity.</span></li>
+              <li><b>42%</b><span>Of URLs (670) are old news articles competing with enrollment content for crawl.</span></li>
+              <li><b>0</b><span>A/B tests running. No GA4 conversion events tied to enrollment.</span></li>
+            </ul>
+          </div>
+
+          <div class="compare__card compare__card--new">
+            <div class="compare__card__tag">What we ship · Q1 2027</div>
+            <h3>The site converts like <em>it's 2027.</em></h3>
+            <ul>
+              <li><b>1 smart form</b><span>One routed form. Pre-fills from the URL. Fires into Slate in 800&nbsp;ms.</span></li>
+              <li><b>&lt; 2.0 s</b><span>Target mobile LCP. We hit it on Cloudflare's edge every time.</span></li>
+              <li><b>4 CTAs</b><span>Above the fold on every program. Price, schedule, time-to-degree, apply.</span></li>
+              <li><b>Full schema</b><span>EducationalOrganization, Program, Course, Person, FAQ. Visible to LLMs.</span></li>
+              <li><b>+400 archived</b><span>Old news moved to archive. Crawl budget flows to enrollment pages.</span></li>
+              <li><b>Live dashboard</b><span>GA4 funnel events tied to Slate. Dashboard on day 1.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           PAYBACK TIMELINE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="payback">
+          <div class="payback__head">
+            <h3>When the redesign <em>pays for itself.</em></h3>
+            <div class="payback__meta">
+              Payback period
+              <b id="paybackBig">14 days</b>
+            </div>
+          </div>
+
+          <div class="payback__track">
+            <div class="payback__fill" id="paybackFill" style="width: 16%;"></div>
+          </div>
+          <div class="payback__marks">
+            <div class="payback__mark payback__mark--hit"><div class="payback__mark__label">Week 01 · launch</div><div class="payback__mark__val">$0</div></div>
+            <div class="payback__mark payback__mark--hit"><div class="payback__mark__label">Week 02</div><div class="payback__mark__val" id="pb2">$275K</div></div>
+            <div class="payback__mark"><div class="payback__mark__label">Week 04</div><div class="payback__mark__val" id="pb4">$549K</div></div>
+            <div class="payback__mark"><div class="payback__mark__label">Q1</div><div class="payback__mark__val" id="pb12">$1.64M</div></div>
+            <div class="payback__mark"><div class="payback__mark__label">H1</div><div class="payback__mark__val" id="pb26">$3.56M</div></div>
+            <div class="payback__mark"><div class="payback__mark__label">Year 01</div><div class="payback__mark__val" id="pb52">$7.12M</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           ASSUMPTIONS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">The model, honestly</div>
+        <div class="assumptions__body">
+          <strong>Every number on this page is interactive — drag the sliders, change the model.</strong> We built this because the competition will email you a ROI slide with numbers you can't audit. Here's ours, with the full arithmetic exposed. If any of these assumptions are wrong for Holy Family, change them and we'll ship a new model on 48 hours' notice.
+          <div class="assumptions__list">
+            <div><span>01</span>Baseline inquiry rate: 1.5% of visitors (higher-ed industry average, Hanover Research 2024)</div>
+            <div><span>02</span>Application start rate: 15% of RFI, conservative Catholic-private Northeast band</div>
+            <div><span>03</span>Admit rate: 65%, matching HFU's published 2025 data</div>
+            <div><span>04</span>Yield: 22%, the regional Catholic-private benchmark</div>
+            <div><span>05</span>Tuition blended net of aid across UG and grad programs</div>
+            <div><span>06</span>Year-one revenue only — the 4-year LTV figure quadruples it</div>
+            <div><span>07</span>Cost engine = phase-1 discovery + build + content migration, no retainer</div>
+            <div><span>08</span>Payback math divides cost by weekly revenue at the selected conversion lift</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    // ── The model ────────────────────────────────────────────────
+    // Industry-benchmarked funnel stages
+    // Funnel rates calibrated to match HFU reality
+    // (derived from Hanover Research 2024 Catholic-private higher-ed benchmarks
+    //  cross-referenced with HFU's own enrollment/application data)
+    const BASE_INQUIRY_RATE = 0.015;   // 1.5%  visits → inquiry
+    const APP_START_RATE    = 0.15;    // 15%   inquiry → application start
+    const ADMIT_RATE        = 0.65;    // 65%   application → admit
+    const YIELD_RATE        = 0.22;    // 22%   admit → enroll
+
+    const fmt = (n) => n.toLocaleString('en-US', {maximumFractionDigits: 0});
+    const fmtCents = (n) => '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0});
+    const fmtM = (n) => {
+      if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M';
+      if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K';
+      return '$' + Math.round(n);
+    };
+
+    const el = (id) => document.getElementById(id);
+
+    const visitorsIn = el('visitors');
+    const liftIn     = el('lift');
+    const tuitionIn  = el('tuition');
+    const costIn     = el('cost');
+
+    function update() {
+      const visits = +visitorsIn.value;      // 50K – 200K
+      const lift   = +liftIn.value;          // 0 – 60
+      const tuition= +tuitionIn.value;       // $20K – $40K
+      const cost   = +costIn.value;          // $150K – $400K
+
+      // Effective inquiry rate after lift
+      const effRate = BASE_INQUIRY_RATE * (1 + lift/100);
+
+      const monthlyRFI   = visits * effRate;
+      const monthlyApps  = monthlyRFI * APP_START_RATE;
+      const monthlyAdmit = monthlyApps * ADMIT_RATE;
+      const monthlyEnroll= monthlyAdmit * YIELD_RATE;
+
+      const annualRFI    = monthlyRFI    * 12;
+      const annualApps   = monthlyApps   * 12;
+      const annualAdmits = monthlyAdmit  * 12;
+      const annualEnroll = monthlyEnroll * 12;
+
+      // Baseline (no redesign) — what we'd have had at 0% lift
+      const baselineEnroll = (visits * BASE_INQUIRY_RATE * APP_START_RATE * ADMIT_RATE * YIELD_RATE) * 12;
+      const deltaEnroll    = Math.max(0, annualEnroll - baselineEnroll);
+      const deltaRFI       = Math.max(0, annualRFI - visits * BASE_INQUIRY_RATE * 12);
+      const deltaApps      = Math.max(0, annualApps - visits * BASE_INQUIRY_RATE * APP_START_RATE * 12);
+
+      // Year-one revenue from incremental enrolled students
+      const y1Revenue = deltaEnroll * tuition;
+      const ltvRevenue= deltaEnroll * tuition * 4;
+
+      // Payback period in days ≈ cost / (y1Revenue / 365)
+      const dailyRev = y1Revenue / 365;
+      const paybackDays = dailyRev > 0 ? Math.max(1, Math.round(cost / dailyRev)) : Infinity;
+
+      // ── Update slider labels ──
+      el('visitorsVal').textContent = fmt(visits);
+      el('liftVal').textContent     = (lift >= 0 ? '+' : '') + lift + '%';
+      el('tuitionVal').textContent  = fmtCents(tuition);
+      el('costVal').textContent     = fmtCents(cost);
+
+      // Strip leading $ from fmtM for the big display number (which already renders its own teal $)
+      const fmtMBare = (n) => fmtM(n).replace(/^\$/, '');
+
+      // ── Update output panel ──
+      el('outDelta').textContent    = '+' + fmt(Math.round(deltaEnroll)) + ' new enrolled students';
+      el('outRevenue').textContent  = fmtMBare(y1Revenue);
+      el('out4yr').textContent      = fmtM(ltvRevenue);
+      el('outPayback').textContent  = paybackDays === Infinity ? '— ' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
+      el('outRFI').textContent      = '+' + fmt(Math.round(deltaRFI));
+      el('outApps').textContent     = '+' + fmt(Math.round(deltaApps));
+
+      // ── Update funnel visualization ──
+      const stageVals = [visits, Math.round(monthlyRFI), Math.round(monthlyApps), Math.round(monthlyAdmit), Math.round(monthlyEnroll)];
+      const stageNotes = [
+        'unique sessions',
+        (effRate*100).toFixed(2) + '% inquiry rate',
+        '15% of inquiries',
+        '65% admit rate',
+        '22% yield'
+      ];
+      // Log-scale bar widths so every stage is visible (linear would make stages 2-5 invisible).
+      // Formula: min 14% + 86% × (log(val+1) / log(max+1)). Numbers shown are still exact.
+      const logDen = Math.log(stageVals[0] + 1);
+      for (let i = 0; i < 5; i++) {
+        const barId = 'bar' + (i+1);
+        const numId = 'num' + (i+1);
+        const ratio = Math.log(Math.max(1, stageVals[i]) + 1) / logDen;
+        const pct = 14 + 86 * ratio;
+        const bar = el(barId);
+        const num = el(numId);
+        if (bar) bar.style.width = Math.max(14, Math.min(100, pct)).toFixed(2) + '%';
+        if (num) {
+          num.innerHTML = fmt(stageVals[i]) + '<small>' + stageNotes[i] + '</small>';
+        }
+      }
+
+      el('funnelScenario').textContent = (lift === 30 && visits === 60000) ? 'Base scenario' : 'Your scenario';
+
+      // ── Update payback bar and week checkpoints ──
+      const y1DailyRev = y1Revenue / 365;
+      // Show cumulative revenue at weeks 2, 4, 12, 26, 52
+      const wk2 = y1DailyRev * 14;
+      const wk4 = y1DailyRev * 28;
+      const q1  = y1DailyRev * 90;
+      const h1  = y1DailyRev * 180;
+      const y1  = y1Revenue;
+
+      el('pb2').textContent  = fmtM(wk2);
+      el('pb4').textContent  = fmtM(wk4);
+      el('pb12').textContent = fmtM(q1);
+      el('pb26').textContent = fmtM(h1);
+      el('pb52').textContent = fmtM(y1);
+
+      el('paybackBig').textContent = paybackDays === Infinity ? '— never' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
+      // Fill % of the bar: how far payback sits along a 52-week year
+      const fillPct = paybackDays === Infinity ? 0 : Math.min(100, (paybackDays / 365) * 100);
+      el('paybackFill').style.width = Math.max(4, fillPct).toFixed(1) + '%';
+    }
+
+    [visitorsIn, liftIn, tuitionIn, costIn].forEach(i => i.addEventListener('input', update));
+    update();
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

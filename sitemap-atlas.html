@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sitemap Atlas — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.12);
+      --teal-glow:   rgba(46, 158, 158, 0.28);
+      --teal-dim:    rgba(46, 158, 158, 0.45);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT — inherits chrome from portal.css
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(48pt, 7.2vw, 96pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: white;
+      max-width: 14ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 15pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: white; font-weight: 500; }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: white;
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: white;
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 2 — TREEMAP
+       ══════════════════════════════════════════════════════════════ */
+    .treemap-wrap {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 40px 40px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .treemap-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .treemap__label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 24px;
+    }
+    .treemap__label b { color: white; font-weight: 500; }
+    .treemap__legend {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .treemap__legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .treemap__legend-swatch {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 1px;
+    }
+    .treemap__legend-swatch--keep    { background: var(--teal); box-shadow: 0 0 8px rgba(46,158,158,0.5); }
+    .treemap__legend-swatch--consol  { background: rgba(46,158,158,0.4); }
+    .treemap__legend-swatch--archive { background: rgba(255,255,255,0.12); }
+
+    #treemap-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      user-select: none;
+    }
+    .tm-cell {
+      cursor: pointer;
+      transition: filter 220ms ease, opacity 220ms ease;
+    }
+    .tm-cell:hover {
+      filter: brightness(1.35);
+    }
+    .tm-cell.is-dim { opacity: 0.35; }
+    .tm-cell.is-active .tm-rect {
+      stroke: var(--teal);
+      stroke-width: 2;
+      filter: drop-shadow(0 0 14px rgba(46,158,158,0.55));
+    }
+    .tm-rect {
+      stroke: rgba(255,255,255,0.08);
+      stroke-width: 1;
+      transition: stroke 220ms ease, filter 220ms ease;
+    }
+    .tm-label {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 12pt;
+      fill: white;
+      letter-spacing: -0.012em;
+      pointer-events: none;
+    }
+    .tm-label--small { font-size: 9pt; }
+    .tm-sublabel {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      fill: rgba(255,255,255,0.55);
+      pointer-events: none;
+    }
+    .tm-sublabel--dim { fill: rgba(255,255,255,0.4); }
+
+    /* Tooltip */
+    .tm-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(46,158,158,0.3);
+      border-radius: 4px;
+      padding: 12px 14px;
+      min-width: 220px;
+      font-family: var(--body);
+      font-size: 9pt;
+      color: white;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(46,158,158,0.15);
+      z-index: 10;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .tm-tooltip.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .tm-tooltip__title {
+      font-family: var(--display);
+      font-size: 11pt;
+      font-weight: 400;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tm-tooltip__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 6px;
+    }
+    .tm-tooltip__row:last-child { margin-bottom: 0; }
+    .tm-tooltip__row b {
+      font-family: var(--display);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: white;
+    }
+    .tm-tooltip__row--keep b    { color: var(--teal); }
+    .tm-tooltip__row--archive b { color: rgba(255,255,255,0.5); }
+
+    /* Detail panel under the treemap */
+    .tm-detail {
+      margin-top: 32px;
+      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      border: 1px solid rgba(46,158,158,0.28);
+      border-radius: 8px;
+      padding: 44px 44px 44px;
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+    .tm-detail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 85% 0%, rgba(46,158,158,0.14), transparent 70%);
+      pointer-events: none;
+    }
+    .tm-detail__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 32px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tm-detail__title-block { flex: 1; }
+    .tm-detail__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .tm-detail__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 28pt;
+      color: white;
+      letter-spacing: -0.022em;
+      line-height: 1.05;
+    }
+    .tm-detail__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .tm-detail__numbers {
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+    .tm-detail__num {
+      text-align: right;
+    }
+    .tm-detail__num-label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 6px;
+    }
+    .tm-detail__num-val {
+      font-family: var(--display);
+      font-size: 26pt;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.018em;
+      line-height: 1;
+    }
+    .tm-detail__num--keep .tm-detail__num-val { color: var(--teal); }
+
+    .tm-detail__body {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .tm-detail__col-label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tm-detail__col-label::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .tm-detail__col--archive .tm-detail__col-label {
+      color: var(--text-ghost);
+    }
+    .tm-detail__col--archive .tm-detail__col-label::before {
+      background: var(--text-ghost);
+    }
+    .tm-detail__reason {
+      font-family: var(--display);
+      font-size: 13pt;
+      font-weight: 500;
+      color: white;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+    .tm-detail__reason em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .tm-detail__col--archive .tm-detail__reason {
+      color: var(--text-dim);
+    }
+    .tm-detail__reason-sub {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    .tm-detail__urls-label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 10px;
+    }
+    .tm-detail__urls {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tm-detail__urls li {
+      font-family: var(--mono);
+      font-size: 8pt;
+      color: var(--text-dim);
+      letter-spacing: 0;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.06);
+      word-break: break-all;
+    }
+    .tm-detail__urls li::before {
+      content: 'holyfamily.edu';
+      color: var(--text-ghost);
+      margin-right: 2px;
+    }
+
+    /* Detail fade-swap */
+    .tm-detail.is-swapping .tm-detail__head,
+    .tm-detail.is-swapping .tm-detail__body {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    .tm-detail__head,
+    .tm-detail__body {
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 3 — FLOW DIAGRAM
+       ══════════════════════════════════════════════════════════════ */
+    .flow {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 40px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .flow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .flow__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .flow__label b { color: var(--teal); font-weight: 500; }
+    .flow__stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .flow__block {
+      padding: 14px 0;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+    }
+    .flow__block-head {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 14px;
+    }
+    .flow__block--in { text-align: left; }
+    .flow__block--out { text-align: right; }
+    .flow__grid {
+      display: grid;
+      gap: 1.5px;
+      align-content: start;
+      width: 100%;
+      max-width: 340px;
+      margin-top: 14px;
+      padding: 10px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+    }
+    .flow__block--out .flow__grid {
+      margin-left: auto;
+      border-color: rgba(46,158,158,0.25);
+      background: rgba(46,158,158,0.035);
+    }
+    .flow__grid--before {
+      grid-template-columns: repeat(40, 1fr);
+    }
+    .flow__grid--after {
+      grid-template-columns: repeat(35, 1fr);
+    }
+    .flow__square {
+      width: 100%;
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.08);
+      border-radius: 0.5px;
+    }
+    .flow__square--keep {
+      background: var(--teal);
+      box-shadow: 0 0 1px rgba(46,158,158,0.6);
+    }
+    .flow__square--archive {
+      background: rgba(255,255,255,0.05);
+    }
+    .flow__num {
+      font-family: var(--display);
+      font-size: 44pt;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.028em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .flow__num em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .flow__num-sub {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .flow__pipe {
+      position: relative;
+      min-width: 300px;
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .flow__pipe-label-top {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .flow__pipe-label-top b { color: white; font-weight: 500; }
+    .flow__pipe-bar {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(90deg, rgba(46,158,158,0.12) 0%, var(--teal) 50%, rgba(46,158,158,0.12) 100%);
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 22px -2px rgba(46,158,158,0.35);
+      overflow: hidden;
+    }
+    .flow__pipe-bar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+    }
+    .flow__pipe-bar-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: white;
+      font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .flow__pipe-label-bottom {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      font-style: italic;
+    }
+
+    /* Callouts below the pipe */
+    .flow__callouts {
+      position: relative;
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .flow__callout {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 18px 16px 18px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .flow__callout:hover {
+      transform: translateY(-3px);
+      border-color: rgba(46,158,158,0.4);
+      background: rgba(46,158,158,0.05);
+    }
+    .flow__callout-marker {
+      font-family: var(--mono);
+      font-size: 10pt;
+      color: var(--teal);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    .flow__callout-body {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .flow__callout-body b { color: white; font-weight: 500; }
+    .flow__callout-pct {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+    .flow__callout-pct b {
+      color: var(--teal);
+      font-weight: 500;
+    }
+    .flow__callout:hover .flow__callout-pct {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 4 — DECISION TREE
+       ══════════════════════════════════════════════════════════════ */
+    .tree-wrap {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 32px 56px;
+      position: relative;
+      overflow: auto;
+    }
+    .tree-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .tree {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      min-width: 1000px;
+    }
+    .tree__level {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      width: 100%;
+      position: relative;
+    }
+    .tree__node {
+      background: var(--ink-card-2);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 16px 20px 18px;
+      min-width: 180px;
+      max-width: 240px;
+      text-align: center;
+      position: relative;
+      cursor: default;
+      transition: opacity 220ms ease, border-color 220ms ease, background 220ms ease, transform 220ms ease;
+    }
+    .tree__node:hover {
+      border-color: var(--teal);
+      background: rgba(46,158,158,0.06);
+      transform: translateY(-2px);
+    }
+    .tree.is-hovering .tree__node:not(:hover) {
+      opacity: 0.25;
+    }
+    .tree__node--q {
+      background: linear-gradient(160deg, rgba(46,158,158,0.08) 0%, var(--ink-card-2) 70%);
+      border-color: rgba(46,158,158,0.2);
+    }
+    .tree__node--term {
+      background: var(--ink-card-2);
+    }
+    .tree__node--term-keep {
+      background: linear-gradient(160deg, rgba(46,158,158,0.14) 0%, var(--ink-card-2) 70%);
+      border-color: rgba(46,158,158,0.4);
+    }
+    .tree__node--term-archive {
+      background: var(--ink-card-2);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .tree__node-label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 8px;
+    }
+    .tree__node--q .tree__node-label { color: var(--teal); }
+    .tree__node-text {
+      font-family: var(--display);
+      font-size: 10pt;
+      font-weight: 500;
+      color: white;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .tree__node-term-count {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-family: var(--display);
+      font-size: 18pt;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.015em;
+      line-height: 1;
+    }
+    .tree__node--term-keep .tree__node-term-count { color: var(--teal); }
+    .tree__node-term-count small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      font-weight: 400;
+      margin-top: 4px;
+    }
+    .tree__branches {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .tree__branch-label {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: var(--ink-card);
+      padding: 2px 6px;
+      border-radius: 2px;
+      border: 1px solid var(--line);
+    }
+    .tree__branch-label--no { color: var(--text-ghost); }
+
+    /* Connector SVG */
+    .tree-svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .tree-svg path {
+      fill: none;
+      stroke: rgba(255,255,255,0.12);
+      stroke-width: 1.2;
+      stroke-linecap: round;
+    }
+    .tree-svg path.is-yes {
+      stroke: rgba(46,158,158,0.4);
+    }
+    .tree__node { z-index: 1; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 5 — 180 TOP-LEVEL PROBLEM
+       ══════════════════════════════════════════════════════════════ */
+    .chaos {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 40px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .chaos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 50% 20%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .chaos__toggle {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 36px;
+      gap: 20px;
+    }
+    .chaos__title {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 16pt;
+      color: white;
+      letter-spacing: -0.018em;
+      line-height: 1.15;
+    }
+    .chaos__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .chaos__btn {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border: 1px solid rgba(46,158,158,0.4);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--teal);
+      cursor: pointer;
+      transition: all 180ms ease;
+      white-space: nowrap;
+    }
+    .chaos__btn:hover {
+      background: var(--teal);
+      color: var(--ink);
+      border-color: var(--teal);
+    }
+
+    .chaos__stage {
+      position: relative;
+      min-height: 480px;
+    }
+
+    /* Before state: 180 cluttered labels */
+    .chaos__before {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 4px;
+      align-content: flex-start;
+      justify-content: center;
+      padding: 8px;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+      transition: opacity 600ms ease, transform 600ms cubic-bezier(0.4, 0, 0.2, 1), filter 600ms ease;
+    }
+    .chaos.is-after .chaos__before {
+      opacity: 0;
+      transform: scale(0.92);
+      filter: blur(3px);
+      pointer-events: none;
+    }
+    .chaos__before-label {
+      display: inline-block;
+      padding: 3px 8px;
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.42);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 2px;
+      white-space: nowrap;
+      letter-spacing: 0;
+      line-height: 1.2;
+    }
+
+    /* After state: 12 breathing labels */
+    .chaos__after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 720px;
+      width: calc(100% - 80px);
+      opacity: 0;
+      transition: opacity 600ms ease 200ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;
+      pointer-events: none;
+    }
+    .chaos.is-after .chaos__after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+    .chaos__after-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 18px;
+      background: linear-gradient(160deg, rgba(46,158,158,0.14) 0%, var(--ink-card-2) 85%);
+      border: 1px solid rgba(46,158,158,0.35);
+      border-radius: 4px;
+      font-family: var(--display);
+      font-size: 12pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.01em;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(46,158,158,0.08);
+    }
+    .chaos__after-item span {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+    }
+    .chaos__note {
+      position: relative;
+      margin-top: 28px;
+      font-family: var(--body);
+      font-size: 10pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .chaos__note b { color: white; font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 6 — CATEGORY TABLE
+       ══════════════════════════════════════════════════════════════ */
+    .cat-table {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-table::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 90% 0%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .cat-table__head-label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .cat-table__head-label span { color: var(--text-ghost); }
+    table.cat {
+      position: relative;
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--display);
+    }
+    .cat thead th {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      text-align: right;
+      padding: 0 0 16px;
+      font-weight: 400;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      user-select: none;
+      transition: color 180ms ease;
+    }
+    .cat thead th:hover { color: var(--teal); }
+    .cat thead th:first-child { text-align: left; }
+    .cat thead th.is-sort { color: var(--teal); }
+    .cat thead th.is-sort::after { content: ' ↓'; }
+    .cat thead th.is-sort.is-asc::after { content: ' ↑'; }
+    .cat tbody td {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 11pt;
+      font-weight: 500;
+      color: white;
+      text-align: right;
+      letter-spacing: -0.01em;
+      transition: color 180ms ease;
+    }
+    .cat tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+    }
+    .cat tbody tr {
+      transition: background 220ms ease;
+      cursor: pointer;
+    }
+    .cat tbody tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .cat tbody tr.is-highlight {
+      background: linear-gradient(90deg, rgba(46,158,158,0.1), rgba(46,158,158,0) 80%);
+    }
+    .cat tbody tr.is-highlight td:first-child {
+      color: var(--teal);
+    }
+    .cat tbody tr.is-highlight td:first-child::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: var(--teal);
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .cat__rationale {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      font-weight: 400;
+      text-align: left !important;
+      max-width: 260px;
+      line-height: 1.4;
+    }
+    .cat__pct {
+      color: var(--text-dim) !important;
+      font-family: var(--mono);
+      font-size: 9pt !important;
+    }
+    .cat tbody tr.is-highlight .cat__pct { color: var(--teal) !important; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 7 — PULL QUOTE
+       ══════════════════════════════════════════════════════════════ */
+    .quote {
+      position: relative;
+      padding: 40px 0 0;
+    }
+    .quote__body {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(24pt, 3.5vw, 42pt);
+      line-height: 1.12;
+      letter-spacing: -0.022em;
+      color: white;
+      max-width: 22ch;
+      padding-left: 40px;
+    }
+    .quote__body::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--teal), rgba(46,158,158,0.1));
+    }
+    .quote__body em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .quote__attrib {
+      margin-top: 22px;
+      margin-left: 40px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 8 — AUDIT METHODOLOGY RAIL
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: white; font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+    .assumptions__meta {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 40px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .assumptions__meta b {
+      display: block;
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.015em;
+      text-transform: none;
+      margin-top: 4px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+    /* Narrow desktop / tablet landscape */
+    @media (max-width: 1100px) {
+      .wrap { padding: 72px 44px 130px; }
+      .section { padding-top: 110px; }
+      .section__head { margin-bottom: 48px; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
+      .hero__stat:nth-child(2) { border-right: 0; }
+      .hero__stat:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat:nth-child(4) { padding-top: 28px; border-top: 1px solid var(--line); }
+      .treemap-wrap { padding: 30px 26px 32px; }
+      .tm-detail { padding: 36px 30px; }
+      .tm-detail__head { flex-direction: column; gap: 22px; }
+      .tm-detail__numbers { gap: 22px; }
+      .tm-detail__body { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .flow { padding: 44px 28px; }
+      .flow__callouts { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .tree-wrap { padding: 36px 24px; }
+      .chaos { padding: 36px 28px; }
+      .chaos__after { grid-template-columns: repeat(3, 1fr); }
+      .cat-table { padding: 32px 26px; }
+      .cat__rationale { max-width: 200px; font-size: 8.5pt; }
+    }
+
+    /* Tablet portrait — sidebar collapses */
+    @media (max-width: 900px) {
+      .wrap { padding: 56px 32px 110px; }
+      .section { padding-top: 96px; }
+      .section__head { margin-bottom: 42px; }
+      .hero__title { font-size: 48pt; line-height: 0.96; margin-bottom: 30px; }
+      .hero__lede { font-size: 13pt; }
+      .section__title { font-size: 32pt; line-height: 1.02; }
+      .section__lede { font-size: 12pt; }
+      .treemap-wrap { padding: 26px 22px 28px; }
+      /* Treemap SVG container — let it shrink with viewport */
+      .treemap-wrap svg { width: 100%; height: auto; }
+      .tm-detail { padding: 32px 24px; }
+      .tm-detail__body { grid-template-columns: 1fr; gap: 28px; }
+      .flow { padding: 38px 22px; }
+      .flow__stage { grid-template-columns: 1fr; gap: 24px; }
+      .flow__block { align-items: center; text-align: center; }
+      .flow__pipe { writing-mode: horizontal-tb; }
+      .flow__callouts { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .tree-wrap { padding: 30px 18px; overflow-x: auto; }
+      .tree { min-width: 640px; }
+      .chaos { padding: 32px 22px; }
+      .chaos__before { font-size: 6pt; gap: 4px 6px; }
+      .chaos__after { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .chaos__toggle { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .cat-table { padding: 28px 22px; overflow-x: auto; }
+      table.cat { min-width: 640px; }
+      .cat thead th { font-size: 5.5pt; }
+      .cat tbody td { font-size: 9pt; padding: 12px 8px; }
+      .quote { padding: 32px 24px; }
+      .quote__body { padding-left: 18px; font-size: 14pt; }
+      .quote__attrib { margin-left: 18px; }
+      .assumptions { margin-top: 88px; padding-top: 32px; grid-template-columns: 1fr; gap: 18px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* Phone */
+    @media (max-width: 700px) {
+      .wrap { padding: 44px 20px 88px; }
+      .section { padding-top: 78px; }
+      .section__head { margin-bottom: 36px; }
+      .hero__title { font-size: 36pt; line-height: 0.97; }
+      .hero__lede { font-size: 12.5pt; }
+      .section__title { font-size: 26pt; line-height: 1.04; }
+      .hero__stats { grid-template-columns: 1fr; gap: 0; margin-top: 42px; padding-top: 24px; }
+      .hero__stat { padding: 0 !important; border-right: 0 !important; }
+      .hero__stat + .hero__stat {
+        margin-top: 24px;
+        padding-top: 24px !important;
+        border-top: 1px solid var(--line);
+      }
+      .hero__stat__value { font-size: 28pt; }
+      .treemap-wrap { padding: 22px 18px 24px; }
+      .tm-detail { padding: 26px 20px; }
+      .tm-detail__body { gap: 22px; }
+      .tm-detail h3 { font-size: 18pt; }
+      .flow { padding: 32px 18px; }
+      .flow__callouts { grid-template-columns: 1fr; gap: 12px; }
+      .tree-wrap { padding: 26px 16px; }
+      .chaos { padding: 28px 18px; }
+      .chaos__after { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .cat-table { padding: 26px 18px; }
+      .quote { padding: 28px 22px; }
+      .quote__body { font-size: 13pt; }
+    }
+
+    /* Tight phone */
+    @media (max-width: 480px) {
+      .wrap { padding: 38px 16px 76px; }
+      .section { padding-top: 66px; }
+      .hero__title { font-size: 30pt; }
+      .section__title { font-size: 22pt; }
+      .treemap-wrap { padding: 20px 14px 22px; }
+      .tm-detail { padding: 22px 18px; }
+      .flow { padding: 28px 14px; }
+      .tree-wrap { padding: 22px 12px; }
+      .chaos { padding: 24px 14px; }
+      .chaos__after { grid-template-columns: 1fr; }
+      .cat-table { padding: 22px 14px; }
+      .quote { padding: 24px 18px; }
+      .quote__body { font-size: 12pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab is-current"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 04 · Sitemap atlas</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Sitemap atlas · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 1 — HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 04 of 07">Sitemap atlas · 1,601 URLs</div>
+        <h1 class="hero__title">1,601 URLs. <em>1,220 that will matter.</em></h1>
+        <p class="hero__lede">Before we write a single line of WordPress code, <strong>we map every page.</strong> Here is holyfamily.edu today — sorted, sized, and scored. Every archive decision is documented with rationale. Every kept page has a reason. This is what <strong>governance-ready IA</strong> looks like on paper.</p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">URLs audited</span>
+            <div class="hero__stat__value">1,601</div>
+            <div class="hero__stat__foot">Drupal index + GA4 cross-ref, April 2026</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Pages migrated</span>
+            <div class="hero__stat__value">1,220</div>
+            <div class="hero__stat__foot">Consolidated to 1,220 active WordPress pages</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Archived</span>
+            <div class="hero__stat__value">381</div>
+            <div class="hero__stat__foot">Redirected to nearest match, not deleted</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">URL reduction</span>
+            <div class="hero__stat__value">23.8<em>%</em></div>
+            <div class="hero__stat__foot">Crawl budget, CMS burden, editorial load — all down</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 2 — TREEMAP
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The territory · every URL on holyfamily.edu</div>
+          <h2 class="section__title">Every URL, sorted by <em>category and fate.</em></h2>
+          <p class="section__lede">Click any rectangle to see the audit detail — what we kept, what we archived, and why. Area is proportional to page count. Color signals the action: <b style="color:var(--teal)">keep</b>, consolidate, or archive.</p>
+        </div>
+
+        <div class="treemap-wrap" id="treemapWrap">
+          <div class="treemap__label">
+            <span><b>1,601 URLs</b> · 8 categories · hover to inspect · click to expand</span>
+            <div class="treemap__legend">
+              <span class="treemap__legend-item"><span class="treemap__legend-swatch treemap__legend-swatch--keep"></span>Keep</span>
+              <span class="treemap__legend-item"><span class="treemap__legend-swatch treemap__legend-swatch--consol"></span>Consolidate</span>
+              <span class="treemap__legend-item"><span class="treemap__legend-swatch treemap__legend-swatch--archive"></span>Archive</span>
+            </div>
+          </div>
+          <svg id="treemap-svg" viewBox="0 0 1100 520" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="tm-tooltip" id="tmTooltip" role="tooltip" aria-hidden="true"></div>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="tm-detail" id="tmDetail">
+          <div class="tm-detail__head">
+            <div class="tm-detail__title-block">
+              <div class="tm-detail__kicker" id="tmDetailKicker">Category 01 · News &amp; blog archive</div>
+              <h3 class="tm-detail__title" id="tmDetailTitle">News &amp; blog <em>— 670 URLs</em></h3>
+            </div>
+            <div class="tm-detail__numbers">
+              <div class="tm-detail__num">
+                <div class="tm-detail__num-label">Total</div>
+                <div class="tm-detail__num-val" id="tmDetailTotal">670</div>
+              </div>
+              <div class="tm-detail__num tm-detail__num--keep">
+                <div class="tm-detail__num-label">Keep</div>
+                <div class="tm-detail__num-val" id="tmDetailKeep">450</div>
+              </div>
+              <div class="tm-detail__num">
+                <div class="tm-detail__num-label">Archive</div>
+                <div class="tm-detail__num-val" id="tmDetailArchive">220</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tm-detail__body">
+            <div class="tm-detail__col tm-detail__col--keep">
+              <div class="tm-detail__col-label">What we keep</div>
+              <div class="tm-detail__reason" id="tmDetailKeepReason">Posts from the <em>last 36 months</em> with real traffic or inbound links.</div>
+              <div class="tm-detail__reason-sub" id="tmDetailKeepSub">450 recent articles, faculty features, and press wins that GA4 shows still pulling organic search. Full archive at archive.holyfamily.edu stays searchable.</div>
+              <div class="tm-detail__urls-label">Sampled URLs</div>
+              <ul class="tm-detail__urls" id="tmDetailKeepUrls">
+                <li>/news/2025/holy-family-receives-research-grant</li>
+                <li>/news/2024/spring-commencement-highlights</li>
+                <li>/news/2024/new-nursing-partnership-chop</li>
+                <li>/news/2025/student-wins-fulbright</li>
+              </ul>
+            </div>
+            <div class="tm-detail__col tm-detail__col--archive">
+              <div class="tm-detail__col-label">What we archive</div>
+              <div class="tm-detail__reason" id="tmDetailArchiveReason">Posts <em>6+ years old</em> with &lt;50 sessions/month per GA4.</div>
+              <div class="tm-detail__reason-sub" id="tmDetailArchiveSub">220 posts moved to a searchable archive.holyfamily.edu subdomain. Nothing deleted. Rick owns the toggle.</div>
+              <div class="tm-detail__urls-label">Sampled URLs</div>
+              <ul class="tm-detail__urls" id="tmDetailArchiveUrls">
+                <li>/news/2017/alumni-spotlight-march</li>
+                <li>/news/2018/faculty-workshop-summer</li>
+                <li>/news/2019/student-life-photo-essay</li>
+                <li>/news/2016/president-message-winter</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 3 — THE FLOW 1,601 → 1,200
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The consolidation · how 1,601 becomes 1,220</div>
+          <h2 class="section__title">The pipe runs <em>once.</em> Every page goes through it.</h2>
+          <p class="section__lede">Five filters operate on the Drupal index. Each filter is rule-based, auditable, and reversible. No page is archived without a logged rationale. Hover each callout to see its share of the reduction.</p>
+        </div>
+
+        <div class="flow">
+          <div class="flow__label">
+            <span>Audit pipeline · April 2026</span>
+            <span><b>5 filters · 381 pages archived</b></span>
+          </div>
+
+          <div class="flow__stage">
+            <!-- LEFT: 1601 squares -->
+            <div class="flow__block flow__block--in">
+              <div class="flow__block-head">Before · Drupal</div>
+              <div class="flow__num">1,601</div>
+              <div class="flow__num-sub">Raw URLs indexed</div>
+              <div class="flow__grid flow__grid--before" id="flowBefore" aria-hidden="true"></div>
+            </div>
+
+            <!-- PIPE -->
+            <div class="flow__pipe">
+              <div class="flow__pipe-label-top">audit → <b>dedupe</b> → archive</div>
+              <div class="flow__pipe-bar">
+                <div class="flow__pipe-bar-text">381 archived</div>
+              </div>
+              <div class="flow__pipe-label-bottom">semantically consolidated</div>
+            </div>
+
+            <!-- RIGHT: 1220 squares -->
+            <div class="flow__block flow__block--out">
+              <div class="flow__block-head">After · WordPress</div>
+              <div class="flow__num">1,220</div>
+              <div class="flow__num-sub">Active pages shipped</div>
+              <div class="flow__grid flow__grid--after" id="flowAfter" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- 5 callouts -->
+          <div class="flow__callouts">
+            <div class="flow__callout">
+              <div>
+                <div class="flow__callout-marker">◇</div>
+                <div class="flow__callout-body"><b>Embeddings-based duplicate detection</b> at 0.90 cosine similarity.</div>
+              </div>
+              <div class="flow__callout-pct"><b>22%</b> of reduction</div>
+            </div>
+            <div class="flow__callout">
+              <div>
+                <div class="flow__callout-marker">◇</div>
+                <div class="flow__callout-body"><b>GA4 traffic filter</b> — fewer than 50 sessions/mo → archive candidate.</div>
+              </div>
+              <div class="flow__callout-pct"><b>41%</b> of reduction</div>
+            </div>
+            <div class="flow__callout">
+              <div>
+                <div class="flow__callout-marker">◇</div>
+                <div class="flow__callout-body"><b>Modification date filter</b> — untouched since 2022 → flagged for review.</div>
+              </div>
+              <div class="flow__callout-pct"><b>18%</b> of reduction</div>
+            </div>
+            <div class="flow__callout">
+              <div>
+                <div class="flow__callout-marker">◇</div>
+                <div class="flow__callout-body"><b>Duplicate forms consolidated</b> — 20+ request-info forms collapsed to 1 smart form.</div>
+              </div>
+              <div class="flow__callout-pct"><b>5%</b> of reduction</div>
+            </div>
+            <div class="flow__callout">
+              <div>
+                <div class="flow__callout-marker">◇</div>
+                <div class="flow__callout-body"><b>News archive</b> — 220 posts moved to a searchable archive subdomain, not deleted.</div>
+              </div>
+              <div class="flow__callout-pct"><b>14%</b> of reduction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 4 — DECISION TREE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The decision tree · how every URL gets sorted</div>
+          <h2 class="section__title">Every archive decision follows <em>the same five questions.</em></h2>
+          <p class="section__lede">No judgment calls. No gut feels. Every URL walks the same tree. Hover a node to see it isolated. Terminal counts sum to 1,601.</p>
+        </div>
+
+        <div class="tree-wrap">
+          <div class="tree" id="decisionTree">
+            <svg class="tree-svg" id="treeSvg"></svg>
+
+            <!-- LEVEL 0: Root question -->
+            <div class="tree__level" data-level="0">
+              <div class="tree__node tree__node--q" data-node="root">
+                <div class="tree__node-label">Q1 · Root</div>
+                <div class="tree__node-text">Is this URL still active on Google?</div>
+              </div>
+            </div>
+
+            <!-- LEVEL 1 -->
+            <div class="tree__level" data-level="1">
+              <div class="tree__node tree__node--q" data-node="q2-yes" data-branch="yes">
+                <div class="tree__node-label">Yes → Q2</div>
+                <div class="tree__node-text">Does it get &gt;50 sessions/mo?</div>
+              </div>
+              <div class="tree__node tree__node--term tree__node--term-archive" data-node="t-redirect" data-branch="no">
+                <div class="tree__node-label">No → Terminal</div>
+                <div class="tree__node-text">Redirect to closest match, archive</div>
+                <div class="tree__node-term-count">142<small>URLs archived</small></div>
+              </div>
+            </div>
+
+            <!-- LEVEL 2 -->
+            <div class="tree__level" data-level="2">
+              <div class="tree__node tree__node--q" data-node="q3-yes" data-branch="yes">
+                <div class="tree__node-label">Yes → Q3</div>
+                <div class="tree__node-text">Is it older than 2022?</div>
+              </div>
+              <div class="tree__node tree__node--q" data-node="q4-no" data-branch="no">
+                <div class="tree__node-label">No → Q4</div>
+                <div class="tree__node-text">Is it enrollment-critical?</div>
+              </div>
+            </div>
+
+            <!-- LEVEL 3 -->
+            <div class="tree__level" data-level="3">
+              <div class="tree__node tree__node--term tree__node--term-keep" data-node="t-refresh" data-branch="yes">
+                <div class="tree__node-label">Yes → Terminal</div>
+                <div class="tree__node-text">Flag for content refresh, keep</div>
+                <div class="tree__node-term-count">198<small>URLs kept</small></div>
+              </div>
+              <div class="tree__node tree__node--term tree__node--term-keep" data-node="t-keep" data-branch="no">
+                <div class="tree__node-label">No → Terminal</div>
+                <div class="tree__node-text">Keep as-is</div>
+                <div class="tree__node-term-count">742<small>URLs kept</small></div>
+              </div>
+              <div class="tree__node tree__node--term tree__node--term-keep" data-node="t-improve" data-branch="yes">
+                <div class="tree__node-label">Yes → Terminal</div>
+                <div class="tree__node-text">Keep, improve, promote</div>
+                <div class="tree__node-term-count">280<small>URLs kept</small></div>
+              </div>
+              <div class="tree__node tree__node--term tree__node--term-archive" data-node="t-archive" data-branch="no">
+                <div class="tree__node-label">No → Terminal</div>
+                <div class="tree__node-text">Candidate for archive</div>
+                <div class="tree__node-term-count">239<small>URLs archived</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 5 — 180 TOP-LEVEL PROBLEM
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The navigation problem · too many doors</div>
+          <h2 class="section__title">Holy Family today has <em>180+</em> distinct top-level URL sections.</h2>
+          <p class="section__lede">A healthy institutional site has 8–15. The proposed IA has 12. Click the toggle to see the difference — 180 crammed labels, then 12 that breathe.</p>
+        </div>
+
+        <div class="chaos" id="chaos">
+          <div class="chaos__toggle">
+            <div class="chaos__title">The current nav · <em>180 top-level sections.</em></div>
+            <button class="chaos__btn" id="chaosBtn" type="button">Show proposed IA →</button>
+          </div>
+          <div class="chaos__stage">
+            <div class="chaos__before" id="chaosBefore"></div>
+            <div class="chaos__after">
+              <div class="chaos__after-item"><span>01</span>About</div>
+              <div class="chaos__after-item"><span>02</span>Academics</div>
+              <div class="chaos__after-item"><span>03</span>Admissions</div>
+              <div class="chaos__after-item"><span>04</span>Student life</div>
+              <div class="chaos__after-item"><span>05</span>Athletics</div>
+              <div class="chaos__after-item"><span>06</span>Giving</div>
+              <div class="chaos__after-item"><span>07</span>Research</div>
+              <div class="chaos__after-item"><span>08</span>Mission</div>
+              <div class="chaos__after-item"><span>09</span>News</div>
+              <div class="chaos__after-item"><span>10</span>Events</div>
+              <div class="chaos__after-item"><span>11</span>Faculty</div>
+              <div class="chaos__after-item"><span>12</span>Alumni</div>
+            </div>
+          </div>
+          <div class="chaos__note"><b>A healthy institutional site has 8–15.</b> The proposed IA has 12. One door per user intent — not 180 doors per department org chart.</div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 6 — CATEGORY TABLE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The ledger · every category, every number</div>
+          <h2 class="section__title">The full audit, <em>one page.</em></h2>
+          <p class="section__lede">Click a column header to sort. Click a row to jump back to the treemap detail above. The highest-impact row — News &amp; blog, 220 URLs archived — is the one we want Rick looking at first.</p>
+        </div>
+
+        <div class="cat-table">
+          <div class="cat-table__head-label">
+            <span>8 categories · 1,601 URLs · 23.8% reduction</span>
+            <span>Sort by any column →</span>
+          </div>
+          <table class="cat" id="catTable">
+            <thead>
+              <tr>
+                <th data-sort="name">Category</th>
+                <th data-sort="total" class="is-sort">Total</th>
+                <th data-sort="keep">Kept</th>
+                <th data-sort="archive">Archived</th>
+                <th data-sort="pct">Archive %</th>
+                <th data-sort="rationale">Primary rationale</th>
+              </tr>
+            </thead>
+            <tbody id="catTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 7 — PULL QUOTE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="quote">
+          <p class="quote__body">Every page we recommend archiving will be <em>documented with rationale,</em> and every decision will require <em>Rick's approval</em> before execution.</p>
+          <div class="quote__attrib">— Agency OS audit methodology · April 2026</div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 8 — AUDIT METHODOLOGY RAIL
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">Audit methodology</div>
+        <div class="assumptions__body">
+          <strong>Every number on this page is reproducible.</strong> We ran a 5-step AI-assisted audit on all 1,601 URLs in the Drupal index. Nothing was deleted; nothing was flagged without evidence. The full rationale log is exportable as CSV on kickoff day. Rick signs every archive batch before it ships.
+          <div class="assumptions__list">
+            <div><span>01</span><strong>Crawl &amp; index</strong> — full Drupal sitemap + GA4 URL list cross-referenced against live 200-status responses.</div>
+            <div><span>02</span><strong>Semantic clustering</strong> — embeddings (text-embedding-3-large) to group near-duplicate pages across programs and news.</div>
+            <div><span>03</span><strong>Duplicate detection</strong> — cosine similarity ≥ 0.90 flagged for consolidation. Forms, RFIs, and template pages collapsed.</div>
+            <div><span>04</span><strong>Freshness + GA4 traffic</strong> — modified-date &lt; 2022 AND &lt;50 sessions/month → archive candidate.</div>
+            <div><span>05</span><strong>Manual stakeholder review</strong> — every archive batch sent to Rick in CSV with one-click restore.</div>
+          </div>
+          <div class="assumptions__meta">
+            <div>LLM processing cost<b>~$20–30</b></div>
+            <div>Stakeholder review time<b>4–6 hrs</b></div>
+            <div>Archive reversibility<b>100%</b></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    'use strict';
+
+    // ══════════════════════════════════════════════════════════════════
+    // DATA · the categories
+    // ══════════════════════════════════════════════════════════════════
+    const CATEGORIES = [
+      {
+        id: 'news',
+        name: 'News & blog',
+        total: 670,
+        keep: 450,
+        archive: 220,
+        action: 'split',
+        rationale: 'News pages compete with enrollment for crawl budget; 220 are 6+ years old with negligible traffic.',
+        keepReason: 'Posts from the <em>last 36 months</em> with real traffic or inbound links.',
+        keepSub: '450 recent articles, faculty features, and press wins that GA4 shows still pulling organic search. Full archive at archive.holyfamily.edu stays searchable.',
+        keepUrls: [
+          '/news/2025/holy-family-receives-research-grant',
+          '/news/2024/spring-commencement-highlights',
+          '/news/2024/new-nursing-partnership-chop',
+          '/news/2025/student-wins-fulbright',
+          '/news/2024/tigers-mens-basketball-cacc-title'
+        ],
+        archiveReason: 'Posts <em>6+ years old</em> with &lt;50 sessions/month per GA4.',
+        archiveSub: '220 posts moved to a searchable archive.holyfamily.edu subdomain. Nothing deleted. Rick owns the toggle.',
+        archiveUrls: [
+          '/news/2017/alumni-spotlight-march',
+          '/news/2018/faculty-workshop-summer',
+          '/news/2019/student-life-photo-essay',
+          '/news/2016/president-message-winter',
+          '/news/2015/homecoming-recap'
+        ]
+      },
+      {
+        id: 'content',
+        name: 'Content & policy',
+        total: 250,
+        keep: 250,
+        archive: 0,
+        action: 'keep',
+        rationale: 'Policy, mission, accreditation, and institutional pages — legally required or core to identity.',
+        keepReason: '<em>All 250 pages kept.</em> Policy, accreditation, and institutional identity content.',
+        keepSub: 'Mission, Title IX, accreditation, academic catalog, consumer info — required to keep, many required to be easy to find.',
+        keepUrls: [
+          '/about/mission',
+          '/about/accreditation',
+          '/consumer-information',
+          '/policies/title-ix',
+          '/academic-catalog/2025-2026'
+        ],
+        archiveReason: 'Nothing archived in this category.',
+        archiveSub: 'These pages are either legally required, accreditor-required, or define institutional identity. They stay, full stop.',
+        archiveUrls: []
+      },
+      {
+        id: 'legacy',
+        name: 'Landing & microsites',
+        total: 191,
+        keep: 110,
+        archive: 81,
+        action: 'split',
+        rationale: 'One-off campaign pages, abandoned microsites, and legacy department pages with zero inbound traffic.',
+        keepReason: '110 current campaigns and active department landing pages.',
+        keepSub: 'Pages with GA4 traffic, recent edits, or role in active recruitment funnels — kept and consolidated into program hubs.',
+        keepUrls: [
+          '/apply/transfer',
+          '/visit/campus-tour',
+          '/nursing/direct-entry',
+          '/events/open-house-fall',
+          '/scholarships/presidential'
+        ],
+        archiveReason: 'Abandoned campaign URLs and <em>orphan microsites</em> with no inbound traffic since 2022.',
+        archiveSub: '81 dead campaign pages and department microsites. Redirected to the nearest parent section; no 404s will ship.',
+        archiveUrls: [
+          '/covid-response-2020',
+          '/campaign/spring-2019-giving',
+          '/microsites/education-conference-2018',
+          '/apply-deadline-extended-2021',
+          '/archive/old-president-blog'
+        ]
+      },
+      {
+        id: 'faculty',
+        name: 'Faculty profiles',
+        total: 180,
+        keep: 180,
+        archive: 0,
+        action: 'keep',
+        rationale: 'Faculty directory is authoritative and gets cited externally — a top-5 crawled section.',
+        keepReason: '<em>All 180 profiles kept</em> and restructured as the authoritative faculty directory.',
+        keepSub: 'Standardized into a Person schema-aware template with office hours, pubs, research interests, and CV PDF. Same URLs preserved.',
+        keepUrls: [
+          '/faculty/dr-smith-nursing',
+          '/faculty/dr-lopez-education',
+          '/faculty/prof-chen-business',
+          '/faculty/dr-obrien-theology',
+          '/faculty/dr-patel-biology'
+        ],
+        archiveReason: 'Nothing archived in this category.',
+        archiveSub: 'Faculty profiles are the single highest-value content type on the site for external citation and SEO — we do not touch them.',
+        archiveUrls: []
+      },
+      {
+        id: 'admissions',
+        name: 'Admissions funnel',
+        total: 120,
+        keep: 120,
+        archive: 0,
+        action: 'keep',
+        rationale: 'Every admissions page is part of the revenue funnel — no archive decisions, only improvements.',
+        keepReason: '<em>All 120 pages kept.</em> Restructured around the inquiry → apply → enroll journey.',
+        keepSub: 'Apply, Visit, Request Info, Scholarships, Aid, Transfer, Adult Learner. Consolidated into the smart form routing layer.',
+        keepUrls: [
+          '/apply',
+          '/admissions/undergraduate',
+          '/admissions/graduate',
+          '/financial-aid/net-price-calculator',
+          '/visit/schedule-a-tour'
+        ],
+        archiveReason: 'Nothing archived. These are the pages that pay for the redesign.',
+        archiveSub: 'Every URL here touches the enrollment funnel. Even duplicates are kept until the smart form launches, then redirected.',
+        archiveUrls: []
+      },
+      {
+        id: 'programs',
+        name: 'Program pages',
+        total: 100,
+        keep: 70,
+        archive: 30,
+        action: 'split',
+        rationale: 'Too many URL variations per program — BSN has 7 landing pages. Consolidate to 70 canonical pages, archive the duplicates.',
+        keepReason: '70 canonical program pages — <em>one per program</em>, not one per department.',
+        keepSub: 'BSN, MSN, Accelerated BSN, MBA, MEd, BA Theology... consolidated with pricing, time-to-degree, schedule, and apply CTA above fold.',
+        keepUrls: [
+          '/academics/nursing/bsn',
+          '/academics/nursing/msn-family-np',
+          '/academics/business/mba',
+          '/academics/education/med-reading',
+          '/academics/theology/ba'
+        ],
+        archiveReason: '30 duplicate program URLs — <em>redirects, old landing pages, legacy department microsites.</em>',
+        archiveSub: 'Duplicate BSN landing pages, old accelerated program URLs, and legacy "explore the program" pages with no traffic. 301 redirected to canonical.',
+        archiveUrls: [
+          '/nursing-bsn-landing',
+          '/nursing/explore-bsn',
+          '/accelerated-nursing-apply',
+          '/business-mba-old',
+          '/education-old-landing'
+        ]
+      },
+      {
+        id: 'events',
+        name: 'Events',
+        total: 60,
+        keep: 40,
+        archive: 20,
+        action: 'split',
+        rationale: 'Past events with no historical value — kept the recurring signature events, archived one-off past dates.',
+        keepReason: '40 recurring signature events kept as <em>evergreen templates</em>.',
+        keepSub: 'Open House, Admitted Student Day, Commencement, Homecoming, Founders Mass, and seasonal academic events — templates update each cycle, URLs stay put.',
+        keepUrls: [
+          '/events/open-house',
+          '/events/admitted-student-day',
+          '/events/commencement',
+          '/events/founders-mass',
+          '/events/homecoming-weekend'
+        ],
+        archiveReason: '<em>Past one-off events</em> — dated URLs with no value post-event.',
+        archiveSub: '20 past event detail pages, mostly 2018–2022. Redirected to the parent events hub. Event listings preserved in the archive subdomain.',
+        archiveUrls: [
+          '/events/2019-spring-gala',
+          '/events/2018-welcome-week',
+          '/events/2020-virtual-commencement',
+          '/events/2017-homecoming',
+          '/events/2021-trustee-dinner'
+        ]
+      },
+      {
+        id: 'admin',
+        name: 'Administrative & test',
+        total: 30,
+        keep: 0,
+        archive: 30,
+        action: 'archive',
+        rationale: 'Staging URLs, test pages, and dev artifacts that should never have shipped to production.',
+        keepReason: 'Nothing kept — these are not production pages.',
+        keepSub: 'Every URL in this category is a test page, staging artifact, or dev-only URL indexed by mistake. None should be public.',
+        keepUrls: [],
+        archiveReason: '<em>All 30 archived</em> — test pages, staging URLs, dev artifacts.',
+        archiveSub: 'Pages like /test, /node/12345, /staging-preview, /dev-only. None are indexed intentionally. All get hard 410 Gone headers on cutover.',
+        archiveUrls: [
+          '/test',
+          '/node/12345',
+          '/staging-preview',
+          '/dev-only-page',
+          '/admin/old-dashboard'
+        ]
+      }
+    ];
+
+    // ══════════════════════════════════════════════════════════════════
+    // TREEMAP · slice-and-dice layout
+    // ══════════════════════════════════════════════════════════════════
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const VB_W = 1100;
+    const VB_H = 520;
+    const PAD  = 4;
+
+    const svg = document.getElementById('treemap-svg');
+    const tooltip = document.getElementById('tmTooltip');
+    const treemapWrap = document.getElementById('treemapWrap');
+
+    // Sort descending so biggest block goes first
+    const sorted = [...CATEGORIES].sort((a, b) => b.total - a.total);
+    const total = sorted.reduce((s, c) => s + c.total, 0);
+
+    function colorFor(cat) {
+      if (cat.action === 'keep')    return { fill: 'rgba(46,158,158,0.22)', stroke: 'rgba(46,158,158,0.55)' };
+      if (cat.action === 'archive') return { fill: 'rgba(255,255,255,0.04)', stroke: 'rgba(255,255,255,0.14)' };
+      // split (keep some, archive some) — blend by keep ratio
+      const keepRatio = cat.keep / cat.total;
+      const alpha = 0.07 + keepRatio * 0.20;
+      return { fill: `rgba(46,158,158,${alpha.toFixed(3)})`, stroke: `rgba(46,158,158,${(0.25 + keepRatio*0.3).toFixed(3)})` };
+    }
+
+    // Slice-and-dice: alternate horizontal/vertical cuts by rows to keep
+    // rectangles closer to square. Uses a greedy "squarified" approach that
+    // packs into strips — small enough to hand-code.
+    function sliceAndDice(items, x, y, w, h) {
+      const out = [];
+      function layout(arr, x, y, w, h, vertical) {
+        if (arr.length === 0) return;
+        if (arr.length === 1) {
+          out.push({ cat: arr[0], x, y, w, h });
+          return;
+        }
+        // Split into two groups trying to balance area
+        const totalA = arr.reduce((s, c) => s + c.total, 0);
+        let acc = 0;
+        let splitIdx = 1;
+        let bestDiff = Infinity;
+        for (let i = 1; i < arr.length; i++) {
+          const prev = arr.slice(0, i).reduce((s, c) => s + c.total, 0);
+          const diff = Math.abs(prev - (totalA - prev));
+          if (diff < bestDiff) {
+            bestDiff = diff;
+            splitIdx = i;
+          }
+        }
+        const left = arr.slice(0, splitIdx);
+        const right = arr.slice(splitIdx);
+        const leftTotal = left.reduce((s, c) => s + c.total, 0);
+        const ratio = leftTotal / totalA;
+        if (vertical) {
+          const wL = w * ratio;
+          layout(left,  x,       y, wL,     h, !vertical);
+          layout(right, x + wL,  y, w - wL, h, !vertical);
+        } else {
+          const hT = h * ratio;
+          layout(left,  x, y,      w, hT,    !vertical);
+          layout(right, x, y + hT, w, h - hT, !vertical);
+        }
+      }
+      // Start vertical if wider than tall
+      layout(items, x, y, w, h, w >= h);
+      return out;
+    }
+
+    // We want the biggest block (News 670) to dominate — so we force News
+    // into its own left block and then slice the rest into the right block.
+    function layoutTreemap() {
+      const [first, ...rest] = sorted;
+      const firstRatio = first.total / total;
+      // Give the first block a proportional width, but not more than 50%
+      const firstW = Math.min(VB_W * 0.5, VB_W * firstRatio * 1.05);
+      const firstRect = { cat: first, x: 0, y: 0, w: firstW, h: VB_H };
+      const restRects = sliceAndDice(rest, firstW, 0, VB_W - firstW, VB_H);
+      return [firstRect, ...restRects];
+    }
+
+    function renderTreemap() {
+      const rects = layoutTreemap();
+      svg.innerHTML = '';
+
+      rects.forEach((r, idx) => {
+        const g = document.createElementNS(SVG_NS, 'g');
+        g.classList.add('tm-cell');
+        g.dataset.catId = r.cat.id;
+        g.setAttribute('role', 'button');
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('aria-label', `${r.cat.name}: ${r.cat.total} URLs, ${r.cat.keep} kept, ${r.cat.archive} archived`);
+
+        const px = r.x + PAD / 2;
+        const py = r.y + PAD / 2;
+        const pw = Math.max(0, r.w - PAD);
+        const ph = Math.max(0, r.h - PAD);
+
+        const rect = document.createElementNS(SVG_NS, 'rect');
+        rect.classList.add('tm-rect');
+        rect.setAttribute('x', px);
+        rect.setAttribute('y', py);
+        rect.setAttribute('width', pw);
+        rect.setAttribute('height', ph);
+        rect.setAttribute('rx', '3');
+        rect.setAttribute('ry', '3');
+        const c = colorFor(r.cat);
+        rect.setAttribute('fill', c.fill);
+        rect.setAttribute('stroke', c.stroke);
+        g.appendChild(rect);
+
+        // For the keep-portion visual accent, draw a subtle
+        // teal bar along the bottom proportional to keepRatio
+        if (r.cat.action === 'split' && pw > 80 && ph > 50) {
+          const keepRatio = r.cat.keep / r.cat.total;
+          const bar = document.createElementNS(SVG_NS, 'rect');
+          bar.setAttribute('x', px);
+          bar.setAttribute('y', py + ph - 4);
+          bar.setAttribute('width', pw * keepRatio);
+          bar.setAttribute('height', 3);
+          bar.setAttribute('fill', 'rgba(46,158,158,0.9)');
+          bar.setAttribute('rx', '1');
+          bar.style.pointerEvents = 'none';
+          bar.style.filter = 'drop-shadow(0 0 6px rgba(46,158,158,0.5))';
+          g.appendChild(bar);
+        }
+
+        // Label — only if the rect is big enough
+        if (pw > 90 && ph > 48) {
+          const big = pw > 160 && ph > 90;
+          const label = document.createElementNS(SVG_NS, 'text');
+          label.classList.add('tm-label');
+          if (!big) label.classList.add('tm-label--small');
+          label.setAttribute('x', px + 16);
+          label.setAttribute('y', py + 28);
+          label.textContent = r.cat.name;
+          g.appendChild(label);
+
+          const sub = document.createElementNS(SVG_NS, 'text');
+          sub.classList.add('tm-sublabel');
+          if (r.cat.action === 'archive') sub.classList.add('tm-sublabel--dim');
+          sub.setAttribute('x', px + 16);
+          sub.setAttribute('y', py + 44);
+          sub.textContent = `${r.cat.total} URLs · ${r.cat.keep} keep / ${r.cat.archive} archive`;
+          g.appendChild(sub);
+        } else if (pw > 60 && ph > 30) {
+          const label = document.createElementNS(SVG_NS, 'text');
+          label.classList.add('tm-label', 'tm-label--small');
+          label.setAttribute('x', px + 10);
+          label.setAttribute('y', py + 22);
+          label.textContent = r.cat.name;
+          g.appendChild(label);
+          const sub = document.createElementNS(SVG_NS, 'text');
+          sub.classList.add('tm-sublabel');
+          sub.setAttribute('x', px + 10);
+          sub.setAttribute('y', py + 36);
+          sub.setAttribute('font-size', '5pt');
+          sub.textContent = `${r.cat.total}`;
+          g.appendChild(sub);
+        }
+
+        svg.appendChild(g);
+
+        // Events
+        g.addEventListener('mouseenter', (e) => showTooltip(r.cat, e, g));
+        g.addEventListener('mousemove', (e) => moveTooltip(e));
+        g.addEventListener('mouseleave', () => hideTooltip(g));
+        g.addEventListener('click', () => selectCategory(r.cat.id));
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCategory(r.cat.id); }
+        });
+      });
+    }
+
+    function showTooltip(cat, e, cellEl) {
+      const pctKeep = ((cat.keep / cat.total) * 100).toFixed(1);
+      const pctArch = ((cat.archive / cat.total) * 100).toFixed(1);
+      tooltip.innerHTML = `
+        <div class="tm-tooltip__title">${cat.name}</div>
+        <div class="tm-tooltip__row"><span>Total</span><b>${cat.total}</b></div>
+        <div class="tm-tooltip__row tm-tooltip__row--keep"><span>Keep · ${pctKeep}%</span><b>${cat.keep}</b></div>
+        <div class="tm-tooltip__row tm-tooltip__row--archive"><span>Archive · ${pctArch}%</span><b>${cat.archive}</b></div>
+      `;
+      tooltip.classList.add('is-visible');
+      tooltip.setAttribute('aria-hidden', 'false');
+      moveTooltip(e);
+    }
+    function moveTooltip(e) {
+      const rect = treemapWrap.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const tw = tooltip.offsetWidth;
+      const th = tooltip.offsetHeight;
+      let left = x + 18;
+      let top  = y + 18;
+      if (left + tw > rect.width - 12) left = x - tw - 18;
+      if (top  + th > rect.height - 12) top  = y - th - 18;
+      tooltip.style.left = Math.max(8, left) + 'px';
+      tooltip.style.top  = Math.max(8, top)  + 'px';
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('is-visible');
+      tooltip.setAttribute('aria-hidden', 'true');
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // DETAIL PANEL swap
+    // ══════════════════════════════════════════════════════════════════
+    const detail      = document.getElementById('tmDetail');
+    const dKicker     = document.getElementById('tmDetailKicker');
+    const dTitle      = document.getElementById('tmDetailTitle');
+    const dTotal      = document.getElementById('tmDetailTotal');
+    const dKeep       = document.getElementById('tmDetailKeep');
+    const dArch       = document.getElementById('tmDetailArchive');
+    const dKeepRea    = document.getElementById('tmDetailKeepReason');
+    const dKeepSub    = document.getElementById('tmDetailKeepSub');
+    const dKeepUrls   = document.getElementById('tmDetailKeepUrls');
+    const dArchRea    = document.getElementById('tmDetailArchiveReason');
+    const dArchSub    = document.getElementById('tmDetailArchiveSub');
+    const dArchUrls   = document.getElementById('tmDetailArchiveUrls');
+
+    function selectCategory(id) {
+      const cat = CATEGORIES.find(c => c.id === id);
+      if (!cat) return;
+
+      // Mark SVG cells active
+      document.querySelectorAll('.tm-cell').forEach(c => {
+        c.classList.toggle('is-active', c.dataset.catId === id);
+      });
+
+      // Fade then swap content
+      detail.classList.add('is-swapping');
+      setTimeout(() => {
+        const idx = CATEGORIES.findIndex(c => c.id === id) + 1;
+        const idxStr = String(idx).padStart(2, '0');
+        dKicker.textContent = `Category ${idxStr} · ${cat.name}`;
+        dTitle.innerHTML = `${cat.name} <em>— ${cat.total} URLs</em>`;
+        dTotal.textContent = cat.total;
+        dKeep.textContent = cat.keep;
+        dArch.textContent = cat.archive;
+        dKeepRea.innerHTML = cat.keepReason;
+        dKeepSub.textContent = cat.keepSub;
+        dArchRea.innerHTML = cat.archiveReason;
+        dArchSub.textContent = cat.archiveSub;
+
+        dKeepUrls.innerHTML = cat.keepUrls.length
+          ? cat.keepUrls.map(u => `<li>${u}</li>`).join('')
+          : '<li style="color:var(--text-ghost);font-style:italic;border:0;">— none —</li>';
+        dArchUrls.innerHTML = cat.archiveUrls.length
+          ? cat.archiveUrls.map(u => `<li>${u}</li>`).join('')
+          : '<li style="color:var(--text-ghost);font-style:italic;border:0;">— none —</li>';
+
+        detail.classList.remove('is-swapping');
+        // Scroll to detail smoothly
+        detail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 180);
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // FLOW · render 1,601 + 1,220 squares
+    // ══════════════════════════════════════════════════════════════════
+    function renderFlow() {
+      const before = document.getElementById('flowBefore');
+      const after  = document.getElementById('flowAfter');
+      const keepCount    = 1220;
+      const archiveCount = 381;
+
+      // Before: 1601 squares, teal for 1220, dim for 381
+      const beforeFrag = document.createDocumentFragment();
+      for (let i = 0; i < 1601; i++) {
+        const sq = document.createElement('div');
+        sq.className = 'flow__square ' + (i < keepCount ? 'flow__square--keep' : 'flow__square--archive');
+        beforeFrag.appendChild(sq);
+      }
+      before.appendChild(beforeFrag);
+
+      // After: 1220 squares, all teal
+      const afterFrag = document.createDocumentFragment();
+      for (let i = 0; i < keepCount; i++) {
+        const sq = document.createElement('div');
+        sq.className = 'flow__square flow__square--keep';
+        afterFrag.appendChild(sq);
+      }
+      after.appendChild(afterFrag);
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // DECISION TREE · hover dim + connector lines
+    // ══════════════════════════════════════════════════════════════════
+    function wireDecisionTree() {
+      const tree = document.getElementById('decisionTree');
+      const nodes = tree.querySelectorAll('.tree__node');
+
+      nodes.forEach(n => {
+        n.addEventListener('mouseenter', () => tree.classList.add('is-hovering'));
+        n.addEventListener('mouseleave', () => tree.classList.remove('is-hovering'));
+      });
+
+      // Draw connectors on next frame once layout settled
+      function drawConnectors() {
+        const svg = document.getElementById('treeSvg');
+        const wrap = tree.getBoundingClientRect();
+        svg.setAttribute('width', wrap.width);
+        svg.setAttribute('height', wrap.height);
+        svg.innerHTML = '';
+
+        const levels = [
+          [tree.querySelector('[data-node="root"]')],
+          [tree.querySelector('[data-node="q2-yes"]'), tree.querySelector('[data-node="t-redirect"]')],
+          [tree.querySelector('[data-node="q3-yes"]'), tree.querySelector('[data-node="q4-no"]')],
+          [
+            tree.querySelector('[data-node="t-refresh"]'),
+            tree.querySelector('[data-node="t-keep"]'),
+            tree.querySelector('[data-node="t-improve"]'),
+            tree.querySelector('[data-node="t-archive"]')
+          ]
+        ];
+
+        function centerBottom(el) {
+          const r = el.getBoundingClientRect();
+          return { x: r.left - wrap.left + r.width/2, y: r.bottom - wrap.top };
+        }
+        function centerTop(el) {
+          const r = el.getBoundingClientRect();
+          return { x: r.left - wrap.left + r.width/2, y: r.top - wrap.top };
+        }
+
+        function drawLine(from, to, yes) {
+          const path = document.createElementNS(SVG_NS, 'path');
+          const midY = (from.y + to.y) / 2;
+          path.setAttribute('d', `M${from.x},${from.y} C${from.x},${midY} ${to.x},${midY} ${to.x},${to.y}`);
+          if (yes) path.classList.add('is-yes');
+          svg.appendChild(path);
+        }
+
+        // Root → q2-yes (yes branch) and root → t-redirect (no branch)
+        drawLine(centerBottom(levels[0][0]), centerTop(levels[1][0]), true);
+        drawLine(centerBottom(levels[0][0]), centerTop(levels[1][1]), false);
+
+        // q2-yes → q3-yes and q2-yes → q4-no
+        drawLine(centerBottom(levels[1][0]), centerTop(levels[2][0]), true);
+        drawLine(centerBottom(levels[1][0]), centerTop(levels[2][1]), false);
+
+        // q3-yes → t-refresh (yes) and t-keep (no)
+        drawLine(centerBottom(levels[2][0]), centerTop(levels[3][0]), true);
+        drawLine(centerBottom(levels[2][0]), centerTop(levels[3][1]), false);
+
+        // q4-no → t-improve (yes) and t-archive (no)
+        drawLine(centerBottom(levels[2][1]), centerTop(levels[3][2]), true);
+        drawLine(centerBottom(levels[2][1]), centerTop(levels[3][3]), false);
+      }
+
+      // initial + on resize
+      requestAnimationFrame(drawConnectors);
+      setTimeout(drawConnectors, 200);
+      window.addEventListener('resize', () => requestAnimationFrame(drawConnectors));
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // CHAOS · 180 labels + toggle animation + scroll trigger
+    // ══════════════════════════════════════════════════════════════════
+    const CHAOS_LABELS = [
+      '/about','/about/mission','/about/leadership','/about/history','/about/accreditation','/about/board',
+      '/academics','/academics/undergraduate','/academics/graduate','/academics/nursing','/academics/business',
+      '/academics/education','/academics/theology','/academics/arts-sciences','/academics/catalog','/academics/majors',
+      '/admissions','/admissions/undergraduate','/admissions/graduate','/admissions/transfer','/admissions/international',
+      '/apply','/apply/undergraduate','/apply/graduate','/apply/transfer','/apply/adult',
+      '/financial-aid','/financial-aid/types','/financial-aid/apply','/scholarships','/net-price-calculator',
+      '/visit','/visit/schedule','/visit/virtual-tour','/visit/directions','/visit/admitted-students',
+      '/student-life','/student-life/housing','/student-life/dining','/student-life/health','/student-life/safety',
+      '/student-life/activities','/student-life/orgs','/student-life/commuter','/student-life/spiritual',
+      '/athletics','/athletics/men','/athletics/women','/athletics/schedules','/athletics/tigers',
+      '/athletics/staff','/athletics/camps','/athletics/facilities','/athletics/roster',
+      '/alumni','/alumni/giving','/alumni/events','/alumni/stories','/alumni/update-info','/alumni/chapters',
+      '/giving','/giving/ways-to-give','/giving/campaign','/giving/scholarships','/giving/planned',
+      '/news','/news/2025','/news/2024','/news/2023','/news/2022','/news/2021','/news/2020','/news/2019',
+      '/news/2018','/news/2017','/news/featured','/news/press','/news/category/academics',
+      '/events','/events/calendar','/events/featured','/events/past','/events/faculty','/events/student',
+      '/faculty','/faculty/directory','/faculty/nursing','/faculty/business','/faculty/education',
+      '/faculty/arts-sciences','/faculty/theology','/faculty/adjunct','/faculty/emeritus',
+      '/staff','/staff/directory','/departments','/departments/it','/departments/hr','/departments/registrar',
+      '/departments/bursar','/departments/facilities','/departments/advancement','/departments/marketing',
+      '/research','/research/faculty','/research/student','/research/grants','/research/ethics',
+      '/library','/library/hours','/library/databases','/library/services','/library/reserves',
+      '/career','/career/students','/career/alumni','/career/employers','/career/resources','/career/coop',
+      '/title-ix','/title-ix/report','/title-ix/policy','/title-ix/resources','/nondiscrimination',
+      '/consumer-information','/policies','/policies/privacy','/policies/accessibility','/policies/copyright',
+      '/mission','/mission/values','/mission/identity','/mission/catholic','/mission/service',
+      '/campus','/campus/map','/campus/parking','/campus/directions','/campus/buildings','/campus/tour',
+      '/covid','/covid-response','/covid-2020','/covid-2021','/covid-updates','/covid-protocols',
+      '/newsletter','/newsletter/signup','/newsletter/archive','/newsletter/alumni','/newsletter/parents',
+      '/parents','/parents/resources','/parents/fafsa','/parents/move-in','/parents/calendar',
+      '/bookstore','/bookstore/online','/bookstore/textbooks','/bookstore/gear','/dining-services',
+      '/registrar','/registrar/forms','/registrar/transcripts','/registrar/catalog','/registrar/calendar',
+      '/bursar','/bursar/payments','/bursar/refunds','/bursar/forms','/bursar/billing',
+      '/counseling','/counseling/appointments','/counseling/resources','/counseling/crisis',
+      '/chapel','/chapel/mass-times','/chapel/ministry','/chapel/retreats','/campus-ministry',
+      '/ese','/online','/online/programs','/online/nursing-rn-bsn','/online/mba','/online/med',
+      '/commencement','/commencement/2025','/commencement/2024','/commencement/photos','/commencement/archive',
+      '/honors','/honors/program','/honors/application','/honors/events','/study-abroad','/study-abroad/programs'
+    ];
+
+    function renderChaos() {
+      const host = document.getElementById('chaosBefore');
+      const frag = document.createDocumentFragment();
+      // Ensure exactly 180 labels
+      const base = CHAOS_LABELS.slice(0, 180);
+      // If the array is short, pad with synthetic paths so we always show 180
+      while (base.length < 180) {
+        base.push('/page/' + (base.length + 1));
+      }
+      base.forEach(path => {
+        const el = document.createElement('span');
+        el.className = 'chaos__before-label';
+        el.textContent = path;
+        frag.appendChild(el);
+      });
+      host.appendChild(frag);
+    }
+
+    function wireChaosToggle() {
+      const chaos = document.getElementById('chaos');
+      const btn = document.getElementById('chaosBtn');
+      const title = chaos.querySelector('.chaos__title');
+
+      const BEFORE_TEXT = 'The current nav · <em>180 top-level sections.</em>';
+      const AFTER_TEXT  = 'The proposed IA · <em>12 sections that breathe.</em>';
+
+      function setState(isAfter) {
+        chaos.classList.toggle('is-after', isAfter);
+        btn.textContent = isAfter ? '← Show current chaos' : 'Show proposed IA →';
+        title.innerHTML = isAfter ? AFTER_TEXT : BEFORE_TEXT;
+      }
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setState(!chaos.classList.contains('is-after'));
+      });
+
+      // Also toggle on the chaos stage itself (easier target)
+      chaos.querySelector('.chaos__stage').addEventListener('click', () => {
+        setState(!chaos.classList.contains('is-after'));
+      });
+
+      // URL hash override for screenshots/deep-links
+      if (location.hash === '#after' || location.search.includes('chaos=after')) {
+        setState(true);
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // CATEGORY TABLE · render + sort + click to select
+    // ══════════════════════════════════════════════════════════════════
+    let sortState = { key: 'total', asc: false };
+
+    function renderCatTable() {
+      const tbody = document.getElementById('catTableBody');
+      const rows = [...CATEGORIES].map(c => ({
+        ...c,
+        pct: c.total > 0 ? (c.archive / c.total) * 100 : 0,
+        isHigh: c.id === 'news'
+      }));
+
+      const comparator = (a, b) => {
+        const k = sortState.key;
+        let av, bv;
+        if (k === 'name' || k === 'rationale') {
+          av = (k === 'rationale' ? a.rationale : a.name).toLowerCase();
+          bv = (k === 'rationale' ? b.rationale : b.name).toLowerCase();
+          return sortState.asc ? av.localeCompare(bv) : bv.localeCompare(av);
+        }
+        if (k === 'pct')   { av = a.pct;   bv = b.pct;   }
+        else if (k === 'keep')    { av = a.keep;    bv = b.keep; }
+        else if (k === 'archive') { av = a.archive; bv = b.archive; }
+        else                      { av = a.total;   bv = b.total; }
+        return sortState.asc ? av - bv : bv - av;
+      };
+      rows.sort(comparator);
+
+      tbody.innerHTML = rows.map(r => `
+        <tr class="${r.isHigh ? 'is-highlight' : ''}" data-cat-id="${r.id}">
+          <td>${r.name}</td>
+          <td>${r.total}</td>
+          <td>${r.keep}</td>
+          <td>${r.archive}</td>
+          <td class="cat__pct">${r.pct.toFixed(1)}%</td>
+          <td class="cat__rationale">${r.rationale}</td>
+        </tr>
+      `).join('');
+
+      // Wire row clicks
+      tbody.querySelectorAll('tr').forEach(tr => {
+        tr.addEventListener('click', () => {
+          const id = tr.dataset.catId;
+          selectCategory(id);
+        });
+      });
+    }
+
+    function wireCatTableSort() {
+      const ths = document.querySelectorAll('#catTable thead th');
+      ths.forEach(th => {
+        th.addEventListener('click', () => {
+          const key = th.dataset.sort;
+          if (sortState.key === key) sortState.asc = !sortState.asc;
+          else { sortState.key = key; sortState.asc = false; }
+
+          ths.forEach(t => { t.classList.remove('is-sort'); t.classList.remove('is-asc'); });
+          th.classList.add('is-sort');
+          if (sortState.asc) th.classList.add('is-asc');
+
+          renderCatTable();
+        });
+      });
+    }
+
+    // ══════════════════════════════════════════════════════════════════
+    // BOOT
+    // ══════════════════════════════════════════════════════════════════
+    function boot() {
+      renderTreemap();
+      renderFlow();
+      renderChaos();
+      renderCatTable();
+      wireCatTableSort();
+      wireChaosToggle();
+      wireDecisionTree();
+      // Default-select News to prime the detail panel state
+      selectCategory('news');
+      // Clear the is-active class so nothing is forcefully highlighted on load
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.tm-cell').forEach(c => c.classList.remove('is-active'));
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+
+    // Re-layout treemap on resize (debounced)
+    let resizeT;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(() => { renderTreemap(); }, 160);
+    });
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

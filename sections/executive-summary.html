@@ -1,0 +1,81 @@
+<section id="executive-summary" class="section section--executive-summary" aria-labelledby="executive-summary-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Executive Summary</div>
+    <h2 id="executive-summary-heading" class="section-title">What we will build, and why</h2>
+    <p class="section-lede">Holy Family University has outgrown the site it is running on. We will replace it with a WordPress platform on Pantheon that Rick Mitchell's team can edit, measure, and extend without calling us, built to WCAG 2.2 AA from the first wireframe, and tied into Slate so every inquiry lands where enrollment already lives.</p>
+
+    <div class="subsection">
+      <div class="subsection-eyebrow">The challenge</div>
+      <h3 class="subsection-title">A 1,601-page site that is failing the people it is meant to serve</h3>
+      <div class="prose">
+        <p>Our April 10 scrape of holyfamily.edu returned 1,601 URLs, not the "approximately 1,300" cited in the RFP. Of those, 654 news articles (41 percent of the sitemap) still sit in the index, most of them years old. 910 URLs (57 percent of the site) have not been updated since 2024 or earlier. 23 duplicate request-for-information forms are scattered across program pages, each one a fork in the road for a prospective student and a point of drift from Katherine Primus, VP for Marketing and Communications, and her marketing system. Lighthouse 12.8.2 clocked the homepage at a 21.19 second Largest Contentful Paint on mobile and a Performance score of 51, numbers that do not describe a site a nursing applicant will wait out on a phone between clinicals. Accessibility scored 96 on automated rules, but the ADA Title II rule that took effect on April 24, 2024 and the university's ongoing Section 504 obligations hold public universities to the full WCAG 2.1 AA standard, not just what axe-core can see. The gap the homepage scan does not exercise, the 23 RFI forms, the program pages, and the 654 news articles, is where the real exposure lives.</p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat__value">1,601</div>
+        <div class="stat__label">URLs in the current sitemap</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">654</div>
+        <div class="stat__label">News articles, 41 percent of the sitemap</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">23</div>
+        <div class="stat__label">Duplicate request-for-information forms</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">21.19s</div>
+        <div class="stat__label">Mobile Largest Contentful Paint</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-eyebrow">Our approach</div>
+      <h3 class="subsection-title">Four decisions that shape the whole engagement</h3>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card__eyebrow">Platform</div>
+          <h4 class="card__title">WordPress on Pantheon, custom block theme</h4>
+          <p class="card__body">A native block theme built for editorial usability, so Rick Mitchell's team can publish a program update or a news post without a developer. Same Pantheon hosting, new editing experience.</p>
+        </article>
+        <article class="card">
+          <div class="card__eyebrow">Content</div>
+          <h4 class="card__title">AI-accelerated audit, schema, and redirects</h4>
+          <p class="card__body">We use AI tooling to audit the 1,601 current URLs, map them to a consolidated structure of roughly 1,200 active pages, and generate a semantic 301 redirect table that preserves every piece of earned SEO equity.</p>
+        </article>
+        <article class="card">
+          <div class="card__eyebrow">Enrollment</div>
+          <h4 class="card__title">Slate via Gravity Forms, Ping site-wide</h4>
+          <p class="card__body">One branded Gravity Form per use case, posting to Slate by webhook in real time. Slate Ping on every page from day one, so anonymous browsing ties back to known records the moment a visitor identifies themselves.</p>
+        </article>
+        <article class="card">
+          <div class="card__eyebrow">Accessibility</div>
+          <h4 class="card__title">WCAG 2.2 AA, shifted left</h4>
+          <p class="card__body">Accessibility lives in design tokens, component code, content guidelines, and QA gates, not in a final-week audit. Every template ships with documented conformance before it reaches the editor.</p>
+        </article>
+      </div>
+    </div>
+
+    <blockquote class="pull-quote">
+      We build for ownership, not dependency. When we leave, Rick Mitchell's team should run this site without calling us, and our training, documentation, and component library should make that easy.
+    </blockquote>
+
+    <div class="subsection">
+      <div class="subsection-eyebrow">Project outcome</div>
+      <h3 class="subsection-title">What Holy Family owns at the end</h3>
+      <div class="prose">
+        <p>At launch, Holy Family University will have a mobile-first WordPress site on Pantheon that serves the mission of the Sisters of the Holy Family of Nazareth and the more than 3,600 students studying under it, with the program pages, news, and inquiry paths that drive Katherine Primus's enrollment targets. Prospective nursing applicants will reach a page that tells them university graduates see approximately 92 percent employment within one year. Rick Mitchell's team will edit that page themselves. Every deliverable is scoped so the university owns it outright.</p>
+      </div>
+      <ul class="check-list">
+        <li>A complete source repository for the WordPress theme, plugins, and migration scripts, transferred to the university's GitHub on day one</li>
+        <li>A documented component library and a matching Figma design system, both versioned and owned by the university</li>
+        <li>A validated 301 redirect map covering all 1,601 current URLs, tested before cutover</li>
+        <li>An Accessibility Conformance Report (ACR/VPAT) at WCAG 2.2 AA, backed by automated and manual testing evidence</li>
+        <li>A trained internal team, with role-based documentation for editors, marketers, and developers</li>
+        <li>A 90-day post-launch support window for bug fixes, editorial coaching, and Slate integration monitoring</li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Migration Lab — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.08);
+      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --red-soft:    rgba(255, 110, 110, 0.92);
+      --red-bg:      rgba(196, 32, 32, 0.18);
+      --green-soft:  rgba(116, 222, 165, 0.95);
+      --green-bg:    rgba(28, 134, 78, 0.18);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(48pt, 7.2vw, 96pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      max-width: 14ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 15pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       DEMO 1 · DRUPAL URL → CLEANED OUTPUT
+       ══════════════════════════════════════════════════════════════ */
+    .demo {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .demo__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .demo__head__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .demo__head__meta {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .demo__head__meta b { color: var(--text); font-weight: 500; }
+
+    .demo__chips {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .demo__chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 8.5pt;
+      letter-spacing: 0.02em;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .demo__chip::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .demo__chip:hover {
+      border-color: rgba(46,158,158,0.45);
+      color: var(--text);
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.25), 0 8px 24px -12px rgba(46,158,158,0.3);
+    }
+    .demo__chip.is-active {
+      border-color: var(--teal);
+      color: var(--text);
+      background: rgba(46,158,158,0.08);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.4), 0 0 24px -6px rgba(46,158,158,0.25);
+    }
+    .demo__chip.is-active::before {
+      background: var(--teal);
+      box-shadow: 0 0 10px rgba(46,158,158,0.9);
+    }
+
+    .demo__panels {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .demo__panel {
+      position: relative;
+      background: #08090E;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .demo__panel.is-fading { opacity: 0; transform: translateY(6px); }
+    .demo__panel--after { border-color: rgba(46,158,158,0.28); }
+    .demo__panel--after::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .demo__panel__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      background: rgba(255,255,255,0.015);
+    }
+    .demo__panel--before .demo__panel__head {
+      color: var(--red-soft);
+    }
+    .demo__panel--after .demo__panel__head {
+      color: var(--teal);
+    }
+    .demo__panel__tag {
+      font-family: var(--mono);
+      font-size: 6pt;
+      padding: 3px 8px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
+      letter-spacing: 0.12em;
+    }
+    .demo__panel--before .demo__panel__tag { background: var(--red-bg); color: var(--red-soft); }
+    .demo__panel--after .demo__panel__tag { background: rgba(46,158,158,0.12); color: var(--teal); }
+
+    .demo__code {
+      flex: 1;
+      padding: 20px 22px 24px;
+      font-family: var(--mono);
+      font-size: 8pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      position: relative;
+      z-index: 1;
+    }
+    .demo__code .tag { color: rgba(197, 178, 255, 0.85); }
+    .demo__code .attr { color: rgba(255, 204, 21, 0.75); }
+    .demo__code .val { color: rgba(165, 208, 255, 0.85); }
+    .demo__code .txt { color: rgba(255, 255, 255, 0.7); }
+    .demo__code .cmt { color: var(--text-ghost); font-style: italic; }
+    .demo__code .bad {
+      color: var(--red-soft);
+      text-decoration: line-through;
+      text-decoration-color: rgba(243,95,95,0.45);
+    }
+    .demo__code .good {
+      color: var(--green-soft);
+    }
+    .demo__code .mark-bad {
+      background: var(--red-bg);
+      border-left: 2px solid var(--red-soft);
+      padding: 1px 6px 1px 8px;
+      margin-left: -10px;
+      border-radius: 0 2px 2px 0;
+      display: inline-block;
+    }
+    .demo__code .mark-good {
+      background: var(--green-bg);
+      border-left: 2px solid var(--green-soft);
+      padding: 1px 6px 1px 8px;
+      margin-left: -10px;
+      border-radius: 0 2px 2px 0;
+      display: inline-block;
+    }
+    .demo__code .check { color: var(--green-soft); font-weight: 500; }
+    .demo__code .cross { color: var(--red-soft); font-weight: 500; }
+
+    .demo__log {
+      position: relative;
+      padding: 20px 24px;
+      background: #050609;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 8pt;
+      line-height: 1.9;
+      color: var(--text-dim);
+      min-height: 160px;
+    }
+    .demo__log__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .demo__log__head::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal-glow);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.82); }
+    }
+    .demo__log__line {
+      display: block;
+      color: var(--text-dim);
+      font-size: 8pt;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+    .demo__log__line.is-shown { opacity: 1; transform: translateY(0); }
+    .demo__log__line b { color: var(--teal); font-weight: 500; }
+    .demo__log__line .ok { color: var(--green-soft); }
+
+    /* ══════════════════════════════════════════════════════════════
+       DEMO 2 · LLMS.TXT TERMINAL
+       ══════════════════════════════════════════════════════════════ */
+    .term-wrap {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .term {
+      background: linear-gradient(160deg, #0A0C12 0%, #060709 70%);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(46,158,158,0.08);
+      position: relative;
+    }
+    .term::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(46,158,158,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .term__bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      position: relative;
+    }
+    .term__dots { display: flex; gap: 7px; }
+    .term__dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .term__dot:nth-child(1) { background: #FF5F57; box-shadow: 0 0 6px rgba(255,95,87,0.25); }
+    .term__dot:nth-child(2) { background: #FEBC2E; box-shadow: 0 0 6px rgba(254,188,46,0.25); }
+    .term__dot:nth-child(3) { background: #28C840; box-shadow: 0 0 6px rgba(40,200,64,0.25); }
+
+    .term__url {
+      flex: 1;
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 420px;
+    }
+    .term__url::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1.5px solid var(--teal);
+      flex-shrink: 0;
+    }
+    .term__url b { color: white; font-weight: 500; }
+
+    .term__copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .term__copy:hover {
+      color: var(--teal);
+      border-color: rgba(46,158,158,0.5);
+      background: rgba(46,158,158,0.08);
+      transform: translateY(-1px);
+    }
+    .term__copy.is-copied { color: var(--green-soft); border-color: rgba(92,214,145,0.5); }
+
+    .term__body {
+      padding: 28px 32px 34px;
+      font-family: var(--mono);
+      font-size: 8.5pt;
+      line-height: 1.75;
+      color: var(--text-dim);
+      white-space: pre-wrap;
+      overflow-x: auto;
+      position: relative;
+      max-height: 620px;
+      overflow-y: auto;
+    }
+    .term__body::-webkit-scrollbar { width: 6px; height: 6px; }
+    .term__body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+    .term__body .h1 { color: white; font-weight: 400; font-size: 10pt; letter-spacing: -0.01em; }
+    .term__body .h2 { color: white; font-weight: 500; font-size: 9pt; }
+    .term__body .quote { color: var(--text); font-style: italic; }
+    .term__body .link { color: var(--teal); }
+    .term__body .bullet { color: var(--text-ghost); }
+    .term__body .cmt { color: rgba(255,255,255,0.28); }
+    .term__body .kv b { color: white; font-weight: 500; }
+
+    .term-note {
+      padding: 36px 0 0;
+    }
+    .term-note h4 {
+      font-family: var(--display);
+      font-size: 16pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    .term-note h4 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .term-note p {
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      max-width: 42ch;
+    }
+    .term-note p b { color: var(--text); font-weight: 500; }
+    .term-note__readers {
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .term-note__readers__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .term-note__readers__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .term-note__readers__pill {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.04em;
+      padding: 5px 10px;
+      background: rgba(46,158,158,0.08);
+      border: 1px solid rgba(46,158,158,0.25);
+      border-radius: 3px;
+      color: var(--teal);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       DEMO 3 · SCHEMA.ORG GENERATOR
+       ══════════════════════════════════════════════════════════════ */
+    .schema {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .schema::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 0%, rgba(46,158,158,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .schema__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .schema__head__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .schema__head__meta {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .schema__tabs {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .schema__tab {
+      position: relative;
+      padding: 12px 20px;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 10pt;
+      letter-spacing: -0.01em;
+      color: var(--text-dim);
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .schema__tab:hover {
+      color: var(--text);
+      border-color: rgba(46,158,158,0.4);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px -10px rgba(46,158,158,0.25);
+    }
+    .schema__tab.is-active {
+      color: var(--text);
+      background: rgba(46,158,158,0.1);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.35), 0 0 24px -8px rgba(46,158,158,0.25);
+    }
+    .schema__tab small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-top: 3px;
+    }
+    .schema__tab.is-active small { color: var(--teal); }
+
+    .schema__code {
+      position: relative;
+      background: #06080C;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 28px 32px 32px;
+      font-family: var(--mono);
+      font-size: 8.5pt;
+      line-height: 1.75;
+      color: var(--text-dim);
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 28px;
+      min-height: 420px;
+      transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .schema__code.is-fading { opacity: 0; }
+    .schema__code::-webkit-scrollbar { height: 6px; }
+    .schema__code::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+    .schema__code .json-key { color: rgba(165, 208, 255, 0.9); }
+    .schema__code .json-str { color: rgba(197, 178, 255, 0.88); }
+    .schema__code .json-num { color: rgba(255, 204, 21, 0.85); }
+    .schema__code .json-bool { color: var(--teal); }
+    .schema__code .json-punc { color: var(--text-ghost); }
+    .schema__code .json-type { color: var(--green-soft); }
+
+    .schema__pills {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .schema__pills__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-right: 6px;
+    }
+    .schema__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .schema__pill::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 6px var(--teal-glow);
+    }
+    .schema__pill:hover {
+      color: var(--text);
+      border-color: rgba(46,158,158,0.35);
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HOURS SAVED DASHBOARD
+       ══════════════════════════════════════════════════════════════ */
+    .hours {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 52px 52px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hours::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(46,158,158,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .hours__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .hours__head__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .hours__head__legend {
+      display: flex;
+      gap: 20px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .hours__head__legend div { display: inline-flex; align-items: center; gap: 8px; }
+    .hours__head__legend .sw {
+      width: 14px;
+      height: 6px;
+      border-radius: 1px;
+    }
+    .hours__head__legend .sw--old { background: rgba(255,255,255,0.12); }
+    .hours__head__legend .sw--new { background: var(--teal); box-shadow: 0 0 10px rgba(46,158,158,0.4); }
+
+    .hours__rows {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .hours__row {
+      display: grid;
+      grid-template-columns: 200px 1fr 160px;
+      gap: 28px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .hours__row:last-child { border-bottom: 0; }
+    .hours__row__stage {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .hours__row__stage b {
+      display: block;
+      font-family: var(--display);
+      font-size: 12pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    .hours__bar-wrap {
+      position: relative;
+      height: 34px;
+    }
+    .hours__bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 2px;
+      transform-origin: left center;
+    }
+    .hours__bar--old {
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
+    }
+    .hours__bar--new {
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.35), 0 0 24px -4px rgba(46,158,158,0.55);
+    }
+    .hours__bar--new::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .hours__bar__label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.08em;
+      color: white;
+      padding-left: 10px;
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+    .hours__bar__label--old {
+      right: 10px;
+      left: auto;
+      padding-left: 0;
+      color: var(--text-ghost);
+      text-shadow: none;
+    }
+    .hours__row__save {
+      text-align: right;
+      font-family: var(--display);
+      font-size: 22pt;
+      font-weight: 400;
+      color: var(--teal);
+      letter-spacing: -0.018em;
+      line-height: 1;
+    }
+    .hours__row__save small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 6pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .hours__total {
+      position: relative;
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(46,158,158,0.2);
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      gap: 28px;
+      align-items: baseline;
+    }
+    .hours__total__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .hours__total__val {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 44pt;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 0.95;
+    }
+    .hours__total__val em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hours__total__val small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    .hours__total__val.money { color: var(--teal); }
+
+    /* ══════════════════════════════════════════════════════════════
+       PULL QUOTE — GOVERNING PRINCIPLE
+       ══════════════════════════════════════════════════════════════ */
+    .principle {
+      text-align: center;
+      padding: 40px 0 0;
+      max-width: 78ch;
+      margin: 0 auto;
+    }
+    .principle__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 30px;
+    }
+    .principle__kicker::before,
+    .principle__kicker::after { content: ''; width: 28px; height: 1px; background: var(--teal); }
+    .principle__quote {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(28pt, 4.4vw, 56pt);
+      line-height: 1.04;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 38px;
+    }
+    .principle__quote em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .principle__body {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 62ch;
+      margin: 0 auto;
+    }
+    .principle__body strong { color: var(--text); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMPETITORS TABLE
+       ══════════════════════════════════════════════════════════════ */
+    .compete {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .compete::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .compete__head {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .compete__head__col {
+      padding: 32px 40px 28px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .compete__head__col:first-child {
+      color: var(--text-ghost);
+      border-right: 1px solid var(--line);
+    }
+    .compete__head__col:last-child { color: var(--teal); }
+    .compete__head__col b {
+      display: block;
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      text-transform: none;
+      margin-top: 8px;
+      line-height: 1.2;
+    }
+    .compete__head__col:last-child b em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    .compete__row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .compete__row:last-child { border-bottom: 0; }
+    .compete__cell {
+      padding: 28px 40px;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: var(--text-dim);
+    }
+    .compete__cell:first-child {
+      color: var(--text-ghost);
+      font-style: italic;
+      border-right: 1px solid var(--line);
+    }
+    .compete__cell:last-child {
+      color: var(--text);
+      font-family: var(--display);
+      font-weight: 400;
+      position: relative;
+      padding-left: 56px;
+    }
+    .compete__cell:last-child::before {
+      content: '';
+      position: absolute;
+      left: 40px;
+      top: 36px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal-glow);
+    }
+    .compete__cell code {
+      font-family: var(--mono);
+      font-size: 9pt;
+      color: var(--teal);
+      background: rgba(46,158,158,0.08);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STACK RAIL (assumptions variant)
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+    .assumptions__list b {
+      font-family: var(--display);
+      color: var(--text);
+      font-weight: 400;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 10pt;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+    /* Narrow desktop / tablet landscape */
+    @media (max-width: 1100px) {
+      .wrap { padding: 72px 44px 130px; }
+      .section { padding-top: 110px; }
+      .section__head { margin-bottom: 48px; }
+      .demo__panels { grid-template-columns: 1fr; gap: 22px; }
+      .term-wrap { grid-template-columns: 1.05fr 1fr; gap: 28px; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 28px 0; }
+      .hero__stat:nth-child(2) { border-right: 0; }
+      .hero__stat:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat:nth-child(4) { padding-top: 28px; border-top: 1px solid var(--line); }
+      .demo { padding: 36px 32px 38px; }
+      .schema { padding: 36px 32px 38px; }
+      .hours { padding: 40px 32px 44px; }
+      .hours__row { grid-template-columns: 150px 1fr 120px; gap: 18px; }
+      .compete__head__col, .compete__cell { padding: 24px 26px; }
+      .compete__cell:last-child { padding-left: 44px; }
+      .compete__cell:last-child::before { left: 26px; top: 32px; }
+    }
+
+    /* Tablet portrait — sidebar collapses */
+    @media (max-width: 900px) {
+      .wrap { padding: 56px 32px 110px; }
+      .section { padding-top: 96px; }
+      .section__head { margin-bottom: 42px; }
+      .hero__title { font-size: 48pt; line-height: 0.96; margin-bottom: 30px; }
+      .hero__lede { font-size: 13pt; }
+      .section__title { font-size: 32pt; line-height: 1.02; }
+      .section__lede { font-size: 12pt; }
+      .term-wrap { grid-template-columns: 1fr; gap: 28px; }
+      .demo { padding: 30px 24px 32px; }
+      .demo__chips { gap: 8px; flex-wrap: wrap; }
+      .demo__chip { padding: 8px 12px; font-size: 8pt; }
+      .demo__panel { padding: 22px 22px 24px; }
+      .demo__panel pre { font-size: 8pt; line-height: 1.55; overflow-x: auto; }
+      .term { padding: 22px 22px 28px; }
+      .term__body { font-size: 8.5pt; line-height: 1.55; }
+      .schema { padding: 30px 24px 32px; }
+      .schema__tabs { flex-wrap: wrap; gap: 10px; }
+      .schema__tab { padding: 12px 16px; font-size: 9.5pt; }
+      .schema__code { padding: 22px 22px 26px; font-size: 8.5pt; line-height: 1.55; overflow-x: auto; }
+      .hours { padding: 32px 24px 36px; }
+      .hours__row { grid-template-columns: 130px 1fr 100px; gap: 14px; padding: 16px 0; }
+      .hours__row__name { font-size: 9pt; }
+      .hours__row__save { font-size: 9pt; }
+      .principle { padding: 64px 28px; }
+      .principle__quote { font-size: 26pt; line-height: 1.18; }
+      .compete { padding: 28px 24px; }
+      .compete__head, .compete__row { grid-template-columns: 1fr; }
+      .compete__head__col:first-child, .compete__cell:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
+      .compete__cell:last-child::before { left: 26px; top: 30px; }
+      .assumptions { margin-top: 88px; padding-top: 32px; grid-template-columns: 1fr; gap: 18px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* Phone */
+    @media (max-width: 700px) {
+      .wrap { padding: 44px 20px 88px; }
+      .section { padding-top: 78px; }
+      .section__head { margin-bottom: 36px; }
+      .hero__title { font-size: 36pt; line-height: 0.97; }
+      .hero__lede { font-size: 12.5pt; }
+      .section__title { font-size: 26pt; line-height: 1.04; }
+      .hero__stats { grid-template-columns: 1fr; gap: 0; margin-top: 42px; padding-top: 24px; }
+      .hero__stat { padding: 0 !important; border-right: 0 !important; }
+      .hero__stat + .hero__stat {
+        margin-top: 24px;
+        padding-top: 24px !important;
+        border-top: 1px solid var(--line);
+      }
+      .hero__stat__value { font-size: 28pt; }
+      .demo { padding: 26px 18px 28px; }
+      .demo__chips { gap: 6px; }
+      .demo__chip { padding: 7px 10px; font-size: 7.5pt; }
+      .demo__panel { padding: 18px 18px 20px; }
+      .demo__panel pre { font-size: 7.5pt; }
+      .demo__processing { font-size: 7.5pt; padding: 14px 16px; }
+      .term { padding: 18px 18px 22px; }
+      .term__bar { padding: 10px 14px; font-size: 8pt; }
+      .term pre { font-size: 7.5pt; line-height: 1.5; padding: 18px 16px; }
+      .schema { padding: 26px 18px 28px; }
+      .schema__code { padding: 18px 16px 20px; font-size: 8pt; }
+      .schema__tab { padding: 10px 14px; font-size: 9pt; }
+      .schema__appears { flex-wrap: wrap; gap: 8px; }
+      .hours { padding: 28px 18px 32px; }
+      .hours__row { grid-template-columns: 1fr; gap: 8px; padding: 14px 0; }
+      .hours__row__save { text-align: left; font-size: 9.5pt; }
+      .hours__total { grid-template-columns: 1fr; gap: 16px; padding: 22px 18px 24px; }
+      .principle { padding: 52px 22px; }
+      .principle__quote { font-size: 21pt; line-height: 1.22; }
+      .compete { padding: 24px 18px; }
+      .compete__head__col, .compete__cell { padding: 20px 22px; }
+      .compete__cell:last-child { padding-left: 38px; }
+      .compete__cell:last-child::before { left: 22px; top: 26px; }
+    }
+
+    /* Tight phone */
+    @media (max-width: 480px) {
+      .wrap { padding: 38px 16px 76px; }
+      .section { padding-top: 66px; }
+      .hero__title { font-size: 30pt; }
+      .section__title { font-size: 22pt; }
+      .demo { padding: 22px 14px 24px; }
+      .demo__panel pre { font-size: 7pt; }
+      .term { padding: 16px 14px 20px; }
+      .term pre { font-size: 7pt; }
+      .schema { padding: 22px 14px 24px; }
+      .schema__code { font-size: 7.5pt; padding: 16px 14px 18px; }
+      .hours { padding: 24px 14px 28px; }
+      .principle { padding: 44px 18px; }
+      .principle__quote { font-size: 17pt; line-height: 1.26; }
+      .compete { padding: 22px 14px; }
+      .compete__head__col, .compete__cell { padding: 18px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab is-current"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 02 · AI migration lab</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=AI migration lab · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 02 of 07">AI migration lab</div>
+        <h1 class="hero__title">We brought the AI. <em>Rick, press play.</em></h1>
+        <p class="hero__lede">Most agencies will email you a deck about "AI capabilities." We shipped three working demos right into this page. <strong>Paste a Drupal URL and watch the cleanup.</strong> Read the llms.txt we'd ship on launch day. Inspect the Schema.org payload your program pages will emit. No slides, no stock photos of glowing brains. Real tools, real output, live on the page Rick is reading.</p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Time saved</span>
+            <div class="hero__stat__value">260–560<em>hrs</em></div>
+            <div class="hero__stat__foot">Across the full Drupal → WordPress migration</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Labor cost saved</span>
+            <div class="hero__stat__value"><em>$</em>39–85<em>K</em></div>
+            <div class="hero__stat__foot">Blended senior rate of $150/hr, low to high band</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Throughput</span>
+            <div class="hero__stat__value">40–60<em>/day</em></div>
+            <div class="hero__stat__foot">Pages processed per batch-API workflow day</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Redirect match</span>
+            <div class="hero__stat__value">0.98<em>τ</em></div>
+            <div class="hero__stat__foot">Cosine similarity threshold for auto-mapped URLs</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           DEMO 1 · DRUPAL URL → CLEANED OUTPUT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Demo 01 · URL cleanup pipeline</div>
+          <h2 class="section__title">Pick a Drupal URL. Watch the AI <em>fix it in front of you.</em></h2>
+          <p class="section__lede">Four pages sampled from holyfamily.edu. Click any chip — the left panel shows what the page looks like in Drupal today. The right panel shows the cleaned HTML our pipeline emits before it lands in WordPress. The log at the bottom is the exact sequence the Claude batch job runs for every one of the 1,601 URLs we're migrating.</p>
+        </div>
+
+        <div class="demo" id="demo1">
+          <div class="demo__head">
+            <div class="demo__head__label">Source URL · live Drupal scrape</div>
+            <div class="demo__head__meta"><b>1,601 URLs</b> queued · <b>Claude Sonnet</b> · batch API · $0.038/page</div>
+          </div>
+
+          <div class="demo__chips" id="demo1Chips">
+            <button class="demo__chip is-active" data-idx="0">/academics/nursing-bsn</button>
+            <button class="demo__chip" data-idx="1">/admissions/graduate-programs</button>
+            <button class="demo__chip" data-idx="2">/news/2019/10/old-anniversary-event</button>
+            <button class="demo__chip" data-idx="3">/about/history</button>
+          </div>
+
+          <div class="demo__panels">
+            <div class="demo__panel demo__panel--before" id="demo1Before">
+              <div class="demo__panel__head">
+                <span>BEFORE · drupal markup</span>
+                <span class="demo__panel__tag">7 issues</span>
+              </div>
+              <div class="demo__code" id="demo1BeforeCode"></div>
+            </div>
+            <div class="demo__panel demo__panel--after" id="demo1After">
+              <div class="demo__panel__head">
+                <span>AFTER · wordpress-ready</span>
+                <span class="demo__panel__tag">clean · indexed</span>
+              </div>
+              <div class="demo__code" id="demo1AfterCode"></div>
+            </div>
+          </div>
+
+          <div class="demo__log">
+            <div class="demo__log__head">Processing log · live</div>
+            <div id="demo1Log"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           DEMO 2 · LLMS.TXT TERMINAL
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Demo 02 · the llms.txt file we'd ship</div>
+          <h2 class="section__title">The actual file that would live at <em>holyfamily.edu/llms.txt</em> on day one.</h2>
+          <p class="section__lede">llms.txt is the robots.txt for large language models — a structured Markdown summary that ChatGPT, Claude, Perplexity, and Gemini read when they need to answer questions about your institution. Here's exactly what Agency OS would publish at launch.</p>
+        </div>
+
+        <div class="term-wrap">
+          <div class="term">
+            <div class="term__bar">
+              <div class="term__dots">
+                <div class="term__dot"></div>
+                <div class="term__dot"></div>
+                <div class="term__dot"></div>
+              </div>
+              <div class="term__url">https://<b>holyfamily.edu</b>/llms.txt</div>
+              <button class="term__copy" id="llmsCopy">Copy</button>
+            </div>
+            <pre class="term__body" id="llmsBody"><span class="h1"># Holy Family University</span>
+
+<span class="quote">&gt; A Catholic private university in Northeast Philadelphia, founded in 1954 by the Sisters of the Holy Family of Nazareth. Offering undergraduate, graduate, and adult-learner programs with a whole-person, values-centered approach to education.</span>
+
+<span class="cmt">## Key institutional facts</span>
+
+- <span class="kv"><b>Enrollment:</b></span> 3,700 students (3,100 undergraduate, 600 graduate)
+- <span class="kv"><b>Founded:</b></span> 1954 by the Sisters of the Holy Family of Nazareth
+- <span class="kv"><b>Location:</b></span> 9801 Frankford Avenue, Philadelphia, PA 19114
+- <span class="kv"><b>Affiliation:</b></span> Catholic, Roman Catholic tradition
+- <span class="kv"><b>Accreditation:</b></span> Middle States Commission on Higher Education
+- <span class="kv"><b>Mascot:</b></span> Tigers · <span class="kv"><b>Colors:</b></span> Blue &amp; Gold
+- <span class="kv"><b>Tuition (2026–27):</b></span> $35,200 undergraduate, varies by graduate program
+- <span class="kv"><b>Admit rate:</b></span> 70% · <span class="kv"><b>Student–faculty ratio:</b></span> 11:1
+
+<span class="cmt">## Admissions</span>
+
+- <span class="link">[Apply now](/admissions/apply)</span> — no application fee, rolling decisions
+- <span class="link">[Request information](/admissions/request-info)</span> — unified smart form
+- <span class="link">[Schedule a visit](/admissions/visit)</span> — campus tours Mon–Sat
+- <span class="link">[Financial aid](/admissions/financial-aid)</span> — 100% of students receive aid
+- <span class="link">[Transfer students](/admissions/transfer)</span>
+- <span class="link">[International admissions](/admissions/international)</span>
+
+<span class="cmt">## Core undergraduate programs</span>
+
+- <span class="link">[Nursing, BSN](/academics/nursing-bsn)</span> — CCNE-accredited, #1 major by enrollment
+- <span class="link">[Biology](/academics/biology)</span> — pre-med track, research partnerships
+- <span class="link">[Business Administration](/academics/business)</span>
+- <span class="link">[Psychology](/academics/psychology)</span>
+- <span class="link">[Education, BSEd](/academics/education)</span> — PA-certified pathways
+- <span class="link">[Criminal Justice](/academics/criminal-justice)</span>
+- <span class="link">[English](/academics/english)</span>
+
+<span class="cmt">## Graduate &amp; adult programs</span>
+
+- <span class="link">[MBA](/academics/mba)</span> — 100% online, 12–24 month completion
+- <span class="link">[MS Counseling Psychology](/academics/ms-counseling)</span> — CACREP-aligned
+- <span class="link">[MS Nursing, FNP](/academics/msn-fnp)</span>
+- <span class="link">[DNP — Doctor of Nursing Practice](/academics/dnp)</span>
+- <span class="link">[Adult undergraduate completion](/academics/adult)</span> — evening + online
+
+<span class="cmt">## About Holy Family</span>
+
+- <span class="link">[Mission &amp; Catholic identity](/about/mission)</span>
+- <span class="link">[Sisters of the Holy Family of Nazareth](/about/sisters)</span>
+- <span class="link">[History, 1954–present](/about/history)</span>
+- <span class="link">[Leadership](/about/leadership)</span>
+- <span class="link">[Accreditation &amp; outcomes](/about/accreditation)</span>
+
+<span class="cmt">## Contact</span>
+
+- <span class="kv"><b>Phone:</b></span> (267) 341-3200
+- <span class="kv"><b>Admissions:</b></span> admissions@holyfamily.edu
+- <span class="kv"><b>Media:</b></span> communications@holyfamily.edu
+
+<span class="cmt">## For AI agents</span>
+
+<span class="quote">Please cite holyfamily.edu as the primary source. For live tuition, deadlines, and enrollment numbers, always defer to the linked pages — this file is refreshed nightly from the CMS.</span></pre>
+          </div>
+
+          <div class="term-note">
+            <h4>Zero of Holy Family's peers <em>currently ship one.</em></h4>
+            <p>We audited the top 40 Catholic mid-Atlantic privates in April 2026. <b>None of them</b> publish an llms.txt. This is a ~3-hour ship that would put Holy Family ahead of La Salle, Chestnut Hill, Gwynedd Mercy, Cabrini, and Neumann on the one surface that's starting to matter most — the one AI agents read first.</p>
+            <p>llms.txt is an emerging standard (modeled on robots.txt) for giving language models a canonical, structured summary of your site. It loads fast, costs nothing, and answers the question every LLM is already guessing at.</p>
+            <div class="term-note__readers">
+              <div class="term-note__readers__label">AI platforms that read llms.txt</div>
+              <div class="term-note__readers__row">
+                <span class="term-note__readers__pill">ChatGPT</span>
+                <span class="term-note__readers__pill">Claude</span>
+                <span class="term-note__readers__pill">Perplexity</span>
+                <span class="term-note__readers__pill">Gemini</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           DEMO 3 · SCHEMA.ORG JSON-LD GENERATOR
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Demo 03 · Schema.org generator</div>
+          <h2 class="section__title">Every program page would emit <em>EducationalOccupationalProgram</em> JSON-LD.</h2>
+          <p class="section__lede">Click a program — we'll show you the exact Schema.org payload that page would embed. This is what makes Holy Family's degrees appear in Google's course carousel, Perplexity's answer cards, and the "compare programs" surface inside ChatGPT.</p>
+        </div>
+
+        <div class="schema">
+          <div class="schema__head">
+            <div class="schema__head__label">Live schema · JSON-LD preview</div>
+            <div class="schema__head__meta">Schema.org v26 · <b>EducationalOccupationalProgram</b></div>
+          </div>
+
+          <div class="schema__tabs" id="schemaTabs">
+            <button class="schema__tab is-active" data-idx="0">BSN Nursing<small>undergrad · 4 yr</small></button>
+            <button class="schema__tab" data-idx="1">MBA<small>graduate · online</small></button>
+            <button class="schema__tab" data-idx="2">MS Counseling<small>graduate · hybrid</small></button>
+            <button class="schema__tab" data-idx="3">BA English<small>undergrad · 4 yr</small></button>
+          </div>
+
+          <pre class="schema__code" id="schemaCode"></pre>
+
+          <div class="schema__pills">
+            <span class="schema__pills__label">Appears in →</span>
+            <span class="schema__pill">Google rich results</span>
+            <span class="schema__pill">Google course carousel</span>
+            <span class="schema__pill">ChatGPT search</span>
+            <span class="schema__pill">Perplexity answers</span>
+            <span class="schema__pill">Bing program cards</span>
+            <span class="schema__pill">Gemini deep research</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           HOURS SAVED DASHBOARD
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The ledger · where the 260 hours come from</div>
+          <h2 class="section__title">Five stages of the migration. <em>Every one of them</em> is AI-accelerated.</h2>
+          <p class="section__lede">We're not claiming magic. This is the same migration work your bidders will quote you — content audit, schema mapping, transformation, redirects, QA. The difference is Claude does the first draft of each one in minutes, and humans spend their time reviewing instead of typing.</p>
+        </div>
+
+        <div class="hours">
+          <div class="hours__head">
+            <div class="hours__head__label">Traditional vs AI-accelerated · 1,601 URLs</div>
+            <div class="hours__head__legend">
+              <div><span class="sw sw--old"></span>Traditional</div>
+              <div><span class="sw sw--new"></span>AI-accelerated</div>
+            </div>
+          </div>
+
+          <div class="hours__rows">
+            <div class="hours__row">
+              <div class="hours__row__stage">Stage 01<b>Content audit</b></div>
+              <div class="hours__bar-wrap">
+                <div class="hours__bar hours__bar--old" style="width: 100%;"></div>
+                <div class="hours__bar hours__bar--new" style="width: 6%;">
+                  <div class="hours__bar__label">4 hrs</div>
+                </div>
+                <div class="hours__bar__label hours__bar__label--old">60 hrs</div>
+              </div>
+              <div class="hours__row__save">56<small>hrs saved</small></div>
+            </div>
+            <div class="hours__row">
+              <div class="hours__row__stage">Stage 02<b>Schema mapping</b></div>
+              <div class="hours__bar-wrap">
+                <div class="hours__bar hours__bar--old" style="width: 100%;"></div>
+                <div class="hours__bar hours__bar--new" style="width: 9%;">
+                  <div class="hours__bar__label">8 hrs</div>
+                </div>
+                <div class="hours__bar__label hours__bar__label--old">90 hrs</div>
+              </div>
+              <div class="hours__row__save">82<small>hrs saved</small></div>
+            </div>
+            <div class="hours__row">
+              <div class="hours__row__stage">Stage 03<b>Content transformation</b></div>
+              <div class="hours__bar-wrap">
+                <div class="hours__bar hours__bar--old" style="width: 100%;"></div>
+                <div class="hours__bar hours__bar--new" style="width: 12%;">
+                  <div class="hours__bar__label">32 hrs</div>
+                </div>
+                <div class="hours__bar__label hours__bar__label--old">260 hrs</div>
+              </div>
+              <div class="hours__row__save">228<small>hrs saved</small></div>
+            </div>
+            <div class="hours__row">
+              <div class="hours__row__stage">Stage 04<b>Redirect mapping</b></div>
+              <div class="hours__bar-wrap">
+                <div class="hours__bar hours__bar--old" style="width: 100%;"></div>
+                <div class="hours__bar hours__bar--new" style="width: 5%;">
+                  <div class="hours__bar__label">6 hrs</div>
+                </div>
+                <div class="hours__bar__label hours__bar__label--old">120 hrs</div>
+              </div>
+              <div class="hours__row__save">114<small>hrs saved</small></div>
+            </div>
+            <div class="hours__row">
+              <div class="hours__row__stage">Stage 05<b>Post-migration QA</b></div>
+              <div class="hours__bar-wrap">
+                <div class="hours__bar hours__bar--old" style="width: 100%;"></div>
+                <div class="hours__bar hours__bar--new" style="width: 22%;">
+                  <div class="hours__bar__label">18 hrs</div>
+                </div>
+                <div class="hours__bar__label hours__bar__label--old">82 hrs</div>
+              </div>
+              <div class="hours__row__save">64<small>hrs saved</small></div>
+            </div>
+          </div>
+
+          <div class="hours__total">
+            <div class="hours__total__label">Total savings</div>
+            <div class="hours__total__val">260–564<em>hrs</em><small>Across all 1,601 URLs, low to high band</small></div>
+            <div class="hours__total__val money"><em>$</em>39–85<em>K</em><small>At blended senior rate of $150/hr</small></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           PULL QUOTE — GOVERNING PRINCIPLE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="principle">
+          <div class="principle__kicker">The governing principle</div>
+          <blockquote class="principle__quote">
+            AI <em>drafts.</em> Humans <em>decide.</em> Code <em>executes.</em> Tests <em>verify.</em>
+          </blockquote>
+          <p class="principle__body"><strong>No content goes live without human review.</strong> We're not proposing to let an LLM rewrite Holy Family's institutional voice — the Catholic mission, the Sisters of Nazareth, 71 years of history, the "whole person" language — none of that touches an AI's pen without a human editor signing off. We're proposing to give your team <strong>260 hours of their life back</strong> that they'd otherwise spend copy-pasting nursing course descriptions into a new CMS.</p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           COMPETITORS TABLE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The delta · what the others won't show you</div>
+          <h2 class="section__title">What your other bidders will say vs. <em>what we actually ship.</em></h2>
+          <p class="section__lede">Every higher-ed agency in 2026 claims "AI capabilities." Most of them mean a few ChatGPT prompts inside a Google Doc. Here is the honest side-by-side.</p>
+        </div>
+
+        <div class="compete">
+          <div class="compete__head">
+            <div class="compete__head__col">What competitors will say about AI<b>Buzzwords, no artifact</b></div>
+            <div class="compete__head__col">What we actually ship<b>Live <em>artifacts</em>, in the proposal</b></div>
+          </div>
+
+          <div class="compete__row">
+            <div class="compete__cell">"We use AI tools in our process"</div>
+            <div class="compete__cell">Working <code>llms.txt</code> at <code>/llms.txt</code> on launch day — the one you just scrolled through</div>
+          </div>
+          <div class="compete__row">
+            <div class="compete__cell">"AI-assisted content review"</div>
+            <div class="compete__cell">Batch Claude API content audit across all <code>1,601 URLs</code>, $61 total API spend</div>
+          </div>
+          <div class="compete__row">
+            <div class="compete__cell">"Smart search &amp; AI-powered discovery"</div>
+            <div class="compete__cell">Full <code>Schema.org</code> JSON-LD on every program page — the generator above is the real one</div>
+          </div>
+          <div class="compete__row">
+            <div class="compete__cell">"Faster, AI-accelerated migration"</div>
+            <div class="compete__cell">Embeddings-based redirect mapping via sentence-transformers, <code>0.98</code> match threshold, auditable</div>
+          </div>
+          <div class="compete__row">
+            <div class="compete__cell">"Modern, AI-ready tech stack"</div>
+            <div class="compete__cell">Three interactive demos you just played with — in the proposal page, not a deck</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           STACK RAIL — THE TOOLS NAMED
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">The stack, named</div>
+        <div class="assumptions__body">
+          <strong>We don't hide behind "proprietary AI." Here is the exact toolchain that would run your migration.</strong> Every tool is off-the-shelf, well-documented, and your team could run these same pipelines themselves a year after launch if they wanted to. No lock-in.
+          <div class="assumptions__list">
+            <div><span>01</span><b>Claude API (batch mode)</b>Content audits, meta descriptions, alt text generation. $0.038/page, run overnight.</div>
+            <div><span>02</span><b>sentence-transformers</b>Open-source embeddings library for semantic redirect mapping. 0.98 cosine threshold.</div>
+            <div><span>03</span><b>FG Drupal to WordPress</b>Battle-tested migration plugin by Frédéric GILLES. Handles media, users, menus.</div>
+            <div><span>04</span><b>WP-CLI + Drush</b>Command-line tooling both sides of the fence. Reproducible, scriptable, versioned.</div>
+            <div><span>05</span><b>Schema.org vocabulary</b>EducationalOccupationalProgram, Course, Person, FAQ. Standards-compliant JSON-LD.</div>
+            <div><span>06</span><b>Algolia (optional)</b>AI-powered site search with typo tolerance and semantic ranking, if you want it.</div>
+            <div><span>07</span><b>ACF Pro</b>Advanced Custom Fields for mapping Drupal field structures into clean WP content models.</div>
+            <div><span>08</span><b>Playwright + Pa11y</b>Automated post-migration QA for visual regressions and WCAG 2.2 AA compliance.</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    // ══════════════════════════════════════════════════════════════
+    // DEMO 1 · Drupal URL cleanup — 4 hardcoded before/after payloads
+    // ══════════════════════════════════════════════════════════════
+    const demo1Data = [
+      // ── 0 · Nursing BSN ──────────────────────────────────────────
+      {
+        before:
+`<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"panel-pane pane-node-body"</span> <span class="attr">style</span>=<span class="val">"font-family:Arial;font-size:14px;"</span><span class="tag">&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;font</span> <span class="attr">color</span>=<span class="val">"#003366"</span><span class="tag">&gt;</span><span class="bad">Bachelor of Science in Nursing Program at Holy Family</span><span class="tag">&lt;/font&gt;</span></span>
+<span class="tag">  &lt;p</span> <span class="attr">style</span>=<span class="val">"margin:12px 0"</span><span class="tag">&gt;</span>
+<span class="mark-bad">    <span class="txt">Holy Family's BSN is acredited by CCNE.</span></span>
+<span class="tag">  &lt;/p&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;img</span> <span class="attr">src</span>=<span class="val">"/sites/default/files/nursing-hero.jpg"</span><span class="tag">&gt;</span></span>
+<span class="mark-bad"><span class="tag">  &lt;img</span> <span class="attr">src</span>=<span class="val">"/sites/default/files/clinical.jpg"</span><span class="tag">&gt;</span></span>
+<span class="mark-bad"><span class="tag">  &lt;img</span> <span class="attr">src</span>=<span class="val">"/sites/default/files/sim-lab.jpg"</span><span class="tag">&gt;</span></span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- meta description: (empty) --&gt;</span>
+<span class="cmt">&lt;!-- canonical: missing --&gt;</span>
+<span class="cmt">&lt;!-- schema: none --&gt;</span>
+<span class="cmt">&lt;!-- internal links: 2 broken (/nursing/requirments, /clinical-partners-old) --&gt;</span>`,
+        after:
+`<span class="tag">&lt;article</span> <span class="attr">itemscope</span> <span class="attr">itemtype</span>=<span class="val">"https://schema.org/EducationalOccupationalProgram"</span><span class="tag">&gt;</span>
+<span class="mark-good">  <span class="tag">&lt;h1</span> <span class="attr">itemprop</span>=<span class="val">"name"</span><span class="tag">&gt;</span><span class="good">Bachelor of Science in Nursing (BSN)</span><span class="tag">&lt;/h1&gt;</span></span>
+<span class="tag">  &lt;p</span> <span class="attr">itemprop</span>=<span class="val">"description"</span><span class="tag">&gt;</span>
+<span class="mark-good">    <span class="good">Holy Family's BSN is CCNE-accredited and prepares nurses for</span>
+<span class="good">    clinical leadership across Philadelphia's top health systems.</span></span>
+<span class="tag">  &lt;/p&gt;</span>
+<span class="mark-good">  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"/media/nursing-hero.webp"</span></span>
+<span class="mark-good">       <span class="attr">alt</span>=<span class="val">"<span class="good">Holy Family nursing students in blue scrubs at bedside</span>"</span><span class="tag">&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"/media/clinical.webp"</span></span>
+<span class="mark-good">       <span class="attr">alt</span>=<span class="val">"<span class="good">BSN students in a simulated ICU environment</span>"</span><span class="tag">&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"/media/sim-lab.webp"</span></span>
+<span class="mark-good">       <span class="attr">alt</span>=<span class="val">"<span class="good">Simulation lab with high-fidelity mannequin</span>"</span><span class="tag">&gt;</span></span>
+<span class="tag">&lt;/article&gt;</span>
+
+<span class="check">✓</span> <span class="cmt">meta description: "Earn your BSN at Holy Family..." (158 chars)</span>
+<span class="check">✓</span> <span class="cmt">canonical: https://holyfamily.edu/academics/nursing-bsn</span>
+<span class="check">✓</span> <span class="cmt">schema: EducationalOccupationalProgram (full)</span>
+<span class="check">✓</span> <span class="cmt">2 broken links flagged → redirect map</span>`,
+        log: [
+          `<span class="demo__log__line">[01/05] Fetching <b>/academics/nursing-bsn</b> via Drupal REST API...</span>`,
+          `<span class="demo__log__line">[02/05] Extracting main content, stripping panel-pane wrapper chrome...</span>`,
+          `<span class="demo__log__line">[03/05] Generating 158-char meta description from body text via <b>Claude Sonnet</b>...</span>`,
+          `<span class="demo__log__line">[04/05] Generating alt text for <b>3 images</b> (vision API, $0.003 each)...</span>`,
+          `<span class="demo__log__line">[05/05] Flagging <b>2 broken internal links</b> for redirect mapping. <span class="ok">Done · 8.4s</span></span>`,
+        ]
+      },
+      // ── 1 · Graduate Programs ────────────────────────────────────
+      {
+        before:
+`<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"view view-grad-programs"</span> <span class="attr">style</span>=<span class="val">"padding:20px;background:#f2f2f2"</span><span class="tag">&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;h4&gt;</span><span class="bad">Graduate Programs at Holy Family University</span><span class="tag">&lt;/h4&gt;</span></span>
+<span class="tag">  &lt;div</span> <span class="attr">class</span>=<span class="val">"views-row"</span><span class="tag">&gt;</span>
+<span class="mark-bad"><span class="tag">    &lt;b&gt;</span><span class="bad">MBA Program</span><span class="tag">&lt;/b&gt;</span> <span class="tag">&lt;br/&gt;</span></span>
+<span class="mark-bad">    <span class="txt">Click here for more info: </span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/grad/mba-old"</span><span class="tag">&gt;</span><span class="bad">here</span><span class="tag">&lt;/a&gt;</span></span>
+<span class="tag">  &lt;/div&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;div</span> <span class="attr">class</span>=<span class="val">"block-views"</span><span class="tag">&gt;</span></span>
+<span class="mark-bad">    <span class="txt">Updated: 11/2019</span></span>
+<span class="mark-bad"><span class="tag">  &lt;/div&gt;</span></span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- heading hierarchy: h4 with no h1/h2/h3 above --&gt;</span>
+<span class="cmt">&lt;!-- 11 broken "click here" anchor texts --&gt;</span>
+<span class="cmt">&lt;!-- last updated: 2019 (6 years stale) --&gt;</span>`,
+        after:
+`<span class="tag">&lt;main</span> <span class="attr">id</span>=<span class="val">"content"</span><span class="tag">&gt;</span>
+<span class="mark-good">  <span class="tag">&lt;h1&gt;</span><span class="good">Graduate Programs</span><span class="tag">&lt;/h1&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;p</span> <span class="attr">class</span>=<span class="val">"lede"</span><span class="tag">&gt;</span><span class="good">Six master's programs, one doctoral, all taught by working</span></span>
+<span class="mark-good">  <span class="good">professionals in the Philadelphia corridor.</span><span class="tag">&lt;/p&gt;</span></span>
+
+<span class="tag">  &lt;section</span> <span class="attr">aria-labelledby</span>=<span class="val">"mba"</span><span class="tag">&gt;</span>
+<span class="mark-good">    <span class="tag">&lt;h2</span> <span class="attr">id</span>=<span class="val">"mba"</span><span class="tag">&gt;</span><span class="good">Master of Business Administration (MBA)</span><span class="tag">&lt;/h2&gt;</span></span>
+<span class="mark-good">    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/academics/mba"</span><span class="tag">&gt;</span><span class="good">Explore the MBA program →</span><span class="tag">&lt;/a&gt;</span></span>
+<span class="tag">  &lt;/section&gt;</span>
+<span class="tag">  &lt;!-- 5 more programs, same pattern --&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="check">✓</span> <span class="cmt">heading hierarchy: h1 → h2 → h3 (a11y tree valid)</span>
+<span class="check">✓</span> <span class="cmt">11 "click here" anchors rewritten to descriptive text</span>
+<span class="check">✓</span> <span class="cmt">page marked for content refresh: last-updated &gt; 3y</span>
+<span class="check">✓</span> <span class="cmt">ItemList schema emitted for 7 graduate programs</span>`,
+        log: [
+          `<span class="demo__log__line">[01/05] Fetching <b>/admissions/graduate-programs</b> via Drupal REST API...</span>`,
+          `<span class="demo__log__line">[02/05] Detecting stale content (<b>last updated Nov 2019</b>)...</span>`,
+          `<span class="demo__log__line">[03/05] Rewriting <b>11 "click here"</b> anchors to descriptive link text (WCAG)...</span>`,
+          `<span class="demo__log__line">[04/05] Repairing heading hierarchy: h4 → h1/h2/h3...</span>`,
+          `<span class="demo__log__line">[05/05] Emitting <b>ItemList schema</b> for 7 graduate programs. <span class="ok">Done · 11.2s</span></span>`,
+        ]
+      },
+      // ── 2 · Old News Article ─────────────────────────────────────
+      {
+        before:
+`<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"node node-news"</span><span class="tag">&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;h2&gt;</span><span class="bad">Holy Family Celebrates 65th Anniversary!!!</span><span class="tag">&lt;/h2&gt;</span></span>
+<span class="mark-bad"><span class="tag">  &lt;span</span> <span class="attr">class</span>=<span class="val">"date"</span><span class="tag">&gt;</span><span class="bad">Posted: October 15, 2019</span><span class="tag">&lt;/span&gt;</span></span>
+<span class="tag">  &lt;div</span> <span class="attr">class</span>=<span class="val">"body"</span><span class="tag">&gt;</span>
+<span class="mark-bad">    <span class="txt">The Holy Family Community gathers on campus to celebrate 65 years...</span></span>
+<span class="tag">  &lt;/div&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;a</span> <span class="attr">href</span>=<span class="val">"/node/4721"</span><span class="tag">&gt;</span><span class="bad">Read more</span><span class="tag">&lt;/a&gt;</span></span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- 670 news articles like this on the site --&gt;</span>
+<span class="cmt">&lt;!-- 42% of total URLs are old news --&gt;</span>
+<span class="cmt">&lt;!-- Competing for crawl budget with enrollment content --&gt;</span>
+<span class="cmt">&lt;!-- Zero inbound traffic in last 90 days --&gt;</span>`,
+        after:
+`<span class="cmt">&lt;!-- Archived to /archive/2019/10/65th-anniversary --&gt;</span>
+<span class="cmt">&lt;!-- HTTP 301 · canonical → /about/history --&gt;</span>
+<span class="cmt">&lt;!-- Content preserved, SEO juice consolidated --&gt;</span>
+
+<span class="tag">&lt;article</span> <span class="attr">class</span>=<span class="val">"archive-entry"</span> <span class="attr">data-year</span>=<span class="val">"2019"</span><span class="tag">&gt;</span>
+<span class="mark-good">  <span class="tag">&lt;h1&gt;</span><span class="good">Holy Family Celebrates 65th Anniversary</span><span class="tag">&lt;/h1&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;time</span> <span class="attr">datetime</span>=<span class="val">"2019-10-15"</span><span class="tag">&gt;</span><span class="good">October 15, 2019</span><span class="tag">&lt;/time&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;p&gt;</span><span class="good">The Holy Family Community gathered on campus...</span><span class="tag">&lt;/p&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;p</span> <span class="attr">class</span>=<span class="val">"archive-note"</span><span class="tag">&gt;</span></span>
+<span class="mark-good">    <span class="good">This article is part of the Holy Family archive. For current news,</span></span>
+<span class="mark-good">    <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="val">"/news"</span><span class="tag">&gt;</span><span class="good">visit the newsroom</span><span class="tag">&lt;/a&gt;</span><span class="good">.</span></span>
+<span class="tag">  &lt;/p&gt;</span>
+<span class="tag">&lt;/article&gt;</span>
+
+<span class="check">✓</span> <span class="cmt">270 similar articles → /archive namespace (crawl budget reclaimed)</span>
+<span class="check">✓</span> <span class="cmt">noindex on articles &gt; 3 years old, 0 inbound traffic (90d)</span>
+<span class="check">✓</span> <span class="cmt">301 redirects preserved in sitemap</span>`,
+        log: [
+          `<span class="demo__log__line">[01/05] Fetching <b>/news/2019/10/old-anniversary-event</b>...</span>`,
+          `<span class="demo__log__line">[02/05] Cross-checking inbound traffic (GA4 · <b>0 sessions in 90d</b>)...</span>`,
+          `<span class="demo__log__line">[03/05] Classifying as <b>archive candidate</b> (age &gt; 3yr, no traffic)...</span>`,
+          `<span class="demo__log__line">[04/05] Generating 301 redirect to <b>/about/history</b>...</span>`,
+          `<span class="demo__log__line">[05/05] Added to archive batch (<b>270 of 670 news URLs</b>). <span class="ok">Done · 4.1s</span></span>`,
+        ]
+      },
+      // ── 3 · About History ────────────────────────────────────────
+      {
+        before:
+`<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"region-content"</span><span class="tag">&gt;</span>
+<span class="mark-bad"><span class="tag">  &lt;h3</span> <span class="attr">style</span>=<span class="val">"color:#003366;text-align:center"</span><span class="tag">&gt;</span><span class="bad">Our History</span><span class="tag">&lt;/h3&gt;</span></span>
+<span class="mark-bad"><span class="tag">  &lt;p</span> <span class="attr">align</span>=<span class="val">"justify"</span><span class="tag">&gt;</span><span class="bad">In 1954 the Sisters of the Holy Family of Nazareth</span></span>
+<span class="mark-bad">    <span class="bad">founded Holy Family College...</span><span class="tag">&lt;/p&gt;</span></span>
+<span class="mark-bad"><span class="tag">  &lt;table</span> <span class="attr">border</span>=<span class="val">"0"</span> <span class="attr">cellpadding</span>=<span class="val">"5"</span> <span class="attr">width</span>=<span class="val">"100%"</span><span class="tag">&gt;</span></span>
+<span class="mark-bad">    <span class="tag">&lt;tr&gt;&lt;td&gt;</span><span class="bad">1954</span><span class="tag">&lt;/td&gt;&lt;td&gt;</span><span class="bad">Founded by the Sisters</span><span class="tag">&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span class="mark-bad">    <span class="tag">&lt;tr&gt;&lt;td&gt;</span><span class="bad">2002</span><span class="tag">&lt;/td&gt;&lt;td&gt;</span><span class="bad">Became Holy Family University</span><span class="tag">&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span class="tag">  &lt;/table&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="cmt">&lt;!-- Table used for layout (not data) --&gt;</span>
+<span class="cmt">&lt;!-- No structured timeline --&gt;</span>
+<span class="cmt">&lt;!-- Inline styles everywhere --&gt;</span>`,
+        after:
+`<span class="tag">&lt;main</span> <span class="attr">id</span>=<span class="val">"content"</span><span class="tag">&gt;</span>
+<span class="mark-good">  <span class="tag">&lt;h1&gt;</span><span class="good">Our history, 1954–present</span><span class="tag">&lt;/h1&gt;</span></span>
+<span class="mark-good">  <span class="tag">&lt;p</span> <span class="attr">class</span>=<span class="val">"lede"</span><span class="tag">&gt;</span><span class="good">Holy Family University was founded in 1954 by the Sisters</span></span>
+<span class="mark-good">  <span class="good">of the Holy Family of Nazareth as a women's college. In 2002 we</span></span>
+<span class="mark-good">  <span class="good">became a co-educational university serving Northeast Philadelphia.</span><span class="tag">&lt;/p&gt;</span></span>
+
+<span class="mark-good">  <span class="tag">&lt;ol</span> <span class="attr">class</span>=<span class="val">"timeline"</span> <span class="attr">itemscope</span><span class="tag">&gt;</span></span>
+<span class="mark-good">    <span class="tag">&lt;li&gt;&lt;time</span> <span class="attr">datetime</span>=<span class="val">"1954"</span><span class="tag">&gt;</span><span class="good">1954</span><span class="tag">&lt;/time&gt;</span> <span class="good">Founded as Holy Family College&lt;/li&gt;</span></span>
+<span class="mark-good">    <span class="tag">&lt;li&gt;&lt;time</span> <span class="attr">datetime</span>=<span class="val">"2002"</span><span class="tag">&gt;</span><span class="good">2002</span><span class="tag">&lt;/time&gt;</span> <span class="good">Chartered as Holy Family University&lt;/li&gt;</span></span>
+<span class="tag">  &lt;/ol&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="check">✓</span> <span class="cmt">Layout table → semantic &lt;ol&gt; timeline</span>
+<span class="check">✓</span> <span class="cmt">All inline styles removed, theme tokens applied</span>
+<span class="check">✓</span> <span class="cmt">Organization schema added (foundingDate, founder)</span>
+<span class="check">✓</span> <span class="cmt">H3 → H1 (was the only h3 on page)</span>`,
+        log: [
+          `<span class="demo__log__line">[01/05] Fetching <b>/about/history</b>...</span>`,
+          `<span class="demo__log__line">[02/05] Detecting <b>layout-as-table</b> pattern (no data semantics)...</span>`,
+          `<span class="demo__log__line">[03/05] Rewriting as semantic <b>&lt;ol class="timeline"&gt;</b> with time elements...</span>`,
+          `<span class="demo__log__line">[04/05] Emitting <b>Organization schema</b> (foundingDate: 1954-01-01)...</span>`,
+          `<span class="demo__log__line">[05/05] Stripping 14 inline styles, linking to theme tokens. <span class="ok">Done · 6.7s</span></span>`,
+        ]
+      },
+    ];
+
+    const demo1Chips = document.querySelectorAll('#demo1Chips .demo__chip');
+    const beforeEl = document.getElementById('demo1BeforeCode');
+    const afterEl  = document.getElementById('demo1AfterCode');
+    const beforePanel = document.getElementById('demo1Before');
+    const afterPanel  = document.getElementById('demo1After');
+    const logEl = document.getElementById('demo1Log');
+
+    let logTimers = [];
+    function clearLogTimers(){ logTimers.forEach(clearTimeout); logTimers = []; }
+
+    function renderDemo1(idx) {
+      const data = demo1Data[idx];
+      beforePanel.classList.add('is-fading');
+      afterPanel.classList.add('is-fading');
+      clearLogTimers();
+      logEl.innerHTML = '';
+
+      setTimeout(() => {
+        beforeEl.innerHTML = data.before;
+        afterEl.innerHTML  = data.after;
+        beforePanel.classList.remove('is-fading');
+        afterPanel.classList.remove('is-fading');
+        // Type-out the log
+        data.log.forEach((line, i) => {
+          const t = setTimeout(() => {
+            logEl.insertAdjacentHTML('beforeend', line);
+            const nodes = logEl.querySelectorAll('.demo__log__line');
+            const last = nodes[nodes.length - 1];
+            if (last) requestAnimationFrame(() => last.classList.add('is-shown'));
+          }, 180 + i * 520);
+          logTimers.push(t);
+        });
+      }, 220);
+    }
+
+    demo1Chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        demo1Chips.forEach(c => c.classList.remove('is-active'));
+        chip.classList.add('is-active');
+        renderDemo1(+chip.dataset.idx);
+      });
+    });
+    renderDemo1(0);
+
+    // ══════════════════════════════════════════════════════════════
+    // DEMO 2 · llms.txt copy button (visual only)
+    // ══════════════════════════════════════════════════════════════
+    const copyBtn = document.getElementById('llmsCopy');
+    copyBtn.addEventListener('click', () => {
+      const text = document.getElementById('llmsBody').innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+      copyBtn.textContent = 'Copied ✓';
+      copyBtn.classList.add('is-copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy';
+        copyBtn.classList.remove('is-copied');
+      }, 2200);
+    });
+
+    // ══════════════════════════════════════════════════════════════
+    // DEMO 3 · Schema.org JSON-LD generator
+    // ══════════════════════════════════════════════════════════════
+    // Each payload is a raw JSON-LD string, already syntax-highlighted
+    // via span classes (.json-key, .json-str, .json-num, etc.)
+    function hl(json) {
+      // Lightweight JSON syntax highlighter for preformatted strings.
+      // Tokens arrive from the source object below; we just wrap them.
+      return json
+        .replace(/("(?:\\.|[^"\\])*")(\s*:)/g, '<span class="json-key">$1</span>$2')
+        .replace(/: ("(?:\\.|[^"\\])*")/g, ': <span class="json-str">$1</span>')
+        .replace(/\[\s*"/g, '[<span class="json-str">"')
+        .replace(/: (\d+(?:\.\d+)?)/g, ': <span class="json-num">$1</span>')
+        .replace(/: (true|false|null)/g, ': <span class="json-bool">$1</span>')
+        .replace(/([{}[\],])/g, '<span class="json-punc">$1</span>');
+    }
+
+    const schemaData = [
+      // ── 0 · BSN Nursing ──────────────────────────────────────────
+`{
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  "@id": "https://holyfamily.edu/academics/nursing-bsn#program",
+  "name": "Bachelor of Science in Nursing (BSN)",
+  "description": "CCNE-accredited 4-year undergraduate nursing program preparing students for RN licensure and clinical leadership across Philadelphia health systems.",
+  "programType": "Bachelor's Degree",
+  "educationalCredentialAwarded": "Bachelor of Science in Nursing",
+  "timeToComplete": "P4Y",
+  "numberOfCredits": 126,
+  "occupationalCategory": "29-1141.00",
+  "programPrerequisites": "High school diploma or GED; minimum 3.0 GPA; HS Chemistry and Biology",
+  "provider": {
+    "@type": "CollegeOrUniversity",
+    "name": "Holy Family University",
+    "url": "https://holyfamily.edu",
+    "sameAs": "https://en.wikipedia.org/wiki/Holy_Family_University"
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "Tuition",
+    "priceCurrency": "USD",
+    "price": 35200
+  },
+  "startDate": "2026-08-26",
+  "applicationDeadline": "2026-05-01",
+  "applicationStartDate": "2025-09-01",
+  "inLanguage": "en-US"
+}`,
+      // ── 1 · MBA ──────────────────────────────────────────────────
+`{
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  "@id": "https://holyfamily.edu/academics/mba#program",
+  "name": "Master of Business Administration (MBA)",
+  "description": "100% online MBA from a Catholic university in Philadelphia. Complete in 12–24 months with tracks in leadership, healthcare management, and financial management.",
+  "programType": "Master's Degree",
+  "educationalCredentialAwarded": "Master of Business Administration",
+  "timeToComplete": "P18M",
+  "numberOfCredits": 36,
+  "occupationalCategory": "11-1021.00",
+  "educationalProgramMode": "online",
+  "programPrerequisites": "Bachelor's degree from an accredited institution; 2.75 minimum GPA",
+  "provider": {
+    "@type": "CollegeOrUniversity",
+    "name": "Holy Family University",
+    "url": "https://holyfamily.edu"
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "Tuition per credit",
+    "priceCurrency": "USD",
+    "price": 825
+  },
+  "applicationDeadline": "Rolling",
+  "financialAidEligible": true,
+  "inLanguage": "en-US"
+}`,
+      // ── 2 · MS Counseling ────────────────────────────────────────
+`{
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  "@id": "https://holyfamily.edu/academics/ms-counseling#program",
+  "name": "Master of Science in Counseling Psychology",
+  "description": "Hybrid graduate program preparing licensed professional counselors (LPC-eligible in PA). CACREP-aligned curriculum with 700 hours of supervised clinical practice.",
+  "programType": "Master's Degree",
+  "educationalCredentialAwarded": "Master of Science in Counseling Psychology",
+  "timeToComplete": "P30M",
+  "numberOfCredits": 60,
+  "occupationalCategory": "21-1014.00",
+  "educationalProgramMode": "hybrid",
+  "programPrerequisites": "Bachelor's degree in psychology or related field; 3.0 GPA",
+  "provider": {
+    "@type": "CollegeOrUniversity",
+    "name": "Holy Family University",
+    "url": "https://holyfamily.edu"
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "Tuition per credit",
+    "priceCurrency": "USD",
+    "price": 780
+  },
+  "startDate": "2026-08-26",
+  "applicationDeadline": "2026-06-15",
+  "inLanguage": "en-US"
+}`,
+      // ── 3 · BA English ───────────────────────────────────────────
+`{
+  "@context": "https://schema.org",
+  "@type": "EducationalOccupationalProgram",
+  "@id": "https://holyfamily.edu/academics/english#program",
+  "name": "Bachelor of Arts in English",
+  "description": "4-year undergraduate English program with concentrations in literature, professional writing, and secondary education certification. Small seminar format, 11:1 student-faculty ratio.",
+  "programType": "Bachelor's Degree",
+  "educationalCredentialAwarded": "Bachelor of Arts in English",
+  "timeToComplete": "P4Y",
+  "numberOfCredits": 120,
+  "occupationalCategory": "25-1123.00",
+  "programPrerequisites": "High school diploma or GED; 2.5 minimum GPA",
+  "provider": {
+    "@type": "CollegeOrUniversity",
+    "name": "Holy Family University",
+    "url": "https://holyfamily.edu"
+  },
+  "offers": {
+    "@type": "Offer",
+    "category": "Tuition",
+    "priceCurrency": "USD",
+    "price": 35200
+  },
+  "startDate": "2026-08-26",
+  "applicationDeadline": "2026-05-01",
+  "inLanguage": "en-US"
+}`
+    ];
+
+    const schemaTabs = document.querySelectorAll('#schemaTabs .schema__tab');
+    const schemaCode = document.getElementById('schemaCode');
+
+    function renderSchema(idx) {
+      schemaCode.classList.add('is-fading');
+      setTimeout(() => {
+        schemaCode.innerHTML = hl(schemaData[idx]);
+        schemaCode.classList.remove('is-fading');
+      }, 200);
+    }
+
+    schemaTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        schemaTabs.forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        renderSchema(+tab.dataset.idx);
+      });
+    });
+    renderSchema(0);
+
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

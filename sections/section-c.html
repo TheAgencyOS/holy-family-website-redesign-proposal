@@ -1,0 +1,488 @@
+<section id="technical" class="section section--technical" aria-labelledby="technical-heading">
+  <div class="section-inner">
+    <div class="section-eyebrow">Section C</div>
+    <h2 id="technical-heading" class="section-title">How it is built</h2>
+    <p class="section-lede">Every technology choice in this section answers one question: can Rick Mitchell's team operate, extend, and defend this site for five years without an agency on retainer. The stack is WordPress 6.x on Pantheon, a custom block theme, ACF Pro for structured content, Gravity Forms for Slate, and accessibility engineered in during design and development, not audited in at the end. We name versions, name vendors, and document the boundaries.</p>
+
+    <!-- =================================================== -->
+    <!-- C.1 CMS Recommendation: WordPress                    -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.1</div>
+      <h3 class="subsection-title">CMS recommendation: WordPress</h3>
+
+      <div class="prose">
+        <p>We recommend traditional, full-stack WordPress as the content management system for the redesigned Holy Family University site. Not headless WordPress. Not a decoupled React or Next.js front end. The same WordPress that powers roughly 43 percent of the web and the majority of private universities that have migrated off Drupal in the past five years. This recommendation is grounded in three factors specific to an institution of more than 3,600 students with a lean web team.</p>
+      </div>
+
+      <div class="stack stack-lg">
+        <aside class="callout callout--teal" aria-label="Reason one: editorial usability">
+          <p><strong>1. Editorial usability for a small team.</strong> Rick Mitchell runs a two-person web practice. The CMS has to earn its place for them, not against them. WordPress ships with the Gutenberg block editor, real-time preview, in-context editing, and a media library that editors actually use without training wheels. Drupal's editorial surface has improved in versions 10 and 11, but WordPress is still the benchmark for content author experience, and the gap widens when you measure it in "hours saved per publish."</p>
+        </aside>
+
+        <aside class="callout callout--teal" aria-label="Reason two: plugin and developer ecosystem">
+          <p><strong>2. The plugin and developer ecosystem is unmatched.</strong> WordPress has the largest active developer community of any CMS, which matters for the practical moment when the university needs to hire a developer, scope a specific integration, or hand off a bug to a freelancer. WordPress talent is abundant and competitively priced. Drupal talent is thinner, pricier, and concentrated in a shrinking number of shops. Across a five-year ownership horizon, that difference compounds into real dollars and real scheduling relief.</p>
+        </aside>
+
+        <aside class="callout callout--teal" aria-label="Reason three: total cost of ownership">
+          <p><strong>3. Lower total cost of ownership over 5 years.</strong> WordPress core is free. The premium tools this project needs (ACF Pro, Gravity Forms Elite, Rank Math Pro, a managed Pantheon plan) total under $1,000 per year in licensing. Drupal's modules are also free, but the development and maintenance labor to reach equivalent functionality is consistently higher, as is the cost of every future Drupal major version upgrade. For an institution operating under fiscal discipline (S and P A minus, stable outlook), WordPress delivers more capability per dollar.</p>
+        </aside>
+      </div>
+
+      <h4 class="caption">Why not headless</h4>
+      <details class="details-card">
+        <summary>Four concrete reasons we do not recommend headless WordPress for the university</summary>
+        <div class="details-card__body">
+          <ol class="feature-list">
+            <li><strong>Editorial workflow degrades.</strong> In a headless setup the preview, in-context editing, and WYSIWYG experience that make WordPress intuitive all require custom re-engineering. Your editors lose the ability to see what a page looks like before publishing unless we rebuild that capability from scratch, on your budget, and maintain it forever.</li>
+            <li><strong>The plugin ecosystem breaks.</strong> Gravity Forms, Rank Math, accessibility checkers, GTM integration, block patterns, and every future plugin you might want all assume they render the page themselves. In a headless architecture, each one needs a front-end reimplementation or a replacement, and the "works on day one" list shrinks to nothing.</li>
+            <li><strong>It creates a permanent skills gap.</strong> A headless front end requires ongoing React or Next.js expertise. Your internal strength is WordPress, PHP, and content. Headless introduces a framework your team cannot maintain independently, which permanently re-ties you to an agency. That is the opposite of the outcome you asked for.</li>
+            <li><strong>Two codebases instead of one.</strong> Headless means maintaining a WordPress back end plus a separate front-end application, each with its own dependencies, deploy pipelines, and security updates. For a site that needs to be stable for five years on a lean budget, this doubles the surface area for bugs and technical debt.</li>
+          </ol>
+        </div>
+      </details>
+
+      <div class="prose">
+        <p><strong>Future-proofing without headless.</strong> We model content in Advanced Custom Fields (ACF) Pro with full REST API exposure from day one. Every custom post type, every field group, every taxonomy is reachable over the WordPress REST API. If the university ever needs to serve content to a mobile app, a digital signage system, an admissions kiosk, or a future decoupled front end, the content layer is already an API. You get the editorial experience of traditional WordPress today and the read-API flexibility of headless the moment you need it, without paying for headless up front.</p>
+      </div>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- C.2 Technical Architecture                           -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.2</div>
+      <h3 class="subsection-title">Technical architecture</h3>
+
+      <div class="prose">
+        <p>The stack below is boring on purpose. Every layer is a well-documented, well-supported piece of technology that a WordPress developer with two years of experience can read, modify, and debug without outside help. Nothing here requires us.</p>
+      </div>
+
+      <table class="data-table" aria-label="Proposed technology stack">
+        <caption class="sr-only">Technology stack by layer, naming the specific product for each role</caption>
+        <thead>
+          <tr>
+            <th scope="col">Layer</th>
+            <th scope="col">Technology</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">CMS</th>
+            <td>WordPress 6.x</td>
+            <td>Content management, editorial workflow, user administration, block editor</td>
+          </tr>
+          <tr>
+            <th scope="row">Content modeling</th>
+            <td>Advanced Custom Fields (ACF) Pro</td>
+            <td>Custom post types, field groups, flexible content layouts, REST API exposure</td>
+          </tr>
+          <tr>
+            <th scope="row">Forms</th>
+            <td>Gravity Forms with Webhooks Add-On</td>
+            <td>Native form builder, Slate Source Format integration, conditional logic, accessible output</td>
+          </tr>
+          <tr>
+            <th scope="row">SEO and schema</th>
+            <td>Rank Math Pro</td>
+            <td>Schema.org structured data (EducationalOrganization, Course, FAQPage, Event), XML sitemaps, redirects</td>
+          </tr>
+          <tr>
+            <th scope="row">Hosting</th>
+            <td>Pantheon</td>
+            <td>Managed WordPress hosting, Dev / Test / Live environments, container-based runtime</td>
+          </tr>
+          <tr>
+            <th scope="row">Version control</th>
+            <td>Git via Pantheon</td>
+            <td>Every theme and plugin change committed, reviewed, auditable, reversible</td>
+          </tr>
+          <tr>
+            <th scope="row">Front end</th>
+            <td>Custom WordPress block theme (PHP, HTML, CSS, progressive enhancement JavaScript)</td>
+            <td>Full Site Editing, component library, responsive, WCAG 2.2 AA semantics</td>
+          </tr>
+          <tr>
+            <th scope="row">Caching and CDN</th>
+            <td>Pantheon Global CDN on Fastly</td>
+            <td>Edge caching, automated HTTPS, DDoS protection, granular cache invalidation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="subsection-eyebrow">Component architecture</div>
+      <div class="prose">
+        <p>The theme is a custom block theme (not a child theme of a commercial theme, not a page builder theme), built for the university's content types and brand system. Rather than designing pages as monolithic templates, we ship a library of reusable components: hero blocks, program cards, faculty profiles, stat rows, testimonials, event listings, FAQ accordions, CTA patterns. Editors assemble pages from these components inside the block editor. Each component is self-contained (its own markup, styles, and behavior), responsive (designed mobile-first, tested at every breakpoint), accessible (semantic HTML, ARIA, keyboard support, and focus management built in from the first line of code), and documented (a living pattern library ships with the theme, with variants, usage notes, and content requirements). The design system lives in a single <code>theme.json</code> file, which locks the color palette, typography scale, spacing scale, and layout widths. When 15 department content owners publish 400 new pages in year three, they cannot drift off brand, because the editor will not let them.</p>
+      </div>
+
+      <table class="data-table" aria-label="Proposed custom post types">
+        <caption class="sr-only">Custom post types, their WordPress implementation, and the key fields each type carries</caption>
+        <thead>
+          <tr>
+            <th scope="col">Content type</th>
+            <th scope="col">WordPress implementation</th>
+            <th scope="col">Key fields</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Academic Programs</th>
+            <td>Custom post type <code>program</code></td>
+            <td>Degree level, school, department, delivery format (on-campus, online, hybrid), credit hours, accreditation, outcomes, related faculty, FAQ, CTA</td>
+          </tr>
+          <tr>
+            <th scope="row">Faculty Profiles</th>
+            <td>Custom post type <code>faculty</code></td>
+            <td>Title, department, school, research areas, publications, office hours, headshot, related programs</td>
+          </tr>
+          <tr>
+            <th scope="row">Events</th>
+            <td>Custom post type <code>event</code></td>
+            <td>Start and end datetime, location, event type (Open House, Info Session, Campus Visit), audience, registration URL</td>
+          </tr>
+          <tr>
+            <th scope="row">News</th>
+            <td>Native <code>post</code> type</td>
+            <td>Category, department, school, featured image, author, auto-archive rule after 2 years</td>
+          </tr>
+          <tr>
+            <th scope="row">Pages</th>
+            <td>Native <code>page</code> type with block patterns</td>
+            <td>Hierarchical parent-child structure for IA, assembled from approved patterns</td>
+          </tr>
+          <tr>
+            <th scope="row">Landing Pages</th>
+            <td>Native <code>page</code> type with ACF Flexible Content</td>
+            <td>Modular layouts for campaign and program marketing pages, UTM-aware hero variants</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="prose">
+        <p>Shared taxonomies (<code>department</code>, <code>school</code>, <code>program-type</code>, <code>audience</code>) link content across types. "Show all nursing faculty on the nursing program page" is a query, not a manual curation task. When a faculty profile is updated once, every program page that references it updates with it.</p>
+      </div>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- C.3 Hosting and Infrastructure: Pantheon             -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.3</div>
+      <h3 class="subsection-title">Hosting and infrastructure: Pantheon</h3>
+
+      <div class="prose">
+        <p>Holy Family University already runs on Pantheon. We recommend staying there, not as a default, but because Pantheon's specific features address the operational realities of a lean team running a 1,600 URL site. The workflow below is not a suggestion, it is how the platform works.</p>
+      </div>
+
+      <ol class="process-steps" aria-label="Dev, Test, and Live workflow">
+        <li class="process-step">
+          <div class="process-step__number">1</div>
+          <div class="process-step__content">
+            <h4 class="process-step__title">Dev</h4>
+            <p class="process-step__body">The working environment. Developers write and test theme and plugin changes here, against a clone of production data. Every code change is a Git commit, tracked, attributed, reversible.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <div class="process-step__number">2</div>
+          <div class="process-step__content">
+            <h4 class="process-step__title">Test</h4>
+            <p class="process-step__body">A staging environment that mirrors the Live database and files. Code is promoted from Dev to Test for review: this is where Rick's team previews changes, runs accessibility audits, and approves updates before they reach the public site.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <div class="process-step__number">3</div>
+          <div class="process-step__content">
+            <h4 class="process-step__title">Live</h4>
+            <p class="process-step__body">Production, sitting behind Pantheon's Global CDN on Fastly. Code is promoted from Test to Live only after approval. The Live filesystem is read-only, which means no one (us, you, or an attacker) can make ad hoc edits on production.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="prose">
+        <p>Pantheon enforces a deliberate separation: <strong>code moves up</strong> (Dev to Test to Live, each promotion a Git deployment with a full audit trail) and <strong>content moves down</strong> (the database and files can be cloned from Live to Test or Dev so developers always work against real content, not placeholder data). If a promotion introduces a problem, one-click rollback returns Live to the previous commit.</p>
+      </div>
+
+      <table class="data-table" aria-label="Pantheon features relevant to Holy Family University">
+        <caption class="sr-only">Pantheon platform features mapped to Holy Family University's operational needs</caption>
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col">Relevance to HFU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Multidev</th>
+            <td>On-demand, isolated copies of the full site (code, database, files) branched from any point. Multiple features can be built and tested in parallel without blocking each other; content migration can be staged per content type; post-launch, Rick's team can test theme updates against a full production clone before promoting.</td>
+          </tr>
+          <tr>
+            <th scope="row">Autopilot</th>
+            <td>Automated WordPress core, plugin, and theme updates with visual regression testing. Autopilot applies updates in a sandbox, runs screenshot comparisons across key pages, and promotes to Test only if no regressions are detected. For a two-person team maintaining a 1,000 plus page site, this is the single biggest operational win.</td>
+          </tr>
+          <tr>
+            <th scope="row">Terminus CLI with WP-CLI</th>
+            <td>Scripted operations for migration and ongoing maintenance: bulk content imports, database search-and-replace, redirect mapping, cache warming, database optimization. Migrating 1,601 URLs is a scripted, repeatable process; Terminus plus WP-CLI is the backbone.</td>
+          </tr>
+          <tr>
+            <th scope="row">New Relic APM</th>
+            <td>Real-time application performance monitoring: page load times broken down by database query, PHP execution, and external API calls. Identifies slow queries and regressions before they become user complaints.</td>
+          </tr>
+          <tr>
+            <th scope="row">SOC 2 Type II certified hosting</th>
+            <td>Documented security and compliance posture for a university handling prospective student data. Relevant to Mark Green's governance review and to any procurement questions about data handling.</td>
+          </tr>
+          <tr>
+            <th scope="row">Read-only filesystem in production</th>
+            <td>Live cannot be written to from the WordPress admin or over SSH. This eliminates entire classes of malware injection and unauthorized code modification, and it enforces the Git-based deployment pipeline by construction.</td>
+          </tr>
+          <tr>
+            <th scope="row">Automated daily backups</th>
+            <td>Full backups of database, files, and code every day, with point-in-time restore. Retention policies are configurable per environment.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <aside class="callout callout--teal" aria-label="Uptime SLA">
+        <p><strong>Uptime SLA.</strong> Pantheon guarantees 99.9 percent uptime on Performance plans and above, backed by a container-based architecture that scales automatically during enrollment deadlines, open house registration spikes, and news cycles. This is the contractual floor, not a marketing number.</p>
+      </aside>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- C.4 Accessibility Compliance: WCAG 2.2 AA            -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.4</div>
+      <h3 class="subsection-title">Accessibility compliance: WCAG 2.2 AA</h3>
+
+      <div class="prose">
+        <p><strong>The legal landscape.</strong> The ADA Title II Final Rule, published in April 2024, required public universities to meet WCAG 2.1 AA by April 24, 2026. That deadline has passed. As a recipient of federal funds, Holy Family University is independently subject to Section 504 and Section 508, which impose the same standard. We build to WCAG 2.2 AA, one version ahead of the legal floor. WCAG 2.2 is fully backward-compatible with 2.1, so meeting 2.2 automatically satisfies the current legal requirement and provides a compliance margin for the next regulatory update.</p>
+      </div>
+
+      <table class="data-table" aria-label="WCAG 2.2 new success criteria and how we address them">
+        <caption class="sr-only">The six new success criteria introduced in WCAG 2.2 and the implementation approach for each</caption>
+        <thead>
+          <tr>
+            <th scope="col">Criterion</th>
+            <th scope="col">Requirement</th>
+            <th scope="col">How we address it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">2.4.11 Focus Not Obscured (AA)</th>
+            <td>Keyboard focus must not be hidden behind sticky headers, modals, or other overlapping elements.</td>
+            <td>Focus management designed into every component. Sticky header includes a focus offset; dialogs use scroll padding and <code>scroll-margin-top</code> so the focused element is never obscured.</td>
+          </tr>
+          <tr>
+            <th scope="row">2.5.7 Dragging Movements (AA)</th>
+            <td>Any drag interaction must have a single-pointer alternative (click or tap).</td>
+            <td>No drag-only interactions in the design. Sliders, reorder controls, and map interactions all expose standard click, tap, and keyboard paths.</td>
+          </tr>
+          <tr>
+            <th scope="row">2.5.8 Target Size Minimum (AA)</th>
+            <td>Interactive targets must be at least 24 by 24 CSS pixels.</td>
+            <td>Component library enforces a 44 by 44 pixel minimum touch target, which exceeds the 24 pixel floor and satisfies Apple HIG and WCAG 2.5.5 AAA as well.</td>
+          </tr>
+          <tr>
+            <th scope="row">3.3.8 Accessible Authentication (AA)</th>
+            <td>Login cannot require cognitive function tests (puzzle CAPTCHAs); must allow password managers and paste.</td>
+            <td>All forms support autofill and paste. Spam protection uses honeypot fields and reCAPTCHA v3 (score-based, invisible), never puzzle CAPTCHAs.</td>
+          </tr>
+          <tr>
+            <th scope="row">3.2.6 Consistent Help (A)</th>
+            <td>Help contact links appear in the same location across pages.</td>
+            <td>The global header and footer include a persistent "Contact" and "Help" link set, enforced by a shared template part rendered on every page.</td>
+          </tr>
+          <tr>
+            <th scope="row">3.3.7 Redundant Entry (A)</th>
+            <td>Do not require users to re-enter information they have already provided in the same process.</td>
+            <td>Multi-step Gravity Forms carry values forward between steps. The Request for Information flow auto-populates known Slate Ping cookie data where consented.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <aside class="callout callout--teal" aria-label="Shift left accessibility methodology">
+        <p><strong>Shift left.</strong> Most agencies treat accessibility as a QA checkpoint: build first, audit later, fix under deadline pressure. That is how sites ship with 200 open violations. We shift accessibility left into every phase. <strong>Design:</strong> color contrast validated before a pixel is placed, touch targets sized in wireframes, focus states designed as a first-class visual. <strong>Development:</strong> semantic HTML and ARIA from the first line of code, axe-core linting in the IDE and in the CI pipeline, pull requests that introduce regressions cannot merge. <strong>Content:</strong> editor guardrails enforce alt text, heading hierarchy, and link purpose. <strong>QA:</strong> manual keyboard-only and screen reader testing with NVDA, JAWS, and VoiceOver on the templates that automated tools cannot validate. Accessibility is not a phase; it runs alongside everything else.</p>
+      </aside>
+
+      <aside class="callout callout--warning" aria-label="The Lighthouse 96 score is misleading">
+        <h4 class="caption">On the Lighthouse Accessibility score of 96 for the university's homepage</h4>
+        <p>A Lighthouse Accessibility score of 96 reflects only automated axe-core checks, which catch 30 to 57 percent of WCAG failures. The real gap includes manual test categories like focus order, labels for custom controls, and reading order. The homepage scan does not exercise program pages, the 23 request-for-information forms, or Slate integration surface area. Our shift-left methodology addresses the axe-covered 30 percent AND the manual 70 percent, on every template.</p>
+        <p class="caption">Source: axe-core documentation, Deque Systems; Lighthouse 12.8.2 homepage scan 2026-04-10.</p>
+      </aside>
+
+      <h4 class="caption">Common university website failures we prevent</h4>
+      <ul class="feature-list">
+        <li><strong>Missing alt text (WCAG 1.1.1).</strong> Enforced at the editor level. Images cannot be inserted without an alt value (or an explicit "decorative" flag that writes <code>alt=""</code>).</li>
+        <li><strong>Insufficient color contrast (WCAG 1.4.3).</strong> Palette validated in the design system to 4.5:1 for body text and 3:1 for large text and UI components before a pixel ships.</li>
+        <li><strong>Keyboard navigation failures (WCAG 2.1.1).</strong> Every interactive component tested with keyboard only. No interaction is mouse exclusive.</li>
+        <li><strong>Missing video captions (WCAG 1.2.2).</strong> Wistia (already in your stack) supports captions natively; captioning is a content requirement in the governance doc, not a nice-to-have.</li>
+        <li><strong>Inaccessible PDFs (WCAG 1.3.1).</strong> Accessible PDF templates provided for new documents; legacy PDF remediation scoped as a post-launch phase, not buried in launch scope.</li>
+        <li><strong>Form labeling failures (WCAG 3.3.2).</strong> Every Gravity Forms field carries a programmatic label, explicit error messaging, and instructions. No placeholder-as-label patterns.</li>
+      </ul>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- C.5 Integration Capabilities                         -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.5</div>
+      <h3 class="subsection-title">Integration capabilities</h3>
+
+      <div class="subsection-eyebrow">Slate CRM integration</div>
+      <div class="prose">
+        <p>Slate is Holy Family's enrollment CRM. A successful redesign has to integrate with Slate cleanly at three levels: form capture, behavioral tracking, and dynamic content. We use native WordPress patterns for each, not raw Slate script embeds.</p>
+      </div>
+
+      <div class="card-grid" role="list">
+        <article class="card" role="listitem">
+          <div class="card__eyebrow">Pattern 1</div>
+          <h4 class="card__title">Forms via Gravity Forms webhook</h4>
+          <div class="card__body">
+            <p>We build native Gravity Forms that match the site's design system exactly (typography, color, spacing, validation). The Gravity Forms Webhooks Add-On POSTs each submission as JSON to the Slate Source Format endpoint in real time, with field keys mapped per form. No <code>&lt;script&gt;</code> embed, no WordPress sanitizer conflicts, no CSS collisions, no per-page form limit. This is the pattern documented end-to-end by NC State University, including complete field key mappings between Gravity Forms and Slate.</p>
+          </div>
+          <div class="card__footer">
+            <span class="pill pill--teal">Real time to Slate</span>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="card__eyebrow">Pattern 2</div>
+          <h4 class="card__title">Behavioral tracking via Slate Ping</h4>
+          <div class="card__body">
+            <p>Slate Ping is a lightweight JavaScript snippet (served from <code>technolutions.net/ping</code>) that tracks page-level browsing, drops a first-party cookie, and links anonymous visits to known prospect records the moment a visitor performs an authenticated action. We deploy it site-wide via the theme header or, if preferred, through the existing GTM container. Every page is tracked from launch day.</p>
+          </div>
+          <div class="card__footer">
+            <span class="pill pill--teal">Enrollment attribution</span>
+          </div>
+        </article>
+
+        <article class="card" role="listitem">
+          <div class="card__eyebrow">Pattern 3</div>
+          <h4 class="card__title">Dynamic content via Slate Query Builder</h4>
+          <div class="card__body">
+            <p>For content that originates in Slate (program listings, admissions events, application deadlines), we pull cached JSON from Slate's Query Builder web service into WordPress. The website always reflects current enrollment data without manual content duplication. Cache TTLs are configurable per query so admissions can make a change in Slate and see it on the website within minutes, not at the next overnight batch.</p>
+          </div>
+          <div class="card__footer">
+            <span class="pill pill--teal">Slate to website</span>
+          </div>
+        </article>
+      </div>
+
+      <table class="data-table" aria-label="Additional integrations">
+        <caption class="sr-only">Other integration points beyond Slate, with the method used and a note about preservation of existing instrumentation</caption>
+        <thead>
+          <tr>
+            <th scope="col">System</th>
+            <th scope="col">Integration method</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Google Analytics 4</th>
+            <td>Via GTM container</td>
+            <td>Existing container <code>GTM-5FPBQK3</code> preserved. Event tracking added for form submissions, program page engagement, and CTA clicks.</td>
+          </tr>
+          <tr>
+            <th scope="row">Google Tag Manager</th>
+            <td>Existing container</td>
+            <td>All third-party scripts managed through GTM, never hard-coded into the theme. Cleaner auditing, cleaner consent management.</td>
+          </tr>
+          <tr>
+            <th scope="row">Crazy Egg and Hotjar</th>
+            <td>Via GTM</td>
+            <td>Existing heatmap and session recording tools preserved. Both are loaded through the GTM container you already maintain.</td>
+          </tr>
+          <tr>
+            <th scope="row">Wistia</th>
+            <td>Gutenberg embed block with caption support</td>
+            <td>Campus tours, program spotlights, and event recordings. WCAG 1.2.2 captions required by content governance.</td>
+          </tr>
+          <tr>
+            <th scope="row">Siteimprove</th>
+            <td>JavaScript snippet via GTM</td>
+            <td>Existing continuous accessibility and content quality monitoring preserved. We will configure new dashboards for WCAG 2.2 AA tracking post-launch.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <aside class="callout callout--neutral" aria-label="Not in scope: Slate portal SSO">
+        <p><strong>What is not in scope.</strong> Slate applicant status portal SSO configuration (cross-domain SAML, CAS, or LDAP) is an IT infrastructure dependency, not a web development deliverable. We will consult on the configuration with Mark Green, Ed.D., VP for Institutional Effectiveness, Technology and Innovation, and coordinate the handoff, but SSO provisioning, identity provider setup, and certificate exchange sit with the university's IT team. We will scope it as a separate workstream if the university prefers.</p>
+      </aside>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- C.6 Performance Targets                              -->
+    <!-- =================================================== -->
+    <div class="subsection">
+      <div class="subsection-eyebrow">C.6</div>
+      <h3 class="subsection-title">Performance targets</h3>
+
+      <div class="prose">
+        <p>The current homepage is approximately 4 MB of unoptimized legacy-format imagery, a mobile Largest Contentful Paint of 21.19 seconds, and a Lighthouse Performance score of 51 on mobile. The table below is what we will ship, and what the current site actually measures against that target. The baseline numbers are from Lighthouse 12.8.2 run against <code>holyfamily.edu</code> on 2026-04-10.</p>
+      </div>
+
+      <table class="data-table" aria-label="Core Web Vitals targets vs current Holy Family University baseline">
+        <caption class="sr-only">Performance and accessibility targets for the redesigned site compared to the current Holy Family University baseline measured 2026-04-10</caption>
+        <thead>
+          <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Target</th>
+            <th scope="col">Current desktop</th>
+            <th scope="col">Current mobile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Largest Contentful Paint (LCP)</th>
+            <td class="num">under 2.5 s</td>
+            <td class="num">11.42 s</td>
+            <td class="num">21.19 s</td>
+          </tr>
+          <tr>
+            <th scope="row">Cumulative Layout Shift (CLS)</th>
+            <td class="num">under 0.1</td>
+            <td class="num">0.003</td>
+            <td class="num">0.000</td>
+          </tr>
+          <tr>
+            <th scope="row">Total Blocking Time (INP proxy)</th>
+            <td class="num">under 100 ms</td>
+            <td class="num">not reported</td>
+            <td class="num">436 ms</td>
+          </tr>
+          <tr>
+            <th scope="row">Total page weight</th>
+            <td class="num">under 1.5 MB</td>
+            <td class="num">approximately 4 MB</td>
+            <td class="num">approximately 4 MB</td>
+          </tr>
+          <tr>
+            <th scope="row">Lighthouse Performance</th>
+            <td class="num">over 90</td>
+            <td class="num">59</td>
+            <td class="num">51</td>
+          </tr>
+          <tr>
+            <th scope="row">Lighthouse Accessibility</th>
+            <td class="num">over 95, every template</td>
+            <td class="num">96 (homepage, axe only)</td>
+            <td class="num">96 (homepage, axe only)</td>
+          </tr>
+          <tr>
+            <th scope="row">Lighthouse Best Practices</th>
+            <td class="num">over 90</td>
+            <td class="num">56</td>
+            <td class="num">57</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="prose">
+        <p>CLS is already good on the current homepage, and that is a credit to the existing template. Everything else is a gap, and the Best Practices number (56 desktop, 57 mobile) is a quiet scandal in a regulated industry. The fix is not exotic. We hit the targets with image optimization (WebP and AVIF, responsive <code>srcset</code>, explicit width and height to prevent layout shift), code splitting and lazy loading of non-critical scripts, critical CSS inlined in the document head, the Pantheon CDN doing edge caching on Fastly, Redis object caching for database reads, no jQuery, no Font Awesome, no page builder bloat, and no render-blocking third-party scripts outside the GTM container. These are boring, well-documented techniques. The reason the current site does not hit them is that nobody has gone through and done them. We will.</p>
+      </div>
+    </div>
+  </div>
+</section>

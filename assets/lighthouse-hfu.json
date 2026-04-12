@@ -1,0 +1,282 @@
+{
+  "url": "https://www.holyfamily.edu/",
+  "fetchTime": "2026-04-11T01:57:23.323Z",
+  "lighthouseVersion": "12.8.2",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/146.0.0.0 Safari/537.36",
+  "desktop": {
+    "scores": {
+      "performance": 59,
+      "accessibility": 96,
+      "bestPractices": 56,
+      "seo": 85
+    },
+    "cwv": {
+      "LCP_seconds": 11.42,
+      "LCP_display": "11.4 s",
+      "CLS": 0.002582,
+      "CLS_display": "0.003",
+      "TBT_ms": null,
+      "FCP_seconds": 1.94,
+      "SI_seconds": 5.04,
+      "INP_ms": null
+    },
+    "accessibilityFailures": [
+      {
+        "id": "aria-allowed-role",
+        "title": "Uses ARIA roles on incompatible elements",
+        "description": "Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. [Learn more about ARIA roles](https://dequ",
+        "count": 1
+      },
+      {
+        "id": "tabindex",
+        "title": "Some elements have a `[tabindex]` value greater than 0",
+        "description": "A value greater than 0 implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies. [Learn more about t",
+        "count": 3
+      }
+    ],
+    "performanceOpportunities": [
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "savings_ms": 1102,
+        "displayValue": "Est savings of 1,100 ms"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savings_ms": 1000,
+        "savings_bytes": 898696,
+        "displayValue": "Est savings of 878 KiB"
+      },
+      {
+        "id": "uses-rel-preconnect",
+        "title": "Preconnect to required origins",
+        "savings_ms": 747.914,
+        "displayValue": "Est savings of 750 ms"
+      },
+      {
+        "id": "modern-image-formats",
+        "title": "Serve images in next-gen formats",
+        "savings_ms": 420,
+        "savings_bytes": 4109616.5999999996,
+        "displayValue": "Est savings of 4,013 KiB"
+      },
+      {
+        "id": "server-response-time",
+        "title": "Initial server response time was short",
+        "savings_ms": 416.933,
+        "displayValue": "Root document took 420 ms"
+      },
+      {
+        "id": "uses-optimized-images",
+        "title": "Efficiently encode images",
+        "savings_ms": 370,
+        "savings_bytes": 2140562,
+        "displayValue": "Est savings of 2,090 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "savings_ms": 210,
+        "savings_bytes": 147535,
+        "displayValue": "Est savings of 144 KiB"
+      }
+    ],
+    "performanceDiagnostics": [
+      {
+        "id": "modern-image-formats",
+        "title": "Serve images in next-gen formats",
+        "savings_bytes": 4109616.5999999996,
+        "savings_ms": 420,
+        "displayValue": "Est savings of 4,013 KiB"
+      },
+      {
+        "id": "uses-optimized-images",
+        "title": "Efficiently encode images",
+        "savings_bytes": 2140562,
+        "savings_ms": 370,
+        "displayValue": "Est savings of 2,090 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savings_bytes": 898696,
+        "savings_ms": 1000,
+        "displayValue": "Est savings of 878 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "savings_bytes": 251993,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 246 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "savings_bytes": 147535,
+        "savings_ms": 210,
+        "displayValue": "Est savings of 144 KiB"
+      },
+      {
+        "id": "legacy-javascript",
+        "title": "Avoid serving legacy JavaScript to modern browsers",
+        "savings_bytes": 66676,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 65 KiB"
+      },
+      {
+        "id": "uses-text-compression",
+        "title": "Enable text compression",
+        "savings_bytes": 2047,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 2 KiB"
+      }
+    ]
+  },
+  "mobile": {
+    "scores": {
+      "performance": 51,
+      "accessibility": 96,
+      "bestPractices": 57,
+      "seo": 85
+    },
+    "cwv": {
+      "LCP_seconds": 21.19,
+      "LCP_display": "21.2 s",
+      "CLS": 0,
+      "CLS_display": "0",
+      "TBT_ms": 436,
+      "FCP_seconds": 2.48,
+      "SI_seconds": 14.57,
+      "INP_ms": null
+    },
+    "accessibilityFailures": [
+      {
+        "id": "aria-allowed-role",
+        "title": "Uses ARIA roles on incompatible elements",
+        "description": "Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. [Learn more about ARIA roles](https://dequ",
+        "count": 1
+      },
+      {
+        "id": "tabindex",
+        "title": "Some elements have a `[tabindex]` value greater than 0",
+        "description": "A value greater than 0 implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies. [Learn more about t",
+        "count": 2
+      }
+    ],
+    "performanceOpportunities": [
+      {
+        "id": "modern-image-formats",
+        "title": "Serve images in next-gen formats",
+        "savings_ms": 3000,
+        "savings_bytes": 4109616.5999999996,
+        "displayValue": "Est savings of 4,013 KiB"
+      },
+      {
+        "id": "uses-optimized-images",
+        "title": "Efficiently encode images",
+        "savings_ms": 2350,
+        "savings_bytes": 2140562,
+        "displayValue": "Est savings of 2,090 KiB"
+      },
+      {
+        "id": "render-blocking-resources",
+        "title": "Eliminate render-blocking resources",
+        "savings_ms": 1455,
+        "displayValue": "Est savings of 1,460 ms"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "savings_ms": 720,
+        "savings_bytes": 149465,
+        "displayValue": "Est savings of 146 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savings_ms": 720,
+        "savings_bytes": 896994,
+        "displayValue": "Est savings of 876 KiB"
+      },
+      {
+        "id": "server-response-time",
+        "title": "Initial server response time was short",
+        "savings_ms": 475.66099999999994,
+        "displayValue": "Root document took 480 ms"
+      },
+      {
+        "id": "legacy-javascript",
+        "title": "Avoid serving legacy JavaScript to modern browsers",
+        "savings_ms": 70,
+        "savings_bytes": 66665,
+        "displayValue": "Est savings of 65 KiB"
+      },
+      {
+        "id": "uses-rel-preconnect",
+        "title": "Preconnect to required origins",
+        "savings_ms": 68.00399999630451,
+        "displayValue": "Est savings of 70 ms"
+      }
+    ],
+    "performanceDiagnostics": [
+      {
+        "id": "modern-image-formats",
+        "title": "Serve images in next-gen formats",
+        "savings_bytes": 4109616.5999999996,
+        "savings_ms": 3000,
+        "displayValue": "Est savings of 4,013 KiB"
+      },
+      {
+        "id": "uses-optimized-images",
+        "title": "Efficiently encode images",
+        "savings_bytes": 2140562,
+        "savings_ms": 2350,
+        "displayValue": "Est savings of 2,090 KiB"
+      },
+      {
+        "id": "offscreen-images",
+        "title": "Defer offscreen images",
+        "savings_bytes": 901335,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 880 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savings_bytes": 896994,
+        "savings_ms": 720,
+        "displayValue": "Est savings of 876 KiB"
+      },
+      {
+        "id": "uses-responsive-images",
+        "title": "Properly size images",
+        "savings_bytes": 474361,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 463 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "savings_bytes": 149465,
+        "savings_ms": 720,
+        "displayValue": "Est savings of 146 KiB"
+      },
+      {
+        "id": "legacy-javascript",
+        "title": "Avoid serving legacy JavaScript to modern browsers",
+        "savings_bytes": 66665,
+        "savings_ms": 70,
+        "displayValue": "Est savings of 65 KiB"
+      },
+      {
+        "id": "uses-text-compression",
+        "title": "Enable text compression",
+        "savings_bytes": 2051,
+        "savings_ms": 0,
+        "displayValue": "Est savings of 2 KiB"
+      }
+    ]
+  }
+}

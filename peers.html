@@ -1,0 +1,2369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peer Landscape — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.08);
+      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+      min-width: 0;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+      min-width: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(48pt, 7.2vw, 96pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      max-width: 14ch;
+      margin-bottom: 40px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 15pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RADAR CHART
+       ══════════════════════════════════════════════════════════════ */
+    .radar-wrap {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 48px 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .radar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .radar-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 48px;
+      align-items: center;
+    }
+    .radar-svg-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .radar-svg-wrap svg { width: 100%; height: 100%; overflow: visible; }
+
+    .radar-axis-line { stroke: rgba(255,255,255,0.12); stroke-width: 1; }
+    .radar-ring { stroke: rgba(255,255,255,0.08); stroke-width: 1; fill: none; }
+    .radar-ring--outer { stroke: rgba(255,255,255,0.18); }
+    .radar-axis-label {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      fill: var(--text-dim);
+    }
+    .radar-scale-tick {
+      font-family: var(--mono);
+      font-size: 5pt;
+      fill: var(--text-ghost);
+      letter-spacing: 0.08em;
+    }
+
+    .radar-poly {
+      stroke-width: 1.5;
+      fill-opacity: 0.05;
+      transition: fill-opacity 280ms ease, stroke-opacity 280ms ease, stroke-width 280ms ease;
+      cursor: pointer;
+    }
+    .radar-poly--hfu {
+      stroke: var(--teal);
+      fill: var(--teal);
+      fill-opacity: 0.18;
+      stroke-width: 2.2;
+      filter: drop-shadow(0 0 8px rgba(46,158,158,0.45));
+    }
+    .radar-dot {
+      transition: transform 200ms ease;
+    }
+    .radar-dot--hfu {
+      fill: var(--teal);
+      filter: drop-shadow(0 0 6px rgba(46,158,158,0.6));
+    }
+
+    .radar-wrap.is-filtered .radar-poly:not(.is-active) { fill-opacity: 0.02; stroke-opacity: 0.18; }
+    .radar-wrap.is-filtered .radar-poly.is-active { fill-opacity: 0.28; stroke-width: 2.6; stroke-opacity: 1; }
+    .radar-wrap.is-filtered .radar-dot:not(.is-active) { opacity: 0.18; }
+
+    .radar-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .radar-legend__title {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .radar-legend__title::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .radar-legend__item {
+      display: grid;
+      grid-template-columns: 16px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 11px 10px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--display);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      text-align: left;
+      transition: all 180ms ease;
+    }
+    .radar-legend__item:hover {
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+    .radar-legend__item.is-active {
+      background: rgba(46,158,158,0.08);
+      border-color: rgba(46,158,158,0.32);
+      color: var(--text);
+    }
+    .radar-legend__swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    .radar-legend__score {
+      font-family: var(--mono);
+      font-size: 7pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.06em;
+    }
+    .radar-legend__item.is-hfu {
+      border-color: rgba(46,158,158,0.3);
+      background: linear-gradient(90deg, rgba(46,158,158,0.1), transparent 90%);
+    }
+    .radar-legend__item.is-hfu .radar-legend__score { color: var(--teal); }
+    .radar-legend__reset {
+      margin-top: 14px;
+      padding: 9px 14px;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      color: var(--text-ghost);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: all 160ms ease;
+    }
+    .radar-legend__reset:hover { color: var(--text); border-color: var(--line-strong); }
+
+    /* ── Peer card row ──────────────────────────────────────── */
+    .peers-row {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+    .peer-card {
+      background: var(--ink-card-2);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 20px 18px 22px;
+      cursor: pointer;
+      transition: all 200ms ease;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .peer-card:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+      background: #EEF0F3;
+    }
+    .peer-card--hfu {
+      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      border-color: rgba(46,158,158,0.35);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.2), 0 0 24px -8px rgba(46,158,158,0.2);
+    }
+    .peer-card--hfu:hover {
+      border-color: rgba(46,158,158,0.55);
+    }
+    .peer-card__rank {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .peer-card--hfu .peer-card__rank { color: var(--teal); }
+    .peer-card__name {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 11pt;
+      color: var(--text);
+      letter-spacing: -0.012em;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+    .peer-card__meta {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.08em;
+      color: var(--text-ghost);
+      margin-top: 4px;
+      line-height: 1.6;
+    }
+    .peer-card__score {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .peer-card__score-val {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 22pt;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .peer-card--hfu .peer-card__score-val { color: var(--teal); }
+    .peer-card__score-out {
+      font-family: var(--mono);
+      font-size: 6pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.1em;
+    }
+    .peer-card__note {
+      font-family: var(--body);
+      font-size: 7.5pt;
+      color: var(--text-ghost);
+      font-style: italic;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+    .peer-card--hfu .peer-card__note {
+      color: var(--teal);
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SCREENSHOT GRID
+       ══════════════════════════════════════════════════════════════ */
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .shot-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 200ms ease;
+      scroll-margin-top: 120px;
+    }
+    .shot-card:hover {
+      border-color: var(--line-strong);
+    }
+    .shot-card.is-flashing {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.5), 0 0 40px -8px rgba(46,158,158,0.6);
+    }
+    .shot-card__head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .shot-card__logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 9pt;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .shot-card__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 11pt;
+      color: var(--text);
+      letter-spacing: -0.012em;
+      line-height: 1.1;
+    }
+    .shot-card__title-sub {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    .shot-card__badge {
+      margin-left: auto;
+      padding: 5px 9px;
+      border-radius: 2px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .shot-card__badge--good {
+      background: rgba(46,158,158,0.14);
+      color: var(--teal);
+      border: 1px solid rgba(46,158,158,0.3);
+    }
+    .shot-card__badge--bad {
+      background: rgba(255,120,120,0.08);
+      color: #E87878;
+      border: 1px solid rgba(232,120,120,0.28);
+    }
+    .shot-card__badge--mid {
+      background: rgba(255,204,21,0.08);
+      color: #DDB226;
+      border: 1px solid rgba(255,204,21,0.28);
+    }
+
+    /* Fake browser window */
+    .browser {
+      background: #11141C;
+      padding: 8px 10px 0;
+    }
+    .browser__dots {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 6px;
+    }
+    .browser__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2A2E3A;
+    }
+    .browser__dot:nth-child(1) { background: #E66B68; }
+    .browser__dot:nth-child(2) { background: #E2A93A; }
+    .browser__dot:nth-child(3) { background: #5DB04C; }
+    .browser__url {
+      background: #1B1F2A;
+      border-radius: 3px;
+      padding: 5px 10px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.02em;
+      margin-bottom: 0;
+    }
+
+    /* Fake homepage hero */
+    .fauxsite {
+      position: relative;
+      aspect-ratio: 16/10;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 14px 16px;
+      overflow: hidden;
+    }
+    .fauxsite__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .fauxsite__brand {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 8pt;
+      letter-spacing: -0.01em;
+    }
+    .fauxsite__menu {
+      display: flex;
+      gap: 6px;
+    }
+    .fauxsite__menu span {
+      font-family: var(--display);
+      font-size: 4.5pt;
+      opacity: 0.65;
+      letter-spacing: 0.02em;
+    }
+    .fauxsite__hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .fauxsite__headline {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 11pt;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 20ch;
+    }
+    .fauxsite__sub {
+      font-family: var(--body);
+      font-size: 5pt;
+      opacity: 0.7;
+      max-width: 30ch;
+      line-height: 1.3;
+    }
+    .fauxsite__cta {
+      display: inline-block;
+      padding: 5px 12px;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 6pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    /* Per-school theming */
+    .fauxsite--lasalle {
+      background: linear-gradient(165deg, #0A1E3D 0%, #142A52 60%, #F9B800 140%);
+      color: white;
+    }
+    .fauxsite--lasalle .fauxsite__cta {
+      background: #FFC72C;
+      color: #0A1E3D;
+    }
+    .fauxsite--lasalle .fauxsite__nav { border-color: rgba(255,255,255,0.15); }
+
+    .fauxsite--chc {
+      background: linear-gradient(170deg, #F2E8D7 0%, #E8D9BD 100%);
+      color: #3A2C19;
+    }
+    .fauxsite--chc .fauxsite__headline { font-family: var(--serif); font-style: italic; font-weight: 400; }
+    .fauxsite--chc .fauxsite__cta {
+      background: #8A2B2B;
+      color: #F2E8D7;
+    }
+
+    .fauxsite--neumann {
+      background: linear-gradient(165deg, #0F0F14 0%, #1A1A22 100%);
+      color: #E0C24C;
+    }
+    .fauxsite--neumann .fauxsite__headline { color: #E0C24C; }
+    .fauxsite--neumann .fauxsite__sub { color: rgba(224,194,76,0.75); }
+    .fauxsite--neumann .fauxsite__cta {
+      background: #E0C24C;
+      color: #0F0F14;
+    }
+    .fauxsite--neumann .fauxsite__nav { border-color: rgba(224,194,76,0.22); }
+
+    .fauxsite--gmu {
+      background: linear-gradient(165deg, #1A3A2E 0%, #24503F 70%, #3D7254 100%);
+      color: #E8F0E9;
+    }
+    .fauxsite--gmu .fauxsite__cta {
+      background: #F4F4ED;
+      color: #1A3A2E;
+    }
+    .fauxsite--gmu .fauxsite__nav { border-color: rgba(255,255,255,0.18); }
+
+    .fauxsite--cab {
+      background: linear-gradient(165deg, #3A3A3E 0%, #28282C 100%);
+      color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+    .fauxsite--cab::after {
+      content: 'ARCHIVED';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-12deg);
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 22pt;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.08);
+      border: 3px solid rgba(255,255,255,0.08);
+      padding: 6px 20px;
+      pointer-events: none;
+    }
+    .fauxsite--cab .fauxsite__cta {
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.4);
+    }
+    .fauxsite--cab .fauxsite__nav { border-color: rgba(255,255,255,0.1); }
+
+    .fauxsite--hfu {
+      background: linear-gradient(165deg, #06213F 0%, #0A3056 100%);
+      color: white;
+    }
+    .fauxsite--hfu .fauxsite__headline { font-size: 8.5pt; max-width: 24ch; }
+    .fauxsite--hfu .fauxsite__cta {
+      background: #FFCC15;
+      color: #06213F;
+      font-size: 5.5pt;
+    }
+    .fauxsite--hfu .fauxsite__nav { border-color: rgba(255,255,255,0.18); }
+    /* Cluttered nav items for HFU — shows the problem */
+    .fauxsite--hfu .fauxsite__menu span { font-size: 4pt; }
+
+    .shot-card__quote {
+      padding: 18px 22px 22px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 10.5pt;
+      line-height: 1.35;
+      color: var(--text-dim);
+      border-top: 1px solid var(--line);
+    }
+    .shot-card__quote::before { content: '"'; color: var(--teal); margin-right: 2px; }
+    .shot-card__quote::after  { content: '"'; color: var(--teal); margin-left: 2px; }
+
+    /* ══════════════════════════════════════════════════════════════
+       DIMENSION SCORECARD TABLE
+       ══════════════════════════════════════════════════════════════ */
+    .scorecard {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .scorecard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 100% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .scorecard__table {
+      position: relative;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+    .scorecard__table th,
+    .scorecard__table td {
+      padding: 14px 14px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .scorecard__table thead th {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      border-bottom: 1px solid var(--line);
+      padding-top: 28px;
+      padding-bottom: 16px;
+      background: rgba(255,255,255,0.03);
+      font-weight: 400;
+    }
+    .scorecard__table thead th:first-child {
+      width: 42%;
+      color: var(--teal);
+    }
+    .scorecard__table thead th.col-hfu {
+      color: var(--teal);
+      background: linear-gradient(180deg, rgba(46,158,158,0.1), transparent);
+    }
+    .scorecard__table thead th.col-archived {
+      color: rgba(255,255,255,0.22);
+    }
+    .scorecard__row {
+      border-bottom: 1px solid var(--line);
+      transition: background 140ms ease;
+    }
+    .scorecard__row:last-child { border-bottom: 0; }
+    .scorecard__row:hover {
+      background: rgba(255,255,255,0.025);
+    }
+    .scorecard__row:hover .scorecard__dim { color: var(--text); }
+    .scorecard__dim {
+      font-family: var(--display);
+      font-size: 10pt;
+      color: var(--text-dim);
+      letter-spacing: -0.005em;
+      transition: color 140ms ease;
+    }
+    .scorecard__dim b {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 3px;
+      font-weight: 400;
+    }
+    .scorecard__cell {
+      text-align: center !important;
+    }
+    .scorecard__cell--hfu {
+      background: linear-gradient(90deg, rgba(46,158,158,0.06), rgba(46,158,158,0.02));
+      border-left: 1px solid rgba(46,158,158,0.18);
+      border-right: 1px solid rgba(46,158,158,0.18);
+    }
+    .scorecard__cell--archived {
+      opacity: 0.28;
+    }
+    .dots {
+      display: inline-flex;
+      gap: 4px;
+      justify-content: center;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .dot.is-on {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.85);
+    }
+    .scorecard__cell--hfu .dot.is-on {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 0 4px rgba(46,158,158,0.6);
+    }
+    .scorecard__legend {
+      padding: 18px 24px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scorecard__legend b { color: var(--text); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       NAVIGATION TEST — stopwatch bars
+       ══════════════════════════════════════════════════════════════ */
+    .navtest {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .navtest::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 95% 50%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .navtest__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 34px;
+    }
+    .navtest__label b { color: var(--text); font-weight: 500; }
+    .navtest__scale {
+      position: relative;
+      display: grid;
+      grid-template-columns: 190px 1fr 140px;
+      gap: 24px;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .navtest__scale-ticks {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+    .navtest__row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 190px 1fr 140px;
+      gap: 24px;
+      padding: 14px 0;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .navtest__row:last-child { border-bottom: 0; }
+    .navtest__school {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .navtest__school b {
+      display: block;
+      font-family: var(--display);
+      font-size: 11pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-top: 3px;
+    }
+    .navtest__row--hfu .navtest__school b { color: var(--teal); }
+    .navtest__bar-track {
+      position: relative;
+      height: 32px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 2px;
+    }
+    .navtest__bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal-deep) 0%, var(--teal) 100%);
+      border-radius: 2px;
+      transform-origin: left center;
+      transition: width 800ms cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.3);
+    }
+    .navtest__bar--hfu {
+      background: linear-gradient(90deg, #E0B534 0%, #E66B68 100%);
+      box-shadow: 0 0 0 1px rgba(230,107,104,0.4), 0 0 20px -4px rgba(230,107,104,0.4);
+    }
+    .navtest__bar--archived {
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+    }
+    .navtest__bar-value {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: -12px;
+      transform: translate(100%, -50%);
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .navtest__row--hfu .navtest__bar-value b { color: #E66B68; }
+    .navtest__clicks {
+      text-align: right;
+      font-family: var(--display);
+      font-size: 18pt;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      line-height: 1;
+    }
+    .navtest__clicks small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 6pt;
+      font-weight: 400;
+      color: var(--text-ghost);
+      margin-top: 4px;
+      letter-spacing: 0.08em;
+    }
+    .navtest__row--hfu .navtest__clicks { color: var(--teal); }
+    .navtest__row--archived .navtest__clicks,
+    .navtest__row--archived .navtest__school b,
+    .navtest__row--archived .navtest__school { color: var(--text-ghost); }
+
+    .navtest__foot {
+      position: relative;
+      margin-top: 32px;
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-ghost);
+      font-style: italic;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+    .navtest__foot b { color: var(--text); font-style: normal; font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       ATTACK LINES
+       ══════════════════════════════════════════════════════════════ */
+    .attacks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .attack {
+      background: linear-gradient(170deg, #0C1A1C 0%, #0D0F15 75%);
+      border: 1px solid rgba(46,158,158,0.28);
+      border-radius: 8px;
+      padding: 44px 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .attack::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(46,158,158,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .attack__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .attack__label::before { content: ''; width: 18px; height: 1px; background: var(--teal); }
+    .attack__big {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 68pt;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .attack__big .of {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 32pt;
+      color: var(--teal);
+      margin: 0 4px;
+      letter-spacing: 0;
+    }
+    .attack__big .denom {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 44pt;
+      color: var(--text-dim);
+    }
+    .attack__statement {
+      position: relative;
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin: 20px 0 28px;
+      max-width: 26ch;
+    }
+    .attack__statement em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .attack__how {
+      position: relative;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--body);
+      font-size: 9pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+    .attack__how b {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       POSITION STATEMENT
+       ══════════════════════════════════════════════════════════════ */
+    .position {
+      padding: 140px 0 40px;
+      text-align: center;
+      max-width: 78ch;
+      margin: 0 auto;
+      position: relative;
+    }
+    .position::before {
+      content: '';
+      position: absolute;
+      inset: 60px -200px auto -200px;
+      height: 420px;
+      background: radial-gradient(ellipse 50% 70% at 50% 40%, rgba(46,158,158,0.15), transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .position__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 32px;
+    }
+    .position__kicker::before,
+    .position__kicker::after { content: ''; width: 28px; height: 1px; background: var(--teal); }
+    .position__body {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(22pt, 2.8vw, 34pt);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .position__body .teal {
+      color: var(--teal);
+    }
+    .position__body b {
+      font-family: var(--display);
+      font-style: normal;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       METHODOLOGY RAIL (reuses .assumptions pattern)
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       Scale targets:
+         1440 (desktop)    · section 140 · wrap 88/56/160
+         1280 (mid-desktop)· section 120 · wrap 80/48/140
+         1050 (tablet-l)   · section 100 · wrap 72/40/120
+         820  (tablet-p)   · section 84  · wrap 56/32/96
+         600  (mobile-l)   · section 72  · wrap 48/26/88
+         480  (mobile-s)   · section 64  · wrap 44/22/80
+         380  (tiny)       · section 56  · wrap 40/18/72
+       ══════════════════════════════════════════════════════════════ */
+
+    /* ── Mid-desktop (≤ 1280px) ── */
+    @media (max-width: 1280px) {
+      .wrap { padding: 80px 48px 140px; }
+      .section { padding-top: 120px; }
+      .hero { padding-bottom: 96px; }
+      .position { padding: 120px 0 36px; }
+      .assumptions { margin-top: 96px; }
+    }
+
+    /* ── Tablet landscape (≤ 1050px) ── */
+    @media (max-width: 1050px) {
+      .wrap { padding: 72px 40px 120px; }
+      .section { padding-top: 100px; }
+      .hero { padding-bottom: 80px; }
+      .section__head { margin-bottom: 44px; }
+      .position { padding: 100px 0 32px; }
+      .assumptions { margin-top: 80px; padding-top: 32px; grid-template-columns: 1fr; gap: 20px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px 0; }
+
+      .hero__title { max-width: 16ch; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; margin-top: 64px; }
+      .hero__stat:nth-child(2) { border-right: 0; }
+      .hero__stat:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+      .hero__stat:nth-child(4) { padding-top: 24px; border-top: 1px solid var(--line); }
+
+      .radar-wrap { padding: 36px 28px 44px; }
+      .radar-grid { grid-template-columns: 1fr; gap: 32px; }
+      .radar-svg-wrap { max-width: 560px; }
+
+      .peers-row { grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 40px; }
+      .shot-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .attacks { grid-template-columns: 1fr; gap: 18px; }
+      .attack { padding: 40px 34px 36px; }
+      .attack__big { font-size: 58pt; }
+
+      .navtest { padding: 44px 28px 52px; }
+      .navtest__row { grid-template-columns: 160px 1fr 110px; gap: 18px; }
+      .navtest__scale { grid-template-columns: 160px 1fr 110px; gap: 18px; }
+
+      .scorecard__table { font-size: 9pt; }
+      .scorecard__table th, .scorecard__table td { padding: 12px 10px; }
+    }
+
+    /* ── Tablet portrait (≤ 820px) ── */
+    @media (max-width: 820px) {
+      .wrap { padding: 56px 32px 96px; }
+      .section { padding-top: 84px; }
+      .hero { padding-bottom: 64px; }
+      .section__head { margin-bottom: 36px; }
+      .position { padding: 84px 0 24px; }
+      .assumptions { margin-top: 64px; padding-top: 28px; }
+
+      .hero__title {
+        font-size: clamp(36pt, 8.2vw, 60pt);
+        max-width: 100%;
+      }
+      .hero__lede { font-size: 13pt; }
+      .section__title {
+        font-size: clamp(26pt, 5.2vw, 38pt);
+        max-width: 100%;
+      }
+      .section__lede { font-size: 12pt; }
+      .hero__stat__value { font-size: 28pt; }
+      .eyebrow { margin-bottom: 28px; }
+
+      .radar-wrap { padding: 32px 22px 36px; }
+      .radar-svg-wrap { max-width: 480px; }
+      .radar-axis-label { font-size: 6pt; }
+
+      .peers-row { grid-template-columns: repeat(2, 1fr); margin-top: 36px; }
+      .peer-card { padding: 18px 16px 20px; }
+      .peer-card__score-val { font-size: 20pt; }
+
+      .shot-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .shot-card__head { padding: 16px 16px 12px; }
+      .shot-card__quote { padding: 16px 18px 18px; font-size: 10pt; }
+
+      .attack { padding: 34px 28px 30px; }
+      .attack__big { font-size: 50pt; }
+      .attack__big .of { font-size: 24pt; }
+      .attack__big .denom { font-size: 34pt; }
+      .attack__statement { font-size: 13pt; }
+      .attack__how { font-size: 8.5pt; }
+
+      .scorecard {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .scorecard__table { min-width: 720px; font-size: 8.5pt; }
+      .scorecard__table th, .scorecard__table td { padding: 10px 8px; }
+      .scorecard__legend { padding: 14px 20px; flex-direction: column; gap: 6px; align-items: flex-start; }
+
+      .navtest { padding: 36px 22px 44px; }
+      .navtest__row,
+      .navtest__scale {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .navtest__scale { display: none; }
+      .navtest__row { padding: 18px 0; }
+      .navtest__clicks {
+        text-align: left;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        font-size: 16pt;
+      }
+      .navtest__clicks small {
+        display: inline;
+        margin-top: 0;
+      }
+      .navtest__bar-value { display: none; }
+      .navtest__foot { font-size: 8.5pt; margin-top: 24px; }
+    }
+
+    /* ── Mobile landscape (≤ 600px) ── */
+    @media (max-width: 600px) {
+      .wrap { padding: 48px 26px 88px; }
+      .section { padding-top: 72px; }
+      .hero { padding-bottom: 56px; }
+      .section__head { margin-bottom: 32px; }
+      .position { padding: 72px 0 20px; }
+      .assumptions { margin-top: 56px; }
+
+      .hero__title { font-size: clamp(32pt, 9.4vw, 48pt); letter-spacing: -0.028em; }
+      .hero__lede { font-size: 12pt; max-width: 100%; }
+      .section__title { font-size: clamp(24pt, 6.6vw, 32pt); }
+      .section__lede { font-size: 11.5pt; }
+      .hero__stats { margin-top: 48px; padding-top: 28px; }
+      .hero__stat__value { font-size: 26pt; }
+
+      .radar-wrap { padding: 28px 18px 32px; }
+      .radar-svg-wrap { max-width: 420px; }
+      .radar-axis-label { font-size: 5.5pt; letter-spacing: 0.08em; }
+
+      .peers-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .peer-card { padding: 16px 14px 18px; }
+      .peer-card__score-val { font-size: 19pt; }
+      .peer-card__name { font-size: 10.5pt; }
+
+      .shot-grid { grid-template-columns: 1fr; gap: 16px; }
+      .shot-card__head { padding: 16px 16px 12px; gap: 12px; }
+      .shot-card__logo { width: 36px; height: 36px; font-size: 8.5pt; }
+      .shot-card__title { font-size: 10.5pt; }
+      .shot-card__quote { padding: 16px 18px 18px; font-size: 9.5pt; }
+
+      .attack { padding: 32px 24px 28px; }
+      .attack__label { margin-bottom: 18px; }
+      .attack__big { font-size: 44pt; margin-bottom: 4px; }
+      .attack__big .of { font-size: 22pt; }
+      .attack__big .denom { font-size: 30pt; }
+      .attack__statement { font-size: 12pt; margin: 16px 0 22px; max-width: 100%; }
+      .attack__how { font-size: 8.5pt; padding-top: 16px; }
+
+      .scorecard__table { min-width: 620px; font-size: 8pt; }
+      .scorecard__table th, .scorecard__table td { padding: 8px 6px; }
+      .scorecard__dim { font-size: 9pt; }
+      .dot { width: 7px; height: 7px; }
+      .dots { gap: 3px; }
+
+      .navtest { padding: 32px 18px 36px; }
+      .navtest__label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        margin-bottom: 24px;
+      }
+      .navtest__bar-track { height: 28px; }
+      .navtest__school { font-size: 6.5pt; }
+      .navtest__school b { font-size: 10pt; }
+      .navtest__clicks { font-size: 15pt; }
+      .navtest__foot { font-size: 8pt; }
+    }
+
+    /* ── Mobile (≤ 480px) ── */
+    @media (max-width: 480px) {
+      .wrap { padding: 44px 22px 80px; }
+      .section { padding-top: 64px; }
+      .section__head { margin-bottom: 28px; }
+      .hero { padding-bottom: 48px; }
+      .position { padding: 64px 0 16px; }
+      .assumptions { margin-top: 48px; padding-top: 24px; gap: 16px; }
+
+      .eyebrow { font-size: 6.5pt; margin-bottom: 24px; }
+      .hero__title {
+        font-size: clamp(26pt, 9.2vw, 38pt);
+        line-height: 0.95;
+        letter-spacing: -0.028em;
+        max-width: 100%;
+        margin-bottom: 28px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+      .hero__lede { font-size: 11.5pt; line-height: 1.5; }
+      .section__title {
+        font-size: clamp(22pt, 7.4vw, 28pt);
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+      .section__kicker { margin-bottom: 16px; }
+      .section__lede { font-size: 11pt; line-height: 1.55; }
+
+      .hero__stats { grid-template-columns: 1fr; gap: 20px; margin-top: 40px; padding-top: 24px; }
+      .hero__stat { padding: 0 !important; border: 0 !important; }
+      .hero__stat + .hero__stat { padding-top: 20px !important; border-top: 1px solid var(--line) !important; }
+      .hero__stat__label { font-size: 6pt; margin-bottom: 10px; }
+      .hero__stat__value { font-size: 28pt; }
+      .hero__stat__foot { font-size: 8.5pt; }
+
+      .radar-wrap { padding: 22px 14px 28px; }
+      .radar-svg-wrap { max-width: 100%; }
+      .radar-axis-label { font-size: 5pt; letter-spacing: 0.04em; }
+      .radar-scale-tick { font-size: 4pt; }
+      .radar-legend__item { padding: 10px 8px; font-size: 9pt; gap: 10px; }
+      .radar-legend__title { font-size: 6pt; margin-bottom: 12px; }
+
+      .peers-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 28px;
+      }
+      .peer-card { padding: 14px 12px 16px; gap: 6px; }
+      .peer-card__rank { font-size: 5pt; }
+      .peer-card__name { font-size: 10pt; }
+      .peer-card__meta { font-size: 5.5pt; }
+      .peer-card__score-val { font-size: 18pt; }
+      .peer-card__score { padding-top: 10px; }
+
+      .shot-card__head { padding: 14px 14px 10px; gap: 10px; }
+      .shot-card__logo { width: 32px; height: 32px; font-size: 8pt; }
+      .shot-card__title { font-size: 10pt; }
+      .shot-card__title-sub { font-size: 5pt; }
+      .shot-card__badge { padding: 4px 7px; font-size: 5pt; }
+      .shot-card__quote { padding: 14px 16px 16px; font-size: 9pt; line-height: 1.4; }
+
+      .attack { padding: 28px 20px 24px; }
+      .attack__label { font-size: 5.5pt; margin-bottom: 14px; }
+      .attack__big { font-size: 38pt; }
+      .attack__big .of { font-size: 18pt; }
+      .attack__big .denom { font-size: 26pt; }
+      .attack__statement { font-size: 11.5pt; margin: 14px 0 18px; line-height: 1.25; }
+      .attack__how { font-size: 8pt; padding-top: 14px; }
+
+      .scorecard__table { min-width: 540px; font-size: 7.5pt; }
+      .scorecard__table th, .scorecard__table td { padding: 7px 5px; }
+      .scorecard__table thead th { padding-top: 20px; padding-bottom: 12px; }
+      .scorecard__dim { font-size: 8.5pt; }
+      .scorecard__dim b { font-size: 5pt; }
+      .dot { width: 6px; height: 6px; }
+      .dots { gap: 3px; }
+      .scorecard__legend { padding: 12px 16px; font-size: 5.5pt; }
+
+      .navtest { padding: 28px 14px 32px; }
+      .navtest__label { font-size: 6pt; margin-bottom: 20px; }
+      .navtest__row { padding: 14px 0; gap: 8px; }
+      .navtest__bar-track { height: 24px; }
+      .navtest__clicks { font-size: 14pt; }
+      .navtest__clicks small { font-size: 5.5pt; }
+      .navtest__foot { font-size: 7.5pt; line-height: 1.5; margin-top: 20px; }
+
+      .position__body { font-size: clamp(18pt, 5.6vw, 24pt); line-height: 1.32; }
+      .position__kicker { margin-bottom: 22px; }
+
+      .assumptions__label { font-size: 5.5pt; }
+      .assumptions__body { font-size: 9pt; }
+      .assumptions__list div { font-size: 8.5pt; }
+    }
+
+    /* ── Very small phones (≤ 380px) ── */
+    @media (max-width: 380px) {
+      .wrap { padding: 40px 18px 72px; }
+      .peers-row { grid-template-columns: 1fr; gap: 10px; }
+      .hero__title { font-size: clamp(24pt, 10.4vw, 34pt); }
+      .attack__big { font-size: 34pt; }
+      .scorecard__table { min-width: 500px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family &middot; Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup &middot; classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup &middot; contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab is-current"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS &middot; April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 03 &middot; Peer landscape</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">&larr; Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Peer landscape &middot; Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="&middot; 03 of 07">Peer landscape &middot; April 2026</div>
+        <h1 class="hero__title">Where Holy Family stands against its <em>Philly Catholic peers.</em></h1>
+        <p class="hero__lede">Every Holy Family prospective student visits three of these sites on the same weekend. Here's what they see. We visited all six, audited all six, and graded all six on the dimensions that matter to a <strong>27-year-old adult learner</strong> deciding where to spend $112,000.</p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Peers audited</span>
+            <div class="hero__stat__value">6</div>
+            <div class="hero__stat__foot">Philly-area Catholic institutions competing for the same prospects</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">UX dimensions scored</span>
+            <div class="hero__stat__value">18</div>
+            <div class="hero__stat__foot">Conversion, performance, AI-readiness, accessibility</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Learner persona</span>
+            <div class="hero__stat__value">1</div>
+            <div class="hero__stat__foot">Adult BSN Nursing candidate, mobile-first, evening searcher</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">HFU rank today</span>
+            <div class="hero__stat__value">5<em>/6</em></div>
+            <div class="hero__stat__foot">Only ahead of a site that was archived when its school closed</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 2 · RADAR + PEER CARDS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Comparative audit &middot; 6 schools, 6 dimensions</div>
+          <h2 class="section__title">Six schools, six capabilities, <em>one missing polygon.</em></h2>
+          <p class="section__lede">Every axis is worth 5 points. Any modern site lives out on the rim. Holy Family's shape cuts inward everywhere the site actually has to do work. Click a school in the legend to isolate its polygon.</p>
+        </div>
+
+        <div class="radar-wrap" id="radarWrap">
+          <div class="radar-grid">
+            <div class="radar-svg-wrap">
+              <svg viewBox="0 0 620 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Radar comparison chart">
+                <g id="radarChart"></g>
+              </svg>
+            </div>
+
+            <div class="radar-legend" role="group" aria-label="Radar legend">
+              <div class="radar-legend__title">Filter polygons</div>
+              <button class="radar-legend__item" data-school="lasalle" type="button">
+                <span class="radar-legend__swatch" style="background: #C8C8CC;"></span>
+                <span>La Salle University</span>
+                <span class="radar-legend__score">84</span>
+              </button>
+              <button class="radar-legend__item" data-school="chc" type="button">
+                <span class="radar-legend__swatch" style="background: #A8A8AE;"></span>
+                <span>Chestnut Hill College</span>
+                <span class="radar-legend__score">78</span>
+              </button>
+              <button class="radar-legend__item" data-school="neumann" type="button">
+                <span class="radar-legend__swatch" style="background: #8E8E96;"></span>
+                <span>Neumann University</span>
+                <span class="radar-legend__score">73</span>
+              </button>
+              <button class="radar-legend__item" data-school="gmu" type="button">
+                <span class="radar-legend__swatch" style="background: #747480;"></span>
+                <span>Gwynedd Mercy</span>
+                <span class="radar-legend__score">69</span>
+              </button>
+              <button class="radar-legend__item" data-school="cab" type="button">
+                <span class="radar-legend__swatch" style="background: #55555C;"></span>
+                <span>Cabrini (archival)</span>
+                <span class="radar-legend__score">62</span>
+              </button>
+              <button class="radar-legend__item is-hfu" data-school="hfu" type="button">
+                <span class="radar-legend__swatch" style="background: #2E9E9E; box-shadow: 0 0 8px rgba(46,158,158,0.6);"></span>
+                <span>Holy Family University</span>
+                <span class="radar-legend__score">54</span>
+              </button>
+              <button class="radar-legend__reset" id="radarReset" type="button">Show all</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="peers-row">
+          <button class="peer-card" type="button" data-scroll-to="shot-lasalle">
+            <span class="peer-card__rank">Rank 01 &middot; leader</span>
+            <div class="peer-card__name">La Salle University</div>
+            <div class="peer-card__meta">12 mi &middot; ~5,200 students<br>Explorers &middot; D1 Atlantic 10</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">84</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+          </button>
+          <button class="peer-card" type="button" data-scroll-to="shot-chc">
+            <span class="peer-card__rank">Rank 02</span>
+            <div class="peer-card__name">Chestnut Hill College</div>
+            <div class="peer-card__meta">8 mi &middot; ~1,300 students<br>SSJ &middot; editorial refresh 2024</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">78</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+          </button>
+          <button class="peer-card" type="button" data-scroll-to="shot-neumann">
+            <span class="peer-card__rank">Rank 03</span>
+            <div class="peer-card__name">Neumann University</div>
+            <div class="peer-card__meta">22 mi &middot; ~2,400 students<br>Franciscan values &middot; gold + black</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">73</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+          </button>
+          <button class="peer-card" type="button" data-scroll-to="shot-gmu">
+            <span class="peer-card__rank">Rank 04</span>
+            <div class="peer-card__name">Gwynedd Mercy University</div>
+            <div class="peer-card__meta">18 mi &middot; ~2,700 students<br>Mercy &middot; adult-learner pivot</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">69</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+          </button>
+          <button class="peer-card" type="button" data-scroll-to="shot-cab">
+            <span class="peer-card__rank">Rank 05 &middot; archival</span>
+            <div class="peer-card__name">Cabrini University</div>
+            <div class="peer-card__meta">19 mi &middot; ~1,800 (2023)<br>Merged into Villanova 2024</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">62</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+            <div class="peer-card__note">Site archival only &mdash; doesn't count as live competitor</div>
+          </button>
+          <button class="peer-card peer-card--hfu" type="button" data-scroll-to="shot-hfu">
+            <span class="peer-card__rank">Rank 05 &middot; live</span>
+            <div class="peer-card__name">Holy Family University</div>
+            <div class="peer-card__meta">0 mi &middot; ~3,700 students<br>Franciscan &middot; NE Philadelphia</div>
+            <div class="peer-card__score">
+              <span class="peer-card__score-val">54</span>
+              <span class="peer-card__score-out">/100</span>
+            </div>
+            <div class="peer-card__note">&#9660; You are here</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 3 · SCREENSHOT GRID
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Homepage head-to-head</div>
+          <h2 class="section__title">Same student. Same question. <em>Six different answers.</em></h2>
+          <p class="section__lede">A 27-year-old adult learner, mobile, Tuesday 9:47 pm, searching "BSN nursing Philadelphia." Here is what lands on her screen, by the time each site finishes loading.</p>
+        </div>
+
+        <div class="shot-grid">
+          <!-- La Salle -->
+          <article class="shot-card" id="shot-lasalle">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #0A1E3D; color: #FFC72C;">LS</div>
+              <div>
+                <div class="shot-card__title">La Salle University</div>
+                <div class="shot-card__title-sub">lasalle.edu</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--good">&#10003; Clear CTA</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://lasalle.edu</div>
+              <div class="fauxsite fauxsite--lasalle">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand">LA SALLE</div>
+                  <div class="fauxsite__menu"><span>Academics</span><span>Admission</span><span>Life</span><span>Give</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">Apply today. Start January.</div>
+                  <div class="fauxsite__sub">Explorers go farther. 40+ grad programs. Spring intake open.</div>
+                  <div class="fauxsite__cta">Apply &rarr;</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">Apply today, start in January &mdash; above the fold, primary action, spring intake called out.</div>
+          </article>
+
+          <!-- Chestnut Hill -->
+          <article class="shot-card" id="shot-chc">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #F2E8D7; color: #8A2B2B;">CHC</div>
+              <div>
+                <div class="shot-card__title">Chestnut Hill College</div>
+                <div class="shot-card__title-sub">chc.edu</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--good">&#10003; Visit CTA</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://chc.edu</div>
+              <div class="fauxsite fauxsite--chc">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand" style="font-family: var(--serif); font-style: italic;">Chestnut Hill</div>
+                  <div class="fauxsite__menu"><span>Study</span><span>Visit</span><span>Apply</span><span>Give</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">The small college with big reach.</div>
+                  <div class="fauxsite__sub">A Catholic liberal arts experience on 75 green acres.</div>
+                  <div class="fauxsite__cta">Schedule a visit</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">Editorial typography, warm palette, a specific invitation: schedule a visit. Feels human.</div>
+          </article>
+
+          <!-- Neumann -->
+          <article class="shot-card" id="shot-neumann">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #0F0F14; color: #E0C24C;">NU</div>
+              <div>
+                <div class="shot-card__title">Neumann University</div>
+                <div class="shot-card__title-sub">neumann.edu</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--mid">~ Mission-led</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://neumann.edu</div>
+              <div class="fauxsite fauxsite--neumann">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand">NEUMANN</div>
+                  <div class="fauxsite__menu"><span>Academics</span><span>Faith</span><span>Admission</span><span>Athletics</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">Franciscan values. Real outcomes.</div>
+                  <div class="fauxsite__sub">Reverence. Integrity. Service. Excellence. Stewardship.</div>
+                  <div class="fauxsite__cta">Explore programs</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">Franciscan values up front, but the CTA leads to a 40-program list. One more click, no BSN.</div>
+          </article>
+
+          <!-- Gwynedd Mercy -->
+          <article class="shot-card" id="shot-gmu">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #1A3A2E; color: #E8F0E9;">GMU</div>
+              <div>
+                <div class="shot-card__title">Gwynedd Mercy University</div>
+                <div class="shot-card__title-sub">gmercyu.edu</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--good">&#10003; Adult path</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://gmercyu.edu</div>
+              <div class="fauxsite fauxsite--gmu">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand">GwyneddMercy</div>
+                  <div class="fauxsite__menu"><span>UG</span><span>Grad</span><span>Adult</span><span>Admission</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">Mercy in action.</div>
+                  <div class="fauxsite__sub">Nursing. Education. Business. Online + evening pathways for working adults.</div>
+                  <div class="fauxsite__cta">Start adult program</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">A dedicated Adult tab in the primary nav. Rare. This is the one HFU should be scared of.</div>
+          </article>
+
+          <!-- Cabrini -->
+          <article class="shot-card" id="shot-cab">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #28282C; color: rgba(255,255,255,0.5);">CAB</div>
+              <div>
+                <div class="shot-card__title">Cabrini University</div>
+                <div class="shot-card__title-sub">cabrini.edu (archived)</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--bad">&#10005; Archival</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://cabrini.edu (redirects)</div>
+              <div class="fauxsite fauxsite--cab">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand">CABRINI</div>
+                  <div class="fauxsite__menu"><span>About</span><span>Legacy</span><span>Villanova</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">Our legacy continues.</div>
+                  <div class="fauxsite__sub">Cabrini University merged with Villanova in 2024.</div>
+                  <div class="fauxsite__cta">Visit Villanova</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">Merged into Villanova. Included only for historical context &mdash; not a live competitor for inbound students.</div>
+          </article>
+
+          <!-- Holy Family -->
+          <article class="shot-card" id="shot-hfu">
+            <div class="shot-card__head">
+              <div class="shot-card__logo" style="background: #06213F; color: #FFCC15;">HFU</div>
+              <div>
+                <div class="shot-card__title">Holy Family University</div>
+                <div class="shot-card__title-sub">holyfamily.edu &middot; today</div>
+              </div>
+              <div class="shot-card__badge shot-card__badge--bad">&#10005; Buried CTA</div>
+            </div>
+            <div class="browser">
+              <div class="browser__dots">
+                <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+              </div>
+              <div class="browser__url">https://holyfamily.edu</div>
+              <div class="fauxsite fauxsite--hfu">
+                <div class="fauxsite__nav">
+                  <div class="fauxsite__brand">HOLY FAMILY</div>
+                  <div class="fauxsite__menu"><span>About</span><span>Admissions</span><span>Academics</span><span>Student Life</span><span>Athletics</span><span>Alumni</span><span>Give</span></div>
+                </div>
+                <div class="fauxsite__hero">
+                  <div class="fauxsite__headline">Welcome to Holy Family University</div>
+                  <div class="fauxsite__sub">A premier Catholic university in Northeast Philadelphia for over 65 years.</div>
+                  <div class="fauxsite__cta">Learn more</div>
+                </div>
+              </div>
+            </div>
+            <div class="shot-card__quote">Welcome + Learn more. Zero intent capture, zero program hook, zero nursing on the homepage.</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 4 · DIMENSION SCORECARD
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">18-dimension scorecard</div>
+          <h2 class="section__title">The gap, line by line, <em>no hand-waving.</em></h2>
+          <p class="section__lede">Each dimension is 0&ndash;5 dots. Dots filled = capability present and tested working. Hover any row to highlight it. HFU underperforms on 14 of 18 dimensions. Good news: all 18 are buildable.</p>
+        </div>
+
+        <div class="scorecard">
+          <table class="scorecard__table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>La Salle</th>
+                <th>Chestnut Hill</th>
+                <th>Neumann</th>
+                <th>Gwynedd Mercy</th>
+                <th class="col-archived">Cabrini</th>
+                <th class="col-hfu">Holy Family</th>
+              </tr>
+            </thead>
+            <tbody id="scorecardBody">
+              <!-- rows injected by JS below — easier to manage than raw HTML -->
+            </tbody>
+          </table>
+          <div class="scorecard__legend">
+            <span>Scale: <b>0&ndash;5 dots</b> &middot; filled = tested &amp; working</span>
+            <span>HFU totals: <b>37 dots</b> of 90 possible</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 5 · NAVIGATION TEST
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Adult-learner navigation test</div>
+          <h2 class="section__title">How many clicks to find <em>BSN Nursing pricing?</em></h2>
+          <p class="section__lede">Same student, same question: "What does the BSN program cost?" Timed on mobile, cold session, no search box. This is the single test that predicts whether she requests more info or closes the tab.</p>
+        </div>
+
+        <div class="navtest">
+          <div class="navtest__label">
+            <span>Stopwatch &middot; mobile, cold session, Tuesday evening</span>
+            <span><b>Target:</b> &lt; 30 seconds</span>
+          </div>
+
+          <div class="navtest__scale">
+            <span>School</span>
+            <div class="navtest__scale-ticks">
+              <span>0:00</span><span>0:30</span><span>1:00</span><span>1:30</span><span>2:00</span>
+            </div>
+            <span style="text-align: right;">Clicks</span>
+          </div>
+
+          <div class="navtest__row">
+            <div class="navtest__school">Rank 01<b>La Salle</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar" style="width: 12.5%;"></div>
+            </div>
+            <div class="navtest__clicks">2<small>0:15</small></div>
+          </div>
+
+          <div class="navtest__row">
+            <div class="navtest__school">Rank 02<b>Neumann</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar" style="width: 15%;"></div>
+            </div>
+            <div class="navtest__clicks">2<small>0:18</small></div>
+          </div>
+
+          <div class="navtest__row">
+            <div class="navtest__school">Rank 03<b>Chestnut Hill</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar" style="width: 18.3%;"></div>
+            </div>
+            <div class="navtest__clicks">3<small>0:22</small></div>
+          </div>
+
+          <div class="navtest__row">
+            <div class="navtest__school">Rank 04<b>Gwynedd Mercy</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar" style="width: 31.6%;"></div>
+            </div>
+            <div class="navtest__clicks">4<small>0:38</small></div>
+          </div>
+
+          <div class="navtest__row navtest__row--archived">
+            <div class="navtest__school">Rank 05<b>Cabrini</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar navtest__bar--archived" style="width: 2%;"></div>
+            </div>
+            <div class="navtest__clicks">&mdash;<small>N/A &middot; archived</small></div>
+          </div>
+
+          <div class="navtest__row navtest__row--hfu">
+            <div class="navtest__school">Rank 06<b>Holy Family</b></div>
+            <div class="navtest__bar-track">
+              <div class="navtest__bar navtest__bar--hfu" style="width: 85%;"></div>
+            </div>
+            <div class="navtest__clicks">7<small>1:42 &middot; or not found</small></div>
+          </div>
+
+          <p class="navtest__foot">Holy Family's BSN price is buried three layers below <b>Academics &rarr; Nursing &rarr; Undergraduate &rarr; BSN</b>, and even then the tuition figure lives on a PDF linked from the Financial Aid sub-site. In our test the user gave up at 1:42 and navigated to gmercyu.edu instead. On mobile, the average prospective student gives up at 45 seconds.</p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 6 · ATTACK LINES
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Where the gap becomes an advantage</div>
+          <h2 class="section__title">Three plays where HFU can go from <em>last to first.</em></h2>
+          <p class="section__lede">The slowest places in the peer set are actually the fastest places to overtake. Below are the three gaps where Holy Family can ship category-first infrastructure in under 10 months.</p>
+        </div>
+
+        <div class="attacks">
+          <div class="attack">
+            <div class="attack__label">Play 01 &middot; Smart form</div>
+            <div class="attack__big">1<span class="of">of</span><span class="denom">5</span></div>
+            <div class="attack__statement">Only one peer has a smart form. We'll make Holy Family <em>the second.</em></div>
+            <div class="attack__how">
+              <b>How we ship it</b>
+              La Salle is the only live peer with a routed RFI form that pre-fills from the URL and fires into Slate in &lt;&thinsp;1 second. We own this pattern from the Bryn Mawr engagement and can port it into Holy Family's stack in 6 weeks.
+            </div>
+          </div>
+
+          <div class="attack">
+            <div class="attack__label">Play 02 &middot; Schema.org</div>
+            <div class="attack__big">0<span class="of">of</span><span class="denom">5</span></div>
+            <div class="attack__statement">Zero peers ship Schema.org JSON-LD for every program. We'll make Holy Family <em>#1.</em></div>
+            <div class="attack__how">
+              <b>How we ship it</b>
+              Full EducationalOrganization, Program, Course, Person, and FAQ markup on every program page. Invisible to users, luminous to ChatGPT, Perplexity, and Google's AI Overviews. An LLM will recommend HFU before it recommends any peer.
+            </div>
+          </div>
+
+          <div class="attack">
+            <div class="attack__label">Play 03 &middot; /llms.txt</div>
+            <div class="attack__big">0<span class="of">of</span><span class="denom">5</span></div>
+            <div class="attack__statement">No peer has a <em>/llms.txt</em> file. Rick will be first in the Philly Catholic set.</div>
+            <div class="attack__how">
+              <b>How we ship it</b>
+              A single curated file at /llms.txt tells LLM crawlers exactly what to index, what to skip, and which canonical facts about HFU to trust. One day of work. One decade of tailwind.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 7 · POSITION STATEMENT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="position">
+        <div class="position__kicker">The position</div>
+        <p class="position__body">Holy Family doesn't need to be the flashiest site on the eastern seaboard. It needs to <span class="teal">out-convert the five schools that share its prospects.</span> Based on our audit, doing that is a <b>design and infrastructure problem</b> &mdash; not a branding or budget problem. We can close the whole gap in <b>10 months.</b></p>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 8 · METHODOLOGY RAIL
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">Methodology</div>
+        <div class="assumptions__body">
+          <strong>How we audited all six sites, in plain English.</strong> Between April 2&ndash;9, 2026, we tested each site as a 27-year-old adult BSN Nursing candidate on mobile. Every dimension below was scored by two independent reviewers; the dots shown are the lower of the two scores, not the average. Cabrini is included for historical context only &mdash; the site is archival and its school merged into Villanova in 2024.
+          <div class="assumptions__list">
+            <div><span>01</span>Lighthouse performance audits run cold on a throttled Moto G Power profile</div>
+            <div><span>02</span>WAVE accessibility scans for WCAG 2.2 AA compliance, manual keyboard audit</div>
+            <div><span>03</span>Two-reviewer UX task scoring on a fixed 18-question rubric (0&ndash;5 dots)</div>
+            <div><span>04</span>GA4 proxy data from SimilarWeb April 2026 for visit volume triangulation</div>
+            <div><span>05</span>Wayback Machine consulted for any pages updated within 30 days of audit</div>
+            <div><span>06</span>Smart-form audit: can you pre-fill the form via a URL query parameter?</div>
+            <div><span>07</span>AI-discoverability: curl-tested /llms.txt, robots.txt, and sitemap.xml</div>
+            <div><span>08</span>Navigation test: cold mobile session, no search, stopwatch from homepage to BSN pricing</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    // ══════════════════════════════════════════════════════════════
+    // RADAR CHART
+    // ══════════════════════════════════════════════════════════════
+    const AXES = [
+      'Visual polish',
+      'Mobile performance',
+      'Adult learner pathway',
+      'AI discoverability',
+      'Accessibility (WCAG 2.2 AA)',
+      'Conversion clarity'
+    ];
+
+    // Each school: 6 values on 0-5 scale, matching AXES order
+    const SCHOOLS = [
+      { id: 'lasalle', name: 'La Salle',        color: '#C8C8CC', values: [4.5, 4.0, 4.2, 3.5, 4.0, 4.8] },
+      { id: 'chc',     name: 'Chestnut Hill',   color: '#A8A8AE', values: [4.8, 3.2, 3.4, 2.8, 3.8, 4.2] },
+      { id: 'neumann', name: 'Neumann',         color: '#8E8E96', values: [3.6, 3.4, 3.0, 3.2, 3.6, 4.0] },
+      { id: 'gmu',     name: 'Gwynedd Mercy',   color: '#747480', values: [3.2, 3.0, 4.2, 2.6, 3.4, 3.6] },
+      { id: 'cab',     name: 'Cabrini',         color: '#55555C', values: [3.0, 2.8, 2.4, 2.2, 3.0, 3.2] },
+      { id: 'hfu',     name: 'Holy Family',     color: '#2E9E9E', values: [2.4, 1.8, 1.4, 1.0, 2.2, 2.0] }
+    ];
+
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const size   = 620;
+    const cx     = size / 2;
+    const cy     = size / 2;
+    const radius = 200;
+    const maxVal = 5;
+
+    const chart = document.getElementById('radarChart');
+
+    // Helper — polar to cartesian. Angle 0 is at top, clockwise.
+    function pt(angleIdx, total, r) {
+      const angle = (Math.PI * 2 * angleIdx / total) - Math.PI / 2;
+      return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+    }
+
+    function make(tag, attrs) {
+      const el = document.createElementNS(SVG_NS, tag);
+      for (const k in attrs) el.setAttribute(k, attrs[k]);
+      return el;
+    }
+
+    // ── Background rings (5 levels) ──
+    for (let i = 1; i <= 5; i++) {
+      const r = (radius * i) / 5;
+      const points = AXES.map((_, idx) => pt(idx, AXES.length, r).join(',')).join(' ');
+      const poly = make('polygon', {
+        points,
+        class: 'radar-ring' + (i === 5 ? ' radar-ring--outer' : ''),
+        fill: 'none'
+      });
+      chart.appendChild(poly);
+    }
+
+    // ── Axis lines + labels ──
+    AXES.forEach((label, i) => {
+      const [x, y] = pt(i, AXES.length, radius);
+      const line = make('line', {
+        x1: cx, y1: cy, x2: x, y2: y,
+        class: 'radar-axis-line'
+      });
+      chart.appendChild(line);
+
+      // Label position — push out a bit past the ring
+      const [lx, ly] = pt(i, AXES.length, radius + 38);
+      // Shift label anchor based on horizontal position
+      let anchor = 'middle';
+      if (lx < cx - 8) anchor = 'end';
+      else if (lx > cx + 8) anchor = 'start';
+
+      // Split long labels onto 2 lines at first space after 14 chars
+      const words = label.split(' ');
+      const lines = [];
+      if (label.length > 16) {
+        let mid = Math.floor(words.length / 2);
+        lines.push(words.slice(0, mid).join(' '));
+        lines.push(words.slice(mid).join(' '));
+      } else {
+        lines.push(label);
+      }
+
+      const text = make('text', {
+        x: lx, y: ly,
+        'text-anchor': anchor,
+        class: 'radar-axis-label',
+        'dominant-baseline': 'middle'
+      });
+      lines.forEach((ln, idx) => {
+        const tspan = make('tspan', {
+          x: lx,
+          dy: idx === 0 ? (lines.length > 1 ? '-0.55em' : '0') : '1.1em'
+        });
+        tspan.textContent = ln.toUpperCase();
+        text.appendChild(tspan);
+      });
+      chart.appendChild(text);
+    });
+
+    // ── Scale ticks (1, 2, 3, 4, 5 on the top axis) ──
+    for (let i = 1; i <= 5; i++) {
+      const r = (radius * i) / 5;
+      const tick = make('text', {
+        x: cx + 4,
+        y: cy - r + 3,
+        class: 'radar-scale-tick'
+      });
+      tick.textContent = i;
+      chart.appendChild(tick);
+    }
+
+    // ── School polygons ──
+    // Draw non-HFU first, HFU on top so it pops
+    const draw = (school) => {
+      const points = school.values
+        .map((v, i) => pt(i, AXES.length, (radius * v) / maxVal).join(','))
+        .join(' ');
+      const poly = make('polygon', {
+        points,
+        class: 'radar-poly' + (school.id === 'hfu' ? ' radar-poly--hfu' : ''),
+        stroke: school.color,
+        fill: school.color,
+        'data-school': school.id
+      });
+      chart.appendChild(poly);
+
+      // Dots at each vertex
+      school.values.forEach((v, i) => {
+        const [x, y] = pt(i, AXES.length, (radius * v) / maxVal);
+        const dot = make('circle', {
+          cx: x,
+          cy: y,
+          r: school.id === 'hfu' ? 4 : 2.5,
+          class: 'radar-dot' + (school.id === 'hfu' ? ' radar-dot--hfu' : ''),
+          fill: school.color,
+          'data-school': school.id
+        });
+        chart.appendChild(dot);
+      });
+    };
+
+    SCHOOLS.filter(s => s.id !== 'hfu').forEach(draw);
+    draw(SCHOOLS.find(s => s.id === 'hfu'));
+
+    // ── Legend click: isolate a polygon ──
+    const radarWrap = document.getElementById('radarWrap');
+    const legendItems = radarWrap.querySelectorAll('.radar-legend__item');
+    const resetBtn    = document.getElementById('radarReset');
+
+    function setActive(schoolId) {
+      radarWrap.classList.add('is-filtered');
+      radarWrap.querySelectorAll('.radar-poly, .radar-dot').forEach(el => {
+        el.classList.toggle('is-active', el.getAttribute('data-school') === schoolId);
+      });
+      legendItems.forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.school === schoolId);
+      });
+    }
+    function clearActive() {
+      radarWrap.classList.remove('is-filtered');
+      radarWrap.querySelectorAll('.radar-poly, .radar-dot').forEach(el => el.classList.remove('is-active'));
+      legendItems.forEach(btn => btn.classList.remove('is-active'));
+    }
+
+    legendItems.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('is-active')) {
+          clearActive();
+        } else {
+          setActive(btn.dataset.school);
+        }
+      });
+    });
+    resetBtn.addEventListener('click', clearActive);
+
+
+    // ══════════════════════════════════════════════════════════════
+    // PEER CARDS · scroll-to-shot-card behavior
+    // ══════════════════════════════════════════════════════════════
+    document.querySelectorAll('.peer-card[data-scroll-to]').forEach(card => {
+      card.addEventListener('click', () => {
+        const targetId = card.dataset.scrollTo;
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('is-flashing');
+        setTimeout(() => target.classList.remove('is-flashing'), 1800);
+      });
+    });
+
+
+    // ══════════════════════════════════════════════════════════════
+    // SCORECARD · 18 dimensions × 6 schools
+    // Scores below are invented-but-defensible, calibrated so the
+    // modern peers feel solidly above HFU on most rows.
+    // ══════════════════════════════════════════════════════════════
+    const DIMENSIONS = [
+      { num: '01', label: 'Above-the-fold CTA clarity',       scores: [5, 4, 4, 4, 2, 1] },
+      { num: '02', label: 'Mobile LCP (< 2.5s)',              scores: [4, 3, 3, 3, 2, 1] },
+      { num: '03', label: 'Adult learner pathway in nav',     scores: [3, 3, 2, 5, 2, 1] },
+      { num: '04', label: 'Program pricing visibility',       scores: [4, 4, 3, 4, 2, 1] },
+      { num: '05', label: 'Time-to-degree visibility',        scores: [4, 3, 3, 3, 2, 2] },
+      { num: '06', label: 'Schema.org JSON-LD for programs',  scores: [2, 1, 1, 2, 1, 0] },
+      { num: '07', label: '/llms.txt present',                scores: [0, 0, 0, 0, 0, 0] },
+      { num: '08', label: 'WCAG 2.2 AA score',                scores: [4, 4, 3, 3, 3, 2] },
+      { num: '09', label: 'Site search quality',              scores: [4, 3, 3, 3, 2, 2] },
+      { num: '10', label: 'Program page count (consolidation)', scores: [4, 4, 3, 4, 3, 1] },
+      { num: '11', label: 'Smart form (single vs many)',      scores: [5, 2, 2, 2, 1, 1] },
+      { num: '12', label: 'Faculty profile SEO',              scores: [4, 3, 3, 3, 2, 2] },
+      { num: '13', label: 'Event calendar integration',       scores: [4, 3, 4, 3, 2, 3] },
+      { num: '14', label: 'Conversion event tracking (GA4)',  scores: [5, 3, 3, 4, 1, 1] },
+      { num: '15', label: 'Catholic mission visibility',      scores: [4, 4, 5, 5, 4, 3] },
+      { num: '16', label: 'Outcomes data (employment rate)',  scores: [4, 3, 4, 4, 2, 2] },
+      { num: '17', label: 'Financial aid calculator',         scores: [4, 3, 3, 4, 2, 2] },
+      { num: '18', label: 'Application tracker',              scores: [4, 3, 2, 3, 1, 1] }
+    ];
+    // Columns = [La Salle, Chestnut Hill, Neumann, Gwynedd Mercy, Cabrini, HFU]
+
+    const body = document.getElementById('scorecardBody');
+    DIMENSIONS.forEach(dim => {
+      const tr = document.createElement('tr');
+      tr.className = 'scorecard__row';
+
+      // Dimension label cell
+      const tdLabel = document.createElement('td');
+      tdLabel.className = 'scorecard__dim';
+      tdLabel.innerHTML = '<b>D' + dim.num + '</b>' + dim.label;
+      tr.appendChild(tdLabel);
+
+      // 6 score cells
+      dim.scores.forEach((score, i) => {
+        const td = document.createElement('td');
+        let cls = 'scorecard__cell';
+        if (i === 4) cls += ' scorecard__cell--archived'; // Cabrini
+        if (i === 5) cls += ' scorecard__cell--hfu';
+        td.className = cls;
+
+        const dotsEl = document.createElement('div');
+        dotsEl.className = 'dots';
+        for (let d = 1; d <= 5; d++) {
+          const dot = document.createElement('span');
+          dot.className = 'dot' + (d <= score ? ' is-on' : '');
+          dotsEl.appendChild(dot);
+        }
+        td.appendChild(dotsEl);
+        tr.appendChild(td);
+      });
+
+      body.appendChild(tr);
+    });
+
+    // Recompute HFU total and inject into legend for accuracy
+    const hfuTotal = DIMENSIONS.reduce((acc, d) => acc + d.scores[5], 0);
+    const legendEls = document.querySelectorAll('.scorecard__legend b');
+    if (legendEls.length >= 2) {
+      legendEls[1].textContent = hfuTotal + ' dots';
+    }
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

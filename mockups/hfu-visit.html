@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visit &amp; Campus Tours · Holy Family University</title>
+  <meta name="description" content="Come walk the quiet quad. Plan your in-person visit to Holy Family University — campus tours, open houses, and personal counselor meetings in Philadelphia and Newtown, PA.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════
+       HFU VISIT — Concept 6 (Carevia-inspired, editorial prestige)
+       Typography: Fraunces (display) + Inter Tight (body)
+       Shares brand system with hfu-admissions.html
+       Theme: inviting and practical
+       ═════════════════════════════════════════════════════════════════════ */
+    :root {
+      /* HFU brand */
+      --hfu-navy:        212 82% 13%;   /* #06213F */
+      --hfu-navy-deep:   212 90% 8%;
+      --hfu-navy-soft:   212 45% 22%;
+      --hfu-blue:        204 100% 33%;  /* #0068A9 */
+      --hfu-blue-deep:   204 100% 26%;
+      --hfu-yellow:      48 100% 54%;   /* #FFCC15 */
+      --hfu-yellow-soft: 48 100% 94%;
+      --hfu-yellow-deep: 44 95% 46%;
+      --hfu-mist:        202 22% 76%;   /* #B2C6D1 */
+
+      /* Warm editorial neutrals */
+      --bg:              38 33% 97%;    /* #FBF9F3 warm cream */
+      --bg-alt:          38 25% 94%;
+      --bg-card:         0 0% 100%;
+      --fg:              212 38% 12%;
+      --fg-muted:        212 18% 36%;
+      --fg-subtle:       212 12% 52%;
+      --border:          212 20% 88%;
+      --border-soft:     212 22% 93%;
+      --border-strong:   212 24% 78%;
+
+      --display: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      --container: 1280px;
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      --section: clamp(4.5rem, 9vw, 9rem);
+
+      --r-sm: 6px;
+      --r: 12px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+      --r-2xl: 40px;
+
+      --shadow-xs: 0 1px 2px rgba(6, 33, 63, 0.04);
+      --shadow-sm: 0 1px 3px rgba(6, 33, 63, 0.05), 0 1px 2px rgba(6, 33, 63, 0.03);
+      --shadow-md: 0 4px 16px rgba(6, 33, 63, 0.06), 0 2px 6px rgba(6, 33, 63, 0.04);
+      --shadow-lg: 0 20px 48px rgba(6, 33, 63, 0.10), 0 8px 20px rgba(6, 33, 63, 0.06);
+      --shadow-xl: 0 40px 96px rgba(6, 33, 63, 0.14), 0 16px 32px rgba(6, 33, 63, 0.08);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: hsl(var(--bg));
+      color: hsl(var(--fg));
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: color 200ms var(--ease-out), opacity 200ms var(--ease-out); }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--fg));
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    h1 { font-weight: 350; }
+    p { margin: 0; }
+    ::selection { background: hsl(var(--hfu-yellow) / 0.45); color: hsl(var(--hfu-navy)); }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .lead {
+      font-size: clamp(17px, 1.15vw, 19px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 60ch;
+    }
+
+    /* ── Utility strip ─────────────────────────────────────────────────── */
+    .util {
+      background: hsl(var(--hfu-navy-deep));
+      color: hsl(0 0% 100% / 0.78);
+      font-size: 12.5px;
+      letter-spacing: 0.01em;
+    }
+    .util__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 10px var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .util__contact { display: flex; gap: 28px; }
+    .util__contact span { display: inline-flex; align-items: center; gap: 8px; }
+    .util__contact svg { width: 13px; height: 13px; opacity: 0.6; }
+    .util__links { display: flex; gap: 22px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; }
+    .util__links a:hover { color: hsl(var(--hfu-yellow)); }
+
+    /* ── Main nav ──────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-bottom: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .nav__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 22px var(--gutter);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav__logo { height: 42px; width: auto; }
+    .nav__list {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav__list a {
+      color: hsl(0 0% 100% / 0.88);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      padding: 8px 0;
+    }
+    .nav__list a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .nav__list a:hover { color: #fff; }
+    .nav__list a:hover::after,
+    .nav__list a.is-active::after { transform: scaleX(1); }
+    .nav__list a.is-active { color: #fff; }
+    .nav__list svg { width: 10px; height: 10px; opacity: 0.6; }
+
+    .nav__actions { display: flex; gap: 14px; align-items: center; }
+    .nav__search {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: hsl(0 0% 100% / 0.08);
+      color: #fff;
+      transition: background 200ms var(--ease-out);
+    }
+    .nav__search:hover { background: hsl(0 0% 100% / 0.14); }
+    .nav__search svg { width: 15px; height: 15px; }
+
+    .nav__burger { display: none; }
+
+    /* ── Buttons ───────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out);
+      white-space: nowrap;
+    }
+    .btn svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      box-shadow: 0 1px 2px rgba(6, 33, 63, 0.15), 0 4px 12px rgba(255, 204, 21, 0.35);
+    }
+    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(6, 33, 63, 0.2), 0 8px 20px rgba(255, 204, 21, 0.4); }
+    .btn--secondary {
+      background: hsl(var(--bg-card));
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--border-strong));
+    }
+    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: #fff; border-color: hsl(var(--hfu-navy)); }
+    .btn--ghost {
+      background: transparent;
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy) / 0.2);
+    }
+    .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
+    .btn--dark {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+    }
+    .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
+    .btn--lg { padding: 18px 32px; font-size: 15px; }
+
+    /* ═════════════════════ VISIT HERO (centered editorial) ═════════════════════ */
+    .vhero {
+      padding: clamp(3rem, 6vw, 6rem) 0 clamp(3.5rem, 5vw, 5rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .vhero::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 50%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.09), transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .vhero__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .vhero__crumbs {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 26px;
+      letter-spacing: 0.01em;
+    }
+    .vhero__crumbs a { color: hsl(var(--fg-muted)); }
+    .vhero__crumbs a:hover { color: hsl(var(--hfu-blue)); }
+    .vhero__crumbs svg { width: 9px; height: 9px; opacity: 0.5; }
+    .vhero__crumbs .is-current { color: hsl(var(--fg)); font-weight: 500; }
+
+    .vhero .eyebrow { justify-content: center; margin-bottom: 22px; }
+    .vhero .eyebrow::after {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+
+    .vhero h1 {
+      font-size: clamp(3rem, 7vw, 6.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.028em;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      color: hsl(var(--hfu-navy));
+      max-width: 16ch;
+      margin: 0 auto 28px;
+    }
+    .vhero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .vhero__lead {
+      font-size: clamp(17px, 1.2vw, 19.5px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 56ch;
+      margin: 0 auto 36px;
+    }
+    .vhero__ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: clamp(3rem, 5vw, 4.5rem);
+    }
+
+    /* Framed photo */
+    .vhero__frame {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      aspect-ratio: 21 / 9;
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid hsl(var(--border-soft));
+    }
+    .vhero__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    .vhero__frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, hsl(var(--hfu-navy-deep) / 0.35) 100%);
+      pointer-events: none;
+    }
+    .vhero__caption {
+      position: absolute;
+      left: 32px;
+      bottom: 28px;
+      right: 32px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      color: #fff;
+    }
+    .vhero__caption .loc {
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .vhero__caption .loc .tiny {
+      display: block;
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 4px;
+    }
+    .vhero__caption .play {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px 10px 12px;
+      background: hsl(0 0% 100% / 0.14);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid hsl(0 0% 100% / 0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      transition: background 200ms var(--ease-out);
+    }
+    .vhero__caption .play:hover { background: hsl(0 0% 100% / 0.22); }
+    .vhero__caption .play .icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      display: grid;
+      place-items: center;
+    }
+    .vhero__caption .play .icon svg { width: 10px; height: 10px; }
+
+    /* Quick facts row */
+    .vhero__facts {
+      max-width: 1000px;
+      margin: clamp(3rem, 4vw, 3.5rem) auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid hsl(var(--border));
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 28px 0;
+    }
+    .vhero__fact {
+      padding: 0 24px;
+      border-right: 1px solid hsl(var(--border));
+      text-align: center;
+    }
+    .vhero__fact:last-child { border-right: none; }
+    .vhero__fact .num {
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 2.6vw, 2.4rem);
+      line-height: 1;
+      letter-spacing: -0.028em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+    }
+    .vhero__fact .num em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .vhero__fact .label {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+      max-width: 18ch;
+      margin: 0 auto;
+    }
+
+    /* ═════════════════════ Featured Event banner (yellow bar) ═════════════════════ */
+    .feat {
+      padding: clamp(2rem, 4vw, 4rem) 0 var(--section);
+    }
+    .feat__box {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .feat__inner {
+      position: relative;
+      background: hsl(var(--bg-alt));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-xl);
+      padding: clamp(2.25rem, 4vw, 3.75rem) clamp(2rem, 4.5vw, 4.5rem) clamp(2.25rem, 4vw, 3.75rem) clamp(2.5rem, 5vw, 5.5rem);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .feat__inner::before {
+      content: "";
+      position: absolute;
+      top: clamp(2rem, 4vw, 3.75rem);
+      bottom: clamp(2rem, 4vw, 3.75rem);
+      left: 0;
+      width: 8px;
+      border-radius: 0 6px 6px 0;
+      background: hsl(var(--hfu-yellow));
+    }
+    .feat__inner::after {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 40%;
+      height: 120%;
+      background: radial-gradient(circle at center, hsl(var(--hfu-yellow) / 0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .feat__left { position: relative; }
+    .feat__date {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.034em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 1;
+      font-weight: 350;
+      margin: 22px 0 14px;
+    }
+    .feat__date em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .feat__date .sep {
+      display: inline-block;
+      width: 0.28em;
+      height: 0.28em;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow-deep));
+      vertical-align: 0.35em;
+      margin: 0 0.18em;
+    }
+    .feat__sub {
+      font-size: 16px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 42ch;
+      margin-bottom: 26px;
+    }
+    .feat__meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border));
+    }
+    .feat__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: hsl(var(--fg-muted));
+    }
+    .feat__meta-item .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow) / 0.22);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+    }
+    .feat__meta-item .icon svg { width: 13px; height: 13px; }
+    .feat__meta-item strong {
+      display: block;
+      font-size: 12.5px;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+    }
+    .feat__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .feat__right { position: relative; }
+    .feat__right-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 22px;
+    }
+    .feat__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .feat__list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 14px;
+      align-items: start;
+      font-size: 14.5px;
+      color: hsl(var(--fg));
+      line-height: 1.5;
+    }
+    .feat__list li strong {
+      display: block;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+      font-size: 14.5px;
+      margin-bottom: 2px;
+    }
+    .feat__list li span { color: hsl(var(--fg-muted)); font-size: 13.5px; }
+    .feat__list .check {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+    }
+    .feat__list .check svg { width: 12px; height: 12px; }
+
+    /* ═════════════════════ Choose Your Visit grid ═════════════════════ */
+    .visit {
+      padding: var(--section) 0;
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border-soft));
+      border-bottom: 1px solid hsl(var(--border-soft));
+    }
+    .visit__head {
+      max-width: var(--container);
+      margin: 0 auto 56px;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .visit__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      margin-top: 18px;
+    }
+    .visit__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .visit__head .lead { max-width: 46ch; }
+
+    .visit__grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .vcard {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      padding: 28px 26px 26px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out), border-color 280ms var(--ease-out);
+      position: relative;
+      min-height: 290px;
+    }
+    .vcard:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .vcard__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+    .vcard__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+      transition: background 260ms var(--ease-out);
+    }
+    .vcard:hover .vcard__icon { background: hsl(var(--hfu-yellow)); color: hsl(var(--hfu-navy-deep)); }
+    .vcard__icon svg { width: 22px; height: 22px; }
+    .vcard__status {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 5px 10px 5px 8px;
+      border-radius: 100px;
+      background: hsl(120 45% 94%);
+      color: hsl(140 60% 28%);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vcard__status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: hsl(140 60% 42%);
+      animation: vpulse 2.4s infinite var(--ease-out);
+    }
+    @keyframes vpulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.55; }
+    }
+    .vcard__status--soon { background: hsl(44 80% 94%); color: hsl(32 70% 32%); }
+    .vcard__status--soon .dot { background: hsl(32 75% 50%); }
+    .vcard h3 {
+      font-family: var(--body);
+      font-size: 17px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.005em;
+      margin-bottom: 8px;
+    }
+    .vcard p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 22px;
+      flex: 1;
+    }
+    .vcard__foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid hsl(var(--border-soft));
+      margin-top: auto;
+    }
+    .vcard__dur {
+      font-size: 11.5px;
+      color: hsl(var(--fg-subtle));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.01em;
+    }
+    .vcard__dur svg { width: 11px; height: 11px; opacity: 0.65; }
+    .vcard__link {
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vcard__link svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
+    .vcard:hover .vcard__link svg { transform: translateX(3px); }
+
+    /* ═════════════════════ Two Campuses comparison ═════════════════════ */
+    .camp {
+      padding: var(--section) 0;
+    }
+    .camp__head {
+      max-width: var(--container);
+      margin: 0 auto 56px;
+      padding: 0 var(--gutter);
+      text-align: center;
+    }
+    .camp__head .eyebrow { justify-content: center; }
+    .camp__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      color: hsl(var(--hfu-navy));
+      margin: 18px auto 18px;
+      max-width: 20ch;
+      line-height: 1.05;
+    }
+    .camp__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .camp__head .lead { margin: 0 auto; }
+
+    .camp__grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .campus {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+    }
+    .campus:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .campus__media {
+      aspect-ratio: 16 / 10;
+      position: relative;
+      overflow: hidden;
+    }
+    .campus__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease-out);
+    }
+    .campus:hover .campus__media img { transform: scale(1.04); }
+    .campus__badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: hsl(var(--bg-card));
+      color: hsl(var(--hfu-navy));
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 14px 8px 10px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
+    }
+    .campus__badge .pin {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      display: grid;
+      place-items: center;
+    }
+    .campus__badge .pin svg { width: 8px; height: 8px; }
+    .campus__body {
+      padding: 36px 36px 38px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+    .campus h3 {
+      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+      line-height: 1.05;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.022em;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+    }
+    .campus__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px 18px;
+      background: hsl(var(--bg-alt));
+      border-radius: var(--r);
+    }
+    .campus__meta .row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+    }
+    .campus__meta .row svg {
+      width: 14px;
+      height: 14px;
+      color: hsl(var(--hfu-blue));
+      flex-shrink: 0;
+    }
+    .campus__meta .row strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .campus__desc {
+      font-size: 15px;
+      line-height: 1.62;
+      color: hsl(var(--fg-muted));
+      max-width: 48ch;
+    }
+    .campus__highlights {
+      list-style: none;
+      margin: 0;
+      padding: 18px 0 0;
+      border-top: 1px solid hsl(var(--border-soft));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+    }
+    .campus__highlights li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: hsl(var(--fg-muted));
+    }
+    .campus__highlights .bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      flex-shrink: 0;
+    }
+    .campus__foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .campus__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: 0.005em;
+    }
+    .campus__link svg { width: 13px; height: 13px; transition: transform 260ms var(--ease-out); }
+    .campus:hover .campus__link svg { transform: translateX(3px); }
+    .campus__tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ═════════════════════ Interactive Map ═════════════════════ */
+    .map {
+      padding: var(--section) 0;
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .map::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.06) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .map__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+      position: relative;
+    }
+    .map__canvas {
+      position: relative;
+      aspect-ratio: 5 / 4;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 40%, hsl(var(--hfu-blue-deep) / 0.35), transparent 45%),
+        radial-gradient(circle at 70% 65%, hsl(var(--hfu-blue-deep) / 0.3), transparent 50%),
+        linear-gradient(135deg, hsl(var(--hfu-navy-deep)), hsl(var(--hfu-navy-soft)));
+      border: 1px solid hsl(0 0% 100% / 0.1);
+      box-shadow: var(--shadow-lg);
+    }
+    /* Grid dot base layer */
+    .map__canvas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(hsl(0 0% 100% / 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(0 0% 100% / 0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+    }
+    /* Abstract "paths" */
+    .map__canvas::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border: 1px dashed hsl(0 0% 100% / 0.16);
+      border-radius: 50% / 60% 40% 60% 40%;
+      transform: rotate(-8deg);
+    }
+    .map__roads {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .map__roads svg { width: 100%; height: 100%; }
+    .map__pin {
+      position: absolute;
+      transform: translate(-50%, -100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+    }
+    .map__pin .head {
+      width: 38px;
+      height: 38px;
+      border-radius: 50% 50% 50% 0;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      display: grid;
+      place-items: center;
+      transform: rotate(-45deg);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4), 0 0 0 4px hsl(var(--hfu-yellow) / 0.15);
+      animation: pindrop 2.6s infinite var(--ease-out);
+    }
+    .map__pin .head svg {
+      width: 16px;
+      height: 16px;
+      transform: rotate(45deg);
+    }
+    @keyframes pindrop {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(-4px); }
+    }
+    .map__pin .label {
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 5px 10px;
+      background: hsl(0 0% 100% / 0.1);
+      border: 1px solid hsl(0 0% 100% / 0.2);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 100px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .map__pin--1 { top: 38%; left: 32%; }
+    .map__pin--2 { top: 58%; left: 56%; animation-delay: 0.4s; }
+    .map__pin--3 { top: 32%; left: 68%; animation-delay: 0.8s; }
+
+    .map__scale {
+      position: absolute;
+      bottom: 18px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      color: hsl(0 0% 100% / 0.55);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .map__scale .bar {
+      width: 48px;
+      height: 4px;
+      background: hsl(0 0% 100% / 0.25);
+      border-radius: 2px;
+      position: relative;
+    }
+    .map__scale .bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 50%;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 2px;
+    }
+    .map__compass {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid hsl(0 0% 100% / 0.25);
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 600;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: 0.05em;
+    }
+    .map__compass::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      bottom: 6px;
+      left: 50%;
+      width: 1px;
+      background: hsl(0 0% 100% / 0.18);
+      transform: translateX(-50%);
+    }
+
+    .map__text { position: relative; }
+    .map__text .eyebrow { color: hsl(var(--hfu-yellow)); }
+    .map__text .eyebrow::before { background: hsl(var(--hfu-yellow)); }
+    .map__text h2 {
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      line-height: 1.04;
+      color: #fff;
+      margin: 20px 0 20px;
+      letter-spacing: -0.024em;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+    }
+    .map__text h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
+    .map__text p {
+      font-size: 15.5px;
+      color: hsl(0 0% 100% / 0.75);
+      line-height: 1.62;
+      margin-bottom: 28px;
+      max-width: 40ch;
+    }
+    .map__legend {
+      list-style: none;
+      margin: 0 0 32px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .map__legend li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 18px;
+      background: hsl(0 0% 100% / 0.05);
+      border: 1px solid hsl(0 0% 100% / 0.08);
+      border-radius: var(--r);
+      transition: background 240ms var(--ease-out), border-color 240ms var(--ease-out);
+    }
+    .map__legend li:hover {
+      background: hsl(0 0% 100% / 0.08);
+      border-color: hsl(0 0% 100% / 0.16);
+    }
+    .map__legend .pin {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-yellow));
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .map__legend .title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .map__legend .sub {
+      display: block;
+      font-size: 11.5px;
+      color: hsl(0 0% 100% / 0.56);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+    .map__legend .chev {
+      color: hsl(0 0% 100% / 0.4);
+    }
+    .map__legend .chev svg { width: 14px; height: 14px; }
+    .map__text .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+    }
+
+    /* ═════════════════════ Itinerary timeline ═════════════════════ */
+    .itin {
+      padding: var(--section) 0;
+    }
+    .itin__head {
+      max-width: var(--container);
+      margin: 0 auto 72px;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .itin__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      margin-top: 18px;
+    }
+    .itin__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .itin__head .lead { max-width: 44ch; }
+
+    .itin__track {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+    }
+    .itin__rail {
+      position: absolute;
+      top: 30px;
+      bottom: 30px;
+      left: calc(var(--gutter) + 39px);
+      width: 1px;
+      background: linear-gradient(180deg, hsl(var(--hfu-yellow-deep)) 0%, hsl(var(--hfu-navy) / 0.22) 12%, hsl(var(--hfu-navy) / 0.22) 88%, hsl(var(--hfu-yellow-deep)) 100%);
+    }
+    .itin__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .istop {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      align-items: flex-start;
+      padding: 18px 0 22px;
+      position: relative;
+    }
+    .istop__time {
+      font-family: var(--display);
+      font-size: 22px;
+      line-height: 1;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      padding-top: 10px;
+      text-align: right;
+      font-weight: 400;
+    }
+    .istop__time .ampm {
+      display: inline-block;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: hsl(var(--hfu-blue));
+      margin-left: 2px;
+      vertical-align: 0.35em;
+    }
+    .istop__main {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .istop__dot {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: hsl(var(--bg-card));
+      border: 1.5px solid hsl(var(--border-strong));
+      display: grid;
+      place-items: center;
+      color: hsl(var(--hfu-navy));
+      flex-shrink: 0;
+      transition: all 320ms var(--ease-out);
+      z-index: 2;
+    }
+    .istop__dot svg { width: 22px; height: 22px; }
+    .istop__dot::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border: 1px dashed hsl(var(--hfu-navy) / 0.18);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 280ms var(--ease-out);
+    }
+    .istop:hover .istop__dot {
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      box-shadow: 0 8px 28px hsl(var(--hfu-yellow) / 0.35);
+    }
+    .istop:hover .istop__dot::after { opacity: 1; }
+    .istop__body {
+      padding-top: 8px;
+    }
+    .istop__body .num {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 6px;
+    }
+    .istop h3 {
+      font-family: var(--display);
+      font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+      line-height: 1.15;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .istop p {
+      font-size: 14.5px;
+      line-height: 1.58;
+      color: hsl(var(--fg-muted));
+      max-width: 52ch;
+    }
+    .istop__chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: hsl(var(--bg-alt));
+      color: hsl(var(--hfu-navy));
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      border: 1px solid hsl(var(--border-soft));
+    }
+    .istop__chip svg { width: 11px; height: 11px; color: hsl(var(--hfu-blue)); }
+
+    /* ═════════════════════ Plan your visit (3-col practical) ═════════════════════ */
+    .plan {
+      padding: var(--section) 0;
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border-soft));
+      border-bottom: 1px solid hsl(var(--border-soft));
+    }
+    .plan__head {
+      max-width: var(--container);
+      margin: 0 auto 56px;
+      padding: 0 var(--gutter);
+      text-align: center;
+    }
+    .plan__head .eyebrow { justify-content: center; }
+    .plan__head h2 {
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      color: hsl(var(--hfu-navy));
+      margin: 18px auto 18px;
+      max-width: 22ch;
+    }
+    .plan__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .plan__head .lead { margin: 0 auto; }
+
+    .plan__grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .plan__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-xl);
+      padding: 38px 36px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out);
+    }
+    .plan__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .plan__card .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: hsl(var(--hfu-yellow) / 0.2);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+    }
+    .plan__card .icon svg { width: 24px; height: 24px; }
+    .plan__card h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .plan__card p {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+    }
+    .plan__card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .plan__card ul li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      font-size: 13.5px;
+      color: hsl(var(--fg));
+      line-height: 1.45;
+    }
+    .plan__card ul li strong {
+      display: block;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .plan__card ul li span {
+      color: hsl(var(--fg-subtle));
+      font-size: 12.5px;
+    }
+    .plan__card ul li .tick {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid hsl(var(--hfu-yellow-deep));
+      display: grid;
+      place-items: center;
+      color: hsl(var(--hfu-yellow-deep));
+      margin-top: 2px;
+    }
+    .plan__card ul li .tick svg { width: 9px; height: 9px; }
+    .plan__card .link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      margin-top: 6px;
+    }
+    .plan__card .link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .plan__card:hover .link svg { transform: translateX(3px); }
+
+    /* ═════════════════════ Testimonials (cream bg) ═════════════════════ */
+    .testi {
+      padding: var(--section) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .testi::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 55%;
+      height: 70%;
+      background: radial-gradient(ellipse, hsl(var(--hfu-yellow) / 0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .testi__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+    }
+    .testi__head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .testi__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      color: hsl(var(--hfu-navy));
+      margin-top: 20px;
+      letter-spacing: -0.024em;
+      line-height: 1.05;
+    }
+    .testi__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .testi__head .lead { max-width: 44ch; text-align: left; }
+    .testi__grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: 24px;
+    }
+    .testi__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-xl);
+      padding: 38px 34px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: var(--shadow-xs);
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    }
+    .testi__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .testi__mark {
+      font-family: var(--display);
+      font-size: 64px;
+      line-height: 0.4;
+      color: hsl(var(--hfu-yellow-deep));
+      margin-bottom: -22px;
+      height: 20px;
+    }
+    .testi__card blockquote {
+      font-family: var(--display);
+      font-size: clamp(18px, 1.3vw, 20px);
+      line-height: 1.4;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.01em;
+      margin: 0;
+      flex: 1;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .testi__card--featured {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-color: hsl(var(--hfu-navy));
+    }
+    .testi__card--featured blockquote { color: #fff; }
+    .testi__card--featured .testi__mark { color: hsl(var(--hfu-yellow)); }
+    .testi__by {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .testi__card--featured .testi__by { border-top-color: hsl(0 0% 100% / 0.14); }
+    .testi__avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid hsl(var(--border));
+      flex-shrink: 0;
+    }
+    .testi__card--featured .testi__avatar { border-color: hsl(0 0% 100% / 0.25); }
+    .testi__name {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 2px;
+    }
+    .testi__card--featured .testi__name { color: #fff; }
+    .testi__role {
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+    }
+    .testi__card--featured .testi__role { color: hsl(0 0% 100% / 0.6); }
+    .testi__meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .testi__card--featured .testi__meta { color: hsl(var(--hfu-yellow)); }
+    .testi__meta svg { width: 12px; height: 12px; }
+
+    /* ═════════════════════ CTA mega ═════════════════════ */
+    .cta {
+      padding: 0 0 var(--section);
+    }
+    .cta__box {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .cta__inner {
+      position: relative;
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      padding: clamp(3.5rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+    }
+    .cta__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .cta__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .cta__bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, hsl(var(--hfu-navy-deep)) 0%, hsl(var(--hfu-navy-deep) / 0.9) 40%, hsl(var(--hfu-navy) / 0.6) 100%);
+    }
+    .cta__content {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 56px;
+      align-items: end;
+    }
+    .cta__content .eyebrow { color: hsl(var(--hfu-yellow)); }
+    .cta__content .eyebrow::before { background: hsl(var(--hfu-yellow)); }
+    .cta__content h2 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1;
+      color: #fff;
+      margin: 20px 0 0;
+      letter-spacing: -0.028em;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-weight: 350;
+    }
+    .cta__content h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
+    .cta__side { display: flex; flex-direction: column; gap: 24px; }
+    .cta__side p {
+      font-size: 16px;
+      color: hsl(0 0% 100% / 0.78);
+      line-height: 1.6;
+    }
+    .cta__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta__buttons .btn--secondary { background: transparent; color: #fff; border-color: hsl(0 0% 100% / 0.3); }
+    .cta__buttons .btn--secondary:hover { background: hsl(0 0% 100% / 0.08); border-color: hsl(0 0% 100% / 0.5); }
+
+    /* ═════════════════════ Footer ═════════════════════ */
+    .foot {
+      background: hsl(var(--hfu-navy-deep));
+      color: hsl(0 0% 100% / 0.72);
+      padding: clamp(4rem, 6vw, 6rem) 0 0;
+    }
+    .foot__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 56px;
+    }
+    .foot__brand h3 {
+      font-family: var(--display);
+      font-size: 26px;
+      color: #fff;
+      margin: 22px 0 14px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .foot__brand p {
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 34ch;
+      margin-bottom: 22px;
+    }
+    .foot__news {
+      display: flex;
+      gap: 8px;
+      background: hsl(0 0% 100% / 0.06);
+      border: 1px solid hsl(0 0% 100% / 0.1);
+      border-radius: 100px;
+      padding: 6px 6px 6px 18px;
+      max-width: 380px;
+    }
+    .foot__news input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+    .foot__news input::placeholder { color: hsl(0 0% 100% / 0.5); }
+    .foot__news button {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .foot__col h4 {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 22px;
+    }
+    .foot__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .foot__col a { font-size: 14px; color: hsl(0 0% 100% / 0.62); }
+    .foot__col a:hover { color: #fff; }
+    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(0 0% 100% / 0.56); margin-top: 10px; }
+    .foot__addr strong { color: hsl(0 0% 100% / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
+
+    .foot__bottom {
+      max-width: var(--container);
+      margin: 72px auto 0;
+      padding: 28px var(--gutter);
+      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: hsl(0 0% 100% / 0.5);
+    }
+    .foot__bottom .links { display: flex; gap: 24px; }
+    .foot__bottom a:hover { color: #fff; }
+
+    /* ═════════════════════ Mobile ═════════════════════ */
+    @media (max-width: 1100px) {
+      .vhero h1 { font-size: clamp(2.6rem, 7.5vw, 4.6rem); }
+      .vhero__facts { grid-template-columns: repeat(2, 1fr); gap: 0; padding: 24px 0; }
+      .vhero__fact {
+        padding: 22px 24px;
+        border-right: 1px solid hsl(var(--border));
+        border-bottom: 1px solid hsl(var(--border));
+      }
+      .vhero__fact:nth-child(2) { border-right: none; }
+      .vhero__fact:nth-child(3), .vhero__fact:nth-child(4) { border-bottom: none; }
+      .vhero__fact:nth-child(4) { border-right: none; }
+
+      .feat__inner { grid-template-columns: 1fr; gap: 36px; padding: clamp(2.25rem, 4vw, 3.25rem) clamp(1.75rem, 4vw, 3rem) clamp(2.25rem, 4vw, 3.25rem) clamp(2.25rem, 5vw, 4rem); }
+      .feat__inner::before { top: clamp(2rem, 4vw, 3rem); bottom: clamp(2rem, 4vw, 3rem); }
+
+      .visit__head { grid-template-columns: 1fr; gap: 20px; align-items: start; }
+      .visit__grid { grid-template-columns: repeat(2, 1fr); }
+
+      .camp__grid { grid-template-columns: 1fr; gap: 32px; }
+
+      .map__inner { grid-template-columns: 1fr; gap: 48px; }
+      .map__canvas { max-width: 640px; margin: 0 auto; width: 100%; }
+
+      .itin__head { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+
+      .plan__grid { grid-template-columns: 1fr; gap: 20px; }
+
+      .testi__head { grid-template-columns: 1fr; gap: 24px; }
+      .testi__grid { grid-template-columns: 1fr; gap: 18px; }
+      .testi__card--featured { order: -1; }
+
+      .cta__content { grid-template-columns: 1fr; gap: 28px; }
+
+      .foot__inner { grid-template-columns: 1fr 1fr; gap: 48px; }
+    }
+    @media (max-width: 720px) {
+      .util__links { display: none; }
+      .util__contact { gap: 16px; font-size: 12px; flex-wrap: wrap; }
+      .util__contact span:last-child { display: none; }
+      .nav__inner { grid-template-columns: auto 1fr auto; padding: 18px var(--gutter); }
+      .nav__list { display: none; }
+      .nav__burger {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        background: hsl(0 0% 100% / 0.08);
+        border-radius: 8px;
+        color: #fff;
+      }
+      .nav__search { display: none; }
+      .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
+
+      .vhero { padding: 40px 0 48px; }
+      .vhero__crumbs { margin-bottom: 16px; font-size: 12px; flex-wrap: wrap; justify-content: center; }
+      .vhero h1 { font-size: clamp(2.3rem, 10vw, 3.4rem); margin-bottom: 22px; max-width: 14ch; }
+      .vhero__lead { font-size: 15.5px; margin-bottom: 28px; }
+      .vhero__ctas { flex-direction: column; align-items: stretch; margin-bottom: 36px; }
+      .vhero__ctas .btn { justify-content: center; min-height: 48px; }
+      .vhero__frame { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+      .vhero__caption { left: 18px; right: 18px; bottom: 18px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .vhero__caption .loc { font-size: 17px; }
+      .vhero__facts { grid-template-columns: 1fr 1fr; }
+      .vhero__fact { padding: 18px 12px; }
+      .vhero__fact .num { font-size: 1.75rem; }
+
+      .feat__inner {
+        padding: 38px 24px 38px 32px;
+        border-radius: var(--r-lg);
+      }
+      .feat__inner::before { top: 32px; bottom: 32px; width: 6px; }
+      .feat__date { font-size: 2.6rem; }
+      .feat__meta { gap: 14px; }
+      .feat__list li strong { font-size: 14px; }
+
+      .visit__grid { grid-template-columns: 1fr; gap: 14px; }
+      .vcard { min-height: 0; padding: 24px 22px; }
+
+      .camp__body { padding: 28px 26px 30px; gap: 18px; }
+      .campus h3 { font-size: 1.7rem; }
+      .campus__highlights { grid-template-columns: 1fr; gap: 10px; }
+      .campus__foot { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      .map { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+      .map__inner { gap: 32px; }
+      .map__canvas { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+      .map__pin .label { font-size: 9px; padding: 4px 8px; }
+      .map__pin .head { width: 32px; height: 32px; }
+      .map__pin .head svg { width: 13px; height: 13px; }
+      .map__legend li { padding: 12px 14px; grid-template-columns: 28px 1fr auto; }
+
+      .itin__track { padding: 0 var(--gutter); }
+      .itin__rail { left: calc(var(--gutter) + 22px); top: 40px; bottom: 40px; }
+      .istop { grid-template-columns: 1fr; gap: 10px; padding: 14px 0 22px; }
+      .istop__time { text-align: left; padding-top: 0; padding-left: 60px; font-size: 17px; }
+      .istop__main { grid-template-columns: 44px 1fr; gap: 16px; }
+      .istop__dot { width: 44px; height: 44px; }
+      .istop__dot svg { width: 18px; height: 18px; }
+      .istop h3 { font-size: 1.2rem; }
+      .istop p { font-size: 13.5px; }
+      .istop__body { padding-top: 4px; }
+
+      .plan__card { padding: 30px 26px 28px; }
+      .plan__card h3 { font-size: 20px; }
+
+      .testi__grid { gap: 14px; }
+      .testi__card { padding: 30px 26px 26px; }
+      .testi__card blockquote { font-size: 17px; }
+
+      .cta__inner { padding: 52px 28px; border-radius: var(--r-xl); }
+      .cta__content h2 { font-size: 2.4rem; }
+      .cta__buttons .btn { width: 100%; justify-content: center; }
+
+      .foot__inner { grid-template-columns: 1fr; gap: 40px; }
+      .foot__news { max-width: none; }
+      .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 500px) {
+      .visit__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
+  <div class="util">
+    <div class="util__inner">
+      <div class="util__contact">
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+          215 637 7700
+        </span>
+        <span>Philadelphia · Newtown · Online</span>
+        <span>215 637 7700 x4000 (Newtown)</span>
+      </div>
+      <div class="util__links">
+        <a href="#">Current Students</a>
+        <a href="#">Faculty &amp; Staff</a>
+        <a href="#">Alumni</a>
+        <a href="#">Give</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ MAIN NAV ═════════════════════ -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo-link" aria-label="Holy Family University">
+        <svg class="nav__logo" viewBox="0 0 562.7 198.6" xmlns="http://www.w3.org/2000/svg"><g fill="#fff"><path d="m47.3 88.7c4.2 14.2 11 27.4 20.4 39.5 6.4-8.2 13.8-15.4 22.1-21.6-17.4-11.9-34.3-16.4-42.5-17.9zm27.3 20.2h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.5v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m94.3 106.5c8.3 6.1 15.8 13.4 22.1 21.6 9.4-12 16.2-25.3 20.4-39.5-8.3 1.6-25.2 6.1-42.5 17.9zm26.5 2.4h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1s-.4 1-1 1z"/><path d="m92 108.1c-7.8 5.6-15.7 12.8-22.8 22 10.3 12.7 20.4 20 22.8 21.7 2.4-1.7 12.5-8.9 22.8-21.7-7.1-9.1-14.9-16.3-22.8-22zm5.7 23h-.5v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.2v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.5c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.5h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.3h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.3h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.5c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m104.2 43.9-12.2 60.7-12.2-60.7z"/><path d="m138.3 43.9-46.3 60.7 21.9-60.7z"/><path d="m45.7 43.9 46.3 60.7-21.8-60.7z"/><path d="m116.3 90c-15.3 7.7-24.3 14.6-24.3 14.6l46.3-48.7-.7 24.7s-7.5 2.5-21.3 9.4"/><path d="m67.8 90c15.2 7.7 24.2 14.6 24.2 14.6l-46.3-48.7.7 24.7s7.6 2.5 21.4 9.4"/><path d="m440.2 128.6c.8-.1 1.5-.3 2.2-.6 0-.7 0-1.4-.1-2-.9.1-2.4.1-3.8.1-1.6 0-2.9-.1-4-.1-.1.7-.2 1.4-.2 2l2.6.5-3.1 6.1-3.3-6.1 2.4-.5c0-.7 0-1.4-.2-2-1.2.1-3 .1-4.6.1-1.9 0-3.5-.1-4.9-.1-.2.7-.2 1.4-.2 2.1.8.1 1.5.3 2.3.6l5.2 9.6v2.9c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-2.2zm-32.3.3c.2 1.2.4 2.6.4 3.9.8.2 1.6.2 2.6 0 .3-1.8.5-3.6.4-6.4l-.3-.3c-1.8.1-4.8.1-6.8.1h-3.9c-2 0-5 0-6.8-.1l-.4.3c-.1 2.8.1 4.6.4 6.4 1 .2 1.8.2 2.6 0 0-1.3.2-2.7.4-3.9h3.5v12.3c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-11.7zm-34.1-.3c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-29.5 15.9c1.6.8 4.3 1.4 7 1.4 4.4 0 7.2-3 7.2-6.7 0-2.8-2.1-4.2-4.1-5.1l-2.4-1.1c-1.3-.6-2.9-1.3-2.9-2.6 0-.8.3-1.3.7-1.7.1-.1 1.1-.3 1.9-.3 1.3 0 2.1.1 2.9.4.2.9.3 1.8.4 2.7.7.4 1.5.4 2.5.1.3-1.4.4-2.9.5-4.9-1.7-.7-4.2-1.2-6.1-1.2-3.4 0-7.1 1.7-7.1 5.9 0 3.1 2.1 4.4 4.1 5.2l2.2.9c1.8.7 3 1.5 3 2.7 0 1-.2 1.6-.7 2.1-.1.1-1.2.6-2.3.6-1.3 0-2.3-.2-3.1-.6-.2-1.2-.3-2.4-.3-3.4-.9-.3-1.7-.4-2.6-.2-.5 1.9-.7 3.6-.8 5.8m-21.7-15.8c1.9 0 2.9 1.5 2.9 2.9 0 1.3-.4 2.1-1.1 2.6-.1.1-1.3.5-2.7.5-.4 0-.9 0-1.3 0v-5.9c.7 0 1.4-.1 2.2-.1m3.4 16.8h2c1.4 0 2.6 0 3.9.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.3-.6l-3.3-6.7c2-1.3 3.5-3.3 3.5-5.5 0-2.7-2.2-4.9-6.2-4.9-1.6 0-3.7.1-5.6.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-3c.6.1 1.2.1 1.8.1h.3zm-36.4-19.4c-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.8-.1 4.6-.1h3.8c2 0 5 0 6.8.1l.3-.4c.2-2.4.3-4.2.3-5.9-.8-.2-1.7-.3-2.5-.2-.3 1.2-.6 2.4-1 3.6h-5.6v-5.9c1.7 0 3.4.1 5.2.1.2-.7.3-1.5.3-2.4l-.3-.3c-1.7 0-3.5.1-5.2.1v-5.4h5.2c.2 1 .3 2.1.4 3.2.8.2 1.6.2 2.6 0 .3-1.6.4-3.3.4-5.7l-.3-.4c-1.8.1-4.8.1-6.8.1zm-21.5 2.5-4.6 13.3h-.1l-.1-3-3.7-10.3 2.6-.5c0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.5.3 2.3.6l6.2 17.1c1.3 0 2.8.1 3.8-.1l6.1-16.9c.8-.1 1.5-.3 2.1-.6 0-.7 0-1.4-.1-2-1 .1-2.4.1-3.7.1-1.5 0-2.8-.1-3.9-.1-.1.7-.2 1.4-.2 2zm-33.9 0c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-17.2 16.8v-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.8.1-1.3 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.9h-.1l-.7-3.2-6.9-12.1c-1-.1-2-.1-3.2-.1-1.5 0-3-.1-4.2-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.6-.1 3.9-.1 1.2 0 2.8 0 3.9.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-10.6h.1l.7 3.2 7.1 12.6c.9-.1 3.6 0 4.8-.4m-33-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.9.1-1.4 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v5.6c0 2.4-.7 3.5-1 3.9s-1.5 1-2.7 1c-2.7 0-4-1.8-4-5.8v-4.7c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v6.1c0 5.3 2.6 7.3 7.2 7.3 6 0 8.1-3.8 8.1-8.6z"/><path d="m458.8 56.8c0-3-2.4-5.4-5.4-5.4s-5.4 2.4-5.4 5.4 2.4 5.4 5.4 5.4 5.4-2.5 5.4-5.4z"/><path d="m521.6 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.2 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.7 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.3.7.3.9.7 1.3 2 2.2 3.6 2.2l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-.9c-1.2 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1 0-1.7-.1-3.1-.5-4.5z"/><path d="m458.5 86c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.7 0 7.3.1 9 .1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-2.5z"/><path d="m480.2 68.9c0-7 .1-12 .2-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m409.6 89.7c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.1 0 6 .1 7.3.1.3-.8.4-2.9.4-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-11.7c0-.8-.1-1.5-.2-2.1 1.5-.8 3.2-1.4 5-1.4 3.5 0 4 3.1 4 7.2v9.3c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.6 0 7.3.1 8.9.1.3-.8.4-2.9.4-4.3-1.1-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-11.8c0-6.9-4.7-10-9.8-10-3.9 0-7 1.7-9.8 4-1.8-2.7-5-4-8.2-4-3.5 0-6.4 1.4-8.9 3.3-.3-1.1-.7-2.1-1-2.7l-1-.5c-4.2.3-8.1 1-11.8 2.3-.3 1.3-.2 2.7.3 3.9 1.7.2 3.4.5 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.2 0 6 .1 7.4.1.2-.8.3-2.9.3-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-14c1.5-.8 3.1-1.3 4.8-1.3 3.5 0 4 3.1 4 7.2v9.3z"/><path d="m382.9 92.2c-1.3.3-2.6.6-4.1.7-.1-1.4-.1-3.2-.1-4.4v-11.3c0-8.9-7.1-10.4-11.2-10.4-5.1 0-9.7 1.4-13.5 3.6 0 3.1.8 5.8 2.1 7.7 1.9.4 3.7.1 5.6-.8 0-1.6.1-3.3.5-4.8 1.2-.2 2.1-.3 3.3-.3 2.8 0 3.8 2.7 3.9 6.5-7.3 1.8-17.4 5.8-17.4 12.7 0 5.3 3.1 8 9.1 8 3.1 0 6.6-1.7 9.5-4 1 2.4 2.6 4 4.3 4 3.4 0 7-2.2 9.3-4.6-.1-1.1-.6-2.1-1.3-2.6zm-13.4-.9c-1.5.9-2.9 1.6-4.1 1.6-2.6 0-3.9-1.8-3.9-3.7 0-1 .5-2.6 1.2-3.2.6-.4 3.6-1.1 6.8-1.5z"/><path d="m343.3 74.6c-3.9.1-6.7.3-10.5.3v-12.9h10.4c.5 2.5.8 5.2 1 7.8 1.7.4 3.4.4 5.7 0 .8-3.8 1-7.7.8-13.2l-.8-.8c-4 .1-9.5.1-14 .1h-7.9c-4 0-7.3-.1-10.1-.1-.4 1.5-.5 3-.5 4.5 1.9.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 4.2 0 8.8 0 11.8.1.4-1.4.5-2.9.4-4.5-2.1-.6-4.5-1-7.2-1.2-.2-1.7-.3-3.5-.3-5.3v-7.3c3.8.1 6.6.1 10.6.2.4-1.5.6-3.4.7-5.2z"/><path d="m263.1 68.9c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m231.9 66.8c-10 0-15.8 8.9-15.8 16.9 0 9.2 4.9 15.8 15 15.8 10 0 15.8-8.9 15.8-16.9 0-9-4.8-15.8-15-15.8zm3.3 25.6c-.5.7-2.2 1-3.2 1-4.9 0-6.6-6.5-6.6-11.2 0-3.4 1-6.4 2.3-8.1.5-.7 2.2-1 3.2-1 4.9 0 6.6 6.5 6.6 11.2 0 3.3-1 6.3-2.3 8.1z"/><path d="m198.1 61.4c.2 2.4.3 5 .3 8.8v3.1h-17.1v-3.1c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.8.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.3 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-8.3h5c3.8 0 8 .2 12.1.4v9.3c0 1.3-.1 2.7-.3 3.9-1.8.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.4 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-17.3c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.9.1 3.8.6 5.6 1.1"/><path d="m304.4 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.1 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.8 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.2.7.3.9.7 1.3 2 2.2 3.6 2.2h.1l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-1c-1.1 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1.1-1.6 0-3-.4-4.4z"/></g></svg>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#">Academics <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="#" class="is-active">Admissions &amp; Aid <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="#">Student Experience <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="#">About <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+        </ul>
+      </nav>
+      <div class="nav__actions">
+        <a href="#" class="nav__search" aria-label="Search">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
+        </a>
+        <a href="#open-house" class="btn btn--primary">
+          Book a Tour
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+        <button class="nav__burger" aria-label="Open menu">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═════════════════════ HERO (centered editorial over framed photo) ═════════════════════ -->
+  <section class="vhero">
+    <div class="vhero__inner">
+      <nav class="vhero__crumbs" aria-label="Breadcrumb">
+        <a href="#">Home</a>
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m3.5 2 3 3-3 3"/></svg>
+        <a href="#">Admissions &amp; Aid</a>
+        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="m3.5 2 3 3-3 3"/></svg>
+        <span class="is-current">Visit</span>
+      </nav>
+
+      <span class="eyebrow">Visit Holy Family</span>
+      <h1>Come walk<br>the <em>quiet</em> quad.</h1>
+      <p class="vhero__lead">You can read about a university for hours &mdash; and still not know it. Spend a morning on one of our two Pennsylvania campuses and the rest will make sense. A student ambassador will meet you at the door, and your counselor will be waiting.</p>
+
+      <div class="vhero__ctas">
+        <a href="#open-house" class="btn btn--primary btn--lg">
+          Register for Spring Open House
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+        <a href="#tours" class="btn btn--secondary btn--lg">Schedule a Private Tour</a>
+      </div>
+
+      <div class="vhero__frame">
+        <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Holy Family University Philadelphia campus quad in afternoon light">
+        <div class="vhero__caption">
+          <div class="loc">
+            <span class="tiny">On view today</span>
+            Philadelphia Campus · ETC Tower &amp; Quad
+          </div>
+          <a href="#" class="play">
+            <span class="icon"><svg viewBox="0 0 10 10" fill="currentColor"><path d="M2 1v8l7-4z"/></svg></span>
+            Watch 90-sec walkthrough
+          </a>
+        </div>
+      </div>
+
+      <div class="vhero__facts">
+        <div class="vhero__fact">
+          <div class="num">2</div>
+          <div class="label">Campuses in Pennsylvania</div>
+        </div>
+        <div class="vhero__fact">
+          <div class="num">8</div>
+          <div class="label">Visit types to choose from</div>
+        </div>
+        <div class="vhero__fact">
+          <div class="num">1:1</div>
+          <div class="label">Counselor meetings with every visit</div>
+        </div>
+        <div class="vhero__fact">
+          <div class="num">Same<span>-</span>day</div>
+          <div class="label">Transfer decisions at Instant Decision Days</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FEATURED EVENT BANNER ═════════════════════ -->
+  <section class="feat" id="open-house">
+    <div class="feat__box">
+      <div class="feat__inner">
+        <div class="feat__left">
+          <span class="eyebrow">Signature event</span>
+          <div class="feat__date">April&nbsp;26<span class="sep"></span><em>2026</em></div>
+          <p class="feat__sub">Our Spring Open House is built for high school juniors, with seniors and transfer students warmly welcome. Spend Sunday on the Philadelphia campus meeting deans, students, and the people who&rsquo;ll build your aid package.</p>
+          <div class="feat__meta">
+            <div class="feat__meta-item">
+              <span class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg></span>
+              <div><strong>9:00am &ndash; 2:00pm</strong><br>Sunday, April 26</div>
+            </div>
+            <div class="feat__meta-item">
+              <span class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-4.5-5-9a5 5 0 0 1 10 0c0 4.5-5 9-5 9Z"/><circle cx="8" cy="5.5" r="1.8"/></svg></span>
+              <div><strong>Philadelphia Campus</strong><br>9801 Frankford Ave</div>
+            </div>
+            <div class="feat__meta-item">
+              <span class="icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2a4 4 0 0 1 4 4v1h1a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a4 4 0 0 1 4-4Z"/><path d="M6 7V6a2 2 0 1 1 4 0v1"/></svg></span>
+              <div><strong>Free · Family welcome</strong><br>Bring up to 4 guests</div>
+            </div>
+          </div>
+          <div class="feat__cta">
+            <a href="#" class="btn btn--primary btn--lg">
+              Reserve Your Spot
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+            <a href="#" class="btn btn--ghost">Add to Calendar</a>
+          </div>
+        </div>
+        <div class="feat__right">
+          <div class="feat__right-title">What&rsquo;s included in your day</div>
+          <ul class="feat__list">
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Academic workshops</strong><span>Sit in on mini-sessions from Nursing, Business, Education, and Arts &amp; Sciences.</span></div>
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Student-led campus tours</strong><span>Walk the quad with ambassadors who live it every day.</span></div>
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Financial aid instruction</strong><span>Plain-English walkthrough of FAFSA, aid packages, and scholarships.</span></div>
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Lunch in the dining hall</strong><span>Eat with students &mdash; included for you and your family.</span></div>
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Deans&rsquo; Q&amp;A panel</strong><span>Hear directly from the deans of each school of study.</span></div>
+            </li>
+            <li>
+              <span class="check"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg></span>
+              <div><strong>Family welcome reception</strong><span>A dedicated space for parents to meet counselors and other families.</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ CHOOSE YOUR VISIT (2x4 grid) ═════════════════════ -->
+  <section class="visit" id="tours">
+    <div class="visit__head">
+      <div>
+        <span class="eyebrow">Choose your visit</span>
+        <h2>Eight ways to see us, <em>all year.</em></h2>
+      </div>
+      <p class="lead">Some families come for the quiet of an afternoon tour. Others bring the whole extended family to an open house. There&rsquo;s no wrong way to visit &mdash; and you can always come back.</p>
+    </div>
+    <div class="visit__grid">
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <span class="vcard__status"><span class="dot"></span>Available now</span>
+        </div>
+        <h3>Campus Tour</h3>
+        <p>Our most-requested visit. A student ambassador walks you through the quad, residence halls, and academic buildings on your schedule.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>60 min</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14a8 8 0 0 1-14.5 4.5A8 8 0 0 0 14 4a8 8 0 0 1 6 10Z"/></svg></div>
+          <span class="vcard__status"><span class="dot"></span>Weekly</span>
+        </div>
+        <h3>Evening Campus Tour</h3>
+        <p>Can&rsquo;t make a weekday morning? Join us after work for a guided walk as the lights come up across campus.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>75 min</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+          <span class="vcard__status"><span class="dot"></span>Saturdays</span>
+        </div>
+        <h3>Saturday Tour</h3>
+        <p>A longer, more in-depth visit on select Saturdays &mdash; designed for families traveling in from out of state.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>2 hrs</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12 3 3 5-6"/><path d="M12 4h8v16H4v-8"/><rect x="4" y="4" width="8" height="8"/></svg></div>
+          <span class="vcard__status vcard__status--soon"><span class="dot"></span>Same day</span>
+        </div>
+        <h3>Transfer Instant Decision</h3>
+        <p>Bring your transcripts; leave with an answer. A full tour, a transfer counselor meeting, and a same-day admissions decision.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>3 hrs</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l8-5 8 5v12"/><path d="M9 20v-6h6v6"/></svg></div>
+          <span class="vcard__status vcard__status--soon"><span class="dot"></span>Oct &amp; Nov</span>
+        </div>
+        <h3>Fall Open House</h3>
+        <p>Our largest event of the year. Meet every school of study, dozens of student clubs, and the financial aid team all in one visit.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>Half day</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
+          <span class="vcard__status vcard__status--soon"><span class="dot"></span>Jun &ndash; Aug</span>
+        </div>
+        <h3>Summer Visit Days</h3>
+        <p>A slower, quieter look at campus during summer weekdays. Perfect for rising seniors starting their search.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>90 min</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg></div>
+          <span class="vcard__status"><span class="dot"></span>Admitted</span>
+        </div>
+        <h3>Accepted Student Day</h3>
+        <p>You got in. Now come meet your future classmates, faculty, and roommate options over an afternoon made just for you.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>4 hrs</span>
+          <a href="#" class="vcard__link">Book <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+      <article class="vcard">
+        <div class="vcard__top">
+          <div class="vcard__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 10h20M6 14h4"/></svg></div>
+          <span class="vcard__status"><span class="dot"></span>Anytime</span>
+        </div>
+        <h3>Virtual Tour</h3>
+        <p>Can&rsquo;t get here? Take an interactive self-guided tour from home &mdash; with videos, 360s, and students on call to answer questions.</p>
+        <div class="vcard__foot">
+          <span class="vcard__dur"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>30 min</span>
+          <a href="#" class="vcard__link">Launch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TWO CAMPUSES COMPARISON ═════════════════════ -->
+  <section class="camp">
+    <div class="camp__head">
+      <span class="eyebrow">Two homes for one family</span>
+      <h2>One university, <em>two campuses.</em></h2>
+      <p class="lead">Holy Family spans two Pennsylvania campuses, each with its own rhythm &mdash; and a free shuttle between them. Visit either (or both) and you&rsquo;ll see the same heart in different light.</p>
+    </div>
+    <div class="camp__grid">
+
+      <article class="campus">
+        <div class="campus__media">
+          <img src="../assets/hfu-photos/academics-etc.jpg" alt="ETC Tower and the Philadelphia Campus of Holy Family University">
+          <span class="campus__badge"><span class="pin"><svg viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="3"/></svg></span>Main Campus</span>
+        </div>
+        <div class="campus__body">
+          <div class="campus__tag">Urban &middot; Residential</div>
+          <h3>Philadelphia Campus</h3>
+          <div class="campus__meta">
+            <div class="row">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-4.5-5-9a5 5 0 0 1 10 0c0 4.5-5 9-5 9Z"/><circle cx="8" cy="5.5" r="1.8"/></svg>
+              <div><strong>9801 Frankford Avenue</strong><br>Philadelphia, PA 19114</div>
+            </div>
+            <div class="row">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              <div>215&nbsp;637&nbsp;7700</div>
+            </div>
+          </div>
+          <p class="campus__desc">Our original home, tucked into Philadelphia&rsquo;s Northeast since 1954. A walkable, residential campus with the ETC Tower at its center, the quad at its heart, and SEPTA access to everything the city offers just 25 minutes away.</p>
+          <ul class="campus__highlights">
+            <li><span class="bullet"></span>ETC Tower &amp; Commons</li>
+            <li><span class="bullet"></span>Holy Family Chapel</li>
+            <li><span class="bullet"></span>Perzel Education Center</li>
+            <li><span class="bullet"></span>Campus Center &amp; Dining</li>
+            <li><span class="bullet"></span>Residence Halls</li>
+            <li><span class="bullet"></span>Connelly Library</li>
+          </ul>
+          <div class="campus__foot">
+            <a href="#" class="campus__link">
+              Tour Philadelphia Campus
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="campus">
+        <div class="campus__media">
+          <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="The suburban Newtown campus of Holy Family University in Bucks County">
+          <span class="campus__badge"><span class="pin"><svg viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="3"/></svg></span>Bucks County</span>
+        </div>
+        <div class="campus__body">
+          <div class="campus__tag">Suburban &middot; Regional</div>
+          <h3>Newtown Campus</h3>
+          <div class="campus__meta">
+            <div class="row">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-4.5-5-9a5 5 0 0 1 10 0c0 4.5-5 9-5 9Z"/><circle cx="8" cy="5.5" r="1.8"/></svg>
+              <div><strong>One Campus Drive</strong><br>Newtown, PA 18940</div>
+            </div>
+            <div class="row">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              <div>215&nbsp;637&nbsp;7700 x4000</div>
+            </div>
+          </div>
+          <p class="campus__desc">Our Bucks County home, a half-hour north of Philadelphia in rolling Newtown. A quieter, single-building campus purpose-built for working adult and graduate students who study where the day takes them &mdash; evenings, weekends, online, or right here in person.</p>
+          <ul class="campus__highlights">
+            <li><span class="bullet"></span>Newtown Academic Center</li>
+            <li><span class="bullet"></span>Graduate Program Suite</li>
+            <li><span class="bullet"></span>Nursing Simulation Lab</li>
+            <li><span class="bullet"></span>Career Commons</li>
+            <li><span class="bullet"></span>Free Ample Parking</li>
+            <li><span class="bullet"></span>Counseling Offices</li>
+          </ul>
+          <div class="campus__foot">
+            <a href="#" class="campus__link">
+              Tour Newtown Campus
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════════════════ INTERACTIVE MAP ═════════════════════ -->
+  <section class="map">
+    <div class="map__inner">
+      <div class="map__canvas" aria-hidden="true">
+        <div class="map__compass">N</div>
+        <div class="map__roads">
+          <svg viewBox="0 0 500 400" fill="none" stroke="hsl(0 0% 100% / 0.18)" stroke-width="1.4" stroke-linecap="round">
+            <path d="M40 140 Q120 130 180 170 T310 210 T440 170" stroke-dasharray="0" />
+            <path d="M80 280 Q160 250 220 270 T360 320 T460 300" />
+            <path d="M250 40 Q245 120 260 200 T280 380" stroke-dasharray="2 6" />
+            <path d="M30 320 Q140 340 220 320 T410 360" stroke-dasharray="4 8" />
+          </svg>
+        </div>
+        <div class="map__pin map__pin--1">
+          <div class="head"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13V7l6-4 6 4v6"/><path d="M6 13V9h4v4"/></svg></div>
+          <div class="label">Admissions</div>
+        </div>
+        <div class="map__pin map__pin--2">
+          <div class="head"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M5 6h6M3 14V8l5-4 5 4v6"/></svg></div>
+          <div class="label">Chapel</div>
+        </div>
+        <div class="map__pin map__pin--3">
+          <div class="head"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="6" r="2.5"/><path d="M3 14c.5-3 2.5-4.5 5-4.5s4.5 1.5 5 4.5"/></svg></div>
+          <div class="label">Student Center</div>
+        </div>
+        <div class="map__scale">
+          <div class="bar"></div>
+          500 ft
+        </div>
+      </div>
+      <div class="map__text">
+        <span class="eyebrow">Find your way</span>
+        <h2>Explore the <em>campus map.</em></h2>
+        <p>Philadelphia campus is a 20-minute walk end to end &mdash; but it&rsquo;s the three buildings below that most visitors want to find first. Every tour starts at Admissions, and every tour will loop through these three.</p>
+        <ul class="map__legend">
+          <li>
+            <span class="pin">1</span>
+            <div>
+              <div class="title">Admissions House</div>
+              <span class="sub">ETC Tower, ground floor &middot; every tour starts here</span>
+            </div>
+            <span class="chev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
+          </li>
+          <li>
+            <span class="pin">2</span>
+            <div>
+              <div class="title">Holy Family Chapel</div>
+              <span class="sub">Stained-glass nave at the heart of the quad</span>
+            </div>
+            <span class="chev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
+          </li>
+          <li>
+            <span class="pin">3</span>
+            <div>
+              <div class="title">Campus Center</div>
+              <span class="sub">Dining, mailroom, student commons, and lounges</span>
+            </div>
+            <span class="chev"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
+          </li>
+        </ul>
+        <a href="#" class="btn btn--primary">
+          Open Full Campus Map
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ VISIT ITINERARY TIMELINE ═════════════════════ -->
+  <section class="itin">
+    <div class="itin__head">
+      <div>
+        <span class="eyebrow">Your day, minute by minute</span>
+        <h2>What to expect on <em>the day.</em></h2>
+      </div>
+      <p class="lead">Every visit day looks a little different depending on what you came for, but here&rsquo;s the shape of our most common itinerary &mdash; the one families tell us feels just right.</p>
+    </div>
+    <div class="itin__track">
+      <div class="itin__rail"></div>
+      <ol class="itin__list">
+
+        <li class="istop">
+          <div class="istop__time">8:30<span class="ampm">am</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9l8-6 8 6v11"/><path d="M10 20v-6h4v6"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 01</div>
+              <h3>Arrive &amp; check in</h3>
+              <p>Pull up to the Admissions House at the base of ETC Tower. Visitor parking is marked and free, and you&rsquo;ll find a student greeter at the door with your name badge and day&rsquo;s schedule.</p>
+              <span class="istop__chip"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v12M2 7h10"/></svg> Coffee &amp; pastries on us</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">9:00<span class="ampm">am</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M6 10v5c3 2 9 2 12 0v-5"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 02</div>
+              <h3>Welcome from a dean</h3>
+              <p>Meet one of the deans of our four schools of study &mdash; Nursing &amp; Health Sciences, Business, Education, or Arts &amp; Sciences &mdash; for a 20-minute welcome and Q&amp;A on what makes each school tick.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">9:30<span class="ampm">am</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 03</div>
+              <h3>Student-led campus tour</h3>
+              <p>A 90-minute walk through the quad, chapel, residence halls, science labs, and library &mdash; led by a student ambassador who&rsquo;ll answer every question you bring. This is the heart of the day.</p>
+              <span class="istop__chip"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5"/><path d="M7 4v3l2 1"/></svg> 90 minutes outdoors &amp; in</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">11:00<span class="ampm">am</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6h6a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h7"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 04</div>
+              <h3>Financial aid, in plain English</h3>
+              <p>Our financial aid office walks families through exactly how aid packaging works at Holy Family &mdash; the FAFSA, merit scholarships, grants, loans, work-study, and the Net Price Calculator. Bring questions; we&rsquo;ll bring coffee.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">12:00<span class="ampm">pm</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20M8 2v7a4 4 0 0 1-4 4"/><path d="M19 2v20M15 2v7a4 4 0 0 0 4 4"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 05</div>
+              <h3>Lunch in the dining hall</h3>
+              <p>You and your family eat lunch with current students in the main dining hall &mdash; included. It&rsquo;s the most-reported best part of every family&rsquo;s visit, and it&rsquo;s where the campus really shows itself.</p>
+              <span class="istop__chip"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 7 3 3 5-6"/></svg> Meal included for up to 4 guests</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">1:00<span class="ampm">pm</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20c-1.5-2-3.5-3-5-3s-3.5 1-5 3"/><circle cx="12" cy="9" r="4"/><path d="M2 19c1.5-1.5 3-2 4-2"/><path d="M22 19c-1.5-1.5-3-2-4-2"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 06</div>
+              <h3>1:1 with your counselor</h3>
+              <p>Every visitor meets one-on-one with their admissions counselor. This is your chance to ask anything &mdash; about majors, transfer credits, scholarships, housing, or what happens after you apply. No two meetings are the same.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="istop">
+          <div class="istop__time">2:00<span class="ampm">pm</span></div>
+          <div class="istop__main">
+            <div class="istop__dot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8m-4-4v8"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <div class="istop__body">
+              <div class="num">Stop 07</div>
+              <h3>Q&amp;A and send-off</h3>
+              <p>We end where we started. Families gather for a last round of questions, free next-steps materials, and a parting gift. Most families linger &mdash; and that&rsquo;s exactly what we hope for.</p>
+            </div>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ PLAN YOUR VISIT (practical 3-col) ═════════════════════ -->
+  <section class="plan">
+    <div class="plan__head">
+      <span class="eyebrow">Plan your visit</span>
+      <h2>Getting here, staying, <em>eating.</em></h2>
+      <p class="lead">Traveling from out of town? Here&rsquo;s the short list of what locals recommend for the practical parts of a campus visit.</p>
+    </div>
+    <div class="plan__grid">
+
+      <article class="plan__card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16h2a2 2 0 0 0 2-2v-1h8v1a2 2 0 0 0 2 2h2"/><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19h20M8 19v-3M16 19v-3"/></svg></div>
+        <h3>Getting here</h3>
+        <p>Both campuses are easy to reach by car, and Philadelphia is well-served by SEPTA. Visitor parking is free and marked.</p>
+        <ul>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>By car</strong><span>I-95 Exit 32 (Academy Rd) or PA Turnpike Exit 351 &middot; 20 min from Center City</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>By SEPTA</strong><span>Route 14 bus stops directly at the Philadelphia campus entrance</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>By airport</strong><span>PHL airport is 35 minutes by car or 50 minutes by regional rail</span></div></li>
+        </ul>
+        <a href="#" class="link">Get directions <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+      </article>
+
+      <article class="plan__card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M3 17h18M7 12h4M13 12h4M7 17v4M13 17v4M17 17v4"/></svg></div>
+        <h3>Staying overnight</h3>
+        <p>If you&rsquo;re traveling far, here are three vetted options near the Philadelphia campus, all offering HFU visitor rates.</p>
+        <ul>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>Hilton Philadelphia NE</strong><span>1.2 miles &middot; complimentary shuttle to campus by request</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>Holiday Inn Express Bensalem</strong><span>2.4 miles &middot; free breakfast &amp; parking</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>Hampton Inn Philadelphia NE</strong><span>3.1 miles &middot; quiet, on-site dining</span></div></li>
+        </ul>
+        <a href="#" class="link">See all hotel partners <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+      </article>
+
+      <article class="plan__card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20M8 2v7a4 4 0 0 1-4 4"/><path d="M19 2v20M15 2v7a4 4 0 0 0 4 4"/></svg></div>
+        <h3>Dining &amp; coffee</h3>
+        <p>Visits usually include lunch with us &mdash; but if you&rsquo;re making a weekend of it, these neighborhood spots are student favorites.</p>
+        <ul>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>Tira-Mi-Su Bakery</strong><span>Italian bakery &amp; espresso &middot; 4 min drive, open daily</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>The Dining Car</strong><span>Classic Philly diner open 24 hours &middot; a local institution</span></div></li>
+          <li><span class="tick"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m3 7 3 3 5-6"/></svg></span><div><strong>Nifty Fifty&rsquo;s</strong><span>Burgers, shakes, and booths &middot; 6 min from campus</span></div></li>
+        </ul>
+        <a href="#" class="link">Full dining list <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TESTIMONIALS ═════════════════════ -->
+  <section class="testi">
+    <div class="testi__inner">
+      <div class="testi__head">
+        <div>
+          <span class="eyebrow">What visitors tell us</span>
+          <h2>&ldquo;We knew the <em>moment</em> we walked on.&rdquo;</h2>
+        </div>
+        <p class="lead">We hear a version of this over and over again. Families come to compare &mdash; and leave knowing. Here&rsquo;s what three recent visitors said after their day on campus.</p>
+      </div>
+      <div class="testi__grid">
+
+        <article class="testi__card testi__card--featured">
+          <div class="testi__mark">&ldquo;</div>
+          <blockquote>My daughter knew the moment she walked onto the quad. We had three other schools to visit that week &mdash; we cancelled two of them the next morning. The student who walked us through was so genuine, and the financial aid office spoke to us like humans, not a spreadsheet.</blockquote>
+          <div class="testi__meta">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l4 4 8-8"/></svg>
+            Visited March 2025
+          </div>
+          <div class="testi__by">
+            <img class="testi__avatar" src="../assets/hfu-photos/admissions-2858.jpg" alt="">
+            <div>
+              <div class="testi__name">Denise &amp; Maya R.</div>
+              <div class="testi__role">Parent &amp; Class of 2029 &middot; Nursing</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi__card">
+          <div class="testi__mark">&ldquo;</div>
+          <blockquote>I came for the Transfer Instant Decision Day honestly just to see what it was. I left three hours later with an acceptance, a credit evaluation, and the name of the counselor I&rsquo;d be working with. I&rsquo;ve never been to a school that moved like that.</blockquote>
+          <div class="testi__meta">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l4 4 8-8"/></svg>
+            Visited February 2025
+          </div>
+          <div class="testi__by">
+            <img class="testi__avatar" src="../assets/hfu-photos/student-life3-square-small.jpg" alt="">
+            <div>
+              <div class="testi__name">Marcus T.</div>
+              <div class="testi__role">Transfer, Class of 2027 &middot; Business</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testi__card">
+          <div class="testi__mark">&ldquo;</div>
+          <blockquote>We&rsquo;d been touring for months and everything had started to blur together. The minute the chapel bell rang and our tour guide paused to listen &mdash; just listen &mdash; my husband looked at me. That&rsquo;s the kind of place we wanted for our son. Small, specific, honest.</blockquote>
+          <div class="testi__meta">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6l4 4 8-8"/></svg>
+            Visited January 2025
+          </div>
+          <div class="testi__by">
+            <img class="testi__avatar" src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="">
+            <div>
+              <div class="testi__name">The Calderón Family</div>
+              <div class="testi__role">Parents of incoming first-year</div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ CTA MEGA ═════════════════════ -->
+  <section class="cta">
+    <div class="cta__box">
+      <div class="cta__inner">
+        <div class="cta__bg">
+          <img src="../assets/hfu-photos/8r1a1042.jpg" alt="">
+        </div>
+        <div class="cta__content">
+          <div>
+            <span class="eyebrow">Walk the quad</span>
+            <h2>Schedule the visit that will <em>change</em> everything.</h2>
+          </div>
+          <div class="cta__side">
+            <p>Campus visits are free and unhurried. Bring your family, your questions, your skepticism &mdash; we&rsquo;ll show you who we are in a single morning. Or come to the Spring Open House and meet everyone at once.</p>
+            <div class="cta__buttons">
+              <a href="#" class="btn btn--primary btn--lg">
+                Register Now
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+              <a href="#" class="btn btn--secondary btn--lg">Contact Admissions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FOOTER ═════════════════════ -->
+  <footer class="foot">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <svg class="nav__logo" viewBox="0 0 562.7 198.6" style="height: 56px;" xmlns="http://www.w3.org/2000/svg"><g fill="#fff" opacity="0.9"><path d="m47.3 88.7c4.2 14.2 11 27.4 20.4 39.5 6.4-8.2 13.8-15.4 22.1-21.6-17.4-11.9-34.3-16.4-42.5-17.9zm27.3 20.2h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.5v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m94.3 106.5c8.3 6.1 15.8 13.4 22.1 21.6 9.4-12 16.2-25.3 20.4-39.5-8.3 1.6-25.2 6.1-42.5 17.9z"/><path d="m92 108.1c-7.8 5.6-15.7 12.8-22.8 22 10.3 12.7 20.4 20 22.8 21.7 2.4-1.7 12.5-8.9 22.8-21.7-7.1-9.1-14.9-16.3-22.8-22z"/><path d="m104.2 43.9-12.2 60.7-12.2-60.7z"/><path d="m138.3 43.9-46.3 60.7 21.9-60.7z"/><path d="m45.7 43.9 46.3 60.7-21.8-60.7z"/></g></svg>
+        <h3>Holy Family University</h3>
+        <p>A Catholic university in the tradition of the Sisters of the Holy Family of Nazareth, rooted in faith, scholarship, and service since 1954.</p>
+        <form class="foot__news" onsubmit="return false;">
+          <input type="email" placeholder="Get visit updates">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="foot__col">
+        <h4>Plan a Visit</h4>
+        <ul>
+          <li><a href="#">Spring Open House</a></li>
+          <li><a href="#">Campus Tours</a></li>
+          <li><a href="#">Evening &amp; Saturday Tours</a></li>
+          <li><a href="#">Transfer Instant Decision</a></li>
+          <li><a href="#">Accepted Student Days</a></li>
+          <li><a href="#">Virtual Tour</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Getting Here</h4>
+        <ul>
+          <li><a href="#">Directions &amp; Parking</a></li>
+          <li><a href="#">Campus Maps</a></li>
+          <li><a href="#">Local Hotels</a></li>
+          <li><a href="#">Dining Nearby</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Inter-Campus Shuttle</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Visit &amp; Contact</h4>
+        <ul>
+          <li><a href="#">Contact Admissions</a></li>
+          <li><a href="#">Request Info</a></li>
+          <li><a href="#">Apply Now</a></li>
+          <li><a href="#">Give</a></li>
+        </ul>
+        <div class="foot__addr">
+          <strong>Philadelphia Campus</strong>
+          9801 Frankford Avenue<br>Philadelphia, PA 19114
+        </div>
+        <div class="foot__addr" style="margin-top:14px;">
+          <strong>Newtown Campus</strong>
+          One Campus Drive<br>Newtown, PA 18940
+        </div>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <div>&copy; Holy Family University · Rooted in Faith, Scholarship &amp; Service since 1954</div>
+      <div class="links">
+        <a href="#">Privacy</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Title IX</a>
+        <a href="#">Consumer Info</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll to Open House banner from nav button
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length > 1) {
+          const el = document.querySelector(id);
+          if (el) {
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Itinerary stops: fade-in on scroll
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.istop').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = `opacity 520ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 40}ms, transform 520ms cubic-bezier(0.22, 1, 0.36, 1) ${i * 40}ms`;
+        io.observe(el);
+      });
+    }
+  </script>
+</body>
+</html>

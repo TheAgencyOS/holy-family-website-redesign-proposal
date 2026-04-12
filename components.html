@@ -1,0 +1,3961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Component Library · HFU Design System</title>
+  <meta name="description" content="Twenty patterns. One voice. The component vocabulary underlying the Holy Family University design concepts.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════
+       HFU COMPONENT LIBRARY
+       Typography: Fraunces (display) + Inter Tight (body)
+       Tokens carried verbatim from hfu-admissions.html
+       ═════════════════════════════════════════════════════════════════════ */
+    :root {
+      --hfu-navy:        212 82% 13%;
+      --hfu-navy-deep:   212 90% 8%;
+      --hfu-navy-soft:   212 45% 22%;
+      --hfu-blue:        204 100% 33%;
+      --hfu-blue-deep:   204 100% 26%;
+      --hfu-yellow:      48 100% 54%;
+      --hfu-yellow-soft: 48 100% 94%;
+      --hfu-yellow-deep: 44 95% 46%;
+      --hfu-mist:        202 22% 76%;
+
+      --bg:              38 33% 97%;
+      --bg-alt:          38 25% 94%;
+      --bg-card:         0 0% 100%;
+      --fg:              212 38% 12%;
+      --fg-muted:        212 18% 36%;
+      --fg-subtle:       212 12% 52%;
+      --border:          212 20% 88%;
+      --border-soft:     212 22% 93%;
+      --border-strong:   212 24% 78%;
+
+      --display: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      --container: 1280px;
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      --section: clamp(4.5rem, 9vw, 8rem);
+
+      --r-sm: 6px;
+      --r: 12px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+      --r-2xl: 40px;
+
+      --shadow-xs: 0 1px 2px rgba(6, 33, 63, 0.04);
+      --shadow-sm: 0 1px 3px rgba(6, 33, 63, 0.05), 0 1px 2px rgba(6, 33, 63, 0.03);
+      --shadow-md: 0 4px 16px rgba(6, 33, 63, 0.06), 0 2px 6px rgba(6, 33, 63, 0.04);
+      --shadow-lg: 0 20px 48px rgba(6, 33, 63, 0.10), 0 8px 20px rgba(6, 33, 63, 0.06);
+      --shadow-xl: 0 40px 96px rgba(6, 33, 63, 0.14), 0 16px 32px rgba(6, 33, 63, 0.08);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 120px; }
+    body {
+      margin: 0;
+      background: hsl(var(--bg));
+      color: hsl(var(--fg));
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: color 200ms var(--ease-out), opacity 200ms var(--ease-out); }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--fg));
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    h1 { font-weight: 350; font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1; }
+    p { margin: 0; }
+    ::selection { background: hsl(var(--hfu-yellow) / 0.45); color: hsl(var(--hfu-navy)); }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+    .eyebrow {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .eyebrow--dark { color: hsl(var(--hfu-yellow)); }
+    .eyebrow--dark::before { background: hsl(var(--hfu-yellow)); }
+
+    .lead {
+      font-size: clamp(17px, 1.15vw, 19px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 60ch;
+    }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out), border-color 220ms var(--ease-out);
+      white-space: nowrap;
+    }
+    .btn svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      box-shadow: 0 1px 2px rgba(6, 33, 63, 0.15), 0 4px 12px rgba(255, 204, 21, 0.35);
+    }
+    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(6, 33, 63, 0.2), 0 8px 20px rgba(255, 204, 21, 0.4); }
+    .btn--secondary {
+      background: hsl(var(--bg-card));
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--border-strong));
+    }
+    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: #fff; border-color: hsl(var(--hfu-navy)); }
+    .btn--ghost {
+      background: transparent;
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy) / 0.2);
+    }
+    .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
+    .btn--dark {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+    }
+    .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
+    .btn--ghost-dark {
+      background: transparent;
+      color: #fff;
+      border: 1px solid hsl(0 0% 100% / 0.3);
+    }
+    .btn--ghost-dark:hover { border-color: hsl(0 0% 100% / 0.6); background: hsl(0 0% 100% / 0.08); }
+    .btn--lg { padding: 18px 32px; font-size: 15px; }
+
+    /* ══════════ TOP BANNER ══════════ */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-bottom: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .topbar__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 14px var(--gutter);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .topbar__brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+    .topbar__logo { height: 30px; width: auto; flex-shrink: 0; }
+    .topbar__divider {
+      width: 1px;
+      height: 26px;
+      background: hsl(0 0% 100% / 0.18);
+      flex-shrink: 0;
+    }
+    .topbar__title {
+      font-family: var(--body);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: hsl(0 0% 100% / 0.78);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .topbar__title strong { color: #fff; font-weight: 600; }
+    .topbar__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(0 0% 100% / 0.72);
+      padding: 8px 16px;
+      border-radius: 100px;
+      border: 1px solid hsl(0 0% 100% / 0.16);
+      flex-shrink: 0;
+      transition: all 220ms var(--ease-out);
+    }
+    .topbar__back:hover {
+      color: #fff;
+      background: hsl(0 0% 100% / 0.08);
+      border-color: hsl(0 0% 100% / 0.32);
+    }
+    .topbar__back svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 280ms var(--ease-out);
+    }
+    .topbar__back:hover svg { transform: translateX(-3px); }
+
+    /* ══════════ TITLE / INTRO PAGE ══════════ */
+    .intro {
+      min-height: calc(100vh - 58px);
+      padding: clamp(3rem, 8vw, 7rem) 0 clamp(3rem, 5vw, 5rem);
+      background: hsl(var(--bg));
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      right: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.12), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .intro::after {
+      content: "";
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 50%;
+      height: 70%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-blue) / 0.06), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .intro__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .intro__eyebrow { margin-bottom: 36px; }
+    .intro h1 {
+      font-size: clamp(3rem, 9vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 40px;
+      max-width: 16ch;
+    }
+    .intro h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .intro__lead {
+      font-size: clamp(17px, 1.3vw, 20px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 58ch;
+      margin-bottom: 64px;
+    }
+    .intro__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid hsl(var(--border));
+      border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: 56px;
+    }
+    .intro__stat {
+      padding: 32px 32px 32px 0;
+      border-right: 1px solid hsl(var(--border));
+    }
+    .intro__stat:last-child { border-right: none; padding-right: 0; }
+    .intro__stat .num {
+      font-family: var(--display);
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      display: block;
+    }
+    .intro__stat .label {
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+    }
+
+    .intro__jump-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: hsl(var(--fg-subtle));
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: block;
+    }
+    .intro__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 16px;
+      border-radius: 100px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      font-size: 12.5px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      transition: all 220ms var(--ease-out);
+    }
+    .chip__num {
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 500;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: -0.01em;
+    }
+    .chip:hover {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-color: hsl(var(--hfu-navy));
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .chip:hover .chip__num { color: hsl(var(--hfu-yellow)); }
+
+    /* ══════════ COMPONENT SECTION SHELL ══════════ */
+    .sec {
+      padding: var(--section) 0;
+      position: relative;
+    }
+    .sec--alt { background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft)); }
+    .sec--dark {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-top: 1px solid hsl(var(--hfu-navy-deep));
+      border-bottom: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .sec__head {
+      max-width: var(--container);
+      margin: 0 auto clamp(48px, 6vw, 80px);
+      padding: 0 var(--gutter);
+    }
+    .sec__eyebrow {
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .sec--dark .sec__eyebrow { color: hsl(var(--hfu-yellow)); }
+    .sec__eyebrow .dash {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .sec--dark .sec__eyebrow .dash { background: hsl(var(--hfu-yellow)); }
+    .sec__eyebrow .num {
+      font-family: var(--display);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .sec__head h2 {
+      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      line-height: 1.05;
+      margin-bottom: 14px;
+      max-width: 22ch;
+    }
+    .sec--dark .sec__head h2 { color: #fff; }
+    .sec__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .sec--dark .sec__head h2 em { color: hsl(var(--hfu-yellow)); }
+    .sec__head p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 56ch;
+    }
+    .sec--dark .sec__head p { color: hsl(0 0% 100% / 0.72); }
+
+    .sec__body {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ══════════ 01 · ACCORDION ══════════ */
+    .faq01 {
+      display: grid;
+      grid-template-columns: 0.9fr 1.3fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+    }
+    .faq01__aside {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    .faq01__aside h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.2vw, 2rem);
+      line-height: 1.1;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .faq01__aside h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .faq01__aside p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 24px;
+      max-width: 34ch;
+    }
+    .faq01__contact {
+      padding: 22px 24px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+    }
+    .faq01__contact-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: hsl(var(--fg-subtle));
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .faq01__contact-line {
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq01__contact-line svg { width: 13px; height: 13px; color: hsl(var(--hfu-blue)); flex-shrink: 0; }
+    .faq01__list { display: flex; flex-direction: column; }
+    .faq01__item {
+      border-top: 1px solid hsl(var(--border));
+      padding: 26px 0;
+    }
+    .faq01__item:last-child { border-bottom: 1px solid hsl(var(--border)); }
+    .faq01__item summary {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 1.4vw, 1.4rem);
+      line-height: 1.3;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.018em;
+      cursor: pointer;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .faq01__item summary::-webkit-details-marker { display: none; }
+    .faq01__icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--border-strong));
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: background 240ms var(--ease-out), border-color 240ms var(--ease-out);
+    }
+    .faq01__icon svg {
+      width: 14px;
+      height: 14px;
+      color: hsl(var(--hfu-navy));
+      transition: transform 280ms var(--ease-out);
+    }
+    .faq01__item[open] .faq01__icon {
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow));
+    }
+    .faq01__item[open] .faq01__icon svg { transform: rotate(45deg); }
+    .faq01__item p {
+      font-size: 15px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.65;
+      margin-top: 16px;
+      max-width: 62ch;
+      animation: faqFade 360ms var(--ease-out) both;
+    }
+    @keyframes faqFade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════ 02 · DATA TABLE ══════════ */
+    .tbl02 {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .tbl02__scroll { overflow-x: auto; }
+    .tbl02 table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    .tbl02 thead th {
+      position: sticky;
+      top: 58px;
+      background: hsl(var(--bg-alt));
+      z-index: 2;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 28px 24px 22px;
+      text-align: left;
+      vertical-align: bottom;
+    }
+    .tbl02 thead th:first-child {
+      background: hsl(var(--bg-alt));
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--fg-subtle));
+    }
+    .tbl02__prog {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tbl02__prog-code {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: hsl(var(--hfu-blue));
+      text-transform: uppercase;
+    }
+    .tbl02__prog-name {
+      font-family: var(--display);
+      font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+      line-height: 1.1;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .tbl02 tbody tr {
+      border-bottom: 1px solid hsl(var(--border-soft));
+      transition: background 200ms var(--ease-out);
+    }
+    .tbl02 tbody tr:last-child { border-bottom: none; }
+    .tbl02 tbody tr:hover { background: hsl(var(--hfu-yellow) / 0.08); }
+    .tbl02 tbody tr:hover td:first-child { color: hsl(var(--hfu-navy)); }
+    .tbl02 tbody td {
+      padding: 22px 24px;
+      font-size: 14.5px;
+      color: hsl(var(--fg));
+      vertical-align: top;
+    }
+    .tbl02 tbody td:first-child {
+      font-size: 12px;
+      font-weight: 600;
+      color: hsl(var(--fg-muted));
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      width: 22%;
+    }
+    .tbl02 tbody td strong {
+      display: block;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 2px;
+    }
+    .tbl02 tbody td span {
+      display: block;
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+    }
+    .tbl02__note {
+      padding: 18px 28px;
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border));
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tbl02__note svg { width: 14px; height: 14px; color: hsl(var(--hfu-blue)); flex-shrink: 0; }
+
+    /* ══════════ 03 · TABS HORIZONTAL ══════════ */
+    .tabs03 {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .tabs03__bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 clamp(1rem, 3vw, 2rem);
+      position: relative;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tabs03__bar::-webkit-scrollbar { display: none; }
+    .tabs03__tab {
+      padding: 24px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--fg-muted));
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+      transition: color 200ms var(--ease-out), border-color 200ms var(--ease-out);
+      flex-shrink: 0;
+    }
+    .tabs03__tab:hover { color: hsl(var(--hfu-navy)); }
+    .tabs03__tab.is-active {
+      color: hsl(var(--hfu-navy));
+      border-bottom-color: hsl(var(--hfu-yellow));
+    }
+    .tabs03__tab svg { width: 14px; height: 14px; opacity: 0.6; }
+    .tabs03__panel {
+      display: none;
+      padding: 0;
+    }
+    .tabs03__panel.is-active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      animation: tabFadeUp 460ms var(--ease-out) both;
+    }
+    @keyframes tabFadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tabs03__media {
+      aspect-ratio: 5 / 4;
+      overflow: hidden;
+    }
+    .tabs03__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tabs03__body {
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .tabs03__kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 16px;
+    }
+    .tabs03__body h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.022em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 16px;
+    }
+    .tabs03__body h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .tabs03__body p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 24px;
+      max-width: 46ch;
+    }
+    .tabs03__meta {
+      display: flex;
+      gap: 36px;
+      padding-top: 24px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .tabs03__meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .tabs03__meta-item strong {
+      font-family: var(--display);
+      font-size: 22px;
+      color: hsl(var(--hfu-navy));
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+    }
+    .tabs03__meta-item span {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.02em;
+    }
+
+    /* ══════════ 04 · TABS VERTICAL ══════════ */
+    .tabs04 {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      align-items: start;
+    }
+    .tabs04__list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .tabs04__tab {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 100px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: hsl(var(--fg-muted));
+      text-align: left;
+      transition: all 260ms var(--ease-out);
+      width: 100%;
+    }
+    .tabs04__tab:hover {
+      background: hsl(var(--bg-card));
+      border-color: hsl(var(--border-soft));
+      color: hsl(var(--hfu-navy));
+    }
+    .tabs04__tab.is-active {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-color: hsl(var(--hfu-navy));
+    }
+    .tabs04__tab-num {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: -0.01em;
+    }
+    .tabs04__tab.is-active .tabs04__tab-num { color: hsl(var(--hfu-yellow)); }
+    .tabs04__tab-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+    .tabs04__tab-arrow {
+      width: 12px;
+      height: 12px;
+      opacity: 0;
+      transition: opacity 220ms var(--ease-out), transform 260ms var(--ease-out);
+    }
+    .tabs04__tab.is-active .tabs04__tab-arrow {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .tabs04__panel-wrap {
+      position: relative;
+      min-height: 440px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .tabs04__panel {
+      display: none;
+    }
+    .tabs04__panel.is-active {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      min-height: 440px;
+      animation: tabFadeUp 460ms var(--ease-out) both;
+    }
+    .tabs04__body {
+      padding: clamp(2rem, 4vw, 3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .tabs04__school {
+      font-family: var(--body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 14px;
+    }
+    .tabs04__body h3 {
+      font-family: var(--display);
+      font-size: clamp(1.55rem, 2vw, 2rem);
+      line-height: 1.08;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.022em;
+      margin-bottom: 16px;
+    }
+    .tabs04__body h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .tabs04__body p {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 24px;
+      max-width: 40ch;
+    }
+    .tabs04__progs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tabs04__prog {
+      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: 100px;
+      background: hsl(var(--bg-alt));
+      color: hsl(var(--fg-muted));
+      font-weight: 500;
+    }
+    .tabs04__media {
+      overflow: hidden;
+    }
+    .tabs04__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ══════════ 05 · CTA EDITORIAL SPLIT ══════════ */
+    .cta05 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      min-height: 520px;
+    }
+    .cta05__media {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta05__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cta05__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, hsl(var(--hfu-navy) / 0.1) 100%);
+    }
+    .cta05__panel {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      padding: clamp(2.5rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta05__panel::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 90%;
+      height: 120%;
+      background: radial-gradient(circle, hsl(var(--hfu-yellow) / 0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .cta05__content { position: relative; }
+    .cta05__panel .eyebrow { color: hsl(var(--hfu-yellow)); margin-bottom: 24px; }
+    .cta05__panel .eyebrow::before { background: hsl(var(--hfu-yellow)); }
+    .cta05__panel h3 {
+      font-family: var(--display);
+      font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+      line-height: 1.04;
+      color: #fff;
+      letter-spacing: -0.024em;
+      margin-bottom: 20px;
+    }
+    .cta05__panel h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
+    .cta05__panel p {
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: hsl(0 0% 100% / 0.78);
+      margin-bottom: 32px;
+      max-width: 44ch;
+    }
+    .cta05__buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ══════════ 06 · CTA MEGA ══════════ */
+    .cta06 {
+      position: relative;
+      border-radius: var(--r-2xl);
+      overflow: hidden;
+      padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 5vw, 5rem);
+      background: hsl(var(--hfu-navy-deep));
+      color: #fff;
+      text-align: center;
+      border: 1px solid hsl(0 0% 100% / 0.08);
+    }
+    .cta06__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .cta06__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+    }
+    .cta06__bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-navy) / 0.6), hsl(var(--hfu-navy-deep)) 80%);
+    }
+    .cta06__content {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .cta06__content .eyebrow {
+      color: hsl(var(--hfu-yellow));
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .cta06__content .eyebrow::before { background: hsl(var(--hfu-yellow)); }
+    .cta06 h3 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      line-height: 1;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-weight: 350;
+    }
+    .cta06 h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
+    .cta06 p {
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.6;
+      color: hsl(0 0% 100% / 0.78);
+      margin-bottom: 40px;
+      max-width: 60ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta06__buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ══════════ 07 · MEDIA FEATURE ALTERNATING ══════════ */
+    .mf07 { display: flex; flex-direction: column; gap: clamp(3rem, 6vw, 6rem); }
+    .mf07__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .mf07__row--reverse .mf07__media { order: 2; }
+    .mf07__media {
+      aspect-ratio: 5 / 4;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .mf07__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease-out);
+    }
+    .mf07__row:hover .mf07__media img { transform: scale(1.03); }
+    .mf07__kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mf07__kicker::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .mf07__body h3 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+      line-height: 1.05;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      margin-bottom: 20px;
+      max-width: 18ch;
+    }
+    .mf07__body h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .mf07__body p {
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 28px;
+      max-width: 44ch;
+    }
+    .mf07__facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      padding-top: 24px;
+      border-top: 1px solid hsl(var(--border));
+      margin-bottom: 28px;
+    }
+    .mf07__fact strong {
+      font-family: var(--display);
+      font-size: 28px;
+      color: hsl(var(--hfu-navy));
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+    .mf07__fact span {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.02em;
+    }
+    .mf07__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    .mf07__link svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 260ms var(--ease-out);
+    }
+    .mf07__link:hover svg { transform: translateX(3px); }
+
+    /* ══════════ 08 · STATS BAR ══════════ */
+    .stats08 {
+      display: grid;
+      grid-template-columns: 1.1fr 2.4fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .stats08__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid hsl(0 0% 100% / 0.14);
+    }
+    .stats08__cell {
+      padding: 6px 28px;
+      border-right: 1px solid hsl(0 0% 100% / 0.14);
+    }
+    .stats08__cell:last-child { border-right: none; }
+    .stats08__kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 12px;
+    }
+    .stats08__num {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      color: #fff;
+      margin-bottom: 12px;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-weight: 350;
+      display: block;
+    }
+    .stats08__num .plus {
+      font-size: 0.42em;
+      color: hsl(var(--hfu-yellow));
+      vertical-align: 0.6em;
+      margin-left: 2px;
+    }
+    .stats08__label {
+      font-size: 13px;
+      color: hsl(0 0% 100% / 0.68);
+      line-height: 1.45;
+      max-width: 20ch;
+    }
+
+    /* ══════════ 09 · TESTIMONIAL FEATURED ══════════ */
+    .test09 {
+      display: grid;
+      grid-template-columns: 0.75fr 1.4fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .test09__photo {
+      aspect-ratio: 1;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .test09__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .test09__photo::before {
+      content: "";
+      position: absolute;
+      top: -24px;
+      left: -24px;
+      width: 72px;
+      height: 72px;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .test09__photo::after {
+      content: "\201C";
+      position: absolute;
+      top: -30px;
+      left: -6px;
+      font-family: var(--display);
+      font-size: 100px;
+      color: hsl(var(--hfu-navy));
+      font-style: italic;
+      z-index: 2;
+      line-height: 1;
+    }
+    .test09__body {
+      display: flex;
+      flex-direction: column;
+    }
+    .test09 blockquote {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.02em;
+      font-style: italic;
+      font-weight: 300;
+      margin: 0 0 36px;
+      max-width: 24ch;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .test09 blockquote strong {
+      color: hsl(var(--hfu-blue));
+      font-weight: 300;
+      font-style: italic;
+    }
+    .test09__by {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid hsl(var(--border));
+      max-width: 420px;
+    }
+    .test09__by-bar {
+      width: 44px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow));
+      flex-shrink: 0;
+    }
+    .test09__by-name {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 2px;
+    }
+    .test09__by-role {
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.005em;
+    }
+
+    /* ══════════ 10 · TESTIMONIAL GRID ══════════ */
+    .test10 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .test10__card {
+      padding: 32px 30px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
+    }
+    .test10__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .test10__mark {
+      font-family: var(--display);
+      font-size: 48px;
+      line-height: 0.4;
+      color: hsl(var(--hfu-yellow-deep));
+      font-style: italic;
+      height: 14px;
+    }
+    .test10 blockquote {
+      font-family: var(--display);
+      font-size: 17px;
+      line-height: 1.4;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.008em;
+      margin: 0;
+      flex: 1;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .test10__by {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 22px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .test10__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid hsl(var(--border));
+      flex-shrink: 0;
+    }
+    .test10__name {
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 2px;
+    }
+    .test10__role {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ══════════ 11 · MARQUEE TESTIMONIALS ══════════ */
+    .marq11 {
+      position: relative;
+      overflow: hidden;
+      margin: 0 calc(var(--gutter) * -1);
+      padding: 20px 0;
+    }
+    .marq11::before,
+    .marq11::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marq11::before {
+      left: 0;
+      background: linear-gradient(90deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-navy) / 0) 100%);
+    }
+    .marq11::after {
+      right: 0;
+      background: linear-gradient(270deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-navy) / 0) 100%);
+    }
+    .marq11__track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: marqueeScroll 56s linear infinite;
+    }
+    .marq11:hover .marq11__track { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .marq11__card {
+      flex-shrink: 0;
+      width: 380px;
+      padding: 30px 30px 28px;
+      background: hsl(0 0% 100% / 0.04);
+      border: 1px solid hsl(0 0% 100% / 0.1);
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      backdrop-filter: blur(4px);
+    }
+    .marq11__card blockquote {
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1.45;
+      color: hsl(0 0% 100% / 0.92);
+      letter-spacing: -0.008em;
+      margin: 0;
+      flex: 1;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .marq11__card blockquote::before {
+      content: "\201C";
+      display: block;
+      font-family: var(--display);
+      font-size: 36px;
+      line-height: 0.3;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+    .marq11__by {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid hsl(0 0% 100% / 0.1);
+    }
+    .marq11__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid hsl(0 0% 100% / 0.2);
+      flex-shrink: 0;
+    }
+    .marq11__name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .marq11__role {
+      font-size: 12px;
+      color: hsl(0 0% 100% / 0.55);
+    }
+
+    /* ══════════ 12 · PRICING TIERS ══════════ */
+    .price12 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .price12__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: 40px 36px 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+    }
+    .price12__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .price12__card--featured {
+      background: hsl(var(--hfu-navy));
+      color: #fff;
+      border-color: hsl(var(--hfu-navy));
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-12px);
+    }
+    .price12__card--featured:hover { transform: translateY(-16px); box-shadow: var(--shadow-xl); }
+    .price12__ribbon {
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
+    }
+    .price12__kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 10px;
+    }
+    .price12__card--featured .price12__kicker { color: hsl(var(--hfu-yellow)); }
+    .price12__name {
+      font-family: var(--display);
+      font-size: 26px;
+      line-height: 1.1;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+    .price12__card--featured .price12__name { color: #fff; }
+    .price12__price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid hsl(var(--border));
+      margin-bottom: 24px;
+    }
+    .price12__card--featured .price12__price { border-color: hsl(0 0% 100% / 0.14); }
+    .price12__amount {
+      font-family: var(--display);
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -0.035em;
+      color: hsl(var(--hfu-navy));
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+    }
+    .price12__card--featured .price12__amount { color: #fff; }
+    .price12__unit {
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+    }
+    .price12__card--featured .price12__unit { color: hsl(0 0% 100% / 0.6); }
+    .price12__sub {
+      font-size: 13px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 28px;
+    }
+    .price12__card--featured .price12__sub { color: hsl(0 0% 100% / 0.7); }
+    .price12__feats {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .price12__feats li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 12px;
+      align-items: start;
+      font-size: 14px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+    }
+    .price12__card--featured .price12__feats li { color: hsl(0 0% 100% / 0.82); }
+    .price12__check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow) / 0.2);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .price12__card--featured .price12__check {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+    }
+    .price12__check svg { width: 10px; height: 10px; }
+    .price12__card .btn { width: 100%; justify-content: center; }
+
+    /* ══════════ 13 · INLINE NEWSLETTER ══════════ */
+    .news13 {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: clamp(2.5rem, 5vw, 4rem);
+      box-shadow: var(--shadow-sm);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .news13__eyebrow { margin-bottom: 16px; }
+    .news13 h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+      line-height: 1.05;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.022em;
+      margin-bottom: 10px;
+      max-width: 20ch;
+    }
+    .news13 h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .news13 p {
+      font-size: 14.5px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 28px;
+      max-width: 48ch;
+    }
+    .news13__form {
+      display: flex;
+      gap: 10px;
+      background: hsl(var(--bg-alt));
+      border: 1px solid hsl(var(--border));
+      border-radius: 100px;
+      padding: 8px 8px 8px 24px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .news13__form input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      font: inherit;
+      font-size: 15px;
+      color: hsl(var(--fg));
+      padding: 8px 0;
+      min-width: 0;
+    }
+    .news13__form input::placeholder { color: hsl(var(--fg-subtle)); }
+    .news13__form button { padding: 14px 26px; }
+    .news13__fine {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      line-height: 1.55;
+      max-width: 60ch;
+    }
+    .news13__fine a { color: hsl(var(--hfu-blue)); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* ══════════ 14 · MULTI-FIELD CONTACT ══════════ */
+    .form14 {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .form14__side { position: sticky; top: 100px; align-self: start; }
+    .form14__side h3 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+      line-height: 1.05;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      margin-bottom: 18px;
+      max-width: 16ch;
+    }
+    .form14__side h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .form14__side p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 28px;
+      max-width: 36ch;
+    }
+    .form14__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid hsl(var(--border));
+    }
+    .form14__contact-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 14px;
+      align-items: center;
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+    }
+    .form14__contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .form14__contact-icon svg { width: 13px; height: 13px; }
+    .form14__contact-item strong {
+      display: block;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .form14__contact-item span { font-size: 12px; color: hsl(var(--fg-subtle)); }
+
+    .form14__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: clamp(2rem, 4vw, 3rem);
+      box-shadow: var(--shadow-sm);
+    }
+    .form14__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 18px;
+      margin-bottom: 20px;
+    }
+    .form14__field { display: flex; flex-direction: column; gap: 8px; }
+    .form14__field--full { grid-column: 1 / -1; }
+    .form14__field label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: hsl(var(--fg-subtle));
+    }
+    .form14__field input,
+    .form14__field select,
+    .form14__field textarea {
+      padding: 14px 16px;
+      background: hsl(var(--bg));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r);
+      font: inherit;
+      font-size: 14.5px;
+      color: hsl(var(--fg));
+      transition: border-color 220ms var(--ease-out), background 220ms var(--ease-out);
+      outline: none;
+    }
+    .form14__field input::placeholder,
+    .form14__field textarea::placeholder { color: hsl(var(--fg-subtle)); }
+    .form14__field input:focus,
+    .form14__field select:focus,
+    .form14__field textarea:focus {
+      border-color: hsl(var(--hfu-blue));
+      background: hsl(var(--bg-card));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-blue) / 0.08);
+    }
+    .form14__field textarea {
+      min-height: 140px;
+      resize: vertical;
+      font-family: inherit;
+    }
+    .form14__field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236B7A8C' stroke-width='1.8' stroke-linecap='round'><path d='M2 4l4 4 4-4'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+    .form14__check {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px 0 24px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-size: 12.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.55;
+    }
+    .form14__check input {
+      margin: 3px 0 0;
+      width: 18px;
+      height: 18px;
+      accent-color: hsl(var(--hfu-blue));
+      cursor: pointer;
+    }
+    .form14__check a { color: hsl(var(--hfu-blue)); text-decoration: underline; text-underline-offset: 2px; }
+    .form14__submit { width: 100%; justify-content: center; }
+
+    /* ══════════ 15 · TIMELINE VERTICAL ══════════ */
+    .tl15 {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    .tl15::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, hsl(var(--border-strong)) 6%, hsl(var(--border-strong)) 94%, transparent);
+      transform: translateX(-50%);
+    }
+    .tl15__item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      padding: 36px 0;
+      align-items: center;
+    }
+    .tl15__item:first-child { padding-top: 0; }
+    .tl15__item:last-child { padding-bottom: 0; }
+    .tl15__dot {
+      grid-column: 2;
+      width: 20px;
+      height: 20px;
+      margin: 0 auto;
+      background: hsl(var(--hfu-yellow));
+      border: 3px solid hsl(var(--bg-alt));
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 0 1px hsl(var(--border-strong));
+    }
+    .tl15__dot::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border: 1px dashed hsl(var(--hfu-yellow-deep) / 0.4);
+      border-radius: 50%;
+    }
+    .tl15__content {
+      padding: 28px 32px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-xs);
+      position: relative;
+    }
+    .tl15__item--left .tl15__content {
+      grid-column: 1;
+      text-align: right;
+      margin-right: 28px;
+    }
+    .tl15__item--right .tl15__content {
+      grid-column: 3;
+      margin-left: 28px;
+    }
+    .tl15__content::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 28px;
+      height: 1px;
+      background: hsl(var(--border-strong));
+    }
+    .tl15__item--left .tl15__content::after { right: -28px; }
+    .tl15__item--right .tl15__content::after { left: -28px; }
+    .tl15__year {
+      font-family: var(--display);
+      font-size: 36px;
+      line-height: 1;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.035em;
+      margin-bottom: 10px;
+      display: block;
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+    }
+    .tl15__year em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .tl15__content h3 {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+      letter-spacing: -0.005em;
+    }
+    .tl15__content p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 40ch;
+    }
+    .tl15__item--left .tl15__content p { margin-left: auto; }
+
+    /* ══════════ 16 · TIMELINE HORIZONTAL ══════════ */
+    .tl16 {
+      position: relative;
+    }
+    .tl16__line {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      right: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, hsl(var(--hfu-yellow-deep) / 0.4) 10%, hsl(var(--hfu-yellow-deep) / 0.4) 90%, transparent);
+    }
+    .tl16__steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .tl16__step {
+      text-align: center;
+      padding: 0 12px;
+    }
+    .tl16__dot {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: 0 8px 24px hsl(var(--hfu-yellow) / 0.35);
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
+    }
+    .tl16__dot::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border: 1px solid hsl(var(--hfu-yellow-deep) / 0.3);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 300ms var(--ease-out);
+    }
+    .tl16__step:hover .tl16__dot { transform: translateY(-4px); box-shadow: 0 14px 36px hsl(var(--hfu-yellow) / 0.45); }
+    .tl16__step:hover .tl16__dot::before { opacity: 1; }
+    .tl16__dot svg {
+      width: 30px;
+      height: 30px;
+      color: hsl(var(--hfu-navy-deep));
+    }
+    .tl16__dot-num {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--hfu-yellow));
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 12px;
+      font-weight: 500;
+      border: 2px solid hsl(var(--bg-alt));
+    }
+    .tl16__step h3 {
+      font-family: var(--display);
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+      line-height: 1.15;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      letter-spacing: -0.018em;
+    }
+    .tl16__step p {
+      font-size: 13px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+      max-width: 22ch;
+      margin: 0 auto;
+    }
+
+    /* ══════════ 17 · FEATURE GRID ICON ══════════ */
+    .fg17 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .fg17__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      padding: 32px 32px 32px;
+      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
+      display: flex;
+      flex-direction: column;
+    }
+    .fg17__card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .fg17__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-blue));
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+    }
+    .fg17__icon svg { width: 22px; height: 22px; }
+    .fg17__card h3 {
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .fg17__card p {
+      font-size: 14px;
+      line-height: 1.58;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 22px;
+      flex: 1;
+    }
+    .fg17__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: 0.005em;
+    }
+    .fg17__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .fg17__card:hover .fg17__link svg { transform: translateX(3px); }
+
+    /* ══════════ 18 · FEATURE GRID IMAGE ══════════ */
+    .fg18 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .fg18__card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+      display: flex;
+      flex-direction: column;
+    }
+    .fg18__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .fg18__media {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      position: relative;
+    }
+    .fg18__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease-out);
+    }
+    .fg18__card:hover .fg18__media img { transform: scale(1.06); }
+    .fg18__tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: hsl(var(--bg-card));
+      color: hsl(var(--hfu-navy));
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
+    }
+    .fg18__body {
+      padding: 26px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .fg18__body h3 {
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.15;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      letter-spacing: -0.018em;
+    }
+    .fg18__body p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .fg18__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .fg18__meta span {
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.02em;
+    }
+    .fg18__meta a {
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .fg18__meta a svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
+    .fg18__card:hover .fg18__meta a svg { transform: translateX(3px); }
+
+    /* ══════════ 19 · HERO CENTERED ANNOUNCEMENT ══════════ */
+    .hero19 {
+      text-align: center;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 3rem);
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-2xl);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero19::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      width: 70%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.14), transparent 60%);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .hero19__content {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .hero19__eyebrow {
+      margin-bottom: 28px;
+      justify-content: center;
+    }
+    .hero19 h3 {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.98;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-weight: 350;
+    }
+    .hero19 h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .hero19 p {
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 54ch;
+      margin: 0 auto 36px;
+    }
+    .hero19__ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .hero19__bar {
+      width: 120px;
+      height: 6px;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero19__bar::before,
+    .hero19__bar::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 1px;
+      background: hsl(var(--border-strong));
+      transform: translateY(-50%);
+    }
+    .hero19__bar::before { left: -56px; }
+    .hero19__bar::after { right: -56px; }
+
+    /* ══════════ 20 · BANNER / NOTIFICATION ══════════ */
+    .ban20 {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 24px;
+      background: linear-gradient(95deg, hsl(var(--hfu-yellow)) 0%, hsl(48 100% 66%) 100%);
+      color: hsl(var(--hfu-navy-deep));
+      border-radius: 100px;
+      box-shadow: 0 8px 24px hsl(var(--hfu-yellow) / 0.35);
+      max-width: 980px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    .ban20__dot {
+      width: 8px;
+      height: 8px;
+      background: hsl(var(--hfu-navy-deep));
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: banPulse 2.2s infinite var(--ease-out);
+    }
+    @keyframes banPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.55; }
+    }
+    .ban20__kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: hsl(var(--hfu-navy-deep));
+      opacity: 0.8;
+    }
+    .ban20__msg {
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy-deep));
+      flex: 1;
+      min-width: 200px;
+    }
+    .ban20__msg strong { font-weight: 700; }
+    .ban20__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: hsl(var(--hfu-navy-deep));
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      white-space: nowrap;
+    }
+    .ban20__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .ban20__link:hover svg { transform: translateX(3px); }
+    .ban20__close {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: hsl(var(--hfu-navy-deep) / 0.08);
+      color: hsl(var(--hfu-navy-deep));
+      transition: background 220ms var(--ease-out);
+      flex-shrink: 0;
+    }
+    .ban20__close:hover { background: hsl(var(--hfu-navy-deep) / 0.18); }
+    .ban20__close svg { width: 12px; height: 12px; }
+
+    /* ══════════ CLOSING CTA PANEL ══════════ */
+    .closing {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+      background: hsl(var(--hfu-navy-deep));
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .closing::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top right, hsl(var(--hfu-yellow) / 0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .closing__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: end;
+      position: relative;
+    }
+    .closing__eyebrow { color: hsl(var(--hfu-yellow)); margin-bottom: 22px; }
+    .closing__eyebrow::before { background: hsl(var(--hfu-yellow)); }
+    .closing h2 {
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.98;
+      color: #fff;
+      letter-spacing: -0.028em;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-weight: 350;
+    }
+    .closing h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
+    .closing__side { display: flex; flex-direction: column; gap: 24px; }
+    .closing__side p {
+      font-size: 16px;
+      color: hsl(0 0% 100% / 0.78);
+      line-height: 1.6;
+      max-width: 44ch;
+    }
+    .closing__buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ══════════ FOOTER ══════════ */
+    .foot {
+      padding: 56px 0 40px;
+      background: hsl(var(--hfu-navy));
+      color: hsl(0 0% 100% / 0.64);
+      border-top: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .foot__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .foot__brand {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .foot__logo { height: 32px; width: auto; flex-shrink: 0; }
+    .foot__divider {
+      width: 1px;
+      height: 28px;
+      background: hsl(0 0% 100% / 0.18);
+      flex-shrink: 0;
+    }
+    .foot__credit {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: hsl(0 0% 100% / 0.68);
+      max-width: 44ch;
+    }
+    .foot__credit strong { color: #fff; font-weight: 600; display: block; margin-bottom: 2px; }
+    .foot__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(0 0% 100% / 0.78);
+      padding: 10px 18px;
+      border-radius: 100px;
+      border: 1px solid hsl(0 0% 100% / 0.16);
+      transition: all 220ms var(--ease-out);
+    }
+    .foot__link:hover {
+      color: #fff;
+      background: hsl(0 0% 100% / 0.08);
+      border-color: hsl(0 0% 100% / 0.32);
+    }
+    .foot__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .foot__link:hover svg { transform: translateX(-3px); }
+
+    /* ══════════ MOBILE ══════════ */
+    @media (max-width: 1100px) {
+      .faq01 { grid-template-columns: 1fr; gap: 40px; }
+      .faq01__aside { position: static; }
+      .tabs04 { grid-template-columns: 1fr; gap: 24px; }
+      .tabs04__list {
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+      }
+      .tabs04__list::-webkit-scrollbar { display: none; }
+      .tabs04__tab {
+        grid-template-columns: auto 1fr;
+        padding: 14px 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .tabs04__tab-arrow { display: none; }
+      .tabs04__panel.is-active { grid-template-columns: 1fr; }
+      .tabs04__media { aspect-ratio: 16/10; }
+      .cta05 { grid-template-columns: 1fr; min-height: auto; }
+      .cta05__media { aspect-ratio: 16/10; }
+      .mf07__row { grid-template-columns: 1fr; gap: 32px; }
+      .mf07__row--reverse .mf07__media { order: 0; }
+      .stats08 { grid-template-columns: 1fr; gap: 40px; }
+      .stats08__grid { grid-template-columns: repeat(2, 1fr); border-left: none; }
+      .stats08__cell {
+        border-right: none;
+        padding: 24px 24px 24px 0;
+      }
+      .stats08__cell:nth-child(odd) {
+        border-right: 1px solid hsl(0 0% 100% / 0.14);
+        padding-right: 24px;
+      }
+      .stats08__cell:nth-child(1),
+      .stats08__cell:nth-child(2) { border-bottom: 1px solid hsl(0 0% 100% / 0.14); padding-bottom: 24px; }
+      .test09 { grid-template-columns: 1fr; gap: 36px; }
+      .test09__photo { max-width: 360px; }
+      .test10 { grid-template-columns: 1fr 1fr; }
+      .price12 { grid-template-columns: 1fr; gap: 18px; }
+      .price12__card--featured { transform: none; }
+      .price12__card--featured:hover { transform: translateY(-4px); }
+      .form14 { grid-template-columns: 1fr; gap: 36px; }
+      .form14__side { position: static; }
+      .fg17 { grid-template-columns: 1fr 1fr; }
+      .fg18 { grid-template-columns: 1fr 1fr; }
+      .tl16__steps { grid-template-columns: repeat(3, 1fr); gap: 48px 20px; }
+      .tl16__line { display: none; }
+      .intro__stats { grid-template-columns: repeat(2, 1fr); gap: 0; }
+      .intro__stat {
+        padding: 28px 24px 28px 0;
+      }
+      .intro__stat:nth-child(2) { padding-right: 0; border-right: none; }
+      .intro__stat:nth-child(1),
+      .intro__stat:nth-child(2) { border-bottom: 1px solid hsl(var(--border)); padding-bottom: 28px; }
+      .intro__stat:nth-child(3),
+      .intro__stat:nth-child(4) { padding-top: 28px; }
+      .closing__inner { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+      .tbl02 thead th { top: 58px; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar__inner { gap: 12px; padding: 12px var(--gutter); }
+      .topbar__title { font-size: 11px; }
+      .topbar__title span { display: none; }
+      .topbar__divider { height: 22px; }
+      .topbar__back { padding: 7px 12px; font-size: 12px; }
+      .topbar__back span { display: none; }
+      .intro { min-height: auto; padding: 64px 0 72px; }
+      .intro h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .intro__lead { font-size: 16px; margin-bottom: 44px; }
+      .intro__stats { grid-template-columns: 1fr 1fr; }
+      .intro__stat .num { font-size: 2.4rem; }
+      .sec { padding: 72px 0; }
+      .sec__head h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+      .tabs03__panel.is-active { grid-template-columns: 1fr; }
+      .tabs03__media { aspect-ratio: 16/10; }
+      .tabs03__meta { gap: 24px; flex-wrap: wrap; }
+      .test10 { grid-template-columns: 1fr; }
+      .marq11__card { width: 300px; padding: 24px 22px; }
+      .marq11__card blockquote { font-size: 14.5px; }
+      .fg17 { grid-template-columns: 1fr; }
+      .fg18 { grid-template-columns: 1fr; }
+      .tl15 {
+        padding-left: 20px;
+      }
+      .tl15::before { left: 20px; transform: none; }
+      .tl15__item {
+        grid-template-columns: 40px 1fr;
+        padding: 24px 0;
+      }
+      .tl15__dot { grid-column: 1; justify-self: center; }
+      .tl15__item--left .tl15__content,
+      .tl15__item--right .tl15__content {
+        grid-column: 2;
+        text-align: left;
+        margin: 0 0 0 20px;
+        padding: 22px 24px;
+      }
+      .tl15__item--left .tl15__content::after,
+      .tl15__item--right .tl15__content::after {
+        left: -20px;
+        right: auto;
+        width: 20px;
+      }
+      .tl15__item--left .tl15__content p { margin-left: 0; }
+      .tl15__year { font-size: 28px; }
+      .tl16__steps { grid-template-columns: 1fr 1fr; gap: 40px 16px; }
+      .tl16__dot { width: 68px; height: 68px; }
+      .tl16__dot svg { width: 24px; height: 24px; }
+      .tl16__dot-num { width: 22px; height: 22px; font-size: 11px; }
+      .tl16__step h3 { font-size: 16px; }
+      .tl16__step p { font-size: 12.5px; }
+      .hero19 h3 { font-size: clamp(2rem, 9vw, 3rem); }
+      .hero19__ctas { flex-direction: column; align-items: stretch; width: 100%; }
+      .hero19__ctas .btn { justify-content: center; }
+      .ban20 { border-radius: var(--r-lg); padding: 14px 16px; gap: 10px; }
+      .ban20__kicker { display: none; }
+      .ban20__msg { font-size: 13px; min-width: 0; }
+      .cta05__panel h3 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+      .cta05__buttons { flex-direction: column; align-items: stretch; }
+      .cta05__buttons .btn { justify-content: center; }
+      .cta06 h3 { font-size: clamp(2rem, 9vw, 3rem); }
+      .cta06__buttons { flex-direction: column; align-items: stretch; width: 100%; }
+      .cta06__buttons .btn { justify-content: center; }
+      .form14__grid { grid-template-columns: 1fr; }
+      .news13__form { flex-direction: column; border-radius: var(--r-lg); padding: 10px; }
+      .news13__form input { padding: 12px 14px; background: hsl(var(--bg-card)); border-radius: var(--r); width: 100%; }
+      .news13__form button { width: 100%; justify-content: center; padding: 14px; }
+      .closing h2 { font-size: clamp(2rem, 9vw, 3rem); }
+      .closing__buttons { flex-direction: column; align-items: stretch; }
+      .closing__buttons .btn { justify-content: center; }
+      .foot__inner { grid-template-columns: 1fr; gap: 24px; align-items: flex-start; }
+      .foot__brand { flex-wrap: wrap; }
+      .intro__chips { gap: 6px; }
+      .chip { padding: 8px 14px; font-size: 11.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════════════ TOP BANNER ═════════════════ -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="topbar__brand">
+        <svg class="topbar__logo" viewBox="0 0 562.7 198.6" xmlns="http://www.w3.org/2000/svg" aria-label="Holy Family University"><g fill="#fff"><path d="m47.3 88.7c4.2 14.2 11 27.4 20.4 39.5 6.4-8.2 13.8-15.4 22.1-21.6-17.4-11.9-34.3-16.4-42.5-17.9zm27.3 20.2h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.5v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m94.3 106.5c8.3 6.1 15.8 13.4 22.1 21.6 9.4-12 16.2-25.3 20.4-39.5-8.3 1.6-25.2 6.1-42.5 17.9zm26.5 2.4h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1s-.4 1-1 1z"/><path d="m92 108.1c-7.8 5.6-15.7 12.8-22.8 22 10.3 12.7 20.4 20 22.8 21.7 2.4-1.7 12.5-8.9 22.8-21.7-7.1-9.1-14.9-16.3-22.8-22zm5.7 23h-.5v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.2v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.5c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.5h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.3h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.3h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.5c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m104.2 43.9-12.2 60.7-12.2-60.7z"/><path d="m138.3 43.9-46.3 60.7 21.9-60.7z"/><path d="m45.7 43.9 46.3 60.7-21.8-60.7z"/><path d="m116.3 90c-15.3 7.7-24.3 14.6-24.3 14.6l46.3-48.7-.7 24.7s-7.5 2.5-21.3 9.4"/><path d="m67.8 90c15.2 7.7 24.2 14.6 24.2 14.6l-46.3-48.7.7 24.7s7.6 2.5 21.4 9.4"/><path d="m440.2 128.6c.8-.1 1.5-.3 2.2-.6 0-.7 0-1.4-.1-2-.9.1-2.4.1-3.8.1-1.6 0-2.9-.1-4-.1-.1.7-.2 1.4-.2 2l2.6.5-3.1 6.1-3.3-6.1 2.4-.5c0-.7 0-1.4-.2-2-1.2.1-3 .1-4.6.1-1.9 0-3.5-.1-4.9-.1-.2.7-.2 1.4-.2 2.1.8.1 1.5.3 2.3.6l5.2 9.6v2.9c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-2.2zm-32.3.3c.2 1.2.4 2.6.4 3.9.8.2 1.6.2 2.6 0 .3-1.8.5-3.6.4-6.4l-.3-.3c-1.8.1-4.8.1-6.8.1h-3.9c-2 0-5 0-6.8-.1l-.4.3c-.1 2.8.1 4.6.4 6.4 1 .2 1.8.2 2.6 0 0-1.3.2-2.7.4-3.9h3.5v12.3c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-11.7zm-34.1-.3c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-29.5 15.9c1.6.8 4.3 1.4 7 1.4 4.4 0 7.2-3 7.2-6.7 0-2.8-2.1-4.2-4.1-5.1l-2.4-1.1c-1.3-.6-2.9-1.3-2.9-2.6 0-.8.3-1.3.7-1.7.1-.1 1.1-.3 1.9-.3 1.3 0 2.1.1 2.9.4.2.9.3 1.8.4 2.7.7.4 1.5.4 2.5.1.3-1.4.4-2.9.5-4.9-1.7-.7-4.2-1.2-6.1-1.2-3.4 0-7.1 1.7-7.1 5.9 0 3.1 2.1 4.4 4.1 5.2l2.2.9c1.8.7 3 1.5 3 2.7 0 1-.2 1.6-.7 2.1-.1.1-1.2.6-2.3.6-1.3 0-2.3-.2-3.1-.6-.2-1.2-.3-2.4-.3-3.4-.9-.3-1.7-.4-2.6-.2-.5 1.9-.7 3.6-.8 5.8m-21.7-15.8c1.9 0 2.9 1.5 2.9 2.9 0 1.3-.4 2.1-1.1 2.6-.1.1-1.3.5-2.7.5-.4 0-.9 0-1.3 0v-5.9c.7 0 1.4-.1 2.2-.1m3.4 16.8h2c1.4 0 2.6 0 3.9.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.3-.6l-3.3-6.7c2-1.3 3.5-3.3 3.5-5.5 0-2.7-2.2-4.9-6.2-4.9-1.6 0-3.7.1-5.6.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-3c.6.1 1.2.1 1.8.1h.3zm-36.4-19.4c-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.8-.1 4.6-.1h3.8c2 0 5 0 6.8.1l.3-.4c.2-2.4.3-4.2.3-5.9-.8-.2-1.7-.3-2.5-.2-.3 1.2-.6 2.4-1 3.6h-5.6v-5.9c1.7 0 3.4.1 5.2.1.2-.7.3-1.5.3-2.4l-.3-.3c-1.7 0-3.5.1-5.2.1v-5.4h5.2c.2 1 .3 2.1.4 3.2.8.2 1.6.2 2.6 0 .3-1.6.4-3.3.4-5.7l-.3-.4c-1.8.1-4.8.1-6.8.1zm-21.5 2.5-4.6 13.3h-.1l-.1-3-3.7-10.3 2.6-.5c0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.5.3 2.3.6l6.2 17.1c1.3 0 2.8.1 3.8-.1l6.1-16.9c.8-.1 1.5-.3 2.1-.6 0-.7 0-1.4-.1-2-1 .1-2.4.1-3.7.1-1.5 0-2.8-.1-3.9-.1-.1.7-.2 1.4-.2 2zm-33.9 0c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-17.2 16.8v-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.8.1-1.3 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.9h-.1l-.7-3.2-6.9-12.1c-1-.1-2-.1-3.2-.1-1.5 0-3-.1-4.2-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.6-.1 3.9-.1 1.2 0 2.8 0 3.9.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-10.6h.1l.7 3.2 7.1 12.6c.9-.1 3.6 0 4.8-.4m-33-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.9.1-1.4 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v5.6c0 2.4-.7 3.5-1 3.9s-1.5 1-2.7 1c-2.7 0-4-1.8-4-5.8v-4.7c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v6.1c0 5.3 2.6 7.3 7.2 7.3 6 0 8.1-3.8 8.1-8.6z"/><path d="m458.8 56.8c0-3-2.4-5.4-5.4-5.4s-5.4 2.4-5.4 5.4 2.4 5.4 5.4 5.4 5.4-2.5 5.4-5.4z"/><path d="m521.6 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.2 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.7 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.3.7.3.9.7 1.3 2 2.2 3.6 2.2l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-.9c-1.2 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1 0-1.7-.1-3.1-.5-4.5z"/><path d="m458.5 86c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.7 0 7.3.1 9 .1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-2.5z"/><path d="m480.2 68.9c0-7 .1-12 .2-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m409.6 89.7c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.1 0 6 .1 7.3.1.3-.8.4-2.9.4-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-11.7c0-.8-.1-1.5-.2-2.1 1.5-.8 3.2-1.4 5-1.4 3.5 0 4 3.1 4 7.2v9.3c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.6 0 7.3.1 8.9.1.3-.8.4-2.9.4-4.3-1.1-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-11.8c0-6.9-4.7-10-9.8-10-3.9 0-7 1.7-9.8 4-1.8-2.7-5-4-8.2-4-3.5 0-6.4 1.4-8.9 3.3-.3-1.1-.7-2.1-1-2.7l-1-.5c-4.2.3-8.1 1-11.8 2.3-.3 1.3-.2 2.7.3 3.9 1.7.2 3.4.5 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.2 0 6 .1 7.4.1.2-.8.3-2.9.3-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-14c1.5-.8 3.1-1.3 4.8-1.3 3.5 0 4 3.1 4 7.2v9.3z"/><path d="m382.9 92.2c-1.3.3-2.6.6-4.1.7-.1-1.4-.1-3.2-.1-4.4v-11.3c0-8.9-7.1-10.4-11.2-10.4-5.1 0-9.7 1.4-13.5 3.6 0 3.1.8 5.8 2.1 7.7 1.9.4 3.7.1 5.6-.8 0-1.6.1-3.3.5-4.8 1.2-.2 2.1-.3 3.3-.3 2.8 0 3.8 2.7 3.9 6.5-7.3 1.8-17.4 5.8-17.4 12.7 0 5.3 3.1 8 9.1 8 3.1 0 6.6-1.7 9.5-4 1 2.4 2.6 4 4.3 4 3.4 0 7-2.2 9.3-4.6-.1-1.1-.6-2.1-1.3-2.6zm-13.4-.9c-1.5.9-2.9 1.6-4.1 1.6-2.6 0-3.9-1.8-3.9-3.7 0-1 .5-2.6 1.2-3.2.6-.4 3.6-1.1 6.8-1.5z"/><path d="m343.3 74.6c-3.9.1-6.7.3-10.5.3v-12.9h10.4c.5 2.5.8 5.2 1 7.8 1.7.4 3.4.4 5.7 0 .8-3.8 1-7.7.8-13.2l-.8-.8c-4 .1-9.5.1-14 .1h-7.9c-4 0-7.3-.1-10.1-.1-.4 1.5-.5 3-.5 4.5 1.9.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 4.2 0 8.8 0 11.8.1.4-1.4.5-2.9.4-4.5-2.1-.6-4.5-1-7.2-1.2-.2-1.7-.3-3.5-.3-5.3v-7.3c3.8.1 6.6.1 10.6.2.4-1.5.6-3.4.7-5.2z"/><path d="m263.1 68.9c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m231.9 66.8c-10 0-15.8 8.9-15.8 16.9 0 9.2 4.9 15.8 15 15.8 10 0 15.8-8.9 15.8-16.9 0-9-4.8-15.8-15-15.8zm3.3 25.6c-.5.7-2.2 1-3.2 1-4.9 0-6.6-6.5-6.6-11.2 0-3.4 1-6.4 2.3-8.1.5-.7 2.2-1 3.2-1 4.9 0 6.6 6.5 6.6 11.2 0 3.3-1 6.3-2.3 8.1z"/><path d="m198.1 61.4c.2 2.4.3 5 .3 8.8v3.1h-17.1v-3.1c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.8.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.3 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-8.3h5c3.8 0 8 .2 12.1.4v9.3c0 1.3-.1 2.7-.3 3.9-1.8.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.4 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-17.3c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.9.1 3.8.6 5.6 1.1"/><path d="m304.4 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.1 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.8 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.2.7.3.9.7 1.3 2 2.2 3.6 2.2h.1l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-1c-1.1 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1.1-1.6 0-3-.4-4.4z"/></g></svg>
+        <div class="topbar__divider"></div>
+        <div class="topbar__title"><strong>Component Library</strong><span>&nbsp;·&nbsp;HFU Design System</span></div>
+      </div>
+      <a href="index.html" class="topbar__back">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3m4-4-4 4 4 4"/></svg>
+        <span>Back to portal</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ═════════════════ INTRO / TITLE PAGE ═════════════════ -->
+  <section class="intro">
+    <div class="intro__inner">
+      <div class="eyebrow intro__eyebrow">HFU Design System</div>
+      <h1>Twenty patterns.<br><em>One</em> voice.</h1>
+      <p class="intro__lead">
+        This is the component vocabulary that underlies every Holy Family mockup you've seen — from the admissions editorial hero to the nursing clinical dark-mode. Twenty modular patterns, one disciplined brand system, built to be mixed and recomposed across every page of the new holyfamily.edu.
+      </p>
+
+      <div class="intro__stats">
+        <div class="intro__stat">
+          <span class="num">20</span>
+          <span class="label">Reusable components<br>across the system</span>
+        </div>
+        <div class="intro__stat">
+          <span class="num">2</span>
+          <span class="label">Typefaces — Fraunces<br>and Inter Tight</span>
+        </div>
+        <div class="intro__stat">
+          <span class="num">5</span>
+          <span class="label">Brand color tokens<br>navy, blue, yellow, cream</span>
+        </div>
+        <div class="intro__stat">
+          <span class="num">1</span>
+          <span class="label">Voice — editorial,<br>confident, rooted</span>
+        </div>
+      </div>
+
+      <span class="intro__jump-label">Jump to component</span>
+      <div class="intro__chips">
+        <a href="#c01" class="chip"><span class="chip__num">01</span>Accordion</a>
+        <a href="#c02" class="chip"><span class="chip__num">02</span>Data table</a>
+        <a href="#c03" class="chip"><span class="chip__num">03</span>Tabs horizontal</a>
+        <a href="#c04" class="chip"><span class="chip__num">04</span>Tabs vertical</a>
+        <a href="#c05" class="chip"><span class="chip__num">05</span>CTA split</a>
+        <a href="#c06" class="chip"><span class="chip__num">06</span>CTA mega</a>
+        <a href="#c07" class="chip"><span class="chip__num">07</span>Media feature</a>
+        <a href="#c08" class="chip"><span class="chip__num">08</span>Stats bar</a>
+        <a href="#c09" class="chip"><span class="chip__num">09</span>Pull quote</a>
+        <a href="#c10" class="chip"><span class="chip__num">10</span>Quote grid</a>
+        <a href="#c11" class="chip"><span class="chip__num">11</span>Quote marquee</a>
+        <a href="#c12" class="chip"><span class="chip__num">12</span>Pricing tiers</a>
+        <a href="#c13" class="chip"><span class="chip__num">13</span>Newsletter</a>
+        <a href="#c14" class="chip"><span class="chip__num">14</span>Contact form</a>
+        <a href="#c15" class="chip"><span class="chip__num">15</span>Timeline</a>
+        <a href="#c16" class="chip"><span class="chip__num">16</span>Process</a>
+        <a href="#c17" class="chip"><span class="chip__num">17</span>Icon grid</a>
+        <a href="#c18" class="chip"><span class="chip__num">18</span>Image grid</a>
+        <a href="#c19" class="chip"><span class="chip__num">19</span>Hero card</a>
+        <a href="#c20" class="chip"><span class="chip__num">20</span>Notification</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 01 · ACCORDION ═════════════════ -->
+  <section class="sec" id="c01">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 01 / 20</span>&nbsp;·&nbsp;Accordion / FAQ</div>
+      <h2>Questions answered <em>clearly</em>.</h2>
+      <p>A classic pull-style FAQ accordion with smooth expand/collapse. Native <code style="font-family:var(--body);font-size:0.92em;padding:1px 6px;background:hsl(var(--bg-alt));border-radius:4px;">&lt;details&gt;</code> element for accessibility, yellow plus icon rotates to X on open, hairline dividers between items.</p>
+    </div>
+    <div class="sec__body">
+      <div class="faq01">
+        <div class="faq01__aside">
+          <h3>Still have <em>questions</em>?</h3>
+          <p>Our admissions counselors answer hundreds of these every week. If you can't find what you're looking for below, reach out directly.</p>
+          <div class="faq01__contact">
+            <div class="faq01__contact-label">Undergraduate Admissions</div>
+            <div class="faq01__contact-line">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              215 637 7700
+            </div>
+            <div class="faq01__contact-line">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="m2 4 6 5 6-5"/></svg>
+              admissions@holyfamily.edu
+            </div>
+            <div class="faq01__contact-line">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-3.5-5-8a5 5 0 0 1 10 0c0 4.5-5 8-5 8Z"/><circle cx="8" cy="6" r="2"/></svg>
+              9801 Frankford Ave, Philadelphia
+            </div>
+          </div>
+        </div>
+
+        <div class="faq01__list">
+          <details class="faq01__item" open>
+            <summary>
+              What's the application deadline for Fall 2026 admission?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Holy Family operates on a rolling admissions basis, so there's no hard deadline — but our priority deadline for merit scholarship consideration is January 15th. Applications received after that are still reviewed for aid as funds remain available. Decisions typically go out within two to three weeks of a completed file.</p>
+          </details>
+          <details class="faq01__item">
+            <summary>
+              Do you require SAT or ACT scores?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Holy Family is test-optional for all first-year applicants. You can submit scores if you feel they strengthen your application, but our admissions committee weighs your high school transcript, essay, and recommendations most heavily. Nursing applicants are encouraged — though not required — to submit scores.</p>
+          </details>
+          <details class="faq01__item">
+            <summary>
+              How much does Holy Family actually cost after aid?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Close to 100% of full-time undergraduates receive some form of financial aid. The average aid package for first-year students in 2024 was $23,800, and our published net price for families earning under $75,000 was approximately $18,400 per year. Use our Net Price Calculator for a personalized estimate based on your household finances.</p>
+          </details>
+          <details class="faq01__item">
+            <summary>
+              Can I tour campus? Are virtual tours available too?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Yes on both counts. Individual campus visits are offered Monday through Friday at both our Philadelphia campus (9801 Frankford Ave) and Newtown campus (One Campus Drive), and we host Saturday Open Houses four times a year. Virtual tours run every Tuesday at 4 PM EST with a current student guide. Reserve either at holyfamily.edu/visit.</p>
+          </details>
+          <details class="faq01__item">
+            <summary>
+              What's the largest merit scholarship available?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Our Presidential Scholarship covers full tuition and is awarded to a small number of incoming first-year students each year based on academic record, leadership, and service. Below that, our Trustee Scholarship ranges from $18,000 to $22,000 annually, and nearly every admitted student receives at least one merit award. No separate application is required — you're automatically considered when you apply.</p>
+          </details>
+          <details class="faq01__item">
+            <summary>
+              Can I transfer credits from a community college?
+              <span class="faq01__icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
+              </span>
+            </summary>
+            <p>Absolutely. Holy Family has articulation agreements with Bucks County Community College, Community College of Philadelphia, and Montgomery County Community College that guarantee transfer of up to 64 credits toward a bachelor's degree. Credits earned with a C or better at accredited institutions are eligible for review, and our transfer team will evaluate your unofficial transcript in 3–5 business days.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 02 · DATA TABLE ═════════════════ -->
+  <section class="sec sec--alt" id="c02">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 02 / 20</span>&nbsp;·&nbsp;Data table</div>
+      <h2>Compare nursing <em>pathways</em>.</h2>
+      <p>An editorial data table for four nursing program tracks across eight comparison rows. Sticky header on scroll, yellow highlight on row hover, hairline dividers, bold Fraunces program names in the header, and horizontal scroll on mobile so no data gets cut off.</p>
+    </div>
+    <div class="sec__body">
+      <div class="tbl02">
+        <div class="tbl02__scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Program</th>
+                <th>
+                  <div class="tbl02__prog">
+                    <span class="tbl02__prog-code">Track 01</span>
+                    <span class="tbl02__prog-name">Traditional <em style="font-style:italic;font-weight:300;color:hsl(var(--hfu-blue));">BSN</em></span>
+                  </div>
+                </th>
+                <th>
+                  <div class="tbl02__prog">
+                    <span class="tbl02__prog-code">Track 02</span>
+                    <span class="tbl02__prog-name">Accelerated BSN</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="tbl02__prog">
+                    <span class="tbl02__prog-code">Track 03</span>
+                    <span class="tbl02__prog-name">Master <em style="font-style:italic;font-weight:300;color:hsl(var(--hfu-blue));">of Science</em></span>
+                  </div>
+                </th>
+                <th>
+                  <div class="tbl02__prog">
+                    <span class="tbl02__prog-code">Track 04</span>
+                    <span class="tbl02__prog-name">Doctor <em style="font-style:italic;font-weight:300;color:hsl(var(--hfu-blue));">of Nursing</em></span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Duration</td>
+                <td><strong>4 years</strong><span>8 semesters full-time</span></td>
+                <td><strong>15 months</strong><span>Second degree fast-track</span></td>
+                <td><strong>24 months</strong><span>Part-time evening option</span></td>
+                <td><strong>36 months</strong><span>Post-MSN, DNP capstone</span></td>
+              </tr>
+              <tr>
+                <td>Format</td>
+                <td><strong>On-campus</strong><span>Philadelphia & Newtown</span></td>
+                <td><strong>On-campus</strong><span>Intensive clinical cohort</span></td>
+                <td><strong>Hybrid</strong><span>Online + 4 residency weekends</span></td>
+                <td><strong>Hybrid</strong><span>Online + monthly intensives</span></td>
+              </tr>
+              <tr>
+                <td>Credits</td>
+                <td><strong>128 credits</strong><span>Includes gen-ed core</span></td>
+                <td><strong>63 credits</strong><span>Nursing coursework only</span></td>
+                <td><strong>42 credits</strong><span>Specialization-dependent</span></td>
+                <td><strong>36 credits</strong><span>Plus 1,000 practice hours</span></td>
+              </tr>
+              <tr>
+                <td>Clinical hours</td>
+                <td><strong>1,200+ hours</strong><span>30+ hospital partners</span></td>
+                <td><strong>1,050 hours</strong><span>Condensed rotation schedule</span></td>
+                <td><strong>540 hours</strong><span>Direct-care specialty focus</span></td>
+                <td><strong>1,000 hours</strong><span>DNP scholarly project</span></td>
+              </tr>
+              <tr>
+                <td>Tuition</td>
+                <td><strong>$36,400 / yr</strong><span>Before financial aid</span></td>
+                <td><strong>$42,800 total</strong><span>Flat-rate cohort pricing</span></td>
+                <td><strong>$960 / credit</strong><span>Roughly $40K total</span></td>
+                <td><strong>$1,120 / credit</strong><span>Roughly $40K total</span></td>
+              </tr>
+              <tr>
+                <td>Start dates</td>
+                <td><strong>Aug · Jan</strong><span>Fall & spring entry</span></td>
+                <td><strong>May cohort</strong><span>Summer intake, annually</span></td>
+                <td><strong>Aug · Jan · May</strong><span>Three entry points yearly</span></td>
+                <td><strong>Aug · Jan</strong><span>Fall & spring entry</span></td>
+              </tr>
+              <tr>
+                <td>NCLEX prep</td>
+                <td><strong>Integrated</strong><span>Kaplan review in senior year</span></td>
+                <td><strong>Integrated</strong><span>Built into final semester</span></td>
+                <td><strong>N/A</strong><span>Already licensed</span></td>
+                <td><strong>N/A</strong><span>Already licensed</span></td>
+              </tr>
+              <tr>
+                <td>Next cohort</td>
+                <td><strong>August 2026</strong><span>Apply by Jan 15 (priority)</span></td>
+                <td><strong>May 2026</strong><span>Apply by Feb 1 (rolling)</span></td>
+                <td><strong>August 2026</strong><span>Apply by March 15</span></td>
+                <td><strong>August 2026</strong><span>Apply by April 1</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tbl02__note">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 11h.01"/></svg>
+          All tuition figures are for the 2025–26 academic year. Roughly 98% of nursing students receive financial aid; final cost varies by package.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 03 · TABS HORIZONTAL ═════════════════ -->
+  <section class="sec" id="c03">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 03 / 20</span>&nbsp;·&nbsp;Tabs horizontal</div>
+      <h2>One panel, <em>four</em> stories.</h2>
+      <p>Horizontal tab navigation with an underlined yellow indicator that slides between tabs on click, and panel content that fades up when activated. Perfect for grouping related content like academics, research, and outcomes under one hero unit.</p>
+    </div>
+    <div class="sec__body">
+      <div class="tabs03" data-tabs>
+        <div class="tabs03__bar" role="tablist">
+          <button class="tabs03__tab is-active" data-tab="acad" role="tab">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4 8 1l7 3-7 3-7-3Z"/><path d="M3 6v4l5 2 5-2V6"/></svg>
+            Academics
+          </button>
+          <button class="tabs03__tab" data-tab="rsch" role="tab">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
+            Research
+          </button>
+          <button class="tabs03__tab" data-tab="fac" role="tab">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg>
+            Faculty
+          </button>
+          <button class="tabs03__tab" data-tab="out" role="tab">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l4-4 3 3 5-5"/><path d="M10 6h4v4"/></svg>
+            Outcomes
+          </button>
+        </div>
+
+        <div class="tabs03__panel is-active" data-panel="acad" role="tabpanel">
+          <div class="tabs03__media">
+            <img src="assets/hfu-photos/academics-chapel.jpg" alt="Student studying in a light-filled classroom">
+          </div>
+          <div class="tabs03__body">
+            <div class="tabs03__kicker">Core Curriculum</div>
+            <h3>Rigorous liberal arts, <em>anchored</em> in vocation.</h3>
+            <p>Every undergraduate at Holy Family builds on a core of philosophy, theology, writing, and quantitative reasoning — not because it looks good on a transcript, but because it shapes how you ask questions for the rest of your life. Then you go deep in one of 38 majors.</p>
+            <div class="tabs03__meta">
+              <div class="tabs03__meta-item">
+                <strong>38</strong><span>Undergraduate majors</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>14:1</strong><span>Student-faculty ratio</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>92%</strong><span>Graduate in 4 years</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs03__panel" data-panel="rsch" role="tabpanel">
+          <div class="tabs03__media">
+            <img src="assets/hfu-photos/academics-nurses.jpg" alt="Undergraduate research laboratory">
+          </div>
+          <div class="tabs03__body">
+            <div class="tabs03__kicker">Student research</div>
+            <h3>Undergraduates publish <em>alongside</em> faculty.</h3>
+            <p>At Holy Family, research isn't something that happens in the background to you. Every year, more than 120 undergraduates work one-on-one with faculty on funded projects — from neuroscience to community health — and present at national conferences before they graduate.</p>
+            <div class="tabs03__meta">
+              <div class="tabs03__meta-item">
+                <strong>120+</strong><span>Student researchers</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>$1.8M</strong><span>Active research grants</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>22</strong><span>Peer-reviewed papers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs03__panel" data-panel="fac" role="tabpanel">
+          <div class="tabs03__media">
+            <img src="assets/hfu-photos/academics-business.jpg" alt="Faculty member in seminar discussion">
+          </div>
+          <div class="tabs03__body">
+            <div class="tabs03__kicker">Teaching faculty</div>
+            <h3>Scholars who <em>know</em> your name.</h3>
+            <p>87% of our full-time faculty hold the terminal degree in their field. More importantly, they're chosen — and tenured — on the strength of their teaching, not just their publications. Office hours aren't a formality here; they're where the best conversations happen.</p>
+            <div class="tabs03__meta">
+              <div class="tabs03__meta-item">
+                <strong>87%</strong><span>Hold terminal degree</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>18</strong><span>Fulbright alumni</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>100%</strong><span>Teach undergrads</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs03__panel" data-panel="out" role="tabpanel">
+          <div class="tabs03__media">
+            <img src="assets/hfu-photos/admissions-art.jpg" alt="Graduation ceremony">
+          </div>
+          <div class="tabs03__body">
+            <div class="tabs03__kicker">Career outcomes</div>
+            <h3>Placed, enrolled, or <em>both</em>.</h3>
+            <p>Within six months of graduation, 96% of Holy Family graduates are either employed in their field or enrolled in a graduate program. Our alumni network — 25,000 strong across healthcare, education, and business — opens doors from Philly to Seattle.</p>
+            <div class="tabs03__meta">
+              <div class="tabs03__meta-item">
+                <strong>96%</strong><span>Placement in 6 months</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>25K+</strong><span>Alumni network</span>
+              </div>
+              <div class="tabs03__meta-item">
+                <strong>$58K</strong><span>Median starting salary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 04 · TABS VERTICAL ═════════════════ -->
+  <section class="sec sec--alt" id="c04">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 04 / 20</span>&nbsp;·&nbsp;Tabs vertical</div>
+      <h2>Five schools, <em>one</em> university.</h2>
+      <p>Vertical tab navigation for deeper content structures — perfect for directory pages and multi-school overviews. Pill-shaped tabs on the left, full content panel on the right. On mobile the vertical list becomes a horizontal scroll strip.</p>
+    </div>
+    <div class="sec__body">
+      <div class="tabs04" data-vtabs>
+        <div class="tabs04__list" role="tablist">
+          <button class="tabs04__tab is-active" data-vtab="sas" role="tab">
+            <span class="tabs04__tab-num">01</span>
+            <span class="tabs04__tab-label">Arts & Sciences</span>
+            <svg class="tabs04__tab-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+          <button class="tabs04__tab" data-vtab="bus" role="tab">
+            <span class="tabs04__tab-num">02</span>
+            <span class="tabs04__tab-label">Business & Technology</span>
+            <svg class="tabs04__tab-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+          <button class="tabs04__tab" data-vtab="edu" role="tab">
+            <span class="tabs04__tab-num">03</span>
+            <span class="tabs04__tab-label">Education</span>
+            <svg class="tabs04__tab-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+          <button class="tabs04__tab" data-vtab="nur" role="tab">
+            <span class="tabs04__tab-num">04</span>
+            <span class="tabs04__tab-label">Nursing & Health Sciences</span>
+            <svg class="tabs04__tab-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+          <button class="tabs04__tab" data-vtab="grad" role="tab">
+            <span class="tabs04__tab-num">05</span>
+            <span class="tabs04__tab-label">Graduate Studies</span>
+            <svg class="tabs04__tab-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+        </div>
+
+        <div class="tabs04__panel-wrap">
+          <div class="tabs04__panel is-active" data-vpanel="sas" role="tabpanel">
+            <div class="tabs04__body">
+              <div class="tabs04__school">School 01 · Liberal Arts</div>
+              <h3>Arts <em>&</em> Sciences</h3>
+              <p>The largest of Holy Family's five schools houses 22 undergraduate majors from psychology to theology, the university's core curriculum, and our most active student research program.</p>
+              <div class="tabs04__progs">
+                <span class="tabs04__prog">BA Psychology</span>
+                <span class="tabs04__prog">BS Biology</span>
+                <span class="tabs04__prog">BA English</span>
+                <span class="tabs04__prog">BA History</span>
+                <span class="tabs04__prog">BA Theology</span>
+                <span class="tabs04__prog">BA Sociology</span>
+                <span class="tabs04__prog">+16 more</span>
+              </div>
+            </div>
+            <div class="tabs04__media">
+              <img src="assets/hfu-photos/8r1a1042.jpg" alt="Arts and Sciences students">
+            </div>
+          </div>
+
+          <div class="tabs04__panel" data-vpanel="bus" role="tabpanel">
+            <div class="tabs04__body">
+              <div class="tabs04__school">School 02 · Career-Ready</div>
+              <h3>Business <em>&</em> Technology</h3>
+              <p>AACSB-accredited programs in accounting, finance, marketing, and computer science — with applied internships built into every track and guaranteed placement at our Philadelphia-area partner firms.</p>
+              <div class="tabs04__progs">
+                <span class="tabs04__prog">BS Accounting</span>
+                <span class="tabs04__prog">BS Finance</span>
+                <span class="tabs04__prog">BS Computer Science</span>
+                <span class="tabs04__prog">BS Marketing</span>
+                <span class="tabs04__prog">BS Management</span>
+                <span class="tabs04__prog">BS Data Science</span>
+              </div>
+            </div>
+            <div class="tabs04__media">
+              <img src="assets/hfu-photos/academics-business.jpg" alt="Business students in class">
+            </div>
+          </div>
+
+          <div class="tabs04__panel" data-vpanel="edu" role="tabpanel">
+            <div class="tabs04__body">
+              <div class="tabs04__school">School 03 · Teacher Prep</div>
+              <h3>School <em>of</em> Education</h3>
+              <p>Pennsylvania-certified teacher preparation programs with field placements starting in your first year, from early childhood through secondary English and special education.</p>
+              <div class="tabs04__progs">
+                <span class="tabs04__prog">BA Early Childhood Ed</span>
+                <span class="tabs04__prog">BA Secondary Ed</span>
+                <span class="tabs04__prog">BA Special Ed</span>
+                <span class="tabs04__prog">M.Ed. Reading</span>
+                <span class="tabs04__prog">EdD Leadership</span>
+              </div>
+            </div>
+            <div class="tabs04__media">
+              <img src="assets/hfu-photos/academics-chapel.jpg" alt="Education students">
+            </div>
+          </div>
+
+          <div class="tabs04__panel" data-vpanel="nur" role="tabpanel">
+            <div class="tabs04__body">
+              <div class="tabs04__school">School 04 · CCNE-Accredited</div>
+              <h3>Nursing <em>&</em> Health Sciences</h3>
+              <p>Home to our BSN, accelerated 2nd-degree BSN, MSN, and DNP programs. 96% NCLEX-RN first-time pass rate, 1,200+ clinical hours, and 30+ hospital partners across Greater Philadelphia.</p>
+              <div class="tabs04__progs">
+                <span class="tabs04__prog">BSN</span>
+                <span class="tabs04__prog">Accelerated BSN</span>
+                <span class="tabs04__prog">MSN (3 tracks)</span>
+                <span class="tabs04__prog">DNP</span>
+                <span class="tabs04__prog">BS Public Health</span>
+              </div>
+            </div>
+            <div class="tabs04__media">
+              <img src="assets/hfu-photos/academics-nurses.jpg" alt="Nursing students">
+            </div>
+          </div>
+
+          <div class="tabs04__panel" data-vpanel="grad" role="tabpanel">
+            <div class="tabs04__body">
+              <div class="tabs04__school">School 05 · Advanced Study</div>
+              <h3>Graduate <em>Studies</em></h3>
+              <p>Master's and doctoral programs across business, education, counseling, and healthcare — designed for working professionals with evening, weekend, and hybrid formats at both campuses.</p>
+              <div class="tabs04__progs">
+                <span class="tabs04__prog">MBA</span>
+                <span class="tabs04__prog">M.Ed.</span>
+                <span class="tabs04__prog">MS Counseling</span>
+                <span class="tabs04__prog">MSN</span>
+                <span class="tabs04__prog">EdD</span>
+                <span class="tabs04__prog">DNP</span>
+              </div>
+            </div>
+            <div class="tabs04__media">
+              <img src="assets/hfu-photos/admissions-detail.jpg" alt="Graduate students">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 05 · CTA EDITORIAL SPLIT ═════════════════ -->
+  <section class="sec" id="c05">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 05 / 20</span>&nbsp;·&nbsp;CTA — editorial split</div>
+      <h2>A call to action, <em>with</em> context.</h2>
+      <p>A two-panel split CTA: editorial photo on the left, dark navy panel with copy and buttons on the right. Ideal when you want the call-to-action to feel personal rather than transactional.</p>
+    </div>
+    <div class="sec__body">
+      <div class="cta05">
+        <div class="cta05__media">
+          <img src="assets/hfu-photos/student-life3-square-small.jpg" alt="Holy Family students outside Newtown campus">
+        </div>
+        <div class="cta05__panel">
+          <div class="cta05__content">
+            <div class="eyebrow">Visit Holy Family</div>
+            <h3>See yourself <em>here</em>. Schedule a campus visit.</h3>
+            <p>The truth about Holy Family is that you can't really understand the place from a website — not this one, not the old one. Come walk through the arches, sit in a class, grab coffee with a current student. We'll handle the rest.</p>
+            <div class="cta05__buttons">
+              <a href="#" class="btn btn--primary">
+                Reserve a visit
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+              <a href="#" class="btn btn--ghost-dark">Virtual tour</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 06 · CTA MEGA ═════════════════ -->
+  <section class="sec sec--dark" id="c06">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 06 / 20</span>&nbsp;·&nbsp;CTA — full-bleed mega</div>
+      <h2>When you need a <em>big</em> moment.</h2>
+      <p>A full-width, centered mega CTA with radial gradient, background photo at 15% opacity, and massive Fraunces headline. This is the pattern you use at the close of a landing page — the "now go apply" moment.</p>
+    </div>
+    <div class="sec__body">
+      <div class="cta06">
+        <div class="cta06__bg">
+          <img src="assets/hfu-photos/jesus-statue.jpg" alt="">
+        </div>
+        <div class="cta06__content">
+          <div class="eyebrow">Apply by January 15</div>
+          <h3>Your Holy Family <em>story</em> starts here.</h3>
+          <p>There's no application fee. No essay required unless you want to submit one. Just one form, one transcript, and a decision in under three weeks. The sooner you apply, the sooner we can start building your aid package.</p>
+          <div class="cta06__buttons">
+            <a href="#" class="btn btn--primary btn--lg">
+              Apply for Fall 2026
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+            <a href="#" class="btn btn--ghost-dark btn--lg">Request more info</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 07 · MEDIA FEATURE ALTERNATING ═════════════════ -->
+  <section class="sec" id="c07">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 07 / 20</span>&nbsp;·&nbsp;Media feature — alternating</div>
+      <h2>Three stories, told <em>zigzag</em>.</h2>
+      <p>Three alternating feature rows — image left, image right, image left — with editorial copy, inline stat callouts, and an arrow link. The rhythm alone does half the work of keeping readers scrolling.</p>
+    </div>
+    <div class="sec__body">
+      <div class="mf07">
+        <div class="mf07__row">
+          <div class="mf07__media">
+            <img src="assets/hfu-photos/admissions-2858.jpg" alt="Students on the Philadelphia campus">
+          </div>
+          <div class="mf07__body">
+            <div class="mf07__kicker">Philadelphia Campus</div>
+            <h3>Four city blocks, <em>one</em> community.</h3>
+            <p>Our original campus at 9801 Frankford Avenue opened in 1954 and has been at the center of Northeast Philadelphia ever since. It's big enough to feel like a real university and small enough that you'll recognize everyone in your major by spring.</p>
+            <div class="mf07__facts">
+              <div class="mf07__fact"><strong>28 acres</strong><span>Northeast Philadelphia</span></div>
+              <div class="mf07__fact"><strong>1954</strong><span>Founded year</span></div>
+            </div>
+            <a href="#" class="mf07__link">Take the Philadelphia tour
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="mf07__row mf07__row--reverse">
+          <div class="mf07__media">
+            <img src="assets/hfu-photos/newtown-east-square-sm.jpg" alt="Newtown campus in Bucks County">
+          </div>
+          <div class="mf07__body">
+            <div class="mf07__kicker">Newtown Campus</div>
+            <h3>Bucks County, <em>reimagined</em>.</h3>
+            <p>Twenty-two miles north, the Newtown campus on One Campus Drive is where our graduate and adult programs live — modern classrooms, a dedicated nursing simulation lab, and the quiet suburban setting that makes evening classes possible.</p>
+            <div class="mf07__facts">
+              <div class="mf07__fact"><strong>54 acres</strong><span>Bucks County</span></div>
+              <div class="mf07__fact"><strong>2009</strong><span>Expansion year</span></div>
+            </div>
+            <a href="#" class="mf07__link">Take the Newtown tour
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="mf07__row">
+          <div class="mf07__media">
+            <img src="assets/hfu-photos/admissions-4q0a.jpg" alt="Online learning at Holy Family">
+          </div>
+          <div class="mf07__body">
+            <div class="mf07__kicker">HFU Online</div>
+            <h3>Everything else, <em>anywhere</em>.</h3>
+            <p>Our online division offers 16 degree programs — from the RN-to-BSN completion track to the full MBA — built for adult learners with 8-week accelerated terms. Same faculty, same accreditation, same diploma as our on-campus programs.</p>
+            <div class="mf07__facts">
+              <div class="mf07__fact"><strong>16 programs</strong><span>Fully online</span></div>
+              <div class="mf07__fact"><strong>8 weeks</strong><span>Accelerated terms</span></div>
+            </div>
+            <a href="#" class="mf07__link">Explore online programs
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 08 · STATS BAR ═════════════════ -->
+  <section class="sec sec--dark" id="c08">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 08 / 20</span>&nbsp;·&nbsp;Stats bar</div>
+      <h2>Numbers in <em>serif</em>.</h2>
+      <p>Four large Fraunces numerals separated by hairline dividers on a dark navy background. Stats feel more like evidence than marketing when they're typeset in a display serif with proper opsz variation.</p>
+    </div>
+    <div class="sec__body">
+      <div class="stats08">
+        <div>
+          <h3 style="font-family:var(--display);font-size:clamp(1.6rem,2.4vw,2.2rem);color:#fff;line-height:1.08;letter-spacing:-0.022em;">By the <em style="font-style:italic;font-weight:300;color:hsl(var(--hfu-yellow));">numbers</em>.</h3>
+          <p style="font-size:14.5px;color:hsl(0 0% 100% / 0.68);line-height:1.6;margin-top:14px;max-width:30ch;">The outcomes that matter most to families deciding where their student will spend the next four years.</p>
+        </div>
+        <div class="stats08__grid">
+          <div class="stats08__cell">
+            <div class="stats08__kicker">Aid</div>
+            <span class="stats08__num">~100<span class="plus">%</span></span>
+            <div class="stats08__label">Of full-time undergraduates receive financial aid</div>
+          </div>
+          <div class="stats08__cell">
+            <div class="stats08__kicker">Faculty</div>
+            <span class="stats08__num">14:1</span>
+            <div class="stats08__label">Student-to-faculty ratio, capped for real discussion</div>
+          </div>
+          <div class="stats08__cell">
+            <div class="stats08__kicker">Placement</div>
+            <span class="stats08__num">96<span class="plus">%</span></span>
+            <div class="stats08__label">Placed or enrolled in grad school within 6 months</div>
+          </div>
+          <div class="stats08__cell">
+            <div class="stats08__kicker">Legacy</div>
+            <span class="stats08__num">70<span class="plus">+</span></span>
+            <div class="stats08__label">Years educating students in the Philadelphia region</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 09 · FEATURED TESTIMONIAL ═════════════════ -->
+  <section class="sec" id="c09">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 09 / 20</span>&nbsp;·&nbsp;Testimonial — featured</div>
+      <h2>One voice, <em>amplified</em>.</h2>
+      <p>A single featured pull quote in huge italic Fraunces, paired with a square portrait photo and a yellow accent mark. Use this pattern for your strongest testimonial — the one you want the whole page to revolve around.</p>
+    </div>
+    <div class="sec__body">
+      <div class="test09">
+        <div class="test09__photo">
+          <img src="assets/hfu-photos/alumni-square1-sm.jpg" alt="Maria Alvarado, BSN '23">
+        </div>
+        <div class="test09__body">
+          <blockquote>
+            I didn't choose Holy Family for the prestige. I chose it because my advisor <strong>picked up the phone on a Saturday</strong> when I was freaking out about clinicals. Four years later, she read my name at graduation.
+          </blockquote>
+          <div class="test09__by">
+            <div class="test09__by-bar"></div>
+            <div>
+              <div class="test09__by-name">Maria Alvarado</div>
+              <div class="test09__by-role">BSN, Class of 2023 · Nurse, Jefferson Health</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 10 · TESTIMONIAL GRID ═════════════════ -->
+  <section class="sec sec--alt" id="c10">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 10 / 20</span>&nbsp;·&nbsp;Testimonial — grid of 3</div>
+      <h2>Three quotes, <em>one</em> chorus.</h2>
+      <p>A three-card grid of shorter testimonials with avatars, names, and roles. The cards lift subtly on hover and use hairline dividers instead of heavy borders. The yellow serif quote mark in the corner is the unifying visual thread.</p>
+    </div>
+    <div class="sec__body">
+      <div class="test10">
+        <div class="test10__card">
+          <div class="test10__mark">&ldquo;</div>
+          <blockquote>My MBA professors were all actively consulting — they brought real case studies from their current clients. I was solving problems for Philadelphia CFOs before I even graduated.</blockquote>
+          <div class="test10__by">
+            <img src="assets/hfu-photos/admissions-art.jpg" class="test10__avatar" alt="David Chen">
+            <div>
+              <div class="test10__name">David Chen</div>
+              <div class="test10__role">MBA '22 · Senior Analyst, Vanguard</div>
+            </div>
+          </div>
+        </div>
+        <div class="test10__card">
+          <div class="test10__mark">&ldquo;</div>
+          <blockquote>The education program placed me in three different classrooms in my first year. By the time I was student teaching, I already knew how to handle a room. I got hired before graduation.</blockquote>
+          <div class="test10__by">
+            <img src="assets/hfu-photos/academics-chapel.jpg" class="test10__avatar" alt="Sarah Patel">
+            <div>
+              <div class="test10__name">Sarah Patel</div>
+              <div class="test10__role">B.A. Elementary Ed '24 · Second Grade Teacher</div>
+            </div>
+          </div>
+        </div>
+        <div class="test10__card">
+          <div class="test10__mark">&ldquo;</div>
+          <blockquote>I transferred in with an associate's from Bucks County CC. Holy Family took 60 credits, worked around my work schedule, and I finished my bachelor's in 18 months for half what I expected.</blockquote>
+          <div class="test10__by">
+            <img src="assets/hfu-photos/8r1a1042.jpg" class="test10__avatar" alt="James Torres">
+            <div>
+              <div class="test10__name">James Torres</div>
+              <div class="test10__role">B.S. Business '23 · Transfer Student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 11 · TESTIMONIAL MARQUEE ═════════════════ -->
+  <section class="sec sec--dark" id="c11">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 11 / 20</span>&nbsp;·&nbsp;Testimonial — marquee</div>
+      <h2>An endless <em>chorus</em> of voices.</h2>
+      <p>A horizontally auto-scrolling marquee of testimonial cards with a seamless loop (cards duplicated in markup, CSS keyframes translate the track by -50%). Hover pauses the animation so readers can actually read. Gradient fades on the edges soften the loop.</p>
+    </div>
+    <div class="sec__body">
+      <div class="marq11">
+        <div class="marq11__track">
+          <div class="marq11__card">
+            <blockquote>Holy Family gave me a $22,000 merit scholarship, plus Pell, plus a work-study job on campus. I graduated with under $8,000 in loans — and a job offer before senior year.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/alumni-square1-sm.jpg" class="marq11__avatar" alt="Jenna Reyes">
+              <div>
+                <div class="marq11__name">Jenna Reyes</div>
+                <div class="marq11__role">B.S. Psychology '24</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>My faculty advisor sat with me through four course-plan revisions in one week when I decided to add a second major. She treated it like her problem to solve, not mine.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-business.jpg" class="marq11__avatar" alt="Marcus Donnelly">
+              <div>
+                <div class="marq11__name">Marcus Donnelly</div>
+                <div class="marq11__role">B.A. History '23</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>The nursing simulation lab is better than my hospital placement's actual training center. When I started my first rotation, I was already comfortable with equipment my peers had never touched.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-nurses.jpg" class="marq11__avatar" alt="Priya Shah">
+              <div>
+                <div class="marq11__name">Priya Shah</div>
+                <div class="marq11__role">BSN '24</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>I came in planning to major in biology. By junior year I was doing original research on urban bird populations with a grant from the National Science Foundation. That doesn't happen at huge universities.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-chapel.jpg" class="marq11__avatar" alt="Tomasz Nowak">
+              <div>
+                <div class="marq11__name">Tomasz Nowak</div>
+                <div class="marq11__role">B.S. Biology '23</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>As an adult learner coming back for my MBA at night, I was worried I'd feel out of place. Fourteen of my eighteen classmates were in the exact same boat. The program was built for us.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/admissions-art.jpg" class="marq11__avatar" alt="Angela Brooks">
+              <div>
+                <div class="marq11__name">Angela Brooks</div>
+                <div class="marq11__role">MBA '24</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>Holy Family gave me a $22,000 merit scholarship, plus Pell, plus a work-study job on campus. I graduated with under $8,000 in loans — and a job offer before senior year.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/alumni-square1-sm.jpg" class="marq11__avatar" alt="Jenna Reyes">
+              <div>
+                <div class="marq11__name">Jenna Reyes</div>
+                <div class="marq11__role">B.S. Psychology '24</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>My faculty advisor sat with me through four course-plan revisions in one week when I decided to add a second major. She treated it like her problem to solve, not mine.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-business.jpg" class="marq11__avatar" alt="Marcus Donnelly">
+              <div>
+                <div class="marq11__name">Marcus Donnelly</div>
+                <div class="marq11__role">B.A. History '23</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>The nursing simulation lab is better than my hospital placement's actual training center. When I started my first rotation, I was already comfortable with equipment my peers had never touched.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-nurses.jpg" class="marq11__avatar" alt="Priya Shah">
+              <div>
+                <div class="marq11__name">Priya Shah</div>
+                <div class="marq11__role">BSN '24</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>I came in planning to major in biology. By junior year I was doing original research on urban bird populations with a grant from the National Science Foundation. That doesn't happen at huge universities.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/academics-chapel.jpg" class="marq11__avatar" alt="Tomasz Nowak">
+              <div>
+                <div class="marq11__name">Tomasz Nowak</div>
+                <div class="marq11__role">B.S. Biology '23</div>
+              </div>
+            </div>
+          </div>
+          <div class="marq11__card">
+            <blockquote>As an adult learner coming back for my MBA at night, I was worried I'd feel out of place. Fourteen of my eighteen classmates were in the exact same boat. The program was built for us.</blockquote>
+            <div class="marq11__by">
+              <img src="assets/hfu-photos/admissions-art.jpg" class="marq11__avatar" alt="Angela Brooks">
+              <div>
+                <div class="marq11__name">Angela Brooks</div>
+                <div class="marq11__role">MBA '24</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 12 · PRICING / TIERS ═════════════════ -->
+  <section class="sec sec--alt" id="c12">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 12 / 20</span>&nbsp;·&nbsp;Pricing / tuition tiers</div>
+      <h2>Three tiers, <em>honest</em> pricing.</h2>
+      <p>A classic three-tier pricing layout with a highlighted middle card ("Most Popular" ribbon), checkmark feature lists, and call-to-action buttons. The featured card shifts up slightly to break the horizontal line.</p>
+    </div>
+    <div class="sec__body">
+      <div class="price12">
+        <div class="price12__card">
+          <div class="price12__kicker">Tier 01</div>
+          <div class="price12__name">Undergraduate</div>
+          <div class="price12__price">
+            <div class="price12__amount">$36,400</div>
+            <div class="price12__unit">/ academic year</div>
+          </div>
+          <div class="price12__sub">Average net price after aid: $18,400 for families under $75K</div>
+          <ul class="price12__feats">
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>All 38 undergraduate majors</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Automatic merit scholarship review</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Federal Pell grant eligible</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>On-campus housing optional</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>All student activities included</li>
+          </ul>
+          <a href="#" class="btn btn--secondary">
+            Apply as undergrad
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="price12__card price12__card--featured">
+          <div class="price12__ribbon">Most Popular</div>
+          <div class="price12__kicker">Tier 02</div>
+          <div class="price12__name">Graduate</div>
+          <div class="price12__price">
+            <div class="price12__amount">$960</div>
+            <div class="price12__unit">/ credit hour</div>
+          </div>
+          <div class="price12__sub">Roughly $34,000–$42,000 total depending on program length</div>
+          <ul class="price12__feats">
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>MBA, M.Ed., MSN, and more</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Employer tuition discounts available</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Evening + hybrid scheduling</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Federal Direct Loan eligible</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Complete in as few as 18 months</li>
+          </ul>
+          <a href="#" class="btn btn--primary">
+            Apply as graduate
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="price12__card">
+          <div class="price12__kicker">Tier 03</div>
+          <div class="price12__name">Doctoral</div>
+          <div class="price12__price">
+            <div class="price12__amount">$1,120</div>
+            <div class="price12__unit">/ credit hour</div>
+          </div>
+          <div class="price12__sub">EdD and DNP programs, 36–54 credits total</div>
+          <ul class="price12__feats">
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>EdD Educational Leadership</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>DNP Nurse Executive</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Dissertation support cohort</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Monthly residency intensives</li>
+            <li><span class="price12__check"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m1.5 5 2 2 5-5"/></svg></span>Finish in 36 months part-time</li>
+          </ul>
+          <a href="#" class="btn btn--secondary">
+            Apply as doctoral
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 13 · INLINE NEWSLETTER ═════════════════ -->
+  <section class="sec" id="c13">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 13 / 20</span>&nbsp;·&nbsp;Form — inline newsletter</div>
+      <h2>A form that <em>doesn't</em> feel like a form.</h2>
+      <p>A compact, pill-shaped inline email capture — headline, input, button, and consent line. Drop it anywhere you want a low-friction signup moment without dedicating a full section to it.</p>
+    </div>
+    <div class="sec__body">
+      <div class="news13">
+        <div class="eyebrow news13__eyebrow">Admissions Updates</div>
+        <h3>Get admissions updates <em>in</em> your inbox.</h3>
+        <p>Application deadline reminders, financial aid tips, open house invites, and the occasional behind-the-scenes look at campus life. No spam, one email per month.</p>
+        <form class="news13__form" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button type="submit" class="btn btn--primary">
+            Subscribe
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+        </form>
+        <div class="news13__fine">
+          By subscribing, you agree to receive occasional emails from Holy Family University. We don't share your information with third parties. You can unsubscribe anytime. Read our <a href="#">privacy policy</a>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 14 · CONTACT FORM ═════════════════ -->
+  <section class="sec sec--alt" id="c14">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 14 / 20</span>&nbsp;·&nbsp;Form — multi-field contact</div>
+      <h2>When one field <em>isn't</em> enough.</h2>
+      <p>A proper multi-field contact form with a two-column layout: left side carries the headline, context copy, and contact info; right side is the form card with hairline border and focus-state styling.</p>
+    </div>
+    <div class="sec__body">
+      <div class="form14">
+        <div class="form14__side">
+          <h3>Talk to an <em>admissions counselor</em>.</h3>
+          <p>Tell us a little about yourself and a counselor will reach out within one business day — usually same-day during the week. No pressure, no spam, no phone calls unless you want one.</p>
+          <div class="form14__contact">
+            <div class="form14__contact-item">
+              <div class="form14__contact-icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              </div>
+              <div>
+                <strong>215 637 7700</strong>
+                <span>Monday–Friday, 8:30 AM – 5:00 PM</span>
+              </div>
+            </div>
+            <div class="form14__contact-item">
+              <div class="form14__contact-icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="m2 4 6 5 6-5"/></svg>
+              </div>
+              <div>
+                <strong>admissions@holyfamily.edu</strong>
+                <span>Replies within one business day</span>
+              </div>
+            </div>
+            <div class="form14__contact-item">
+              <div class="form14__contact-icon">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-3.5-5-8a5 5 0 0 1 10 0c0 4.5-5 8-5 8Z"/><circle cx="8" cy="6" r="2"/></svg>
+              </div>
+              <div>
+                <strong>9801 Frankford Ave</strong>
+                <span>Philadelphia, PA 19114</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form14__card" onsubmit="event.preventDefault();">
+          <div class="form14__grid">
+            <div class="form14__field">
+              <label for="f14-first">First name</label>
+              <input type="text" id="f14-first" placeholder="Jane">
+            </div>
+            <div class="form14__field">
+              <label for="f14-last">Last name</label>
+              <input type="text" id="f14-last" placeholder="Doe">
+            </div>
+            <div class="form14__field form14__field--full">
+              <label for="f14-email">Email address</label>
+              <input type="email" id="f14-email" placeholder="jane.doe@example.com">
+            </div>
+            <div class="form14__field">
+              <label for="f14-prog">Program of interest</label>
+              <select id="f14-prog">
+                <option>Undergraduate</option>
+                <option>Nursing (BSN / ABSN)</option>
+                <option>Graduate (MBA / M.Ed.)</option>
+                <option>Doctoral (EdD / DNP)</option>
+                <option>Online programs</option>
+                <option>Adult learner / transfer</option>
+              </select>
+            </div>
+            <div class="form14__field">
+              <label for="f14-start">When do you want to start?</label>
+              <select id="f14-start">
+                <option>Fall 2026</option>
+                <option>Spring 2027</option>
+                <option>Summer 2027</option>
+                <option>Fall 2027</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form14__field form14__field--full">
+              <label for="f14-msg">Your message (optional)</label>
+              <textarea id="f14-msg" placeholder="Tell us what you're looking for and we'll match you with the right counselor."></textarea>
+            </div>
+          </div>
+          <label class="form14__check">
+            <input type="checkbox">
+            <span>I agree to receive communications from Holy Family University at the email above. I understand I can unsubscribe at any time. I've read and agree to the <a href="#">privacy policy</a>.</span>
+          </label>
+          <button type="submit" class="btn btn--primary form14__submit">
+            Send my message
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 15 · TIMELINE VERTICAL ═════════════════ -->
+  <section class="sec" id="c15">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 15 / 20</span>&nbsp;·&nbsp;Timeline — vertical alternating</div>
+      <h2>Seventy years, <em>six</em> turning points.</h2>
+      <p>A vertical timeline with alternating left/right content cards along a central line, each milestone marked with a yellow dot. Ideal for history pages, multi-year roadmaps, or any long-form chronology.</p>
+    </div>
+    <div class="sec__body">
+      <div class="tl15">
+        <div class="tl15__item tl15__item--left">
+          <div class="tl15__content">
+            <span class="tl15__year">1954</span>
+            <h3>The founding year</h3>
+            <p>The Sisters of the Holy Family of Nazareth open Holy Family College on 28 acres of Northeast Philadelphia as a women's liberal arts institution with 32 students in its inaugural class.</p>
+          </div>
+          <div class="tl15__dot"></div>
+        </div>
+
+        <div class="tl15__item tl15__item--right">
+          <div class="tl15__dot"></div>
+          <div class="tl15__content">
+            <span class="tl15__year"><em>1971</em></span>
+            <h3>Coeducation</h3>
+            <p>Holy Family opens its doors to male students, becoming one of the first Catholic women's colleges in the Northeast to fully coeducate. Enrollment doubles within three years.</p>
+          </div>
+        </div>
+
+        <div class="tl15__item tl15__item--left">
+          <div class="tl15__content">
+            <span class="tl15__year">1993</span>
+            <h3>School of Nursing launched</h3>
+            <p>The Holy Family School of Nursing admits its first class of 48 students. Within a decade, it becomes the largest undergraduate major on campus and the university's signature program.</p>
+          </div>
+          <div class="tl15__dot"></div>
+        </div>
+
+        <div class="tl15__item tl15__item--right">
+          <div class="tl15__dot"></div>
+          <div class="tl15__content">
+            <span class="tl15__year"><em>2002</em></span>
+            <h3>University status</h3>
+            <p>Holy Family College is formally reclassified by the Pennsylvania Department of Education as Holy Family University, recognizing its expanded graduate offerings and doctoral aspirations.</p>
+          </div>
+        </div>
+
+        <div class="tl15__item tl15__item--left">
+          <div class="tl15__content">
+            <span class="tl15__year">2009</span>
+            <h3>Newtown campus opens</h3>
+            <p>A second full campus on 54 acres in Bucks County begins operation, doubling the university's footprint and giving graduate and adult-learner programs a home of their own.</p>
+          </div>
+          <div class="tl15__dot"></div>
+        </div>
+
+        <div class="tl15__item tl15__item--right">
+          <div class="tl15__dot"></div>
+          <div class="tl15__content">
+            <span class="tl15__year"><em>2024</em></span>
+            <h3>Seventy years strong</h3>
+            <p>Holy Family celebrates its 70th anniversary with record enrollment, three doctoral programs, and a commitment to keeping a Catholic liberal arts education radically affordable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 16 · TIMELINE HORIZONTAL / PROCESS ═════════════════ -->
+  <section class="sec sec--alt" id="c16">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 16 / 20</span>&nbsp;·&nbsp;Timeline — horizontal process</div>
+      <h2>Five steps <em>to</em> enrolled.</h2>
+      <p>A horizontal process timeline with numbered yellow circles connected by a hairline. Each step has a custom icon, a short title, and a one-line description. On mobile the steps stack into a responsive grid with the line hidden.</p>
+    </div>
+    <div class="sec__body">
+      <div class="tl16">
+        <div class="tl16__line"></div>
+        <div class="tl16__steps">
+          <div class="tl16__step">
+            <div class="tl16__dot">
+              <span class="tl16__dot-num">1</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+            </div>
+            <h3>Apply</h3>
+            <p>Submit your online application. No fee, no essay required.</p>
+          </div>
+
+          <div class="tl16__step">
+            <div class="tl16__dot">
+              <span class="tl16__dot-num">2</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
+            </div>
+            <h3>Send transcript</h3>
+            <p>We review your high school or college work in 3–5 business days.</p>
+          </div>
+
+          <div class="tl16__step">
+            <div class="tl16__dot">
+              <span class="tl16__dot-num">3</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>Get decision</h3>
+            <p>Most students hear back within two to three weeks of completion.</p>
+          </div>
+
+          <div class="tl16__step">
+            <div class="tl16__dot">
+              <span class="tl16__dot-num">4</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3>Review aid</h3>
+            <p>Your personalized financial aid package arrives with your acceptance.</p>
+          </div>
+
+          <div class="tl16__step">
+            <div class="tl16__dot">
+              <span class="tl16__dot-num">5</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+            </div>
+            <h3>Enroll</h3>
+            <p>Submit your deposit by May 1 and register for your first courses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 17 · FEATURE GRID - ICON CARDS ═════════════════ -->
+  <section class="sec" id="c17">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 17 / 20</span>&nbsp;·&nbsp;Feature grid — icon cards</div>
+      <h2>Six reasons, <em>clearly</em> labeled.</h2>
+      <p>A three-by-two grid of feature cards with yellow-tinted icon tiles, titles, descriptions, and arrow links. This is the workhorse pattern for "ways we can help" or "what makes us different" sections.</p>
+    </div>
+    <div class="sec__body">
+      <div class="fg17">
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"/></svg>
+          </div>
+          <h3>Merit scholarships</h3>
+          <p>Automatic review for awards up to $22,000 annually based on your transcript. No separate application required.</p>
+          <a href="#" class="fg17__link">Explore scholarships
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M7 6V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <h3>Work-study</h3>
+          <p>Federal and institutional work-study positions across campus — library, athletics, labs, and advancement offices.</p>
+          <a href="#" class="fg17__link">Find a role
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/><path d="M18 12h4M18 8l-4 4 4 4"/></svg>
+          </div>
+          <h3>Transfer credits</h3>
+          <p>Articulation agreements with every major Philadelphia-area community college guarantee seamless credit transfer.</p>
+          <a href="#" class="fg17__link">Transfer guide
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Flexible formats</h3>
+          <p>Evening, weekend, hybrid, and fully online classes for working professionals who can't commit to a daytime schedule.</p>
+          <a href="#" class="fg17__link">See schedule options
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <h3>Housing & dining</h3>
+          <p>Residence halls for first- and second-year students at the Philadelphia campus, with commuter and hybrid options too.</p>
+          <a href="#" class="fg17__link">Housing details
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+
+        <div class="fg17__card">
+          <div class="fg17__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3a4 4 0 0 1 0 7.75M21 21v-2a4 4 0 0 0-3-3.87"/></svg>
+          </div>
+          <h3>Career advising</h3>
+          <p>One-on-one career counseling from day one through five years after graduation. Our job is to get you placed, then keep you there.</p>
+          <a href="#" class="fg17__link">Career services
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 18 · FEATURE GRID - IMAGE CARDS ═════════════════ -->
+  <section class="sec sec--alt" id="c18">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 18 / 20</span>&nbsp;·&nbsp;Feature grid — image cards</div>
+      <h2>Six moments, <em>captured</em>.</h2>
+      <p>A three-by-two grid of image-first cards with hover zoom and a subtle lift. The category tag sits over the image, and the card body has an arrow link and metadata footer. Perfect for news, events, or program spotlights.</p>
+    </div>
+    <div class="sec__body">
+      <div class="fg18">
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Open House</span>
+            <img src="assets/hfu-photos/admissions-detail.jpg" alt="Open house on the Philadelphia campus">
+          </div>
+          <div class="fg18__body">
+            <h3>Spring Open House</h3>
+            <p>Meet faculty from every school, tour the residence halls, and sit in on a live mock class — all in one afternoon.</p>
+            <div class="fg18__meta">
+              <span>April 26, 2026</span>
+              <a href="#">Reserve <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Research</span>
+            <img src="assets/hfu-photos/academics-nurses.jpg" alt="Undergraduate research symposium">
+          </div>
+          <div class="fg18__body">
+            <h3>Undergraduate Research Day</h3>
+            <p>Watch students from every major present funded research projects to faculty, alumni, and industry judges.</p>
+            <div class="fg18__meta">
+              <span>May 3, 2026</span>
+              <a href="#">Learn more <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Athletics</span>
+            <img src="assets/hfu-photos/8r1a1042.jpg" alt="Basketball game at Holy Family">
+          </div>
+          <div class="fg18__body">
+            <h3>Tigers Basketball Senior Night</h3>
+            <p>Join the crowd at the final home game of the regular season. Free entry for students and alumni with ID.</p>
+            <div class="fg18__meta">
+              <span>February 28, 2026</span>
+              <a href="#">RSVP <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Lecture</span>
+            <img src="assets/hfu-photos/academics-business.jpg" alt="Business lecture at Holy Family">
+          </div>
+          <div class="fg18__body">
+            <h3>The Business of AI Panel</h3>
+            <p>Four Philadelphia tech leaders discuss what AI means for entry-level jobs — and how to prepare for the change.</p>
+            <div class="fg18__meta">
+              <span>March 18, 2026</span>
+              <a href="#">Register <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Service</span>
+            <img src="assets/hfu-photos/jesus-statue.jpg" alt="Community service event">
+          </div>
+          <div class="fg18__body">
+            <h3>MLK Day of Service</h3>
+            <p>Students, faculty, and alumni volunteer with 14 Philadelphia nonprofits in a single coordinated day of service.</p>
+            <div class="fg18__meta">
+              <span>January 20, 2026</span>
+              <a href="#">Sign up <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg18__card">
+          <div class="fg18__media">
+            <span class="fg18__tag">Arts</span>
+            <img src="assets/hfu-photos/admissions-art.jpg" alt="Art gallery opening">
+          </div>
+          <div class="fg18__body">
+            <h3>Senior Art Exhibition</h3>
+            <p>Three weeks of graduating senior work on display in the Holy Family Art Gallery, with an opening reception April 4.</p>
+            <div class="fg18__meta">
+              <span>April 4 – 24, 2026</span>
+              <a href="#">View gallery <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 19 · HERO CENTERED ANNOUNCEMENT ═════════════════ -->
+  <section class="sec" id="c19">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 19 / 20</span>&nbsp;·&nbsp;Hero — centered announcement</div>
+      <h2>A hero, <em>centered</em> and contained.</h2>
+      <p>A component-scale hero variant that lives inside a card — centered eyebrow, massive Fraunces headline, two buttons, and a decorative yellow accent bar underneath flanked by hairlines. Use this as a section-level hero inside longer pages.</p>
+    </div>
+    <div class="sec__body">
+      <div class="hero19">
+        <div class="hero19__content">
+          <div class="eyebrow hero19__eyebrow">Now Accepting Applications</div>
+          <h3>Apply to Holy Family <em>free</em>. Decision in three weeks.</h3>
+          <p>No application fee. No essay required. Just submit the one-page form, send your transcript, and we'll get you a decision — and a financial aid package — in under three weeks.</p>
+          <div class="hero19__ctas">
+            <a href="#" class="btn btn--primary btn--lg">
+              Start your application
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+            <a href="#" class="btn btn--ghost btn--lg">Schedule a tour</a>
+          </div>
+          <div class="hero19__bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ 20 · BANNER / NOTIFICATION ═════════════════ -->
+  <section class="sec sec--alt" id="c20">
+    <div class="sec__head">
+      <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 20 / 20</span>&nbsp;·&nbsp;Banner / notification</div>
+      <h2>Small surface, <em>big</em> urgency.</h2>
+      <p>A slim pill-shaped notification banner with a yellow gradient, pulsing dot indicator, short headline message, inline CTA, and dismiss button. Typically pinned to the top of a page for time-sensitive announcements.</p>
+    </div>
+    <div class="sec__body">
+      <div class="ban20" id="ban20">
+        <div class="ban20__dot"></div>
+        <div class="ban20__kicker">New</div>
+        <div class="ban20__msg">
+          <strong>Spring Open House</strong> · April 26, 2026 — Reserve your spot
+        </div>
+        <a href="#" class="ban20__link">
+          RSVP now
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+        <button class="ban20__close" id="ban20Close" aria-label="Dismiss notification">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 3l10 10M13 3 3 13"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ CLOSING CTA ═════════════════ -->
+  <section class="closing">
+    <div class="closing__inner">
+      <div>
+        <div class="eyebrow closing__eyebrow">See It In Context</div>
+        <h2>Want to see these in <em>context</em>?</h2>
+      </div>
+      <div class="closing__side">
+        <p>These twenty components are the building blocks. To see how they compose into full pages, view the seven design concepts we built for the holyfamily.edu relaunch — each one a different interpretation of the system above.</p>
+        <div class="closing__buttons">
+          <a href="design-concepts.html" class="btn btn--primary btn--lg">
+            View the 7 design concepts
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="index.html" class="btn btn--ghost-dark btn--lg">Back to portal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ FOOTER ═════════════════ -->
+  <footer class="foot">
+    <div class="foot__inner">
+      <div class="foot__brand">
+        <svg class="foot__logo" viewBox="0 0 562.7 198.6" xmlns="http://www.w3.org/2000/svg" aria-label="Holy Family University"><g fill="#fff"><path d="m47.3 88.7c4.2 14.2 11 27.4 20.4 39.5 6.4-8.2 13.8-15.4 22.1-21.6-17.4-11.9-34.3-16.4-42.5-17.9zm27.3 20.2h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.5v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m94.3 106.5c8.3 6.1 15.8 13.4 22.1 21.6 9.4-12 16.2-25.3 20.4-39.5-8.3 1.6-25.2 6.1-42.5 17.9zm26.5 2.4h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.3v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.4h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1s-.4 1-1 1z"/><path d="m92 108.1c-7.8 5.6-15.7 12.8-22.8 22 10.3 12.7 20.4 20 22.8 21.7 2.4-1.7 12.5-8.9 22.8-21.7-7.1-9.1-14.9-16.3-22.8-22zm5.7 23h-.5v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-2.2v2.3h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v.5c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.5h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-2.3h-2.4v.4c0 .5-.4 1-1 1-.5 0-1-.4-1-1v-.4h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h2.4v-2.3h-.4c-.5 0-1-.4-1-1 0-.5.4-1 1-1h.4v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.4c.5 0 1 .4 1 1 0 .5-.4 1-1 1h-.4v2.3h2.3v-.4c0-.5.4-1 1-1 .5 0 1 .4 1 1v.4h.5c.5 0 1 .4 1 1-.1.6-.6 1-1.1 1z"/><path d="m104.2 43.9-12.2 60.7-12.2-60.7z"/><path d="m138.3 43.9-46.3 60.7 21.9-60.7z"/><path d="m45.7 43.9 46.3 60.7-21.8-60.7z"/><path d="m116.3 90c-15.3 7.7-24.3 14.6-24.3 14.6l46.3-48.7-.7 24.7s-7.5 2.5-21.3 9.4"/><path d="m67.8 90c15.2 7.7 24.2 14.6 24.2 14.6l-46.3-48.7.7 24.7s7.6 2.5 21.4 9.4"/><path d="m440.2 128.6c.8-.1 1.5-.3 2.2-.6 0-.7 0-1.4-.1-2-.9.1-2.4.1-3.8.1-1.6 0-2.9-.1-4-.1-.1.7-.2 1.4-.2 2l2.6.5-3.1 6.1-3.3-6.1 2.4-.5c0-.7 0-1.4-.2-2-1.2.1-3 .1-4.6.1-1.9 0-3.5-.1-4.9-.1-.2.7-.2 1.4-.2 2.1.8.1 1.5.3 2.3.6l5.2 9.6v2.9c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-2.2zm-32.3.3c.2 1.2.4 2.6.4 3.9.8.2 1.6.2 2.6 0 .3-1.8.5-3.6.4-6.4l-.3-.3c-1.8.1-4.8.1-6.8.1h-3.9c-2 0-5 0-6.8-.1l-.4.3c-.1 2.8.1 4.6.4 6.4 1 .2 1.8.2 2.6 0 0-1.3.2-2.7.4-3.9h3.5v12.3c0 .6 0 1.2-.1 1.8-1.2.3-2.3.5-3.5.6 0 .7.1 1.4.3 2 1.5 0 3.3-.1 5.4-.1 1.9 0 4 0 5.4.1.2-.6.2-1.3.2-2-1-.3-2.1-.5-3.3-.6-.1-.8-.1-1.6-.1-2.4v-11.7zm-34.1-.3c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-29.5 15.9c1.6.8 4.3 1.4 7 1.4 4.4 0 7.2-3 7.2-6.7 0-2.8-2.1-4.2-4.1-5.1l-2.4-1.1c-1.3-.6-2.9-1.3-2.9-2.6 0-.8.3-1.3.7-1.7.1-.1 1.1-.3 1.9-.3 1.3 0 2.1.1 2.9.4.2.9.3 1.8.4 2.7.7.4 1.5.4 2.5.1.3-1.4.4-2.9.5-4.9-1.7-.7-4.2-1.2-6.1-1.2-3.4 0-7.1 1.7-7.1 5.9 0 3.1 2.1 4.4 4.1 5.2l2.2.9c1.8.7 3 1.5 3 2.7 0 1-.2 1.6-.7 2.1-.1.1-1.2.6-2.3.6-1.3 0-2.3-.2-3.1-.6-.2-1.2-.3-2.4-.3-3.4-.9-.3-1.7-.4-2.6-.2-.5 1.9-.7 3.6-.8 5.8m-21.7-15.8c1.9 0 2.9 1.5 2.9 2.9 0 1.3-.4 2.1-1.1 2.6-.1.1-1.3.5-2.7.5-.4 0-.9 0-1.3 0v-5.9c.7 0 1.4-.1 2.2-.1m3.4 16.8h2c1.4 0 2.6 0 3.9.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.3-.6l-3.3-6.7c2-1.3 3.5-3.3 3.5-5.5 0-2.7-2.2-4.9-6.2-4.9-1.6 0-3.7.1-5.6.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.2-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-3c.6.1 1.2.1 1.8.1h.3zm-36.4-19.4c-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.8-.1 4.6-.1h3.8c2 0 5 0 6.8.1l.3-.4c.2-2.4.3-4.2.3-5.9-.8-.2-1.7-.3-2.5-.2-.3 1.2-.6 2.4-1 3.6h-5.6v-5.9c1.7 0 3.4.1 5.2.1.2-.7.3-1.5.3-2.4l-.3-.3c-1.7 0-3.5.1-5.2.1v-5.4h5.2c.2 1 .3 2.1.4 3.2.8.2 1.6.2 2.6 0 .3-1.6.4-3.3.4-5.7l-.3-.4c-1.8.1-4.8.1-6.8.1zm-21.5 2.5-4.6 13.3h-.1l-.1-3-3.7-10.3 2.6-.5c0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.5.3 2.3.6l6.2 17.1c1.3 0 2.8.1 3.8-.1l6.1-16.9c.8-.1 1.5-.3 2.1-.6 0-.7 0-1.4-.1-2-1 .1-2.4.1-3.7.1-1.5 0-2.8-.1-3.9-.1-.1.7-.2 1.4-.2 2zm-33.9 0c.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.3 0 2.7-.1 4.6-.1 1.6 0 3.3 0 4.5.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-7.9c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8 0 1.6.2 2.5.5m-17.2 16.8v-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.8.1-1.3 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.9h-.1l-.7-3.2-6.9-12.1c-1-.1-2-.1-3.2-.1-1.5 0-3-.1-4.2-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v8.6c0 .6 0 1.2-.1 1.8-.8.3-1.7.5-2.5.6 0 .7.1 1.4.2 2 1.2 0 2.6-.1 3.9-.1 1.2 0 2.8 0 3.9.1.1-.6.2-1.3.2-2-.7-.3-1.5-.5-2.4-.6-.1-.8-.1-1.6-.1-2.4v-10.6h.1l.7 3.2 7.1 12.6c.9-.1 3.6 0 4.8-.4m-33-12.8c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.7.1-3.9.1-1.4 0-2.8-.1-4-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v5.6c0 2.4-.7 3.5-1 3.9s-1.5 1-2.7 1c-2.7 0-4-1.8-4-5.8v-4.7c0-1.7 0-2.9.1-4 .9-.1 1.7-.3 2.4-.6 0-.7 0-1.4-.2-2-1.1.1-2.9.1-4.5.1-1.8 0-3.3-.1-4.6-.1-.2.7-.2 1.4-.2 2 .8.1 1.7.3 2.5.6.1 1.1.1 2.3.1 4v6.1c0 5.3 2.6 7.3 7.2 7.3 6 0 8.1-3.8 8.1-8.6z"/><path d="m458.8 56.8c0-3-2.4-5.4-5.4-5.4s-5.4 2.4-5.4 5.4 2.4 5.4 5.4 5.4 5.4-2.5 5.4-5.4z"/><path d="m521.6 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.2 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.7 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.3.7.3.9.7 1.3 2 2.2 3.6 2.2l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-.9c-1.2 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1 0-1.7-.1-3.1-.5-4.5z"/><path d="m458.5 86c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.7 0 7.3.1 9 .1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-2.5z"/><path d="m480.2 68.9c0-7 .1-12 .2-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m409.6 89.7c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.1 0 6 .1 7.3.1.3-.8.4-2.9.4-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-11.7c0-.8-.1-1.5-.2-2.1 1.5-.8 3.2-1.4 5-1.4 3.5 0 4 3.1 4 7.2v9.3c0 1.3-.1 2.2-.3 3.6-.9.5-2.1.8-3.2 1.1 0 1.5.1 3.5.3 4.3 2 0 4.3-.1 7.9-.1 2.6 0 7.3.1 8.9.1.3-.8.4-2.9.4-4.3-1.1-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-11.8c0-6.9-4.7-10-9.8-10-3.9 0-7 1.7-9.8 4-1.8-2.7-5-4-8.2-4-3.5 0-6.4 1.4-8.9 3.3-.3-1.1-.7-2.1-1-2.7l-1-.5c-4.2.3-8.1 1-11.8 2.3-.3 1.3-.2 2.7.3 3.9 1.7.2 3.4.5 5 1v15.6c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.7-.1 2.2 0 6 .1 7.4.1.2-.8.3-2.9.3-4.3-.8-.4-2-.9-3.1-1.1-.1-1.5-.2-3.1-.2-4.8v-14c1.5-.8 3.1-1.3 4.8-1.3 3.5 0 4 3.1 4 7.2v9.3z"/><path d="m382.9 92.2c-1.3.3-2.6.6-4.1.7-.1-1.4-.1-3.2-.1-4.4v-11.3c0-8.9-7.1-10.4-11.2-10.4-5.1 0-9.7 1.4-13.5 3.6 0 3.1.8 5.8 2.1 7.7 1.9.4 3.7.1 5.6-.8 0-1.6.1-3.3.5-4.8 1.2-.2 2.1-.3 3.3-.3 2.8 0 3.8 2.7 3.9 6.5-7.3 1.8-17.4 5.8-17.4 12.7 0 5.3 3.1 8 9.1 8 3.1 0 6.6-1.7 9.5-4 1 2.4 2.6 4 4.3 4 3.4 0 7-2.2 9.3-4.6-.1-1.1-.6-2.1-1.3-2.6zm-13.4-.9c-1.5.9-2.9 1.6-4.1 1.6-2.6 0-3.9-1.8-3.9-3.7 0-1 .5-2.6 1.2-3.2.6-.4 3.6-1.1 6.8-1.5z"/><path d="m343.3 74.6c-3.9.1-6.7.3-10.5.3v-12.9h10.4c.5 2.5.8 5.2 1 7.8 1.7.4 3.4.4 5.7 0 .8-3.8 1-7.7.8-13.2l-.8-.8c-4 .1-9.5.1-14 .1h-7.9c-4 0-7.3-.1-10.1-.1-.4 1.5-.5 3-.5 4.5 1.9.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 4.2 0 8.8 0 11.8.1.4-1.4.5-2.9.4-4.5-2.1-.6-4.5-1-7.2-1.2-.2-1.7-.3-3.5-.3-5.3v-7.3c3.8.1 6.6.1 10.6.2.4-1.5.6-3.4.7-5.2z"/><path d="m263.1 68.9c0-7 .1-12 .3-18.4l-.8-.8c-4.7.1-9.4.8-14 2.4-.3 1.3-.1 2.6.3 3.9 1.7.2 3.4.6 5 1v32.8c0 1.3-.1 2.2-.3 3.6-1.3.5-3.3.9-5.1 1.1 0 1.5.2 3.5.4 4.3 2.4 0 5.2-.1 9.5-.1 2.9 0 7.5.1 9.2.1.3-.8.4-2.9.4-4.3-1.2-.5-3.1-1-4.8-1.1-.1-1.5-.2-3.1-.2-4.8v-19.7z"/><path d="m231.9 66.8c-10 0-15.8 8.9-15.8 16.9 0 9.2 4.9 15.8 15 15.8 10 0 15.8-8.9 15.8-16.9 0-9-4.8-15.8-15-15.8zm3.3 25.6c-.5.7-2.2 1-3.2 1-4.9 0-6.6-6.5-6.6-11.2 0-3.4 1-6.4 2.3-8.1.5-.7 2.2-1 3.2-1 4.9 0 6.6 6.5 6.6 11.2 0 3.3-1 6.3-2.3 8.1z"/><path d="m198.1 61.4c.2 2.4.3 5 .3 8.8v3.1h-17.1v-3.1c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.8.2 3.7.6 5.6 1.2.2 2.4.3 5 .3 8.8v18.8c0 1.3-.1 2.7-.3 3.9-1.9.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.3 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-8.3h5c3.8 0 8 .2 12.1.4v9.3c0 1.3-.1 2.7-.3 3.9-1.8.6-3.7 1-5.6 1.2 0 1.5.1 3 .5 4.5 2.7 0 6-.1 10-.1 3.5 0 7.4 0 9.8.1.3-1.4.4-2.9.4-4.5-1.5-.6-3.3-1-5.2-1.2-.2-1.7-.3-3.5-.3-5.3v-17.3c0-3.8.1-6.4.3-8.8 1.9-.2 3.6-.6 5.2-1.2.1-1.6-.1-3.1-.4-4.5-2.5.1-6.3.1-9.8.1-4 0-7.3-.1-10-.1-.4 1.5-.5 3-.5 4.5 1.9.1 3.8.6 5.6 1.1"/><path d="m304.4 67.6c-2 .1-3.8.1-5.6.1-3.7 0-6.4-.1-9-.1-.4 1-.6 2.8-.6 4.3l4.1 1.1-6 18.2-.1.3h-.2v-.5-5.2l-4.3-12.8 3.8-1.1c.1-1.5.1-2.9-.3-4.3-5.3 0-8.4.1-10.3.1-2.9 0-5.2-.1-7.1-.1-.3 1-.4 2.8-.4 4.3 1.3.2 3.2.6 4.3 1.1 0 0 6.7 17.9 8.4 22.6.1.4.2.7.3.9.7 1.3 2 2.2 3.6 2.2h.1l-.9 2.6c-1.7 5.2-5.8 6.2-11.3 6.2h-1c-1.1 1.4-1.7 3-1.4 4.9 1.8.9 4.7 1.4 7.9 1.4 5.9 0 9.8-6.1 13.3-15.7l9-25c1.4-.2 2.9-.5 4.1-1.1.1-1.6 0-3-.4-4.4z"/></g></svg>
+        <div class="foot__divider"></div>
+        <div class="foot__credit">
+          <strong>HFU Design System &middot; Component Library</strong>
+          Twenty reusable patterns underlying the seven design concepts for the holyfamily.edu relaunch. Built with Fraunces + Inter Tight, mobile-first, production-ready.
+        </div>
+      </div>
+      <a href="index.html" class="foot__link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8H3m4-4-4 4 4 4"/></svg>
+        Back to portal
+      </a>
+    </div>
+  </footer>
+
+  <!-- ═════════════════ INTERACTIVE JS ═════════════════ -->
+  <script>
+    (function () {
+      // Horizontal tabs (03)
+      document.querySelectorAll('[data-tabs]').forEach(function (group) {
+        var tabs = group.querySelectorAll('[data-tab]');
+        var panels = group.querySelectorAll('[data-panel]');
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            var key = tab.getAttribute('data-tab');
+            tabs.forEach(function (t) { t.classList.remove('is-active'); });
+            panels.forEach(function (p) { p.classList.remove('is-active'); });
+            tab.classList.add('is-active');
+            var panel = group.querySelector('[data-panel="' + key + '"]');
+            if (panel) panel.classList.add('is-active');
+          });
+        });
+      });
+
+      // Vertical tabs (04)
+      document.querySelectorAll('[data-vtabs]').forEach(function (group) {
+        var tabs = group.querySelectorAll('[data-vtab]');
+        var panels = group.querySelectorAll('[data-vpanel]');
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            var key = tab.getAttribute('data-vtab');
+            tabs.forEach(function (t) { t.classList.remove('is-active'); });
+            panels.forEach(function (p) { p.classList.remove('is-active'); });
+            tab.classList.add('is-active');
+            var panel = group.querySelector('[data-vpanel="' + key + '"]');
+            if (panel) panel.classList.add('is-active');
+          });
+        });
+      });
+
+      // Banner close (20)
+      var ban = document.getElementById('ban20');
+      var banClose = document.getElementById('ban20Close');
+      if (ban && banClose) {
+        banClose.addEventListener('click', function () {
+          ban.style.transition = 'opacity 260ms ease, transform 260ms ease';
+          ban.style.opacity = '0';
+          ban.style.transform = 'translateY(-8px)';
+          setTimeout(function () { ban.style.display = 'none'; }, 280);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

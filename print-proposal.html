@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holy Family University Website Redesign · Proposal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════════════════════════════════════
+       PRINT-OPTIMIZED PROPOSAL
+       Letter (8.5 x 11). Hand-paginated. Designed for Chrome page.pdf().
+       Each .page is a fixed letter page with content sized to fit.
+       ════════════════════════════════════════════════════════════════════ */
+
+    /* Self-hosted Roobert (display) */
+    @font-face {
+      font-family: 'Roobert';
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: italic;
+      font-weight: 400;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: normal;
+      font-weight: 600;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: italic;
+      font-weight: 700;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: normal;
+      font-weight: 900;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype');
+    }
+    @font-face {
+      font-family: 'Roobert';
+      font-style: italic;
+      font-weight: 900;
+      font-display: block;
+      src: url('assets/fonts/roobert/Roobert-HeavyItalic.otf') format('opentype');
+    }
+
+    :root {
+      --bg:        #FAFAFA;
+      --bg-card:   #FFFFFF;
+      --fg:        #1C1E24;
+      --fg-muted:  #444851;
+      --fg-subtle: #6B7079;
+      --fg-ghost:  #9499A1;
+      --teal:      #2E9E9E;
+      --teal-deep: #1F7676;
+      --teal-faint:#E7F4F4;
+      --border:    #E2E5E9;
+      --border-strong: #C6CBD2;
+      --surface-sage:     #F1F4F7;
+      --surface-blush:    #F4F5FA;
+      --surface-lavender: #F3F4FA;
+      --surface-sand:     #EFF1F5;
+
+      --display: 'Roobert', 'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --body:    'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body { background: white; color: var(--fg); font-family: var(--body); font-size: 11pt; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── Page primitive ────────────────────────────────────────────── */
+    .page {
+      width: 7.2in;     /* letter minus 0.65in inline margins */
+      height: 9.8in;    /* letter minus 0.6in block margins */
+      margin: 0;
+      padding: 0;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: white;
+    }
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    /* Tinted pages */
+    .page--sage { background: var(--surface-sage); }
+    .page--blush { background: var(--surface-blush); }
+    .page--lavender { background: var(--surface-lavender); }
+    .page--sand { background: var(--surface-sand); }
+    .page--ink { background: #0F1117; color: #F5F6F8; }
+    .page--ink h1, .page--ink h2, .page--ink h3, .page--ink p { color: #F5F6F8; }
+    .page--ink em { color: var(--teal); }
+
+    /* ── Page header (eyebrow + page count) ───────────────────────── */
+    .page__header {
+      flex-shrink: 0;
+      padding: 0.45in 0.55in 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .page--ink .page__header { color: rgba(255,255,255,0.55); }
+
+    .page__eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+    .page__eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--teal);
+    }
+
+    .page__num { font-feature-settings: 'tnum' 1; }
+
+    /* ── Page body ────────────────────────────────────────────────── */
+    .page__body {
+      flex: 1;
+      padding: 0.45in 0.55in;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    /* ── Page footer ──────────────────────────────────────────────── */
+    .page__footer {
+      flex-shrink: 0;
+      padding: 0 0.55in 0.45in;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+    }
+    .page--ink .page__footer { color: rgba(255,255,255,0.4); }
+
+    /* ── Cover (page 1) ───────────────────────────────────────────── */
+    .cover .page__body {
+      padding: 1.5in 0.55in 0.55in;
+      justify-content: space-between;
+    }
+    .cover__mark {
+      font-family: var(--mono);
+      font-size: 9pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cover__mark::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .cover__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 56pt;
+      line-height: 0.92;
+      letter-spacing: -0.025em;
+      margin-top: 0.45in;
+      max-width: 11ch;
+      color: var(--fg);
+    }
+    .cover__title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal);
+    }
+    .cover__divider {
+      margin: 0.8in 0 0.45in;
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+    .cover__meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4in;
+      font-size: 9pt;
+    }
+    .cover__meta dt {
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      margin-bottom: 6px;
+    }
+    .cover__meta dd {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 11pt;
+      color: var(--fg);
+      line-height: 1.2;
+    }
+    .cover__meta dd small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 9pt;
+      color: var(--fg-muted);
+      margin-top: 4px;
+    }
+
+    /* ── Number page (giant stat) ─────────────────────────────────── */
+    .number .page__body {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .number__giant {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 180pt;
+      line-height: 0.85;
+      letter-spacing: -0.045em;
+      color: var(--fg);
+      font-feature-settings: 'tnum' 1;
+    }
+    .number__caption {
+      font-family: var(--display);
+      font-size: 24pt;
+      font-style: italic;
+      line-height: 1.15;
+      max-width: 18ch;
+      margin: 0.4in auto 0;
+      color: var(--fg-muted);
+    }
+    .number__caption strong {
+      color: var(--teal);
+      font-weight: 400;
+    }
+
+    /* ── Stat strip on cover or any page ─────────────────────────── */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 0.55in;
+      padding-top: 0.3in;
+      border-top: 1px solid var(--border);
+    }
+    .stat {
+      padding: 0 16px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat__num {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 26pt;
+      line-height: 1;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+      font-feature-settings: 'tnum' 1;
+    }
+    .stat__num em { font-style: italic; color: var(--teal); }
+    .stat__label {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-top: 8px;
+    }
+
+    /* ── Bleed (full-width image with caption) ──────────────────── */
+    .bleed-image {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 0;
+    }
+    .bleed-image__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 32pt;
+      line-height: 0.95;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+      max-width: 16ch;
+      margin-bottom: 8px;
+    }
+    .bleed-image__title em { font-style: italic; color: var(--teal); }
+    .bleed-image__lede {
+      font-size: 11pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 60ch;
+      margin-bottom: 12px;
+    }
+    .bleed-image__frame {
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 24px rgba(15, 17, 23, 0.08);
+    }
+    .bleed-image__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .bleed-image__cap {
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-top: 4px;
+    }
+    .bleed-image__cap strong { color: var(--fg); font-weight: 500; }
+
+    /* ── Compare (side by side) ──────────────────────────────────── */
+    .compare-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      min-height: 0;
+    }
+    .compare-grid figure {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 0;
+    }
+    .compare-grid figure img {
+      flex: 1;
+      width: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: white;
+      min-height: 0;
+    }
+    .compare-grid figcaption {
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .compare-grid figcaption strong { display: block; color: var(--fg); font-weight: 500; margin-bottom: 3px; }
+
+    /* ── Mockup page (single tall screenshot) ───────────────────── */
+    .mockup-page .page__body { gap: 14px; }
+    .mockup-page__head {
+      flex-shrink: 0;
+    }
+    .mockup-page__eyebrow {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .mockup-page__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 28pt;
+      line-height: 0.95;
+      letter-spacing: -0.022em;
+      color: var(--fg);
+    }
+    .mockup-page__title em { font-style: italic; color: var(--teal); }
+    .mockup-page__frame {
+      flex: 1;
+      min-height: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 24px rgba(15, 17, 23, 0.08);
+    }
+    .mockup-page__frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* ── Approach (numbered pillars) ─────────────────────────────── */
+    .approach-list {
+      list-style: none;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--border-strong);
+    }
+    .approach-list li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .approach-list__num {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      padding-top: 4px;
+    }
+    .approach-list__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 18pt;
+      line-height: 1.05;
+      color: var(--fg);
+      letter-spacing: -0.015em;
+      margin-bottom: 6px;
+    }
+    .approach-list__title em { font-style: italic; color: var(--teal); }
+    .approach-list__body {
+      font-size: 10pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 60ch;
+    }
+
+    /* ── Timeline ────────────────────────────────────────────────── */
+    .timeline-bar {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--border-strong);
+      margin-top: 0.4in;
+    }
+    .timeline-bar li {
+      background: white;
+      padding: 18px 14px;
+      min-height: 1.4in;
+      display: flex;
+      flex-direction: column;
+      border-top: 3px solid var(--teal);
+    }
+    .timeline-bar__weeks {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+    .timeline-bar__name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 13pt;
+      line-height: 1.05;
+      color: var(--fg);
+      margin-top: 12px;
+    }
+    .timeline-bar__dates {
+      font-family: var(--mono);
+      font-size: 7pt;
+      color: var(--fg-muted);
+      margin-top: auto;
+    }
+
+    /* ── Approval gates (timeline page) ──────────────────────────── */
+    .gates {
+      margin-top: 0.45in;
+      padding-top: 0.3in;
+      border-top: 1px solid var(--border);
+    }
+    .gates__head { margin-bottom: 0.2in; }
+    .gates__note {
+      font-size: 9pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 62ch;
+    }
+    .gates__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .gates__list li {
+      padding: 12px 0;
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 16px;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      font-size: 10pt;
+    }
+    .gates__num {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+    }
+    .gates__label {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 10.5pt;
+      color: var(--fg);
+    }
+    .gates__date {
+      font-family: var(--mono);
+      font-size: 8pt;
+      color: var(--fg-muted);
+    }
+
+    /* ── Pricing ─────────────────────────────────────────────────── */
+    .price-row {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 0.4in;
+      align-items: end;
+    }
+    .price-row__big {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 56pt;
+      line-height: 0.85;
+      color: var(--fg);
+      letter-spacing: -0.03em;
+      text-align: right;
+      font-feature-settings: 'tnum' 1;
+      white-space: nowrap;
+    }
+    .price-row__big small {
+      display: block;
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 7.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-top: 14px;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.45in;
+      font-size: 10pt;
+    }
+    .price-table tr { border-bottom: 1px solid var(--border); }
+    .price-table tr:first-child { border-top: 2px solid var(--border-strong); }
+    .price-table td {
+      padding: 14px 0;
+      vertical-align: baseline;
+    }
+    .price-table td:first-child {
+      font-family: var(--mono);
+      font-size: 8pt;
+      color: var(--teal);
+      width: 36px;
+    }
+    .price-table td:nth-child(2) {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 12pt;
+      color: var(--fg);
+    }
+    .price-table td:last-child {
+      font-family: var(--mono);
+      font-size: 9pt;
+      color: var(--fg-muted);
+      text-align: right;
+    }
+
+    /* ── Phase cards (post-launch) ───────────────────────────────── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0.4in;
+    }
+    .phase-card {
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+    }
+    .phase-card__num {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 32pt;
+      line-height: 0.9;
+      color: var(--teal);
+      letter-spacing: -0.025em;
+      font-feature-settings: 'tnum' 1;
+    }
+    .phase-card__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 14pt;
+      color: var(--fg);
+      margin: 14px 0 10px;
+    }
+    .phase-card__body {
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+    }
+
+    /* ── Why us cards ─────────────────────────────────────────────── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.4in;
+    }
+    .why-card {
+      padding: 24px 22px;
+      background: white;
+    }
+    .why-card__num {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      color: var(--teal);
+    }
+    .why-card__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 16pt;
+      line-height: 1.05;
+      color: var(--fg);
+      margin: 10px 0 10px;
+    }
+    .why-card__body {
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+    }
+
+    /* ── Quote page ──────────────────────────────────────────────── */
+    .quote .page__body {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .quote__mark {
+      font-family: var(--display);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 120pt;
+      line-height: 0.7;
+      color: var(--teal);
+      opacity: 0.4;
+      margin-bottom: 12px;
+    }
+    .quote__body {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 36pt;
+      line-height: 1.1;
+      color: var(--fg);
+      max-width: 16ch;
+    }
+    .quote__by {
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-top: 0.5in;
+    }
+
+    /* ── Final CTA page ──────────────────────────────────────────── */
+    .final .page__body {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .final__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 38pt;
+      line-height: 1.0;
+      color: var(--fg);
+      max-width: 18ch;
+      letter-spacing: -0.02em;
+    }
+    .final__title em { font-style: italic; color: var(--teal); }
+    .final__lede {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 14pt;
+      color: var(--fg-muted);
+      margin-top: 0.4in;
+      max-width: 38ch;
+      line-height: 1.4;
+    }
+    .final__meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5in;
+      margin-top: 0.7in;
+      width: 60%;
+      padding-top: 0.3in;
+      border-top: 1px solid var(--border);
+    }
+    .final__meta dt {
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      margin-bottom: 6px;
+    }
+    .final__meta dd {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 11pt;
+      color: var(--fg);
+    }
+
+    /* ── Section eyebrow / heading utility ───────────────────────── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 8pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 14px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 36pt;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+      max-width: 14ch;
+    }
+    .h1 em { font-style: italic; color: var(--teal); }
+    .lede {
+      font-size: 11pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 60ch;
+      margin-top: 16px;
+    }
+
+    /* ── Print-specific overrides for page.pdf() ────────────────── */
+    @media print {
+      html, body { background: white; }
+      .page { box-shadow: none; }
+    }
+
+    /* ── Screen preview frame ────────────────────────────────────── */
+    @media screen {
+      body {
+        background: #2A2D34;
+        padding: 32px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+      .page {
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 1: COVER
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page cover">
+    <header class="page__header">
+      <span class="page__eyebrow">Proposal · 001</span>
+      <span class="page__num">01 / 12</span>
+    </header>
+    <div class="page__body">
+      <div>
+        <div class="cover__mark">Holy Family University · Website Redesign RFP</div>
+        <h1 class="cover__title">Holy Family<br>University<br><em>Website Redesign</em></h1>
+      </div>
+      <div>
+        <div class="cover__divider"></div>
+        <dl class="cover__meta">
+          <div>
+            <dt>Prepared for</dt>
+            <dd>Rick Mitchell<small>Director of Digital Experience Design</small></dd>
+          </div>
+          <div>
+            <dt>Prepared by</dt>
+            <dd>[Agency Name]<small>[City, State]</small></dd>
+          </div>
+          <div>
+            <dt>Submitted</dt>
+            <dd>April 17, 2026<small>5:00 PM EDT</small></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Holy Family University Website Redesign Proposal</span>
+      <span>April 2026</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 2: THE NUMBER
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page number page--sage">
+    <header class="page__header">
+      <span class="page__eyebrow">The state of the site</span>
+      <span class="page__num">02 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="number__giant">1,601</div>
+      <p class="number__caption">URLs on holyfamily.edu today.<br><strong>654 of them are news articles.</strong></p>
+    </div>
+    <footer class="page__footer">
+      <span>Sitemap scrape · 2026-04-10</span>
+      <span>23 duplicate request-for-information forms · 910 stale URLs</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 3: CURRENT STATE (HFU homepage screenshot, full-bleed)
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page">
+    <header class="page__header">
+      <span class="page__eyebrow">The current experience</span>
+      <span class="page__num">03 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="bleed-image">
+        <div class="eyebrow">holyfamily.edu, April 2026</div>
+        <h2 class="bleed-image__title">A site that has reached the end of its <em>useful life.</em></h2>
+        <p class="bleed-image__lede">Drupal 10 on Pantheon. 21.19 second mobile largest contentful paint. Roughly four megabytes of unoptimized imagery on the homepage. A Lighthouse accessibility score of 96 that masks the 60-plus percent of WCAG failures only manual testing catches.</p>
+        <div class="bleed-image__frame">
+          <img src="assets/screenshots/hfu-home.png" alt="Current Holy Family University homepage">
+        </div>
+        <p class="bleed-image__cap"><strong>holyfamily.edu, April 2026</strong>Drupal 10 · 21.19s mobile LCP · 1,601 indexed URLs</p>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Sources: Lighthouse 12.8.2, sitemap.xml scrape</span>
+      <span>03 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 4: PEER COMPARISON
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--blush">
+    <header class="page__header">
+      <span class="page__eyebrow">Where modern Catholic universities are</span>
+      <span class="page__num">04 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">A gap you can measure in seconds</div>
+      <h2 class="bleed-image__title">Today versus <em>2024.</em></h2>
+      <div class="compare-grid" style="margin-top: 18px;">
+        <figure>
+          <img src="assets/screenshots/hfu-home.png" alt="Holy Family University homepage today">
+          <figcaption><strong>Holy Family University, today</strong>Drupal 10 · circa 2018 design language</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/screenshots/peer-creighton.png" alt="Creighton University homepage 2024">
+          <figcaption><strong>Creighton University, 2024</strong>Editorial grid · smart contact card · modern type</figcaption>
+        </figure>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Peer screenshots · April 2026</span>
+      <span>04 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 5: CONCEPT ONE MOCKUP
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page mockup-page page--lavender">
+    <header class="page__header">
+      <span class="page__eyebrow">What it could look like</span>
+      <span class="page__num">05 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="mockup-page__head">
+        <div class="mockup-page__eyebrow">Concept one · classic editorial</div>
+        <h2 class="mockup-page__title">Not a wireframe. <em>An actual design.</em></h2>
+      </div>
+      <div class="mockup-page__frame">
+        <img src="assets/screenshots/mockup-hfu-redesigned.png" alt="Concept one mockup of the proposed Holy Family University homepage">
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Inspired by Classroom X template · HFU navy #06213F · HFU yellow #FFCC15</span>
+      <span>05 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 6: CONCEPT TWO MOCKUP
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page mockup-page page--sage">
+    <header class="page__header">
+      <span class="page__eyebrow">A second visual direction</span>
+      <span class="page__num">06 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="mockup-page__head">
+        <div class="mockup-page__eyebrow">Concept two · contemporary higher-ed</div>
+        <h2 class="mockup-page__title">A second direction. <em>Same brand.</em></h2>
+      </div>
+      <div class="mockup-page__frame">
+        <img src="assets/screenshots/mockup2-fullpage.png" alt="Concept two mockup of the proposed Holy Family University homepage">
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Inspired by Maxion Home Three template · HFU brand throughout</span>
+      <span>06 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 7: APPROACH (4 numbered pillars)
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page">
+    <header class="page__header">
+      <span class="page__eyebrow">Our approach</span>
+      <span class="page__num">07 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Four moves, ten months</div>
+      <h2 class="h1">Four moves. <em>One outcome.</em></h2>
+      <ol class="approach-list" style="margin-top: 0.3in;">
+        <li>
+          <span class="approach-list__num">01</span>
+          <div>
+            <h3 class="approach-list__title">Consolidate 1,601 URLs to approximately <em>1,200.</em></h3>
+            <p class="approach-list__body">An AI-assisted audit retires stale news, merges 23 duplicate request-for-information forms into one smart form, and resolves 180-plus top-level sections into a clean 8 to 12.</p>
+          </div>
+        </li>
+        <li>
+          <span class="approach-list__num">02</span>
+          <div>
+            <h3 class="approach-list__title">Migrate Drupal 10 to <em>WordPress</em> on Pantheon.</h3>
+            <p class="approach-list__body">A custom block theme, Advanced Custom Fields Pro for content modeling, and a Dev / Test / Live workflow Rick Mitchell's team already knows how to run.</p>
+          </div>
+        </li>
+        <li>
+          <span class="approach-list__num">03</span>
+          <div>
+            <h3 class="approach-list__title">Integrate Slate via <em>Gravity Forms</em> webhooks.</h3>
+            <p class="approach-list__body">Native WordPress forms styled to match the design system, posting directly to Slate's Source Format endpoint in real time. Slate Ping site-wide on day one.</p>
+          </div>
+        </li>
+        <li>
+          <span class="approach-list__num">04</span>
+          <div>
+            <h3 class="approach-list__title">Build <em>WCAG 2.2 AA</em> from day one.</h3>
+            <p class="approach-list__body">Accessibility shifted left into design tokens, the component library, content editor guardrails, and CI-integrated axe-core. Manual screen reader audit on every template.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section B · Approach and Methodology</span>
+      <span>07 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 8: TIMELINE
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--sand">
+    <header class="page__header">
+      <span class="page__eyebrow">Timeline</span>
+      <span class="page__num">08 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Ten months from kickoff to launch</div>
+      <h2 class="h1">June 2026 to <em>April 2027.</em></h2>
+      <p class="lede">Five phases. Four formal approval gates. A four week buffer in phase five for any UAT slippage. The launch window targets March 1, 2027.</p>
+      <ol class="timeline-bar">
+        <li>
+          <span class="timeline-bar__weeks">Weeks 1 to 6</span>
+          <span class="timeline-bar__name">Discovery<br>and Strategy</span>
+          <span class="timeline-bar__dates">Jun to Jul 2026</span>
+        </li>
+        <li>
+          <span class="timeline-bar__weeks">Weeks 7 to 14</span>
+          <span class="timeline-bar__name">Design<br>System</span>
+          <span class="timeline-bar__dates">Jul to Sep 2026</span>
+        </li>
+        <li>
+          <span class="timeline-bar__weeks">Weeks 15 to 26</span>
+          <span class="timeline-bar__name">Development<br>and CMS</span>
+          <span class="timeline-bar__dates">Sep to Nov 2026</span>
+        </li>
+        <li>
+          <span class="timeline-bar__weeks">Weeks 27 to 34</span>
+          <span class="timeline-bar__name">Migration<br>and Testing</span>
+          <span class="timeline-bar__dates">Dec to Jan 2027</span>
+        </li>
+        <li>
+          <span class="timeline-bar__weeks">Weeks 35 to 40</span>
+          <span class="timeline-bar__name">Training<br>and Launch</span>
+          <span class="timeline-bar__dates">Feb to Apr 2027</span>
+        </li>
+      </ol>
+
+      <div class="gates">
+        <div class="gates__head">
+          <div class="eyebrow" style="margin-bottom: 6px;">Four formal approval gates</div>
+          <p class="gates__note">Each gate requires a signed deliverable from the prior phase before the next phase begins. No work proceeds past a gate without Rick Mitchell's written approval.</p>
+        </div>
+        <ol class="gates__list">
+          <li><span class="gates__num">G1</span><span class="gates__label">Content model and information architecture approved</span><span class="gates__date">Jul 10, 2026</span></li>
+          <li><span class="gates__num">G2</span><span class="gates__label">Design system and component library approved</span><span class="gates__date">Sep 4, 2026</span></li>
+          <li><span class="gates__num">G3</span><span class="gates__label">Feature-complete site on Pantheon Dev environment</span><span class="gates__date">Nov 25, 2026</span></li>
+          <li><span class="gates__num">G4</span><span class="gates__label">Migrated content, accessibility report, release candidate</span><span class="gates__date">Jan 22, 2027</span></li>
+        </ol>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section D · Timeline and Project Management</span>
+      <span>08 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 9: PRICING
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page">
+    <header class="page__header">
+      <span class="page__eyebrow">Investment</span>
+      <span class="page__num">09 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="price-row">
+        <div>
+          <div class="eyebrow">One quote</div>
+          <h2 class="h1" style="font-size: 30pt;">Fixed fee.<br>One quote.<br><em>No scope creep.</em></h2>
+        </div>
+        <div class="price-row__big">
+          $XXX,XXX
+          <small>Base scope · 90 day support included</small>
+        </div>
+      </div>
+      <table class="price-table">
+        <tr><td>01</td><td>Discovery and strategy</td><td>[TODO]</td></tr>
+        <tr><td>02</td><td>Information architecture and content strategy</td><td>[TODO]</td></tr>
+        <tr><td>03</td><td>Design system and UX</td><td>[TODO]</td></tr>
+        <tr><td>04</td><td>Development and CMS build</td><td>[TODO]</td></tr>
+        <tr><td>05</td><td>Slate CRM integration</td><td>[TODO]</td></tr>
+        <tr><td>06</td><td>Content migration and QA</td><td>[TODO]</td></tr>
+        <tr><td>07</td><td>Training, launch, 90 day post-launch support</td><td>[TODO]</td></tr>
+      </table>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section E · Budget and Pricing</span>
+      <span>09 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 10: POST-LAUNCH PHASES
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--blush">
+    <header class="page__header">
+      <span class="page__eyebrow">After launch</span>
+      <span class="page__num">10 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Ninety days, then full ownership</div>
+      <h2 class="h1">Stabilize. Optimize. <em>Hand off.</em></h2>
+      <div class="phase-grid">
+        <div class="phase-card">
+          <div class="phase-card__num">+30</div>
+          <h3 class="phase-card__title">Stabilize</h3>
+          <p class="phase-card__body">Bug fixes for any defect we shipped. Form submissions to Slate verified daily. Conversion baseline report at day thirty. Two follow up Q and A sessions for your team.</p>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card__num">+60</div>
+          <h3 class="phase-card__title">Optimize</h3>
+          <p class="phase-card__body">Heatmap and session recording review across program pages and the admissions flow. SEO health check via Google Search Console. Redirect audit on the full 1,601 URL map.</p>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card__num">+90</div>
+          <h3 class="phase-card__title">Hand off</h3>
+          <p class="phase-card__body">Final issue resolution. Knowledge transfer confirmed across content editing, deployment, accessibility maintenance. Source code, design files, documentation, transferred. We step back.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section F · Post-Launch Support</span>
+      <span>10 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 11: WHY US (4 differentiator cards)
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--sand">
+    <header class="page__header">
+      <span class="page__eyebrow">Why us</span>
+      <span class="page__num">11 / 12</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Four reasons</div>
+      <h2 class="h1">Right size. Right platform. <em>Right philosophy.</em></h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why__num why-card__num">01</div>
+          <h3 class="why-card__title">WordPress-native.</h3>
+          <p class="why-card__body">We build WordPress every day. We are not a Drupal shop pivoting to your stated preference. The codebase your team inherits will read like WordPress, deploy like WordPress, and hire like WordPress.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">02</div>
+          <h3 class="why-card__title">Right-sized.</h3>
+          <p class="why-card__body">Senior practitioners on every deliverable, not a junior bench inheriting the project after the pitch. Holy Family University is a priority engagement, not a mid-tier account subsidizing larger ones.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">03</div>
+          <h3 class="why-card__title">Self-sufficiency over dependency.</h3>
+          <p class="why-card__body">Our knowledge transfer plan ends agency involvement at day ninety. Compare this to a continuous-improvement retainer model. You should not need us once we leave.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">04</div>
+          <h3 class="why-card__title">Catholic higher education fluency.</h3>
+          <p class="why-card__body">Mission integration, campus ministry, the Sisters of the Holy Family of Nazareth tradition, faith-based identity alongside academic rigor. We treat all of it as competitive advantage, not constraint.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section G · Innovation and Differentiation</span>
+      <span>11 / 12</span>
+    </footer>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 12: FINAL CTA
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page final page--ink">
+    <header class="page__header">
+      <span class="page__eyebrow">In closing</span>
+      <span class="page__num">12 / 12</span>
+    </header>
+    <div class="page__body">
+      <h2 class="final__title">We build for ownership, <em>not dependency.</em></h2>
+      <p class="final__lede">When we leave, Rick Mitchell's team runs this site without calling us. That is the standard we hold ourselves to and the outcome we are committing to here.</p>
+      <dl class="final__meta">
+        <div>
+          <dt>Submitted to</dt>
+          <dd>rmitchell2@holyfamily.edu</dd>
+        </div>
+        <div>
+          <dt>Deadline</dt>
+          <dd>April 17, 2026 · 5:00 PM EDT</dd>
+        </div>
+      </dl>
+    </div>
+    <footer class="page__footer">
+      <span>[Agency Name] · Holy Family University Website Redesign Proposal</span>
+      <span>12 / 12</span>
+    </footer>
+  </section>
+
+</body>
+</html>

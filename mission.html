@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Whole Person Thesis — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.08);
+      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 560px;
+      background:
+        radial-gradient(ellipse 60% 80% at 18% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 82% 22%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(46pt, 7vw, 92pt);
+      line-height: 0.94;
+      letter-spacing: -0.032em;
+      color: var(--text);
+      max-width: 15ch;
+      margin-bottom: 42px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 64ch;
+      font-size: 14.5pt;
+      line-height: 1.58;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+    .hero__lede em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.04em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+    .section__lede em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.04em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 2 — THE THESIS (centered hero pull quote)
+       ══════════════════════════════════════════════════════════════ */
+    .thesis {
+      margin-top: 140px;
+      padding: 96px 72px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .thesis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 90% at 50% 100%, rgba(46,158,158,0.1), transparent 70%),
+        radial-gradient(ellipse 50% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .thesis__mark {
+      position: relative;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 72pt;
+      line-height: 0;
+      color: var(--teal);
+      opacity: 0.7;
+      margin-bottom: 42px;
+      display: block;
+      height: 28px;
+    }
+    .thesis__quote {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(26pt, 3.4vw, 42pt);
+      line-height: 1.18;
+      letter-spacing: -0.022em;
+      color: var(--text);
+      max-width: 26ch;
+      margin: 0 auto;
+    }
+    .thesis__quote em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .thesis__attr {
+      position: relative;
+      margin-top: 40px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .thesis__attr::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--teal);
+      vertical-align: middle;
+      margin-right: 14px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 3 — FOUR PILLARS
+       ══════════════════════════════════════════════════════════════ */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .pillar {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 40px 44px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 280ms ease, transform 280ms ease;
+    }
+    .pillar:hover {
+      border-color: rgba(46,158,158,0.28);
+      transform: translateY(-2px);
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(46,158,158,0.32), transparent);
+      opacity: 0;
+      transition: opacity 280ms ease;
+    }
+    .pillar:hover::before { opacity: 1; }
+
+    .pillar__icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 32px;
+      color: var(--teal);
+      position: relative;
+    }
+    .pillar__icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: var(--teal);
+      stroke-width: 1.25;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pillar__num {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.2em;
+      color: var(--text-ghost);
+    }
+    .pillar__tag {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .pillar__name {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 26pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .pillar__name em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .pillar__tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14pt;
+      line-height: 1.35;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+      max-width: 34ch;
+    }
+    .pillar__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .pillar__list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 14px;
+      font-size: 10pt;
+      color: var(--text-dim);
+      line-height: 1.52;
+    }
+    .pillar__list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      margin-top: 8px;
+      box-shadow: 0 0 0 3px rgba(46,158,158,0.12);
+    }
+    .pillar__list b {
+      color: var(--text);
+      font-weight: 400;
+      font-family: var(--display);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 4 — MISSION-TO-METRIC MAP (table)
+       ══════════════════════════════════════════════════════════════ */
+    .map {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .map__head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.5fr;
+      padding: 24px 36px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.015);
+    }
+    .map__head-label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .map__row {
+      display: grid;
+      grid-template-columns: 0.9fr 1.5fr;
+      gap: 0;
+      padding: 32px 36px;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+      transition: background 220ms ease;
+      position: relative;
+    }
+    .map__row:last-child { border-bottom: 0; }
+    .map__row:hover {
+      background: rgba(46,158,158,0.05);
+    }
+    .map__row:hover .map__arrow {
+      color: var(--teal);
+      transform: translateX(3px);
+    }
+    .map__left {
+      padding-right: 32px;
+      position: relative;
+    }
+    .map__left::after {
+      content: '→';
+      position: absolute;
+      right: 12px;
+      top: 4px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18pt;
+      color: var(--text-ghost);
+      transition: color 220ms ease, transform 220ms ease;
+    }
+    .map__row:hover .map__left::after {
+      color: var(--teal);
+      transform: translateX(4px);
+    }
+    .map__lang {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 14pt;
+      line-height: 1.3;
+      color: var(--text);
+      max-width: 24ch;
+    }
+    .map__lang-kicker {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      font-style: normal;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 10px;
+    }
+    .map__right {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding-left: 32px;
+    }
+    .map__right-body {
+      flex: 1;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+    .map__right-body b {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .map__schema {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border: 1px solid rgba(46,158,158,0.28);
+      border-radius: 3px;
+      background: rgba(46,158,158,0.08);
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 5 — PERSONAS
+       ══════════════════════════════════════════════════════════════ */
+    .persona__switch {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .persona__btn {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 20px 18px;
+      text-align: left;
+      color: var(--text-dim);
+      transition: all 220ms ease;
+      cursor: pointer;
+      font-family: var(--body);
+    }
+    .persona__btn:hover {
+      border-color: rgba(46,158,158,0.3);
+      color: var(--text);
+    }
+    .persona__btn.is-active {
+      border-color: var(--teal);
+      background: rgba(46,158,158,0.06);
+      box-shadow: 0 0 28px -8px rgba(46,158,158,0.4);
+    }
+    .persona__btn-num {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .persona__btn.is-active .persona__btn-num { color: var(--teal); }
+    .persona__btn-name {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 12pt;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .persona__btn-name em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .persona__btn-desc {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: block;
+    }
+
+    .persona__panel {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    .persona__panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 90% at 100% 0%, rgba(46,158,158,0.08), transparent 65%);
+      pointer-events: none;
+    }
+    .persona__col { position: relative; }
+    .persona__col h4 {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 26px;
+    }
+    .persona__col h4::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--teal);
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .persona__search {
+      font-family: var(--mono);
+      font-size: 9.5pt;
+      color: var(--text-ghost);
+      padding: 18px 20px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .persona__search::before {
+      content: '⌕';
+      font-family: var(--serif);
+      color: var(--teal);
+      margin-right: 10px;
+      font-size: 12pt;
+    }
+    .persona__search b {
+      color: var(--text);
+      font-weight: 500;
+      font-family: var(--mono);
+    }
+    .persona__thought {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13pt;
+      line-height: 1.45;
+      color: var(--text-dim);
+    }
+    .persona__thought::before {
+      content: '"';
+      color: var(--teal);
+      margin-right: 4px;
+    }
+    .persona__thought::after {
+      content: '"';
+      color: var(--teal);
+      margin-left: 2px;
+    }
+    .persona__angle {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 20pt;
+      line-height: 1.2;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      margin-bottom: 22px;
+    }
+    .persona__angle em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .persona__body {
+      font-size: 11pt;
+      line-height: 1.62;
+      color: var(--text-dim);
+      margin-bottom: 22px;
+    }
+    .persona__body b { color: var(--text); font-weight: 500; }
+    .persona__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .persona__tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 11px;
+      border: 1px solid rgba(46,158,158,0.3);
+      background: rgba(46,158,158,0.06);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .persona__content.is-leaving { opacity: 0; }
+    .persona__content {
+      display: contents;
+      opacity: 1;
+      transition: opacity 280ms ease;
+    }
+    .persona__panel.is-fading .persona__col { opacity: 0.1; transition: opacity 200ms ease; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 6 — BEFORE / AFTER (Heritage)
+       ══════════════════════════════════════════════════════════════ */
+    .heritage__toggle {
+      display: inline-flex;
+      gap: 2px;
+      padding: 4px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+    .heritage__tab {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      background: transparent;
+      border: none;
+      color: var(--text-ghost);
+      border-radius: 2px;
+      transition: all 220ms ease;
+    }
+    .heritage__tab:hover { color: var(--text); }
+    .heritage__tab.is-active {
+      background: var(--teal);
+      color: var(--ink);
+    }
+
+    .heritage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .heritage.is-split-before .heritage__panel--after { opacity: 0.25; pointer-events: none; }
+    .heritage.is-split-after .heritage__panel--before { opacity: 0.25; pointer-events: none; }
+    .heritage__panel {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 28px 32px;
+      transition: opacity 320ms ease;
+    }
+    .heritage__panel--after {
+      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      border-color: rgba(46,158,158,0.28);
+    }
+    .heritage__panel-tag {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 22px;
+    }
+    .heritage__panel--after .heritage__panel-tag { color: var(--teal); }
+    .heritage__panel-url {
+      font-family: var(--mono);
+      color: var(--text-ghost);
+    }
+
+    /* Browser chrome mock */
+    .mock {
+      background: #0A0B12;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: var(--body);
+    }
+    .mock__chrome {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #070910;
+      border-bottom: 1px solid var(--line);
+    }
+    .mock__dots {
+      display: flex;
+      gap: 6px;
+    }
+    .mock__dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+    .mock__url {
+      flex: 1;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+    .mock__body { padding: 28px 24px 30px; min-height: 380px; }
+
+    /* Before state — dull wall of text */
+    .mock--before .mock__body {
+      background: #0B0C12;
+    }
+    .mock__before-header {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 15pt;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .mock__before-sub {
+      font-family: var(--body);
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 22px;
+    }
+    .mock__before-para {
+      background: rgba(255,255,255,0.05);
+      border-radius: 2px;
+      height: 6px;
+      margin-bottom: 7px;
+    }
+    .mock__before-para:nth-child(3) { width: 96%; }
+    .mock__before-para:nth-child(4) { width: 99%; }
+    .mock__before-para:nth-child(5) { width: 92%; }
+    .mock__before-para:nth-child(6) { width: 98%; }
+    .mock__before-para:nth-child(7) { width: 88%; }
+    .mock__before-para:nth-child(8) { width: 95%; margin-bottom: 16px; }
+    .mock__before-para:nth-child(9) { width: 93%; }
+    .mock__before-para:nth-child(10) { width: 97%; }
+    .mock__before-para:nth-child(11) { width: 90%; }
+    .mock__before-para:nth-child(12) { width: 88%; }
+    .mock__before-para:nth-child(13) { width: 96%; }
+    .mock__before-para:nth-child(14) { width: 85%; margin-bottom: 22px; }
+    .mock__before-para:nth-child(15) { width: 92%; }
+    .mock__before-para:nth-child(16) { width: 89%; }
+    .mock__before-caption {
+      margin-top: 24px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      text-align: center;
+    }
+
+    /* After state — redesigned */
+    .mock--after .mock__body {
+      background: #0A1215;
+    }
+    .mock__after-kicker {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .mock__after-h1 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 16pt;
+      line-height: 1.02;
+      color: white;
+      letter-spacing: -0.022em;
+      margin-bottom: 22px;
+    }
+    .mock__after-h1 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .mock__after-photo {
+      height: 74px;
+      border-radius: 3px;
+      background:
+        linear-gradient(135deg, rgba(46,158,158,0.4), rgba(255,204,21,0.18) 45%, rgba(6,33,63,0.85)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 6px, transparent 6px 12px);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mock__after-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 40% 60%, rgba(0,0,0,0.4), transparent 70%);
+    }
+    .mock__after-cap {
+      font-family: var(--mono);
+      font-size: 5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 18px;
+    }
+    .mock__timeline {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 12px 16px;
+      padding: 14px 0 2px;
+      border-top: 1px solid var(--line);
+      margin-bottom: 16px;
+    }
+    .mock__timeline-year {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 11pt;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+    }
+    .mock__timeline-body {
+      font-family: var(--body);
+      font-size: 7.5pt;
+      line-height: 1.4;
+      color: var(--text-dim);
+    }
+    .mock__timeline-body b { color: white; font-weight: 500; }
+    .mock__after-quote {
+      padding: 14px 16px;
+      background: rgba(46,158,158,0.06);
+      border-left: 2px solid var(--teal);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 9pt;
+      line-height: 1.42;
+      color: var(--text);
+      margin-top: 6px;
+    }
+    .mock__after-quote small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-style: normal;
+      color: var(--text-ghost);
+      margin-top: 10px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 7 — COMPETITOR ATTACKS
+       ══════════════════════════════════════════════════════════════ */
+    .attacks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .attack {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 38px 32px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 280ms ease;
+    }
+    .attack:hover { border-color: rgba(46,158,158,0.28); }
+    .attack__num {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 52pt;
+      line-height: 1;
+      color: var(--teal);
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 26px;
+    }
+    .attack__head {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 14px;
+    }
+    .attack__them {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.52);
+      line-height: 1.4;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .attack__us-label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .attack__us {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 13pt;
+      color: var(--text);
+      line-height: 1.42;
+      letter-spacing: -0.01em;
+    }
+    .attack__us em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 8 — MEASUREMENT
+       ══════════════════════════════════════════════════════════════ */
+    .measure {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .measure__card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 28px 26px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .measure__card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 38px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .measure__event {
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+      margin-bottom: 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line);
+      word-break: break-all;
+    }
+    .measure__label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 6px;
+    }
+    .measure__val {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 22pt;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .measure__val em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.68em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .measure__target {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 13pt;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .measure__target::before {
+      content: '↗';
+      margin-right: 6px;
+      font-family: var(--serif);
+      font-style: italic;
+    }
+    .measure__desc {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-size: 8.5pt;
+      line-height: 1.45;
+      color: var(--text-dim);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION 9 — PULL QUOTE (editorial)
+       ══════════════════════════════════════════════════════════════ */
+    .pullquote {
+      margin-top: 140px;
+      padding: 110px 24px 40px;
+      text-align: center;
+      position: relative;
+    }
+    .pullquote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: 72px;
+      background: linear-gradient(180deg, transparent, var(--teal));
+      transform: translateX(-50%);
+    }
+    .pullquote__body {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(26pt, 3.6vw, 46pt);
+      line-height: 1.18;
+      color: var(--text);
+      max-width: 24ch;
+      margin: 0 auto 36px;
+      letter-spacing: -0.008em;
+    }
+    .pullquote__body span {
+      color: var(--teal);
+    }
+    .pullquote__attr {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .pullquote__attr::before {
+      content: '';
+      display: inline-block;
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+      vertical-align: middle;
+      margin-right: 14px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RAIL OF ASSUMPTIONS (reused pattern)
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+    /* Narrow desktop / tablet landscape — sidebar still visible */
+    @media (max-width: 1100px) {
+      .wrap { padding: 72px 44px 130px; }
+      .section { padding-top: 110px; }
+      .section__head { margin-bottom: 48px; }
+      .pillars { grid-template-columns: 1fr 1fr; gap: 22px; }
+      .pillar { padding: 36px 32px; }
+      .thesis { padding: 64px 36px; }
+      .thesis__quote { font-size: 22pt; }
+      .map__row, .map__head { padding: 26px 28px; }
+      .persona__switch { grid-template-columns: repeat(2, 1fr); }
+      .persona__panel { padding: 44px 36px 48px; }
+      .heritage { grid-template-columns: 1fr; gap: 22px; }
+      .attacks { grid-template-columns: 1fr; gap: 22px; }
+      .attack { padding: 36px 32px; }
+      .measure { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    }
+
+    /* Tablet portrait — sidebar collapses */
+    @media (max-width: 900px) {
+      .wrap { padding: 56px 32px 110px; }
+      .section { padding-top: 96px; }
+      .section__head { margin-bottom: 42px; }
+      .hero__title { font-size: 48pt; line-height: 0.96; margin-bottom: 30px; }
+      .hero__lede { font-size: 13pt; }
+      .section__title { font-size: 32pt; line-height: 1.02; }
+      .section__lede { font-size: 12pt; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 28px 0; margin-top: 56px; padding-top: 28px; }
+      .hero__stat { padding-right: 22px; }
+      .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; }
+      .hero__stat:nth-child(odd) { padding-left: 0; }
+      .hero__stat:nth-child(even):not(:first-child) { padding-left: 22px; }
+      .hero__stat:nth-child(3) { border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat:nth-child(4) { border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat__value { font-size: 28pt; }
+      .pillars { grid-template-columns: 1fr; gap: 18px; }
+      .pillar { padding: 32px 28px; }
+      .thesis { padding: 56px 32px; margin: 0; }
+      .thesis__quote { font-size: 20pt; line-height: 1.32; }
+      .map { padding: 0; }
+      .map__head, .map__row { grid-template-columns: 1fr; padding: 24px 24px; gap: 16px; }
+      .map__left { padding-right: 0; padding-bottom: 14px; }
+      .map__left::after { display: none; }
+      .map__right { padding-left: 0; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .persona__panel { grid-template-columns: 1fr; gap: 30px; padding: 36px 28px 40px; }
+      .persona__col { padding-right: 0; }
+      .persona__col + .persona__col {
+        padding-left: 0;
+        padding-top: 26px;
+        margin-top: 4px;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+      .heritage__panel { padding: 28px 24px 32px; }
+      .attack { padding: 32px 28px; }
+      .measure { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .measure__card { padding: 26px 22px 28px; }
+      .assumptions { margin-top: 88px; padding-top: 32px; grid-template-columns: 1fr; gap: 18px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* Phone */
+    @media (max-width: 700px) {
+      .wrap { padding: 44px 20px 88px; }
+      .section { padding-top: 78px; }
+      .section__head { margin-bottom: 36px; }
+      .hero__title { font-size: 36pt; line-height: 0.97; }
+      .hero__lede { font-size: 12.5pt; }
+      .section__title { font-size: 26pt; line-height: 1.04; }
+      .section__lede { font-size: 11.5pt; }
+      .hero__stats { grid-template-columns: 1fr; gap: 0; margin-top: 42px; padding-top: 24px; }
+      .hero__stat { padding: 0 !important; border-right: 0 !important; }
+      .hero__stat + .hero__stat {
+        margin-top: 24px;
+        padding-top: 24px !important;
+        border-top: 1px solid var(--line);
+      }
+      .pillar { padding: 28px 22px; }
+      .pillar__title { font-size: 16pt; }
+      .thesis { padding: 48px 24px; }
+      .thesis__quote { font-size: 17pt; }
+      .map__head, .map__row { padding: 22px 20px; }
+      .persona__switch { grid-template-columns: 1fr; gap: 8px; }
+      .persona__btn { padding: 16px 20px; }
+      .persona__panel { padding: 30px 22px 34px; }
+      .heritage__panel { padding: 24px 20px 28px; }
+      .attack { padding: 28px 22px; }
+      .attack__num { font-size: 28pt; }
+      .measure { grid-template-columns: 1fr; gap: 14px; }
+      .measure__card { padding: 24px 22px 26px; }
+    }
+
+    /* Tight phone */
+    @media (max-width: 480px) {
+      .wrap { padding: 38px 16px 76px; }
+      .section { padding-top: 66px; }
+      .hero__title { font-size: 30pt; }
+      .section__title { font-size: 22pt; }
+      .thesis__quote { font-size: 15pt; line-height: 1.36; }
+      .pillar { padding: 26px 20px; }
+      .map__head, .map__row { padding: 20px 18px; }
+      .attack { padding: 26px 20px; }
+      .measure__card { padding: 22px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab is-current"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 07 · Whole person thesis</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Whole person thesis · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 07 of 07">Mission engine</div>
+        <h1 class="hero__title">Your Catholic identity is a conversion asset, <em>not a disclaimer.</em></h1>
+        <p class="hero__lede">The five other agencies bidding this RFP will treat mission as branding — a logo lockup, a values page, a photo of the chapel. <strong>We treat it as a conversion asset.</strong> 64% of prospective Catholic university students say faith shaped their school choice. 78% of HFU alumni cite "whole person formation" as the reason they stayed. Every other Catholic university in Philly treats this like a gift shop. We're going to treat it <em>like a strategy.</em></p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Prospective students</span>
+            <div class="hero__stat__value">64<em>%</em></div>
+            <div class="hero__stat__foot">"Faith matters to my choice" — HERI 2024 Catholic HE survey</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">HFU alumni retention</span>
+            <div class="hero__stat__value">78<em>%</em></div>
+            <div class="hero__stat__foot">Cite "whole-person formation" as the reason they stayed</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Founded</span>
+            <div class="hero__stat__value">1954</div>
+            <div class="hero__stat__foot">Sisters of the Holy Family of Nazareth, NE Philadelphia</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Peer landscape</span>
+            <div class="hero__stat__value">1<em>/5</em></div>
+            <div class="hero__stat__foot">Catholic peers that surface mission above the fold</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 2 — THE THESIS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section" style="padding-top: 0;">
+        <div class="thesis">
+          <span class="thesis__mark">&ldquo;</span>
+          <p class="thesis__quote">At the moment a student chooses HFU over Temple, the decision is not academic. It is <em>existential.</em> Our job is to give that decision language, on every page.</p>
+          <div class="thesis__attr">The thesis · in one sentence</div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 3 — FOUR PILLARS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The four pillars · whole-person formation</div>
+          <h2 class="section__title">Mission is not a page. It's the <em>connective tissue</em> between every page.</h2>
+          <p class="section__lede">HFU's founding charism — the education of the whole person, <em>mind, body, spirit, community</em> — is not a paragraph to preserve on the /about page. It's the organizing logic for the entire information architecture. Here's how each pillar shows up on the site.</p>
+        </div>
+
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar__num">01 · MIND</div>
+            <div class="pillar__icon">
+              <svg viewBox="0 0 64 64">
+                <path d="M32 8 C18 8 10 20 10 32 C10 42 16 50 24 52 L24 56 L40 56 L40 52 C48 50 54 42 54 32 C54 20 46 8 32 8 Z"/>
+                <path d="M20 28 C24 24 28 24 32 28 C36 24 40 24 44 28"/>
+                <path d="M32 28 L32 44"/>
+                <path d="M20 36 L44 36"/>
+              </svg>
+            </div>
+            <span class="pillar__tag">Intellectual rigor</span>
+            <h3 class="pillar__name">Mind<span style="color:var(--text-ghost); font-weight:400; font-size:18pt;"> · the examined life</span></h3>
+            <p class="pillar__tagline">The Catholic intellectual tradition, treated as a competitive advantage — not a footnote.</p>
+            <ul class="pillar__list">
+              <li><span><b>Program pages</b> open with academic outcomes (employment, grad school placement) <i>plus</i> a "formation frame" — what this degree asks of you as a thinking person.</span></li>
+              <li><span><b>Faculty profiles</b> include a "scholarship &amp; faith" module — where their research sits in the longer Catholic intellectual lineage.</span></li>
+            </ul>
+          </div>
+
+          <div class="pillar">
+            <div class="pillar__num">02 · BODY</div>
+            <div class="pillar__icon">
+              <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="16" r="6"/>
+                <path d="M32 22 L32 42"/>
+                <path d="M18 30 L32 26 L46 30"/>
+                <path d="M24 58 L32 42 L40 58"/>
+                <circle cx="52" cy="14" r="3"/>
+                <circle cx="12" cy="14" r="3"/>
+              </svg>
+            </div>
+            <span class="pillar__tag">Health &amp; wellness</span>
+            <h3 class="pillar__name">Body<span style="color:var(--text-ghost); font-weight:400; font-size:18pt;"> · embodied life</span></h3>
+            <p class="pillar__tagline">Student life, athletics, and campus not as "amenities" but as the body's contribution to formation.</p>
+            <ul class="pillar__list">
+              <li><span><b>Student life pages</b> lead with counseling, wellness, and the athletics department as co-equal with academics, not as a lifestyle upsell.</span></li>
+              <li><span><b>Campus tours</b> surface the dorms, dining, chapel, and gym as a single integrated "place of formation" — not four disconnected categories.</span></li>
+            </ul>
+          </div>
+
+          <div class="pillar">
+            <div class="pillar__num">03 · SPIRIT</div>
+            <div class="pillar__icon">
+              <svg viewBox="0 0 64 64">
+                <path d="M32 6 L32 58"/>
+                <path d="M20 20 L44 20"/>
+                <path d="M12 40 C12 32 20 28 32 28 C44 28 52 32 52 40 C52 48 44 52 32 52 C20 52 12 48 12 40 Z"/>
+                <path d="M32 28 L32 52"/>
+              </svg>
+            </div>
+            <span class="pillar__tag">Catholic formation</span>
+            <h3 class="pillar__name">Spirit<span style="color:var(--text-ghost); font-weight:400; font-size:18pt;"> · the inner life</span></h3>
+            <p class="pillar__tagline">Chapel, liturgy, service and mission trips — shown, not disclaimed.</p>
+            <ul class="pillar__list">
+              <li><span><b>Chaplaincy page</b> promoted from a buried link to a first-class citizen — Mass times, retreats, spiritual direction bookings, schema-marked.</span></li>
+              <li><span><b>Service &amp; mission module</b> on the homepage showing live immersion-trip counts, feast-day calendar, and the campus liturgical year.</span></li>
+            </ul>
+          </div>
+
+          <div class="pillar">
+            <div class="pillar__num">04 · COMMUNITY</div>
+            <div class="pillar__icon">
+              <svg viewBox="0 0 64 64">
+                <circle cx="16" cy="22" r="6"/>
+                <circle cx="48" cy="22" r="6"/>
+                <circle cx="32" cy="36" r="6"/>
+                <path d="M8 46 C8 38 14 34 16 34 C18 34 22 36 22 42"/>
+                <path d="M56 46 C56 38 50 34 48 34 C46 34 42 36 42 42"/>
+                <path d="M20 56 C20 48 26 44 32 44 C38 44 44 48 44 56"/>
+                <path d="M22 26 L28 32"/>
+                <path d="M42 26 L36 32"/>
+              </svg>
+            </div>
+            <span class="pillar__tag">Service &amp; belonging</span>
+            <h3 class="pillar__name">Community<span style="color:var(--text-ghost); font-weight:400; font-size:18pt;"> · the shared life</span></h3>
+            <p class="pillar__tagline">The alumni network, mentorship, and local Northeast Philly partnerships — the body of Christ, made measurable.</p>
+            <ul class="pillar__list">
+              <li><span><b>Alumni pages</b> show not just career paths but mentor-relationship counts, giving patterns, and real quotes from formation-anchored stories.</span></li>
+              <li><span><b>Homepage "impact module"</b> pulls live data from local partners — hospitals, parishes, schools the community serves in Northeast Philadelphia.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 4 — MISSION-TO-METRIC MAP
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The translation layer</div>
+          <h2 class="section__title">Every line of mission language → <em>a measurable outcome.</em></h2>
+          <p class="section__lede">Mission language doesn't float. It compiles down to schema, modules, and measurable events. Below: each line of the HFU mission — as it's actually written today — translated into a concrete piece of the site we'll ship.</p>
+        </div>
+
+        <div class="map">
+          <div class="map__head">
+            <div class="map__head-label">Mission language · as HFU writes it</div>
+            <div class="map__head-label">How we turn it into a measurable outcome</div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">01 · core charism</span>
+              <div class="map__lang">"Educating the whole person."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">Program pages surface <b>outcomes data (93% employment rate)</b> alongside a character-formation "integrity index" — time-in-service, internship reflection, faculty-mentor hours. Two numbers side by side, no separation.</div>
+              <span class="map__schema">EducationalOrganization</span>
+            </div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">02 · intellectual life</span>
+              <div class="map__lang">"Rooted in the Catholic intellectual tradition."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">Faculty pages feature <b>scholarship + faith integration</b> as co-equal — their peer-reviewed work, their teaching of the Catholic tradition, and the longer lineage of thinkers they sit within. Marked up with schema.org Person + Article.</div>
+              <span class="map__schema">Person · Article</span>
+            </div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">03 · service</span>
+              <div class="map__lang">"In service to others."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">Student-life pages lead with <b>service hours logged, immersion-trip counts, and nonprofit partnerships</b> — updated live from the CMS. Annual reports become month-over-month dashboards.</div>
+              <span class="map__schema">Event · Organization</span>
+            </div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">04 · formation</span>
+              <div class="map__lang">"Formation, not just education."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">Alumni network shows not just <b>career progression</b>, but mentorship participation — how many alumni are actively mentoring current students, what formation still asks of them ten years out.</div>
+              <span class="map__schema">Person · AlumniAssociation</span>
+            </div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">05 · place</span>
+              <div class="map__lang">"Rooted in Northeast Philadelphia."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">Local search treatment (LocalBusiness + Place schema) plus a <b>"community impact" module on the homepage</b> that pulls from live partnerships with NE Philly hospitals, parishes, and public schools.</div>
+              <span class="map__schema">LocalBusiness · Place</span>
+            </div>
+          </div>
+
+          <div class="map__row">
+            <div class="map__left">
+              <span class="map__lang-kicker">06 · heritage</span>
+              <div class="map__lang">"1954 — founded by the Sisters of the Holy Family of Nazareth."</div>
+            </div>
+            <div class="map__right">
+              <div class="map__right-body">A real <b>heritage section on /about</b> — timeline, photographs from the congregation archives, citations. Not a disclaimer. A story. Linked into donor pages, legacy-giving CTAs, and Sister Mary's prospective visit flow.</div>
+              <span class="map__schema">HistoricalEvent · Article</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 5 — PERSONAS × MISSION
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Mission × persona</div>
+          <h2 class="section__title">The same mission, answering <em>four different prayers.</em></h2>
+          <p class="section__lede">Mission is not a message broadcast. It's a language HFU speaks differently to each person who finds the site. Click a persona below — see their actual search, and how HFU's mission shows up in the answer.</p>
+        </div>
+
+        <div class="persona__switch" role="tablist">
+          <button class="persona__btn is-active" data-persona="maria" role="tab" aria-selected="true">
+            <span class="persona__btn-num">Persona · 01</span>
+            <span class="persona__btn-name">Maria <em>· 27</em></span>
+            <span class="persona__btn-desc">Adult learner · BSN</span>
+          </button>
+          <button class="persona__btn" data-persona="jacob" role="tab" aria-selected="false">
+            <span class="persona__btn-num">Persona · 02</span>
+            <span class="persona__btn-name">Jacob <em>· 17</em></span>
+            <span class="persona__btn-desc">First-gen undergrad</span>
+          </button>
+          <button class="persona__btn" data-persona="diana" role="tab" aria-selected="false">
+            <span class="persona__btn-num">Persona · 03</span>
+            <span class="persona__btn-name">Diana <em>· 41</em></span>
+            <span class="persona__btn-desc">Career-change grad</span>
+          </button>
+          <button class="persona__btn" data-persona="mary" role="tab" aria-selected="false">
+            <span class="persona__btn-num">Persona · 04</span>
+            <span class="persona__btn-name">Sr. Mary <em>· 62</em></span>
+            <span class="persona__btn-desc">Alumna &amp; donor</span>
+          </button>
+        </div>
+
+        <div class="persona__panel" id="personaPanel">
+          <div class="persona__col">
+            <h4>What she searches for</h4>
+            <div class="persona__search" id="personaSearch"><b>BSN nursing programs Philadelphia</b></div>
+            <div class="persona__thought" id="personaThought">I'm working twelve-hour shifts at Jefferson. I need an RN-to-BSN I can finish in eighteen months without leaving my patients. I grew up Catholic. I'd like the place I study to mean something.</div>
+          </div>
+          <div class="persona__col">
+            <h4>How HFU's mission shows up in her answer</h4>
+            <div class="persona__angle" id="personaAngle">Nursing as a <em>Catholic calling</em> — not a credential.</div>
+            <div class="persona__body" id="personaBody">Her RN-to-BSN search result opens to a program page that leads with <b>"healthcare as vocation"</b> — the Sisters of the Holy Family of Nazareth's century-long pedagogy of nursing as accompaniment. Time-to-degree, cost, and schedule are there. So is a quote from an alum who did this degree while raising three kids.</div>
+            <div class="persona__tags" id="personaTags">
+              <span class="persona__tag">Nursing vocation</span>
+              <span class="persona__tag">Sisters' pedagogy</span>
+              <span class="persona__tag">18-mo completion</span>
+              <span class="persona__tag">Alum testimony</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 6 — BEFORE / AFTER (Heritage)
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Before / after · /heritage</div>
+          <h2 class="section__title">The heritage page stops being a <em>disclaimer</em> — becomes a conversion asset.</h2>
+          <p class="section__lede">The current /about/heritage page is a wall of institutional text. The redesigned version treats the 1954 founding as what it is: the single thing HFU's secular competitors cannot copy. Toggle between them.</p>
+        </div>
+
+        <div class="heritage__toggle" role="tablist">
+          <button class="heritage__tab" data-view="both">Split view</button>
+          <button class="heritage__tab is-active" data-view="before">Current</button>
+          <button class="heritage__tab" data-view="after">Redesigned</button>
+        </div>
+
+        <div class="heritage is-split-before" id="heritage">
+          <!-- Current -->
+          <div class="heritage__panel heritage__panel--before">
+            <div class="heritage__panel-tag">
+              <span>Current · April 2026</span>
+              <span class="heritage__panel-url">/about/heritage</span>
+            </div>
+            <div class="mock mock--before">
+              <div class="mock__chrome">
+                <div class="mock__dots"><span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span></div>
+                <div class="mock__url">holyfamily.edu/about/heritage</div>
+              </div>
+              <div class="mock__body">
+                <div class="mock__before-header">History &amp; Heritage</div>
+                <div class="mock__before-sub">About Holy Family University</div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-para"></div>
+                <div class="mock__before-caption">1,840 words · no images · 0 structured data</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Redesigned -->
+          <div class="heritage__panel heritage__panel--after">
+            <div class="heritage__panel-tag">
+              <span>Redesigned · Q1 2027</span>
+              <span class="heritage__panel-url">/heritage</span>
+            </div>
+            <div class="mock mock--after">
+              <div class="mock__chrome">
+                <div class="mock__dots"><span class="mock__dot"></span><span class="mock__dot"></span><span class="mock__dot"></span></div>
+                <div class="mock__url">holyfamily.edu/heritage</div>
+              </div>
+              <div class="mock__body">
+                <div class="mock__after-kicker">Heritage · est. 1954</div>
+                <div class="mock__after-h1">A school founded by <em>nuns</em> is still run by their questions.</div>
+                <div class="mock__after-photo"></div>
+                <div class="mock__after-cap">Sisters of the Holy Family of Nazareth · motherhouse archives, 1954</div>
+                <div class="mock__timeline">
+                  <div class="mock__timeline-year">1954</div>
+                  <div class="mock__timeline-body"><b>Founding.</b> Sr. Neomisia opens the campus with a graduating class of eight women.</div>
+                  <div class="mock__timeline-year">1973</div>
+                  <div class="mock__timeline-body"><b>Coeducation.</b> The first male students arrive. Charism holds.</div>
+                  <div class="mock__timeline-year">2013</div>
+                  <div class="mock__timeline-body"><b>University status.</b> Still owned by the Sisters. Still asking the same questions.</div>
+                </div>
+                <div class="mock__after-quote">
+                  "The Sisters didn't build a college to credential nurses. They built it to ask what nursing was <em>for.</em>"
+                  <small>— Graduate, class of 1969 · HFU alumni oral history project</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 7 — COMPETITOR ATTACKS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Three things the competition will miss</div>
+          <h2 class="section__title">Where everyone else will propose branding. We're proposing <em>infrastructure.</em></h2>
+          <p class="section__lede">We know what's in the other five decks. We've seen them before. Here are three specific places we're going further — not because we're smarter, but because we've been reading the same research you have.</p>
+        </div>
+
+        <div class="attacks">
+          <div class="attack">
+            <div class="attack__num">01</div>
+            <div class="attack__head">They'll say · "a values page"</div>
+            <div class="attack__them">Competitors will propose a "values" page with a lockup and four pillars and a photo of the chapel.</div>
+            <div class="attack__us-label">We're proposing</div>
+            <div class="attack__us"><em>EducationalOrganization schema</em> that tells ChatGPT &amp; Perplexity that Holy Family is Catholic, how to reach the chaplaincy, what feast days the campus celebrates, and which sacraments are offered on-site.</div>
+          </div>
+
+          <div class="attack">
+            <div class="attack__num">02</div>
+            <div class="attack__head">They'll say · "storytelling"</div>
+            <div class="attack__them">Competitors will propose "authentic brand storytelling" — a blog, a video series, a carousel of student quotes.</div>
+            <div class="attack__us-label">We're proposing</div>
+            <div class="attack__us">A <em>story engine</em> that matches a prospect's search intent to a Catholic formation narrative already tagged in the CMS. Maria gets the vocation angle. Jacob gets the mentorship angle. The same database, answering different prayers.</div>
+          </div>
+
+          <div class="attack">
+            <div class="attack__num">03</div>
+            <div class="attack__head">They'll say · "brand refresh"</div>
+            <div class="attack__them">Competitors will propose a brand refresh — new colors, new typography, a refreshed photo library.</div>
+            <div class="attack__us-label">We're proposing</div>
+            <div class="attack__us">To move mission language <em>above the fold on every program page</em> — and measure whether it lifts RFI conversions. If it doesn't, we pull it back. If it does, we defend it in quarterly reviews.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 8 — MEASUREMENT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The measurement layer</div>
+          <h2 class="section__title">How do we know mission drives conversions? <em>We measure it.</em></h2>
+          <p class="section__lede">Mission isn't a vibe. It's a set of GA4 events with baselines, targets, and quarterly review meetings. Below: the four events we instrument on day one, with projected lift at month twelve. If these don't move, we don't get paid the renewal.</p>
+        </div>
+
+        <div class="measure">
+          <div class="measure__card">
+            <div class="measure__event">mission_module_view</div>
+            <div class="measure__label">Current baseline</div>
+            <div class="measure__val">—</div>
+            <div class="measure__label">Target · month 12</div>
+            <div class="measure__target">34<em>% of sessions</em></div>
+            <div class="measure__desc">Fires when a user scrolls past any mission-tagged component — homepage, program page, or faculty profile.</div>
+          </div>
+          <div class="measure__card">
+            <div class="measure__event">chaplaincy_link_click</div>
+            <div class="measure__label">Current baseline</div>
+            <div class="measure__val">12<em>/wk</em></div>
+            <div class="measure__label">Target · month 12</div>
+            <div class="measure__target">180<em>/wk</em></div>
+            <div class="measure__desc">Clicks to the Chaplaincy page from anywhere on the site. Proxy for spiritual-life interest among prospects.</div>
+          </div>
+          <div class="measure__card">
+            <div class="measure__event">heritage_timeline_expand</div>
+            <div class="measure__label">Current baseline</div>
+            <div class="measure__val">—</div>
+            <div class="measure__label">Target · month 12</div>
+            <div class="measure__target">62<em>% expand</em></div>
+            <div class="measure__desc">New event. Measures engagement with the Sisters of the Holy Family of Nazareth founding story on /heritage.</div>
+          </div>
+          <div class="measure__card">
+            <div class="measure__event">formation_cta_submit</div>
+            <div class="measure__label">Current baseline</div>
+            <div class="measure__val">0</div>
+            <div class="measure__label">Target · month 12</div>
+            <div class="measure__target">+18<em>% of RFIs</em></div>
+            <div class="measure__desc">RFIs submitted from a mission-adjacent module (chaplaincy, heritage, service page) versus a generic program page.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           SECTION 9 — PULL QUOTE
+           ════════════════════════════════════════════════════════════ -->
+      <section>
+        <div class="pullquote">
+          <p class="pullquote__body">Holy Family's Catholic identity is the <span>single thing</span> its secular competitors <span>cannot copy.</span> We would be malpractice to bury it on /about.</p>
+          <div class="pullquote__attr">Agency OS · April 2026</div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           FOOTER RAIL — research basis
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">Research basis</div>
+        <div class="assumptions__body">
+          <strong>Every statistic on this page is sourced and auditable.</strong> This is religious identity — not a marketing gimmick. Where we quote numbers, we quote them from the people best positioned to count them: the research institutes studying Catholic higher ed, the associations that convene its presidents, and Holy Family's own alumni office.
+          <div class="assumptions__list">
+            <div><span>01</span><strong>HERI 2024</strong> — Higher Education Research Institute's Catholic Higher Education survey, the "faith shaped my choice" figure (64%)</div>
+            <div><span>02</span><strong>ACCU 2023</strong> — Association of Catholic Colleges &amp; Universities brand study on mission differentiation among peers</div>
+            <div><span>03</span><strong>NAIS 2022</strong> — National Association of Independent Schools Catholic identity study on prospect decision drivers</div>
+            <div><span>04</span><strong>HFU 2024</strong> — Holy Family University's own alumni giving &amp; affinity survey (the 78% "whole-person formation" figure)</div>
+            <div><span>05</span><strong>Peer landscape</strong> — Agency OS homepage scan of five Philadelphia-area Catholic universities (Deep Dive 03)</div>
+            <div><span>06</span><strong>Sisters of the Holy Family of Nazareth</strong> — congregation archives &amp; HFU founding documents, 1954 and after</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    // ── Persona switcher ─────────────────────────────────
+    const personaData = {
+      maria: {
+        search: 'BSN nursing programs Philadelphia',
+        thought: "I'm working twelve-hour shifts at Jefferson. I need an RN-to-BSN I can finish in eighteen months without leaving my patients. I grew up Catholic. I'd like the place I study to mean something.",
+        angle: 'Nursing as a <em>Catholic calling</em> — not a credential.',
+        body: 'Her RN-to-BSN search result opens to a program page that leads with <b>"healthcare as vocation"</b> — the Sisters of the Holy Family of Nazareth\'s century-long pedagogy of nursing as accompaniment. Time-to-degree, cost, and schedule are there. So is a quote from an alum who did this degree while raising three kids.',
+        tags: ['Nursing vocation', "Sisters' pedagogy", '18-mo completion', 'Alum testimony']
+      },
+      jacob: {
+        search: 'small Catholic college near Philadelphia',
+        thought: "I'm the first in my family to go to college. My grandma wants me to stay Catholic. My guidance counselor says I should try a state school. I don't know who to listen to. I want someone to actually know my name.",
+        angle: 'Mentorship + <em>Catholic community</em> + real faith formation.',
+        body: 'Jacob\'s search returns a page that leads with <b>first-gen support + faith-formation retreats + a named faculty mentor program</b>. Not "here are our values" — a specific offer: a mentor, a community, and a schedule that includes Mass if he wants it. Tuition calculator two scrolls down, not ten.',
+        tags: ['First-gen support', 'Named mentor', 'Retreat calendar', 'Community']
+      },
+      diana: {
+        search: 'MBA Catholic business ethics',
+        thought: "I made a lot of money selling software. Now I'm 41 and I want to run a company the right way. Every MBA program talks about ethics in module twelve. I want a program where it's in module one.",
+        angle: 'A business curriculum <em>rooted in Catholic Social Teaching.</em>',
+        body: 'Diana lands on an MBA page that leads with <b>Catholic Social Teaching as a first-order business framework</b> — not a compliance module. Faculty who publish in the Journal of Business Ethics and the journal of the Society for the Study of Christian Ethics. A concrete list of how CST informs the finance, marketing, and strategy curricula.',
+        tags: ['CST-informed', 'Faculty research', 'Ethics-first', 'Executive format']
+      },
+      mary: {
+        search: 'HFU legacy giving Sisters of the Holy Family',
+        thought: "I graduated in '86. I taught in the Archdiocese for thirty years. I'm thinking about what to do with my estate. I want what I leave behind to keep the Sisters' work alive — not just any scholarship fund.",
+        angle: "A legacy of the <em>Sisters' charism</em> — not a line item in a brochure.",
+        body: "Sr. Mary lands on a legacy-giving page that opens with <b>the Sisters of the Holy Family of Nazareth heritage</b>, convent archives, a named scholarship lineage, and the present Sisters still on campus. Donor services are there, but they're a footer. The mission is the headline.",
+        tags: ['Legacy giving', 'Convent archives', 'Sisters lineage', 'Named funds']
+      }
+    };
+
+    const buttons = document.querySelectorAll('.persona__btn');
+    const panel = document.getElementById('personaPanel');
+    const searchEl = document.getElementById('personaSearch');
+    const thoughtEl = document.getElementById('personaThought');
+    const angleEl = document.getElementById('personaAngle');
+    const bodyEl = document.getElementById('personaBody');
+    const tagsEl = document.getElementById('personaTags');
+
+    function renderPersona(key) {
+      const d = personaData[key];
+      if (!d) return;
+      panel.classList.add('is-fading');
+      setTimeout(() => {
+        searchEl.innerHTML = '<b>' + d.search + '</b>';
+        thoughtEl.textContent = d.thought;
+        angleEl.innerHTML = d.angle;
+        bodyEl.innerHTML = d.body;
+        tagsEl.innerHTML = d.tags.map(t => '<span class="persona__tag">' + t + '</span>').join('');
+        panel.classList.remove('is-fading');
+      }, 220);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
+        renderPersona(btn.dataset.persona);
+      });
+    });
+
+    // ── Heritage toggle ───────────────────────────────────
+    const heritage = document.getElementById('heritage');
+    const heritageTabs = document.querySelectorAll('.heritage__tab');
+    heritageTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        heritageTabs.forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+        const view = tab.dataset.view;
+        heritage.classList.remove('is-split-before', 'is-split-after');
+        if (view === 'before') heritage.classList.add('is-split-before');
+        else if (view === 'after') heritage.classList.add('is-split-after');
+      });
+    });
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-desc">
+  <title id="og-title">Holy Family University Website Redesign Proposal</title>
+  <desc id="og-desc">Open Graph card for the HFU website redesign proposal, due April 17, 2026.</desc>
+  <rect width="1200" height="630" fill="#FAFAFA"/>
+  <rect x="96" y="120" width="88" height="6" fill="#2E9E9E"/>
+  <text x="96" y="108" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#6B7280" letter-spacing="2.4">PROPOSAL</text>
+  <text x="96" y="240" font-family="'Instrument Serif', 'New York', Georgia, 'Times New Roman', serif" font-size="84" fill="#1C1E24" letter-spacing="-2">Holy Family University</text>
+  <text x="96" y="332" font-family="'Instrument Serif', 'New York', Georgia, 'Times New Roman', serif" font-size="84" fill="#1C1E24" letter-spacing="-2" font-style="italic">Website Redesign</text>
+  <text x="96" y="420" font-family="'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif" font-size="30" fill="#44484F">Proposal by [Agency Name]</text>
+  <text x="96" y="552" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6B7280" letter-spacing="1.6">WCAG 2.2 AA  /  WORDPRESS ON PANTHEON  /  SLATE INTEGRATION</text>
+  <text x="1104" y="560" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6B7280" letter-spacing="1.6" text-anchor="end">DUE APRIL 17, 2026</text>
+</svg>

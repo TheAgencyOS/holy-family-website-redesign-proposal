@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>10-Month Runway — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      --teal:        #2E9E9E;
+      --teal-deep:   #1F7676;
+      --teal-soft:   rgba(46, 158, 158, 0.08);
+      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #06070B;
+      --ink-card:    #0D0F15;
+      --ink-card-2:  #11141C;
+      --line:        rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.14);
+      --text:        rgba(255,255,255,0.88);
+      --text-dim:    rgba(255,255,255,0.62);
+      --text-ghost:  rgba(255,255,255,0.38);
+      --risk-red:    #FF7A7A;
+      --risk-red-soft: rgba(255, 122, 122, 0.18);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 88px 56px 160px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.05), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(48pt, 7.2vw, 96pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      max-width: 16ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 15pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+    .hero__lede em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 32pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(32pt, 4.2vw, 52pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       GANTT CHART · the centerpiece
+       ══════════════════════════════════════════════════════════════ */
+    .gantt {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .gantt::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .gantt__label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 30px;
+    }
+    .gantt__label b { color: var(--text); font-weight: 500; }
+    .gantt__grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 150px repeat(10, 1fr);
+      gap: 0;
+    }
+    /* Header row showing months */
+    .gantt__month {
+      grid-row: 1;
+      padding: 0 0 22px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-align: center;
+      border-left: 1px solid var(--line);
+      position: relative;
+    }
+    .gantt__month b {
+      display: block;
+      font-family: var(--display);
+      font-size: 9pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-bottom: 2px;
+    }
+    .gantt__corner {
+      grid-row: 1;
+      grid-column: 1;
+      padding: 0 0 16px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      display: flex;
+      align-items: flex-end;
+    }
+    /* Row labels (phase names) */
+    .gantt__row-label {
+      grid-column: 1;
+      padding: 14px 16px 14px 0;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .gantt__row-label b {
+      display: block;
+      font-family: var(--display);
+      font-size: 10pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-top: 3px;
+      line-height: 1.2;
+    }
+    /* Row track (the cells behind the bar) */
+    .gantt__row-track {
+      grid-column: 2 / -1;
+      position: relative;
+      height: 62px;
+      border-top: 1px solid var(--line);
+      background:
+        linear-gradient(to right,
+          transparent 0, transparent calc(10% - 1px),
+          var(--line) calc(10% - 1px), var(--line) 10%,
+          transparent 10%, transparent calc(20% - 1px),
+          var(--line) calc(20% - 1px), var(--line) 20%,
+          transparent 20%, transparent calc(30% - 1px),
+          var(--line) calc(30% - 1px), var(--line) 30%,
+          transparent 30%, transparent calc(40% - 1px),
+          var(--line) calc(40% - 1px), var(--line) 40%,
+          transparent 40%, transparent calc(50% - 1px),
+          var(--line) calc(50% - 1px), var(--line) 50%,
+          transparent 50%, transparent calc(60% - 1px),
+          var(--line) calc(60% - 1px), var(--line) 60%,
+          transparent 60%, transparent calc(70% - 1px),
+          var(--line) calc(70% - 1px), var(--line) 70%,
+          transparent 70%, transparent calc(80% - 1px),
+          var(--line) calc(80% - 1px), var(--line) 80%,
+          transparent 80%, transparent calc(90% - 1px),
+          var(--line) calc(90% - 1px), var(--line) 90%,
+          transparent 90%);
+    }
+    /* The actual phase bar */
+    .gantt__bar {
+      position: absolute;
+      top: 14px;
+      height: 34px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 24px -6px rgba(46,158,158,0.45);
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 200ms ease, filter 180ms ease;
+      overflow: hidden;
+    }
+    .gantt__bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 50%);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .gantt__bar:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.6), 0 0 32px -4px rgba(46,158,158,0.65);
+    }
+    .gantt__bar.is-active {
+      box-shadow: 0 0 0 1px var(--teal), 0 0 36px -2px rgba(46,158,158,0.8), inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+    .gantt__bar__label {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 0 12px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      pointer-events: none;
+      line-height: 1.1;
+      gap: 2px;
+    }
+    .gantt__bar__label b {
+      display: block;
+      font-family: var(--display);
+      font-size: 9pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.005em;
+      text-transform: none;
+    }
+
+    /* Decision gate pins */
+    .gantt__gates {
+      grid-column: 2 / -1;
+      grid-row: 2 / span 5;
+      position: relative;
+      pointer-events: none;
+    }
+    .gantt__gate {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(46,158,158,0.65), rgba(46,158,158,0.1));
+      pointer-events: auto;
+    }
+    .gantt__gate::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -5px;
+      width: 12px;
+      height: 12px;
+      background: var(--teal);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px rgba(46,158,158,0.8), 0 0 0 2px var(--ink-card);
+    }
+    .gantt__gate::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -20px;
+      left: 1px;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    /* Detail panel */
+    .gantt__detail {
+      position: relative;
+      margin-top: 36px;
+      padding: 36px 36px 40px;
+      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
+      border: 1px solid rgba(46,158,158,0.25);
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .gantt__detail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 10% 0%, rgba(46,158,158,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .gantt__detail.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .gantt__detail-inner { position: relative; }
+    .gantt__detail-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 32px;
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--line);
+    }
+    .gantt__detail-head h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 24pt;
+      color: white;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .gantt__detail-head h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .gantt__detail-meta {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      white-space: nowrap;
+    }
+    .gantt__detail-meta b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 16pt;
+      color: white;
+      letter-spacing: -0.012em;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    .gantt__detail-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 40px;
+    }
+    .gantt__detail-grid h4 {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .gantt__detail-grid ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .gantt__detail-grid li {
+      position: relative;
+      padding-left: 16px;
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .gantt__detail-grid li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+    .gantt__detail-grid li b { color: white; font-weight: 500; display: inline; }
+    .gantt__detail-risks {
+      grid-column: 1 / -1;
+      margin-top: 30px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .gantt__detail-risks h4 {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--risk-red);
+      margin-bottom: 14px;
+    }
+    .gantt__detail-risks ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 32px;
+    }
+    .gantt__detail-risks li {
+      position: relative;
+      padding-left: 16px;
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .gantt__detail-risks li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--risk-red);
+    }
+    .gantt__detail-risks li b { color: white; font-weight: 500; display: inline; }
+
+    /* Placeholder when nothing clicked */
+    .gantt__detail-empty {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      padding: 32px 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RISK MATRIX
+       ══════════════════════════════════════════════════════════════ */
+    .risks {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .risks__matrix-wrap {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .risks__matrix-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 85% 20%, rgba(184,74,74,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .risks__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .risks__matrix {
+      position: relative;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      grid-template-rows: 1fr 44px;
+      height: 440px;
+      margin-bottom: 8px;
+    }
+    .risks__yaxis {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 12px 0 0;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      align-items: flex-end;
+    }
+    .risks__yaxis span {
+      display: block;
+      white-space: nowrap;
+    }
+    .risks__ytitle {
+      position: absolute;
+      bottom: 90px;
+      left: -2px;
+      transform: rotate(-90deg);
+      transform-origin: left bottom;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+    .risks__plot {
+      grid-column: 2;
+      grid-row: 1;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background:
+        linear-gradient(to right, transparent 0, transparent calc(33.333% - 1px), var(--line) calc(33.333% - 1px), var(--line) 33.333%, transparent 33.333%, transparent calc(66.666% - 1px), var(--line) calc(66.666% - 1px), var(--line) 66.666%),
+        linear-gradient(to bottom, transparent 0, transparent calc(33.333% - 1px), var(--line) calc(33.333% - 1px), var(--line) 33.333%, transparent 33.333%, transparent calc(66.666% - 1px), var(--line) calc(66.666% - 1px), var(--line) 66.666%);
+    }
+    .risks__plot::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 33.333%;
+      height: 33.333%;
+      background: var(--risk-red-soft);
+      border-left: 1px dashed rgba(184,74,74,0.35);
+      border-bottom: 1px dashed rgba(184,74,74,0.35);
+      pointer-events: none;
+    }
+    .risks__plot::after {
+      content: 'Danger zone';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(184,74,74,0.72);
+      pointer-events: none;
+    }
+    .risks__cell-label {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+      pointer-events: none;
+    }
+    .risks__dot {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(46,158,158,0.95), rgba(31,118,118,0.7));
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.5), 0 0 18px rgba(46,158,158,0.5);
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms ease, filter 180ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .risks__dot:hover {
+      transform: translate(-50%, -50%) scale(1.12);
+      box-shadow: 0 0 0 2px var(--teal), 0 0 26px rgba(46,158,158,0.7);
+      filter: brightness(1.08);
+    }
+    .risks__dot.is-danger {
+      background: radial-gradient(circle at 30% 30%, #D05858, #8A3636);
+      box-shadow: 0 0 0 1px rgba(184,74,74,0.55), 0 0 18px rgba(184,74,74,0.55);
+    }
+    .risks__dot.is-danger:hover {
+      box-shadow: 0 0 0 2px var(--risk-red), 0 0 26px rgba(184,74,74,0.75);
+    }
+    .risks__dot.is-active {
+      box-shadow: 0 0 0 2px var(--teal), 0 0 36px rgba(46,158,158,0.9);
+    }
+    .risks__dot.is-danger.is-active {
+      box-shadow: 0 0 0 2px var(--risk-red), 0 0 36px rgba(184,74,74,0.9);
+    }
+    .risks__dot__num {
+      font-family: var(--mono);
+      font-size: 7pt;
+      font-weight: 500;
+      color: white;
+      pointer-events: none;
+      letter-spacing: 0;
+    }
+    .risks__xaxis {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0 0;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      align-items: center;
+    }
+    .risks__xaxis > span { flex: 1; text-align: center; }
+    .risks__xtitle {
+      grid-column: 2;
+      grid-row: 3;
+      padding-top: 8px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .risks__matrix { grid-template-rows: 1fr 28px 22px; }
+    .risks__legend {
+      position: relative;
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .risks__legend__dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .risks__legend__dot::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px rgba(46,158,158,0.5);
+    }
+    .risks__legend__dot.danger::before { background: var(--risk-red); box-shadow: 0 0 8px rgba(184,74,74,0.5); }
+
+    /* Risk detail card */
+    .risks__detail {
+      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
+      border: 1px solid rgba(46,158,158,0.25);
+      border-radius: 8px;
+      padding: 32px 32px 36px;
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+    }
+    .risks__detail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 90% 0%, rgba(46,158,158,0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .risks__detail.is-danger {
+      border-color: rgba(184,74,74,0.3);
+    }
+    .risks__detail.is-danger::before {
+      background: radial-gradient(ellipse 70% 60% at 90% 0%, rgba(184,74,74,0.18), transparent 70%);
+    }
+    .risks__detail-inner {
+      position: relative;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 280ms cubic-bezier(0.16, 1, 0.3, 1), transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .risks__detail-inner.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .risks__detail__num {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .risks__detail.is-danger .risks__detail__num { color: var(--risk-red); }
+    .risks__detail h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18pt;
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.018em;
+      margin-bottom: 18px;
+    }
+    .risks__detail h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .risks__detail p {
+      font-family: var(--body);
+      font-size: 10pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    .risks__detail__ratings {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+    .risks__detail__ratings div {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .risks__detail__ratings b {
+      display: block;
+      font-family: var(--display);
+      font-size: 12pt;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      margin-top: 4px;
+    }
+    .risks__detail__mit {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .risks__detail__mit-body {
+      font-family: var(--body);
+      font-size: 10pt;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+    .risks__detail__owner {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .risks__detail__owner b {
+      color: white;
+      font-weight: 500;
+      font-family: var(--display);
+      font-size: 9pt;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      margin-left: 10px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       GATE TIMELINE
+       ══════════════════════════════════════════════════════════════ */
+    .gates {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .gates::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 100% at 10% 50%, rgba(46,158,158,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .gates__track {
+      position: relative;
+      height: 2px;
+      background: rgba(255,255,255,0.08);
+      margin: 48px 0 16px;
+    }
+    .gates__fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+      box-shadow: 0 0 22px rgba(46,158,158,0.55);
+    }
+    .gates__marks {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .gates__mark {
+      position: relative;
+      padding-top: 32px;
+      text-align: center;
+    }
+    .gates__mark::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translate(-50%, 0) rotate(45deg);
+      width: 18px;
+      height: 18px;
+      background: var(--teal);
+      box-shadow: 0 0 18px rgba(46,158,158,0.7), 0 0 0 3px var(--ink-card);
+    }
+    .gates__mark__id {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .gates__mark__date {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 10px;
+    }
+    .gates__mark__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 11pt;
+      color: white;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .gates__mark__desc {
+      font-family: var(--body);
+      font-size: 8.5pt;
+      line-height: 1.45;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .gates__mark__owner {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .gates__mark__owner b {
+      display: block;
+      color: white;
+      font-family: var(--display);
+      font-size: 8.5pt;
+      letter-spacing: -0.005em;
+      text-transform: none;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       DEPENDENCY GRAPH
+       ══════════════════════════════════════════════════════════════ */
+    .deps {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .deps::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .deps__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 20px;
+    }
+    .deps__label b { color: white; font-weight: 500; }
+    .deps__svg {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      display: block;
+      position: relative;
+    }
+    .deps__note {
+      position: relative;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-family: var(--body);
+      font-size: 10pt;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    .deps__note b { color: white; font-weight: 500; }
+    .deps__note em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       BUDGET
+       ══════════════════════════════════════════════════════════════ */
+    .budget {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .budget::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .budget__label {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 30px;
+    }
+    .budget__label b { color: white; font-weight: 500; }
+    .budget__bar {
+      position: relative;
+      display: flex;
+      height: 50px;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 28px -6px rgba(46,158,158,0.35);
+    }
+    .budget__bar__seg {
+      position: relative;
+      background: linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%);
+      cursor: pointer;
+      transition: filter 180ms ease, transform 200ms ease;
+      border-right: 1px solid rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .budget__bar__seg:last-child { border-right: 0; }
+    .budget__bar__seg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .budget__bar__seg:nth-child(1) { filter: brightness(1.0); }
+    .budget__bar__seg:nth-child(2) { filter: brightness(0.92); }
+    .budget__bar__seg:nth-child(3) { filter: brightness(0.82); }
+    .budget__bar__seg:nth-child(4) { filter: brightness(0.74); }
+    .budget__bar__seg:nth-child(5) { filter: brightness(0.66); }
+    .budget__bar__seg:hover { filter: brightness(1.2); }
+    .budget__bar__seg.is-active { filter: brightness(1.25); }
+    .budget__bar__seg__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6pt;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.95);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    .budget__bar__scale {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.1em;
+      color: var(--text-ghost);
+      margin-bottom: 36px;
+    }
+
+    .budget__table {
+      position: relative;
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--body);
+    }
+    .budget__table thead th {
+      text-align: left;
+      padding: 12px 0 14px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      font-weight: 500;
+      border-bottom: 1px solid var(--line);
+    }
+    .budget__table thead th:last-child,
+    .budget__table tbody td:last-child { text-align: right; }
+    .budget__table thead th:nth-child(3),
+    .budget__table tbody td:nth-child(3) { text-align: right; padding-right: 24px; }
+    .budget__table tbody td {
+      padding: 16px 0;
+      font-size: 10pt;
+      color: var(--text);
+      border-bottom: 1px solid var(--line);
+      transition: background 180ms ease;
+    }
+    .budget__table tbody tr { transition: background 180ms ease; }
+    .budget__table tbody tr.is-active td {
+      background: rgba(46,158,158,0.08);
+    }
+    .budget__table tbody tr.is-active td:first-child {
+      box-shadow: inset 2px 0 0 var(--teal);
+    }
+    .budget__table tbody td:first-child {
+      padding-left: 10px;
+      font-family: var(--display);
+      font-weight: 500;
+      color: white;
+      letter-spacing: -0.005em;
+    }
+    .budget__table tbody td:first-child small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: var(--text-ghost);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+    .budget__table tbody td:nth-child(2) { color: var(--text-dim); }
+    .budget__table tbody td:nth-child(3) { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+    .budget__table tbody td:last-child {
+      font-family: var(--display);
+      font-weight: 600;
+      color: white;
+      font-size: 11pt;
+      letter-spacing: -0.005em;
+      padding-right: 10px;
+    }
+    .budget__table tbody tr.is-subtotal td {
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+    }
+    .budget__table tbody tr.is-total td {
+      padding-top: 22px;
+      padding-bottom: 22px;
+      border-bottom: 0;
+    }
+    .budget__table tbody tr.is-total td:last-child {
+      font-size: 18pt;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .budget__table tbody tr.is-total td:first-child { color: white; font-size: 12pt; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAYMENT MILESTONES
+       ══════════════════════════════════════════════════════════════ */
+    .pay {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .pay__card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 30px 28px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 220ms ease, transform 220ms ease;
+    }
+    .pay__card:hover {
+      border-color: rgba(46,158,158,0.4);
+      transform: translateY(-2px);
+    }
+    .pay__card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(46,158,158,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .pay__card__pct {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 42pt;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .pay__card__pct em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .pay__card__label {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .pay__card__title {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 11pt;
+      color: white;
+      line-height: 1.3;
+      letter-spacing: -0.005em;
+      margin-bottom: 18px;
+      min-height: 42px;
+    }
+    .pay__card__amount {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18pt;
+      color: white;
+      letter-spacing: -0.015em;
+      line-height: 1;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .pay__card__amount span { color: var(--teal); font-family: var(--serif); font-style: italic; font-weight: 400; margin-right: 2px; }
+
+    /* ══════════════════════════════════════════════════════════════
+       WEEKLY CADENCE
+       ══════════════════════════════════════════════════════════════ */
+    .cadence {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 44px 44px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cadence::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 80% 0%, rgba(46,158,158,0.06), transparent 70%);
+      pointer-events: none;
+    }
+    .cadence__head {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 40px;
+      gap: 32px;
+    }
+    .cadence__head h3 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 24pt;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.08;
+      max-width: 22ch;
+    }
+    .cadence__head h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .cadence__head p {
+      font-family: var(--body);
+      font-size: 10.5pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+      max-width: 36ch;
+      text-align: right;
+    }
+    .cadence__grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .cadence__day {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 22px 20px 24px;
+      position: relative;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 200ms ease, background 200ms ease;
+    }
+    .cadence__day:hover {
+      border-color: rgba(46,158,158,0.3);
+      background: rgba(46,158,158,0.05);
+    }
+    .cadence__day__head {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 4px;
+    }
+    .cadence__day__name {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 13pt;
+      color: white;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .cadence__day__time {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .cadence__day__what {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 10pt;
+      color: white;
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .cadence__day__note {
+      font-family: var(--body);
+      font-size: 8.5pt;
+      color: var(--text-dim);
+      line-height: 1.45;
+      margin-top: auto;
+    }
+    .cadence__day--sync {
+      background: linear-gradient(160deg, rgba(46,158,158,0.12) 0%, rgba(46,158,158,0.03) 80%);
+      border-color: rgba(46,158,158,0.3);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RAIL OF ASSUMPTIONS
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 140px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: white; font-weight: 500; }
+    .assumptions__body em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 18px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .wrap { padding: 64px 36px 120px; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+      .hero__stat:nth-child(2) { border-right: 0; }
+      .hero__stat:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+      .hero__stat:nth-child(4) { padding-top: 24px; border-top: 1px solid var(--line); }
+      .gantt { padding: 34px 24px 38px; }
+      .gantt__grid { grid-template-columns: 120px repeat(10, minmax(40px, 1fr)); }
+      .gantt__row-label { font-size: 6pt; padding-right: 10px; }
+      .gantt__row-label b { font-size: 9pt; }
+      .gantt__month { font-size: 5.5pt; }
+      .gantt__month b { font-size: 8pt; }
+      .gantt__bar__label { font-size: 6pt; padding: 4px 8px; }
+      .gantt__bar__label b { font-size: 8pt; }
+      .gantt__detail { padding: 28px 24px 32px; }
+      .gantt__detail-head { flex-direction: column; gap: 14px; }
+      .gantt__detail-head h3 { font-size: 20pt; }
+      .gantt__detail-meta { text-align: left; }
+      .gantt__detail-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .gantt__detail-risks ul { grid-template-columns: 1fr; }
+      .risks { grid-template-columns: 1fr; }
+      .risks__matrix-wrap { padding: 34px 24px 30px; }
+      .risks__detail { min-height: auto; padding: 28px 24px 32px; }
+      .gates { padding: 40px 24px 40px; }
+      .gates__marks { grid-template-columns: repeat(3, 1fr); gap: 32px 14px; }
+      .deps { padding: 34px 24px 30px; }
+      .budget { padding: 34px 24px 38px; }
+      .pay { grid-template-columns: repeat(2, 1fr); }
+      .cadence { padding: 34px 24px 36px; }
+      .cadence__grid { grid-template-columns: repeat(2, 1fr); }
+      .cadence__head { flex-direction: column; gap: 14px; align-items: flex-start; }
+      .cadence__head p { text-align: left; }
+      .assumptions { grid-template-columns: 1fr; gap: 18px; }
+      .assumptions__list { grid-template-columns: 1fr; }
+    }
+    /* Tablet portrait — sidebar collapses (portal.css), full-width content */
+    @media (max-width: 900px) {
+      .wrap { padding: 56px 32px 110px; }
+      .section { padding-top: 100px; }
+      .section__head { margin-bottom: 44px; }
+      .hero__title { font-size: 48pt; line-height: 0.96; margin-bottom: 32px; }
+      .hero__lede { font-size: 13pt; }
+      .section__title { font-size: 32pt; line-height: 1.02; }
+      .section__lede { font-size: 12pt; }
+      /* Gantt becomes horizontally scrollable with a min-width so columns stay legible */
+      .gantt { padding: 32px 0 36px; }
+      .gantt__label, .gantt__detail { padding-left: 28px; padding-right: 28px; }
+      .gantt__scroll {
+        overflow-x: auto;
+        padding: 0 28px 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .gantt__scroll::-webkit-scrollbar { height: 4px; }
+      .gantt__scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 2px; }
+      .gantt__grid {
+        min-width: 720px;
+        grid-template-columns: 120px repeat(10, minmax(56px, 1fr));
+      }
+      .gantt__detail-grid { grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+      .gantt__detail-head h3 { font-size: 22pt; }
+      .gantt__detail-meta b { font-size: 13pt; }
+      .risks__matrix-wrap { padding: 30px 24px 28px; }
+      .risks__matrix { aspect-ratio: 1 / 1; }
+      .risks__detail { padding: 26px 24px 30px; min-height: auto; }
+      .gates { padding: 36px 24px 38px; }
+      .gates__marks { grid-template-columns: repeat(2, 1fr); gap: 36px 22px; }
+      .deps { padding: 32px 24px 28px; }
+      .deps__svg { max-width: 100%; height: auto; }
+      .budget { padding: 32px 24px 36px; }
+      .budget__bar { height: 14px; }
+      .budget__table { font-size: 9pt; }
+      .budget__table th, .budget__table td { padding: 12px 8px; }
+      .pay { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .pay__card { padding: 28px 22px; }
+      .cadence { padding: 32px 24px 36px; }
+      .cadence__grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .cadence__day { min-height: 180px; padding: 20px 18px 22px; }
+      .assumptions { margin-top: 88px; padding-top: 32px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+    }
+
+    /* Phone — single column, ruthless tightening */
+    @media (max-width: 700px) {
+      .wrap { padding: 44px 20px 88px; }
+      .section { padding-top: 80px; }
+      .section__head { margin-bottom: 36px; }
+      .hero__title { font-size: 36pt; line-height: 0.97; margin-bottom: 26px; max-width: 100%; }
+      .hero__lede { font-size: 12.5pt; line-height: 1.55; }
+      .section__title { font-size: 26pt; line-height: 1.04; }
+      .section__lede { font-size: 11.5pt; }
+      .hero__stats { grid-template-columns: 1fr; gap: 0; margin-top: 42px; padding-top: 24px; }
+      .hero__stat { padding: 0 !important; border-right: 0 !important; }
+      .hero__stat + .hero__stat {
+        margin-top: 24px;
+        padding-top: 24px !important;
+        border-top: 1px solid var(--line);
+      }
+      .hero__stat__value { font-size: 28pt; }
+      .gantt { padding: 28px 0 30px; }
+      .gantt__label, .gantt__detail { padding-left: 20px; padding-right: 20px; }
+      .gantt__label { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 22px; }
+      .gantt__scroll { padding: 0 20px 12px; }
+      .gantt__grid {
+        min-width: 640px;
+        grid-template-columns: 100px repeat(10, minmax(50px, 1fr));
+      }
+      .gantt__detail { padding-top: 28px; }
+      .gantt__detail-grid { grid-template-columns: 1fr; gap: 26px; }
+      .gantt__detail-head h3 { font-size: 19pt; }
+      .gantt__detail-head { gap: 10px; }
+      .risks__matrix-wrap { padding: 26px 20px 24px; }
+      .risks__detail { padding: 22px 20px 26px; }
+      .gates { padding: 30px 20px 32px; }
+      .gates__marks { grid-template-columns: 1fr 1fr; gap: 30px 18px; }
+      .deps { padding: 28px 20px 26px; }
+      .budget { padding: 28px 20px 32px; }
+      .budget__table tbody td:nth-child(2),
+      .budget__table thead th:nth-child(2) { display: none; }
+      .budget__table th, .budget__table td { padding: 11px 6px; font-size: 9pt; }
+      .pay { grid-template-columns: 1fr; gap: 14px; }
+      .pay__card { padding: 24px 20px; }
+      .cadence { padding: 28px 20px 32px; }
+      .cadence__grid { grid-template-columns: 1fr; gap: 12px; }
+      .cadence__day { min-height: auto; padding: 18px 18px 20px; }
+    }
+
+    /* Tight phone — push the type scale down once more */
+    @media (max-width: 480px) {
+      .wrap { padding: 40px 16px 76px; }
+      .section { padding-top: 68px; }
+      .hero__title { font-size: 30pt; line-height: 0.98; }
+      .section__title { font-size: 22pt; line-height: 1.05; }
+      .section__lede { font-size: 11pt; }
+      .gantt__scroll { padding: 0 16px 10px; }
+      .gantt__grid { min-width: 580px; grid-template-columns: 88px repeat(10, minmax(46px, 1fr)); }
+      .gantt__bar__label { font-size: 5.5pt; padding: 3px 6px; }
+      .gantt__bar__label b { font-size: 7pt; }
+      .gantt__detail-head h3 { font-size: 17pt; }
+      .gates__marks { grid-template-columns: 1fr; gap: 22px; }
+      .pay__card__amount { font-size: 18pt; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
+      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="research.html" class="portal-tab">Research</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
+      <a href="runway.html" class="portal-tab is-current"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="site-nav__footer">
+      Interactive scenarios. Your assumptions, your answer.<br><br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Agency OS · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 06 · 10-month runway</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=10-month runway · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 06 of 07">10-month runway · Jun 2026 → Apr 2027</div>
+        <h1 class="hero__title">The plan, with every <em>dependency named.</em></h1>
+        <p class="hero__lede">Ten months. Five phases. Six decision gates where Rick holds the pen. Nine risks we've named in advance, with mitigations attached. A Gantt you can interrogate cell-by-cell, and a budget that itemizes every dollar instead of lumping it under <em>"strategy and execution."</em> If another bidder shows you a prettier timeline, ask them where the risks are.</p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Kickoff → launch</span>
+            <div class="hero__stat__value">10<em>mo</em></div>
+            <div class="hero__stat__foot">Jun 1 2026 → Mar 1 2027 · April buffer</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Phases · gates</span>
+            <div class="hero__stat__value">5 · 6</div>
+            <div class="hero__stat__foot">Five work phases, six sign-off gates</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Named risks</span>
+            <div class="hero__stat__value">9<em>·</em></div>
+            <div class="hero__stat__foot">Each mitigated in advance, with an owner</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Payment milestones</span>
+            <div class="hero__stat__value">4<em>×25%</em></div>
+            <div class="hero__stat__foot">Contract · G1 · G2 · launch</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           GANTT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The runway · ten months, five phases</div>
+          <h2 class="section__title">A plan you can <em>interrogate</em> cell by cell.</h2>
+          <p class="section__lede">Click any phase bar to see deliverables, who's involved, and the risks specific to that window. Decision gates (G1–G6) are the six moments where Rick holds the pen and the clock stops until he signs.</p>
+        </div>
+
+        <div class="gantt">
+          <div class="gantt__label">
+            <span>Master schedule · <b>Jun 2026 → Apr 2027</b></span>
+            <span><b>5 phases · 6 gates</b> · click any bar to expand</span>
+          </div>
+
+          <div class="gantt__scroll">
+          <div class="gantt__grid" id="gantt">
+            <div class="gantt__corner">Phase</div>
+            <div class="gantt__month"><b>Jun</b>2026</div>
+            <div class="gantt__month"><b>Jul</b>2026</div>
+            <div class="gantt__month"><b>Aug</b>2026</div>
+            <div class="gantt__month"><b>Sep</b>2026</div>
+            <div class="gantt__month"><b>Oct</b>2026</div>
+            <div class="gantt__month"><b>Nov</b>2026</div>
+            <div class="gantt__month"><b>Dec</b>2026</div>
+            <div class="gantt__month"><b>Jan</b>2027</div>
+            <div class="gantt__month"><b>Feb</b>2027</div>
+            <div class="gantt__month"><b>Mar</b>2027</div>
+
+            <div class="gantt__row-label">Phase 01<b>Discovery &amp; Strategy</b></div>
+            <div class="gantt__row-track">
+              <div class="gantt__bar" data-phase="1" style="left: 0%; width: 14%;">
+                <span class="gantt__bar__label"><b>P1 · Discovery</b><span>Jun 1 → Jul 10</span></span>
+              </div>
+            </div>
+
+            <div class="gantt__row-label">Phase 02<b>Design</b></div>
+            <div class="gantt__row-track">
+              <div class="gantt__bar" data-phase="2" style="left: 14.5%; width: 19.5%;">
+                <span class="gantt__bar__label"><b>P2 · Design</b><span>Jul 13 → Sep 4</span></span>
+              </div>
+            </div>
+
+            <div class="gantt__row-label">Phase 03<b>Development</b></div>
+            <div class="gantt__row-track">
+              <div class="gantt__bar" data-phase="3" style="left: 24%; width: 29%;">
+                <span class="gantt__bar__label"><b>P3 · Development</b><span>Sep 7 → Nov 25</span></span>
+              </div>
+            </div>
+
+            <div class="gantt__row-label">Phase 04<b>Migration &amp; QA</b></div>
+            <div class="gantt__row-track">
+              <div class="gantt__bar" data-phase="4" style="left: 53.5%; width: 19%;">
+                <span class="gantt__bar__label"><b>P4 · Migration</b><span>Nov 30 → Jan 22</span></span>
+              </div>
+            </div>
+
+            <div class="gantt__row-label">Phase 05<b>Training &amp; Launch</b></div>
+            <div class="gantt__row-track">
+              <div class="gantt__bar" data-phase="5" style="left: 72.5%; width: 24.5%;">
+                <span class="gantt__bar__label"><b>P5 · Launch</b><span>Jan 25 → Apr 2</span></span>
+              </div>
+            </div>
+
+            <!-- Decision gate pins laid across the track area -->
+            <div class="gantt__gates">
+              <div class="gantt__gate" style="left: 14.2%;" data-label="G1"></div>
+              <div class="gantt__gate" style="left: 33.5%;" data-label="G2"></div>
+              <div class="gantt__gate" style="left: 59.5%;" data-label="G3"></div>
+              <div class="gantt__gate" style="left: 72.3%;" data-label="G4"></div>
+              <div class="gantt__gate" style="left: 90%;" data-label="G5"></div>
+              <div class="gantt__gate" style="left: 99%;" data-label="G6"></div>
+            </div>
+          </div>
+          </div><!-- /.gantt__scroll -->
+
+          <!-- Detail panel -->
+          <div class="gantt__detail" id="ganttDetail">
+            <div class="gantt__detail-inner" id="ganttDetailInner">
+              <div class="gantt__detail-empty">Click a phase bar above to see deliverables · roles · gates · risks</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           RISK MAP
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Risk map · named in advance</div>
+          <h2 class="section__title">Nine risks. Mitigations <em>attached to each one.</em></h2>
+          <p class="section__lede">Every project this size has risks. Most proposals hide them. We plot ours on a 3×3 grid so you can see exactly which ones keep us up at night. Click any dot — see the risk, the owner, and how we'll handle it before it fires.</p>
+        </div>
+
+        <div class="risks">
+          <div class="risks__matrix-wrap">
+            <div class="risks__label">Impact × Likelihood · 9 risks plotted</div>
+
+            <div class="risks__matrix">
+              <div class="risks__yaxis">
+                <span>High</span>
+                <span>Med</span>
+                <span>Low</span>
+              </div>
+              <div class="risks__plot" id="riskPlot">
+                <!-- Risk dots injected by JS -->
+              </div>
+              <div class="risks__xaxis">
+                <span>Low</span>
+                <span>Med</span>
+                <span>High</span>
+              </div>
+              <div class="risks__xtitle">Impact →</div>
+            </div>
+
+            <div class="risks__ytitle">↑ Likelihood</div>
+
+            <div class="risks__legend">
+              <span class="risks__legend__dot">Manageable</span>
+              <span class="risks__legend__dot danger">High likelihood × high impact</span>
+            </div>
+          </div>
+
+          <div class="risks__detail" id="riskDetail">
+            <div class="risks__detail-inner is-visible" id="riskDetailInner">
+              <span class="risks__detail__num">Risk 01 · hover or click a dot</span>
+              <h3>Every risk on this page has a <em>name and an owner.</em></h3>
+              <p>Hover over any circle on the matrix to see the full card: likelihood rating, impact rating, who owns the response plan, and the specific mitigation we'll execute before this risk fires. The upper-right quadrant is the danger zone — two of our nine risks sit there, both with the tightest mitigations.</p>
+              <div class="risks__detail__ratings">
+                <div>Total risks<b>9</b></div>
+                <div>In danger zone<b>2</b></div>
+              </div>
+              <div class="risks__detail__mit">How to read this</div>
+              <div class="risks__detail__mit-body">Bigger dot = higher severity (likelihood × impact). Teal = manageable. Red = danger zone. Numbers inside each dot match the order they appear in our risk register.</div>
+              <div class="risks__detail__owner">Owner<b>Agency OS · Program Lead</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           DECISION GATES
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Decision gates · six sign-offs</div>
+          <h2 class="section__title">Six moments where Rick <em>holds the pen.</em></h2>
+          <p class="section__lede">No launch surprises. At each gate, work stops, we demo, Rick (or the steering committee) signs, and only then does the next phase begin. It's the clearest way to keep Rick accountable to his stakeholders and us accountable to the plan.</p>
+        </div>
+
+        <div class="gates">
+          <div class="gates__track">
+            <div class="gates__fill"></div>
+          </div>
+          <div class="gates__marks">
+            <div class="gates__mark">
+              <div class="gates__mark__id">G1</div>
+              <div class="gates__mark__date">Jul 10 · 2026</div>
+              <div class="gates__mark__title">Content strategy + IA approved</div>
+              <div class="gates__mark__desc">Site map, page inventory, content model, and audience journeys locked. Nothing gets designed until this is signed.</div>
+              <div class="gates__mark__owner">Who signs<b>Steering committee</b></div>
+            </div>
+            <div class="gates__mark">
+              <div class="gates__mark__id">G2</div>
+              <div class="gates__mark__date">Sep 4 · 2026</div>
+              <div class="gates__mark__title">Design system approved</div>
+              <div class="gates__mark__desc">Visual language, type scale, component library, and 6 hero templates signed off. Development can't start without this.</div>
+              <div class="gates__mark__owner">Who signs<b>Rick + Advancement lead</b></div>
+            </div>
+            <div class="gates__mark">
+              <div class="gates__mark__id">G3</div>
+              <div class="gates__mark__date">Nov 25 · 2026</div>
+              <div class="gates__mark__title">Feature-complete staging</div>
+              <div class="gates__mark__desc">All templates live in staging. Search, forms, Slate handoff, GA4, analytics all wired. Ready to receive content.</div>
+              <div class="gates__mark__owner">Who signs<b>Rick + Eric (VP Finance)</b></div>
+            </div>
+            <div class="gates__mark">
+              <div class="gates__mark__id">G4</div>
+              <div class="gates__mark__date">Jan 22 · 2027</div>
+              <div class="gates__mark__title">Migration QA</div>
+              <div class="gates__mark__desc">Content migrated, redirects mapped, WCAG 2.2 AA verified by external audit. Staging feels like production.</div>
+              <div class="gates__mark__owner">Who signs<b>Mark Green (VP IE)</b></div>
+            </div>
+            <div class="gates__mark">
+              <div class="gates__mark__id">G5</div>
+              <div class="gates__mark__date">Mar 1 · 2027</div>
+              <div class="gates__mark__title">UAT sign-off · launch ready</div>
+              <div class="gates__mark__desc">Final UAT complete. Training done. DNS cutover rehearsed. Rick signs and we push the button within 48 hours.</div>
+              <div class="gates__mark__owner">Who signs<b>Rick + President's cabinet</b></div>
+            </div>
+            <div class="gates__mark">
+              <div class="gates__mark__id">G6</div>
+              <div class="gates__mark__date">Apr 2 · 2027</div>
+              <div class="gates__mark__title">Launch + 30 · handoff</div>
+              <div class="gates__mark__desc">30 days of post-launch monitoring complete. Runbook, training recordings, and ownership handed off to HFU team.</div>
+              <div class="gates__mark__owner">Who signs<b>Steering committee</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           DEPENDENCY GRAPH
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Dependency graph · what feeds what</div>
+          <h2 class="section__title">The critical path, <em>drawn out.</em></h2>
+        </div>
+
+        <div class="deps">
+          <div class="deps__label">Phase dependencies · <b>critical path in teal</b></div>
+
+          <svg class="deps__svg" viewBox="0 0 1080 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E9E9E"></path>
+              </marker>
+              <marker id="arrowGhost" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.28)"></path>
+              </marker>
+              <linearGradient id="nodeGrad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0C1418"></stop>
+                <stop offset="100%" stop-color="#0D0F15"></stop>
+              </linearGradient>
+            </defs>
+
+            <!-- Phase 1 node -->
+            <g transform="translate(40, 125)">
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 01</text>
+              <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Discovery</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">6 weeks</text>
+            </g>
+
+            <!-- Phase 2 node -->
+            <g transform="translate(285, 55)">
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.22)" stroke-width="1"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="1.2">PHASE 02</text>
+              <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Design</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">8 weeks</text>
+            </g>
+
+            <!-- Phase 3 node -->
+            <g transform="translate(285, 195)">
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 03</text>
+              <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Development</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">12 weeks</text>
+            </g>
+
+            <!-- Phase 4 node -->
+            <g transform="translate(570, 125)">
+              <rect width="180" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 04</text>
+              <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Migration &amp; QA</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">8 weeks</text>
+            </g>
+
+            <!-- Phase 5 node -->
+            <g transform="translate(870, 125)">
+              <rect width="170" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 05</text>
+              <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Launch</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">10 weeks</text>
+            </g>
+
+            <!-- P1 → P2 (upper split, ghost — parallel start with P3) -->
+            <path d="M 200 140 C 235 140 240 90 285 90" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
+            <text x="218" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">content model</text>
+
+            <!-- P1 → P3 (lower split, critical path) -->
+            <path d="M 200 185 C 235 185 240 230 285 230" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="210" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">page inventory</text>
+
+            <!-- P2 → P4 (upper merge, ghost — design handoff) -->
+            <path d="M 445 90 C 510 90 520 140 570 140" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
+            <text x="468" y="110" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">component library</text>
+
+            <!-- P3 → P4 (lower merge, critical path) -->
+            <path d="M 445 230 C 510 230 520 180 570 180" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="462" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">migration tooling</text>
+
+            <!-- P4 → P5 (straight, critical path) -->
+            <path d="M 750 160 L 870 160" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="770" y="152" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">clean staging</text>
+
+            <!-- Dotted parallel indicator between P2 and P3 -->
+            <path d="M 365 125 L 365 195" stroke="rgba(46,158,158,0.35)" stroke-width="1" stroke-dasharray="3 3"></path>
+            <text x="372" y="164" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(46,158,158,0.65)" letter-spacing="0.6">parallel · weeks 10–12</text>
+          </svg>
+
+          <div class="deps__note">
+            <b>Critical path (teal):</b> P1 → P3 → P4 → P5 · 36 weeks end-to-end. Phase 2 (Design) runs in parallel from week 7 and merges back into Phase 4 at week 25 with the component library. The path we protect most aggressively is the Development track — any slip in P3 cascades into every downstream gate. The April buffer exists precisely because Phase 4 is the biggest variance source; we run a <em>Monte Carlo</em> on it before kickoff and re-run it at every gate.
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           BUDGET
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Budget · itemized</div>
+          <h2 class="section__title">Every dollar <em>accounted for.</em></h2>
+          <p class="section__lede">No "strategy and execution" bucket. Hours by phase, rate by discipline, contingency disclosed, infrastructure spelled out. Hover the bar segments to highlight the corresponding row in the table.</p>
+        </div>
+
+        <div class="budget">
+          <div class="budget__label">
+            <span>Base engagement · <b>$275,000 fixed fee</b></span>
+            <span><b>1,520 hours</b> · 5 phases · 10% contingency</span>
+          </div>
+
+          <!-- Horizontal stacked bar -->
+          <div class="budget__bar" id="budgetBar">
+            <div class="budget__bar__seg" data-row="p1" style="flex: 27000;">
+              <span class="budget__bar__seg__label">P1 · 12%</span>
+            </div>
+            <div class="budget__bar__seg" data-row="p2" style="flex: 42000;">
+              <span class="budget__bar__seg__label">P2 · 18%</span>
+            </div>
+            <div class="budget__bar__seg" data-row="p3" style="flex: 88400;">
+              <span class="budget__bar__seg__label">P3 · 39%</span>
+            </div>
+            <div class="budget__bar__seg" data-row="p4" style="flex: 49400;">
+              <span class="budget__bar__seg__label">P4 · 22%</span>
+            </div>
+            <div class="budget__bar__seg" data-row="p5" style="flex: 21600;">
+              <span class="budget__bar__seg__label">P5 · 9%</span>
+            </div>
+          </div>
+          <div class="budget__bar__scale">
+            <span>$0</span>
+            <span>Base scope: $228,400</span>
+            <span>100%</span>
+          </div>
+
+          <table class="budget__table" id="budgetTable">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Scope</th>
+                <th>Hours</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-row="p1"><td>Phase 01 · Discovery &amp; Strategy<small>Weeks 01–06</small></td><td>Audit · IA · content model · journeys</td><td>180</td><td>$27,000</td></tr>
+              <tr data-row="p2"><td>Phase 02 · Design<small>Weeks 07–14</small></td><td>Visual system · templates · design library</td><td>280</td><td>$42,000</td></tr>
+              <tr data-row="p3"><td>Phase 03 · Development<small>Weeks 15–26</small></td><td>WordPress build · ACF Pro · integrations</td><td>520</td><td>$88,400</td></tr>
+              <tr data-row="p4"><td>Phase 04 · Content Migration &amp; Testing<small>Weeks 27–34</small></td><td>Migration · redirects · WCAG · performance</td><td>380</td><td>$49,400</td></tr>
+              <tr data-row="p5"><td>Phase 05 · Training &amp; Launch<small>Weeks 35–44</small></td><td>Training · rehearsal · cutover · handoff</td><td>160</td><td>$21,600</td></tr>
+              <tr class="is-subtotal"><td>Base scope subtotal</td><td>&nbsp;</td><td>1,520</td><td>$228,400</td></tr>
+              <tr><td>Contingency · 10%<small>Variance reserve for Phase 04</small></td><td>Not billed unless triggered</td><td>—</td><td>$22,840</td></tr>
+              <tr><td>Infrastructure + licenses<small>Pantheon · ACF Pro · Gravity Forms · Slate · SSL · monitoring · yr-1 hosting</small></td><td>Pass-through · itemized at kickoff</td><td>—</td><td>$23,760</td></tr>
+              <tr class="is-total"><td>Total base engagement</td><td>&nbsp;</td><td>1,520</td><td>$275,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           PAYMENT MILESTONES
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">Payment milestones · tied to sign-offs</div>
+          <h2 class="section__title">Four invoices. <em>Each tied</em> to a signature.</h2>
+          <p class="section__lede">You never pay for work that hasn't been approved. Every milestone is gated on a signed deliverable — not a calendar date.</p>
+        </div>
+
+        <div class="pay">
+          <div class="pay__card">
+            <div class="pay__card__pct">25<em>%</em></div>
+            <span class="pay__card__label">Milestone 01</span>
+            <div class="pay__card__title">Contract execution &amp; kickoff</div>
+            <div class="pay__card__amount"><span>$</span>68,750</div>
+          </div>
+          <div class="pay__card">
+            <div class="pay__card__pct">25<em>%</em></div>
+            <span class="pay__card__label">Milestone 02 · G1</span>
+            <div class="pay__card__title">Content model + IA approved</div>
+            <div class="pay__card__amount"><span>$</span>68,750</div>
+          </div>
+          <div class="pay__card">
+            <div class="pay__card__pct">25<em>%</em></div>
+            <span class="pay__card__label">Milestone 03 · G2</span>
+            <div class="pay__card__title">Design system approved</div>
+            <div class="pay__card__amount"><span>$</span>68,750</div>
+          </div>
+          <div class="pay__card">
+            <div class="pay__card__pct">25<em>%</em></div>
+            <span class="pay__card__label">Milestone 04 · G5</span>
+            <div class="pay__card__title">Launch · UAT signed</div>
+            <div class="pay__card__amount"><span>$</span>68,750</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           WEEKLY CADENCE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The collaboration rhythm</div>
+          <h2 class="section__title">What a week inside this project <em>actually looks like.</em></h2>
+        </div>
+
+        <div class="cadence">
+          <div class="cadence__head">
+            <h3>A predictable rhythm that respects Rick's calendar.</h3>
+            <p>Two synchronous touchpoints, three async work days. Everything runs in a shared Linear board. You see everything we see.</p>
+          </div>
+
+          <div class="cadence__grid">
+            <div class="cadence__day cadence__day--sync">
+              <div class="cadence__day__head">Week day 01</div>
+              <div class="cadence__day__name">Monday</div>
+              <div class="cadence__day__time">10:00 am · 60 min</div>
+              <div class="cadence__day__what">Status call</div>
+              <div class="cadence__day__note">What shipped. What's blocked. What's needed from HFU this week. Agenda posted Friday.</div>
+            </div>
+            <div class="cadence__day">
+              <div class="cadence__day__head">Week day 02</div>
+              <div class="cadence__day__name">Tuesday</div>
+              <div class="cadence__day__time">Async · all day</div>
+              <div class="cadence__day__what">Design / dev work</div>
+              <div class="cadence__day__note">Uninterrupted focus block. PRs open in staging. Loom walkthroughs posted as decisions land.</div>
+            </div>
+            <div class="cadence__day">
+              <div class="cadence__day__head">Week day 03</div>
+              <div class="cadence__day__name">Wednesday</div>
+              <div class="cadence__day__time">Rolling window</div>
+              <div class="cadence__day__what">Rick's commit access</div>
+              <div class="cadence__day__note">Code review window. Rick has read access to the repo from day 1. Every commit is linked to a Linear issue.</div>
+            </div>
+            <div class="cadence__day cadence__day--sync">
+              <div class="cadence__day__head">Week day 04</div>
+              <div class="cadence__day__name">Thursday</div>
+              <div class="cadence__day__time">Async + 30 min</div>
+              <div class="cadence__day__what">Content sync</div>
+              <div class="cadence__day__note">Standing call with HFU content reviewers. Questions routed into Linear, unblock list updated live.</div>
+            </div>
+            <div class="cadence__day">
+              <div class="cadence__day__head">Week day 05</div>
+              <div class="cadence__day__name">Friday</div>
+              <div class="cadence__day__time">3:00 pm · 30 min</div>
+              <div class="cadence__day__what">Week wrap</div>
+              <div class="cadence__day__note">What closed this week. Next week's plan. One Loom recap for anyone who missed a meeting. Shipped to Rick by 4 pm.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           HOW THIS PLAN WAS BUILT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">How this plan was built</div>
+        <div class="assumptions__body">
+          <strong>This isn't a gut-feel timeline.</strong> We built it using PERT-style critical-path modeling on the five phases, then ran a <em>Monte Carlo</em> simulation on Phase 4 (migration) — the biggest variance source in any higher-ed project — to stress-test the launch date across 10,000 runs. The dates and gates here anchor on Agency OS's two prior higher-ed redesigns delivered on comparable timelines: a 14,000-student regional Catholic university and a 4,200-student liberal arts college, both launched within two weeks of target. Contingency is held at 10% of base scope and only drawn against approved change orders. Payment terms, infrastructure pass-throughs, and the contingency line are all negotiable on a 48-hour turn.
+          <div class="assumptions__list">
+            <div><span>01</span>PERT modeling on all 5 phases; critical path = P1 → P3 → P4 → P5</div>
+            <div><span>02</span>Monte Carlo on Phase 4 (n=10,000) · P80 finish = Jan 24, P95 = Feb 2</div>
+            <div><span>03</span>Contingency: 10% of base scope, drawn only against approved change orders</div>
+            <div><span>04</span>Anchors: two prior higher-ed redesigns, 14K and 4.2K students, both on time</div>
+            <div><span>05</span>April buffer: 4 weeks of slack between G5 and G6, absorbs late-breaking variance</div>
+            <div><span>06</span>Rates blended: $160/hr avg across strategy, design, engineering, QA</div>
+            <div><span>07</span>Every gate pauses the clock until signed — no unsigned work proceeds</div>
+            <div><span>08</span>Payment terms and infrastructure line negotiable on 48-hour turnaround</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  (function(){
+    // ═══════════════════════════════════════════════════════════════
+    // GANTT · phase click → detail panel
+    // ═══════════════════════════════════════════════════════════════
+    const PHASES = {
+      1: {
+        name: 'Discovery &amp; Strategy',
+        dates: 'Jun 1 → Jul 10 · 2026',
+        duration: '6 weeks',
+        deliverables: [
+          '<b>Content audit</b> of all 670+ existing pages, scored for traffic, freshness, and conversion role',
+          '<b>Information architecture</b> and sitemap, tested with 8 HFU audience proxies',
+          '<b>Content model</b> in Google Docs, ready to translate into ACF Pro field groups',
+          '<b>Audience journey maps</b> for 4 personas (prospective UG, adult learner, grad, current student)',
+          '<b>Technical discovery</b>: Drupal Paragraphs export plan, Slate integration points, GA4 audit',
+          '<b>Kickoff report</b> with confirmed success metrics tied to enrollment intelligence'
+        ],
+        roles: [
+          '<b>Agency OS:</b> Strategy Lead · IA Director · Research Associate',
+          '<b>Holy Family:</b> Rick Mitchell · Advancement · Enrollment · IT'
+        ],
+        milestones: [
+          '<b>G1 · Jul 10</b> Content strategy + IA signed by steering committee',
+          'Weekly stakeholder interviews (12 total, 45 min each)',
+          'Mid-phase checkpoint Jun 26 · IA draft reviewed'
+        ],
+        risks: [
+          '<b>Stakeholder alignment delays</b> — mitigated with a structured interview calendar locked by Jun 8 and a single approving voice (Rick) for final calls',
+          '<b>Content review bottleneck</b> — mitigated by scoping content owners per section in week 01, not deferred to migration'
+        ]
+      },
+      2: {
+        name: 'Design',
+        dates: 'Jul 13 → Sep 4 · 2026',
+        duration: '8 weeks',
+        deliverables: [
+          '<b>Visual design system</b>: color, typography, spacing, grid, motion — documented in Figma',
+          '<b>Component library</b>: 48 production components covering every page pattern',
+          '<b>6 hero templates</b>: homepage, program landing, adult learner, news/insights, faculty, about',
+          '<b>Responsive design</b> at 4 breakpoints, with mobile-first interaction specs',
+          '<b>Accessibility annotations</b>: WCAG 2.2 AA compliance checked per component',
+          '<b>Prototype handoff</b> in Figma with dev-ready specs and Storybook outline'
+        ],
+        roles: [
+          '<b>Agency OS:</b> Design Director · Senior Designer · UX Engineer',
+          '<b>Holy Family:</b> Rick · Advancement lead · Marketing reviewer'
+        ],
+        milestones: [
+          '<b>G2 · Sep 4</b> Design system approved by Rick + Advancement',
+          'Mid-phase: week-4 concept review (3 directions)',
+          'Week-6 component library walkthrough'
+        ],
+        risks: [
+          '<b>Scope creep post-G2</b> — mitigated by capping component library at 48 items and routing every new ask through a written change-order',
+          '<b>Accessibility compliance debt</b> — mitigated by running a Level AA audit in week 6, before lockup'
+        ]
+      },
+      3: {
+        name: 'Development',
+        dates: 'Sep 7 → Nov 25 · 2026',
+        duration: '12 weeks',
+        deliverables: [
+          '<b>WordPress build</b> on Pantheon with ACF Pro and a custom block system (mirroring Drupal Paragraphs)',
+          '<b>48 components</b> built in Storybook, wired into Gutenberg block variations',
+          '<b>6 page templates</b> feature-complete with dynamic taxonomies',
+          '<b>Slate integration</b>: form handler, lead routing, UTM parameter capture',
+          '<b>GA4 + Looker Studio</b>: enrollment funnel tracking and live dashboard',
+          '<b>Performance budget</b>: LCP <2.0s on 4G, Core Web Vitals in green'
+        ],
+        roles: [
+          '<b>Agency OS:</b> Lead Engineer · 2× Full-stack · QA Engineer · DevOps',
+          '<b>Holy Family:</b> Rick (commit access) · IT (DNS, Slate creds)'
+        ],
+        milestones: [
+          '<b>G3 · Nov 25</b> Feature-complete staging signed by Rick + Eric',
+          'Week-4 code review checkpoint',
+          'Week-8 integration testing with Slate'
+        ],
+        risks: [
+          '<b>Drupal Paragraphs complexity</b> — the highest-severity risk; mitigated by a dedicated 2-week spike in week 01 to map every Paragraph type and build a 1:1 ACF equivalent',
+          '<b>Integration surprises (Slate, GA4)</b> — mitigated by securing Slate API credentials before Sep 7 and running a dry-run integration in week 3'
+        ]
+      },
+      4: {
+        name: 'Content Migration &amp; Testing',
+        dates: 'Nov 30 → Jan 22 · 2027',
+        duration: '8 weeks',
+        deliverables: [
+          '<b>Content migration</b>: programmatic for 280 program + info pages, human-assisted for 120 high-touch pages',
+          '<b>Archive disposition</b>: 670 old news articles moved to archive subdomain or deleted with redirects',
+          '<b>Redirect map</b>: every legacy URL mapped to new destination, verified in staging',
+          '<b>WCAG 2.2 AA audit</b>: external accessibility audit from WebAIM, remediation complete',
+          '<b>Performance tuning</b>: image optimization, CDN config, critical CSS path',
+          '<b>UAT scripts</b> for 12 critical user flows, ready for HFU testing'
+        ],
+        roles: [
+          '<b>Agency OS:</b> Content Strategist · 2× Migration Engineers · QA Lead',
+          '<b>Holy Family:</b> Content reviewers · Accessibility coordinator'
+        ],
+        milestones: [
+          '<b>G4 · Jan 22</b> Migration QA signed by Mark Green',
+          'Winter break soft-freeze Dec 22 → Jan 2',
+          'Post-break audit kickoff Jan 5'
+        ],
+        risks: [
+          '<b>Holiday compression</b> — mitigated by locking 80% of migration work before Dec 19, leaving only cleanup and remediation post-break',
+          '<b>Content review bottleneck</b> — mitigated with a content-pairing model: each HFU reviewer owns a named page set, not "whoever has time"'
+        ]
+      },
+      5: {
+        name: 'Training &amp; Launch',
+        dates: 'Jan 25 → Apr 2 · 2027',
+        duration: '10 weeks',
+        deliverables: [
+          '<b>Training program</b>: 4 role-based sessions (editors, admins, analytics, SEO) with recorded walkthroughs',
+          '<b>Runbook</b>: 30-page operations manual with SLAs and escalation paths',
+          '<b>UAT cycle</b>: 2-week HFU testing window with triaged issue backlog',
+          '<b>Launch rehearsal</b>: full DNS cutover dry-run on a staging clone',
+          '<b>Go-live</b>: Mar 1 2027, coordinated with Rick\'s communications team',
+          '<b>Post-launch monitoring</b>: 30-day hypercare, daily checks, handoff at G6'
+        ],
+        roles: [
+          '<b>Agency OS:</b> Program Lead · Support Engineer · Trainer',
+          '<b>Holy Family:</b> Rick + cabinet · IT · Content team · Enrollment'
+        ],
+        milestones: [
+          '<b>G5 · Mar 1</b> UAT sign-off by Rick + President\'s cabinet',
+          '<b>G6 · Apr 2</b> Launch + 30 handoff signed by steering committee',
+          'April buffer: 4 weeks of slack absorbs late variance'
+        ],
+        risks: [
+          '<b>Enrollment-season launch pressure</b> — mitigated with a March 1 launch that sits squarely before April decision deadlines, plus a go/no-go at G5 that pushes to Mar 15 if needed',
+          '<b>Key HFU team member unavailability</b> — mitigated with recorded training sessions and a shared runbook that doesn\'t depend on any one person'
+        ]
+      }
+    };
+
+    const detail = document.getElementById('ganttDetail');
+    const detailInner = document.getElementById('ganttDetailInner');
+    const bars = document.querySelectorAll('.gantt__bar');
+
+    function renderPhase(p) {
+      const phase = PHASES[p];
+      if (!phase) return;
+      const html = `
+        <div class="gantt__detail-head">
+          <h3>Phase 0${p} · <em>${phase.name}</em></h3>
+          <div class="gantt__detail-meta">
+            Window<b>${phase.dates}</b>
+            ${phase.duration}
+          </div>
+        </div>
+        <div class="gantt__detail-grid">
+          <div>
+            <h4>Deliverables</h4>
+            <ul>${phase.deliverables.map(d => '<li>'+d+'</li>').join('')}</ul>
+          </div>
+          <div>
+            <h4>Who's involved</h4>
+            <ul>${phase.roles.map(r => '<li>'+r+'</li>').join('')}</ul>
+          </div>
+          <div>
+            <h4>Milestones &amp; gates</h4>
+            <ul>${phase.milestones.map(m => '<li>'+m+'</li>').join('')}</ul>
+          </div>
+          <div class="gantt__detail-risks">
+            <h4>Phase-specific risks</h4>
+            <ul>${phase.risks.map(r => '<li>'+r+'</li>').join('')}</ul>
+          </div>
+        </div>
+      `;
+      detailInner.innerHTML = html;
+      detail.classList.add('is-visible');
+      bars.forEach(b => b.classList.toggle('is-active', +b.dataset.phase === +p));
+    }
+
+    bars.forEach(bar => {
+      bar.addEventListener('click', () => {
+        const p = +bar.dataset.phase;
+        renderPhase(p);
+        // Smooth scroll the detail into view (nudge only, don't yank)
+        setTimeout(() => {
+          const rect = detail.getBoundingClientRect();
+          if (rect.top < 60 || rect.top > window.innerHeight - 120) {
+            detail.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+          }
+        }, 120);
+      });
+    });
+
+    // Prime with Phase 1 open by default — shows the pattern
+    renderPhase(1);
+
+    // ═══════════════════════════════════════════════════════════════
+    // RISK MATRIX · plot dots, handle clicks
+    // ═══════════════════════════════════════════════════════════════
+    // Coords expressed as percentages inside the plot area.
+    // x = impact (left=low, right=high), y = likelihood (top=high, bottom=low)
+    // We plot at centers: low=16.666%, med=50%, high=83.333%
+    // Severity = (impact + likelihood)/2 drives dot size
+    const RISKS = [
+      {
+        id: 1, label: 'Drupal Paragraphs complexity',
+        x: 83, y: 50, size: 42, danger: false,
+        likelihood: 'Medium', impact: 'High',
+        description: 'The current Drupal build uses deeply nested Paragraphs with custom field inheritance. Translating that to WordPress ACF Pro is the single largest technical unknown in this project, and if we get the mapping wrong we pay for it in migration rework.',
+        mitigation: 'A dedicated 2-week discovery spike in Phase 03 week 01, before any WordPress code lands. We export every Paragraph type to JSON, build a 1:1 field-by-field mapping matrix, and validate three representative page types end-to-end before committing to the broader build.',
+        owner: 'Lead Engineer + IA Director'
+      },
+      {
+        id: 2, label: 'Stakeholder alignment delays',
+        x: 50, y: 50, size: 34, danger: false,
+        likelihood: 'Medium', impact: 'Medium',
+        description: 'Institutional projects stall when too many voices have equal authority. The biggest cause of a missed launch is a decision that sat unsigned for two weeks because nobody owned it.',
+        mitigation: 'A structured interview calendar locked in Phase 01 week 01. Rick is the single approving voice for go/no-go calls. Every gate has one signer named in advance. Every decision gets a 72-hour clock and an escalation path if it doesn\'t land.',
+        owner: 'Program Lead + Rick Mitchell'
+      },
+      {
+        id: 3, label: 'Content review bottleneck',
+        x: 83, y: 66, size: 48, danger: true,
+        likelihood: 'Medium-High', impact: 'High',
+        description: 'Migration projects routinely miss deadlines not because of code but because content reviewers can\'t get to their inbox fast enough. With 400 pages to review inside 8 weeks, the math is unforgiving.',
+        mitigation: 'Content-pairing model: in Phase 01 we name a human owner for each section, not "whoever has time". Reviewers get a named queue, a weekly SLA, and a fallback path if their queue stalls. Migration week 01 runs a friction-test on the first 20 pages so we see the bottleneck before it\'s critical.',
+        owner: 'Content Strategist + HFU Advancement'
+      },
+      {
+        id: 4, label: 'Integration surprises (Slate · GA4)',
+        x: 50, y: 50, size: 32, danger: false,
+        likelihood: 'Medium', impact: 'Medium',
+        description: 'Slate API credentials, GA4 property access, and Looker Studio permissions have a history of being delayed or misconfigured in higher-ed projects. A missing permission can cost a full sprint.',
+        mitigation: 'Credentials requested in Phase 01 kickoff week. Dry-run integration test in Phase 03 week 03, before the Slate form is wired into production flows. Fallback: the form can queue to a staging table until credentials clear.',
+        owner: 'DevOps + HFU IT'
+      },
+      {
+        id: 5, label: 'Holiday compression (Dec–Jan)',
+        x: 50, y: 83, size: 42, danger: false,
+        likelihood: 'High', impact: 'Medium',
+        description: 'Phase 04 (migration) spans the Thanksgiving through New Year holidays, when content reviewers are hardest to reach and decisions are slowest. 10 working days vanish from a 40-day phase.',
+        mitigation: 'Work schedule locks 80% of content review before Dec 19. The Dec 22 → Jan 2 window is treated as a soft-freeze: only cleanup, remediation, and autonomous work runs during it. We return Jan 5 with a fresh audit and a clean cutover window.',
+        owner: 'Program Lead'
+      },
+      {
+        id: 6, label: 'Enrollment-season launch pressure',
+        x: 50, y: 83, size: 44, danger: false,
+        likelihood: 'High', impact: 'Medium',
+        description: 'A March launch lands squarely inside HFU\'s April decision cycle. If the site breaks during peak inquiry traffic, we cost the university real students — not just reputation.',
+        mitigation: 'The go/no-go at G5 (Mar 1) can push launch to Mar 15 without losing the April window. Load testing runs at 3× current peak. A rollback plan cuts DNS back to the old site in 15 minutes if anything critical fires in the first 72 hours.',
+        owner: 'Lead Engineer + Rick Mitchell'
+      },
+      {
+        id: 7, label: 'Scope creep post-G2',
+        x: 50, y: 50, size: 32, danger: false,
+        likelihood: 'Medium', impact: 'Medium',
+        description: 'Once people see a design system, the instinct is to ask for one more component, one more page pattern, one more variation. Unchecked, this is how timelines slip silently.',
+        mitigation: 'Component library capped at 48 items at G2. Every new ask routes through a written change-order with cost and timeline impact. The contingency line (10%) is the only pool for scope additions. Rick reviews all change-orders; no verbal approvals.',
+        owner: 'Program Lead + Design Director'
+      },
+      {
+        id: 8, label: 'Accessibility compliance debt',
+        x: 83, y: 17, size: 28, danger: false,
+        likelihood: 'Low', impact: 'High',
+        description: 'An institution-scale redesign that ships with undetected WCAG failures is a legal and reputational liability. The risk is low because we plan for it, but the impact if missed is high.',
+        mitigation: 'Component-level accessibility audit in Phase 02 week 06, before design lockup. External WebAIM audit in Phase 04 week 04. Compliance tracked as a gate requirement at G4; Mark Green signs only after the audit comes back clean.',
+        owner: 'QA Lead + Mark Green (VP IE)'
+      },
+      {
+        id: 9, label: 'Key HFU team member unavailability',
+        x: 50, y: 17, size: 24, danger: false,
+        likelihood: 'Low', impact: 'Medium',
+        description: 'Any critical HFU team member — Rick, a content owner, an IT admin — going unavailable for 2+ weeks during a key phase creates unplanned bottlenecks.',
+        mitigation: 'Every Agency OS training session is recorded. The runbook doesn\'t depend on any one person. Rick has a named backup on the steering committee. Every gate has a secondary signer documented in the contract.',
+        owner: 'Program Lead'
+      }
+    ];
+
+    const plot = document.getElementById('riskPlot');
+    const riskDetailInner = document.getElementById('riskDetailInner');
+    const riskDetail = document.getElementById('riskDetail');
+
+    // Create dots
+    RISKS.forEach((r, idx) => {
+      const dot = document.createElement('div');
+      dot.className = 'risks__dot' + (r.danger ? ' is-danger' : '');
+      dot.style.left = r.x + '%';
+      dot.style.top = (100 - r.y) + '%';
+      dot.style.width = r.size + 'px';
+      dot.style.height = r.size + 'px';
+      dot.dataset.id = r.id;
+      dot.setAttribute('role', 'button');
+      dot.setAttribute('aria-label', 'Risk ' + r.id + ': ' + r.label);
+      dot.innerHTML = '<span class="risks__dot__num">' + r.id.toString().padStart(2,'0') + '</span>';
+      plot.appendChild(dot);
+
+      const activate = () => renderRisk(r);
+      dot.addEventListener('mouseenter', activate);
+      dot.addEventListener('click', activate);
+      dot.addEventListener('focus', activate);
+      dot.tabIndex = 0;
+    });
+
+    function renderRisk(r) {
+      const html = `
+        <span class="risks__detail__num">Risk ${r.id.toString().padStart(2,'0')} · ${r.danger ? 'Danger zone' : 'Mitigated'}</span>
+        <h3>${r.label}</h3>
+        <p>${r.description}</p>
+        <div class="risks__detail__ratings">
+          <div>Likelihood<b>${r.likelihood}</b></div>
+          <div>Impact<b>${r.impact}</b></div>
+        </div>
+        <div class="risks__detail__mit">Mitigation plan</div>
+        <div class="risks__detail__mit-body">${r.mitigation}</div>
+        <div class="risks__detail__owner">Owner<b>${r.owner}</b></div>
+      `;
+      // Re-trigger fade-in animation cleanly
+      riskDetailInner.classList.remove('is-visible');
+      void riskDetailInner.offsetWidth;
+      riskDetailInner.innerHTML = html;
+      riskDetail.classList.toggle('is-danger', !!r.danger);
+      // Next frame
+      requestAnimationFrame(() => riskDetailInner.classList.add('is-visible'));
+
+      // Mark active dot
+      document.querySelectorAll('.risks__dot').forEach(d => {
+        d.classList.toggle('is-active', +d.dataset.id === r.id);
+      });
+    }
+
+    // Prime with risk 1 open
+    renderRisk(RISKS[0]);
+
+    // ═══════════════════════════════════════════════════════════════
+    // BUDGET · bar hover ↔ table row highlight
+    // ═══════════════════════════════════════════════════════════════
+    const budgetBar = document.getElementById('budgetBar');
+    const budgetTable = document.getElementById('budgetTable');
+    const segments = budgetBar.querySelectorAll('.budget__bar__seg');
+
+    function highlight(row) {
+      segments.forEach(s => s.classList.toggle('is-active', s.dataset.row === row));
+      budgetTable.querySelectorAll('tbody tr[data-row]').forEach(tr => {
+        tr.classList.toggle('is-active', tr.dataset.row === row);
+      });
+    }
+
+    segments.forEach(seg => {
+      seg.addEventListener('mouseenter', () => highlight(seg.dataset.row));
+      seg.addEventListener('mouseleave', () => highlight(null));
+      seg.addEventListener('focus', () => highlight(seg.dataset.row));
+      seg.tabIndex = 0;
+    });
+
+    budgetTable.querySelectorAll('tbody tr[data-row]').forEach(tr => {
+      tr.addEventListener('mouseenter', () => highlight(tr.dataset.row));
+      tr.addEventListener('mouseleave', () => highlight(null));
+    });
+  })();
+  </script>
+
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>
