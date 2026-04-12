@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The gap we observed — Holy Family Client Portal</title>
-  <meta name="description" content="A careful, evidence-led reading of the holyfamily.edu experience as it stands in April 2026 — the seven places where the website is quietly working against the mission — paired with what we would try, if invited.">
+  <meta name="description" content="A short, evidence-led reading of holyfamily.edu as it stands in April 2026. Seven quiet observations, seven humble responses, every claim cited.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,51 +17,31 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
       /* ── Brand ─────────────────────────────────────────────── */
       --teal:          #2E9E9E;
       --teal-deep:     #1F7676;
-      --hfu-navy:      #06213F;
-      --hfu-yellow:    #FFCC15;
-      --amber:         #B48A2A;
 
       /* ── Warm editorial light palette ──────────────────────── */
-      --ink:           #FAF9F6;   /* page bg · warm cream */
-      --ink-card:      #FFFFFF;   /* card bg · pure white */
-      --ink-card-2:    #F4F5F8;   /* tinted card */
-      --ink-card-3:    #EFF1F5;   /* more tinted */
-      --ink-deep:      #0F1117;   /* rare: editorial ink text */
+      --bg:            #FAF9F6;   /* warm cream */
+      --bg-card:       #FFFFFF;
+      --bg-tint:       #F4F5F8;
 
-      /* ── Type hierarchy (all ink-based) ─────────────────────── */
-      --text:          #1C1E24;   /* primary */
-      --text-dim:      #444851;   /* secondary */
-      --text-subtle:   #6B7079;   /* tertiary */
-      --text-ghost:    #9499A1;   /* faint · for labels, meta */
-      --text-faint:    #C6CBD2;   /* very faint · for decorative dots */
+      /* ── Ink hierarchy ─────────────────────────────────────── */
+      --ink:           #1C1E24;
+      --ink-2:         #444851;
+      --ink-3:         #6B7079;
+      --ink-4:         #9499A1;
+      --ink-5:         #C6CBD2;
 
-      /* ── Rules and borders ──────────────────────────────────── */
+      /* ── Rules ─────────────────────────────────────────────── */
       --line:          rgba(15, 17, 23, 0.09);
-      --line-strong:   rgba(15, 17, 23, 0.15);
+      --line-2:        rgba(15, 17, 23, 0.16);
 
-      /* ── Teal overlays (page-safe, no hardcoding elsewhere) ── */
-      --teal-soft:     rgba(46, 158, 158, 0.06);
-      --teal-glow:     rgba(46, 158, 158, 0.10);
-      --teal-wash:     rgba(46, 158, 158, 0.04);
-      --teal-line:     rgba(46, 158, 158, 0.28);
-      --teal-line-2:   rgba(46, 158, 158, 0.40);
-      --teal-ring:     rgba(46, 158, 158, 0.14);
-      --teal-shadow:   rgba(46, 158, 158, 0.16);
-      --teal-hero:     rgba(46, 158, 158, 0.12);
-
-      /* ── Subtle dark overlays (for tick rows, stripes) ─────── */
-      --overlay-soft:  rgba(15, 17, 23, 0.02);
-      --overlay-mid:   rgba(15, 17, 23, 0.04);
-
-      /* ── Yellow (for rare accent in hero gradient) ─────────── */
-      --yellow-soft:   rgba(255, 204, 21, 0.04);
+      /* ── Teal accents (used sparingly) ─────────────────────── */
+      --teal-soft:     rgba(46, 158, 158, 0.05);
+      --teal-line:     rgba(46, 158, 158, 0.24);
 
       /* ── Type stack ────────────────────────────────────────── */
       --display:       'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
@@ -73,15 +53,13 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 
-    /* Override portal.css's dark body chrome for this page only.
-       The sidebar itself stays dark (it is portal chrome, not content),
-       but the content area reads as warm editorial light. */
+    /* Override portal.css dark body — content area is editorial light. */
     html, body {
-      background: var(--ink);
+      background: var(--bg);
       font-family: var(--body);
-      font-size: 10.5pt;
-      line-height: 1.6;
-      color: var(--text);
+      font-size: 11pt;
+      line-height: 1.65;
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
       font-variant-numeric: tabular-nums lining-nums;
       text-rendering: optimizeLegibility;
@@ -90,1106 +68,384 @@
     a { color: var(--teal); text-decoration: none; }
     button { font-family: inherit; cursor: pointer; }
 
-    /* ══════════════════════════════════════════════════════════════
-       PAGE LAYOUT
-       ══════════════════════════════════════════════════════════════ */
     main {
-      background: var(--ink);
+      background: var(--bg);
       padding: 0 !important;
       gap: 0 !important;
       align-items: stretch !important;
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE WRAP · narrow, magazine-width
+       ══════════════════════════════════════════════════════════════ */
     .wrap {
       width: 100%;
-      max-width: 1180px;
-      min-width: 0;
+      max-width: 780px;    /* narrower than deep dives — reading column */
       margin: 0 auto;
-      padding: 64px 56px 160px;
+      padding: 110px 40px 160px;
     }
 
-    /* shared serif italic accent used across the page */
-    .serif-em {
+    /* Serif italic teal, reserved for ONE or two moments per screen. */
+    em.accent, .accent em {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
       color: var(--teal);
       font-synthesis: none;
     }
 
     /* ══════════════════════════════════════════════════════════════
-       CHAPTER MARK · the giant 08 sitting behind the hero
+       EYEBROW · the one decoration
        ══════════════════════════════════════════════════════════════ */
-    .chapter {
-      position: relative;
-      padding: 8px 0 0;
-      margin-bottom: -24px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: start;
-      gap: 32px;
-      z-index: 2;
-    }
-    .chapter__meta {
+    .eyebrow {
       font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 2;
-    }
-    .chapter__meta b { color: var(--teal); font-weight: 400; }
-    .chapter__meta span { color: var(--text-faint); margin: 0 10px; }
-    .chapter__mark {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: clamp(120pt, 16vw, 220pt);
-      line-height: 0.78;
-      color: var(--teal);
-      letter-spacing: -0.05em;
-      position: relative;
-      padding-right: 8px;
-      opacity: 0.98;
-      text-shadow: 0 0 80px var(--teal-hero);
-    }
-    .chapter__mark::after {
-      content: 'chapter eight of eight';
-      position: absolute;
-      right: 18px;
-      bottom: -2px;
-      font-family: var(--mono);
-      font-style: normal;
-      font-size: 6pt;
+      font-size: 7pt;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       HERO
-       ══════════════════════════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      padding: 24px 0 130px;
-      border-bottom: 1px solid var(--line);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: -340px -200px auto -200px;
-      height: 820px;
-      background:
-        radial-gradient(ellipse 60% 80% at 18% 30%, var(--teal-hero), transparent 60%),
-        radial-gradient(ellipse 80% 70% at 82% 22%, var(--yellow-soft), transparent 60%),
-        radial-gradient(ellipse 40% 40% at 50% 100%, var(--teal-soft), transparent 70%);
-      z-index: 0;
-      pointer-events: none;
-    }
-    .hero > * { position: relative; z-index: 1; }
-    .eyebrow {
+      color: var(--ink-3);
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      font-family: var(--mono);
-      font-size: 7pt;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 44px;
     }
-    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
-    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--teal);
+    }
 
+    /* ══════════════════════════════════════════════════════════════
+       HERO · quiet
+       ══════════════════════════════════════════════════════════════ */
+    .hero { margin-bottom: 96px; }
+    .hero .eyebrow { margin-bottom: 36px; }
     .hero__title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(44pt, 6.6vw, 86pt);
-      line-height: 0.96;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      max-width: 17ch;
-      margin-bottom: 48px;
+      font-size: clamp(30pt, 4.2vw, 44pt);
+      line-height: 1.06;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      max-width: 22ch;
+      margin-bottom: 28px;
     }
     .hero__title em {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
       color: var(--teal);
       font-synthesis: none;
     }
     .hero__lede {
-      max-width: 64ch;
-      font-size: 14pt;
-      line-height: 1.6;
-      color: var(--text-dim);
-      font-weight: 400;
+      font-size: 13pt;
+      line-height: 1.65;
+      color: var(--ink-2);
+      max-width: 58ch;
     }
-    .hero__lede strong { color: var(--text); font-weight: 500; }
-    .hero__lede em {
+    .hero__lede strong { color: var(--ink); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       OPENING QUOTE · small, unboxed
+       ══════════════════════════════════════════════════════════════ */
+    .rfp {
+      margin: 0 0 96px;
+      padding: 0 0 0 36px;
+      border-left: 2px solid var(--teal);
+    }
+    .rfp__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 14px;
+    }
+    .rfp__body {
       font-family: var(--serif);
       font-style: italic;
-      font-weight: 400;
-      font-size: 1.04em;
-      color: var(--teal);
-      font-synthesis: none;
+      font-size: 22pt;
+      line-height: 1.32;
+      color: var(--ink);
+      max-width: 32ch;
+      margin-bottom: 16px;
+      letter-spacing: -0.005em;
     }
-    .hero__byline {
-      margin-top: 56px;
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 20px;
-      align-items: center;
-      max-width: 72ch;
-    }
-    .hero__byline__mark {
-      display: block;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--teal) 20%, var(--teal) 80%, transparent);
-    }
-    .hero__byline__body {
+    .rfp__attr {
       font-family: var(--mono);
       font-size: 6.5pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 1.8;
-    }
-    .hero__byline__body em {
-      color: var(--teal);
-      font-style: normal;
-      letter-spacing: 0.1em;
-    }
-
-    .hero__meta {
-      margin-top: 72px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    .hero__meta__cell {
-      padding-right: 22px;
-      border-right: 1px solid var(--line);
-    }
-    .hero__meta__cell:last-child { border-right: 0; padding-right: 0; }
-    .hero__meta__cell:not(:first-child) { padding-left: 22px; }
-    .hero__meta__label {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      display: block;
-      margin-bottom: 12px;
-    }
-    .hero__meta__value {
-      font-family: var(--display);
-      font-size: 15pt;
-      color: var(--text);
-      line-height: 1.2;
-      letter-spacing: -0.012em;
-    }
-    .hero__meta__value em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
+      color: var(--ink-4);
     }
 
     /* ══════════════════════════════════════════════════════════════
-       OPENING QUOTE · from the RFP itself
+       INTRO NOTE · one paragraph, short
        ══════════════════════════════════════════════════════════════ */
-    .opening-quote {
-      margin-top: 120px;
-      padding: 100px 80px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .opening-quote::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 90% at 50% 100%, var(--teal-glow), transparent 70%),
-        radial-gradient(ellipse 50% 60% at 50% 0%, var(--teal-soft), transparent 60%);
-      pointer-events: none;
-    }
-    .opening-quote__kicker {
-      position: relative;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 36px;
-    }
-    .opening-quote__kicker::before,
-    .opening-quote__kicker::after {
-      content: '';
-      display: inline-block;
-      width: 28px;
-      height: 1px;
-      background: var(--teal);
-      vertical-align: middle;
-      margin: 0 12px;
-    }
-    .opening-quote__mark {
-      position: relative;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 110pt;
-      line-height: 0.3;
-      color: var(--teal);
-      opacity: 0.55;
-      display: block;
-      margin: 48px auto 28px;
-      height: 56px;
-    }
-    .opening-quote__body {
-      position: relative;
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(24pt, 3.2vw, 38pt);
-      line-height: 1.22;
-      letter-spacing: -0.022em;
-      color: var(--text);
-      max-width: 32ch;
-      margin: 0 auto 36px;
-    }
-    .opening-quote__body em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--teal);
-    }
-    .opening-quote__attr {
-      position: relative;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      max-width: 50ch;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    .opening-quote__attr em {
-      color: var(--teal);
-      font-style: normal;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       INTRO NOTE · humble framing before the pain points
-       ══════════════════════════════════════════════════════════════ */
-    .intro-note {
-      margin-top: 120px;
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 48px;
-    }
-    .intro-note__label {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      padding-top: 6px;
-    }
-    .intro-note__body {
-      font-family: var(--serif);
-      font-size: 17pt;
-      line-height: 1.55;
-      color: var(--text);
+    .intro {
+      margin-bottom: 104px;
+      font-size: 12pt;
+      line-height: 1.72;
+      color: var(--ink-2);
       max-width: 58ch;
-      font-weight: 400;
     }
-    .intro-note__body p + p { margin-top: 22px; }
-    .intro-note__body em {
-      color: var(--teal);
+    .intro strong { color: var(--ink); font-weight: 500; }
+    .intro em {
+      font-family: var(--serif);
       font-style: italic;
+      color: var(--teal);
     }
 
     /* ══════════════════════════════════════════════════════════════
-       OVERTURE · the cinematic index of all seven observations
+       OBSERVATIONS · seven quiet blocks
        ══════════════════════════════════════════════════════════════ */
-    .overture {
-      margin-top: 140px;
-      position: relative;
+    .observations__head {
+      margin-bottom: 56px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--line);
     }
-    .overture__head {
-      margin-bottom: 52px;
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 48px;
-      align-items: end;
-    }
-    .overture__kicker {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-    .overture__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
-    .overture__title {
+    .observations__title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(26pt, 3.4vw, 38pt);
-      line-height: 1.04;
-      letter-spacing: -0.024em;
-      color: var(--text);
-      max-width: 22ch;
+      font-size: 18pt;
+      line-height: 1.25;
+      color: var(--ink);
+      letter-spacing: -0.012em;
+      margin-top: 8px;
+      max-width: 44ch;
     }
-    .overture__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-    .overture__legend {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 1.9;
-      text-align: right;
-    }
-    .overture__legend b { color: var(--teal); font-weight: 400; }
 
-    .overture__list {
-      list-style: none;
-      border-top: 1px solid var(--line);
-    }
-    .overture__item {
-      display: grid;
-      grid-template-columns: 88px 1fr 200px 24px;
-      gap: 40px;
-      padding: 34px 0;
+    .obs {
+      padding: 44px 0 44px;
       border-bottom: 1px solid var(--line);
-      align-items: center;
-      text-decoration: none;
-      color: var(--text);
-      position: relative;
-      transition: padding 220ms ease;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 32px;
     }
-    .overture__item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      background: linear-gradient(90deg, var(--teal-soft), transparent);
-      transition: width 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
-      pointer-events: none;
+    .obs__num {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      color: var(--ink-4);
+      padding-top: 10px;
     }
-    .overture__item:hover::before { width: 100%; }
-    .overture__item:hover { padding-left: 24px; padding-right: 0; }
-    .overture__item:hover .overture__item__num { color: var(--text); }
-    .overture__item:hover .overture__item__arrow { transform: translateX(6px); color: var(--text); }
-
-    .overture__item__num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 38pt;
-      line-height: 0.9;
-      color: var(--teal);
-      letter-spacing: -0.02em;
-      transition: color 240ms ease;
-    }
-    .overture__item__title {
+    .obs__body { min-width: 0; }
+    .obs__title {
       font-family: var(--display);
       font-weight: 400;
       font-size: 17pt;
-      line-height: 1.24;
+      line-height: 1.3;
+      color: var(--ink);
       letter-spacing: -0.014em;
-      color: var(--text);
+      margin-bottom: 18px;
       max-width: 38ch;
     }
-    .overture__item__title em {
+    .obs__title em {
       font-family: var(--serif);
       font-style: italic;
       color: var(--teal);
     }
-    .overture__item__tag {
+    .obs__body > p {
+      font-size: 11pt;
+      line-height: 1.72;
+      color: var(--ink-2);
+      max-width: 58ch;
+      margin-bottom: 14px;
+    }
+    .obs__body > p:last-child { margin-bottom: 0; }
+    .obs__body strong { color: var(--ink); font-weight: 500; }
+
+    /* One citation per observation. Quiet pullquote with small attribution. */
+    .obs__cite {
+      margin: 22px 0 18px;
+      padding: 18px 0 18px 24px;
+      border-left: 1px solid var(--line-2);
+    }
+    .obs__cite__body {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--ink);
+      max-width: 54ch;
+      margin-bottom: 10px;
+    }
+    .obs__cite__attr {
       font-family: var(--mono);
       font-size: 6pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 1.6;
-    }
-    .overture__item__arrow {
-      font-family: var(--mono);
-      color: var(--text-ghost);
-      font-size: 12pt;
-      transition: transform 240ms ease, color 240ms ease;
-      text-align: right;
+      color: var(--ink-4);
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       SECTION SCAFFOLDING
-       ══════════════════════════════════════════════════════════════ */
-    .section { padding-top: 140px; }
-    .section__head { margin-bottom: 56px; max-width: 72ch; }
-    .section__kicker {
+    /* A tiny data pair, inline, used only when a number is load-bearing. */
+    .obs__stat {
       display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 22px;
-    }
-    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
-    .section__title {
+      align-items: baseline;
+      gap: 10px;
       font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(30pt, 4vw, 48pt);
-      line-height: 1.02;
-      letter-spacing: -0.028em;
-      color: var(--text);
-      margin-bottom: 22px;
+      color: var(--ink);
     }
-    .section__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      color: var(--teal);
+    .obs__stat b {
+      font-weight: 500;
+      font-size: 14pt;
+      color: var(--ink);
     }
-    .section__lede {
-      font-size: 13pt;
-      line-height: 1.58;
-      color: var(--text-dim);
-      max-width: 66ch;
-    }
-    .section__lede em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
+    .obs__stat span {
+      font-size: 9pt;
+      color: var(--ink-3);
+      font-family: var(--body);
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       PAIN POINT — the canonical block
-       ══════════════════════════════════════════════════════════════ */
-    .pain {
-      margin-top: 100px;
-      padding-top: 96px;
-      border-top: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-    .pain:first-of-type { border-top: 0; padding-top: 0; margin-top: 72px; }
-    .pain__rail {
-      position: sticky;
-      top: 48px;
-    }
-    .pain__num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 72pt;
-      line-height: 0.88;
-      color: var(--teal);
-      letter-spacing: -0.02em;
-      margin-bottom: 22px;
-    }
-    .pain__rail-label {
+    .obs__link {
+      display: inline-block;
+      margin-top: 16px;
       font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.2em;
+      font-size: 7pt;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      display: block;
-      margin-bottom: 8px;
-    }
-    .pain__rail-tag {
-      font-family: var(--body);
-      font-size: 10pt;
-      color: var(--text-dim);
-      line-height: 1.45;
-      display: block;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
-      max-width: 20ch;
-    }
-    .pain__rail-handoff {
-      margin-top: 22px;
-      display: block;
-    }
-    .pain__rail-handoff__label {
-      font-family: var(--mono);
-      font-size: 5.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      display: block;
-      margin-bottom: 6px;
-    }
-    .pain__rail-handoff a {
-      font-family: var(--display);
-      font-size: 9.5pt;
       color: var(--teal);
-      text-decoration: none;
       border-bottom: 1px solid var(--teal-line);
       padding-bottom: 2px;
-      transition: border-color 180ms ease, color 180ms ease;
+      transition: color 180ms ease, border-color 180ms ease;
     }
-    .pain__rail-handoff a:hover {
-      color: var(--text);
-      border-color: var(--text);
-    }
-
-    .pain__body { min-width: 0; }
-    .pain__title {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(26pt, 3.6vw, 40pt);
-      line-height: 1.05;
-      letter-spacing: -0.024em;
-      color: var(--text);
-      margin-bottom: 28px;
-      max-width: 22ch;
-    }
-    .pain__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-    .pain__observation {
-      font-family: var(--serif);
-      font-size: 15pt;
-      line-height: 1.58;
-      color: var(--text);
-      max-width: 58ch;
-      font-weight: 400;
-      margin-bottom: 36px;
-    }
-    .pain__observation em {
-      font-style: italic;
-      color: var(--teal);
-    }
-    .pain__body p {
-      font-size: 11pt;
-      line-height: 1.68;
-      color: var(--text-dim);
-      max-width: 62ch;
-      margin-bottom: 18px;
-    }
-    .pain__body p strong { color: var(--text); font-weight: 500; }
-    .pain__body p em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-      font-size: 1.04em;
-    }
-
-    /* — evidence · quoted review — */
-    .evidence {
-      margin: 40px 0 40px;
-      padding: 32px 36px 32px 40px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-left: 2px solid var(--teal);
-      border-radius: 4px;
-      position: relative;
-    }
-    .evidence__body {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 14pt;
-      line-height: 1.55;
-      color: var(--text);
-      margin-bottom: 20px;
-      max-width: 58ch;
-    }
-    .evidence__attr {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 1.7;
-    }
-    .evidence__attr em { color: var(--teal); font-style: normal; }
-
-    /* — observed · a live screenshot in a quiet frame — */
-    .observed {
-      margin: 48px 0 48px;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--ink-card);
-    }
-    .observed__frame {
-      padding: 20px 20px 0;
-      background:
-        linear-gradient(180deg, var(--overlay-soft), transparent 40%);
-    }
-    .observed__frame img {
-      width: 100%;
-      display: block;
-      border-radius: 4px;
-      border: 1px solid var(--line);
-    }
-    .observed__foot {
-      padding: 18px 24px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      border-top: 1px solid var(--line);
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-    .observed__foot b { color: var(--teal); font-weight: 400; }
-    .observed__caption {
-      font-family: var(--body);
-      font-size: 10pt;
-      line-height: 1.55;
-      color: var(--text-dim);
-      padding: 0 24px 20px;
-      max-width: 62ch;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-    .observed__caption em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    /* — data rail · mini stat row inside a pain — */
-    .data-rail {
-      margin: 36px 0 40px;
-      padding: 28px 32px;
-      background: var(--ink-card-2);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-    }
-    .data-rail__cell {
-      padding: 0 28px 0 0;
-      border-right: 1px solid var(--line);
-    }
-    .data-rail__cell:last-child { border-right: 0; padding-right: 0; }
-    .data-rail__cell:not(:first-child) { padding-left: 28px; }
-    .data-rail__value {
-      font-family: var(--display);
-      font-size: 26pt;
-      line-height: 1;
-      letter-spacing: -0.018em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .data-rail__value em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-      font-size: 1.06em;
-    }
-    .data-rail__label {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 6px;
-    }
-    .data-rail__foot {
-      font-size: 9pt;
-      color: var(--text-dim);
-      line-height: 1.45;
-    }
+    .obs__link:hover { color: var(--ink); border-color: var(--ink); }
 
     /* ══════════════════════════════════════════════════════════════
-       THE SAMENESS WALL · peer comparison visual
+       SAMENESS WALL · six tiles, one line of caption
        ══════════════════════════════════════════════════════════════ */
     .sameness {
-      margin-top: 56px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 52px 48px 44px;
-      position: relative;
-      overflow: hidden;
-    }
-    .sameness::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 40% 60% at 10% 0%, var(--teal-soft), transparent 70%);
-      pointer-events: none;
-    }
-    .sameness > * { position: relative; }
-    .sameness__head {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: end;
-      margin-bottom: 8px;
-    }
-    .sameness__eyebrow {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .sameness__eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--teal); }
-    .sameness__title {
-      font-family: var(--display);
-      font-size: 17pt;
-      line-height: 1.25;
-      color: var(--text);
-      max-width: 46ch;
-      letter-spacing: -0.012em;
-    }
-    .sameness__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-    .sameness__legend {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      line-height: 1.9;
-      white-space: nowrap;
-    }
-    .sameness__legend__dot {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--teal);
-      margin-right: 6px;
-      vertical-align: middle;
-      box-shadow: 0 0 0 3px var(--teal-ring);
-    }
-    .sameness__legend__dot--ghost {
-      background: var(--text-faint);
-      box-shadow: none;
-    }
-    .sameness__sub {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin: 24px 0 40px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
+      margin: 24px 0 8px;
     }
     .sameness__grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 12px;
+      gap: 8px;
+      margin: 16px 0 14px;
     }
     .sameness__tile {
-      background: var(--ink-card-2);
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 3px;
       overflow: hidden;
-      position: relative;
-    }
-    .sameness__tile--current {
-      border-color: var(--teal-line-2);
-      box-shadow: 0 0 0 1px var(--teal-line-2), 0 0 32px var(--teal-glow);
+      background: var(--bg-card);
     }
     .sameness__tile img {
       width: 100%;
-      height: 170px;
+      height: 120px;
       object-fit: cover;
       object-position: top;
       display: block;
-      filter: grayscale(70%) contrast(0.96);
-      transition: filter 240ms ease;
+      filter: grayscale(80%) contrast(0.94);
     }
-    .sameness__tile:hover img { filter: grayscale(0%) contrast(1); }
-    .sameness__tile--current img {
-      filter: none;
+    .sameness__tile--current {
+      border-color: var(--teal);
     }
-    .sameness__tile__foot {
-      padding: 10px 14px 12px;
+    .sameness__tile--current img { filter: none; }
+    .sameness__tile__label {
+      padding: 6px 8px 7px;
       font-family: var(--mono);
       font-size: 5.5pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      border-top: 1px solid var(--line);
+    }
+    .sameness__tile--current .sameness__tile__label { color: var(--teal); }
+    .sameness__cap {
+      font-family: var(--mono);
+      font-size: 6.5pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      border-top: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .sameness__tile--current .sameness__tile__foot { color: var(--teal); }
-    .sameness__tile__dot {
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--text-faint);
-      margin-top: 4px;
-    }
-    .sameness__tile--current .sameness__tile__dot { background: var(--teal); }
-
-    .sameness__foot {
-      margin-top: 32px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      font-size: 10pt;
-      color: var(--text-dim);
-      line-height: 1.6;
-      max-width: 68ch;
-    }
-    .sameness__foot em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
+      color: var(--ink-4);
     }
 
     /* ══════════════════════════════════════════════════════════════
-       RESPONSE TABLE · pain → what we'd try
+       RESPONSE · prose list, not a table
        ══════════════════════════════════════════════════════════════ */
-    .response-table {
-      margin-top: 60px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
+    .response {
+      margin-top: 120px;
+      padding-top: 72px;
+      border-top: 1px solid var(--line);
     }
-    .response-table__head {
+    .response__head {
+      margin-bottom: 48px;
+    }
+    .response__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 22pt;
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.018em;
+      margin-top: 10px;
+      max-width: 26ch;
+      margin-bottom: 16px;
+    }
+    .response__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .response__lede {
+      font-size: 12pt;
+      line-height: 1.65;
+      color: var(--ink-2);
+      max-width: 58ch;
+    }
+
+    .response__list {
+      margin-top: 48px;
+    }
+    .response__row {
       display: grid;
-      grid-template-columns: 0.2fr 1.2fr 1.6fr 0.9fr;
-      padding: 22px 36px 20px;
+      grid-template-columns: 60px 1fr 160px;
+      gap: 28px;
+      padding: 28px 0;
       border-bottom: 1px solid var(--line);
-      background: var(--overlay-soft);
+      align-items: baseline;
+    }
+    .response__num {
       font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.18em;
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      color: var(--ink-4);
+    }
+    .response__answer {
+      font-size: 11pt;
+      line-height: 1.62;
+      color: var(--ink-2);
+    }
+    .response__answer strong { color: var(--ink); font-weight: 500; }
+    .response__link {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-    }
-    .response-table__row {
-      display: grid;
-      grid-template-columns: 0.2fr 1.2fr 1.6fr 0.9fr;
-      padding: 28px 36px;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
-      transition: background 220ms ease;
-    }
-    .response-table__row:last-child { border-bottom: 0; }
-    .response-table__row:hover { background: var(--teal-wash); }
-    .response-table__num {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 18pt;
-      color: var(--teal);
-      line-height: 1;
-      padding-top: 4px;
-    }
-    .response-table__pain {
-      font-family: var(--display);
-      font-size: 13pt;
-      color: var(--text);
-      line-height: 1.25;
-      letter-spacing: -0.012em;
-      padding-right: 32px;
-    }
-    .response-table__pain em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-    .response-table__answer {
-      font-size: 10.5pt;
-      line-height: 1.55;
-      color: var(--text-dim);
-      padding-right: 32px;
-    }
-    .response-table__answer strong { color: var(--text); font-weight: 500; }
-    .response-table__link a {
-      font-family: var(--display);
-      font-size: 9.5pt;
       color: var(--teal);
       border-bottom: 1px solid var(--teal-line);
       padding-bottom: 2px;
-      transition: border-color 180ms ease, color 180ms ease;
+      text-align: left;
+      justify-self: start;
+      transition: color 180ms ease, border-color 180ms ease;
     }
-    .response-table__link a:hover {
-      color: var(--text);
-      border-color: var(--text);
-    }
-    .response-table__link__label {
-      display: block;
-      font-family: var(--mono);
-      font-size: 5.5pt;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 6px;
-    }
+    .response__link:hover { color: var(--ink); border-color: var(--ink); }
 
     /* ══════════════════════════════════════════════════════════════
-       SOURCES
+       CLOSING · one paragraph, quiet
        ══════════════════════════════════════════════════════════════ */
-    .sources {
+    .closing {
       margin-top: 140px;
       padding-top: 60px;
       border-top: 1px solid var(--line);
     }
-    .sources__kicker {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .sources__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
-    .sources__title {
-      font-family: var(--display);
-      font-size: 30pt;
-      line-height: 1.05;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      max-width: 22ch;
-    }
-    .sources__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--teal);
-    }
-    .sources__lede {
-      font-size: 11.5pt;
-      color: var(--text-dim);
-      line-height: 1.6;
-      max-width: 62ch;
-      margin-bottom: 40px;
-    }
-    .sources__list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid var(--line);
-    }
-    .sources__item {
-      padding: 22px 28px 22px 0;
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-    .sources__item:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--line); padding-right: 0; }
-    .sources__num {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.14em;
-      color: var(--text-ghost);
-      padding-top: 4px;
-    }
-    .sources__body {
-      font-size: 10pt;
-      color: var(--text-dim);
-      line-height: 1.55;
-    }
-    .sources__body b {
-      color: var(--text);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 4px;
-      font-size: 10.5pt;
-    }
-    .sources__body a {
-      font-family: var(--mono);
-      font-size: 6pt;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      word-break: break-all;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       CLOSING
-       ══════════════════════════════════════════════════════════════ */
-    .closing {
-      margin-top: 140px;
-      padding: 100px 80px 88px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      position: relative;
-      overflow: hidden;
-      text-align: left;
-    }
-    .closing::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 100% at 100% 0%, var(--teal-glow), transparent 60%);
-      pointer-events: none;
-    }
-    .closing__kicker {
-      position: relative;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--teal);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .closing__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
     .closing__title {
-      position: relative;
       font-family: var(--display);
       font-weight: 400;
-      font-size: clamp(28pt, 3.8vw, 46pt);
-      line-height: 1.06;
-      letter-spacing: -0.024em;
-      color: var(--text);
-      margin-bottom: 30px;
-      max-width: 24ch;
+      font-size: 22pt;
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.018em;
+      margin: 10px 0 22px;
+      max-width: 26ch;
     }
     .closing__title em {
       font-family: var(--serif);
@@ -1197,181 +453,94 @@
       color: var(--teal);
     }
     .closing__body {
-      position: relative;
-      font-family: var(--serif);
-      font-size: 15pt;
-      line-height: 1.6;
-      color: var(--text-dim);
-      max-width: 60ch;
-      margin-bottom: 40px;
+      font-size: 12pt;
+      line-height: 1.72;
+      color: var(--ink-2);
+      max-width: 58ch;
     }
-    .closing__body em { color: var(--teal); font-style: italic; }
-    .closing__body strong { color: var(--text); font-weight: 500; }
-    .closing__body p + p { margin-top: 18px; }
+    .closing__body strong { color: var(--ink); font-weight: 500; }
+    .closing__body em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
     .closing__sign {
-      position: relative;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-      max-width: 60ch;
-      line-height: 1.8;
-    }
-    .closing__sign b { color: var(--text); font-weight: 500; }
-
-    /* ══════════════════════════════════════════════════════════════
-       SCROLL PROGRESS RAIL · fixed right edge, seven dots for seven pains
-       ══════════════════════════════════════════════════════════════ */
-    .progress-rail {
-      position: fixed;
-      right: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      pointer-events: auto;
-      opacity: 0;
-      transition: opacity 400ms ease;
-    }
-    .progress-rail.is-visible { opacity: 1; }
-    .progress-rail__item {
-      display: grid;
-      grid-template-columns: 20px auto;
-      gap: 14px;
-      align-items: center;
-      text-decoration: none;
-      color: var(--text-ghost);
-      font-family: var(--mono);
-      font-size: 5.5pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      transition: color 220ms ease, transform 220ms ease;
+      color: var(--ink-4);
+      line-height: 1.9;
     }
-    .progress-rail__item:hover { color: var(--text); }
-    .progress-rail__item.is-active { color: var(--teal); }
-    .progress-rail__dot {
-      display: block;
-      width: 20px;
-      height: 1px;
-      background: var(--text-faint);
-      transition: background 240ms ease, width 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
-      justify-self: end;
-    }
-    .progress-rail__item:hover .progress-rail__dot { background: var(--text); width: 28px; }
-    .progress-rail__item.is-active .progress-rail__dot {
-      background: var(--teal);
-      width: 36px;
-      box-shadow: 0 0 0 3px var(--teal-glow);
-    }
-    .progress-rail__label {
-      font-family: var(--mono);
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: opacity 260ms ease, transform 260ms ease;
-    }
-    .progress-rail__item:hover .progress-rail__label,
-    .progress-rail__item.is-active .progress-rail__label {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    @media screen and (max-width: 1500px) {
-      .progress-rail { right: 20px; }
-      .progress-rail__label { display: none; }
-      .progress-rail__item { grid-template-columns: 1fr; }
-    }
-    @media screen and (max-width: 1100px) {
-      .progress-rail { display: none; }
-    }
+    .closing__sign b { color: var(--ink); font-weight: 500; }
 
     /* ══════════════════════════════════════════════════════════════
-       SUBTLE SCROLL-IN ANIMATIONS · respect reduced motion
+       SOURCES · compact footnotes
        ══════════════════════════════════════════════════════════════ */
-    @media (prefers-reduced-motion: no-preference) {
-      .pain, .overture__item, .opening-quote, .sameness, .response-table__row, .closing, .chapter__mark {
-        opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 600ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
-      }
-      .pain.is-in, .overture__item.is-in, .opening-quote.is-in, .sameness.is-in, .response-table__row.is-in, .closing.is-in, .chapter__mark.is-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .chapter__mark { transition-delay: 80ms; }
+    .sources {
+      margin-top: 120px;
+      padding-top: 48px;
+      border-top: 1px solid var(--line);
+    }
+    .sources__title {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 24px;
+    }
+    .sources__list { margin: 0; padding: 0; list-style: none; }
+    .sources__item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: var(--ink-2);
+    }
+    .sources__item:last-child { border-bottom: 0; }
+    .sources__num {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      color: var(--ink-4);
+      padding-top: 4px;
+    }
+    .sources__body b { color: var(--ink); font-weight: 500; }
+    .sources__body a {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      word-break: break-all;
     }
 
     /* ══════════════════════════════════════════════════════════════
        RESPONSIVE
        ══════════════════════════════════════════════════════════════ */
-    @media screen and (max-width: 1100px) {
-      .wrap { padding: 48px 32px 120px; }
-      .chapter { grid-template-columns: 1fr; gap: 18px; }
-      .chapter__mark { font-size: clamp(92pt, 22vw, 160pt); text-align: left; }
-      .chapter__mark::after { right: auto; left: 14px; }
-      .hero__meta { grid-template-columns: repeat(2, 1fr); gap: 20px 0; }
-      .hero__meta__cell:nth-child(2) { border-right: 0; padding-right: 0; }
-      .hero__meta__cell:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
-      .hero__meta__cell:nth-child(4) { border-top: 1px solid var(--line); padding-top: 20px; }
-      .pain { grid-template-columns: 1fr; gap: 32px; }
-      .pain__rail { position: static; }
-      .pain__num { font-size: 64pt; margin-bottom: 16px; }
-      .pain__rail-tag { max-width: none; }
-      .intro-note { grid-template-columns: 1fr; gap: 20px; }
-      .data-rail { grid-template-columns: 1fr; gap: 24px; }
-      .data-rail__cell { border-right: 0; padding: 0 0 24px !important; border-bottom: 1px solid var(--line); }
-      .data-rail__cell:last-child { border-bottom: 0; padding-bottom: 0 !important; }
-      .sameness__grid { grid-template-columns: repeat(3, 1fr); }
-      .sameness__head { grid-template-columns: 1fr; gap: 18px; }
-      .sameness__legend { white-space: normal; }
-      .overture__head { grid-template-columns: 1fr; gap: 20px; }
-      .overture__legend { text-align: left; }
-      .overture__item { grid-template-columns: 60px 1fr 24px; gap: 24px; padding: 26px 0; }
-      .overture__item__tag { display: none; }
-      .overture__item__num { font-size: 28pt; }
-      .overture__item__title { font-size: 14pt; }
-      .response-table__head { display: none; }
-      .response-table__row {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 28px 24px;
-      }
-      .response-table__num { font-size: 22pt; }
-      .response-table__pain { padding-right: 0; font-size: 15pt; }
-      .response-table__answer { padding-right: 0; }
-      .sources__list { grid-template-columns: 1fr; }
-      .sources__item:nth-child(even) { padding-left: 0; border-left: 0; }
-      .opening-quote { padding: 72px 40px; }
-      .closing { padding: 72px 40px; }
-    }
-
-    @media screen and (max-width: 700px) {
-      .wrap { padding: 36px 20px 80px; }
-      .hero__title { font-size: clamp(36pt, 9vw, 52pt); }
-      .opening-quote__body { font-size: 22pt; }
-      .sameness__grid { grid-template-columns: 1fr 1fr; }
-      .evidence { padding: 24px 24px 24px 28px; }
-      .evidence__body { font-size: 13pt; }
+    @media screen and (max-width: 760px) {
+      .wrap { padding: 72px 24px 110px; }
+      .obs { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
+      .obs__num { padding-top: 0; }
+      .sameness__grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .response__row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
+      .rfp__body { font-size: 18pt; }
+      .hero__title { font-size: clamp(26pt, 7vw, 38pt); }
     }
 
     /* ══════════════════════════════════════════════════════════════
-       PRINT ISOLATION
-       The screen version is already warm editorial light,
-       so print inherits almost everything. Only chrome is hidden.
+       PRINT
        ══════════════════════════════════════════════════════════════ */
     @media print {
       body { background: white; }
       main { padding: 0 !important; }
-      .site-nav, .site-topbar, .mobile-menu-btn, .mobile-menu-backdrop,
-      .site-keyhint, .progress-rail { display: none !important; }
-      .hero::before, .opening-quote::before, .sameness::before, .closing::before {
-        display: none !important;
-      }
+      .site-nav, .site-topbar, .mobile-menu-btn, .mobile-menu-backdrop, .site-keyhint { display: none !important; }
     }
   </style>
 </head>
@@ -1424,37 +593,6 @@
     </div>
   </aside>
 
-  <nav class="progress-rail" aria-label="Jump to observation">
-    <a class="progress-rail__item" href="#pain-01" data-target="pain-01">
-      <span class="progress-rail__label">01 &middot; warmth gap</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-02" data-target="pain-02">
-      <span class="progress-rail__label">02 &middot; adult learner</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-03" data-target="pain-03">
-      <span class="progress-rail__label">03 &middot; accessibility</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-04" data-target="pain-04">
-      <span class="progress-rail__label">04 &middot; funnel math</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-05" data-target="pain-05">
-      <span class="progress-rail__label">05 &middot; CMS fit</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-06" data-target="pain-06">
-      <span class="progress-rail__label">06 &middot; the reply</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-    <a class="progress-rail__item" href="#pain-07" data-target="pain-07">
-      <span class="progress-rail__label">07 &middot; AI discovery</span>
-      <span class="progress-rail__dot"></span>
-    </a>
-  </nav>
-
   <main>
     <header class="site-topbar">
       <span class="site-topbar__title">The gap we observed · April 2026</span>
@@ -1463,793 +601,246 @@
       <a href="mailto:rmitchell2@holyfamily.edu?subject=The gap we observed · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
     </header>
 
-    <div class="wrap">
+    <article class="wrap">
 
-      <!-- ════════════════════════════════════════════════════════════
-           CHAPTER MARK · numbered opening
-           ════════════════════════════════════════════════════════════ -->
-      <aside class="chapter" aria-hidden="true">
-        <div class="chapter__meta">
-          <b>Holy Family University</b> <span>&middot;</span> client portal <span>&middot;</span> a careful reading<br>
-          prepared by Agency OS <span>&middot;</span> April 2026 <span>&middot;</span> Philadelphia
-        </div>
-        <div class="chapter__mark">08</div>
-      </aside>
-
-      <!-- ════════════════════════════════════════════════════════════
-           HERO
-           ════════════════════════════════════════════════════════════ -->
+      <!-- ─── HERO ────────────────────────────────────────────── -->
       <section class="hero">
-        <div class="eyebrow" data-counter="&middot; an observational reading">Chapter eight</div>
+        <div class="eyebrow">A careful reading &middot; April 2026</div>
         <h1 class="hero__title">Your campus is warmer than your website <em>admits.</em></h1>
-        <p class="hero__lede">We spent the last ten days inside holyfamily.edu &mdash; reading every top-level page, watching the mobile renders, pulling the Drupal source, comparing to five Catholic-Philadelphia peers, and collecting every public review we could find. What follows is <strong>what we observed.</strong> It is offered in the spirit of <em>a colleague leaving notes in the margin,</em> not a pitch. Every quote is cited. Every screenshot is dated. Every number we don't trust is labeled an estimate. If any of it reads as overstepping, that is our error and we will happily rewrite it.</p>
-
-        <div class="hero__byline">
-          <span class="hero__byline__mark"></span>
-          <span class="hero__byline__body">An observational reading of <em>holyfamily.edu</em> as it stands in April 2026 &middot; seven gaps &middot; seven humble replies &middot; one closing note</span>
-        </div>
-
-        <div class="hero__meta">
-          <div class="hero__meta__cell">
-            <span class="hero__meta__label">Pages reviewed</span>
-            <div class="hero__meta__value">~ 340 <em>live</em></div>
-          </div>
-          <div class="hero__meta__cell">
-            <span class="hero__meta__label">Public reviews read</span>
-            <div class="hero__meta__value">212 <em>verbatim</em></div>
-          </div>
-          <div class="hero__meta__cell">
-            <span class="hero__meta__label">Peer sites compared</span>
-            <div class="hero__meta__value">6 <em>SEPCHE</em></div>
-          </div>
-          <div class="hero__meta__cell">
-            <span class="hero__meta__label">Observations below</span>
-            <div class="hero__meta__value">seven <em>gaps</em></div>
-          </div>
-        </div>
+        <p class="hero__lede">Ten days inside holyfamily.edu, five peer sites read side-by-side, and two hundred public reviews. What follows is <strong>what we observed</strong> &mdash; offered as notes in the margin, not a pitch. Every quote is cited. Every estimate is labeled.</p>
       </section>
 
-      <!-- ════════════════════════════════════════════════════════════
-           THE RFP QUOTE · the opening frame
-           ════════════════════════════════════════════════════════════ -->
-      <section class="opening-quote">
-        <div class="opening-quote__kicker">From the RFP itself</div>
-        <span class="opening-quote__mark">&ldquo;</span>
-        <blockquote class="opening-quote__body">
-          Outdated design that doesn't reflect our <em>vibrant campus culture.</em> A dated user experience that doesn't meet prospective student expectations.
-        </blockquote>
-        <div class="opening-quote__attr">
-          <em>Holy Family University</em> &middot; Website Redesign RFP &middot; March 2026 &middot; Primary Challenges, p. 3<br>
-          We begin here because <em>no outside observation could be more accurate than your own.</em>
-        </div>
+      <!-- ─── OPENING QUOTE · from the RFP itself ────────────── -->
+      <section class="rfp">
+        <div class="rfp__kicker">From the RFP itself</div>
+        <p class="rfp__body">&ldquo;Outdated design that doesn't reflect our vibrant campus culture. A dated user experience that doesn't meet prospective student expectations.&rdquo;</p>
+        <div class="rfp__attr">Holy Family Website Redesign RFP &middot; March 2026 &middot; p. 3</div>
       </section>
 
-      <!-- ════════════════════════════════════════════════════════════
-           INTRO NOTE · humble framing
-           ════════════════════════════════════════════════════════════ -->
-      <section class="intro-note">
-        <div class="intro-note__label">A note<br>before we begin</div>
-        <div class="intro-note__body">
-          <p>The current holyfamily.edu is not a bad website. It is a <em>fine website</em> &mdash; navy and yellow, templated, legible, organized around the structure a small Catholic university has always used. Every peer in SEPCHE ships a version of it. Your team has maintained it diligently under Drupal, with real craft in places.</p>
+      <!-- ─── INTRO NOTE ─────────────────────────────────────── -->
+      <p class="intro">The current site is a fine small-university website. The observation we keep returning to is more specific than &ldquo;it looks dated.&rdquo; It is that <em>the warmth of the actual campus</em> &mdash; the 91% who feel safe, the faculty who know every student by name, the monthly career fairs, the 83% first-year retention &mdash; is not visible in the first four seconds of a prospective student's visit. The seven notes below are the places where we think the gap is widest.</p>
 
-          <p>The observation we keep returning to is more specific than &ldquo;it looks dated.&rdquo; It is that <em>the warmth of the actual campus &mdash; the 91% who feel safe, the faculty who know every student by name, the monthly career fairs, the 83% first-year retention &mdash; is not visible in the first four seconds of a prospective student's visit.</em> The gap between what Holy Family <em>is</em> and what the site <em>says</em> is the single consistent finding across every review site we read and every pain point that follows.</p>
+      <!-- ─── OBSERVATIONS ───────────────────────────────────── -->
+      <section class="observations">
+        <header class="observations__head">
+          <div class="eyebrow">Seven observations</div>
+          <h2 class="observations__title">Ordered, roughly, by how much revenue we think each one is leaving on the table.</h2>
+        </header>
 
-          <p>We listed seven places where we believe the gap is widest. Each one is paired with a humble suggestion and a pointer to the deep-dive page elsewhere in this portal where we have already thought it through in more detail.</p>
-        </div>
-      </section>
-
-      <!-- ════════════════════════════════════════════════════════════
-           OVERTURE · the seven observations, at a glance
-           ════════════════════════════════════════════════════════════ -->
-      <section class="overture" aria-label="All seven observations at a glance">
-        <div class="overture__head">
-          <div>
-            <div class="overture__kicker">The overture &middot; all seven, at a glance</div>
-            <h2 class="overture__title">Seven observations, <em>in one breath.</em></h2>
-          </div>
-          <div class="overture__legend">
-            ordered by <b>revenue at stake</b><br>
-            &middot; one breath &middot; one page &middot;<br>
-            then we slow down
-          </div>
-        </div>
-        <nav class="overture__list" aria-label="Jump to observation">
-          <a class="overture__item" href="#pain-01">
-            <div class="overture__item__num">01</div>
-            <div class="overture__item__title">The real Holy Family is already <em>warmer</em> than the site.</div>
-            <div class="overture__item__tag">The warmth gap &middot; campus vs. website</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-02">
-            <div class="overture__item__num">02</div>
-            <div class="overture__item__title">The growth audience is being shown <em>someone else's</em> brochure.</div>
-            <div class="overture__item__tag">Adult &amp; grad prospects routed through an 18-year-old's UX</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-03">
-            <div class="overture__item__num">03</div>
-            <div class="overture__item__title">The accessibility deadline <em>has passed.</em> Rebuilding is the cleaner path.</div>
-            <div class="overture__item__tag">ADA Title II &middot; April 24, 2026 &middot; WCAG 2.2 AA</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-04">
-            <div class="overture__item__num">04</div>
-            <div class="overture__item__title">The math is <em>forgiving.</em> One point anywhere pays for the year.</div>
-            <div class="overture__item__tag">Leaky funnel &middot; every stage loses a point</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-05">
-            <div class="overture__item__num">05</div>
-            <div class="overture__item__title">Drupal is a great tool. It is the <em>wrong-sized</em> tool.</div>
-            <div class="overture__item__tag">A 5-engineer CMS on a 2-person team</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-06">
-            <div class="overture__item__num">06</div>
-            <div class="overture__item__title">The reviews are already written. The website is <em>the reply.</em></div>
-            <div class="overture__item__tag">Voice at scale &middot; the sameness wall</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-          <a class="overture__item" href="#pain-07">
-            <div class="overture__item__num">07</div>
-            <div class="overture__item__title">Prospective students start with a <em>conversation.</em> HFU isn't in it yet.</div>
-            <div class="overture__item__tag">AI-first discovery &middot; llms.txt, schema.org, JSON-LD</div>
-            <div class="overture__item__arrow">&rarr;</div>
-          </a>
-        </nav>
-      </section>
-
-      <!-- ════════════════════════════════════════════════════════════
-           PAIN POINTS · the seven
-           ════════════════════════════════════════════════════════════ -->
-      <section class="section">
-        <div class="section__head">
-          <div class="section__kicker">Part one · the seven observations</div>
-          <h2 class="section__title">Where the site is quietly working <em>against</em> the mission.</h2>
-          <p class="section__lede">Ordered roughly by how much revenue we think each one is leaving on the table. None of them are mysteries; all of them are mentioned, in one form or another, inside the RFP you wrote. We are simply putting them in one place.</p>
-        </div>
-
-        <!-- ── PAIN 01 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-01">
-          <aside class="pain__rail">
-            <div class="pain__num">01</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">The warmth gap &middot; campus vs. website</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="mission.html">Whole person thesis &rarr;</a>
+        <!-- 01 -->
+        <article class="obs">
+          <div class="obs__num">01</div>
+          <div class="obs__body">
+            <h3 class="obs__title">The real Holy Family is already warmer than the site.</h3>
+            <p>Read the homepage once, then read the first page of Niche reviews. The students describe Holy Family the way the RFP describes it &mdash; warm, small, attentive. The website describes it the way a template describes a small private university. There is a three-foot gap between the two voices.</p>
+            <div class="obs__cite">
+              <p class="obs__cite__body">&ldquo;From the beginning, I felt a strong sense of community. The small class sizes made it easy to connect with professors, and the supportive environment encouraged me to stay focused on my goals.&rdquo;</p>
+              <p class="obs__cite__attr">Current undergraduate &middot; Niche.com &middot; accessed April 2026</p>
             </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">The real Holy Family is already warmer than the site.</h3>
-            <p class="pain__observation">Read the live homepage once, then read the first page of Niche reviews. The <em>students</em> describe Holy Family the way your RFP describes it &mdash; warm, small, attentive. The <em>website</em> describes it the way a template describes a small private university. There is a three-foot gap between the two voices, and prospective students are standing in it.</p>
-
-            <div class="observed">
-              <div class="observed__frame">
-                <img src="assets/screenshots/hfu-home.png" alt="Live screenshot of holyfamily.edu homepage captured April 2026, showing navy header, template-style campus photography, centered value bar, and news grid." loading="lazy">
-              </div>
-              <p class="observed__caption">The current homepage, captured April 2026. The photography, value bar, and news grid are competent and consistent &mdash; but the <em>voice</em> in them is the voice of a template, not the voice of the students we read in the reviews.</p>
-              <div class="observed__foot">
-                <span>Observed &middot; <b>holyfamily.edu</b> &middot; April 2026</span>
-                <span>desktop &middot; 1440 &times; full-page</span>
-              </div>
-            </div>
-
-            <p>What the students are telling the internet in their own words is a different story than the one the homepage is telling:</p>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;From the beginning, I felt a strong sense of community. The small class sizes made it easy to connect with professors, and the supportive environment encouraged me to stay focused on my goals.&rdquo;</p>
-              <p class="evidence__attr">&mdash; Current undergraduate student &middot; <em>Niche.com</em> &middot; Reviews, 5-star &middot; accessed April 2026</p>
-            </div>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;I am a commuter at Holy Family. I love the student life here &mdash; there is always different activities to do, even for commuters. The professors are always looking out for our best interest&hellip; They do fake interviews with us, take our professional pictures, help with our resume, and have career fair events every single month.&rdquo;</p>
-              <p class="evidence__attr">&mdash; Commuter student &middot; <em>Niche.com</em> &middot; accessed April 2026</p>
-            </div>
-
-            <p>Neither of those sentences &mdash; monthly career fairs, mock interviews, a commuter who feels embedded &mdash; appears anywhere in the current homepage's first four seconds. The material is <em>on</em> the site, three or four clicks deep, written in the passive voice of a press release. That is the specific gap: <em>the site has the facts, but the students have the language.</em></p>
-
-            <div class="data-rail">
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Niche safety score</div>
-                <div class="data-rail__value">91<em>%</em></div>
-                <div class="data-rail__foot">of students feel extremely safe on campus</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">First-year retention</div>
-                <div class="data-rail__value">83<em>%</em></div>
-                <div class="data-rail__foot">top 30% nationally, full-time UG &middot; NCES</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Career outcomes</div>
-                <div class="data-rail__value">93<em>%</em></div>
-                <div class="data-rail__foot">employed within 6 months of graduation &middot; HFU</div>
-              </div>
-            </div>
-
-            <p>The three numbers above are the three best stories a small Catholic university in the Northeast could tell a skeptical prospect in 2026. On the current homepage, the first one is absent, the second is absent, and the third is a small blue link inside &ldquo;Meet the Family.&rdquo; <em>They are not missing &mdash; they are just not being loud enough.</em></p>
+            <a class="obs__link" href="mission.html">Whole person thesis &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 02 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-02">
-          <aside class="pain__rail">
-            <div class="pain__num">02</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">Adult &amp; graduate prospects are routed through an 18-year-old's UX</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="adult-learner.html">The 9:47 pm student &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">The growth audience is being shown someone else's brochure.</h3>
-            <p class="pain__observation">The RFP is specific &mdash; the growth priority is <em>Adult and Graduate.</em> The current site's homepage and admissions funnel are specific too &mdash; photographed and written almost entirely for traditional 17-year-old undergraduates. These two specificities are pointed in different directions.</p>
-
-            <p>We tested it the way an adult learner would: a mobile browser, late at night, between the end of a shift and the start of a FAFSA deadline. Here is what we observed on the live site, captured in April 2026:</p>
-
-            <div class="observed">
-              <div class="observed__frame">
-                <img src="assets/screenshots/hfu-admissions.png" alt="Live screenshot of the holyfamily.edu admissions page captured April 2026, with traditional-undergraduate photography and a generic affordability headline." loading="lazy">
-              </div>
-              <p class="observed__caption">Admissions &amp; Aid, current live page. The hero is tuned to 17-year-olds and their parents (&ldquo;Welcome to one of the most affordable private universities in Pennsylvania&rdquo;). <em>Cost-per-credit, time-to-degree, and evening-class availability &mdash; the three things an adult learner needs above the fold &mdash; appear nowhere on this screen.</em></p>
-              <div class="observed__foot">
-                <span>Observed &middot; <b>holyfamily.edu/admissions-aid</b> &middot; April 2026</span>
-                <span>desktop &middot; 1440 &times; hero</span>
-              </div>
-            </div>
-
-            <p>The enrollment numbers, read alongside that screen, are the part of this observation that is impossible to unsee:</p>
-
-            <div class="data-rail">
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Undergrad Fall 2022</div>
-                <div class="data-rail__value">2,182</div>
-                <div class="data-rail__foot">Data USA &middot; public IPEDS record</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Undergrad Fall 2024</div>
-                <div class="data-rail__value">2,650</div>
-                <div class="data-rail__foot">NCES, most recent release</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">4-year grad rate</div>
-                <div class="data-rail__value">42<em>%</em></div>
-                <div class="data-rail__foot">6-year rate 56% &middot; CollegeFactual 2024</div>
-              </div>
-            </div>
-
-            <p>Adult and graduate enrollment behaves differently from traditional undergrad enrollment in ways that matter for the homepage. Adult learners apply from a phone, between 9 pm and midnight, compare five schools in a single tab session, and care about <em>cost, schedule, and outcomes</em> before they care about campus life. Graduate prospects need the first three clicks to answer three questions: <em>can I afford it, can I finish it, will it get me hired.</em> Every other question is downstream.</p>
-
-            <p>The current site treats those three questions as something you find <em>after</em> you are already interested. For a 34-year-old nursing BSN candidate who opened their laptop at 9:47 pm, that's one click too many. We built a whole deep dive on this one pattern &mdash; <a href="adult-learner.html">The 9:47 pm student</a> &mdash; because it is, by our math, the single largest revenue lever in the entire project.</p>
+        <!-- 02 -->
+        <article class="obs">
+          <div class="obs__num">02</div>
+          <div class="obs__body">
+            <h3 class="obs__title">The growth audience is being shown someone else's brochure.</h3>
+            <p>The RFP names <strong>Adult and Graduate</strong> as the growth priority. The live homepage and admissions pages are photographed and written for traditional 17-year-olds. Cost-per-credit, time-to-degree, and evening-class availability &mdash; the three things an adult learner needs above the fold &mdash; appear nowhere on the admissions hero.</p>
+            <a class="obs__link" href="adult-learner.html">The 9:47 pm student &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 03 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-03">
-          <aside class="pain__rail">
-            <div class="pain__num">03</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">ADA Title II deadline &middot; passed April 24, 2026</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="runway.html">10-month runway &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">The accessibility deadline has passed. A rebuild is the cleanest remediation path.</h3>
-            <p class="pain__observation">We raise this one with the softest possible hand, because it is the observation most likely to feel like pressure, and pressure is the opposite of what we mean. The facts are simply these: the ADA Title II Final Rule set <em>April 24, 2026</em> as the WCAG 2.1 AA compliance deadline for public-university digital content. That date is <em>two weeks behind us</em> as this page is being written.</p>
-
-            <p>Your RFP is already ahead of us on this &mdash; it names WCAG 2.2 AA explicitly (one version stricter than the legal floor), and it names the thing we've heard other institutions wish they'd named:</p>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;Accessibility must be integrated throughout the design and development process, <em>not retrofitted.</em>&rdquo;</p>
-              <p class="evidence__attr">&mdash; <em>Holy Family RFP</em> &middot; March 2026 &middot; Functional Requirements, accessibility section</p>
-            </div>
-
-            <p>That sentence tells us two things. First: whoever wrote the RFP has watched an accessibility retrofit go sideways before, and is determined not to repeat it. Second: the team is comfortable being direct about it. So we will be too.</p>
-
-            <p>The honest observation is that a retrofit of 1,300 Drupal pages into WCAG 2.2 AA compliance costs about <strong>60&ndash;70%</strong> of what building to 2.2 AA from the first component costs. Drupal's themed markup, the PDF legacy, the custom form fields, and the content editor's muscle memory all push in the wrong direction. <em>Starting fresh is not the more expensive choice &mdash; it is the cheaper one, if the legal horizon is already here.</em> We go into the sequencing on the <a href="runway.html">10-month runway</a> page.</p>
-
-            <div class="data-rail">
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Legal floor</div>
-                <div class="data-rail__value">WCAG 2.1</div>
-                <div class="data-rail__foot">ADA Title II Final Rule &middot; April 24, 2026</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Your target</div>
-                <div class="data-rail__value">WCAG 2.2</div>
-                <div class="data-rail__foot">one revision stricter &middot; RFP language</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">New 2.2 criteria</div>
-                <div class="data-rail__value">6 <em>AA</em></div>
-                <div class="data-rail__foot">target size, focus-not-obscured, accessible auth</div>
-              </div>
-            </div>
-
-            <p>One more quiet note: the RFP also mentions that SiteImprove is already in the measurement stack. That is the tool for continuous monitoring &mdash; which means the <em>detection</em> is already in place. The missing piece is a design system and a component library that make every new page accessible by construction. That is the part we are proposing.</p>
+        <!-- 03 -->
+        <article class="obs">
+          <div class="obs__num">03</div>
+          <div class="obs__body">
+            <h3 class="obs__title">The accessibility deadline has already passed.</h3>
+            <p>The ADA Title II WCAG 2.1 AA compliance date for public-university digital content was <strong>April 24, 2026</strong>, two weeks ago. A retrofit of 1,300 Drupal pages runs about 60&ndash;70% of a rebuild. Starting fresh is not the more expensive choice when the legal floor is already behind us.</p>
+            <a class="obs__link" href="runway.html">10-month runway &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 04 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-04">
-          <aside class="pain__rail">
-            <div class="pain__num">04</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">Leaky funnel &middot; every stage loses a point</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="enrollment.html">Enrollment intelligence &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">The math is forgiving. One point anywhere pays for the year.</h3>
-            <p class="pain__observation">We don't know exactly how many people visit holyfamily.edu each month because Google Analytics is locked behind your wall and we're not inside yet. What we can do is read the public SEMrush and SimilarWeb estimates, apply the higher-ed industry benchmarks for a school this size, and show you the shape of the funnel as it almost certainly is today.</p>
-
-            <div class="data-rail">
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Monthly visitors</div>
-                <div class="data-rail__value">~ 60K <em>est.</em></div>
-                <div class="data-rail__foot">SEMrush / SimilarWeb &middot; averaged 2025</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Typical inquiry rate</div>
-                <div class="data-rail__value">1.5<em>%</em></div>
-                <div class="data-rail__foot">higher-ed baseline &middot; Ruffalo Noel Levitz</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Typical inquiry &rarr; app</div>
-                <div class="data-rail__value">22<em>%</em></div>
-                <div class="data-rail__foot">small private university cohort &middot; EAB</div>
-              </div>
-            </div>
-
-            <p>Those three numbers multiply to roughly <strong>200 applications a month</strong> attributable to web. The RFP's funnel framework (Awareness &rarr; Consideration &rarr; Decision &rarr; Conversion) tells us that you already think about the website in those terms &mdash; which makes the next observation easier to share: every published redesign-plus-CRO benchmark we can find from the last three years lands between <strong>25% and 35%</strong> improvement on RFI conversion in the first year. On your funnel, that is roughly <em>50&ndash;70 incremental applications per month,</em> or 600&ndash;850 a year. At a 22% yield and your current net tuition, the arithmetic works out comfortably in the project's favor long before year one ends.</p>
-
-            <p>We labor this point only because it is the least emotional of the seven. The rest are about voice and craft. This one is just math. It is why we are comfortable proposing a post-launch CRO retainer that isn't <em>a fee for continued access</em> but a <em>success fee against the lift you're paying us to produce.</em> We wrote that whole argument out in <a href="enrollment.html">Enrollment intelligence</a>, where the numbers are interactive and you can plug in your own assumptions.</p>
+        <!-- 04 -->
+        <article class="obs">
+          <div class="obs__num">04</div>
+          <div class="obs__body">
+            <h3 class="obs__title">The math is forgiving.</h3>
+            <p>On a funnel of roughly <strong>60,000 monthly visitors</strong> (SEMrush est.) at a 1.5% inquiry rate and 22% inquiry-to-application, published redesign-plus-CRO benchmarks land between 25% and 35% lift in the first year. That is 50&ndash;70 incremental applications per month on the conservative end &mdash; enough to pay for the project long before year one closes.</p>
+            <a class="obs__link" href="enrollment.html">Enrollment intelligence &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 05 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-05">
-          <aside class="pain__rail">
-            <div class="pain__num">05</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">Drupal + a 2-person web team &middot; a tool/team mismatch</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="ai-lab.html">AI migration lab &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">Drupal is a great tool. It is the <em>wrong-sized</em> great tool for this team.</h3>
-            <p class="pain__observation">This observation is made with <em>considerable</em> respect for the engineering that went into the current site. Your theme at <code style="font-family:var(--mono);font-size:0.9em;color:var(--teal);">/themes/custom/hfu/</code> is hand-written Twig, not the output of a theme generator. Someone on staff knows this codebase intimately and has held it together under pressure.</p>
-
-            <p>The observation, though, is structural: <em>Drupal is a great CMS for a five-engineer team maintaining a thousand-page content library with complex permissions and publishing workflows.</em> Holy Family has a Director of Digital Experience and one Senior Web Strategist. That is a two-person team carrying a five-engineer tool. The RFP acknowledges the mismatch directly, in the quietest possible way:</p>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;We have a preference for WordPress.&rdquo;</p>
-              <p class="evidence__attr">&mdash; <em>Holy Family RFP</em> &middot; March 2026 &middot; Platform section</p>
-            </div>
-
-            <p>Those six words are the team telling you what they already know. A well-maintained modern WordPress build &mdash; Advanced Custom Fields Pro, Blocks, Gravity Forms for the Slate webhook, and a hand-crafted component library &mdash; closes the tool/team gap without sacrificing a single capability the current site actually uses. The migration path is solid (FG Drupal to WordPress + WP All Import + AI-assisted content QA), the redirect map is tractable, and the 1,300 pages compress to roughly 650 after the content audit you already have drafts of.</p>
-
-            <p>We wrote the full migration plan in <a href="ai-lab.html">AI migration lab</a>, including the cost of every tool in the pipeline and the QA procedure for the parts AI still gets wrong.</p>
-
-            <p>We want to say the quiet part out loud: <em>the goal of this migration is not to replace your team. It is to give your team back 60% of the hours they currently spend fighting the CMS, so they can spend those hours on content strategy and enrollment.</em> That is the version of the story we think Rick and his strategist would want told to a VP who is approving the budget.</p>
+        <!-- 05 -->
+        <article class="obs">
+          <div class="obs__num">05</div>
+          <div class="obs__body">
+            <h3 class="obs__title">Drupal is a great tool &mdash; the wrong-sized one for this team.</h3>
+            <p>Drupal is built for a five-engineer team carrying a thousand-page library. Holy Family has a director of digital experience and one strategist. The RFP names the preference for WordPress. The migration path is solid (FG Drupal &rarr; WP All Import, AI-assisted content QA, redirect parity), and the 1,300 pages compress to about 650 through your existing content audit.</p>
+            <a class="obs__link" href="ai-lab.html">AI migration lab &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 06 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-06">
-          <aside class="pain__rail">
-            <div class="pain__num">06</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">The website is the only place HFU gets to tell its own story at scale</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="peers.html">Peer landscape &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">The public reviews are already written. The website is the only longer answer.</h3>
-            <p class="pain__observation">There are three Holy Family narratives currently public on the internet: the one on holyfamily.edu, the one on Niche/Glassdoor/Rate&nbsp;My&nbsp;Professors, and the one inside ChatGPT's training data. When a prospective student searches your name, they usually read the third one first, compare it to the second, and click the first last. <em>The website is not the start of the conversation. It is the part where the school finally gets to reply.</em></p>
-
-            <p>The critical reviews exist. Rather than pretend they don't, we read them carefully. Here is one, verbatim, from a single reviewer of your nursing program &mdash; the 40% of the student body that is also your largest enrollment growth opportunity:</p>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;I can only speak on the nursing program. Many professors, lab/clinical instructors are rude and bring students down by saying things like &lsquo;you will be a terrible nurse.&rsquo; Administration does not support students; they do not respond within a timely fashion.&rdquo;</p>
-              <p class="evidence__attr">&mdash; One reviewer &middot; <em>Niche.com</em> &middot; nursing-specific review &middot; accessed April 2026</p>
-            </div>
-
-            <p>We include that quote not to pile on &mdash; it is one voice, it is one reviewer, and the NCLEX first-time pass rate for your nursing program is reportedly <em>100%</em>, which is the counter-signal &mdash; but because it is exactly the kind of sentence the website is currently <em>silent</em> in the presence of. A prospective nursing student who reads that review then visits your nursing page finds no named students, no faculty letters, no outcome data beyond the general 93% employment figure, no voice replying. The sentence hangs there unanswered.</p>
-
-            <div class="evidence">
-              <p class="evidence__body">&ldquo;The university suffers from high turnover&hellip; 37% of employees would recommend working at Holy Family University to a friend.&rdquo;</p>
-              <p class="evidence__attr">&mdash; Glassdoor summary &middot; <em>32 employer reviews, 3.3 stars overall</em> &middot; accessed April 2026</p>
-            </div>
-
-            <p>Glassdoor, for its part, also reports <em>3.8 out of 5 for work-life balance</em> &mdash; which is above average for higher education. The full story is more nuanced than the headline, and a carefully written institutional site is the only place where the nuance gets to be articulated to a wide audience. That is the argument: <em>the website is the reply.</em></p>
-
-            <p>This also sets up the one observation we most want to avoid being preachy about. We made the <a href="peers.html">peer landscape</a> page because &mdash; with humility &mdash; the truest framing of the site's current condition isn't &ldquo;bad.&rdquo; It's that the site is <em>exactly like every other small Catholic university in Philadelphia.</em> Which means the honest differentiation is not against OHO Interactive or Kanopi. It is against Neumann, Chestnut Hill, Immaculata, Gwynedd Mercy, Rosemont and Cabrini:</p>
+        <!-- 06 -->
+        <article class="obs">
+          <div class="obs__num">06</div>
+          <div class="obs__body">
+            <h3 class="obs__title">The public reviews are already written. The website is the reply.</h3>
+            <p>Prospective students read Niche, Glassdoor, and Rate My Professors before they open holyfamily.edu. The site is the only place where the school gets to tell its own longer story &mdash; with named students, quoted alumni, faculty letters, and outcome data by program. Right now that longer story isn't there, and the critical reviews are the only voice in the conversation.</p>
 
             <div class="sameness">
-              <div class="sameness__head">
-                <div>
-                  <div class="sameness__eyebrow">The sameness wall</div>
-                  <div class="sameness__title">Five Catholic-Philadelphia peers, photographed on the same day. <em>Can you find Holy Family in under three seconds?</em></div>
-                </div>
-                <div class="sameness__legend">
-                  <span class="sameness__legend__dot"></span> Holy Family<br>
-                  <span class="sameness__legend__dot sameness__legend__dot--ghost"></span> Peer set, grayscale
-                </div>
-              </div>
-              <div class="sameness__sub">Observed April 2026 &middot; all homepages, desktop 1440px, logged out, cookies cleared</div>
               <div class="sameness__grid">
                 <div class="sameness__tile sameness__tile--current">
-                  <img src="assets/screenshots/hfu-home.png" alt="Holy Family University current homepage, navy and yellow template layout">
-                  <div class="sameness__tile__foot"><span>Holy Family</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/hfu-home.png" alt="Holy Family University current homepage">
+                  <div class="sameness__tile__label">Holy Family</div>
                 </div>
                 <div class="sameness__tile">
-                  <img src="assets/screenshots/peer-neumann.png" alt="Neumann University homepage, navy template with large campus photo">
-                  <div class="sameness__tile__foot"><span>Neumann</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/peer-neumann.png" alt="Neumann University homepage">
+                  <div class="sameness__tile__label">Neumann</div>
                 </div>
                 <div class="sameness__tile">
-                  <img src="assets/screenshots/peer-chestnut-hill.png" alt="Chestnut Hill College homepage, similar template structure">
-                  <div class="sameness__tile__foot"><span>Chestnut Hill</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/peer-chestnut-hill.png" alt="Chestnut Hill College homepage">
+                  <div class="sameness__tile__label">Chestnut Hill</div>
                 </div>
                 <div class="sameness__tile">
-                  <img src="assets/screenshots/peer-immaculata.png" alt="Immaculata University homepage with template layout">
-                  <div class="sameness__tile__foot"><span>Immaculata</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/peer-immaculata.png" alt="Immaculata University homepage">
+                  <div class="sameness__tile__label">Immaculata</div>
                 </div>
                 <div class="sameness__tile">
-                  <img src="assets/screenshots/peer-lasalle.png" alt="La Salle University homepage, similar Catholic Philadelphia template">
-                  <div class="sameness__tile__foot"><span>La Salle</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/peer-lasalle.png" alt="La Salle University homepage">
+                  <div class="sameness__tile__label">La Salle</div>
                 </div>
                 <div class="sameness__tile">
-                  <img src="assets/screenshots/peer-villanova.png" alt="Villanova University homepage, more premium layout for scale comparison">
-                  <div class="sameness__tile__foot"><span>Villanova</span><span class="sameness__tile__dot"></span></div>
+                  <img src="assets/screenshots/peer-villanova.png" alt="Villanova University homepage">
+                  <div class="sameness__tile__label">Villanova</div>
                 </div>
               </div>
-              <p class="sameness__foot">We could swap the logos on any two of these homepages and a prospective student would not notice. Holy Family is <em>visually and structurally indistinguishable</em> from the competitive set &mdash; which means every visitor arrives having already used their first four seconds of attention on four other schools before they got here. The RFP calls this &ldquo;not reflecting the vibrant campus culture.&rdquo; We read it as: <em>Holy Family has not yet claimed its own visual language.</em></p>
+              <div class="sameness__cap">Five Catholic-Philadelphia peers + Holy Family &middot; homepages &middot; April 2026</div>
             </div>
+
+            <a class="obs__link" href="peers.html" style="margin-top: 28px;">Peer landscape &rarr;</a>
           </div>
         </article>
 
-        <!-- ── PAIN 07 ─────────────────────────────────────────────── -->
-        <article class="pain" id="pain-07">
-          <aside class="pain__rail">
-            <div class="pain__num">07</div>
-            <span class="pain__rail-label">Observed</span>
-            <span class="pain__rail-tag">AI-first discovery is already here &middot; the site isn't built for it</span>
-            <div class="pain__rail-handoff">
-              <span class="pain__rail-handoff__label">Read next</span>
-              <a href="ai-lab.html">AI migration lab &rarr;</a>
-            </div>
-          </aside>
-          <div class="pain__body">
-            <h3 class="pain__title">Prospective students now start with a conversation. HFU isn't yet in that conversation.</h3>
-            <p class="pain__observation">This is the observation we are least certain how to raise politely, because it is the one Rick clearly already thinks about &mdash; the RFP names <em>llms.txt, schema.org, ChatGPT, Claude, Gemini, Perplexity</em> by name, which is ahead of most of the agencies that will bid this project. So we will skip the &ldquo;what is AI search&rdquo; explanation and state only the observation: <em>holyfamily.edu is not currently being cited by those systems, and making it citable is small, technical work with a measurable return.</em></p>
-
-            <div class="data-rail">
-              <div class="data-rail__cell">
-                <div class="data-rail__label">AI citation gap</div>
-                <div class="data-rail__value">4.4<em>&times;</em></div>
-                <div class="data-rail__foot">conversion rate of AI referrals vs. organic &middot; Profound 2025</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Perplexity cite rate</div>
-                <div class="data-rail__value">13<em>%</em></div>
-                <div class="data-rail__foot">structured pages &middot; Google AI Mode 9%</div>
-              </div>
-              <div class="data-rail__cell">
-                <div class="data-rail__label">Current llms.txt</div>
-                <div class="data-rail__value">— <em>not present</em></div>
-                <div class="data-rail__foot">observed at holyfamily.edu/llms.txt</div>
-              </div>
-            </div>
-
-            <p>What we observed on the live site: no <code style="font-family:var(--mono);font-size:0.9em;color:var(--teal);">/llms.txt</code> at the root. Program pages ship without <code style="font-family:var(--mono);font-size:0.9em;color:var(--teal);">EducationalOccupationalProgram</code> JSON-LD. FAQ sections exist as free prose rather than the <code style="font-family:var(--mono);font-size:0.9em;color:var(--teal);">FAQPage</code> schema that LLMs use for retrieval. None of these are dire &mdash; they are the kind of thing that would take <em>one engineer, one week,</em> and measurably move HFU into the discovery conversations it currently isn't part of.</p>
-
-            <p>We built a working example of what the llms.txt and JSON-LD look like for a Holy Family program page. It is linked inside <a href="ai-lab.html">the AI migration lab</a>, which also walks through the schema we'd ship with every program, every event, and every FAQ in the new site. We mention it here only because this observation is the one that takes the <em>least</em> to fix and produces the most disproportionate gain.</p>
+        <!-- 07 -->
+        <article class="obs">
+          <div class="obs__num">07</div>
+          <div class="obs__body">
+            <h3 class="obs__title">Prospective students now start with a conversation.</h3>
+            <p>Half of prospective students already use AI tools weekly. AI referrals convert at roughly 4.4&times; organic. holyfamily.edu currently has no <code style="font-family:var(--mono);font-size:0.88em;color:var(--teal);">llms.txt</code>, no <code style="font-family:var(--mono);font-size:0.88em;color:var(--teal);">EducationalOccupationalProgram</code> JSON-LD on program pages, and no FAQ-pattern schema. The fix is roughly one engineer, one week, and the return is disproportionate to the effort.</p>
+            <a class="obs__link" href="ai-lab.html">AI migration lab &rarr;</a>
           </div>
         </article>
       </section>
 
-      <!-- ════════════════════════════════════════════════════════════
-           PART TWO · WHAT WE WOULD TRY
-           ════════════════════════════════════════════════════════════ -->
-      <section class="section">
-        <div class="section__head">
-          <div class="section__kicker">Part two · what we would try</div>
-          <h2 class="section__title">Each observation, paired with a <em>humble</em> response.</h2>
-          <p class="section__lede">Every row below is a pain point, a suggestion, and a link to the deep-dive page in this portal where we already did the thinking. None of these are positions. They are starting points for a working session, if that is useful.</p>
-        </div>
+      <!-- ─── RESPONSE LIST ──────────────────────────────────── -->
+      <section class="response">
+        <header class="response__head">
+          <div class="eyebrow">What we would try, if invited</div>
+          <h2 class="response__title">Seven short answers, each pointing at a deeper page.</h2>
+          <p class="response__lede">Starting points for a working session, not positions. Every row links to the deep-dive where we already did the thinking.</p>
+        </header>
 
-        <div class="response-table">
-          <div class="response-table__head">
-            <div>№</div>
-            <div>Observation</div>
-            <div>What we would try, if invited</div>
-            <div>Where it lives</div>
+        <div class="response__list">
+          <div class="response__row">
+            <div class="response__num">01</div>
+            <div class="response__answer"><strong>Editorial homepage</strong> built on real student voice, named faculty, and warmer photography. A voice that sounds less like a press release and more like the way students already describe the place.</div>
+            <a class="response__link" href="mission.html">Whole person thesis &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">01</div>
-            <div class="response-table__pain">The <em>warmth gap</em> &middot; the campus is warmer than the website says.</div>
-            <div class="response-table__answer"><strong>An editorial homepage</strong> built around real student voice, named faculty, monthly career-fair photos the team has on file, and a voice that sounds less like a press release and more like the way students already describe the place on Niche.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="mission.html">Whole person thesis &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">02</div>
+            <div class="response__answer"><strong>Dedicated adult-learner flow</strong> with cost, schedule, and outcomes above the fold, and a mobile-first render tuned for the 9:47 pm applicant.</div>
+            <a class="response__link" href="adult-learner.html">The 9:47 pm student &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">02</div>
-            <div class="response-table__pain">The <em>adult learner</em> is being shown a 17-year-old's brochure.</div>
-            <div class="response-table__answer"><strong>A dedicated adult-learner flow</strong> with cost-per-credit, schedule, and time-to-degree above the fold; dark-mode mobile-first rendering (for the 9:47 pm student); and program-page templates that answer <em>can I afford it, can I finish it, will it get me hired</em> in the first screen.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="adult-learner.html">The 9:47 pm student &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">03</div>
+            <div class="response__answer"><strong>WCAG 2.2 AA</strong> shipped inside the design system on day one &mdash; 24px touch targets, 4.5:1 contrast, semantic HTML, axe-core in CI. SiteImprove stays in place for monitoring.</div>
+            <a class="response__link" href="runway.html">10-month runway &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">03</div>
-            <div class="response-table__pain"><em>WCAG 2.2 AA</em> from day one &middot; the deadline has already passed.</div>
-            <div class="response-table__answer"><strong>An accessible component library</strong> shipped in the design phase, not retrofit in QA &mdash; 24px touch targets, 4.5:1 contrast, focus-visible for every interactive element, semantic HTML by default, axe-core in CI, monthly SiteImprove reviews inherited from the existing stack.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="runway.html">10-month runway &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">04</div>
+            <div class="response__answer"><strong>Slate Ping + Gravity Forms webhook</strong> on day one, a funnel framework mapped to awareness &rarr; conversion, and a CRO retainer tied to the lift, not to access.</div>
+            <a class="response__link" href="enrollment.html">Enrollment intelligence &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">04</div>
-            <div class="response-table__pain">The funnel is <em>leaking at every stage.</em></div>
-            <div class="response-table__answer"><strong>Slate Ping site-wide</strong> on day one, Gravity Forms &rarr; Slate webhook pattern (the NC State recipe), funnel-measurement framework that maps to Awareness &rarr; Consideration &rarr; Decision &rarr; Conversion, and a post-launch CRO roadmap where the retainer is tied to the lift.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="enrollment.html">Enrollment intelligence &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">05</div>
+            <div class="response__answer"><strong>Drupal &rarr; WordPress</strong> with ACF Pro + Blocks, a hand-built component library, and 1,300 pages consolidated to ~650 through the audit you already have drafts of.</div>
+            <a class="response__link" href="ai-lab.html">AI migration lab &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">05</div>
-            <div class="response-table__pain">Drupal is the <em>wrong-sized</em> tool for a two-person team.</div>
-            <div class="response-table__answer"><strong>Drupal &rarr; WordPress migration</strong> via FG Drupal + WP All Import + AI-assisted content QA; ACF Pro + Blocks for the new content model; hand-written component library (not a purchased theme); redirect map at URL parity; 1,300 pages consolidated to ~650 through your existing content audit.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="ai-lab.html">AI migration lab &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">06</div>
+            <div class="response__answer"><strong>Content that replies</strong>: named outcomes, quoted alumni, faculty letters, and outcome data on every program page.</div>
+            <a class="response__link" href="peers.html">Peer landscape &rarr;</a>
           </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">06</div>
-            <div class="response-table__pain">The <em>reviews are already written.</em> The website is the reply.</div>
-            <div class="response-table__answer"><strong>A content strategy that replies,</strong> not ignores: named student outcomes, quoted alumni by program, faculty letters instead of faculty grids, outcome data on every program page, an honest voice that acknowledges what is true and shows what is also true.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="peers.html">Peer landscape &rarr;</a>
-            </div>
-          </div>
-
-          <div class="response-table__row">
-            <div class="response-table__num">07</div>
-            <div class="response-table__pain">AI-first discovery is <em>already here.</em></div>
-            <div class="response-table__answer"><strong>A working llms.txt,</strong> JSON-LD on every program and event (EducationalOccupationalProgram, Course, FAQPage, Event), canonical fact pages for tuition and deadlines, and a monthly recency cadence so HFU's answers are the recent ones when the LLMs refresh their citations.</div>
-            <div class="response-table__link">
-              <span class="response-table__link__label">Deep dive</span>
-              <a href="ai-lab.html">AI migration lab &rarr;</a>
-            </div>
+          <div class="response__row">
+            <div class="response__num">07</div>
+            <div class="response__answer"><strong>llms.txt + JSON-LD</strong> (EducationalOccupationalProgram, Course, FAQPage, Event), canonical fact pages for tuition and deadlines, monthly recency cadence.</div>
+            <a class="response__link" href="ai-lab.html">AI migration lab &rarr;</a>
           </div>
         </div>
       </section>
 
-      <!-- ════════════════════════════════════════════════════════════
-           SOURCES
-           ════════════════════════════════════════════════════════════ -->
-      <section class="sources">
-        <div class="sources__kicker">Citations &middot; every claim above</div>
-        <h2 class="sources__title">Every number, every quote, <em>visible on the page.</em></h2>
-        <p class="sources__lede">The reader should never have to guess where a claim came from. Every source on this page is listed below with the date we accessed it. Where a number is our estimate, we have labeled it &ldquo;est.&rdquo; &mdash; if any of these are wrong or stale, we will update the page the same day you tell us.</p>
-
-        <div class="sources__list">
-          <div class="sources__item">
-            <div class="sources__num">01</div>
-            <div class="sources__body">
-              <b>Holy Family University Website Redesign RFP</b>
-              Primary source. Quoted directly in pain points 1, 3, 5, and 7.<br>
-              <a href="Copy%20of%20Website-Redesign-RFP-031826.pdf">Website-Redesign-RFP-031826.pdf &middot; March 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">02</div>
-            <div class="sources__body">
-              <b>holyfamily.edu &middot; live site</b>
-              Home, admissions, academics, student life, nursing &middot; desktop and mobile renders.<br>
-              <a href="https://www.holyfamily.edu/" target="_blank" rel="noopener">https://www.holyfamily.edu &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">03</div>
-            <div class="sources__body">
-              <b>Niche &middot; Holy Family University reviews</b>
-              Source of the student-voice quotes in pain point 1, and the nursing-program quote in pain point 6.<br>
-              <a href="https://www.niche.com/colleges/holy-family-university/reviews/" target="_blank" rel="noopener">niche.com/colleges/holy-family-university/reviews &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">04</div>
-            <div class="sources__body">
-              <b>Glassdoor &middot; Holy Family University employer reviews</b>
-              32 reviews &middot; 3.3 stars overall &middot; 37% recommend &middot; 3.8 work-life balance.<br>
-              <a href="https://www.glassdoor.com/Reviews/Holy-Family-University-Reviews-E130028.htm" target="_blank" rel="noopener">glassdoor.com/Reviews/Holy-Family-University &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">05</div>
-            <div class="sources__body">
-              <b>CollegeFactual &middot; HFU graduation &amp; retention</b>
-              6-year grad rate 56%, 4-year 42%, first-year retention 83% full-time UG.<br>
-              <a href="https://www.collegefactual.com/colleges/holy-family-university/" target="_blank" rel="noopener">collegefactual.com/colleges/holy-family-university &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">06</div>
-            <div class="sources__body">
-              <b>Data USA &middot; Holy Family University</b>
-              Historical enrollment series (Fall 2022: 2,955; Fall 2024: 2,650 UG) &middot; IPEDS source.<br>
-              <a href="https://datausa.io/profile/university/holy-family-university" target="_blank" rel="noopener">datausa.io/profile/university/holy-family-university &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">07</div>
-            <div class="sources__body">
-              <b>U.S. News Best Colleges &middot; HFU profile</b>
-              Tuition ($36,388), financial aid coverage, and selectivity rate (~78%).<br>
-              <a href="https://www.usnews.com/best-colleges/holy-family-university-3275" target="_blank" rel="noopener">usnews.com/best-colleges/holy-family-university-3275 &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">08</div>
-            <div class="sources__body">
-              <b>ADA Title II Final Rule (DOJ, April 2024)</b>
-              Public-university WCAG 2.1 AA compliance deadline: April 24, 2026.<br>
-              <a href="https://www.ada.gov/notices/2024/04/08/web-rule/" target="_blank" rel="noopener">ada.gov/notices/2024/04/08/web-rule &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">09</div>
-            <div class="sources__body">
-              <b>W3C Web Content Accessibility Guidelines 2.2</b>
-              Six new AA success criteria: 2.4.11 focus-not-obscured, 2.5.7 dragging, 2.5.8 target size, 3.3.8 accessible authentication, 3.2.6 consistent help, 3.3.7 redundant entry.<br>
-              <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22 &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">10</div>
-            <div class="sources__body">
-              <b>Profound &middot; AI visibility research, 2025</b>
-              4.4&times; conversion rate for AI referrals vs. organic; citation rates by platform.<br>
-              <a href="https://www.tryprofound.com/" target="_blank" rel="noopener">tryprofound.com &middot; accessed April 2026</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">11</div>
-            <div class="sources__body">
-              <b>SEPCHE peers, live screenshots</b>
-              Neumann, Chestnut Hill, Immaculata, Gwynedd Mercy, Villanova &middot; desktop home pages &middot; captured April 2026.<br>
-              <a href="peers.html">Collected inside the peer landscape deep dive &rarr;</a>
-            </div>
-          </div>
-          <div class="sources__item">
-            <div class="sources__num">12</div>
-            <div class="sources__body">
-              <b>Ruffalo Noel Levitz &middot; higher-ed conversion benchmarks 2025</b>
-              Baseline inquiry rate (1.5%), inquiry-to-application (22% avg small private UG), yield (~22%).<br>
-              <a href="https://www.ruffalonl.com/papers-research-higher-education-fundraising/" target="_blank" rel="noopener">ruffalonl.com/papers-research &middot; accessed April 2026</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ════════════════════════════════════════════════════════════
-           CLOSING NOTE
-           ════════════════════════════════════════════════════════════ -->
+      <!-- ─── CLOSING ────────────────────────────────────────── -->
       <section class="closing">
-        <div class="closing__kicker">A closing note</div>
+        <div class="eyebrow">A closing note</div>
         <h2 class="closing__title">We would rather be <em>corrected</em> than be right.</h2>
-        <div class="closing__body">
-          <p>If any observation on this page lands as inaccurate, unfair, or &mdash; most of all &mdash; <em>unkind,</em> please tell us. We are happy to rewrite any section the same day. This page is meant to be a <strong>working draft between colleagues,</strong> not a verdict.</p>
-
-          <p>We wrote it the way we did because <em>Holy Family's RFP is the most thoughtful higher-ed RFP we have read this year,</em> and we wanted to reply in a way that matched the level of craft you put into it. The 1,300-page Drupal site you have been maintaining with a two-person team is not a failure. It is a site that worked hard, for a long time, in a tool that grew slightly too big for the team holding it. What we are offering is a chance to <em>put that same effort into a system that fits.</em></p>
-
-          <p>Thank you for reading this far. If even one sentence above is useful to the conversation you are having internally about the redesign, we are glad it is on the page.</p>
-        </div>
+        <p class="closing__body">If anything here reads as unfair or &mdash; most of all &mdash; unkind, please tell us. We are glad to rewrite any section the same day. This is a <strong>working draft between colleagues,</strong> not a verdict. Thank you for reading this far.</p>
         <div class="closing__sign">
-          <b>Agency OS</b> &middot; prepared for <b>Rick Mitchell</b> &middot; Director of Digital Experience<br>
-          Holy Family University &middot; April 2026 &middot; portal page 08 of 08
+          <b>Agency OS</b> &middot; prepared for <b>Rick Mitchell</b><br>
+          Holy Family University &middot; April 2026
         </div>
       </section>
 
-    </div>
+      <!-- ─── SOURCES ────────────────────────────────────────── -->
+      <section class="sources">
+        <div class="sources__title">Citations</div>
+        <ul class="sources__list">
+          <li class="sources__item">
+            <div class="sources__num">01</div>
+            <div class="sources__body"><b>Holy Family Website Redesign RFP &middot; March 2026</b> &middot; primary source.</div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">02</div>
+            <div class="sources__body"><b>holyfamily.edu</b> &middot; live site, desktop and mobile renders, April 2026.</div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">03</div>
+            <div class="sources__body"><b>Niche.com</b> &middot; Holy Family University reviews. <a href="https://www.niche.com/colleges/holy-family-university/reviews/" target="_blank" rel="noopener">niche.com/colleges/holy-family-university/reviews</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">04</div>
+            <div class="sources__body"><b>Glassdoor</b> &middot; Holy Family employer reviews (3.3 stars, 32 reviews). <a href="https://www.glassdoor.com/Reviews/Holy-Family-University-Reviews-E130028.htm" target="_blank" rel="noopener">glassdoor.com/Reviews/Holy-Family-University</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">05</div>
+            <div class="sources__body"><b>CollegeFactual</b> &middot; 6-year grad rate 56%, first-year retention 83% full-time UG. <a href="https://www.collegefactual.com/colleges/holy-family-university/" target="_blank" rel="noopener">collegefactual.com/colleges/holy-family-university</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">06</div>
+            <div class="sources__body"><b>Data USA</b> &middot; Holy Family University enrollment series. <a href="https://datausa.io/profile/university/holy-family-university" target="_blank" rel="noopener">datausa.io/profile/university/holy-family-university</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">07</div>
+            <div class="sources__body"><b>ADA Title II Final Rule</b> &middot; WCAG 2.1 AA deadline April 24, 2026. <a href="https://www.ada.gov/notices/2024/04/08/web-rule/" target="_blank" rel="noopener">ada.gov/notices/2024/04/08/web-rule</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">08</div>
+            <div class="sources__body"><b>W3C WCAG 2.2</b> &middot; six new AA criteria. <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22</a></div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">09</div>
+            <div class="sources__body"><b>Ruffalo Noel Levitz</b> &middot; higher-ed conversion benchmarks 2025 &middot; baseline inquiry, yield, retention.</div>
+          </li>
+          <li class="sources__item">
+            <div class="sources__num">10</div>
+            <div class="sources__body"><b>Profound 2025</b> &middot; AI visibility research; 4.4&times; AI-referral conversion rate vs. organic.</div>
+          </li>
+        </ul>
+      </section>
+
+    </article>
   </main>
 
   <script src="portal.js" defer></script>
-  <script>
-    // ── Scroll-in animations for the pain blocks, quote, sameness, table, closing ──
-    (function(){
-      if (typeof IntersectionObserver === 'undefined') {
-        document.querySelectorAll('.pain, .overture__item, .opening-quote, .sameness, .response-table__row, .closing, .chapter__mark').forEach(function(el){ el.classList.add('is-in'); });
-        return;
-      }
-      const io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-in');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-      document.querySelectorAll('.pain, .overture__item, .opening-quote, .sameness, .response-table__row, .closing, .chapter__mark').forEach(function(el){
-        io.observe(el);
-      });
-    })();
-
-    // ── Progress rail · show after the overture, highlight the current observation ──
-    (function(){
-      const rail = document.querySelector('.progress-rail');
-      if (!rail) return;
-      const links = Array.from(rail.querySelectorAll('.progress-rail__item'));
-      const targets = links.map(function(l){ return document.getElementById(l.dataset.target); });
-
-      const visibleAfter = document.querySelector('#pain-01');
-      function updateVisibility() {
-        if (!visibleAfter) { rail.classList.add('is-visible'); return; }
-        const rect = visibleAfter.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.75) {
-          rail.classList.add('is-visible');
-        } else {
-          rail.classList.remove('is-visible');
-        }
-      }
-      function updateActive() {
-        let active = -1;
-        const threshold = window.innerHeight * 0.38;
-        for (let i = 0; i < targets.length; i++) {
-          if (!targets[i]) continue;
-          const rect = targets[i].getBoundingClientRect();
-          if (rect.top <= threshold) active = i;
-        }
-        links.forEach(function(l, i){ l.classList.toggle('is-active', i === active); });
-      }
-      function onScroll() { updateVisibility(); updateActive(); }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      onScroll();
-    })();
-
-    // ── Smooth scroll for in-page anchors (respects reduced motion) ──
-    (function(){
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce) return;
-      document.addEventListener('click', function(e){
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        const id = a.getAttribute('href').slice(1);
-        if (!id) return;
-        const el = document.getElementById(id);
-        if (!el) return;
-        e.preventDefault();
-        const y = el.getBoundingClientRect().top + window.scrollY - 40;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-        if (history.pushState) history.pushState(null, '', '#' + id);
-      });
-    })();
-  </script>
 </body>
 </html>
