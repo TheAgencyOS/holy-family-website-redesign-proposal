@@ -1,11 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "bash build.sh",
-  "outputDirectory": "public",
   "functions": {
     "api/chat.js": {
       "includeFiles": "chat/context.json"
     }
-  },
-  "cleanUrls": true
+  }
 }

@@ -34,6 +34,7 @@
       --text:        rgba(255,255,255,0.88);
       --text-dim:    rgba(255,255,255,0.62);
       --text-ghost:  rgba(255,255,255,0.38);
+      --page-bg:     #FAFAF9;
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -43,7 +44,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     h1, h2, h3, h4, h5, h6 { font-weight: 400; }
     html, body {
-      background: var(--ink);
+      background: var(--page-bg);
       font-family: var(--body);
       font-size: 10.5pt;
       line-height: 1.6;
@@ -60,15 +61,18 @@
        PAGE LAYOUT
        ══════════════════════════════════════════════════════════════ */
     main {
-      background: var(--ink);
-      padding: 0 !important;
+      background: var(--page-bg) !important;
+      padding: 40px 40px !important;
       gap: 0 !important;
       align-items: stretch !important;
     }
     .wrap {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 88px 56px 160px;
+      padding: 64px 56px 120px;
+      background: var(--ink);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(6,7,11,0.18), 0 4px 16px rgba(6,7,11,0.08);
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -789,23 +793,39 @@
        ══════════════════════════════════════════════════════════════ */
 
     /* Tablet landscape + narrow desktop — sidebar still visible,
-       but content column is narrower. Calc + compare stack. */
+       content column ~700-820px. Hero stats reflow 4→2x2, calc+compare stack. */
     @media (max-width: 1100px) {
-      .wrap { padding: 72px 44px 140px; }
-      .hero { padding-bottom: 90px; }
-      .hero__stats { margin-top: 64px; }
+      .wrap { padding: 64px 40px 130px; }
+      .hero { padding-bottom: 80px; }
+      .hero__title { font-size: clamp(40pt, 6vw, 64pt); line-height: 0.94; }
+      .hero__lede { font-size: 14pt; }
+      .hero__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 0;
+        margin-top: 56px;
+        padding-top: 28px;
+      }
+      .hero__stat { padding-right: 22px; }
+      .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; }
+      .hero__stat:nth-child(odd) { padding-left: 0; }
+      .hero__stat:nth-child(even):not(:first-child) { padding-left: 22px; }
+      .hero__stat:nth-child(3) { border-top: 1px solid var(--line); padding-top: 28px; }
+      .hero__stat:nth-child(4) { border-top: 1px solid var(--line); padding-top: 28px; }
       .section { padding-top: 110px; }
       .section__head { margin-bottom: 44px; }
-      .calc { grid-template-columns: 1fr; gap: 32px; margin-top: 64px; }
-      .calc__panel { padding: 40px 38px 42px; }
-      .compare { grid-template-columns: 1fr; gap: 24px; }
+      .section__title { font-size: clamp(28pt, 4vw, 42pt); }
+      .calc { grid-template-columns: 1fr; gap: 28px; margin-top: 64px; }
+      .calc__panel { padding: 40px 36px 42px; }
+      .output__big { font-size: clamp(36pt, 5.4vw, 56pt); }
+      .compare { grid-template-columns: 1fr; gap: 22px; }
       .compare__card { padding: 32px 32px 36px; }
-      .payback { margin-top: 96px; padding: 48px 40px 54px; }
+      .payback { margin-top: 96px; padding: 44px 36px 50px; }
       .payback__marks {
         grid-template-columns: repeat(3, 1fr);
-        gap: 40px 24px;
+        gap: 36px 22px;
       }
-      .assumptions { margin-top: 96px; grid-template-columns: 180px 1fr; gap: 36px; }
+      .assumptions { margin-top: 96px; grid-template-columns: 1fr; gap: 24px; }
+      .assumptions__list { grid-template-columns: 1fr 1fr; gap: 14px 28px; }
     }
 
     /* Tablet portrait — sidebar collapses to hamburger (portal.css),

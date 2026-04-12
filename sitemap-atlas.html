@@ -35,6 +35,7 @@
       --text:        rgba(255,255,255,0.88);
       --text-dim:    rgba(255,255,255,0.62);
       --text-ghost:  rgba(255,255,255,0.38);
+      --page-bg:     #FAFAF9;
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -44,7 +45,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     h1, h2, h3, h4, h5, h6 { font-weight: 400; }
     html, body {
-      background: var(--ink);
+      background: var(--page-bg);
       font-family: var(--body);
       font-size: 10.5pt;
       line-height: 1.6;
@@ -61,15 +62,18 @@
        PAGE LAYOUT — inherits chrome from portal.css
        ══════════════════════════════════════════════════════════════ */
     main {
-      background: var(--ink);
-      padding: 0 !important;
+      background: var(--page-bg) !important;
+      padding: 40px 40px !important;
       gap: 0 !important;
       align-items: stretch !important;
     }
     .wrap {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 88px 56px 160px;
+      padding: 64px 56px 120px;
+      background: var(--ink);
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(6,7,11,0.18), 0 4px 16px rgba(6,7,11,0.08);
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -415,7 +419,7 @@
     }
     .tm-detail__title {
       font-family: var(--display);
-      font-weight: 700;
+      font-weight: 400;
       font-size: 28pt;
       color: white;
       letter-spacing: -0.022em;
@@ -450,7 +454,7 @@
     .tm-detail__num-val {
       font-family: var(--display);
       font-size: 26pt;
-      font-weight: 700;
+      font-weight: 400;
       color: white;
       letter-spacing: -0.018em;
       line-height: 1;
@@ -649,7 +653,7 @@
     .flow__num {
       font-family: var(--display);
       font-size: 44pt;
-      font-weight: 700;
+      font-weight: 400;
       color: white;
       letter-spacing: -0.028em;
       line-height: 1;
@@ -880,7 +884,7 @@
       border-top: 1px solid var(--line);
       font-family: var(--display);
       font-size: 18pt;
-      font-weight: 700;
+      font-weight: 400;
       color: white;
       letter-spacing: -0.015em;
       line-height: 1;
@@ -961,7 +965,7 @@
     }
     .chaos__title {
       font-family: var(--display);
-      font-weight: 600;
+      font-weight: 400;
       font-size: 16pt;
       color: white;
       letter-spacing: -0.018em;
