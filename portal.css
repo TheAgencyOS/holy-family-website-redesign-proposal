@@ -350,6 +350,7 @@ select:-webkit-autofill {
     margin-bottom: 30px;
     transition: all 180ms ease;
     font-weight: 500;
+    text-decoration: none;
   }
   .site-nav__print:hover {
     background: var(--teal);

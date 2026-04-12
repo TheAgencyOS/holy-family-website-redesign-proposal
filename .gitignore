@@ -26,8 +26,9 @@ index-old-wrapper.html
 index.v2.backup.html
 index.v5.backup.html
 
-# Large proposal PDF — not linked from live pages (11MB each)
-HFU-Proposal.pdf
+# Proposal PDF is SERVED from the live site as the official download target.
+# HFU-Proposal.pdf is intentionally committed — see site/index.html sidebar button.
+# Only ignore the backup.
 HFU-Proposal.backup.pdf
 
 # Test PDFs — debug artifacts, not referenced
