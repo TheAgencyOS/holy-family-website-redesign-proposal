@@ -8,12 +8,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ═════════════════════════════════════════════════════════════════════
        HFU ACADEMICS — Concept 4 (Find Your Program, editorial prestige)
-       Typography: Fraunces (display) + Inter Tight (body)
+       Typography: Source Serif 4 (display) + Inter Tight (body)
        Brand tokens inherited verbatim from the Admissions reference
        ═════════════════════════════════════════════════════════════════════ */
     :root {
@@ -39,7 +39,7 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
-      --display: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
       --container: 1280px;
@@ -85,7 +85,7 @@
       line-height: 1.04;
       letter-spacing: -0.022em;
       color: hsl(var(--fg));
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
     }
     h1 { font-weight: 350; }
     p { margin: 0; }
@@ -296,7 +296,7 @@
       font-size: clamp(3.2rem, 6.2vw, 6rem);
       line-height: 0.96;
       letter-spacing: -0.028em;
-      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-variation-settings: "opsz" 60;
       color: hsl(var(--hfu-navy));
       margin: 20px 0 32px;
     }
@@ -431,7 +431,7 @@
       letter-spacing: -0.035em;
       color: hsl(var(--hfu-navy));
       margin-bottom: 6px;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-variation-settings: "opsz" 60;
       font-weight: 350;
     }
     .hstat .num .small {
@@ -553,7 +553,7 @@
       line-height: 1.08;
       color: hsl(var(--hfu-navy));
       letter-spacing: -0.022em;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
     }
     .school h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
     .school p {
@@ -1031,7 +1031,7 @@
       margin-bottom: 10px;
       letter-spacing: -0.018em;
       line-height: 1.15;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
     }
     .scard p {
       font-size: 14px;
@@ -1158,7 +1158,7 @@
       color: hsl(var(--hfu-navy));
       letter-spacing: -0.018em;
       line-height: 1.15;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
       margin-bottom: 4px;
     }
     .faculty-card__name .t {
@@ -1240,7 +1240,7 @@
       color: hsl(var(--hfu-yellow));
       margin-bottom: 14px;
       font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-variation-settings: "opsz" 60;
     }
     .pull__quote blockquote {
       margin: 0;
@@ -1250,7 +1250,7 @@
       color: hsl(var(--hfu-navy));
       letter-spacing: -0.022em;
       font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
     }
     .pull__quote blockquote em {
       font-style: italic;
@@ -1284,7 +1284,7 @@
       letter-spacing: -0.018em;
       line-height: 1.1;
       margin-bottom: 4px;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-variation-settings: "opsz" 60;
     }
     .pull__attr-title {
       font-size: 12px;
@@ -1363,7 +1363,7 @@
       color: #fff;
       margin: 20px 0 0;
       letter-spacing: -0.028em;
-      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-variation-settings: "opsz" 60;
       font-weight: 350;
     }
     .cta__content h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
@@ -1552,8 +1552,131 @@
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
+
+<style id="aos-mobile-fix">
+  @media (max-width: 720px) {
+    /* Nav collapses cleanly: logo + spacer + actions, menu hidden */
+    .nav__inner {
+      grid-template-columns: auto 1fr auto !important;
+      gap: 12px !important;
+      padding: 14px 16px !important;
+    }
+    .nav__list { display: none !important; }
+    .nav__logo { height: 36px !important; }
+    .nav__actions { gap: 8px !important; }
+    .nav__search { width: 34px !important; height: 34px !important; }
+    .util__inner { padding: 8px 16px !important; gap: 12px !important; }
+    .util__contact { gap: 14px !important; flex-wrap: wrap; font-size: 11px !important; }
+    .util__links { display: none !important; }
+
+    /* Academics hero: collage stacks below content */
+    .hero__inner {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+      padding: 0 16px !important;
+    }
+    .hero { padding: 32px 0 24px !important; }
+    .hero__crumbs { margin-bottom: 18px !important; }
+    .hero__ctas { flex-direction: column !important; align-items: stretch !important; }
+    .hero__ctas .btn { justify-content: center !important; }
+
+    /* Academics stats: 2x2 grid */
+    .hstats__inner { grid-template-columns: repeat(2, 1fr) !important; gap: 24px 16px !important; }
+    .hstat { padding-right: 0 !important; border-right: none !important; }
+
+    /* Schools grid: single column */
+    .schools__grid { grid-template-columns: 1fr !important; }
+    .schools__head { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* Programs explorer: single column */
+    .programs { grid-template-columns: 1fr !important; }
+    .programs__layout { grid-template-columns: 1fr !important; }
+    .filters { position: static !important; }
+
+    /* Faculty row: single column */
+    .faculty__row { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .faculty__head { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* Pull quote: single column */
+    .pull__inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+    /* Nursing hero body: stacks */
+    .nhero__body {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    .nhero__inner { padding: 0 16px !important; }
+    .nhero__crumbs { margin-bottom: 24px !important; flex-wrap: wrap; gap: 6px !important; font-size: 12px !important; }
+
+    /* Nursing hero stats: 2x2 grid, full width */
+    .nhero__stats {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 20px 14px !important;
+      margin-top: 32px !important;
+      padding: 28px 0 0 0 !important;
+    }
+    .nhero__stat {
+      padding: 0 0 16px 0 !important;
+      border-right: none !important;
+      border-bottom: 1px solid hsl(0 0% 100% / 0.12);
+    }
+    .nhero__stat:last-child,
+    .nhero__stat:nth-last-child(2) { border-bottom: none !important; padding-bottom: 0 !important; }
+
+    /* Nursing programs grid */
+    .progs { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .progs__head { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* Nursing accreditation strip stacks */
+    .accred__inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .accred__stats { grid-template-columns: 1fr !important; gap: 16px !important; }
+
+    /* Nursing dean section stacks */
+    .dean__inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .deanmsg { padding: 24px !important; }
+    .dform { padding: 24px !important; }
+    .dform__grid { grid-template-columns: 1fr !important; }
+
+    /* Nursing faculty carousel keeps horizontal scroll on mobile */
+    .faculty__head { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .faculty__head h2 { max-width: 100% !important; }
+
+    /* CTA mega: stacks */
+    .cta__inner { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .cta__box { padding: 32px 24px !important; }
+  }
+  @media print {
+    .aos-back-to-concepts { display: none !important; }
+  }
+</style>
 </head>
 <body>
+
+<style id="aos-back-link-styles">
+  .aos-back-to-concepts {
+    position: fixed; top: 20px; left: 20px; z-index: 9999;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px 10px 12px; border-radius: 999px;
+    background: rgba(6, 35, 64, 0.92); color: #fff;
+    font: 500 12px/1 "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: 0.02em; text-decoration: none;
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 12px 40px rgba(6,35,64,0.22);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1.1), box-shadow 220ms ease, background 220ms ease;
+  }
+  .aos-back-to-concepts svg { width: 12px; height: 12px; display: block; }
+  .aos-back-to-concepts:hover { transform: translateX(-2px); background: #062340; box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 16px 48px rgba(6,35,64,0.30); }
+  @media print { .aos-back-to-concepts { display: none !important; } }
+  @media (max-width: 640px) {
+    .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
+  }
+</style>
+<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
+  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
+  <span>Design concepts</span>
+</a>
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
   <div class="util">
@@ -1662,8 +1785,8 @@
         <span class="label">Student-to-faculty ratio for seminar-style learning</span>
       </div>
       <div class="hstat">
-        <span class="num">85<span class="small">%</span></span>
-        <span class="label">Of full-time faculty hold the terminal degree in their field</span>
+        <span class="num">1954</span>
+        <span class="label">Founded by the Sisters of the Holy Family of Nazareth</span>
       </div>
     </div>
   </section>
@@ -1991,7 +2114,7 @@
             <h3>Education (Elementary)</h3>
             <div class="program__school">Education</div>
           </div>
-          <p>Pennsylvania teaching certification with 14 weeks of classroom residency and a 96% job-placement rate at graduation.</p>
+          <p>Pennsylvania teaching certification with classroom residency and student-teaching placements arranged through the School of Education, widely regarded as among the best in the region.</p>
           <div class="program__foot">
             <span class="len"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1"/></svg> 4 years</span>
             <a href="#" class="more">Details <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 5h6m-2-2 2 2-2 2"/></svg></a>
@@ -2138,8 +2261,9 @@
   <section class="faculty">
     <div class="faculty__head">
       <div>
-        <span class="eyebrow">Faculty Spotlight</span>
+        <span class="eyebrow">Faculty &middot; concept profiles</span>
         <h2>Taught by <em>scholars</em><br>who know your name.</h2>
+        <p style="margin-top:14px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:hsl(var(--hfu-blue));">Concept cards &mdash; final faculty names &amp; bios to be confirmed with HFU.</p>
       </div>
       <div class="faculty__nav" aria-label="Browse faculty">
         <button aria-label="Previous faculty"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 6 8l4-4"/></svg></button>
@@ -2151,56 +2275,56 @@
       <article class="faculty-card">
         <div class="faculty-card__top">
           <div class="faculty-card__avatar">
-            <img src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="Portrait of Dr. Rebecca Albrecht">
+            <img src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="Faculty profile placeholder &mdash; Nursing &amp; Health Sciences">
           </div>
           <div class="faculty-card__name">
-            <span class="n">Dr. Rebecca Albrecht</span>
-            <span class="t">Professor of Nursing · 18 years at HFU</span>
+            <span class="n">Faculty profile <span style="color:hsl(var(--hfu-blue));">01</span></span>
+            <span class="t">Professor of Nursing &middot; final name TBD</span>
           </div>
         </div>
-        <blockquote>"Our students don't graduate into nursing — they graduate into being someone a family trusts in the hardest hour of their life. Every lesson plan is shaped around that."</blockquote>
+        <blockquote>Concept card &mdash; HFU to provide the named faculty member, headshot, and quote for this slot.</blockquote>
         <div class="faculty-card__dept">Nursing &amp; Health Sciences</div>
       </article>
 
       <article class="faculty-card">
         <div class="faculty-card__top">
           <div class="faculty-card__avatar">
-            <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="Portrait of Dr. Marcus Chen">
+            <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="Faculty profile placeholder &mdash; Arts &amp; Sciences">
           </div>
           <div class="faculty-card__name">
-            <span class="n">Dr. Marcus Chen</span>
-            <span class="t">Associate Professor of Psychology</span>
+            <span class="n">Faculty profile <span style="color:hsl(var(--hfu-blue));">02</span></span>
+            <span class="t">Associate Professor &middot; final name TBD</span>
           </div>
         </div>
-        <blockquote>"Small classes mean I can walk into a senior seminar and know not just every name, but every thesis question someone is wrestling with that semester."</blockquote>
+        <blockquote>Concept card &mdash; HFU to provide the named faculty member, headshot, and quote for this slot.</blockquote>
         <div class="faculty-card__dept">Arts &amp; Sciences</div>
       </article>
 
       <article class="faculty-card">
         <div class="faculty-card__top">
           <div class="faculty-card__avatar">
-            <img src="../assets/hfu-photos/student-life3-square-small.jpg" alt="Portrait of Dr. Sarah O'Donnell">
+            <img src="../assets/hfu-photos/student-life3-square-small.jpg" alt="Faculty profile placeholder &mdash; Education">
           </div>
           <div class="faculty-card__name">
-            <span class="n">Dr. Sarah O'Donnell</span>
-            <span class="t">Professor of Education</span>
+            <span class="n">Faculty profile <span style="color:hsl(var(--hfu-blue));">03</span></span>
+            <span class="t">Professor of Education &middot; final name TBD</span>
           </div>
         </div>
-        <blockquote>"I teach future teachers to see every classroom the way our sisters saw the schools they built — as a place where every child is already made whole."</blockquote>
+        <blockquote>Concept card &mdash; HFU to provide the named faculty member, headshot, and quote for this slot.</blockquote>
         <div class="faculty-card__dept">Education</div>
       </article>
 
       <article class="faculty-card">
         <div class="faculty-card__top">
           <div class="faculty-card__avatar">
-            <img src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="Portrait of Dr. James Wexler">
+            <img src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="Faculty profile placeholder &mdash; Business &amp; Technology">
           </div>
           <div class="faculty-card__name">
-            <span class="n">Dr. James Wexler</span>
-            <span class="t">Director of MBA Program</span>
+            <span class="n">Faculty profile <span style="color:hsl(var(--hfu-blue));">04</span></span>
+            <span class="t">MBA Program Director &middot; final name TBD</span>
           </div>
         </div>
-        <blockquote>"Our MBA students are already leaders in their day jobs. I get to help them think harder about why the decisions they make at work matter — and to whom."</blockquote>
+        <blockquote>Concept card &mdash; HFU to provide the named faculty member, headshot, and quote for this slot.</blockquote>
         <div class="faculty-card__dept">Business &amp; Technology</div>
       </article>
 
@@ -2213,23 +2337,23 @@
       <div class="pull__quote">
         <div class="pull__mark">"</div>
         <blockquote>
-          Our academic programs are designed to foster critical thinking, professional expertise, and a deep sense of responsibility in <em>every student</em> we teach — so that learning never stops at graduation.
+          Holy Family University offers education in the liberal arts and professions through graduate, undergraduate, and non-degree programs &mdash; affirming the values of the Judeo-Christian tradition and witnessing to the dignity of <em>each person</em> and the oneness of the human family.
         </blockquote>
       </div>
       <div class="pull__attr">
         <div class="pull__attr-top">
           <div class="pull__attr-avatar">
-            <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="Portrait of the Vice President for Academic Affairs">
+            <img src="../assets/holyfamily/mission-hero.jpg" alt="Holy Family University mission imagery">
           </div>
           <div>
-            <div class="pull__attr-name">Dr. Maureen Pascarella</div>
-            <div class="pull__attr-title">Vice President for Academic Affairs<br>&amp; Chief Academic Officer</div>
+            <div class="pull__attr-name">From the HFU Mission</div>
+            <div class="pull__attr-title">A ministry of the Sisters of the<br>Holy Family of Nazareth &middot; Founded 1954</div>
           </div>
         </div>
         <div class="pull__divider"></div>
-        <p class="pull__attr-body">A message from the Office of Academic Affairs on how Holy Family shapes the liberal arts core, professional training, and Catholic mission into a single four-year arc.</p>
+        <p class="pull__attr-body">Every program at Holy Family is grounded in the same core mission: to educate the whole person through faith, scholarship, and service. The four schools translate that mission into the disciplines that shape the region and beyond.</p>
         <a href="#" class="pull__attr-link">
-          Read the full letter
+          Read the full mission statement
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
       </div>

@@ -85,7 +85,9 @@
    surfaces. Lock form controls, autofill, selection, scrollbars to
    the dark palette so OS light mode can't bleed through.
    ════════════════════════════════════════════════════════════════ */
-html { color-scheme: dark; }
+html { color-scheme: dark; overflow-x: hidden; }
+body { overflow-x: hidden; }
+main { overflow-x: hidden; min-width: 0; }
 
 /* Inputs / textareas / selects always sit on the dark palette */
 input, textarea, select, button {

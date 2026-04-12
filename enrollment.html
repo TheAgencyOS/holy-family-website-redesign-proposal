@@ -34,7 +34,6 @@
       --text:        rgba(255,255,255,0.88);
       --text-dim:    rgba(255,255,255,0.62);
       --text-ghost:  rgba(255,255,255,0.38);
-      --page-bg:     #FAFAF9;
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -44,7 +43,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     h1, h2, h3, h4, h5, h6 { font-weight: 400; }
     html, body {
-      background: var(--page-bg);
+      background: var(--ink);
       font-family: var(--body);
       font-size: 10.5pt;
       line-height: 1.6;
@@ -61,19 +60,18 @@
        PAGE LAYOUT
        ══════════════════════════════════════════════════════════════ */
     main {
-      background: var(--page-bg) !important;
-      padding: 40px 40px !important;
+      background: var(--ink);
+      padding: 0 !important;
       gap: 0 !important;
       align-items: stretch !important;
     }
     .wrap {
+      width: 100%;
       max-width: 1180px;
+      min-width: 0;
       margin: 0 auto;
       padding: 64px 56px 120px;
-      background: var(--ink);
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(6,7,11,0.18), 0 4px 16px rgba(6,7,11,0.08);
-    }
+      }
 
     /* ══════════════════════════════════════════════════════════════
        HERO
@@ -1100,9 +1098,10 @@
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="mockup-1.html" class="portal-tab">Mockup · classic editorial</a>
-      <a href="mockup-2.html" class="portal-tab">Mockup · contemporary</a>
+      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
+      <a href="components.html" class="portal-tab">Component library</a>
       <a href="research.html" class="portal-tab">Research</a>
+      <a href="pain-points.html" class="portal-tab">The gap we observed</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1114,6 +1113,17 @@
       <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
       <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="portal-tabs__divider">Mockup concepts</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
+      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
+      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
+      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
+      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
+      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
+      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
+      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
     </nav>
 
     <div class="site-nav__footer">

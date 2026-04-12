@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design systems · Holy Family University · Agency OS</title>
+  <meta name="description" content="Four complete design directions for Holy Family University. Each system is anchored to a named mathematical ratio and shipped with typography, color, buttons, forms, and component specimens.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Inter+Tight:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       HFU · Design systems — four directions on mathematical ratios
+       Page shell is deliberately neutral. Each `.sys--*` section scopes
+       its own tokens so nothing leaks across systems.
+       Spacing across all four systems sits on a shared 4pt baseline.
+       ═══════════════════════════════════════════════════════════════════ */
+
+    :root {
+      --shell-bg:      #FAFAFA;
+      --shell-fg:      #1C1E24;
+      --shell-muted:   #555962;
+      --shell-subtle:  #8A8F98;
+      --shell-rule:    #E6E8EC;
+      --shell-rule-strong: #CDD1D7;
+      --shell-card:    #FFFFFF;
+      --shell-teal:    #1F7676;
+
+      --shell-sans:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --shell-mono:    'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+
+      --shell-container: 1240px;
+      --shell-gutter:    clamp(20px, 4vw, 48px);
+
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--shell-bg);
+      color: var(--shell-fg);
+      font-family: var(--shell-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; }
+    p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    input, select, textarea { font: inherit; color: inherit; }
+
+    .shell-container { max-width: var(--shell-container); margin: 0 auto; padding: 0 var(--shell-gutter); }
+
+    /* ═════════════════════ TOP NAVIGATION ═════════════════════ */
+
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 250, 250, 0.88);
+      -webkit-backdrop-filter: saturate(160%) blur(14px);
+      backdrop-filter: saturate(160%) blur(14px);
+      border-bottom: 1px solid var(--shell-rule);
+    }
+    .topnav__inner {
+      max-width: var(--shell-container);
+      margin: 0 auto;
+      padding: 16px var(--shell-gutter);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+    .topnav__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--shell-fg);
+    }
+    .topnav__brand-mark {
+      width: 8px;
+      height: 8px;
+      background: var(--shell-teal);
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .topnav__list {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .topnav__list a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-family: var(--shell-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--shell-muted);
+      transition: background 200ms var(--ease), color 200ms var(--ease);
+    }
+    .topnav__list a:hover {
+      background: #EEF0F3;
+      color: var(--shell-fg);
+    }
+    .topnav__list .num {
+      font-variant-numeric: tabular-nums;
+      color: var(--shell-subtle);
+      font-size: 10px;
+    }
+    .topnav__back {
+      font-family: var(--shell-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--shell-subtle);
+    }
+    .topnav__back:hover { color: var(--shell-fg); }
+
+    @media (max-width: 900px) {
+      .topnav__inner { grid-template-columns: 1fr; gap: 12px; }
+      .topnav__list { flex-wrap: wrap; justify-content: flex-start; }
+      .topnav__back { justify-self: start; }
+    }
+
+    /* ═════════════════════ PAGE LEDE ═════════════════════ */
+
+    .lede {
+      padding: clamp(72px, 10vw, 128px) 0 clamp(48px, 6vw, 80px);
+      border-bottom: 1px solid var(--shell-rule);
+    }
+    .lede__kicker {
+      font-family: var(--shell-mono);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--shell-teal);
+      margin-bottom: 20px;
+    }
+    .lede__title {
+      font-family: var(--shell-sans);
+      font-size: clamp(40px, 5.5vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      font-weight: 500;
+      max-width: 18ch;
+      margin: 0 0 24px;
+    }
+    .lede__body {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--shell-muted);
+      max-width: 58ch;
+    }
+    .lede__grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .lede__chip {
+      padding: 20px;
+      border: 1px solid var(--shell-rule);
+      border-radius: 12px;
+      background: var(--shell-card);
+    }
+    .lede__chip .num {
+      font-family: var(--shell-mono);
+      font-size: 10px;
+      color: var(--shell-subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .lede__chip .name {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .lede__chip .ratio {
+      font-family: var(--shell-mono);
+      font-size: 12px;
+      color: var(--shell-muted);
+    }
+    @media (max-width: 800px) { .lede__grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ═════════════════════ SYSTEM FRAME ═════════════════════ */
+
+    .sys {
+      padding: clamp(80px, 10vw, 128px) 0;
+      border-bottom: 1px solid var(--shell-rule);
+    }
+    .sys__header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 32px;
+      align-items: end;
+      padding-bottom: 32px;
+      margin-bottom: 56px;
+      border-bottom: 1px solid var(--shell-rule);
+    }
+    .sys__index {
+      font-family: var(--shell-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--shell-subtle);
+      text-transform: uppercase;
+    }
+    .sys__name {
+      font-family: var(--shell-sans);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .sys__ratio {
+      text-align: right;
+      font-family: var(--shell-mono);
+      font-size: 11px;
+      color: var(--shell-muted);
+      line-height: 1.7;
+    }
+    .sys__ratio strong { display: block; font-size: 12px; color: var(--shell-fg); letter-spacing: 0.04em; }
+
+    @media (max-width: 720px) {
+      .sys__header { grid-template-columns: 1fr; gap: 8px; align-items: start; }
+      .sys__ratio { text-align: left; }
+    }
+
+    /* ═════════════════════ SPECIMEN BLOCK (shared scaffolding) ═════════════════════ */
+
+    .spec {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      padding: 40px 0;
+      border-top: 1px solid var(--shell-rule);
+    }
+    .spec:first-of-type { border-top: none; padding-top: 0; }
+    .spec__label {
+      font-family: var(--shell-mono);
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--shell-subtle);
+      line-height: 1.8;
+    }
+    .spec__label .hint {
+      display: block;
+      margin-top: 8px;
+      color: var(--shell-subtle);
+      font-size: 10px;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      max-width: 160px;
+      line-height: 1.5;
+    }
+    .spec__body { min-width: 0; }
+    @media (max-width: 720px) {
+      .spec { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* Shared color swatch grid */
+    .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+    @media (max-width: 900px) { .swatches { grid-template-columns: repeat(3, 1fr); } }
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--shell-rule);
+      background: var(--shell-card);
+    }
+    .swatch__chip { height: 80px; }
+    .swatch__meta {
+      padding: 10px 12px 12px;
+      font-family: var(--shell-mono);
+      font-size: 10px;
+      line-height: 1.6;
+      color: var(--shell-muted);
+    }
+    .swatch__name {
+      display: block;
+      color: var(--shell-fg);
+      font-weight: 500;
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+
+    /* Shared type-scale table */
+    .scale { display: flex; flex-direction: column; gap: 20px; }
+    .scale__row {
+      display: grid;
+      grid-template-columns: 72px 84px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--shell-rule);
+    }
+    .scale__row:last-child { border-bottom: none; padding-bottom: 0; }
+    .scale__tag {
+      font-family: var(--shell-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--shell-subtle);
+      text-transform: uppercase;
+    }
+    .scale__size {
+      font-family: var(--shell-mono);
+      font-size: 11px;
+      color: var(--shell-muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .scale__sample { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Shared button grid */
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 28px 20px;
+      align-items: end;
+    }
+    .btn-col { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .btn-col__label {
+      font-family: var(--shell-mono);
+      font-size: 10px;
+      color: var(--shell-subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Shared form grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 24px;
+      max-width: 640px;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 8px; }
+    .form-field--full { grid-column: 1 / -1; }
+    .form-field__label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+    /* Shared accessory row */
+    .accessory-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .card-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SYSTEM 01 — BROADSHEET
+       Typography: Newsreader (serif) + Inter Tight (sans)
+       Ratio: Golden Ratio · φ ≈ 1.618
+       Palette: warm cream, HFU navy, link blue, yellow accent
+       Body: 17px. Steps: 11 · 13 · 17 · 28 · 45 · 73 · 118
+       ═══════════════════════════════════════════════════════════════════ */
+
+    .sys--broadsheet {
+      /* Colors */
+      --bs-bg:        #F9F5EC;
+      --bs-bg-alt:    #F2ECDC;
+      --bs-card:      #FFFFFF;
+      --bs-ink:       #0E2138;
+      --bs-ink-muted: #4B5967;
+      --bs-ink-soft:  #7B8592;
+      --bs-rule:      #DCD3BE;
+      --bs-rule-soft: #EAE3D0;
+      --bs-link:      #0061A3;
+      --bs-link-hover:#003E6B;
+      --bs-accent:    #F1B500;
+      --bs-accent-ink:#4A3500;
+
+      /* Fonts */
+      --bs-serif: 'Newsreader', 'Times New Roman', Georgia, serif;
+      --bs-sans:  'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      /* Type scale — base 17, φ */
+      --bs-t-micro:  11px;
+      --bs-t-cap:    13px;
+      --bs-t-body:   17px;
+      --bs-t-lead:   21px;
+      --bs-t-h4:     28px;
+      --bs-t-h3:     35px;
+      --bs-t-h2:     45px;
+      --bs-t-h1:     73px;
+      --bs-t-hero:   118px;
+
+      background: var(--bs-bg);
+      color: var(--bs-ink);
+      font-family: var(--bs-sans);
+      font-size: var(--bs-t-body);
+      line-height: 1.6;
+    }
+    .sys--broadsheet .sys__name { font-family: var(--bs-serif); font-weight: 400; font-style: italic; }
+    .sys--broadsheet .spec__label { color: var(--bs-ink-soft); }
+    .sys--broadsheet .sys__header { border-bottom-color: var(--bs-rule); }
+    .sys--broadsheet .spec { border-top-color: var(--bs-rule-soft); }
+    .sys--broadsheet .swatch { border-color: var(--bs-rule); background: var(--bs-card); }
+    .sys--broadsheet .swatch__meta { color: var(--bs-ink-muted); }
+    .sys--broadsheet .swatch__name { color: var(--bs-ink); }
+
+    .sys--broadsheet .scale__row { border-bottom-color: var(--bs-rule-soft); }
+    .sys--broadsheet .scale__sample { font-family: var(--bs-serif); color: var(--bs-ink); }
+    .sys--broadsheet .scale--hero   { font-size: var(--bs-t-hero); line-height: 0.92; letter-spacing: -0.025em; }
+    .sys--broadsheet .scale--h1     { font-size: var(--bs-t-h1);   line-height: 0.96; letter-spacing: -0.022em; }
+    .sys--broadsheet .scale--h2     { font-size: var(--bs-t-h2);   line-height: 1.04; letter-spacing: -0.018em; }
+    .sys--broadsheet .scale--h3     { font-size: var(--bs-t-h3);   line-height: 1.1;  letter-spacing: -0.015em; }
+    .sys--broadsheet .scale--h4     { font-size: var(--bs-t-h4);   line-height: 1.18; letter-spacing: -0.012em; }
+    .sys--broadsheet .scale--lead   { font-size: var(--bs-t-lead); line-height: 1.45; font-family: var(--bs-sans); color: var(--bs-ink-muted); font-weight: 400; }
+    .sys--broadsheet .scale--body   { font-size: var(--bs-t-body); line-height: 1.6;  font-family: var(--bs-sans); color: var(--bs-ink); }
+    .sys--broadsheet .scale--cap    { font-size: var(--bs-t-cap);  line-height: 1.5;  font-family: var(--bs-sans); color: var(--bs-ink-muted); }
+    .sys--broadsheet .scale--micro  { font-size: var(--bs-t-micro);line-height: 1.4;  font-family: var(--bs-sans); color: var(--bs-ink-soft); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* Buttons */
+    .sys--broadsheet .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--bs-sans);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: -0.003em;
+      padding: 0 20px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background 200ms var(--ease), color 200ms var(--ease),
+                  border-color 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .sys--broadsheet .btn--primary { background: var(--bs-ink); color: var(--bs-bg); }
+    .sys--broadsheet .btn--primary:hover { background: var(--bs-link-hover); }
+    .sys--broadsheet .btn--secondary {
+      background: var(--bs-bg);
+      color: var(--bs-ink);
+      border-color: var(--bs-ink);
+    }
+    .sys--broadsheet .btn--secondary:hover { background: var(--bs-ink); color: var(--bs-bg); }
+    .sys--broadsheet .btn--ghost {
+      background: transparent;
+      color: var(--bs-ink);
+      padding: 0 6px;
+      height: 36px;
+      border-radius: 0;
+      border-bottom: 1px solid var(--bs-ink);
+    }
+    .sys--broadsheet .btn--ghost:hover { color: var(--bs-link-hover); border-bottom-color: var(--bs-link-hover); }
+    .sys--broadsheet .btn--accent {
+      background: var(--bs-accent);
+      color: var(--bs-accent-ink);
+      border-color: var(--bs-accent);
+    }
+    .sys--broadsheet .btn--accent:hover { background: #D9A200; border-color: #D9A200; }
+    .sys--broadsheet .btn--sm { height: 34px; padding: 0 14px; font-size: 13px; }
+    .sys--broadsheet .btn--lg { height: 52px; padding: 0 26px; font-size: 16px; }
+    .sys--broadsheet .btn[disabled],
+    .sys--broadsheet .btn--disabled {
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    /* Links */
+    .sys--broadsheet .link {
+      color: var(--bs-link);
+      font-weight: 500;
+      border-bottom: 1px solid rgba(0, 97, 163, 0.35);
+      transition: color 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .sys--broadsheet .link:hover { color: var(--bs-link-hover); border-bottom-color: var(--bs-link-hover); }
+
+    /* Forms */
+    .sys--broadsheet .input,
+    .sys--broadsheet .select,
+    .sys--broadsheet .textarea {
+      width: 100%;
+      background: var(--bs-card);
+      border: 1px solid var(--bs-rule);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: var(--bs-ink);
+      transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .sys--broadsheet .input:focus,
+    .sys--broadsheet .select:focus,
+    .sys--broadsheet .textarea:focus {
+      outline: none;
+      border-color: var(--bs-link);
+      box-shadow: 0 0 0 3px rgba(0, 97, 163, 0.14);
+    }
+    .sys--broadsheet .textarea { min-height: 96px; resize: vertical; }
+    .sys--broadsheet .form-field__label { color: var(--bs-ink-muted); font-weight: 500; }
+
+    /* Card */
+    .sys--broadsheet .card {
+      background: var(--bs-card);
+      border: 1px solid var(--bs-rule);
+      border-radius: 6px;
+      padding: 28px;
+    }
+    .sys--broadsheet .card__eyebrow {
+      font-family: var(--bs-sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--bs-link);
+      margin-bottom: 14px;
+    }
+    .sys--broadsheet .card__title {
+      font-family: var(--bs-serif);
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.012em;
+      margin-bottom: 12px;
+    }
+    .sys--broadsheet .card__body { font-size: 15px; line-height: 1.6; color: var(--bs-ink-muted); }
+
+    /* Badges */
+    .sys--broadsheet .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--bs-sans);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 10px;
+      border-radius: 3px;
+      background: var(--bs-bg-alt);
+      color: var(--bs-ink);
+      border: 1px solid var(--bs-rule);
+    }
+    .sys--broadsheet .badge--accent { background: var(--bs-accent); color: var(--bs-accent-ink); border-color: transparent; }
+    .sys--broadsheet .badge--ink { background: var(--bs-ink); color: var(--bs-bg); border-color: transparent; }
+
+    /* Blockquote */
+    .sys--broadsheet .pull {
+      font-family: var(--bs-serif);
+      font-size: 28px;
+      line-height: 1.25;
+      font-style: italic;
+      letter-spacing: -0.01em;
+      color: var(--bs-ink);
+      padding-left: 20px;
+      border-left: 3px solid var(--bs-accent);
+      max-width: 58ch;
+    }
+    .sys--broadsheet .pull cite {
+      display: block;
+      margin-top: 14px;
+      font-family: var(--bs-sans);
+      font-size: 13px;
+      font-style: normal;
+      color: var(--bs-ink-soft);
+      letter-spacing: 0.02em;
+    }
+
+    /* Divider */
+    .sys--broadsheet .divider {
+      height: 1px;
+      background: var(--bs-rule);
+      position: relative;
+    }
+    .sys--broadsheet .divider::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 9px; height: 9px;
+      background: var(--bs-accent);
+      border-radius: 50%;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SYSTEM 02 — MODERNIST
+       Typography: Bricolage Grotesque (single voice, variable opsz)
+       Ratio: Perfect Fourth · 4:3 ≈ 1.333
+       Palette: pure white, HFU navy, HFU yellow, cool grays
+       Body: 16px. Steps: 9 · 12 · 16 · 21 · 28 · 37 · 49 · 65 · 87
+       ═══════════════════════════════════════════════════════════════════ */
+
+    .sys--modernist {
+      --m-bg:       #FFFFFF;
+      --m-bg-alt:   #F2F4F7;
+      --m-card:     #FFFFFF;
+      --m-ink:      #06213F;
+      --m-ink-deep: #03101F;
+      --m-ink-mid:  #3A4B5E;
+      --m-ink-soft: #6B7684;
+      --m-rule:     #DDE3EA;
+      --m-rule-soft:#ECF0F4;
+      --m-accent:   #FFCC15;
+      --m-accent-ink:#3C2F00;
+      --m-blue:     #0068A9;
+
+      --m-font: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      --m-t-micro: 9px;
+      --m-t-cap:   12px;
+      --m-t-body:  16px;
+      --m-t-lead:  21px;
+      --m-t-h4:    28px;
+      --m-t-h3:    37px;
+      --m-t-h2:    49px;
+      --m-t-h1:    65px;
+      --m-t-hero:  87px;
+
+      background: var(--m-bg);
+      color: var(--m-ink);
+      font-family: var(--m-font);
+      font-size: var(--m-t-body);
+      line-height: 1.52;
+      font-optical-sizing: auto;
+      font-variation-settings: "opsz" 14, "wght" 450;
+    }
+    .sys--modernist .sys__name {
+      font-family: var(--m-font);
+      font-weight: 500;
+      font-variation-settings: "opsz" 96, "wght" 600;
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+    }
+    .sys--modernist .sys__header { border-bottom-color: var(--m-rule); }
+    .sys--modernist .spec { border-top-color: var(--m-rule-soft); }
+    .sys--modernist .spec__label { color: var(--m-ink-soft); }
+    .sys--modernist .swatch { border-color: var(--m-rule); }
+    .sys--modernist .swatch__meta { color: var(--m-ink-mid); }
+    .sys--modernist .swatch__name { color: var(--m-ink); }
+    .sys--modernist .scale__row { border-bottom-color: var(--m-rule-soft); }
+
+    .sys--modernist .scale__sample {
+      font-family: var(--m-font);
+      color: var(--m-ink);
+      font-variation-settings: "opsz" 96, "wght" 500;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+    .sys--modernist .scale--hero   { font-size: var(--m-t-hero); }
+    .sys--modernist .scale--h1     { font-size: var(--m-t-h1); }
+    .sys--modernist .scale--h2     { font-size: var(--m-t-h2); }
+    .sys--modernist .scale--h3     { font-size: var(--m-t-h3); letter-spacing: -0.025em; }
+    .sys--modernist .scale--h4     { font-size: var(--m-t-h4); letter-spacing: -0.02em; line-height: 1.1; }
+    .sys--modernist .scale--lead   { font-size: var(--m-t-lead); font-variation-settings: "opsz" 18, "wght" 400; line-height: 1.4; letter-spacing: -0.01em; color: var(--m-ink-mid); }
+    .sys--modernist .scale--body   { font-size: var(--m-t-body); font-variation-settings: "opsz" 14, "wght" 450; line-height: 1.55; letter-spacing: -0.003em; }
+    .sys--modernist .scale--cap    { font-size: var(--m-t-cap); font-variation-settings: "opsz" 12, "wght" 500; letter-spacing: 0.01em; color: var(--m-ink-mid); line-height: 1.5; }
+    .sys--modernist .scale--micro  { font-size: var(--m-t-micro); font-variation-settings: "opsz" 12, "wght" 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--m-ink-soft); line-height: 1.6; }
+
+    /* Buttons — bold rounded rectangular */
+    .sys--modernist .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--m-font);
+      font-size: 14px;
+      font-variation-settings: "opsz" 14, "wght" 550;
+      letter-spacing: -0.005em;
+      padding: 0 22px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1.5px solid transparent;
+      transition: background 200ms var(--ease), color 200ms var(--ease),
+                  border-color 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .sys--modernist .btn--primary {
+      background: var(--m-ink);
+      color: #fff;
+    }
+    .sys--modernist .btn--primary:hover { background: var(--m-ink-deep); }
+    .sys--modernist .btn--secondary {
+      background: transparent;
+      color: var(--m-ink);
+      border-color: var(--m-ink);
+    }
+    .sys--modernist .btn--secondary:hover { background: var(--m-ink); color: #fff; }
+    .sys--modernist .btn--ghost {
+      background: transparent;
+      color: var(--m-ink);
+      padding: 0 10px;
+      border-color: transparent;
+    }
+    .sys--modernist .btn--ghost:hover { background: var(--m-bg-alt); }
+    .sys--modernist .btn--accent {
+      background: var(--m-accent);
+      color: var(--m-accent-ink);
+    }
+    .sys--modernist .btn--accent:hover { background: #F5B800; }
+    .sys--modernist .btn--sm { height: 34px; padding: 0 16px; font-size: 12.5px; border-radius: 8px; }
+    .sys--modernist .btn--lg { height: 56px; padding: 0 30px; font-size: 16px; border-radius: 12px; }
+    .sys--modernist .btn[disabled],
+    .sys--modernist .btn--disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Links */
+    .sys--modernist .link {
+      color: var(--m-blue);
+      font-variation-settings: "opsz" 14, "wght" 550;
+      position: relative;
+      padding-bottom: 1px;
+      background-image: linear-gradient(currentColor, currentColor);
+      background-repeat: no-repeat;
+      background-size: 100% 1.5px;
+      background-position: 0 100%;
+      transition: color 200ms var(--ease), background-size 200ms var(--ease);
+    }
+    .sys--modernist .link:hover {
+      color: var(--m-ink);
+      background-size: 100% 2.5px;
+    }
+
+    /* Forms */
+    .sys--modernist .input,
+    .sys--modernist .select,
+    .sys--modernist .textarea {
+      width: 100%;
+      background: var(--m-card);
+      border: 1.5px solid var(--m-rule);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: var(--m-ink);
+      transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .sys--modernist .input:focus,
+    .sys--modernist .select:focus,
+    .sys--modernist .textarea:focus {
+      outline: none;
+      border-color: var(--m-ink);
+      box-shadow: 0 0 0 4px rgba(6, 33, 63, 0.12);
+    }
+    .sys--modernist .textarea { min-height: 100px; resize: vertical; }
+
+    /* Card */
+    .sys--modernist .card {
+      background: var(--m-card);
+      border: 1.5px solid var(--m-rule);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 200ms var(--ease), transform 200ms var(--ease);
+    }
+    .sys--modernist .card:hover { border-color: var(--m-ink); }
+    .sys--modernist .card__eyebrow {
+      font-family: var(--m-font);
+      font-size: 11px;
+      font-variation-settings: "opsz" 12, "wght" 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--m-ink-mid);
+      margin-bottom: 14px;
+    }
+    .sys--modernist .card__title {
+      font-family: var(--m-font);
+      font-size: 28px;
+      font-variation-settings: "opsz" 32, "wght" 600;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .sys--modernist .card__body {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--m-ink-mid);
+    }
+
+    /* Badges */
+    .sys--modernist .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--m-font);
+      font-size: 11px;
+      font-variation-settings: "opsz" 12, "wght" 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--m-bg-alt);
+      color: var(--m-ink);
+    }
+    .sys--modernist .badge--accent { background: var(--m-accent); color: var(--m-accent-ink); }
+    .sys--modernist .badge--ink { background: var(--m-ink); color: #fff; }
+
+    /* Pull */
+    .sys--modernist .pull {
+      font-family: var(--m-font);
+      font-size: 32px;
+      font-variation-settings: "opsz" 48, "wght" 500;
+      letter-spacing: -0.028em;
+      line-height: 1.1;
+      color: var(--m-ink);
+      padding-left: 0;
+      max-width: 24ch;
+      position: relative;
+    }
+    .sys--modernist .pull::before {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--m-accent);
+      margin-bottom: 20px;
+    }
+    .sys--modernist .pull cite {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--m-font);
+      font-size: 12px;
+      font-variation-settings: "opsz" 12, "wght" 500;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--m-ink-soft);
+    }
+
+    /* Divider */
+    .sys--modernist .divider {
+      height: 2px;
+      background: var(--m-ink);
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SYSTEM 03 — CLASSICAL
+       Typography: Fraunces (display serif) + Instrument Sans
+       Ratio: Major Third · 5:4 = 1.25
+       Palette: sandstone, ink, deep red (used sparingly), muted gold
+       Body: 17px. Steps: 11 · 14 · 17 · 21 · 27 · 33 · 42 · 52 · 65
+       ═══════════════════════════════════════════════════════════════════ */
+
+    .sys--classical {
+      --c-bg:       #F5F0E6;
+      --c-bg-alt:   #EBE3D2;
+      --c-card:     #FCF9F1;
+      --c-ink:      #2A211A;
+      --c-ink-mid:  #5B4E42;
+      --c-ink-soft: #8A7F71;
+      --c-rule:     #D9CFBB;
+      --c-rule-soft:#E6DFCB;
+      --c-accent:   #8B1E2C;
+      --c-accent-ink:#FCF9F1;
+      --c-gold:     #9A7B2D;
+
+      --c-serif: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --c-sans:  'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+      --c-t-micro: 11px;
+      --c-t-cap:   14px;
+      --c-t-body:  17px;
+      --c-t-lead:  21px;
+      --c-t-h4:    27px;
+      --c-t-h3:    33px;
+      --c-t-h2:    42px;
+      --c-t-h1:    52px;
+      --c-t-hero:  65px;
+
+      background: var(--c-bg);
+      color: var(--c-ink);
+      font-family: var(--c-sans);
+      font-size: var(--c-t-body);
+      line-height: 1.6;
+    }
+    .sys--classical .sys__name {
+      font-family: var(--c-serif);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 50;
+      letter-spacing: -0.015em;
+      line-height: 1.0;
+    }
+    .sys--classical .sys__header { border-bottom-color: var(--c-rule); }
+    .sys--classical .spec { border-top-color: var(--c-rule-soft); }
+    .sys--classical .spec__label { color: var(--c-ink-soft); }
+    .sys--classical .swatch { border-color: var(--c-rule); background: var(--c-card); }
+    .sys--classical .swatch__meta { color: var(--c-ink-mid); }
+    .sys--classical .swatch__name { color: var(--c-ink); }
+    .sys--classical .scale__row { border-bottom-color: var(--c-rule-soft); }
+
+    .sys--classical .scale__sample {
+      font-family: var(--c-serif);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "wght" 420, "SOFT" 50;
+      color: var(--c-ink);
+      line-height: 1.02;
+      letter-spacing: -0.018em;
+    }
+    .sys--classical .scale--hero   { font-size: var(--c-t-hero); }
+    .sys--classical .scale--h1     { font-size: var(--c-t-h1); line-height: 1.04; }
+    .sys--classical .scale--h2     { font-size: var(--c-t-h2); line-height: 1.08; letter-spacing: -0.014em; }
+    .sys--classical .scale--h3     { font-size: var(--c-t-h3); line-height: 1.15; letter-spacing: -0.012em; }
+    .sys--classical .scale--h4     { font-size: var(--c-t-h4); line-height: 1.2;  letter-spacing: -0.008em; }
+    .sys--classical .scale--lead   { font-size: var(--c-t-lead); font-family: var(--c-sans); font-weight: 400; line-height: 1.5; color: var(--c-ink-mid); letter-spacing: -0.005em; }
+    .sys--classical .scale--body   { font-size: var(--c-t-body); font-family: var(--c-sans); font-weight: 400; line-height: 1.6; color: var(--c-ink); }
+    .sys--classical .scale--cap    { font-size: var(--c-t-cap); font-family: var(--c-sans); color: var(--c-ink-mid); line-height: 1.5; }
+    .sys--classical .scale--micro  { font-size: var(--c-t-micro); font-family: var(--c-sans); font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--c-gold); line-height: 1.6; }
+
+    /* Buttons */
+    .sys--classical .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--c-sans);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.01em;
+      padding: 0 22px;
+      height: 44px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      transition: background 200ms var(--ease), color 200ms var(--ease),
+                  border-color 200ms var(--ease);
+    }
+    .sys--classical .btn--primary { background: var(--c-ink); color: var(--c-card); }
+    .sys--classical .btn--primary:hover { background: #1A140F; }
+    .sys--classical .btn--secondary {
+      background: transparent;
+      color: var(--c-ink);
+      border-color: var(--c-ink);
+    }
+    .sys--classical .btn--secondary:hover { background: var(--c-ink); color: var(--c-card); }
+    .sys--classical .btn--ghost {
+      background: transparent;
+      color: var(--c-ink);
+      padding: 0 8px;
+      border: none;
+      border-radius: 0;
+      position: relative;
+    }
+    .sys--classical .btn--ghost::after {
+      content: '';
+      position: absolute;
+      left: 8px; right: 8px; bottom: 10px;
+      height: 1px;
+      background: var(--c-ink);
+      transition: background 200ms var(--ease);
+    }
+    .sys--classical .btn--ghost:hover::after { background: var(--c-accent); }
+    .sys--classical .btn--ghost:hover { color: var(--c-accent); }
+    .sys--classical .btn--accent { background: var(--c-accent); color: var(--c-card); }
+    .sys--classical .btn--accent:hover { background: #6B1620; }
+    .sys--classical .btn--sm { height: 34px; padding: 0 16px; font-size: 12px; }
+    .sys--classical .btn--lg { height: 52px; padding: 0 28px; font-size: 15px; }
+    .sys--classical .btn[disabled],
+    .sys--classical .btn--disabled { opacity: 0.4; pointer-events: none; }
+
+    /* Links */
+    .sys--classical .link {
+      color: var(--c-accent);
+      font-weight: 500;
+      border-bottom: 1px solid rgba(139, 30, 44, 0.3);
+      transition: color 200ms var(--ease), border-color 200ms var(--ease);
+    }
+    .sys--classical .link:hover { color: #6B1620; border-bottom-color: #6B1620; }
+
+    /* Forms */
+    .sys--classical .input,
+    .sys--classical .select,
+    .sys--classical .textarea {
+      width: 100%;
+      background: var(--c-card);
+      border: 1px solid var(--c-rule);
+      border-radius: 2px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: var(--c-ink);
+      transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .sys--classical .input:focus,
+    .sys--classical .select:focus,
+    .sys--classical .textarea:focus {
+      outline: none;
+      border-color: var(--c-ink);
+      box-shadow: 0 0 0 3px rgba(42, 33, 26, 0.12);
+    }
+    .sys--classical .textarea { min-height: 96px; resize: vertical; }
+    .sys--classical .form-field__label {
+      font-family: var(--c-sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c-ink-mid);
+      font-weight: 500;
+    }
+
+    /* Card */
+    .sys--classical .card {
+      background: var(--c-card);
+      border: 1px solid var(--c-rule);
+      border-radius: 2px;
+      padding: 32px;
+      position: relative;
+    }
+    .sys--classical .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--c-accent);
+    }
+    .sys--classical .card__eyebrow {
+      font-family: var(--c-sans);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--c-gold);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .sys--classical .card__title {
+      font-family: var(--c-serif);
+      font-variation-settings: "opsz" 72, "wght" 420;
+      font-size: 28px;
+      line-height: 1.12;
+      letter-spacing: -0.012em;
+      margin-bottom: 12px;
+    }
+    .sys--classical .card__body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--c-ink-mid);
+    }
+
+    /* Badges */
+    .sys--classical .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--c-sans);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 6px 12px;
+      border-radius: 2px;
+      background: var(--c-bg-alt);
+      color: var(--c-ink);
+      border: 1px solid var(--c-rule);
+    }
+    .sys--classical .badge--accent { background: var(--c-accent); color: var(--c-card); border-color: transparent; }
+    .sys--classical .badge--gold { background: transparent; color: var(--c-gold); border-color: var(--c-gold); }
+
+    /* Pull */
+    .sys--classical .pull {
+      font-family: var(--c-serif);
+      font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 50;
+      font-size: 32px;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--c-ink);
+      padding: 0 28px;
+      max-width: 32ch;
+      position: relative;
+      font-style: italic;
+    }
+    .sys--classical .pull::before {
+      content: '"';
+      position: absolute;
+      left: -2px; top: -18px;
+      font-size: 72px;
+      line-height: 1;
+      color: var(--c-accent);
+      font-style: normal;
+    }
+    .sys--classical .pull cite {
+      display: block;
+      margin-top: 16px;
+      font-family: var(--c-sans);
+      font-size: 12px;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--c-ink-soft);
+      font-weight: 500;
+    }
+
+    /* Divider */
+    .sys--classical .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .sys--classical .divider::before,
+    .sys--classical .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--c-rule);
+    }
+    .sys--classical .divider::before { max-width: 200px; }
+    .sys--classical .divider::after { max-width: 200px; }
+    .sys--classical .divider-mark {
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--c-accent);
+      transform: rotate(45deg);
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SYSTEM 04 — SIGNAL
+       Typography: Space Grotesk + IBM Plex Mono
+       Ratio: Perfect Fifth · 3:2 = 1.5
+       Palette: deep navy background, cool neutrals, teal signal
+       Body: 16px. Steps: 11 · 16 · 24 · 36 · 54 · 81 · 121
+       ═══════════════════════════════════════════════════════════════════ */
+
+    .sys--signal {
+      --s-bg:       #0A121E;
+      --s-bg-alt:   #111C2D;
+      --s-card:     #162238;
+      --s-ink:      #ECF1F8;
+      --s-ink-mid:  #A6B3C6;
+      --s-ink-soft: #6C7B90;
+      --s-rule:     #253046;
+      --s-rule-soft:#1B253A;
+      --s-accent:   #46E0C1;
+      --s-accent-ink:#063024;
+      --s-signal:   #7FA8FF;
+
+      --s-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --s-mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+
+      --s-t-micro: 11px;
+      --s-t-cap:   13px;
+      --s-t-body:  16px;
+      --s-t-lead:  24px;
+      --s-t-h4:    24px;
+      --s-t-h3:    36px;
+      --s-t-h2:    54px;
+      --s-t-h1:    81px;
+      --s-t-hero:  121px;
+
+      background: var(--s-bg);
+      color: var(--s-ink);
+      font-family: var(--s-sans);
+      font-size: var(--s-t-body);
+      line-height: 1.55;
+    }
+    .sys--signal .sys__name {
+      font-family: var(--s-sans);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--s-ink);
+    }
+    .sys--signal .sys__index,
+    .sys--signal .sys__ratio { color: var(--s-ink-soft); }
+    .sys--signal .sys__ratio strong { color: var(--s-ink); }
+    .sys--signal .sys__header { border-bottom-color: var(--s-rule); }
+    .sys--signal .spec { border-top-color: var(--s-rule); }
+    .sys--signal .spec__label { color: var(--s-ink-soft); }
+    .sys--signal .spec__label .hint { color: var(--s-ink-soft); }
+    .sys--signal .swatch { border-color: var(--s-rule); background: var(--s-card); }
+    .sys--signal .swatch__meta { color: var(--s-ink-mid); }
+    .sys--signal .swatch__name { color: var(--s-ink); }
+    .sys--signal .scale__row { border-bottom-color: var(--s-rule); }
+    .sys--signal .scale__tag { color: var(--s-ink-soft); }
+    .sys--signal .scale__size { color: var(--s-ink-mid); }
+    .sys--signal .btn-col__label { color: var(--s-ink-soft); }
+
+    .sys--signal .scale__sample {
+      font-family: var(--s-sans);
+      color: var(--s-ink);
+      font-weight: 500;
+      line-height: 0.94;
+      letter-spacing: -0.03em;
+    }
+    .sys--signal .scale--hero   { font-size: var(--s-t-hero); letter-spacing: -0.04em; }
+    .sys--signal .scale--h1     { font-size: var(--s-t-h1); }
+    .sys--signal .scale--h2     { font-size: var(--s-t-h2); letter-spacing: -0.025em; line-height: 1.0; }
+    .sys--signal .scale--h3     { font-size: var(--s-t-h3); letter-spacing: -0.02em; line-height: 1.05; }
+    .sys--signal .scale--h4     { font-size: var(--s-t-h4); letter-spacing: -0.015em; line-height: 1.15; }
+    .sys--signal .scale--lead   { font-size: var(--s-t-lead); font-weight: 400; line-height: 1.4; letter-spacing: -0.01em; color: var(--s-ink-mid); }
+    .sys--signal .scale--body   { font-size: var(--s-t-body); font-weight: 400; line-height: 1.55; color: var(--s-ink); letter-spacing: -0.005em; }
+    .sys--signal .scale--cap    { font-size: var(--s-t-cap); font-family: var(--s-mono); color: var(--s-ink-mid); line-height: 1.6; letter-spacing: 0; }
+    .sys--signal .scale--micro  { font-size: var(--s-t-micro); font-family: var(--s-mono); color: var(--s-accent); text-transform: uppercase; letter-spacing: 0.12em; line-height: 1.6; }
+
+    /* Buttons */
+    .sys--signal .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--s-sans);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      padding: 0 22px;
+      height: 44px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      transition: background 200ms var(--ease), color 200ms var(--ease),
+                  border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .sys--signal .btn--primary {
+      background: var(--s-accent);
+      color: var(--s-accent-ink);
+      box-shadow: 0 0 0 1px rgba(70, 224, 193, 0.3), 0 8px 24px rgba(70, 224, 193, 0.15);
+    }
+    .sys--signal .btn--primary:hover {
+      background: #6CE8CD;
+      box-shadow: 0 0 0 1px rgba(70, 224, 193, 0.5), 0 10px 28px rgba(70, 224, 193, 0.22);
+    }
+    .sys--signal .btn--secondary {
+      background: transparent;
+      color: var(--s-ink);
+      border-color: var(--s-rule);
+    }
+    .sys--signal .btn--secondary:hover { border-color: var(--s-ink); background: rgba(236, 241, 248, 0.04); }
+    .sys--signal .btn--ghost {
+      background: transparent;
+      color: var(--s-ink-mid);
+      padding: 0 12px;
+    }
+    .sys--signal .btn--ghost:hover { color: var(--s-accent); }
+    .sys--signal .btn--accent {
+      background: var(--s-signal);
+      color: var(--s-bg);
+    }
+    .sys--signal .btn--accent:hover { background: #A3C2FF; }
+    .sys--signal .btn--sm { height: 34px; padding: 0 16px; font-size: 12px; border-radius: 4px; }
+    .sys--signal .btn--lg { height: 56px; padding: 0 32px; font-size: 16px; border-radius: 8px; }
+    .sys--signal .btn[disabled],
+    .sys--signal .btn--disabled { opacity: 0.4; pointer-events: none; }
+
+    /* Links */
+    .sys--signal .link {
+      color: var(--s-accent);
+      font-family: var(--s-mono);
+      font-size: 15px;
+      position: relative;
+      padding-right: 16px;
+      transition: color 200ms var(--ease);
+    }
+    .sys--signal .link::after {
+      content: '↗';
+      position: absolute;
+      right: 0; top: 0;
+      transition: transform 200ms var(--ease);
+    }
+    .sys--signal .link:hover { color: #6CE8CD; }
+    .sys--signal .link:hover::after { transform: translate(1px, -1px); }
+
+    /* Forms */
+    .sys--signal .input,
+    .sys--signal .select,
+    .sys--signal .textarea {
+      width: 100%;
+      background: var(--s-bg-alt);
+      border: 1px solid var(--s-rule);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--s-ink);
+      font-family: var(--s-mono);
+      transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .sys--signal .input::placeholder,
+    .sys--signal .textarea::placeholder { color: var(--s-ink-soft); }
+    .sys--signal .input:focus,
+    .sys--signal .select:focus,
+    .sys--signal .textarea:focus {
+      outline: none;
+      border-color: var(--s-accent);
+      box-shadow: 0 0 0 3px rgba(70, 224, 193, 0.18);
+    }
+    .sys--signal .textarea { min-height: 96px; resize: vertical; }
+    .sys--signal .form-field__label {
+      font-family: var(--s-mono);
+      font-size: 11px;
+      color: var(--s-ink-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Card */
+    .sys--signal .card {
+      background: var(--s-card);
+      border: 1px solid var(--s-rule);
+      border-radius: 12px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sys--signal .card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 8px; height: 8px;
+      background: var(--s-accent);
+      border-radius: 50%;
+      margin: 16px;
+      box-shadow: 0 0 12px rgba(70, 224, 193, 0.6);
+    }
+    .sys--signal .card__eyebrow {
+      font-family: var(--s-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--s-accent);
+      margin-bottom: 14px;
+    }
+    .sys--signal .card__title {
+      font-family: var(--s-sans);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.018em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      color: var(--s-ink);
+    }
+    .sys--signal .card__body {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--s-ink-mid);
+    }
+
+    /* Badges */
+    .sys--signal .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--s-mono);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: var(--s-bg-alt);
+      color: var(--s-ink-mid);
+      border: 1px solid var(--s-rule);
+    }
+    .sys--signal .badge--accent {
+      background: rgba(70, 224, 193, 0.12);
+      color: var(--s-accent);
+      border-color: rgba(70, 224, 193, 0.3);
+    }
+    .sys--signal .badge--accent::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--s-accent);
+      box-shadow: 0 0 8px rgba(70, 224, 193, 0.7);
+    }
+    .sys--signal .badge--ink { background: var(--s-ink); color: var(--s-bg); border-color: transparent; }
+
+    /* Pull */
+    .sys--signal .pull {
+      font-family: var(--s-sans);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.018em;
+      color: var(--s-ink);
+      max-width: 32ch;
+      padding-left: 20px;
+      border-left: 2px solid var(--s-accent);
+    }
+    .sys--signal .pull cite {
+      display: block;
+      margin-top: 18px;
+      font-family: var(--s-mono);
+      font-size: 12px;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--s-ink-soft);
+    }
+
+    /* Divider */
+    .sys--signal .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--s-rule) 20%, var(--s-rule) 80%, transparent);
+    }
+
+    /* ═════════════════════ FOOTER ═════════════════════ */
+
+    .page-foot {
+      padding: 96px 0 64px;
+      background: var(--shell-bg);
+      color: var(--shell-muted);
+    }
+    .page-foot__inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: end;
+    }
+    .page-foot__title {
+      font-family: var(--shell-sans);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--shell-fg);
+      margin-bottom: 12px;
+      max-width: 40ch;
+      line-height: 1.25;
+    }
+    .page-foot__note {
+      font-size: 14px;
+      color: var(--shell-muted);
+      max-width: 56ch;
+    }
+    .page-foot__meta {
+      font-family: var(--shell-mono);
+      font-size: 11px;
+      color: var(--shell-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: right;
+      line-height: 1.8;
+    }
+    @media (max-width: 720px) {
+      .page-foot__inner { grid-template-columns: 1fr; }
+      .page-foot__meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════════════════ TOP NAVIGATION ═════════════════════ -->
+  <nav class="topnav" aria-label="Design system navigation">
+    <div class="topnav__inner">
+      <a href="index.html" class="topnav__brand">
+        <span class="topnav__brand-mark"></span>
+        Agency OS · HFU
+      </a>
+      <ul class="topnav__list">
+        <li><a href="#sys-broadsheet"><span class="num">01</span>Broadsheet</a></li>
+        <li><a href="#sys-modernist"><span class="num">02</span>Modernist</a></li>
+        <li><a href="#sys-classical"><span class="num">03</span>Classical</a></li>
+        <li><a href="#sys-signal"><span class="num">04</span>Signal</a></li>
+      </ul>
+      <a href="index.html" class="topnav__back">← Back to proposal</a>
+    </div>
+  </nav>
+
+  <!-- ═════════════════════ LEDE ═════════════════════ -->
+  <header class="lede">
+    <div class="shell-container">
+      <div class="lede__kicker">Design systems · for Holy Family University</div>
+      <h1 class="lede__title">Four directions. Each anchored to a single mathematical ratio.</h1>
+      <p class="lede__body">
+        Before we choose a visual language for the redesigned Holy Family site, we want the committee to see the full type,
+        color, and component kit of each direction side by side. Every size, spacing step, and line height on this page is
+        derived — nothing is improvised. Pick the one that sounds most like Holy Family, and we build it into a production
+        design system during the June kickoff.
+      </p>
+      <div class="lede__grid">
+        <a class="lede__chip" href="#sys-broadsheet">
+          <span class="num">01 · Broadsheet</span>
+          <span class="name">Newsreader + Inter Tight</span>
+          <span class="ratio">Golden Ratio · φ ≈ 1.618</span>
+        </a>
+        <a class="lede__chip" href="#sys-modernist">
+          <span class="num">02 · Modernist</span>
+          <span class="name">Bricolage Grotesque</span>
+          <span class="ratio">Perfect Fourth · 4 : 3</span>
+        </a>
+        <a class="lede__chip" href="#sys-classical">
+          <span class="num">03 · Classical</span>
+          <span class="name">Fraunces + Instrument Sans</span>
+          <span class="ratio">Major Third · 5 : 4</span>
+        </a>
+        <a class="lede__chip" href="#sys-signal">
+          <span class="num">04 · Signal</span>
+          <span class="name">Space Grotesk + IBM Plex Mono</span>
+          <span class="ratio">Perfect Fifth · 3 : 2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═════════════════════ SYSTEM 01 · BROADSHEET ═════════════════════ -->
+  <section class="sys sys--broadsheet" id="sys-broadsheet">
+    <div class="shell-container">
+
+      <header class="sys__header">
+        <span class="sys__index">System 01</span>
+        <h2 class="sys__name">The Broadsheet</h2>
+        <div class="sys__ratio">
+          <strong>φ ≈ 1.618</strong>
+          Golden Ratio · base 17px<br>
+          Newsreader · Inter Tight
+        </div>
+      </header>
+
+      <!-- COLOR -->
+      <div class="spec">
+        <div class="spec__label">Color<span class="hint">Warm cream page, HFU navy ink, a single editorial link blue, yellow accent held in reserve.</span></div>
+        <div class="spec__body">
+          <div class="swatches">
+            <div class="swatch"><div class="swatch__chip" style="background: #F9F5EC"></div><div class="swatch__meta"><span class="swatch__name">Cream</span>#F9F5EC · bg</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #F2ECDC"></div><div class="swatch__meta"><span class="swatch__name">Cream deep</span>#F2ECDC · bg alt</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #0E2138"></div><div class="swatch__meta"><span class="swatch__name">Navy ink</span>#0E2138 · text</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #4B5967"></div><div class="swatch__meta"><span class="swatch__name">Slate</span>#4B5967 · muted</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #0061A3"></div><div class="swatch__meta"><span class="swatch__name">Link blue</span>#0061A3 · link</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #F1B500"></div><div class="swatch__meta"><span class="swatch__name">Accent</span>#F1B500 · rare</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="spec">
+        <div class="spec__label">Typography<span class="hint">9-step scale. Each jump equals the prior step × φ (rounded to nearest whole px, clamped where legibility demands).</span></div>
+        <div class="spec__body">
+          <div class="scale">
+            <div class="scale__row"><span class="scale__tag">Hero</span><span class="scale__size">118 / .92</span><div class="scale__sample scale--hero">Since 1954.</div></div>
+            <div class="scale__row"><span class="scale__tag">H1</span><span class="scale__size">73 / .96</span><div class="scale__sample scale--h1">A university that knows your name.</div></div>
+            <div class="scale__row"><span class="scale__tag">H2</span><span class="scale__size">45 / 1.04</span><div class="scale__sample scale--h2">Small enough to be a family.</div></div>
+            <div class="scale__row"><span class="scale__tag">H3</span><span class="scale__size">35 / 1.1</span><div class="scale__sample scale--h3">An education in the tradition of the Sisters.</div></div>
+            <div class="scale__row"><span class="scale__tag">H4</span><span class="scale__size">28 / 1.18</span><div class="scale__sample scale--h4">A thesis on the whole person.</div></div>
+            <div class="scale__row"><span class="scale__tag">Lead</span><span class="scale__size">21 / 1.45</span><div class="scale__sample scale--lead">A Catholic university in northeast Philadelphia with 2,400 students and a nursing program the Greater Philadelphia hospitals know by name.</div></div>
+            <div class="scale__row"><span class="scale__tag">Body</span><span class="scale__size">17 / 1.6</span><div class="scale__sample scale--body">Body copy is set in Inter Tight at 17px with a 1.6 line-height — the width at which reading feels unhurried, the rhythm of a Sunday broadsheet rather than a glossy brochure.</div></div>
+            <div class="scale__row"><span class="scale__tag">Caption</span><span class="scale__size">13 / 1.5</span><div class="scale__sample scale--cap">Photo · Holy Family quad · October</div></div>
+            <div class="scale__row"><span class="scale__tag">Micro</span><span class="scale__size">11 / 1.4</span><div class="scale__sample scale--micro">Section label · whole person thesis</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="spec">
+        <div class="spec__label">Buttons<span class="hint">Pill shape in ink, paired with a reserved-yellow accent and an inline ghost that looks like a link underline.</span></div>
+        <div class="spec__body">
+          <div class="btn-grid">
+            <div class="btn-col">
+              <span class="btn-col__label">Primary · 44px</span>
+              <button class="btn btn--primary">Apply to Holy Family</button>
+              <button class="btn btn--primary btn--sm">Apply · small</button>
+              <button class="btn btn--primary btn--lg">Apply · large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Secondary</span>
+              <button class="btn btn--secondary">Schedule a visit</button>
+              <button class="btn btn--secondary btn--sm">Small</button>
+              <button class="btn btn--secondary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Accent · sparingly</span>
+              <button class="btn btn--accent">Request info</button>
+              <button class="btn btn--accent btn--disabled">Disabled</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Ghost · inline</span>
+              <button class="btn btn--ghost">Read the section →</button>
+              <button class="btn btn--ghost btn--disabled">Disabled</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div class="spec">
+        <div class="spec__label">Links<span class="hint">Editorial blue, 1px underline, deeper blue on hover.</span></div>
+        <div class="spec__body">
+          <p style="font-size: 17px; line-height: 1.6; max-width: 58ch;">
+            Prospective families read the nursing pages before they read anything else. When we rebuild
+            <a class="link" href="#">the Nursing program page</a>, every outbound reference — to faculty,
+            to clinical placements, to the <a class="link" href="#">Holy Family nursing handbook</a> — will carry
+            the same blue underline so readers never have to guess what's clickable.
+          </p>
+        </div>
+      </div>
+
+      <!-- FORMS -->
+      <div class="spec">
+        <div class="spec__label">Forms<span class="hint">Square 4px radius, cream card against page cream — a quiet focus ring in link blue.</span></div>
+        <div class="spec__body">
+          <form class="form-grid" onsubmit="return false;">
+            <div class="form-field">
+              <label class="form-field__label" for="bs-first">First name</label>
+              <input class="input" id="bs-first" type="text" value="Marci">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="bs-last">Last name</label>
+              <input class="input" id="bs-last" type="text" placeholder="Enter last name">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="bs-prog">Program of interest</label>
+              <select class="select" id="bs-prog">
+                <option>Undergraduate nursing</option>
+                <option>Business</option>
+                <option>Education</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="bs-start">Anticipated start</label>
+              <select class="select" id="bs-start">
+                <option>Fall 2027</option>
+                <option>Spring 2028</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label class="form-field__label" for="bs-msg">Tell us about yourself</label>
+              <textarea class="textarea" id="bs-msg" placeholder="A sentence or two is plenty."></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="spec">
+        <div class="spec__label">Cards<span class="hint">White card, hairline border, serif title so it reads like a by-lined article.</span></div>
+        <div class="spec__body">
+          <div class="card-row">
+            <article class="card">
+              <div class="card__eyebrow">Nursing · Undergraduate</div>
+              <h3 class="card__title">The program the Philadelphia hospitals know by name.</h3>
+              <p class="card__body">NCLEX pass rates above the Pennsylvania average for six of the past eight years, with clinical placements across six health systems.</p>
+            </article>
+            <article class="card">
+              <div class="card__eyebrow">Adult learner · Education</div>
+              <h3 class="card__title">A bachelor's degree you can finish while you work.</h3>
+              <p class="card__body">Evening cohorts, weekend intensives, and a transfer-credit review that actually finishes before you apply.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGES + PULL + DIVIDER -->
+      <div class="spec">
+        <div class="spec__label">Accessory<span class="hint">Badges, pull quote, and the page divider that separates broadsheet sections.</span></div>
+        <div class="spec__body">
+          <div class="accessory-row" style="margin-bottom: 48px;">
+            <span class="badge">Default</span>
+            <span class="badge badge--accent">Accent</span>
+            <span class="badge badge--ink">Ink</span>
+          </div>
+          <blockquote class="pull" style="margin-bottom: 48px;">
+            "We were looking for a university that would call us when our daughter missed a class. We found the one that
+            already had."
+            <cite>— Parent of a transfer student, 2024</cite>
+          </blockquote>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════ SYSTEM 02 · MODERNIST ═════════════════════ -->
+  <section class="sys sys--modernist" id="sys-modernist">
+    <div class="shell-container">
+
+      <header class="sys__header">
+        <span class="sys__index">System 02</span>
+        <h2 class="sys__name">The Modernist</h2>
+        <div class="sys__ratio">
+          <strong>4 : 3 = 1.333</strong>
+          Perfect Fourth · base 16px<br>
+          Bricolage Grotesque (variable)
+        </div>
+      </header>
+
+      <!-- COLOR -->
+      <div class="spec">
+        <div class="spec__label">Color<span class="hint">Pure white, HFU navy as ink, yellow pulled from the HFU mark, cool neutral grays.</span></div>
+        <div class="spec__body">
+          <div class="swatches">
+            <div class="swatch"><div class="swatch__chip" style="background: #FFFFFF; border-bottom: 1px solid #DDE3EA"></div><div class="swatch__meta"><span class="swatch__name">Paper</span>#FFFFFF · bg</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #F2F4F7"></div><div class="swatch__meta"><span class="swatch__name">Cool gray</span>#F2F4F7 · bg alt</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #06213F"></div><div class="swatch__meta"><span class="swatch__name">HFU navy</span>#06213F · text</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #3A4B5E"></div><div class="swatch__meta"><span class="swatch__name">Slate</span>#3A4B5E · muted</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #0068A9"></div><div class="swatch__meta"><span class="swatch__name">HFU blue</span>#0068A9 · link</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #FFCC15"></div><div class="swatch__meta"><span class="swatch__name">HFU yellow</span>#FFCC15 · accent</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="spec">
+        <div class="spec__label">Typography<span class="hint">A single typeface does every job — weight and optical size do the work that a second family usually does.</span></div>
+        <div class="spec__body">
+          <div class="scale">
+            <div class="scale__row"><span class="scale__tag">Hero</span><span class="scale__size">87 / .95</span><div class="scale__sample scale--hero">Holy Family.</div></div>
+            <div class="scale__row"><span class="scale__tag">H1</span><span class="scale__size">65 / .95</span><div class="scale__sample scale--h1">One voice. Said clearly.</div></div>
+            <div class="scale__row"><span class="scale__tag">H2</span><span class="scale__size">49 / .95</span><div class="scale__sample scale--h2">A university that doesn't decorate itself.</div></div>
+            <div class="scale__row"><span class="scale__tag">H3</span><span class="scale__size">37 / 1.0</span><div class="scale__sample scale--h3">Philadelphia. Catholic. 2,400 students.</div></div>
+            <div class="scale__row"><span class="scale__tag">H4</span><span class="scale__size">28 / 1.1</span><div class="scale__sample scale--h4">Built to be legible on a six-inch phone and a forty-inch monitor without switching fonts.</div></div>
+            <div class="scale__row"><span class="scale__tag">Lead</span><span class="scale__size">21 / 1.4</span><div class="scale__sample scale--lead">Bricolage Grotesque is a variable typeface with its own optical-size axis. At 14pt it reads like a warm sans; at 96pt it looks architectural.</div></div>
+            <div class="scale__row"><span class="scale__tag">Body</span><span class="scale__size">16 / 1.55</span><div class="scale__sample scale--body">Body copy sits at 16px with a 1.55 line-height on a 4pt baseline grid. Every vertical measurement on this page lands cleanly on a 4px multiple.</div></div>
+            <div class="scale__row"><span class="scale__tag">Caption</span><span class="scale__size">12 / 1.5</span><div class="scale__sample scale--cap">Campus photography · Newtown, PA</div></div>
+            <div class="scale__row"><span class="scale__tag">Micro</span><span class="scale__size">9 / 1.6</span><div class="scale__sample scale--micro">Section · modernist direction</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="spec">
+        <div class="spec__label">Buttons<span class="hint">10px radius, 1.5px stroke on secondary, yellow accent for one high-emphasis moment per page.</span></div>
+        <div class="spec__body">
+          <div class="btn-grid">
+            <div class="btn-col">
+              <span class="btn-col__label">Primary · 44px</span>
+              <button class="btn btn--primary">Apply now</button>
+              <button class="btn btn--primary btn--sm">Small</button>
+              <button class="btn btn--primary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Secondary</span>
+              <button class="btn btn--secondary">Request information</button>
+              <button class="btn btn--secondary btn--sm">Small</button>
+              <button class="btn btn--secondary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Accent · HFU yellow</span>
+              <button class="btn btn--accent">Schedule a visit</button>
+              <button class="btn btn--accent btn--disabled">Disabled</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Ghost</span>
+              <button class="btn btn--ghost">View program →</button>
+              <button class="btn btn--ghost btn--disabled">Disabled</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div class="spec">
+        <div class="spec__label">Links<span class="hint">HFU blue with a growing underline on hover. No color change for visited — we don't carry that state into the refresh.</span></div>
+        <div class="spec__body">
+          <p style="font-size: 16px; line-height: 1.55; max-width: 58ch;">
+            The <a class="link" href="#">admissions team</a> will answer the phone. The
+            <a class="link" href="#">financial-aid office</a> will sit down with your family for forty minutes and walk you
+            through every line of the package. The <a class="link" href="#">nursing program</a> has been placing graduates
+            in Philadelphia hospitals for seventy years.
+          </p>
+        </div>
+      </div>
+
+      <!-- FORMS -->
+      <div class="spec">
+        <div class="spec__label">Forms<span class="hint">10px radius, 1.5px stroke, HFU-navy focus ring.</span></div>
+        <div class="spec__body">
+          <form class="form-grid" onsubmit="return false;">
+            <div class="form-field">
+              <label class="form-field__label" for="m-first">First name</label>
+              <input class="input" id="m-first" type="text" value="Alex">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="m-last">Last name</label>
+              <input class="input" id="m-last" type="text" placeholder="Smith">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="m-prog">Program</label>
+              <select class="select" id="m-prog">
+                <option>Nursing (BSN)</option>
+                <option>Education</option>
+                <option>Business</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="m-term">Term</label>
+              <select class="select" id="m-term">
+                <option>Fall 2027</option>
+                <option>Spring 2028</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label class="form-field__label" for="m-msg">Questions</label>
+              <textarea class="textarea" id="m-msg" placeholder="What would you like to know?"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="spec">
+        <div class="spec__label">Cards<span class="hint">16px radius, ink border on hover. Same content as Broadsheet — a direct comparison.</span></div>
+        <div class="spec__body">
+          <div class="card-row">
+            <article class="card">
+              <div class="card__eyebrow">Nursing · Undergraduate</div>
+              <h3 class="card__title">The program the Philadelphia hospitals know by name.</h3>
+              <p class="card__body">NCLEX pass rates above the Pennsylvania average for six of the past eight years, with clinical placements across six health systems.</p>
+            </article>
+            <article class="card">
+              <div class="card__eyebrow">Adult learner · Education</div>
+              <h3 class="card__title">A bachelor's degree you can finish while you work.</h3>
+              <p class="card__body">Evening cohorts, weekend intensives, and a transfer-credit review that actually finishes before you apply.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESSORY -->
+      <div class="spec">
+        <div class="spec__label">Accessory<span class="hint">Pill badges, a quote anchored by a yellow bar, and an assertive 2px divider.</span></div>
+        <div class="spec__body">
+          <div class="accessory-row" style="margin-bottom: 48px;">
+            <span class="badge">Default</span>
+            <span class="badge badge--accent">Accent</span>
+            <span class="badge badge--ink">Ink</span>
+          </div>
+          <blockquote class="pull" style="margin-bottom: 48px;">
+            We said what we meant. That's all a modernist university has to do.
+            <cite>— Brand direction, Holy Family 2027</cite>
+          </blockquote>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════ SYSTEM 03 · CLASSICAL ═════════════════════ -->
+  <section class="sys sys--classical" id="sys-classical">
+    <div class="shell-container">
+
+      <header class="sys__header">
+        <span class="sys__index">System 03</span>
+        <h2 class="sys__name">The Classical</h2>
+        <div class="sys__ratio">
+          <strong>5 : 4 = 1.25</strong>
+          Major Third · base 17px<br>
+          Fraunces · Instrument Sans
+        </div>
+      </header>
+
+      <!-- COLOR -->
+      <div class="spec">
+        <div class="spec__label">Color<span class="hint">Sandstone page, deep ink for text, muted red as the call-to-action accent, oxidised gold for labels.</span></div>
+        <div class="spec__body">
+          <div class="swatches">
+            <div class="swatch"><div class="swatch__chip" style="background: #F5F0E6"></div><div class="swatch__meta"><span class="swatch__name">Sandstone</span>#F5F0E6 · bg</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #EBE3D2"></div><div class="swatch__meta"><span class="swatch__name">Sandstone deep</span>#EBE3D2 · bg alt</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #2A211A"></div><div class="swatch__meta"><span class="swatch__name">Ink</span>#2A211A · text</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #5B4E42"></div><div class="swatch__meta"><span class="swatch__name">Umber</span>#5B4E42 · muted</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #8B1E2C"></div><div class="swatch__meta"><span class="swatch__name">Oxblood</span>#8B1E2C · accent</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #9A7B2D"></div><div class="swatch__meta"><span class="swatch__name">Gold</span>#9A7B2D · label</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="spec">
+        <div class="spec__label">Typography<span class="hint">Fraunces at high optical sizes feels engraved; Instrument Sans is the restrained UI voice underneath.</span></div>
+        <div class="spec__body">
+          <div class="scale">
+            <div class="scale__row"><span class="scale__tag">Hero</span><span class="scale__size">65 / 1.02</span><div class="scale__sample scale--hero">Since 1954</div></div>
+            <div class="scale__row"><span class="scale__tag">H1</span><span class="scale__size">52 / 1.04</span><div class="scale__sample scale--h1">A Catholic university in the Sisters' tradition.</div></div>
+            <div class="scale__row"><span class="scale__tag">H2</span><span class="scale__size">42 / 1.08</span><div class="scale__sample scale--h2">Learning in community, for a lifetime.</div></div>
+            <div class="scale__row"><span class="scale__tag">H3</span><span class="scale__size">33 / 1.15</span><div class="scale__sample scale--h3">The Whole Person thesis.</div></div>
+            <div class="scale__row"><span class="scale__tag">H4</span><span class="scale__size">27 / 1.2</span><div class="scale__sample scale--h4">Every student known to at least one faculty member by name.</div></div>
+            <div class="scale__row"><span class="scale__tag">Lead</span><span class="scale__size">21 / 1.5</span><div class="scale__sample scale--lead">An education that means the same thing today it meant in 1954 — a small, Catholic, Philadelphia university in the Sisters' tradition, trying to graduate whole human beings into the world.</div></div>
+            <div class="scale__row"><span class="scale__tag">Body</span><span class="scale__size">17 / 1.6</span><div class="scale__sample scale--body">Body copy is Instrument Sans at 17px. Reading line-length should cap at about 58 characters — long enough to build rhythm, short enough that every line feels chosen rather than filled.</div></div>
+            <div class="scale__row"><span class="scale__tag">Caption</span><span class="scale__size">14 / 1.5</span><div class="scale__sample scale--cap">Photo · chapel · commencement weekend</div></div>
+            <div class="scale__row"><span class="scale__tag">Micro</span><span class="scale__size">11 / 1.6</span><div class="scale__sample scale--micro">Classical direction · section label</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="spec">
+        <div class="spec__label">Buttons<span class="hint">Nearly-square 2px corner, ink primary, oxblood for the single most-important call to action on any page.</span></div>
+        <div class="spec__body">
+          <div class="btn-grid">
+            <div class="btn-col">
+              <span class="btn-col__label">Primary · 44px</span>
+              <button class="btn btn--primary">Apply to Holy Family</button>
+              <button class="btn btn--primary btn--sm">Small</button>
+              <button class="btn btn--primary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Secondary</span>
+              <button class="btn btn--secondary">Request a viewbook</button>
+              <button class="btn btn--secondary btn--sm">Small</button>
+              <button class="btn btn--secondary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Accent · oxblood</span>
+              <button class="btn btn--accent">Schedule your visit</button>
+              <button class="btn btn--accent btn--disabled">Disabled</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Ghost</span>
+              <button class="btn btn--ghost">Read the program</button>
+              <button class="btn btn--ghost btn--disabled">Disabled</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div class="spec">
+        <div class="spec__label">Links<span class="hint">Oxblood links with a soft underline; hover deepens both.</span></div>
+        <div class="spec__body">
+          <p style="font-size: 17px; line-height: 1.6; max-width: 58ch;">
+            The Whole Person thesis is not a slogan. It shapes how <a class="link" href="#">core curriculum</a>
+            is sequenced, how <a class="link" href="#">service learning</a> is assessed, and how
+            <a class="link" href="#">faculty mentorship</a> is distributed across every cohort. Read it as
+            the academic contract you'd want for your own daughter.
+          </p>
+        </div>
+      </div>
+
+      <!-- FORMS -->
+      <div class="spec">
+        <div class="spec__label">Forms<span class="hint">2px radius, sandstone card, uppercase labels set in small caps above each field.</span></div>
+        <div class="spec__body">
+          <form class="form-grid" onsubmit="return false;">
+            <div class="form-field">
+              <label class="form-field__label" for="c-first">First name</label>
+              <input class="input" id="c-first" type="text" value="Teresa">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="c-last">Last name</label>
+              <input class="input" id="c-last" type="text" placeholder="Enter last name">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="c-prog">Intended program</label>
+              <select class="select" id="c-prog">
+                <option>Theology & religious studies</option>
+                <option>Nursing (BSN)</option>
+                <option>Education</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="c-start">Start term</label>
+              <select class="select" id="c-start">
+                <option>Fall 2027</option>
+                <option>Spring 2028</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label class="form-field__label" for="c-msg">What would you like us to know?</label>
+              <textarea class="textarea" id="c-msg" placeholder="A sentence or two — written by you, not generated."></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="spec">
+        <div class="spec__label">Cards<span class="hint">A thin oxblood rule across the top signals the engraved-plate aesthetic.</span></div>
+        <div class="spec__body">
+          <div class="card-row">
+            <article class="card">
+              <div class="card__eyebrow">Whole Person Thesis</div>
+              <h3 class="card__title">An education that forms you, not just trains you.</h3>
+              <p class="card__body">Core curriculum, service requirements, and faculty-led mentorship treated as one sequenced program across four years.</p>
+            </article>
+            <article class="card">
+              <div class="card__eyebrow">Faculty mentorship</div>
+              <h3 class="card__title">Small enough that every student knows at least one faculty member by name.</h3>
+              <p class="card__body">A university where office hours are still scheduled, still attended, and still where most of the real teaching happens.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESSORY -->
+      <div class="spec">
+        <div class="spec__label">Accessory<span class="hint">Engraved badges, a pull quote with a drop-cap quote mark, and a diamond-marked divider.</span></div>
+        <div class="spec__body">
+          <div class="accessory-row" style="margin-bottom: 56px;">
+            <span class="badge">Default</span>
+            <span class="badge badge--accent">Accent</span>
+            <span class="badge badge--gold">Gold · label</span>
+          </div>
+          <blockquote class="pull" style="margin-bottom: 56px;">
+            Everything we do here begins with a promise to graduate whole human beings into the world — and ends with the
+            patience to actually do it.
+            <cite>— President's letter, Holy Family 2027</cite>
+          </blockquote>
+          <div class="divider"><span class="divider-mark"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════ SYSTEM 04 · SIGNAL ═════════════════════ -->
+  <section class="sys sys--signal" id="sys-signal">
+    <div class="shell-container">
+
+      <header class="sys__header">
+        <span class="sys__index">System 04</span>
+        <h2 class="sys__name">The Signal</h2>
+        <div class="sys__ratio">
+          <strong>3 : 2 = 1.5</strong>
+          Perfect Fifth · base 16px<br>
+          Space Grotesk · IBM Plex Mono
+        </div>
+      </header>
+
+      <!-- COLOR -->
+      <div class="spec">
+        <div class="spec__label">Color<span class="hint">Deep navy page for AI-lab and data-forward sections. Teal signal accent, mono captions in soft blue.</span></div>
+        <div class="spec__body">
+          <div class="swatches">
+            <div class="swatch"><div class="swatch__chip" style="background: #0A121E"></div><div class="swatch__meta"><span class="swatch__name">Deep navy</span>#0A121E · bg</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #162238"></div><div class="swatch__meta"><span class="swatch__name">Panel</span>#162238 · card</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #ECF1F8"></div><div class="swatch__meta"><span class="swatch__name">Ink</span>#ECF1F8 · text</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #A6B3C6"></div><div class="swatch__meta"><span class="swatch__name">Ink mid</span>#A6B3C6 · muted</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #46E0C1"></div><div class="swatch__meta"><span class="swatch__name">Signal teal</span>#46E0C1 · accent</div></div>
+            <div class="swatch"><div class="swatch__chip" style="background: #7FA8FF"></div><div class="swatch__meta"><span class="swatch__name">Signal blue</span>#7FA8FF · link</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="spec">
+        <div class="spec__label">Typography<span class="hint">Perfect fifth is aggressive — it makes hierarchy obvious. Use it where clarity matters more than warmth (AI Migration Lab, dashboards, data pages).</span></div>
+        <div class="spec__body">
+          <div class="scale">
+            <div class="scale__row"><span class="scale__tag">Hero</span><span class="scale__size">121 / .94</span><div class="scale__sample scale--hero">Signal.</div></div>
+            <div class="scale__row"><span class="scale__tag">H1</span><span class="scale__size">81 / .94</span><div class="scale__sample scale--h1">A system that measures itself.</div></div>
+            <div class="scale__row"><span class="scale__tag">H2</span><span class="scale__size">54 / 1.0</span><div class="scale__sample scale--h2">Drupal → WordPress, with AI assist.</div></div>
+            <div class="scale__row"><span class="scale__tag">H3</span><span class="scale__size">36 / 1.05</span><div class="scale__sample scale--h3">Observability beats opinion.</div></div>
+            <div class="scale__row"><span class="scale__tag">H4</span><span class="scale__size">24 / 1.15</span><div class="scale__sample scale--h4">Every template audited before migration.</div></div>
+            <div class="scale__row"><span class="scale__tag">Lead</span><span class="scale__size">24 / 1.4</span><div class="scale__sample scale--lead">The Signal direction is designed for the parts of the site that need to feel rigorous — the AI Migration Lab, enrollment intelligence dashboards, and faculty-facing tools.</div></div>
+            <div class="scale__row"><span class="scale__tag">Body</span><span class="scale__size">16 / 1.55</span><div class="scale__sample scale--body">Body copy is Space Grotesk at 16px on a 1.55 line-height. The perfect-fifth ratio makes every jump in the hierarchy large enough to be unmistakable on a glance.</div></div>
+            <div class="scale__row"><span class="scale__tag">Caption</span><span class="scale__size">13 / 1.6</span><div class="scale__sample scale--cap">/api/chat · context.json · v4.3.0</div></div>
+            <div class="scale__row"><span class="scale__tag">Micro</span><span class="scale__size">11 / 1.6</span><div class="scale__sample scale--micro">SIGNAL · system label</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="spec">
+        <div class="spec__label">Buttons<span class="hint">Teal primary with a soft glow, 1px outline secondary, mono labels implied everywhere.</span></div>
+        <div class="spec__body">
+          <div class="btn-grid">
+            <div class="btn-col">
+              <span class="btn-col__label">Primary · 44px</span>
+              <button class="btn btn--primary">Run migration dry-run</button>
+              <button class="btn btn--primary btn--sm">Small</button>
+              <button class="btn btn--primary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Secondary</span>
+              <button class="btn btn--secondary">View logs</button>
+              <button class="btn btn--secondary btn--sm">Small</button>
+              <button class="btn btn--secondary btn--lg">Large</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Accent · signal blue</span>
+              <button class="btn btn--accent">Open dashboard</button>
+              <button class="btn btn--accent btn--disabled">Disabled</button>
+            </div>
+            <div class="btn-col">
+              <span class="btn-col__label">Ghost</span>
+              <button class="btn btn--ghost">cancel</button>
+              <button class="btn btn--ghost btn--disabled">disabled</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div class="spec">
+        <div class="spec__label">Links<span class="hint">Mono-set, teal, outbound arrow that nudges on hover.</span></div>
+        <div class="spec__body">
+          <p style="font-size: 16px; line-height: 1.6; max-width: 58ch; color: var(--s-ink-mid);">
+            The AI Migration Lab ships with a <a class="link" href="#">template audit report</a>, a
+            <a class="link" href="#">content-migration dashboard</a>, and a
+            <a class="link" href="#">rollback plan</a> that the HFU IT team owns from day one.
+          </p>
+        </div>
+      </div>
+
+      <!-- FORMS -->
+      <div class="spec">
+        <div class="spec__label">Forms<span class="hint">Dark panel inputs with mono text and a teal focus ring — reads like a terminal but behaves like a proper form.</span></div>
+        <div class="spec__body">
+          <form class="form-grid" onsubmit="return false;">
+            <div class="form-field">
+              <label class="form-field__label" for="s-first">first_name</label>
+              <input class="input" id="s-first" type="text" value="admin">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="s-last">last_name</label>
+              <input class="input" id="s-last" type="text" placeholder="surname">
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="s-env">environment</label>
+              <select class="select" id="s-env">
+                <option>production</option>
+                <option>staging</option>
+                <option>preview</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-field__label" for="s-branch">branch</label>
+              <select class="select" id="s-branch">
+                <option>main</option>
+                <option>feat/ai-lab</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label class="form-field__label" for="s-msg">notes</label>
+              <textarea class="textarea" id="s-msg" placeholder="// deployment notes"></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="spec">
+        <div class="spec__label">Cards<span class="hint">Panel card with a live teal dot — reads as a status tile in a migration dashboard.</span></div>
+        <div class="spec__body">
+          <div class="card-row">
+            <article class="card">
+              <div class="card__eyebrow">AI MIGRATION LAB</div>
+              <h3 class="card__title">Template audit · 142 of 168 complete</h3>
+              <p class="card__body">Each Drupal template is reviewed, classified, and assigned a migration path into the new WordPress architecture. Twenty-six templates remain in review.</p>
+            </article>
+            <article class="card">
+              <div class="card__eyebrow">ENROLLMENT INTELLIGENCE</div>
+              <h3 class="card__title">Adult-learner funnel · +23% week-over-week</h3>
+              <p class="card__body">Adult-learner landing pages are now outperforming the undergraduate funnel on time-to-form-start. Dashboard updated hourly from the new analytics pipeline.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESSORY -->
+      <div class="spec">
+        <div class="spec__label">Accessory<span class="hint">Status badges with a live teal dot, pull quote with a teal rule, and a gradient divider.</span></div>
+        <div class="spec__body">
+          <div class="accessory-row" style="margin-bottom: 48px;">
+            <span class="badge">Default</span>
+            <span class="badge badge--accent">Live</span>
+            <span class="badge badge--ink">Ink</span>
+          </div>
+          <blockquote class="pull" style="margin-bottom: 48px;">
+            A website is a system that measures itself. The parts we can't measure are the parts we can't improve.
+            <cite>— AI Migration Lab thesis</cite>
+          </blockquote>
+          <div class="divider"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═════════════════════ FOOT ═════════════════════ -->
+  <footer class="page-foot">
+    <div class="shell-container">
+      <div class="page-foot__inner">
+        <div>
+          <h2 class="page-foot__title">Four systems. One will become the Holy Family University design system during the June kickoff.</h2>
+          <p class="page-foot__note">
+            Every size, space, and line-height on this page is derived from a single ratio. The four directions exist so the
+            committee can point to one and say: that one sounds most like us. The selected direction becomes the starting
+            token set for the production build.
+          </p>
+        </div>
+        <div class="page-foot__meta">
+          Agency OS · Holy Family RFP<br>
+          Generated 2026-04-11<br>
+          Four systems · one page
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

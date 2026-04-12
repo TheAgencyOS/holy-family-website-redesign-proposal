@@ -8,13 +8,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ═════════════════════════════════════════════════════════════════════
        HFU COMPONENT LIBRARY
-       Typography: Fraunces (display) + Inter Tight (body)
-       Tokens carried verbatim from hfu-admissions.html
+       Typography: Crimson Pro (display) + Inter Tight (body)
+       Brand tokens carried from hfu-admissions.html — display face is the
+       only thing that diverges, giving the system its own academic-textbook voice.
        ═════════════════════════════════════════════════════════════════════ */
     :root {
       --hfu-navy:        212 82% 13%;
@@ -37,7 +38,7 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
-      --display: 'Fraunces', 'Times New Roman', Georgia, serif;
+      --display: 'Crimson Pro', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
       --container: 1280px;
@@ -83,9 +84,9 @@
       line-height: 1.04;
       letter-spacing: -0.022em;
       color: hsl(var(--fg));
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
-    h1 { font-weight: 350; font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1; }
+    h1 { font-weight: 400; font-feature-settings: "liga", "dlig", "kern"; }
     p { margin: 0; }
     ::selection { background: hsl(var(--hfu-yellow) / 0.45); color: hsl(var(--hfu-navy)); }
 
@@ -313,7 +314,7 @@
       letter-spacing: -0.035em;
       color: hsl(var(--hfu-navy));
       margin-bottom: 10px;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-feature-settings: "liga", "dlig", "kern";
       display: block;
     }
     .intro__stat .label {
@@ -501,7 +502,7 @@
       color: hsl(var(--hfu-navy));
       letter-spacing: -0.018em;
       cursor: pointer;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .faq01__item summary::-webkit-details-marker { display: none; }
     .faq01__icon {
@@ -588,7 +589,7 @@
       line-height: 1.1;
       letter-spacing: -0.018em;
       color: hsl(var(--hfu-navy));
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .tbl02 tbody tr {
       border-bottom: 1px solid hsl(var(--border-soft));
@@ -990,7 +991,7 @@
       color: #fff;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
-      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-feature-settings: "liga", "dlig", "kern";
       font-weight: 350;
     }
     .cta06 h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
@@ -1139,7 +1140,7 @@
       letter-spacing: -0.035em;
       color: #fff;
       margin-bottom: 12px;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-feature-settings: "liga", "dlig", "kern";
       font-weight: 350;
       display: block;
     }
@@ -1212,7 +1213,7 @@
       font-weight: 300;
       margin: 0 0 36px;
       max-width: 24ch;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .test09 blockquote strong {
       color: hsl(var(--hfu-blue));
@@ -1283,7 +1284,7 @@
       letter-spacing: -0.008em;
       margin: 0;
       flex: 1;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .test10__by {
       display: flex;
@@ -1367,7 +1368,7 @@
       letter-spacing: -0.008em;
       margin: 0;
       flex: 1;
-      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .marq11__card blockquote::before {
       content: "\201C";
@@ -1481,7 +1482,7 @@
       letter-spacing: -0.035em;
       color: hsl(var(--hfu-navy));
       font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .price12__card--featured .price12__amount { color: #fff; }
     .price12__unit {
@@ -1808,7 +1809,7 @@
       margin-bottom: 10px;
       display: block;
       font-weight: 400;
-      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-feature-settings: "liga", "dlig", "kern";
     }
     .tl15__year em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
     .tl15__content h3 {
@@ -2091,7 +2092,7 @@
       color: hsl(var(--hfu-navy));
       letter-spacing: -0.03em;
       margin-bottom: 24px;
-      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-feature-settings: "liga", "dlig", "kern";
       font-weight: 350;
     }
     .hero19 h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
@@ -2232,7 +2233,7 @@
       line-height: 0.98;
       color: #fff;
       letter-spacing: -0.028em;
-      font-variation-settings: "opsz" 144, "SOFT" 40, "WONK" 1;
+      font-feature-settings: "liga", "dlig", "kern";
       font-weight: 350;
     }
     .closing h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow)); }
@@ -2443,6 +2444,32 @@
 </head>
 <body>
 
+<style id="aos-back-link-styles">
+  .aos-back-to-concepts {
+    position: fixed; bottom: 20px; left: 20px; z-index: 9999;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px 10px 12px; border-radius: 999px;
+    background: rgba(6, 35, 64, 0.92); color: #fff;
+    font: 500 12px/1 "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: 0.02em; text-decoration: none;
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 12px 40px rgba(6,35,64,0.22);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1.1), box-shadow 220ms ease, background 220ms ease;
+  }
+  .aos-back-to-concepts svg { width: 12px; height: 12px; display: block; }
+  .aos-back-to-concepts:hover { transform: translateX(-2px); background: #062340; box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 16px 48px rgba(6,35,64,0.30); }
+  @media print { .aos-back-to-concepts { display: none !important; } }
+  @media (max-width: 640px) {
+    .aos-back-to-concepts { bottom: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
+  }
+</style>
+<a class="aos-back-to-concepts" href="design-concepts.html" aria-label="Back to design concepts">
+  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
+  <span>Design concepts</span>
+</a>
+
   <!-- ═════════════════ TOP BANNER ═════════════════ -->
   <header class="topbar">
     <div class="topbar__inner">
@@ -2474,7 +2501,7 @@
         </div>
         <div class="intro__stat">
           <span class="num">2</span>
-          <span class="label">Typefaces — Fraunces<br>and Inter Tight</span>
+          <span class="label">Typefaces — Crimson Pro<br>and Inter Tight</span>
         </div>
         <div class="intro__stat">
           <span class="num">5</span>
@@ -2606,7 +2633,7 @@
     <div class="sec__head">
       <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 02 / 20</span>&nbsp;·&nbsp;Data table</div>
       <h2>Compare nursing <em>pathways</em>.</h2>
-      <p>An editorial data table for four nursing program tracks across eight comparison rows. Sticky header on scroll, yellow highlight on row hover, hairline dividers, bold Fraunces program names in the header, and horizontal scroll on mobile so no data gets cut off.</p>
+      <p>An editorial data table for four nursing program tracks across eight comparison rows. Sticky header on scroll, yellow highlight on row hover, hairline dividers, bold Crimson Pro program names in the header, and horizontal scroll on mobile so no data gets cut off.</p>
     </div>
     <div class="sec__body">
       <div class="tbl02">
@@ -2999,7 +3026,7 @@
     <div class="sec__head">
       <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 06 / 20</span>&nbsp;·&nbsp;CTA — full-bleed mega</div>
       <h2>When you need a <em>big</em> moment.</h2>
-      <p>A full-width, centered mega CTA with radial gradient, background photo at 15% opacity, and massive Fraunces headline. This is the pattern you use at the close of a landing page — the "now go apply" moment.</p>
+      <p>A full-width, centered mega CTA with radial gradient, background photo at 15% opacity, and massive Crimson Pro headline. This is the pattern you use at the close of a landing page — the "now go apply" moment.</p>
     </div>
     <div class="sec__body">
       <div class="cta06">
@@ -3093,7 +3120,7 @@
     <div class="sec__head">
       <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 08 / 20</span>&nbsp;·&nbsp;Stats bar</div>
       <h2>Numbers in <em>serif</em>.</h2>
-      <p>Four large Fraunces numerals separated by hairline dividers on a dark navy background. Stats feel more like evidence than marketing when they're typeset in a display serif with proper opsz variation.</p>
+      <p>Four large Crimson Pro numerals separated by hairline dividers on a dark navy background. Stats feel more like evidence than marketing when they're typeset in a display serif with proper opsz variation.</p>
     </div>
     <div class="sec__body">
       <div class="stats08">
@@ -3132,7 +3159,7 @@
     <div class="sec__head">
       <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 09 / 20</span>&nbsp;·&nbsp;Testimonial — featured</div>
       <h2>One voice, <em>amplified</em>.</h2>
-      <p>A single featured pull quote in huge italic Fraunces, paired with a square portrait photo and a yellow accent mark. Use this pattern for your strongest testimonial — the one you want the whole page to revolve around.</p>
+      <p>A single featured pull quote in huge italic Crimson Pro, paired with a square portrait photo and a yellow accent mark. Use this pattern for your strongest testimonial — the one you want the whole page to revolve around.</p>
     </div>
     <div class="sec__body">
       <div class="test09">
@@ -3825,7 +3852,7 @@
     <div class="sec__head">
       <div class="sec__eyebrow"><span class="dash"></span><span class="num">Component 19 / 20</span>&nbsp;·&nbsp;Hero — centered announcement</div>
       <h2>A hero, <em>centered</em> and contained.</h2>
-      <p>A component-scale hero variant that lives inside a card — centered eyebrow, massive Fraunces headline, two buttons, and a decorative yellow accent bar underneath flanked by hairlines. Use this as a section-level hero inside longer pages.</p>
+      <p>A component-scale hero variant that lives inside a card — centered eyebrow, massive Crimson Pro headline, two buttons, and a decorative yellow accent bar underneath flanked by hairlines. Use this as a section-level hero inside longer pages.</p>
     </div>
     <div class="sec__body">
       <div class="hero19">
@@ -3899,7 +3926,7 @@
         <div class="foot__divider"></div>
         <div class="foot__credit">
           <strong>HFU Design System &middot; Component Library</strong>
-          Twenty reusable patterns underlying the seven design concepts for the holyfamily.edu relaunch. Built with Fraunces + Inter Tight, mobile-first, production-ready.
+          Twenty reusable patterns underlying the seven design concepts for the holyfamily.edu relaunch. Built with Crimson Pro + Inter Tight, mobile-first, production-ready.
         </div>
       </div>
       <a href="index.html" class="foot__link">

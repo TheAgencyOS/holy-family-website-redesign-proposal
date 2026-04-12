@@ -657,6 +657,33 @@
 </head>
 <body>
 
+<style id="aos-back-link-styles">
+  .aos-back-to-concepts {
+    position: fixed; top: 20px; left: 20px; z-index: 9999;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px 10px 12px; border-radius: 999px;
+    background: rgba(6, 35, 64, 0.92); color: #fff;
+    font: 500 12px/1 "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: 0.02em; text-decoration: none;
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 12px 40px rgba(6,35,64,0.22);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1.1), box-shadow 220ms ease, background 220ms ease;
+  }
+  .aos-back-to-concepts svg { width: 12px; height: 12px; display: block; }
+  .aos-back-to-concepts:hover { transform: translateX(-2px); background: #062340; box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 16px 48px rgba(6,35,64,0.30); }
+  @media print { .aos-back-to-concepts { display: none !important; } }
+  @media (max-width: 640px) {
+    .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
+  }
+</style>
+<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
+  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
+  <span>Design concepts</span>
+</a>
+
+
   <!-- TOP UTILITY STRIP -->
   <div class="util">
     <div class="util__contact">

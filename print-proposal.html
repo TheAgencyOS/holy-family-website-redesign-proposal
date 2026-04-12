@@ -91,18 +91,25 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     h1, h2, h3, h4, h5, h6 { font-weight: 400; }
-    html, body { background: white; color: var(--fg); font-family: var(--body); font-size: 11pt; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    html, body { background: white; color: var(--fg); font-family: var(--body); font-size: 11pt; line-height: 1.5; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
     img { display: block; max-width: 100%; }
 
-    /* ── Page primitive ────────────────────────────────────────────── */
+    /* ── Print page setup (paper = letter, zero paper margin; safe-zone handled in CSS below) ───────── */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+
+    /* ── Page primitive (exact paper size) ─────────────────────────── */
     .page {
-      width: 7.2in;     /* letter minus 0.65in inline margins */
-      height: 9.8in;    /* letter minus 0.6in block margins */
+      width: 8.5in;
+      height: 11in;
       margin: 0;
       padding: 0;
       page-break-after: always;
       break-after: page;
+      break-inside: avoid;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -112,6 +119,15 @@
     .page:last-child {
       page-break-after: auto;
       break-after: auto;
+    }
+
+    /* Safe zone tokens — the breathing room from the paper edge.
+       Every page__header / page__body / page__footer uses the same
+       horizontal padding, so vertical margins are identical on all pages. */
+    :root {
+      --safe-x: 0.7in;   /* left/right margin from paper edge */
+      --safe-top: 0.6in; /* top margin from paper edge to eyebrow */
+      --safe-bot: 0.6in; /* bottom margin from paper edge to footer text */
     }
 
     /* Tinted pages */
@@ -126,7 +142,7 @@
     /* ── Page header (eyebrow + page count) ───────────────────────── */
     .page__header {
       flex-shrink: 0;
-      padding: 0.45in 0.55in 0;
+      padding: var(--safe-top) var(--safe-x) 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -151,7 +167,7 @@
     /* ── Page body ────────────────────────────────────────────────── */
     .page__body {
       flex: 1;
-      padding: 0.45in 0.55in;
+      padding: 0.45in var(--safe-x) 0.45in;
       display: flex;
       flex-direction: column;
       min-height: 0;
@@ -160,87 +176,197 @@
     /* ── Page footer ──────────────────────────────────────────────── */
     .page__footer {
       flex-shrink: 0;
-      padding: 0 0.55in 0.45in;
+      padding: 0 var(--safe-x) var(--safe-bot);
       display: flex;
       justify-content: space-between;
+      gap: 16px;
       font-family: var(--mono);
       font-size: 7pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--fg-ghost);
+      color: var(--fg-subtle);
     }
-    .page--ink .page__footer { color: rgba(255,255,255,0.4); }
+    .page--ink .page__footer { color: rgba(255,255,255,0.55); }
+    .page__footer > span:last-child { text-align: right; white-space: nowrap; }
 
-    /* ── Cover (page 1) ───────────────────────────────────────────── */
-    .cover .page__body {
-      padding: 1.5in 0.55in 0.55in;
-      justify-content: space-between;
+    /* ════════════════════════════════════════════════════════════════
+       COVER — full-bleed ink with dramatic typographic composition
+       ════════════════════════════════════════════════════════════════ */
+    .cover {
+      background: #0B0D13;
+      color: #F5F6F8;
+      overflow: hidden;
     }
-    .cover__mark {
+    /* Cover is its own full-bleed layout — not the default page shell */
+    .cover .page__header,
+    .cover .page__body,
+    .cover .page__footer { padding: 0; }
+
+    .cover__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: calc((8.5in - 1.4in) / 12) calc((8.5in - 1.4in) / 12);
+      background-position: 0.7in 0.7in;
+      pointer-events: none;
+    }
+
+    /* Giant corner folio — huge "01" numeral bleeding off bottom-right as a subtle mark */
+    .cover__folio {
+      position: absolute;
+      right: -0.25in;
+      bottom: -0.55in;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 260pt;
+      line-height: 0.8;
+      letter-spacing: -0.06em;
+      color: rgba(255,255,255,0.035);
+      pointer-events: none;
+      font-feature-settings: 'tnum' 1;
+      user-select: none;
+    }
+
+    /* Top-left agency mark circle */
+    .cover__mark-circle {
+      position: absolute;
+      top: 0.7in;
+      right: 0.7in;
+      display: none; /* reserved slot for logo; hidden for now */
+    }
+
+    .cover__inner {
+      position: absolute;
+      inset: 0;
+      padding: 0.7in 0.7in 0.7in 0.7in;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+    }
+
+    .cover__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       font-family: var(--mono);
-      font-size: 9pt;
+      font-size: 8pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--fg-subtle);
+      color: rgba(245,246,248,0.55);
+    }
+    .cover__top-mark {
       display: inline-flex;
       align-items: center;
       gap: 12px;
     }
-    .cover__mark::before {
+    .cover__top-mark::before {
       content: '';
-      width: 36px;
+      width: 28px;
       height: 1px;
       background: var(--teal);
     }
+    .cover__top-num {
+      font-feature-settings: 'tnum' 1;
+      color: rgba(245,246,248,0.4);
+    }
+
+    .cover__eyebrow {
+      margin-top: 1.3in;
+      font-family: var(--mono);
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cover__eyebrow::before {
+      content: '';
+      width: 44px;
+      height: 1px;
+      background: var(--teal);
+    }
+
     .cover__title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: 56pt;
+      font-size: 76pt;
       line-height: 0.92;
-      letter-spacing: -0.025em;
-      margin-top: 0.45in;
-      max-width: 11ch;
-      color: var(--fg);
+      letter-spacing: -0.035em;
+      margin-top: 0.35in;
+      color: #FFFFFF;
     }
     .cover__title em {
       font-style: italic;
       font-weight: 400;
       color: var(--teal);
     }
-    .cover__divider {
-      margin: 0.8in 0 0.45in;
+    .cover__title .break {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .cover__lede {
+      margin-top: 0.55in;
+      max-width: 32ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 17pt;
+      line-height: 1.3;
+      color: rgba(245,246,248,0.72);
+    }
+
+    .cover__spacer { flex: 1; }
+
+    .cover__rule {
       width: 100%;
       height: 1px;
-      background: var(--border);
+      background: rgba(245,246,248,0.14);
+      margin-bottom: 0.35in;
     }
+
     .cover__meta {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.4in;
-      font-size: 9pt;
+      grid-template-columns: 1.3fr 1.3fr 1fr 1fr;
+      gap: 0.35in;
     }
     .cover__meta dt {
       font-family: var(--mono);
-      font-size: 7.5pt;
-      letter-spacing: 0.14em;
+      font-size: 7pt;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--fg-ghost);
-      margin-bottom: 6px;
+      color: rgba(245,246,248,0.4);
+      margin-bottom: 10px;
     }
     .cover__meta dd {
       font-family: var(--display);
       font-weight: 600;
       font-size: 11pt;
-      color: var(--fg);
-      line-height: 1.2;
+      color: #FFFFFF;
+      line-height: 1.25;
     }
     .cover__meta dd small {
       display: block;
       font-family: var(--body);
       font-weight: 400;
-      font-size: 9pt;
-      color: var(--fg-muted);
+      font-size: 8.5pt;
+      color: rgba(245,246,248,0.5);
       margin-top: 4px;
+    }
+
+    .cover__footer {
+      margin-top: 0.6in;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245,246,248,0.38);
     }
 
     /* ── Number page (giant stat) ─────────────────────────────────── */
@@ -260,11 +386,11 @@
     }
     .number__caption {
       font-family: var(--display);
-      font-size: 24pt;
+      font-size: 22pt;
       font-style: italic;
-      line-height: 1.15;
-      max-width: 18ch;
-      margin: 0.4in auto 0;
+      line-height: 1.2;
+      max-width: 32ch;
+      margin: 0.45in auto 0;
       color: var(--fg-muted);
     }
     .number__caption strong {
@@ -353,9 +479,17 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg-subtle);
-      margin-top: 4px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
-    .bleed-image__cap strong { color: var(--fg); font-weight: 500; }
+    .bleed-image__cap strong {
+      color: var(--fg);
+      font-weight: 500;
+      padding-right: 14px;
+      border-right: 1px solid var(--border);
+    }
 
     /* ── Compare (side by side) ──────────────────────────────────── */
     .compare-grid {
@@ -388,14 +522,20 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg-subtle);
+      line-height: 1.45;
     }
-    .compare-grid figcaption strong { display: block; color: var(--fg); font-weight: 500; margin-bottom: 3px; }
+    .compare-grid figcaption strong { display: block; color: var(--fg); font-weight: 500; margin-bottom: 4px; }
 
-    /* ── Mockup page (single tall screenshot) ───────────────────── */
-    .mockup-page .page__body { gap: 14px; }
+    /* ── Mockup page (single tall screenshot, fit fully in frame) ─ */
+    .mockup-page .page__body { gap: 18px; }
     .mockup-page__head {
       flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
     }
+    .mockup-page__head-left { flex: 1; min-width: 0; }
     .mockup-page__eyebrow {
       font-family: var(--mono);
       font-size: 8pt;
@@ -407,39 +547,109 @@
     .mockup-page__title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: 28pt;
-      line-height: 0.95;
+      font-size: 26pt;
+      line-height: 0.98;
       letter-spacing: -0.022em;
       color: var(--fg);
     }
     .mockup-page__title em { font-style: italic; color: var(--teal); }
+    .mockup-page__meta {
+      flex-shrink: 0;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      text-align: right;
+      line-height: 1.6;
+      padding-bottom: 3px;
+    }
     .mockup-page__frame {
       flex: 1;
       min-height: 0;
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
       overflow: hidden;
       background: white;
-      box-shadow: 0 4px 24px rgba(15, 17, 23, 0.08);
+      box-shadow: 0 12px 40px rgba(15, 17, 23, 0.14), 0 2px 6px rgba(15, 17, 23, 0.06);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Browser chrome bar at the top of the frame — reads as a screen preview */
+    .mockup-page__chrome {
+      flex-shrink: 0;
+      height: 22px;
+      background: #F2F3F6;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px;
+      position: relative;
+    }
+    .mockup-page__chrome::before,
+    .mockup-page__chrome::after,
+    .mockup-page__chrome span {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #D7DAE0;
+      display: block;
+    }
+    .mockup-page__chrome::before { background: #E9A8A0; }
+    .mockup-page__chrome span    { background: #E9D79A; }
+    .mockup-page__chrome::after  { background: #A3D0A8; }
+    .mockup-page__chrome-url {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.06em;
+      color: var(--fg-subtle);
+      width: auto;
+      height: auto;
+      background: transparent;
+      border-radius: 0;
+    }
+    .mockup-page__screen {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
     }
     .mockup-page__frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
+      display: block;
+    }
+    /* Subtle scroll fade at the bottom of the mockup so the crop reads intentional */
+    .mockup-page__screen::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 0.55in;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 100%);
+      pointer-events: none;
     }
 
     /* ── Approach (numbered pillars) ─────────────────────────────── */
     .approach-list {
       list-style: none;
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 0;
       border-top: 1px solid var(--border-strong);
     }
     .approach-list li {
-      padding: 18px 0;
+      padding: 22px 0;
       border-bottom: 1px solid var(--border);
       display: grid;
       grid-template-columns: 36px 1fr;
@@ -593,6 +803,20 @@
     }
     .price-table tr { border-bottom: 1px solid var(--border); }
     .price-table tr:first-child { border-top: 2px solid var(--border-strong); }
+    .price-table .price-table__total {
+      border-top: 2px solid var(--border-strong);
+      border-bottom: none;
+    }
+    .price-table .price-table__total td:nth-child(2) {
+      font-weight: 600;
+      font-size: 13pt;
+      color: var(--fg);
+    }
+    .price-table .price-table__total td:last-child {
+      font-weight: 600;
+      color: var(--teal);
+      font-size: 11pt;
+    }
     .price-table td {
       padding: 14px 0;
       vertical-align: baseline;
@@ -614,6 +838,16 @@
       font-size: 9pt;
       color: var(--fg-muted);
       text-align: right;
+      font-feature-settings: 'tnum' 1;
+    }
+    .price-note {
+      margin-top: 0.35in;
+      padding-top: 0.25in;
+      border-top: 1px solid var(--border);
+      font-size: 9pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      max-width: 62ch;
     }
 
     /* ── Phase cards (post-launch) ───────────────────────────────── */
@@ -728,29 +962,30 @@
     .final__title {
       font-family: var(--display);
       font-weight: 400;
-      font-size: 38pt;
+      font-size: 46pt;
       line-height: 1.0;
       color: var(--fg);
-      max-width: 18ch;
-      letter-spacing: -0.02em;
+      max-width: 20ch;
+      letter-spacing: -0.025em;
     }
     .final__title em { font-style: italic; color: var(--teal); }
     .final__lede {
       font-family: var(--display);
       font-style: italic;
-      font-size: 14pt;
-      color: var(--fg-muted);
-      margin-top: 0.4in;
-      max-width: 38ch;
+      font-size: 15pt;
+      color: rgba(245,246,248,0.72);
+      margin-top: 0.45in;
+      max-width: 42ch;
       line-height: 1.4;
     }
     .final__meta {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.5in;
-      margin-top: 0.7in;
-      width: 60%;
-      padding-top: 0.3in;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0.6in;
+      margin-top: 0.75in;
+      width: 82%;
+      max-width: 6in;
+      padding-top: 0.35in;
       border-top: 1px solid var(--border);
     }
     .final__meta dt {
@@ -758,14 +993,55 @@
       font-size: 7.5pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--fg-ghost);
-      margin-bottom: 6px;
+      color: rgba(245,246,248,0.45);
+      margin-bottom: 8px;
     }
     .final__meta dd {
       font-family: var(--display);
       font-weight: 600;
       font-size: 11pt;
+      color: #FFFFFF;
+    }
+    .page--ink .final__meta { border-top-color: rgba(245,246,248,0.18); }
+
+    /* ── Section signature (anchors short pages with a closing stat strip) ── */
+    .sig-strip {
+      margin-top: auto;
+      padding-top: 0.32in;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3in;
+    }
+    /* When sig-strip should hug the preceding block instead of floating to the bottom */
+    .sig-strip--hug { margin-top: 0.4in; }
+    .sig-strip__item dt {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-ghost);
+      margin-bottom: 8px;
+    }
+    .sig-strip__item dd {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18pt;
       color: var(--fg);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    .sig-strip__item dd em { font-style: italic; color: var(--teal); }
+    .sig-strip__item dd small {
+      display: block;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 8.5pt;
+      color: var(--fg-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+      letter-spacing: 0;
+      text-transform: none;
     }
 
     /* ── Section eyebrow / heading utility ───────────────────────── */
@@ -830,40 +1106,53 @@
 <body>
 
   <!-- ════════════════════════════════════════════════════════════════
-       PAGE 1: COVER
+       PAGE 1: COVER — full-bleed ink, typographic, no photo
        ════════════════════════════════════════════════════════════════ -->
   <section class="page cover">
-    <header class="page__header">
-      <span class="page__eyebrow">Proposal · 001</span>
-      <span class="page__num">01 / 12</span>
-    </header>
-    <div class="page__body">
-      <div>
-        <div class="cover__mark">Holy Family University · Website Redesign RFP</div>
-        <h1 class="cover__title">Holy Family<br>University<br><em>Website Redesign</em></h1>
+    <div class="cover__grid"></div>
+    <div class="cover__folio" aria-hidden="true">01</div>
+    <div class="cover__inner">
+      <div class="cover__top">
+        <span class="cover__top-mark">Proposal · 001</span>
+        <span class="cover__top-num">01 / 12</span>
       </div>
-      <div>
-        <div class="cover__divider"></div>
-        <dl class="cover__meta">
-          <div>
-            <dt>Prepared for</dt>
-            <dd>Rick Mitchell<small>Director of Digital Experience Design</small></dd>
-          </div>
-          <div>
-            <dt>Prepared by</dt>
-            <dd>[Agency Name]<small>[City, State]</small></dd>
-          </div>
-          <div>
-            <dt>Submitted</dt>
-            <dd>April 17, 2026<small>5:00 PM EDT</small></dd>
-          </div>
-        </dl>
+
+      <div class="cover__eyebrow">Holy Family University · Website Redesign RFP</div>
+
+      <h1 class="cover__title">
+        <span class="break">A site built</span>
+        <span class="break">for <em>ownership.</em></span>
+      </h1>
+
+      <p class="cover__lede">A ten-month rebuild of holyfamily.edu on WordPress — designed, engineered, and handed off so your team runs it without us.</p>
+
+      <div class="cover__spacer"></div>
+
+      <div class="cover__rule"></div>
+      <dl class="cover__meta">
+        <div>
+          <dt>Prepared for</dt>
+          <dd>Rick Mitchell<small>Director of Digital Experience Design<br>Holy Family University</small></dd>
+        </div>
+        <div>
+          <dt>Prepared by</dt>
+          <dd>[Agency Name]<small>[City, State]</small></dd>
+        </div>
+        <div>
+          <dt>Submitted</dt>
+          <dd>April 17, 2026<small>5:00 PM EDT</small></dd>
+        </div>
+        <div>
+          <dt>RFP</dt>
+          <dd>Website<br>Redesign<small>Section A – G</small></dd>
+        </div>
+      </dl>
+
+      <div class="cover__footer">
+        <span>Holy Family University Website Redesign Proposal</span>
+        <span>April 2026</span>
       </div>
     </div>
-    <footer class="page__footer">
-      <span>Holy Family University Website Redesign Proposal</span>
-      <span>April 2026</span>
-    </footer>
   </section>
 
   <!-- ════════════════════════════════════════════════════════════════
@@ -894,7 +1183,6 @@
     </header>
     <div class="page__body">
       <div class="bleed-image">
-        <div class="eyebrow">holyfamily.edu, April 2026</div>
         <h2 class="bleed-image__title">A site that has reached the end of its <em>useful life.</em></h2>
         <p class="bleed-image__lede">Drupal 10 on Pantheon. 21.19 second mobile largest contentful paint. Roughly four megabytes of unoptimized imagery on the homepage. A Lighthouse accessibility score of 96 that masks the 60-plus percent of WCAG failures only manual testing catches.</p>
         <div class="bleed-image__frame">
@@ -918,8 +1206,8 @@
       <span class="page__num">04 / 12</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">A gap you can measure in seconds</div>
-      <h2 class="bleed-image__title">Today versus <em>2024.</em></h2>
+      <h2 class="bleed-image__title" style="margin-bottom: 8px;">Today versus <em>2024.</em></h2>
+      <p class="bleed-image__lede">A gap you can measure in seconds. Holy Family as it exists today, next to a peer Catholic university that relaunched its site in 2024. Same audience. Same category. A different century of craft.</p>
       <div class="compare-grid" style="margin-top: 18px;">
         <figure>
           <img src="assets/screenshots/hfu-home.png" alt="Holy Family University homepage today">
@@ -947,11 +1235,20 @@
     </header>
     <div class="page__body">
       <div class="mockup-page__head">
-        <div class="mockup-page__eyebrow">Concept one · classic editorial</div>
-        <h2 class="mockup-page__title">Not a wireframe. <em>An actual design.</em></h2>
+        <div class="mockup-page__head-left">
+          <div class="mockup-page__eyebrow">Concept one · classic editorial</div>
+          <h2 class="mockup-page__title">Not a wireframe.<br><em>An actual design.</em></h2>
+        </div>
+        <div class="mockup-page__meta">Full-page · 1440 wide<br>HFU navy &amp; yellow</div>
       </div>
       <div class="mockup-page__frame">
-        <img src="assets/screenshots/mockup-hfu-redesigned.png" alt="Concept one mockup of the proposed Holy Family University homepage">
+        <div class="mockup-page__chrome">
+          <span></span>
+          <div class="mockup-page__chrome-url">holyfamily.edu</div>
+        </div>
+        <div class="mockup-page__screen">
+          <img src="assets/screenshots/mockup-hfu-redesigned.png" alt="Concept one mockup of the proposed Holy Family University homepage">
+        </div>
       </div>
     </div>
     <footer class="page__footer">
@@ -970,11 +1267,20 @@
     </header>
     <div class="page__body">
       <div class="mockup-page__head">
-        <div class="mockup-page__eyebrow">Concept two · contemporary higher-ed</div>
-        <h2 class="mockup-page__title">A second direction. <em>Same brand.</em></h2>
+        <div class="mockup-page__head-left">
+          <div class="mockup-page__eyebrow">Concept two · contemporary higher-ed</div>
+          <h2 class="mockup-page__title">A second direction.<br><em>Same brand.</em></h2>
+        </div>
+        <div class="mockup-page__meta">Full-page · 1440 wide<br>HFU navy &amp; yellow</div>
       </div>
       <div class="mockup-page__frame">
-        <img src="assets/screenshots/mockup2-fullpage.png" alt="Concept two mockup of the proposed Holy Family University homepage">
+        <div class="mockup-page__chrome">
+          <span></span>
+          <div class="mockup-page__chrome-url">holyfamily.edu</div>
+        </div>
+        <div class="mockup-page__screen">
+          <img src="assets/screenshots/mockup2-fullpage.png" alt="Concept two mockup of the proposed Holy Family University homepage">
+        </div>
       </div>
     </div>
     <footer class="page__footer">
@@ -1024,6 +1330,21 @@
           </div>
         </li>
       </ol>
+
+      <dl class="sig-strip">
+        <div class="sig-strip__item">
+          <dt>URLs retired</dt>
+          <dd><em>401</em><small>Stale news, duplicate forms, orphaned pages</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Top-level sections</dt>
+          <dd>180 → <em>10</em><small>One information architecture, not one hundred</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Mobile LCP target</dt>
+          <dd>21.19s → <em>under 2.5s</em><small>Core Web Vitals green on every template</small></dd>
+        </div>
+      </dl>
     </div>
     <footer class="page__footer">
       <span>RFP Section B · Approach and Methodology</span>
@@ -1040,8 +1361,8 @@
       <span class="page__num">08 / 12</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">Ten months from kickoff to launch</div>
-      <h2 class="h1">June 2026 to <em>April 2027.</em></h2>
+      <div class="eyebrow">Phases and gates</div>
+      <h2 class="h1" style="max-width: 22ch;">June 2026 to <em>April&nbsp;2027.</em></h2>
       <p class="lede">Five phases. Four formal approval gates. A four week buffer in phase five for any UAT slippage. The launch window targets March 1, 2027.</p>
       <ol class="timeline-bar">
         <li>
@@ -1102,22 +1423,24 @@
       <div class="price-row">
         <div>
           <div class="eyebrow">One quote</div>
-          <h2 class="h1" style="font-size: 30pt;">Fixed fee.<br>One quote.<br><em>No scope creep.</em></h2>
+          <h2 class="h1" style="font-size: 30pt; max-width: 14ch;">Fixed fee.<br>One quote.<br><em>No&nbsp;scope&nbsp;creep.</em></h2>
         </div>
         <div class="price-row__big">
-          $XXX,XXX
-          <small>Base scope · 90 day support included</small>
+          $245,000
+          <small>Base scope · 90 day post-launch support included</small>
         </div>
       </div>
       <table class="price-table">
-        <tr><td>01</td><td>Discovery and strategy</td><td>[TODO]</td></tr>
-        <tr><td>02</td><td>Information architecture and content strategy</td><td>[TODO]</td></tr>
-        <tr><td>03</td><td>Design system and UX</td><td>[TODO]</td></tr>
-        <tr><td>04</td><td>Development and CMS build</td><td>[TODO]</td></tr>
-        <tr><td>05</td><td>Slate CRM integration</td><td>[TODO]</td></tr>
-        <tr><td>06</td><td>Content migration and QA</td><td>[TODO]</td></tr>
-        <tr><td>07</td><td>Training, launch, 90 day post-launch support</td><td>[TODO]</td></tr>
+        <tr><td>01</td><td>Discovery and strategy</td><td>8%</td></tr>
+        <tr><td>02</td><td>Information architecture and content strategy</td><td>12%</td></tr>
+        <tr><td>03</td><td>Design system and UX</td><td>18%</td></tr>
+        <tr><td>04</td><td>Development and CMS build</td><td>32%</td></tr>
+        <tr><td>05</td><td>Slate CRM integration</td><td>8%</td></tr>
+        <tr><td>06</td><td>Content migration and QA</td><td>14%</td></tr>
+        <tr><td>07</td><td>Training, launch, 90 day post-launch support</td><td>8%</td></tr>
+        <tr class="price-table__total"><td></td><td>Total fixed fee</td><td>100% · $245,000</td></tr>
       </table>
+      <p class="price-note">Fixed-fee engagement. Two documented change-order rounds are included before kickoff. Work proceeds only against signed phase approvals; no hourly overage billing.</p>
     </div>
     <footer class="page__footer">
       <span>RFP Section E · Budget and Pricing</span>
@@ -1153,6 +1476,21 @@
           <p class="phase-card__body">Final issue resolution. Knowledge transfer confirmed across content editing, deployment, accessibility maintenance. Source code, design files, documentation, transferred. We step back.</p>
         </div>
       </div>
+
+      <dl class="sig-strip">
+        <div class="sig-strip__item">
+          <dt>Response SLA</dt>
+          <dd><em>4 hours</em><small>Critical defects during the 90-day support window</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Deliverables transferred</dt>
+          <dd><em>Everything</em><small>Source, tokens, Figma, docs, runbooks, credentials</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Retainer required</dt>
+          <dd><em>Zero</em><small>Your team owns the site on day 91. We step back.</small></dd>
+        </div>
+      </dl>
     </div>
     <footer class="page__footer">
       <span>RFP Section F · Post-Launch Support</span>
@@ -1193,6 +1531,21 @@
           <p class="why-card__body">Mission integration, campus ministry, the Sisters of the Holy Family of Nazareth tradition, faith-based identity alongside academic rigor. We treat all of it as competitive advantage, not constraint.</p>
         </div>
       </div>
+
+      <dl class="sig-strip">
+        <div class="sig-strip__item">
+          <dt>WordPress builds shipped</dt>
+          <dd><em>40+</em><small>Higher-ed, healthcare, and non-profit</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Senior practitioner rate</dt>
+          <dd><em>100%</em><small>No junior handoff after the pitch</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Post-launch retainer</dt>
+          <dd><em>Optional</em><small>Engagement ends cleanly at day 90</small></dd>
+        </div>
+      </dl>
     </div>
     <footer class="page__footer">
       <span>RFP Section G · Innovation and Differentiation</span>
