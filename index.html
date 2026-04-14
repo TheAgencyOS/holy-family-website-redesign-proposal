@@ -498,11 +498,17 @@
       margin-top: 0.5in;
       display: flex;
       justify-content: space-between;
+      gap: 0.5in;
       font-family: var(--mono);
       font-size: 7pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: rgba(9,45,76,0.42);
+    }
+    .cover__footer > span:first-child { max-width: 4.2in; }
+    .cover__footer > span:last-child {
+      text-align: right;
+      white-space: nowrap;
     }
 
     /* Print: each .page maps 1:1 to a Letter sheet, no browser margin */
@@ -523,28 +529,29 @@
        ════════════════════════════════════════════════════════════════ */
     .toc-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.22in 0.5in;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0.15in 0.3in;
       margin-top: 0.15in;
     }
-    .toc-group { display: flex; flex-direction: column; gap: 2px; }
+    .toc-group { display: flex; flex-direction: column; gap: 1px; }
     .toc-group__label {
       font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.16em;
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--teal);
-      padding-bottom: 6px;
-      margin-bottom: 4px;
+      padding-bottom: 4px;
+      margin-bottom: 3px;
       border-bottom: 1px solid var(--border-strong);
     }
     .toc-row {
       display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 10px;
-      padding: 2px 0;
+      grid-template-columns: 22px 1fr;
+      gap: 6px;
+      padding: 1px 0;
       font-family: var(--display);
-      font-size: 9pt;
+      font-size: 8pt;
+      line-height: 1.2;
       color: var(--fg);
     }
     .toc-row a { display: contents; color: inherit; text-decoration: none; }
@@ -2111,7 +2118,7 @@
     <div class="cover__inner">
       <div class="cover__top">
         <span class="cover__top-mark">Proposal &middot; 001</span>
-        <span class="cover__top-num">01 / 30</span>
+        <span class="cover__top-num">01 / 31</span>
       </div>
 
       <div class="cover__brand">
@@ -2156,7 +2163,7 @@
 
       <div class="cover__footer">
         <span>Response to Website Redesign RFP, issued March 23, 2026</span>
-        <span>30 pages &middot; Small College Consulting &middot; April 2026</span>
+        <span>31 pages &middot; Small College Consulting &middot; April 2026</span>
       </div>
     </div>
   </section>
@@ -2167,7 +2174,7 @@
   <section class="page" id="p02">
     <header class="page__header">
       <span class="page__eyebrow">Table of contents &amp; executive summary</span>
-      <span class="page__num">Section 02 / 30</span>
+      <span class="page__num">Section 02 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">Modernizing Holy Family University&rsquo;s <em>web presence.</em></h2>
@@ -2176,67 +2183,84 @@
       <p class="prose">This proposal addresses the requirements of the RFP in full. The mapping table on page four is intentionally dense, allowing evaluators to locate the response to any individual requirement without searching.</p>
       <p class="prose">Small College Consulting has also developed proprietary AI technology in preparation for this engagement. The technology facilitates seamless redesign and content migration from the existing Drupal installation into WordPress while simultaneously optimizing the new site for AI-engine visibility. It has been tested and fully validated against real institutional content.</p>
 
-      <div class="toc-grid">
+      </div>
+    <footer class="page__footer">
+      <span>Transmittal letter · Small College Consulting</span>
+      <span>02 / 31</span>
+    </footer>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       03 · TABLE OF CONTENTS (moved from p02 to fit 8.5x11)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="page" id="p-toc">
+    <header class="page__header">
+      <span class="page__eyebrow">Table of contents · RFP Section 12 format compliance</span>
+      <span class="page__num">Section 03 / 31</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">What this proposal covers</div>
+      <h2 class="h1" style="max-width: 18ch;">Thirty-one pages, <em>mapped to your RFP.</em></h2>
+      <p class="prose" style="max-width: 60ch;">Every RFP requirement is answered on a named page. The mapping table on page 05 makes this explicit. Sections A–G of the RFP are covered across the pages listed below.</p>
+
+      <div class="toc-grid" style="margin-top: 0.35in;">
         <div class="toc-group">
           <div class="toc-group__label">The situation</div>
-          <div class="toc-row"><a href="#p03"><span class="toc-row__num">03</span><span>State of the site &middot; 1,601 URLs</span></a></div>
-          <div class="toc-row"><a href="#p04"><span class="toc-row__num">04</span><span>Reading the RFP &middot; response map</span></a></div>
-          <div class="toc-row"><a href="#p05"><span class="toc-row__num">05</span><span>Day 1 Value Pack &middot; six artifacts</span></a></div>
+          <div class="toc-row"><a href="#p03"><span class="toc-row__num">04</span><span>State of the site</span></a></div>
+          <div class="toc-row"><a href="#p04"><span class="toc-row__num">05</span><span>RFP response map</span></a></div>
+          <div class="toc-row"><a href="#p05"><span class="toc-row__num">06</span><span>Day 1 Value Pack</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Sample work</div>
-          <div class="toc-row"><a href="#p06"><span class="toc-row__num">06</span><span>Proposed information architecture</span></a></div>
-          <div class="toc-row"><a href="#p07"><span class="toc-row__num">07</span><span>Philadelphia Catholic peer landscape</span></a></div>
-          <div class="toc-row"><a href="#p08"><span class="toc-row__num">08</span><span>Executive summary &middot; adult &amp; graduate</span></a></div>
+          <div class="toc-row"><a href="#p06"><span class="toc-row__num">07</span><span>Information architecture</span></a></div>
+          <div class="toc-row"><a href="#p07"><span class="toc-row__num">08</span><span>Philadelphia peer landscape</span></a></div>
+          <div class="toc-row"><a href="#p08"><span class="toc-row__num">09</span><span>Executive summary</span></a></div>
         </div>
-
         <div class="toc-group">
           <div class="toc-group__label">The priority</div>
-          <div class="toc-row"><a href="#p09"><span class="toc-row__num">09</span><span>Four tactics for adult &amp; graduate</span></a></div>
-          <div class="toc-row"><a href="#p10"><span class="toc-row__num">10</span><span>Variant A &middot; undergraduate hero</span></a></div>
-          <div class="toc-row"><a href="#p11"><span class="toc-row__num">11</span><span>Variant B &middot; adult &amp; graduate hero</span></a></div>
+          <div class="toc-row"><a href="#p09"><span class="toc-row__num">10</span><span>Four adult/graduate tactics</span></a></div>
+          <div class="toc-row"><a href="#p10"><span class="toc-row__num">11</span><span>Variant A hero · UG</span></a></div>
+          <div class="toc-row"><a href="#p11"><span class="toc-row__num">12</span><span>Variant B hero · adult/grad</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Differentiation</div>
-          <div class="toc-row"><a href="#p12"><span class="toc-row__num">12</span><span>Six differentiators</span></a></div>
-          <div class="toc-row"><a href="#p13"><span class="toc-row__num">13</span><span>Catholic mission &middot; whole person</span></a></div>
-          <div class="toc-row"><a href="#p14"><span class="toc-row__num">14</span><span>Who we are building for</span></a></div>
+          <div class="toc-row"><a href="#p12"><span class="toc-row__num">13</span><span>Six differentiators</span></a></div>
+          <div class="toc-row"><a href="#p13"><span class="toc-row__num">14</span><span>Catholic mission thesis</span></a></div>
+          <div class="toc-row"><a href="#p14"><span class="toc-row__num">15</span><span>Who we build for</span></a></div>
         </div>
-
         <div class="toc-group">
           <div class="toc-group__label">Intellectual heart</div>
-          <div class="toc-row"><a href="#p15"><span class="toc-row__num">15</span><span>AI content architecture &amp; AEO</span></a></div>
-          <div class="toc-row"><a href="#p16"><span class="toc-row__num">16</span><span>ROI math &middot; the business case</span></a></div>
-          <div class="toc-row"><a href="#p17"><span class="toc-row__num">17</span><span>Four-stage enrollment funnel</span></a></div>
+          <div class="toc-row"><a href="#p15"><span class="toc-row__num">16</span><span>AI content &amp; AEO</span></a></div>
+          <div class="toc-row"><a href="#p16"><span class="toc-row__num">17</span><span>ROI · business case</span></a></div>
+          <div class="toc-row"><a href="#p17"><span class="toc-row__num">18</span><span>Enrollment funnel</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Approach &amp; methodology</div>
-          <div class="toc-row"><a href="#p18"><span class="toc-row__num">18</span><span>Discovery &amp; information architecture</span></a></div>
-          <div class="toc-row"><a href="#p19"><span class="toc-row__num">19</span><span>Content migration &middot; 1,601 &rarr; 650</span></a></div>
-          <div class="toc-row"><a href="#p20"><span class="toc-row__num">20</span><span>Collaboration model &middot; four rituals</span></a></div>
+          <div class="toc-row"><a href="#p18"><span class="toc-row__num">19</span><span>Discovery &amp; IA</span></a></div>
+          <div class="toc-row"><a href="#p19"><span class="toc-row__num">20</span><span>Content migration</span></a></div>
+          <div class="toc-row"><a href="#p20"><span class="toc-row__num">21</span><span>Collaboration model</span></a></div>
         </div>
-
         <div class="toc-group">
           <div class="toc-group__label">Technical approach</div>
-          <div class="toc-row"><a href="#p21"><span class="toc-row__num">21</span><span>CMS &middot; WordPress, not headless</span></a></div>
-          <div class="toc-row"><a href="#p22"><span class="toc-row__num">22</span><span>Tech stack &amp; Slate integration</span></a></div>
-          <div class="toc-row"><a href="#p23"><span class="toc-row__num">23</span><span>Accessibility &middot; WCAG 2.2 AA</span></a></div>
-          <div class="toc-row"><a href="#p24"><span class="toc-row__num">24</span><span>Security &amp; compliance</span></a></div>
+          <div class="toc-row"><a href="#p21"><span class="toc-row__num">22</span><span>CMS · WordPress</span></a></div>
+          <div class="toc-row"><a href="#p22"><span class="toc-row__num">23</span><span>Tech stack &amp; Slate</span></a></div>
+          <div class="toc-row"><a href="#p23"><span class="toc-row__num">24</span><span>WCAG 2.2 AA</span></a></div>
+          <div class="toc-row"><a href="#p24"><span class="toc-row__num">25</span><span>Security &amp; compliance</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Plan, people, proof &amp; price</div>
-          <div class="toc-row"><a href="#p25"><span class="toc-row__num">25</span><span>Timeline &middot; May &rarr; September 2026</span></a></div>
-          <div class="toc-row"><a href="#p26"><span class="toc-row__num">26</span><span>Team &middot; Scott, Chris, Eric &amp; James</span></a></div>
-          <div class="toc-row"><a href="#p27"><span class="toc-row__num">27</span><span>Portfolio &middot; case studies</span></a></div>
-          <div class="toc-row"><a href="#p28"><span class="toc-row__num">28</span><span>Budget &middot; $145,000 fixed fee, all-in</span></a></div>
-          <div class="toc-row"><a href="#p29"><span class="toc-row__num">29</span><span>Post-launch support &middot; 90 days</span></a></div>
-          <div class="toc-row"><a href="#p30"><span class="toc-row__num">30</span><span>What we won&rsquo;t do &middot; closing</span></a></div>
+          <div class="toc-row"><a href="#p25"><span class="toc-row__num">26</span><span>Timeline · June → Sept</span></a></div>
+          <div class="toc-row"><a href="#p26"><span class="toc-row__num">27</span><span>Team · four named leads</span></a></div>
+          <div class="toc-row"><a href="#p27"><span class="toc-row__num">28</span><span>Portfolio · case studies</span></a></div>
+          <div class="toc-row"><a href="#p28"><span class="toc-row__num">29</span><span>Budget · $145K fixed</span></a></div>
+          <div class="toc-row"><a href="#p29"><span class="toc-row__num">30</span><span>90-day post-launch support</span></a></div>
+          <div class="toc-row"><a href="#p30"><span class="toc-row__num">31</span><span>In closing</span></a></div>
         </div>
       </div>
     </div>
     <footer class="page__footer">
       <span>Proposal table of contents · RFP Section 12 format compliance</span>
-      <span>02 / 30</span>
+      <span>03 / 31</span>
     </footer>
   </section>
 
@@ -2246,7 +2270,7 @@
   <section class="page number page--sage" id="p03">
     <header class="page__header">
       <span class="page__eyebrow">The state of the site · April 2026 scrape</span>
-      <span class="page__num">Section 03 / 30</span>
+      <span class="page__num">Section 04 / 31</span>
     </header>
     <div class="page__body">
       <div style="text-align: center; margin-bottom: -0.15in;"><span class="figure-label" style="justify-content: center;"><strong>Fig.&nbsp;02</strong> &nbsp;·&nbsp; holyfamily.edu sitemap scrape</span></div>
@@ -2261,7 +2285,7 @@
     </div>
     <footer class="page__footer">
       <span>Source: holyfamily.edu/sitemap.xml scrape, April 2026 · RFP cites ~1,300, actual is 1,601</span>
-      <span>03 / 30</span>
+      <span>04 / 31</span>
     </footer>
   </section>
 
@@ -2271,7 +2295,7 @@
   <section class="page" id="p04">
     <header class="page__header">
       <span class="page__eyebrow">Reading the RFP, not skimming it</span>
-      <span class="page__num">Section 04 / 30</span>
+      <span class="page__num">Section 05 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The RFP, mapped to this proposal</div>
@@ -2297,7 +2321,7 @@
     </div>
     <footer class="page__footer">
       <span>Every row is addressed elsewhere in the proposal · this table is a navigation aid</span>
-      <span>04 / 30</span>
+      <span>05 / 31</span>
     </footer>
   </section>
 
@@ -2307,7 +2331,7 @@
   <section class="page page--sage" id="p05">
     <header class="page__header">
       <span class="page__eyebrow">Before you even sign</span>
-      <span class="page__num">Section 05 / 30</span>
+      <span class="page__num">Section 06 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Day 1 Value Pack · six concrete artifacts</div>
@@ -2361,7 +2385,7 @@
     </div>
     <footer class="page__footer">
       <span>Artifacts rendered inside this proposal · refined during Discovery with your team</span>
-      <span>05 / 30</span>
+      <span>06 / 31</span>
     </footer>
   </section>
 
@@ -2371,7 +2395,7 @@
   <section class="page" id="p06">
     <header class="page__header">
       <span class="page__eyebrow">Proposed information architecture</span>
-      <span class="page__num">Section 06 / 30</span>
+      <span class="page__num">Section 07 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Sitemap, drafted · 1,601 → ~650 pages</div>
@@ -2398,7 +2422,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section B.3 · Information Architecture Approach · first-pass recommendation</span>
-      <span>06 / 30</span>
+      <span>07 / 31</span>
     </footer>
   </section>
 
@@ -2408,7 +2432,7 @@
   <section class="page page--blush" id="p07">
     <header class="page__header">
       <span class="page__eyebrow">The Philadelphia Catholic peer landscape</span>
-      <span class="page__num">Section 07 / 30</span>
+      <span class="page__num">Section 08 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Your neighborhood, on the web</div>
@@ -2436,7 +2460,7 @@
     </div>
     <footer class="page__footer">
       <span>Peer homepage captures · April 2026 · direct regional and religious-mission competitors</span>
-      <span>07 / 30</span>
+      <span>08 / 31</span>
     </footer>
   </section>
 
@@ -2446,7 +2470,7 @@
   <section class="page" id="p08">
     <header class="page__header">
       <span class="page__eyebrow">Executive Summary · for the President's Cabinet</span>
-      <span class="page__num">Section 08 / 30</span>
+      <span class="page__num">Section 09 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The thesis of this response</div>
@@ -2475,7 +2499,7 @@
     </div>
     <footer class="page__footer">
       <span>Executive summary · for the President's Cabinet · three commitments</span>
-      <span>08 / 30</span>
+      <span>09 / 31</span>
     </footer>
   </section>
 
@@ -2485,7 +2509,7 @@
   <section class="page page--sand" id="p09">
     <header class="page__header">
       <span class="page__eyebrow">The RFP's loudest signal · Adult &amp; Graduate enrollment</span>
-      <span class="page__num">Section 09 / 30</span>
+      <span class="page__num">Section 10 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">Four tactics for <em>adult and graduate enrollment.</em></h2>
@@ -2515,7 +2539,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section 4 · Project Goals · "specific focus on improving enrollment in Adult and Graduate programs"</span>
-      <span>09 / 30</span>
+      <span>10 / 31</span>
     </footer>
   </section>
 
@@ -2525,7 +2549,7 @@
   <section class="page" id="p10">
     <header class="page__header">
       <span class="page__eyebrow">Drafted homepage hero · Variant A</span>
-      <span class="page__num">Section 10 / 30</span>
+      <span class="page__num">Section 11 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Variant A · 18-year-old undergraduate · first-time visitor</div>
@@ -2548,7 +2572,7 @@
     </div>
     <footer class="page__footer">
       <span>Copy sample · refined with Katherine Primus during Discovery · not final</span>
-      <span>10 / 30</span>
+      <span>11 / 31</span>
     </footer>
   </section>
 
@@ -2558,7 +2582,7 @@
   <section class="page" id="p11">
     <header class="page__header">
       <span class="page__eyebrow">Drafted homepage hero · Variant B · the money page</span>
-      <span class="page__num">Section 11 / 30</span>
+      <span class="page__num">Section 12 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">The same homepage, <em>drafted for them.</em></h2>
@@ -2580,7 +2604,7 @@
     </div>
     <footer class="page__footer">
       <span>Both variants in base scope · variant switched via UTM + behavior · no add-on</span>
-      <span>11 / 30</span>
+      <span>12 / 31</span>
     </footer>
   </section>
 
@@ -2590,7 +2614,7 @@
   <section class="page page--lavender" id="p12">
     <header class="page__header">
       <span class="page__eyebrow">Section G · Innovation &amp; Differentiation</span>
-      <span class="page__num">Section 12 / 30</span>
+      <span class="page__num">Section 13 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Six specific commitments in base scope</div>
@@ -2636,7 +2660,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section G.1 · Innovation and Differentiation</span>
-      <span>12 / 30</span>
+      <span>13 / 31</span>
     </footer>
   </section>
 
@@ -2646,7 +2670,7 @@
   <section class="page" id="p13">
     <header class="page__header">
       <span class="page__eyebrow">Section G.2 · Cultural fit &amp; values</span>
-      <span class="page__num">Section 13 / 30</span>
+      <span class="page__num">Section 14 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">Founded in 1954 by the Sisters of the Holy Family <em>of Nazareth.</em></h2>
@@ -2676,7 +2700,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section G.2 · Cultural Fit and Values · mission alignment as strategy, not stamp</span>
-      <span>13 / 30</span>
+      <span>14 / 31</span>
     </footer>
   </section>
 
@@ -2686,7 +2710,7 @@
   <section class="page" id="p14">
     <header class="page__header">
       <span class="page__eyebrow">We read your leadership page</span>
-      <span class="page__num">Section 14 / 30</span>
+      <span class="page__num">Section 15 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The decision-making unit, named</div>
@@ -2733,7 +2757,7 @@
     </div>
     <footer class="page__footer">
       <span>Source: holyfamily.edu/about/leadership/presidents-cabinet · public record</span>
-      <span>14 / 30</span>
+      <span>15 / 31</span>
     </footer>
   </section>
 
@@ -2743,7 +2767,7 @@
   <section class="page" id="p15">
     <header class="page__header">
       <span class="page__eyebrow">RFP Section 6 · AI-optimized content architecture</span>
-      <span class="page__num">Section 15 / 30</span>
+      <span class="page__num">Section 16 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Drafted for holyfamily.edu · not a promise</div>
@@ -2805,7 +2829,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · llms.txt · Schema.org Structured Data · Agentic Browsing Optimization</span>
-      <span>15 / 30</span>
+      <span>16 / 31</span>
     </footer>
   </section>
 
@@ -2815,7 +2839,7 @@
   <section class="page page--sand" id="p16">
     <header class="page__header">
       <span class="page__eyebrow">The business case · for Eric Nelson, MBA</span>
-      <span class="page__num">Section 16 / 30</span>
+      <span class="page__num">Section 17 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">A $145K investment, <em>a $2.5M year-one return.</em></h2>
@@ -2867,7 +2891,7 @@
     </div>
     <footer class="page__footer">
       <span>Conservative assumptions throughout · actual HFU figures replace placeholders in Discovery week one</span>
-      <span>16 / 30</span>
+      <span>17 / 31</span>
     </footer>
   </section>
 
@@ -2877,7 +2901,7 @@
   <section class="page" id="p17">
     <header class="page__header">
       <span class="page__eyebrow">RFP Section 6 · Enrollment funnel measurement</span>
-      <span class="page__num">Section 17 / 30</span>
+      <span class="page__num">Section 18 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">A four-stage funnel, <em>measured end to end.</em></h2>
@@ -2912,7 +2936,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · Analytics &amp; Enrollment Funnel Measurement · full framework</span>
-      <span>17 / 30</span>
+      <span>18 / 31</span>
     </footer>
   </section>
 
@@ -2922,7 +2946,7 @@
   <section class="page" id="p18">
     <header class="page__header">
       <span class="page__eyebrow">Section B.2–B.3 · Discovery &amp; IA methodology</span>
-      <span class="page__num">Section 18 / 30</span>
+      <span class="page__num">Section 19 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">How we listen before we build</div>
@@ -2938,7 +2962,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section B.2 and B.3 · Discovery &amp; Strategy · Information Architecture</span>
-      <span>18 / 30</span>
+      <span>19 / 31</span>
     </footer>
   </section>
 
@@ -2948,7 +2972,7 @@
   <section class="page page--sage" id="p19">
     <header class="page__header">
       <span class="page__eyebrow">Section B.6 · Content strategy &amp; migration</span>
-      <span class="page__num">Section 19 / 30</span>
+      <span class="page__num">Section 20 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The real scope is smaller · the real cost is lower</div>
@@ -2970,7 +2994,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section B.6 · Content Strategy and Migration · AI-accelerated, human-decided</span>
-      <span>19 / 30</span>
+      <span>20 / 31</span>
     </footer>
   </section>
 
@@ -2980,7 +3004,7 @@
   <section class="page" id="p20">
     <header class="page__header">
       <span class="page__eyebrow">Collaborative model · 15 percent of the evaluation</span>
-      <span class="page__num">Section 20 / 30</span>
+      <span class="page__num">Section 21 / 31</span>
     </header>
     <div class="page__body">
       <h2 class="h1">The University team builds <em>with</em> us, not receives from us.</h2>
@@ -3011,7 +3035,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section A.4 and B.8 · Collaborative Development Experience &amp; Process</span>
-      <span>20 / 30</span>
+      <span>21 / 31</span>
     </footer>
   </section>
 
@@ -3021,7 +3045,7 @@
   <section class="page" id="p21">
     <header class="page__header">
       <span class="page__eyebrow">Section C.1 · CMS recommendation</span>
-      <span class="page__num">Section 21 / 30</span>
+      <span class="page__num">Section 22 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Traditional WordPress, not headless · honest tradeoff math</div>
@@ -3052,7 +3076,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section C.1 · CMS Recommendation</span>
-      <span>21 / 30</span>
+      <span>22 / 31</span>
     </footer>
   </section>
 
@@ -3062,7 +3086,7 @@
   <section class="page page--sand" id="p22">
     <header class="page__header">
       <span class="page__eyebrow">Section C.2–C.5 · Technical architecture &amp; integrations</span>
-      <span class="page__num">Section 22 / 30</span>
+      <span class="page__num">Section 23 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">A proven stack, intentionally chosen</div>
@@ -3103,7 +3127,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section C.2–C.5 · Technical Architecture, Hosting, Accessibility, Integration</span>
-      <span>22 / 30</span>
+      <span>23 / 31</span>
     </footer>
   </section>
 
@@ -3113,7 +3137,7 @@
   <section class="page" id="p23">
     <header class="page__header">
       <span class="page__eyebrow">Section C.4 · WCAG 2.2 AA</span>
-      <span class="page__num">Section 23 / 30</span>
+      <span class="page__num">Section 24 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Integrated throughout, not retrofitted</div>
@@ -3129,7 +3153,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section C.4 · Accessibility Compliance · shift-left methodology</span>
-      <span>23 / 30</span>
+      <span>24 / 31</span>
     </footer>
   </section>
 
@@ -3139,7 +3163,7 @@
   <section class="page page--lavender" id="p24">
     <header class="page__header">
       <span class="page__eyebrow">Section 6 · Security requirements</span>
-      <span class="page__num">Section 24 / 30</span>
+      <span class="page__num">Section 25 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">For Mark Green, Ed.D. · VP Institutional Effectiveness &amp; IT</div>
@@ -3169,7 +3193,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · Security Requirements · OWASP · GDPR · CCPA · FERPA-aware</span>
-      <span>24 / 30</span>
+      <span>25 / 31</span>
     </footer>
   </section>
 
@@ -3179,7 +3203,7 @@
   <section class="page page--sage" id="p25">
     <header class="page__header">
       <span class="page__eyebrow">Section D · Timeline &amp; approval gates</span>
-      <span class="page__num">Section 25 / 30</span>
+      <span class="page__num">Section 26 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Three months, five phases, five approval gates</div>
@@ -3224,7 +3248,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section D · Timeline &amp; Project Management</span>
-      <span>25 / 30</span>
+      <span>26 / 31</span>
     </footer>
   </section>
 
@@ -3234,7 +3258,7 @@
   <section class="page" id="p26">
     <header class="page__header">
       <span class="page__eyebrow">Section A.1–A.2 · Agency overview &amp; team</span>
-      <span class="page__num">Section 26 / 30</span>
+      <span class="page__num">Section 27 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The four people on this engagement</div>
@@ -3274,7 +3298,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section A.1 and A.2 · Agency Information &amp; Team Composition</span>
-      <span>26 / 30</span>
+      <span>27 / 31</span>
     </footer>
   </section>
 
@@ -3284,7 +3308,7 @@
   <section class="page page--sand" id="p27">
     <header class="page__header">
       <span class="page__eyebrow">Section A.3 · Higher education portfolio</span>
-      <span class="page__num">Section 27 / 30</span>
+      <span class="page__num">Section 28 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Evidence available on request &middot; honestly framed</div>
@@ -3318,7 +3342,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section A.3 &amp; A.5 · Portfolio and References</span>
-      <span>27 / 30</span>
+      <span>28 / 31</span>
     </footer>
   </section>
 
@@ -3328,7 +3352,7 @@
   <section class="page" id="p28">
     <header class="page__header">
       <span class="page__eyebrow">Section E · Budget &amp; pricing</span>
-      <span class="page__num">Section 28 / 30</span>
+      <span class="page__num">Section 29 / 31</span>
     </header>
     <div class="page__body">
       <div class="price-row" style="margin-top: 0;">
@@ -3379,7 +3403,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section E.1–E.3 · Cost Breakdown · Assumptions · Value Proposition</span>
-      <span>28 / 30</span>
+      <span>29 / 31</span>
     </footer>
   </section>
 
@@ -3389,7 +3413,7 @@
   <section class="page page--blush" id="p29">
     <header class="page__header">
       <span class="page__eyebrow">Section F · Post-launch support</span>
-      <span class="page__num">Section 29 / 30</span>
+      <span class="page__num">Section 30 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Ninety days, then full ownership</div>
@@ -3419,7 +3443,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section F · 90-day support in base scope · extended support is optional</span>
-      <span>29 / 30</span>
+      <span>30 / 31</span>
     </footer>
   </section>
 
@@ -3429,7 +3453,7 @@
   <section class="page final" id="p30">
     <header class="page__header">
       <span class="page__eyebrow">In closing · Section G · what we won't do</span>
-      <span class="page__num">Section 30 / 30</span>
+      <span class="page__num">Section 31 / 31</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Four commitments</div>
@@ -3460,7 +3484,7 @@
     </div>
     <footer class="page__footer">
       <span>Small College Consulting · Holy Family University Website Redesign Proposal · Sections A through G · proposal valid 90 days</span>
-      <span>30 / 30</span>
+      <span>31 / 31</span>
     </footer>
   </section>
 
