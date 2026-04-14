@@ -141,6 +141,7 @@
       flex-direction: column;
       min-height: 0;
       gap: 22px;
+      overflow: hidden;
     }
 
     .page__footer {
@@ -619,19 +620,25 @@
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 
+    /* Editorial row — no box, just a hairline rule at the top and breathing room.
+       The "vertical card" aesthetic the committee sees in every generic agency
+       deck is replaced with open columns of text that read like a serious
+       publication. Padding is vertical only; horizontal padding is zero so
+       each column of type aligns to its grid track. */
     .card {
-      padding: 22px 24px;
-      background: white;
-      border: 1px solid rgba(15,17,23,0.06);
-      border-radius: 5px;
+      padding: 18px 0 4px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      border-radius: 0;
       display: flex;
       flex-direction: column;
-      gap: 11px;
-      box-shadow: 0 1px 1px rgba(15,17,23,0.018), 0 2px 6px rgba(15,17,23,0.02), 0 10px 24px rgba(15,17,23,0.028);
+      gap: 10px;
+      box-shadow: none;
     }
     .page--ink .card {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.1);
+      background: transparent;
+      border-top-color: rgba(255,255,255,0.14);
     }
     .card__eyebrow {
       font-family: var(--mono);
@@ -2036,7 +2043,7 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff May 1, 2026 &middot; launch September 1, 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
@@ -2071,7 +2078,7 @@
         <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
         <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
         <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-        <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>5-month sprint</span></a>
+        <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
         <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
       </nav>
     </details>
@@ -2414,7 +2421,7 @@
     <div class="page__body">
       <div class="eyebrow">Your neighborhood, on the web</div>
       <h2 class="h1">Holy Family and its <em>Philadelphia Catholic peers.</em></h2>
-      <p class="prose">The institutions most directly competing for the attention of a prospective Holy Family student on any given visit weekend include La Salle, Villanova, and Neumann. Each of these peers has modernized its website in recent years. Holy Family has not yet done so. The five-month timeline outlined in this response is structured to close that gap before the start of the next strategic plan cycle.</p>
+      <p class="prose">The institutions most directly competing for the attention of a prospective Holy Family student on any given visit weekend include La Salle, Villanova, and Neumann. Each of these peers has modernized its website in recent years. Holy Family has not yet done so. The accelerated timeline outlined in this response is structured to close that gap before the start of the next strategic plan cycle.</p>
       <div class="figure-label" style="margin-top: 0.1in;"><strong>Fig.&nbsp;03</strong> &nbsp;·&nbsp; Peer homepage captures, April 2026</div>
       <div class="peer-grid">
         <figure>
@@ -3472,7 +3479,7 @@
           <div class="card__body">Rick Mitchell writes Drupal and React himself. The engagement model is structured so that he and his team can extend the site during the build rather than receive a finished artifact at handoff.</div>
         </div>
       </div>
-      <p style="font-family: var(--serif); font-style: italic; font-size: 12.5pt; line-height: 1.46; color: rgba(255,255,255,0.78); margin-top: 0.18in; max-width: 58ch; font-variation-settings: 'opsz' 18;">When Dr. Prisco's next strategic plan begins in summer 2026, our intent is to deliver a website launching beside it that matches the ambition of the plan. We recommend a five-month engagement with go-live on September 1, 2026 &mdash; in time to influence the Spring and Fall 2027 incoming class. When the 90 days of post-launch support conclude, our intent is for Rick Mitchell's team to be operating this site independently. <strong style="color: var(--teal); font-style: normal; font-weight: 400;">Fixed fee of $145,000, all-in. Scott Novak, Chris Coons, Eric Yerke, and James Vineburgh are available for finalist presentations.</strong></p>
+      <p style="font-family: var(--serif); font-style: italic; font-size: 12.5pt; line-height: 1.46; color: rgba(255,255,255,0.78); margin-top: 0.18in; max-width: 58ch; font-variation-settings: 'opsz' 18;">When Dr. Prisco's next strategic plan begins in summer 2026, our intent is to deliver a website launching beside it that matches the ambition of the plan. We recommend a three-month engagement with go-live on September 1, 2026 &mdash; in time to influence the Spring and Fall 2027 incoming class. When the 90 days of post-launch support conclude, our intent is for Rick Mitchell's team to be operating this site independently. <strong style="color: var(--teal); font-style: normal; font-weight: 400;">Fixed fee of $145,000, all-in. Scott Novak, Chris Coons, Eric Yerke, and James Vineburgh are available for finalist presentations.</strong></p>
     </div>
     <footer class="page__footer">
       <span>Small College Consulting · Holy Family University Website Redesign Proposal · Sections A through G · proposal valid 90 days</span>
