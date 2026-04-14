@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admissions &amp; Aid &middot; A first-rate education, within reach &middot; Holy Family University</title>
-  <meta name="description" content="Holy Family University admissions — one of the most affordable private universities in Pennsylvania. Close to 100 percent of undergraduates receive financial aid. Undergraduate, transfer, graduate, adult, and international paths.">
+  <title>Holy Family University · A Catholic university rooted in family, since 1954</title>
+  <meta name="description" content="Holy Family University — a Catholic university in Philadelphia and Newtown, PA. Forty-plus programs, 13:1 student-to-faculty ratio, ranked a Top 3 Best Value in the region. Rooted in the Sisters of the Holy Family of Nazareth since 1954.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1890,433 +1890,6 @@
       .foot__news { max-width: none; }
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
-
-    /* ═════════════════════ ADMISSIONS-SCOPED ADDITIONS ═════════════════════ */
-    /* Five-up paths grid (reuses .pillar card styling) */
-    .pillars__grid--five { grid-template-columns: repeat(5, 1fr); gap: 16px; }
-    .pillars__grid--five .pillar { padding: 30px 26px 26px; min-height: 260px; }
-    .pillars__grid--five .pillar h3 { font-size: 17.5px; }
-    .pillars__grid--five .pillar p { font-size: 14px; }
-    .path-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 100px;
-      background: hsl(var(--hfu-yellow) / 0.18);
-      color: hsl(var(--hfu-navy));
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      align-self: flex-start;
-    }
-
-    /* Affordability split */
-    .afford {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-      overflow: hidden;
-    }
-    .afford::before {
-      content: "";
-      position: absolute;
-      top: -20%;
-      left: -10%;
-      width: 50%;
-      height: 60%;
-      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.1), transparent 60%);
-      pointer-events: none;
-    }
-    .afford__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-      position: relative;
-    }
-    .afford__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      line-height: 1.02;
-    }
-    .afford__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .afford__head .lead { max-width: 46ch; }
-
-    .afford__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: clamp(3rem, 5vw, 5rem);
-      align-items: center;
-      position: relative;
-    }
-    .afford__big {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-2xl);
-      padding: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
-      position: relative;
-      overflow: hidden;
-    }
-    .afford__big::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 85% 15%, hsl(var(--hfu-yellow) / 0.14), transparent 50%);
-      pointer-events: none;
-    }
-    .afford__num {
-      font-family: var(--display);
-      font-size: clamp(6rem, 13vw, 13rem);
-      line-height: 0.86;
-      letter-spacing: -0.045em;
-      color: hsl(var(--hfu-navy));
-      font-weight: 300;
-      font-variation-settings: "opsz" 60;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .afford__num .tilde {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-      font-size: 0.6em;
-      vertical-align: 0.28em;
-      margin-right: 0.02em;
-    }
-    .afford__num .pct {
-      color: hsl(var(--hfu-yellow-deep));
-      font-size: 0.72em;
-      font-style: italic;
-      font-weight: 300;
-    }
-    .afford__big h3 {
-      font-family: var(--display);
-      font-size: clamp(1.4rem, 2vw, 1.8rem);
-      line-height: 1.2;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      max-width: 22ch;
-      position: relative;
-    }
-    .afford__sub {
-      font-family: var(--display);
-      font-style: italic;
-      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
-      color: hsl(var(--hfu-blue));
-      font-weight: 300;
-      margin-bottom: 24px;
-      display: block;
-      position: relative;
-    }
-    .afford__foot {
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      line-height: 1.6;
-      max-width: 40ch;
-      padding-top: 20px;
-      border-top: 1px solid hsl(var(--border-soft));
-      position: relative;
-      font-style: italic;
-      font-family: var(--display);
-    }
-    .afford__foot strong { color: hsl(var(--hfu-navy)); font-weight: 500; font-style: normal; font-family: var(--body); }
-
-    .afford__side { display: flex; flex-direction: column; gap: 18px; }
-    .afford__tile {
-      padding: 28px 30px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 22px;
-      align-items: center;
-      transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out), border-color 280ms var(--ease-out);
-    }
-    .afford__tile:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .afford__tile .key {
-      font-family: var(--display);
-      font-size: clamp(1.7rem, 2.4vw, 2.2rem);
-      line-height: 0.95;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.03em;
-      font-weight: 400;
-      font-variation-settings: "opsz" 60;
-      min-width: 80px;
-    }
-    .afford__tile .key em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .afford__tile .body h4 {
-      font-family: var(--body);
-      font-size: 15px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      margin-bottom: 4px;
-      letter-spacing: -0.005em;
-    }
-    .afford__tile .body p {
-      font-size: 13px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.5;
-    }
-    .afford__essay {
-      padding: 4px 4px 0;
-    }
-    .afford__essay p {
-      font-size: 14.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.6;
-      margin-bottom: 16px;
-      max-width: 44ch;
-    }
-
-    /* How-to-apply steps */
-    .steps {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .steps__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .steps__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      line-height: 1.02;
-    }
-    .steps__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .steps__head .lead { max-width: 46ch; }
-
-    .steps__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      position: relative;
-    }
-    .step {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 34px 28px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-height: 250px;
-      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
-      overflow: hidden;
-    }
-    .step::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, hsl(var(--hfu-yellow)) 0%, hsl(var(--hfu-blue)) 100%);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 400ms var(--ease-out);
-    }
-    .step:hover::before { transform: scaleX(1); }
-    .step:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .step__num {
-      font-family: var(--display);
-      font-size: 52px;
-      line-height: 0.9;
-      color: hsl(var(--hfu-blue));
-      font-weight: 300;
-      font-style: italic;
-      letter-spacing: -0.04em;
-      font-variation-settings: "opsz" 60;
-      margin-bottom: 4px;
-    }
-    .step h3 {
-      font-family: var(--display);
-      font-size: clamp(1.3rem, 1.7vw, 1.5rem);
-      line-height: 1.1;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.018em;
-      font-variation-settings: "opsz" 60;
-    }
-    .step p {
-      font-size: 14px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      flex: 1;
-    }
-    .step__doc {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 14px;
-      margin-top: auto;
-      border-top: 1px solid hsl(var(--border-soft));
-      font-size: 11.5px;
-      color: hsl(var(--fg-subtle));
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-    .step__doc svg { width: 12px; height: 12px; color: hsl(var(--hfu-blue)); opacity: 0.7; }
-    .step__doc strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
-
-    .steps__foot {
-      max-width: var(--container);
-      margin: 48px auto 0;
-      padding: 0 var(--gutter);
-    }
-    .steps__callout {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px 24px;
-      padding: 22px 30px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      font-size: 14px;
-      color: hsl(var(--fg));
-      font-family: var(--display);
-      font-style: italic;
-      font-weight: 300;
-      text-align: center;
-      flex-wrap: wrap;
-      max-width: 780px;
-      margin: 0 auto;
-    }
-    .steps__callout .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: hsl(var(--hfu-yellow) / 0.18);
-      color: hsl(var(--hfu-navy));
-      border-radius: 100px;
-      font-family: var(--body);
-      font-style: normal;
-      font-weight: 600;
-      font-size: 12.5px;
-      letter-spacing: 0.01em;
-    }
-    .steps__callout a {
-      color: hsl(var(--hfu-blue));
-      font-weight: 500;
-      border-bottom: 1px dashed hsl(var(--hfu-blue) / 0.4);
-    }
-    .steps__callout a:hover { color: hsl(var(--hfu-blue-deep)); border-bottom-color: hsl(var(--hfu-blue)); }
-
-    /* Events (three-up, reuses .calendar) */
-    .calendar--events .calendar__head {
-      grid-template-columns: 1.2fr 1fr;
-      align-items: end;
-    }
-    .calendar--events .calendar__head p.lead { margin-top: 8px; }
-    .calendar--events .calendar__line { display: none; }
-    .calendar__row--events {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .calendar__row--events .cal-item { gap: 16px; }
-    .cal-item__date--rolling .month {
-      font-size: 10.5px;
-      letter-spacing: 0.14em;
-    }
-    .cal-item__date--rolling .day {
-      font-size: 26px;
-      color: hsl(var(--hfu-yellow-deep));
-      font-style: italic;
-      font-weight: 300;
-    }
-    .cal-item:hover .cal-item__date--rolling .day { color: hsl(var(--hfu-yellow)); }
-    .cal-item__date--rolling .dow {
-      font-size: 11px;
-      color: hsl(var(--hfu-navy));
-      font-weight: 600;
-      letter-spacing: 0.06em;
-    }
-    .cal-item:hover .cal-item__date--rolling .dow { color: hsl(0 0% 100% / 0.85); }
-    .cal-item__desc {
-      font-size: 13.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      margin-top: -4px;
-    }
-    .cal-item__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-      margin-top: 4px;
-    }
-    .cal-item__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .cal-item:hover .cal-item__link svg { transform: translateX(3px); }
-
-    @media (max-width: 1100px) {
-      .pillars__grid--five { grid-template-columns: repeat(2, 1fr); }
-      .afford__head { grid-template-columns: 1fr; gap: 24px; }
-      .afford__grid { grid-template-columns: 1fr; gap: 32px; }
-      .steps__head { grid-template-columns: 1fr; gap: 24px; }
-      .steps__grid { grid-template-columns: repeat(2, 1fr); }
-      .calendar--events .calendar__head { grid-template-columns: 1fr; gap: 16px; }
-      .calendar__row--events { grid-template-columns: 1fr; gap: 24px; }
-    }
-    @media (max-width: 720px) {
-      .pillars__grid--five { grid-template-columns: 1fr; }
-      .afford__big { padding: 44px 28px; }
-      .afford__tile { grid-template-columns: 1fr; gap: 10px; }
-      .afford__tile .key { min-width: 0; }
-      .steps__grid { grid-template-columns: 1fr; }
-      .step { min-height: auto; padding: 28px 24px 24px; }
-      .steps__callout { padding: 18px 22px; border-radius: 24px; font-size: 13.5px; }
-    }
   </style>
 </head>
 <body>
@@ -2371,13 +1944,13 @@
   <!-- ═════════════════════ MAIN NAV ═════════════════════ -->
   <header class="nav">
     <div class="nav__inner">
-      <a href="hfu-home.html" class="nav__logo-link" aria-label="Holy Family University">
+      <a href="#" class="nav__logo-link" aria-label="Holy Family University">
         <img class="nav__logo" src="../assets/hfu-logo.svg" alt="Holy Family University" decoding="async">
       </a>
       <nav aria-label="Primary">
         <ul class="nav__list">
           <li><a href="hfu-programs.html">Academics <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
-          <li><a href="hfu-admissions.html" class="is-active">Admissions &amp; Aid <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="hfu-admissions.html">Admissions &amp; Aid <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
           <li><a href="hfu-student-life.html">Student Experience <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
           <li><a href="#">About <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
         </ul>
@@ -2386,7 +1959,7 @@
         <a href="#" class="nav__search" aria-label="Search">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
         </a>
-        <a href="#apply" class="btn btn--primary">
+        <a href="hfu-admissions.html" class="btn btn--primary">
           Apply Now
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
@@ -2400,27 +1973,21 @@
   <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
   <section class="hero">
     <div class="hero__bg">
-      <img src="../assets/hfu-photos/admissions-2858.jpg" alt="A Holy Family University admissions counselor speaking with a prospective student">
+      <img src="../assets/hfu-photos/admissions-art.jpg" alt="A Holy Family University student smiling in a classroom">
     </div>
     <div class="hero__scrim"></div>
     <div class="hero__grain"></div>
 
     <div class="hero__inner">
-      <div class="hero__crumbs">
-        <a href="hfu-home.html">Home</a>
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <span class="is-current">Admissions &amp; Aid</span>
-      </div>
+      <span class="hero__eyebrow">Philadelphia &middot; Since 1954</span>
 
-      <span class="hero__eyebrow">Admissions &amp; Aid</span>
+      <h1>Prepared for work. Prepared for <em>life.</em></h1>
 
-      <h1>A first-rate education, <em>within reach.</em></h1>
-
-      <p class="hero__lead">At Holy Family University, you&#39;re not only a student &mdash; you&#39;re part of the family. We&#39;re committed to making a first-rate education affordable for all.</p>
+      <p class="hero__lead">Holy Family University is a Catholic community that educates the whole person &mdash; expert faculty, small classes, and a graduate employment rate that tells the rest of the story. Four schools. Two campuses. One family.</p>
 
       <div class="hero__ctas">
-        <a href="#apply" class="btn btn--primary btn--lg">
-          Apply Now
+        <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
+          Apply Today
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
         <a href="hfu-visit.html" class="btn btn--glass btn--lg">
@@ -2431,20 +1998,20 @@
 
       <div class="hero__stats">
         <div class="hero__stat">
-          <div class="num">~100<span class="small">%</span></div>
-          <div class="label">Undergraduates<br>Receive Financial Aid</div>
+          <div class="num">13:1</div>
+          <div class="label">Student to<br>Faculty Ratio</div>
         </div>
         <div class="hero__stat">
-          <div class="num">Top 3</div>
-          <div class="label">Best Value &middot; Philadelphia<br>Area &middot; Niche 2025</div>
+          <div class="num">40<span class="small">+</span></div>
+          <div class="label">Bachelor, Master<br>&amp; Doctoral Programs</div>
         </div>
         <div class="hero__stat">
-          <div class="num">5</div>
-          <div class="label">Admission Paths &middot; UG,<br>Transfer, Grad, Adult, Int&#39;l</div>
+          <div class="num">Top<span class="small"> 3</span></div>
+          <div class="label">Best Value, Philadelphia<br>Area &middot; Niche 2025</div>
         </div>
         <div class="hero__stat">
-          <div class="num">Apr 26</div>
-          <div class="label">Spring Open<br>House &middot; 2026</div>
+          <div class="num">25<span class="small">+</span></div>
+          <div class="label">Student Clubs<br>&amp; Organizations</div>
         </div>
       </div>
     </div>
@@ -2452,27 +2019,26 @@
     <div class="hero__scroll">Scroll to explore</div>
   </section>
 
-  <!-- ═════════════════════ FIVE PATHS ═════════════════════ -->
-  <section class="pillars" id="paths">
+  <!-- ═════════════════════ FOUR SCHOOLS ═════════════════════ -->
+  <section class="pillars">
     <div class="pillars__head">
       <div>
-        <span class="eyebrow">Five admission paths</span>
-        <h2>Find your <em>path</em> in.</h2>
+        <span class="eyebrow">Academics</span>
+        <h2>Four schools. One <em>family.</em></h2>
       </div>
-      <p class="lead">Holy Family admits students at every stage of the journey. Pick the path that fits where you are.</p>
+      <p class="lead">&ldquo;Our academic programs span the Schools of Arts and Sciences, Business and Technology, Education, and Nursing and Health Sciences &mdash; designed to foster critical thinking, professional expertise, and a deep sense of ethical responsibility.&rdquo; <span style="color: hsl(var(--fg-subtle)); font-size: 13px; display: block; margin-top: 10px; letter-spacing: 0.02em;">&mdash; Bindhu Alappat, Vice President</span></p>
     </div>
 
-    <div class="pillars__grid pillars__grid--five">
+    <div class="pillars__grid" style="grid-template-columns: repeat(4, 1fr);">
       <article class="pillar">
         <span class="pillar__num">01</span>
         <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/><path d="M3 20h18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7a3 3 0 0 1 3 3v12"/><path d="M20 5h-7a3 3 0 0 0-3 3"/><path d="M4 5v14h7"/><path d="M20 5v14h-7"/></svg>
         </div>
-        <span class="path-tag">Rolling &middot; No fee</span>
-        <h3>Undergraduate</h3>
-        <p>First-year, direct from high school. Rolling admissions. No application fee.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
+        <h3>School of Arts &amp; Sciences</h3>
+        <p>A liberal arts foundation grounded in the humanities, social sciences, and natural sciences &mdash; the broad, rigorous core from which every Holy Family degree is shaped.</p>
+        <a href="hfu-programs.html" class="pillar__link">
+          Explore the School
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
       </article>
@@ -2480,13 +2046,12 @@
       <article class="pillar">
         <span class="pillar__num">02</span>
         <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h14"/><path d="m14 4 3 3-3 3"/><path d="M21 17H7"/><path d="m10 14-3 3 3 3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
         </div>
-        <span class="path-tag">Credit calculator</span>
-        <h3>Transfer</h3>
-        <p>Bring credits from another college. Transfer Credit Calculator on our site shows what applies before you apply.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
+        <h3>School of Business &amp; Technology</h3>
+        <p>Business, computer science, cybersecurity, supply chain, and marketing &mdash; applied programs built alongside Philadelphia employers and designed to put graduates to work.</p>
+        <a href="hfu-programs.html" class="pillar__link">
+          Explore the School
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
       </article>
@@ -2494,13 +2059,12 @@
       <article class="pillar">
         <span class="pillar__num">03</span>
         <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 8v6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 4l9 5-9 5-9-5Z"/><path d="M7 11v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/></svg>
         </div>
-        <span class="path-tag">Fall &middot; Spring &middot; Summer</span>
-        <h3>Graduate</h3>
-        <p>Master&#39;s and doctoral programs across the four schools. Most programs admit in fall, spring, and summer.</p>
+        <h3>School of Education</h3>
+        <p>Teacher certification, special education, educational leadership, and counseling &mdash; preparing educators who carry the Nazareth tradition of teaching the whole person.</p>
         <a href="hfu-programs.html" class="pillar__link">
-          Start here
+          Explore the School
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
       </article>
@@ -2508,212 +2072,142 @@
       <article class="pillar">
         <span class="pillar__num">04</span>
         <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6"/><path d="M9 6h6"/><path d="M6 21c0-4 2.5-6 6-6s6 2 6 6"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <span class="path-tag">Evening &middot; Online</span>
-        <h3>Adult &amp; Continuing</h3>
-        <p>Finish the degree you started elsewhere. Evening, weekend, and fully-online formats.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
+        <h3>School of Nursing &amp; Health Sciences</h3>
+        <p>BSN, RN-to-BSN, MSN, DNP, radiologic science, and health promotion &mdash; one of the university&rsquo;s oldest commitments and, for many families, the reason they chose us.</p>
+        <a href="hfu-bsn.html" class="pillar__link">
+          Explore the School
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ QUIET CASE ═════════════════════ -->
+  <section class="pillars" style="background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft));">
+    <div class="pillars__head">
+      <div>
+        <span class="eyebrow">Recognition</span>
+        <h2>The quiet case for <em>choosing us.</em></h2>
+      </div>
+      <p class="lead">We don&rsquo;t lead with rankings, but a handful of independent sources have said it better than we would. These three are the ones we hear most often from admitted families.</p>
+    </div>
+
+    <div class="pillars__grid">
+      <article class="pillar">
+        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">Niche &middot; 2025</span>
+        <div class="pillar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6 8l6-5 6 5"/><path d="M4 21h16"/></svg>
+        </div>
+        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 3 Best Value College</h3>
+        <p>Ranked among the three best-value colleges in the Philadelphia area by Niche in 2025, based on academic quality and net cost.</p>
+        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; niche.com</span>
       </article>
 
       <article class="pillar">
-        <span class="pillar__num">05</span>
+        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">Niche</span>
         <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3 4.5 6.5 4.5 9s-1.5 6-4.5 9"/><path d="M12 3c-3 3-4.5 6.5-4.5 9s1.5 6 4.5 9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.5 3 8 7 9 4-1 7-4.5 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
-        <span class="path-tag">F-1 support</span>
-        <h3>International</h3>
-        <p>F-1 visa support, credential evaluation, and dedicated international advising.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 3 Safest Campus</h3>
+        <p>Also ranked among the three safest college campuses in the Philadelphia area by Niche &mdash; a reflection of the small, attentive community both campuses try to hold onto.</p>
+        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; niche.com</span>
+      </article>
+
+      <article class="pillar">
+        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">University HQ</span>
+        <div class="pillar__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 8 5-3 5 3-1.5-8"/></svg>
+        </div>
+        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 10 Bachelor&rsquo;s in Pennsylvania</h3>
+        <p>Listed among the top ten best bachelor&rsquo;s degree programs in Pennsylvania by University HQ, alongside larger public and private institutions across the state.</p>
+        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; universityhq.org</span>
       </article>
     </div>
   </section>
 
-  <!-- ═════════════════════ AFFORDABILITY ═════════════════════ -->
-  <section class="afford">
-    <div class="afford__head">
-      <div>
-        <span class="eyebrow">Affordability</span>
-        <h2>Why families <em>choose</em> Holy Family.</h2>
+  <!-- ═════════════════════ WHOLE PERSON MISSION ═════════════════════ -->
+  <section style="padding: var(--section) 0; background: hsl(var(--bg)); position: relative;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: center;">
+        <div style="position: relative;">
+          <figure style="position: relative; border-radius: var(--r-2xl); overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 4 / 5;">
+            <img src="../assets/hfu-photos/jesus-statue.jpg" alt="Statue of Jesus with a student on the Newtown campus" style="width: 100%; height: 100%; object-fit: cover;">
+            <figcaption style="position: absolute; left: 22px; bottom: 22px; right: 22px; color: #fff; font-family: var(--body); font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; background: hsl(0 0% 0% / 0.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid hsl(0 0% 100% / 0.22); border-radius: 100px; padding: 8px 16px; display: inline-flex; width: fit-content;">Newtown Campus &middot; Sacred Heart</figcaption>
+          </figure>
+        </div>
+
+        <div>
+          <span class="eyebrow">Our mission</span>
+          <h2 style="font-size: clamp(2.2rem, 4vw, 3.6rem); color: hsl(var(--hfu-navy)); margin-top: 20px; letter-spacing: -0.024em; line-height: 1.02;">Educating the <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">whole person.</em></h2>
+          <blockquote style="margin: 36px 0 0; font-family: var(--display); font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 300; font-style: italic; font-variation-settings: 'opsz' 60; line-height: 1.28; color: hsl(var(--hfu-navy)); letter-spacing: -0.012em; border-left: 3px solid hsl(var(--hfu-yellow)); padding-left: 28px;">
+            Holy Family University is a vibrant Catholic learning community that educates the whole person for a life of integrity, service, and personal excellence.
+          </blockquote>
+          <div style="margin-top: 20px; font-family: var(--body); font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--fg-subtle)); font-weight: 600;">&mdash; University Mission &middot; founded 1954</div>
+          <p style="margin-top: 32px; font-size: 15.5px; line-height: 1.68; color: hsl(var(--fg-muted)); max-width: 52ch;">
+            Founded in 1954 by the <strong style="color: hsl(var(--hfu-navy)); font-weight: 600;">Sisters of the Holy Family of Nazareth</strong>, the university is grounded in the Nazareth tradition of faith, scholarship, and service &mdash; a reading of Catholic higher education that treats every student as someone worth knowing by name.
+          </p>
+        </div>
       </div>
-      <p class="lead">Private university education at a price Philadelphia families can actually plan around.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ NEWS & STORIES ═════════════════════ -->
+  <section class="pillars" style="background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft));">
+    <div class="pillars__head">
+      <div>
+        <span class="eyebrow">Stories</span>
+        <h2>Lately at <em>Holy Family.</em></h2>
+      </div>
+      <p class="lead">A few recent moments from across the two campuses &mdash; in athletics, in leadership, and in how the university is understood by the people who study it.</p>
     </div>
 
-    <div class="afford__grid">
-      <div class="afford__big">
-        <div class="afford__num"><span class="tilde">~</span>100<span class="pct">%</span></div>
-        <h3>of undergraduates receive some form of financial aid.</h3>
-        <span class="afford__sub">Close to 100 percent.</span>
-        <p class="afford__foot">Stated directly by the <strong>Holy Family University Office of Financial Aid</strong> &mdash; part of a broader commitment to making a first-rate education affordable for every student the university admits.</p>
-      </div>
-
-      <div class="afford__side">
-        <div class="afford__tile">
-          <span class="key">Top <em>3</em></span>
-          <div class="body">
-            <h4>Best Value &middot; Philadelphia Area</h4>
-            <p>Ranked among the top three for best value in the region by Niche, 2025.</p>
-          </div>
+    <div class="pillars__grid">
+      <article class="pillar" style="padding: 0; overflow: hidden;">
+        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
+          <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Holy Family volleyball team celebrating" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
         </div>
-        <div class="afford__tile">
-          <span class="key"><em>Low</em></span>
-          <div class="body">
-            <h4>Average graduate debt</h4>
-            <p>Among the lowest for private universities in the region &mdash; a direct result of aid, scholarships, and deliberate tuition design.</p>
-          </div>
-        </div>
-        <div class="afford__tile">
-          <span class="key"><em>Private</em></span>
-          <div class="body">
-            <h4>Catholic education</h4>
-            <p>A private Catholic education at a price that competes with public universities.</p>
-          </div>
-        </div>
-
-        <div class="afford__essay">
-          <p>Our financial aid team works one-on-one with every admitted family to build a package that fits &mdash; combining federal, state, institutional, and private sources. No algorithm, no call center.</p>
-          <a href="#" class="btn btn--ghost">
-            See financial aid and scholarships
+        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
+          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Athletics</div>
+          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">Women&rsquo;s basketball makes program history</h3>
+          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">The Tigers earned the program&rsquo;s first-ever playoff berth &mdash; a milestone season for the team and the Division II conference.</p>
+          <a href="#" class="pillar__link">
+            Read story
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
           </a>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ HOW TO APPLY ═════════════════════ -->
-  <section class="steps" id="how-to-apply">
-    <div class="steps__head">
-      <div>
-        <span class="eyebrow">How to apply</span>
-        <h2>Four steps to <em>family.</em></h2>
-      </div>
-      <p class="lead">What to expect when you apply to Holy Family.</p>
-    </div>
-
-    <div class="steps__grid">
-      <article class="step">
-        <div class="step__num">01</div>
-        <h3>Explore</h3>
-        <p>Browse programs, chat with an admissions counselor, plan a visit.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1"/></svg>
-          Doc &middot; <strong>None</strong>
-        </span>
       </article>
 
-      <article class="step">
-        <div class="step__num">02</div>
-        <h3>Apply</h3>
-        <p>Submit the free online application. Rolling admissions &mdash; we review as applications arrive.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2h6l3 3v9H4V2Z"/><path d="M10 2v3h3"/></svg>
-          Doc &middot; <strong>Application</strong>
-        </span>
-      </article>
-
-      <article class="step">
-        <div class="step__num">03</div>
-        <h3>Send documents</h3>
-        <p>Transcripts, any test scores you choose to include, a personal statement.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h10v9H3V4Z"/><path d="M3 7h10"/><path d="M6 10h4"/></svg>
-          Doc &middot; <strong>Transcripts</strong>
-        </span>
-      </article>
-
-      <article class="step">
-        <div class="step__num">04</div>
-        <h3>Enroll</h3>
-        <p>Accept your offer, submit your deposit, register for orientation.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v12"/><path d="m4 6 4-4 4 4"/><path d="M2 14h12"/></svg>
-          Doc &middot; <strong>Deposit</strong>
-        </span>
-      </article>
-    </div>
-
-    <div class="steps__foot">
-      <div class="steps__callout">
-        <span class="chip">Questions?</span>
-        <span>Call Admissions at <a href="tel:2156377700">215-637-7700</a> or email <a href="mailto:admissions@holyfamily.edu">admissions@holyfamily.edu</a>.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ EVENTS ═════════════════════ -->
-  <section class="calendar calendar--events" id="events">
-    <div class="calendar__head">
-      <div>
-        <span class="eyebrow">Visit &amp; open house</span>
-        <h2>Come see us <em>soon.</em></h2>
-      </div>
-      <p class="lead" style="max-width: 38ch;">Every admitted family hears this: the visit is what sealed it.</p>
-    </div>
-
-    <div class="calendar__track">
-      <div class="calendar__timeline">
-        <div class="calendar__line"></div>
-
-        <div class="calendar__row calendar__row--events">
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">26</div>
-              <div class="dow">Sun</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Open House &middot; 2026</div>
-              <h3>Spring Open House</h3>
-              <p class="cal-item__desc">Geared to high school juniors and open to seniors and transfers. Academic workshops, campus tours, financial aid instruction, and student life.</p>
-              <a href="#" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date cal-item__date--rolling">
-              <div class="month">Rolling</div>
-              <div class="day">&middot;</div>
-              <div class="dow">2026</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Campus Visit</div>
-              <h3>Daily Campus Tours</h3>
-              <p class="cal-item__desc">Student-ambassador-led. Meet with an admissions staff member before or after your walk.</p>
-              <a href="hfu-visit.html" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date cal-item__date--rolling">
-              <div class="month">Monthly</div>
-              <div class="day">&middot;</div>
-              <div class="dow">Transfer</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Transfer</div>
-              <h3>Instant Decision Day</h3>
-              <p class="cal-item__desc">Bring official transcripts for an on-the-spot credit evaluation and an admissions decision the same day.</p>
-              <a href="#" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
+      <article class="pillar" style="padding: 0; overflow: hidden;">
+        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
+          <img src="../assets/hfu-photos/academics-etc.jpg" alt="Holy Family brick tower architecture" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
         </div>
-      </div>
+        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
+          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Leadership</div>
+          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">President addresses the United Nations</h3>
+          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">President Cesa delivered an address at the UN, speaking to the role of Catholic higher education in a global conversation on service and dignity.</p>
+          <a href="#" class="pillar__link">
+            Read story
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar" style="padding: 0; overflow: hidden;">
+        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
+          <img src="../assets/hfu-photos/academics-chapel.jpg" alt="Chapel stained glass detail" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
+        </div>
+        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
+          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Recognition</div>
+          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">New Carnegie Classification earned</h3>
+          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">The university received an updated classification in the Carnegie framework &mdash; a peer benchmark among American colleges and universities.</p>
+          <a href="#" class="pillar__link">
+            Read story
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -2722,22 +2216,22 @@
     <div class="cta__box">
       <div class="cta__inner">
         <div class="cta__bg">
-          <img src="../assets/hfu-photos/admissions-art.jpg" alt="">
+          <img src="../assets/hfu-photos/jesus-statue.jpg" alt="">
         </div>
         <div class="cta__content">
           <div>
-            <span class="eyebrow">Ready when you are</span>
-            <h2>Your admissions counselor is <em>waiting.</em></h2>
+            <span class="eyebrow">Take the next step</span>
+            <h2>Become part of the <em>family.</em></h2>
           </div>
           <div class="cta__side">
-            <p>Every prospective student at Holy Family has a named admissions counselor. Call, email, or schedule a 15-minute conversation &mdash; whichever feels right.</p>
+            <p>Plan a visit, request information, or start your application. Whichever feels right &mdash; we&rsquo;ll meet you where you are.</p>
             <div class="cta__buttons">
-              <a id="apply" href="#" class="btn btn--primary btn--lg">
+              <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
                 Apply Now
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
               </a>
               <a href="hfu-visit.html" class="btn btn--secondary btn--lg">Plan a Visit</a>
-              <a href="#" class="btn btn--ghost btn--lg" style="color:#fff; border-color: hsl(0 0% 100% / 0.3);">Request Info</a>
+              <a href="#" class="btn btn--secondary btn--lg">Request Info</a>
             </div>
           </div>
         </div>
@@ -2753,29 +2247,30 @@
         <h3>Holy Family University</h3>
         <p>A Catholic university in the tradition of the Sisters of the Holy Family of Nazareth, rooted in faith, scholarship, and service since 1954.</p>
         <form class="foot__news" onsubmit="return false;">
-          <input type="email" placeholder="Hear from Holy Family admissions">
+          <input type="email" placeholder="Get news from Holy Family">
           <button type="submit">Subscribe</button>
         </form>
-      </div>
-      <div class="foot__col">
-        <h4>Admissions Paths</h4>
-        <ul>
-          <li><a href="#">Undergraduate</a></li>
-          <li><a href="#">Transfer</a></li>
-          <li><a href="#">Graduate</a></li>
-          <li><a href="#">Adult &amp; Continuing</a></li>
-          <li><a href="#">International</a></li>
-          <li><a href="#">Financial Aid</a></li>
-        </ul>
       </div>
       <div class="foot__col">
         <h4>Academics</h4>
         <ul>
           <li><a href="hfu-programs.html">Majors &amp; Minors</a></li>
+          <li><a href="hfu-programs.html">Schools &amp; Programs</a></li>
           <li><a href="hfu-bsn.html">BSN Nursing</a></li>
           <li><a href="#">MBA</a></li>
           <li><a href="#">Graduate Programs</a></li>
           <li><a href="#">Online Learning</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h4>Admissions &amp; Aid</h4>
+        <ul>
+          <li><a href="hfu-admissions.html">Apply Now</a></li>
+          <li><a href="hfu-admissions.html">Undergraduate</a></li>
+          <li><a href="#">Graduate &amp; Adult</a></li>
+          <li><a href="#">Transfer Students</a></li>
+          <li><a href="#">International</a></li>
+          <li><a href="#">Financial Aid</a></li>
         </ul>
       </div>
       <div class="foot__col">
@@ -2784,7 +2279,7 @@
           <li><a href="#">Virtual Tour</a></li>
           <li><a href="hfu-visit.html">Campus Tours</a></li>
           <li><a href="#">Parents &amp; Families</a></li>
-          <li><a href="mailto:admissions@holyfamily.edu">Contact Admissions</a></li>
+          <li><a href="#">Contact Us</a></li>
         </ul>
         <div class="foot__addr">
           <strong>Philadelphia Campus</strong>
