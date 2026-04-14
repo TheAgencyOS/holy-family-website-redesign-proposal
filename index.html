@@ -76,6 +76,19 @@
     }
     img { display: block; max-width: 100%; }
 
+    /* Print: each .page maps 1:1 to a Letter sheet, no browser margin */
+    @page { size: 8.5in 11in; margin: 0; }
+    @media print {
+      html, body { margin: 0; padding: 0; background: white; }
+      .page { box-shadow: none !important; }
+      /* Hide screen-only chrome (sidebar, topbar, concierge widget, back link) */
+      .site-nav, .site-topbar, .site-keyhint,
+      .aos-fab, .aos-chat,
+      .aos-back-to-concepts,
+      .mobile-menu-btn, .mobile-menu-backdrop { display: none !important; }
+      main { width: 100%; max-width: none; margin: 0; padding: 0; }
+    }
+
     /* ════════════════════════════════════════════════════════════════
        PAGE PRIMITIVE · letter, hand paginated
        ════════════════════════════════════════════════════════════════ */
@@ -1570,7 +1583,7 @@
       </div>
 
       <div class="cover__brand">
-        <img src="assets/scc/logo-1920.png" alt="Small College Consulting">
+        <img src="assets/scc/scc-logo.png" alt="Small College Consulting">
         <span class="cover__brand-tag">
           Submitted by
           <strong>Small College Consulting</strong>
