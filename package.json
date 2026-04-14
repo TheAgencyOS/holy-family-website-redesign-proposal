@@ -2,7 +2,7 @@
   "name": "hfu-proposal-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Holy Family University website redesign proposal — Agency OS",
+  "description": "Holy Family University website redesign proposal — Small College Consulting",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",

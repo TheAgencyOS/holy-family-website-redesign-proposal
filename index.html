@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Proposal · Holy Family University Website Redesign · Agency OS</title>
+  <title>Proposal · Holy Family University Website Redesign · Small College Consulting</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
   <style>
     /* ══════════════════════════════════════════════════════════════════
        AGENCY OS · HFU PROPOSAL · fresh build · April 2026
-       28 paginated 8.5x11 pages · Agency OS ink + teal brand
+       28 paginated 8.5x11 pages · Small College Consulting ink + teal brand
        ══════════════════════════════════════════════════════════════════ */
 
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
@@ -24,12 +24,14 @@
     @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
 
     :root {
-      /* ── Agency OS brand tokens ──────────────── */
-      --teal:       #2E9E9E;
-      --teal-deep:  #1F7676;
-      --teal-faint: #E7F4F4;
-      --ink:        #0F1117;
-      --ink-deep:   #06070B;
+      /* ── Small College Consulting brand tokens ────────── */
+      /* Sourced from smallcollegeconsulting.com — navy + teal */
+      --teal:       #1B7A86;   /* mid-teal accent for italic words, rules, hover */
+      --teal-deep:  #005357;   /* deeper variant for shadows, hover-pressed */
+      --teal-faint: #E5F4F5;
+      --ink:        #092D4C;   /* SCC navy — primary heavy text + dark surfaces */
+      --ink-deep:   #062434;   /* deeper navy for dark backgrounds + cover */
+      --scc-spark:  #68CCD1;   /* the "book in the logo" — bright spark teal */
 
       /* ── Warm editorial base ─────────────────── */
       --bg:         #FAFAFA;
@@ -281,11 +283,11 @@
     }
 
     /* ════════════════════════════════════════════════════════════════
-       COVER · full-bleed ink, typographic, no photo
+       COVER · cream classical, SCC palette, full-color logo
        ════════════════════════════════════════════════════════════════ */
     .cover {
-      background: var(--ink-deep);
-      color: #F5F6F8;
+      background: #F8F6EE;
+      color: var(--ink);
       overflow: hidden;
       position: relative;
     }
@@ -298,8 +300,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+        linear-gradient(to right, rgba(9,45,76,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(9,45,76,0.04) 1px, transparent 1px);
       background-size: calc((8.5in - 1.4in) / 12) calc((8.5in - 1.4in) / 12);
       background-position: 0.7in 0.7in;
       pointer-events: none;
@@ -308,13 +310,13 @@
     .cover__folio {
       position: absolute;
       right: -0.28in;
-      bottom: -0.6in;
+      bottom: -0.62in;
       font-family: var(--display);
       font-weight: 400;
       font-size: 260pt;
       line-height: 0.8;
       letter-spacing: -0.06em;
-      color: rgba(255,255,255,0.035);
+      color: rgba(9,45,76,0.04);
       pointer-events: none;
       font-feature-settings: 'tnum' 1;
       user-select: none;
@@ -337,7 +339,7 @@
       font-size: 8pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.55);
+      color: rgba(9,45,76,0.6);
     }
     .cover__top-mark {
       display: inline-flex;
@@ -352,11 +354,43 @@
     }
     .cover__top-num {
       font-feature-settings: 'tnum' 1;
-      color: rgba(245,246,248,0.4);
+      color: rgba(9,45,76,0.42);
+    }
+
+    .cover__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 0.5in;
+    }
+    .cover__brand img {
+      height: 0.78in;
+      width: auto;
+      display: block;
+    }
+    .cover__brand-tag {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(9,45,76,0.55);
+      padding-left: 18px;
+      border-left: 1px solid rgba(9,45,76,0.16);
+    }
+    .cover__brand-tag strong {
+      color: var(--ink);
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 9pt;
+      letter-spacing: 0.04em;
+      text-transform: none;
     }
 
     .cover__eyebrow {
-      margin-top: 1.25in;
+      margin-top: 0.55in;
       font-family: var(--mono);
       font-size: 9pt;
       letter-spacing: 0.22em;
@@ -380,7 +414,7 @@
       line-height: 0.92;
       letter-spacing: -0.032em;
       margin-top: 0.35in;
-      color: #FFFFFF;
+      color: var(--ink);
     }
     .cover__title em {
       font-family: var(--serif);
@@ -389,7 +423,7 @@
       font-size: 1.06em;
       letter-spacing: -0.008em;
       margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
+      color: var(--teal-deep);
       font-variation-settings: "opsz" 72;
       font-synthesis: none;
     }
@@ -403,7 +437,7 @@
       font-weight: 400;
       font-size: 17pt;
       line-height: 1.32;
-      color: rgba(245,246,248,0.72);
+      color: rgba(9,45,76,0.7);
       font-variation-settings: "opsz" 20;
     }
 
@@ -412,7 +446,7 @@
     .cover__rule {
       width: 100%;
       height: 1px;
-      background: rgba(245,246,248,0.14);
+      background: rgba(9,45,76,0.18);
       margin-bottom: 0.3in;
     }
 
@@ -426,14 +460,14 @@
       font-size: 6.5pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.45);
+      color: rgba(9,45,76,0.5);
       margin-bottom: 9px;
     }
     .cover__meta dd {
       font-family: var(--display);
       font-weight: 600;
       font-size: 11pt;
-      color: #FFFFFF;
+      color: var(--ink);
       line-height: 1.25;
     }
     .cover__meta dd small {
@@ -441,7 +475,7 @@
       font-family: var(--body);
       font-weight: 400;
       font-size: 8pt;
-      color: rgba(245,246,248,0.55);
+      color: rgba(9,45,76,0.6);
       margin-top: 3px;
       line-height: 1.35;
     }
@@ -454,7 +488,7 @@
       font-size: 7pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.38);
+      color: rgba(9,45,76,0.42);
     }
 
     /* ════════════════════════════════════════════════════════════════
@@ -1118,7 +1152,7 @@
     }
     .callout strong { color: var(--fg); font-weight: 600; }
     .page--ink .callout {
-      background: rgba(46,158,158,0.08);
+      background: rgba(27,122,134,0.08);
       color: rgba(255,255,255,0.75);
     }
     .page--ink .callout strong { color: white; }
@@ -1511,7 +1545,7 @@
     <div class="site-nav__footer">
       Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
-      Agency OS · April 2026
+      Small College Consulting · April 2026
     </div>
   </aside>
 
@@ -1520,7 +1554,7 @@
       <span class="site-topbar__progress"><b id="progress-current">01</b> / 30</span>
       <span class="site-topbar__spacer"></span>
       <a href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-Agency-OS.pdf" class="site-topbar__btn">Download PDF</a>
-      <a href="mailto:rmitchell2@holyfamily.edu?subject=Holy Family University Website Redesign Proposal - Agency OS" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Holy Family University Website Redesign Proposal - Small College Consulting" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
     </header>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -1533,6 +1567,14 @@
       <div class="cover__top">
         <span class="cover__top-mark">Proposal &middot; 001</span>
         <span class="cover__top-num">01 / 30</span>
+      </div>
+
+      <div class="cover__brand">
+        <img src="assets/scc/logo-1920.png" alt="Small College Consulting">
+        <span class="cover__brand-tag">
+          Submitted by
+          <strong>Small College Consulting</strong>
+        </span>
       </div>
 
       <div class="cover__eyebrow">Holy Family University &middot; Website Redesign RFP</div>
@@ -1555,7 +1597,7 @@
         </div>
         <div>
           <dt>Prepared by</dt>
-          <dd>Agency OS<small>Eric Yerke &amp; Dr. James Vineburgh</small></dd>
+          <dd>Small College Consulting<small>Coons &middot; Novak &middot; Yerke &middot; Vineburgh</small></dd>
         </div>
         <div>
           <dt>Submitted</dt>
@@ -1569,7 +1611,7 @@
 
       <div class="cover__footer">
         <span>Response to Website Redesign RFP, issued March 23, 2026</span>
-        <span>30 pages &middot; Agency OS &middot; April 2026</span>
+        <span>30 pages &middot; Small College Consulting &middot; April 2026</span>
       </div>
     </div>
   </section>
@@ -2641,33 +2683,46 @@
        ═══════════════════════════════════════════════════════════ -->
   <section class="page" id="p26">
     <header class="page__header">
-      <span class="page__eyebrow">Section A.1–A.2 · Agency overview &amp; team</span>
+      <span class="page__eyebrow">Section A.1–A.2 · Firm overview &amp; team</span>
       <span class="page__num">26 / 30</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">The two people on this engagement</div>
-      <h2 class="h1">Agency OS. Built for <em>owners,</em> not renters.</h2>
-      <p class="prose">We design and build university websites for lean internal teams. Every architectural decision runs through one question: can the client's team own this after we leave. The two people below are the two people you'll work with in week one and in week forty. No pitch team, no delivery bench swap.</p>
-      <div class="team-grid">
+      <h2 class="h1">A team that has <em>lived</em> small-college leadership.</h2>
+      <p class="prose">Small College Consulting brings together partners who have run enrollment, marketing, and digital at small institutions &mdash; and now build for them. Holy Family draws on this full bench through one engagement, with the four leads below named at contract.</p>
+      <div class="team-grid" style="grid-template-columns: 1fr 1fr; gap: 14px;">
         <div class="team-card">
-          <div class="team-card__eyebrow">Engagement Lead · Strategy &amp; Delivery</div>
-          <div class="team-card__name">Eric Yerke</div>
-          <div class="team-card__role">Scope · timeline · budget · technical architecture</div>
-          <div class="team-card__body">Leads the end-to-end engagement and owns the relationship with Rick Mitchell's team. Responsible for every decision that affects scope, timeline, budget, content strategy, technical architecture, and the collaborative development model. Daily presence on the project through the 90-day post-launch window.</div>
-          <div class="team-card__footer">100% dedicated · Phase 1 through Day 90</div>
+          <div class="team-card__eyebrow">Partner &middot; Enrollment</div>
+          <div class="team-card__name">Chris Coons</div>
+          <div class="team-card__role">Enrollment strategy &middot; admissions ops &middot; 30 years</div>
+          <div class="team-card__body">Thirty years of enrollment management. Chief enrollment officer at two small colleges, served at five total. Joined Underscore (Slate development) and continued at Carnegie post-merger, helping small colleges exceed new-student enrollment goals. Brings to the engagement an unrivaled command of Slate workflows and admissions best practices.</div>
+          <div class="team-card__footer">Alma mater · West Virginia Wesleyan College</div>
         </div>
         <div class="team-card">
-          <div class="team-card__eyebrow">Engagement Lead · Research &amp; Institutional Fit</div>
+          <div class="team-card__eyebrow">Partner &middot; Marketing &amp; Strategy</div>
+          <div class="team-card__name">Scott Novak</div>
+          <div class="team-card__role">Market strategy &middot; brand &middot; 300+ small-college engagements</div>
+          <div class="team-card__body">Founder of Underscore, the dedicated Slate development practice that became part of Carnegie in 2021. As Carnegie's Chief Development Officer, started the Small College Initiative. Hosts the <em style="color: var(--teal-deep);">Small College Movement</em> podcast. Has worked with more than 300 small colleges and universities on their marketing and enrollment goals.</div>
+          <div class="team-card__footer">Alma mater · Susquehanna University</div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__eyebrow">Engagement Lead &middot; Strategy &amp; Delivery</div>
+          <div class="team-card__name">Eric Yerke</div>
+          <div class="team-card__role">Scope &middot; timeline &middot; budget &middot; technical architecture</div>
+          <div class="team-card__body">Leads the end-to-end engagement and owns the relationship with Rick Mitchell's team. Responsible for every decision that affects scope, timeline, budget, content strategy, technical architecture, and the collaborative development model. Daily presence on the project through the 90-day post-launch window.</div>
+          <div class="team-card__footer">100% dedicated &middot; Phase 1 through Day 90</div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__eyebrow">Engagement Lead &middot; Research &amp; Institutional Fit</div>
           <div class="team-card__name">Dr. James Vineburgh</div>
-          <div class="team-card__role">Stakeholder research · UX testing · institutional alignment</div>
+          <div class="team-card__role">Stakeholder research &middot; UX testing &middot; institutional alignment</div>
           <div class="team-card__body">Leads stakeholder research, user testing, and institutional alignment across the President's Cabinet, the four deans, enrollment, and the content liaisons from each school. Keeps the design grounded in what prospective students, adult learners, and graduate applicants do, not what we assume.</div>
-          <div class="team-card__footer">Discovery · IA validation · UAT · launch review</div>
+          <div class="team-card__footer">Discovery &middot; IA validation &middot; UAT &middot; launch review</div>
         </div>
       </div>
-      <div class="callout"><strong>Team stability commitment.</strong> The two named leads above are the delivered team. No rotation off the project after kickoff. Extended team (UX lead, lead WordPress engineer, accessibility specialist, content strategist) named at contract execution. Any substitution requires written agreement from Rick Mitchell. <strong>Subcontractors (Sec. A.6):</strong> none. All design, development, accessibility, and migration work is delivered by Agency OS staff. Third-party tools (Pantheon, ACF Pro, Gravity Forms, Slate) are vendors, not subcontractors.</div>
+      <div class="callout" style="margin-top: 0.18in;"><strong>Team stability commitment.</strong> The four named leads above are the delivered team. No rotation off the project after kickoff. Any substitution requires written agreement from Rick Mitchell. <strong>Subcontractors (Sec. A.6):</strong> none. All design, development, accessibility, and migration work is delivered by Small College Consulting staff. Third-party tools (Pantheon, ACF Pro, Gravity Forms, Slate) are vendors, not subcontractors.</div>
     </div>
     <footer class="page__footer">
-      <span>RFP Section A.1 and A.2 · Agency Information &amp; Team Composition</span>
+      <span>RFP Section A.1 and A.2 &middot; Firm Information &amp; Team Composition</span>
       <span>26 / 30</span>
     </footer>
   </section>
@@ -2863,7 +2918,7 @@
       <p style="font-family: var(--serif); font-style: italic; font-size: 12.5pt; line-height: 1.46; color: rgba(255,255,255,0.78); margin-top: 0.18in; max-width: 58ch; font-variation-settings: 'opsz' 18;">When Dr. Prisco's next strategic plan begins in June 2026, we would like the website launching beside it to match the ambition. When our ninety days of post-launch support end, we would like Rick Mitchell's team operating this site without ever calling us. <strong style="color: var(--teal); font-style: normal; font-weight: 400;">Fixed fee of $235,000. Eric Yerke and Dr. James Vineburgh available May 5&ndash;8 for finalist presentations.</strong></p>
     </div>
     <footer class="page__footer">
-      <span>Agency OS · Holy Family University Website Redesign Proposal · Sections A through G · proposal valid 90 days</span>
+      <span>Small College Consulting · Holy Family University Website Redesign Proposal · Sections A through G · proposal valid 90 days</span>
       <span>30 / 30</span>
     </footer>
   </section>

@@ -97,7 +97,7 @@ input, textarea, select, button {
 }
 
 /* Range slider track + thumb stay on the dark palette in every browser */
-input[type="range"] { color-scheme: dark; accent-color: #2E9E9E; }
+input[type="range"] { color-scheme: dark; accent-color: #1B7A86; }
 
 /* Webkit autofill — strip the OS yellow background */
 input:-webkit-autofill,
@@ -107,23 +107,23 @@ textarea:-webkit-autofill,
 select:-webkit-autofill {
   -webkit-text-fill-color: #E8ECF1 !important;
   -webkit-box-shadow: 0 0 0 1000px #0D0F15 inset !important;
-  caret-color: #2E9E9E;
+  caret-color: #1B7A86;
   transition: background-color 9999s ease-in-out 0s;
 }
 
 /* Selection */
-::selection { background: rgba(46, 158, 158, 0.30); color: white; }
-::-moz-selection { background: rgba(46, 158, 158, 0.30); color: white; }
+::selection { background: rgba(27, 122, 134, 0.30); color: white; }
+::-moz-selection { background: rgba(27, 122, 134, 0.30); color: white; }
 
 /* Custom scrollbars for the deep-dive pages (the dark editorial pages
    don't want OS-light scrollbars on Chrome/Edge) */
 @media screen {
   body::-webkit-scrollbar { width: 12px; height: 12px; }
-  body::-webkit-scrollbar-track { background: #06070B; }
+  body::-webkit-scrollbar-track { background: #062434; }
   body::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.10);
     border-radius: 6px;
-    border: 3px solid #06070B;
+    border: 3px solid #062434;
   }
   body::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
 }
@@ -170,7 +170,7 @@ select:-webkit-autofill {
     transition: box-shadow 200ms ease, transform 200ms ease;
   }
   .page:target, .page.is-current {
-    box-shadow: 0 36px 96px rgba(46, 158, 158, 0.2), 0 0 0 1px rgba(46, 158, 158, 0.25);
+    box-shadow: 0 36px 96px rgba(27, 122, 134, 0.2), 0 0 0 1px rgba(27, 122, 134, 0.25);
   }
 
   /* ── Site topbar (above main content) ──────────────── */
@@ -221,7 +221,7 @@ select:-webkit-autofill {
   }
   .site-topbar__btn--primary {
     color: var(--teal);
-    border-color: rgba(46, 158, 158, 0.4);
+    border-color: rgba(27, 122, 134, 0.4);
   }
   .site-topbar__btn--primary:hover {
     background: var(--teal);
@@ -235,7 +235,7 @@ select:-webkit-autofill {
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    background: #06070B;
+    background: #062434;
     border-right: 1px solid rgba(255,255,255,0.05);
     padding: 36px 26px 40px;
     font-family: var(--body);
@@ -515,8 +515,8 @@ select:-webkit-autofill {
 .portal-tab.is-current:visited {
   color: white !important;
   font-weight: 700;
-  border-left-color: var(--teal, #2E9E9E);
-  background: linear-gradient(90deg, rgba(46,158,158,0.1), rgba(46,158,158,0) 75%);
+  border-left-color: var(--teal, #1B7A86);
+  background: linear-gradient(90deg, rgba(27,122,134,0.1), rgba(27,122,134,0) 75%);
 }
 .portal-tab__count {
   display: none;
@@ -540,7 +540,7 @@ select:-webkit-autofill {
   content: '';
   width: 18px;
   height: 1px;
-  background: var(--teal, #2E9E9E);
+  background: var(--teal, #1B7A86);
   flex-shrink: 0;
 }
 .portal-tabs--deep {
@@ -564,8 +564,8 @@ select:-webkit-autofill {
   color: rgba(255,255,255,0.28);
   padding-top: 2px;
 }
-.portal-tabs--deep .portal-tab:hover .portal-tab__num { color: var(--teal, #2E9E9E); }
-.portal-tabs--deep .portal-tab.is-current .portal-tab__num { color: var(--teal, #2E9E9E); }
+.portal-tabs--deep .portal-tab:hover .portal-tab__num { color: var(--teal, #1B7A86); }
+.portal-tabs--deep .portal-tab.is-current .portal-tab__num { color: var(--teal, #1B7A86); }
 
 /* ── Collapsible "Phase 2 materials" drawer ──────────────── */
 .portal-drawer {

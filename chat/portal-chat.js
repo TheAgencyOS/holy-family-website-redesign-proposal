@@ -5,7 +5,7 @@
  *    <script src="chat/portal-chat.js" defer></script>
  *
  * Honors the HFU logo mark on the launcher, streams responses from
- * /api/chat, and matches the Agency OS editorial brand language:
+ * /api/chat, and matches the Small College Consulting editorial brand language:
  * Roobert, ink + teal, generous whitespace.
  *
  * Keybindings:
@@ -144,7 +144,7 @@
     position: relative;
     padding: 18px 20px 16px;
     background:
-      radial-gradient(120% 120% at 10% 0%, rgba(46,158,158,0.22) 0%, rgba(46,158,158,0) 45%),
+      radial-gradient(120% 120% at 10% 0%, rgba(27,122,134,0.22) 0%, rgba(27,122,134,0) 45%),
       linear-gradient(180deg, var(--aos-navy) 0%, var(--aos-navy-deep) 100%);
     color: #fff;
     display: flex;
@@ -517,7 +517,7 @@
         <div class="aos-header__mark">${MARK_SVG}</div>
         <div class="aos-header__title">
           <b>Ask the Proposal</b>
-          <span><i class="aos-live"></i> Live · Agency OS concierge</span>
+          <span><i class="aos-live"></i> Live · Small College Consulting concierge</span>
         </div>
         <button class="aos-header__close" type="button" aria-label="Close">${CLOSE_SVG}</button>
       </header>

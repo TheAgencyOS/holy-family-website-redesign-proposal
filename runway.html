@@ -20,13 +20,13 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #2E9E9E;
-      --teal-deep:   #1F7676;
-      --teal-soft:   rgba(46, 158, 158, 0.08);
-      --teal-glow:   rgba(46, 158, 158, 0.18);
+      --teal:        #1B7A86;
+      --teal-deep:   #005357;
+      --teal-soft:   rgba(27, 122, 134, 0.08);
+      --teal-glow:   rgba(27, 122, 134, 0.18);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #06070B;
+      --ink:         #062434;
       --ink-card:    #0D0F15;
       --ink-card-2:  #11141C;
       --line:        rgba(255,255,255,0.08);
@@ -85,7 +85,7 @@
       inset: -240px -200px auto -200px;
       height: 520px;
       background:
-        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(46,158,158,0.22), transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(27,122,134,0.22), transparent 60%),
         radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.05), transparent 60%);
       z-index: -1;
       pointer-events: none;
@@ -247,7 +247,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,122,134,0.06), transparent 70%);
       pointer-events: none;
     }
     .gantt__label {
@@ -364,7 +364,7 @@
       height: 34px;
       border-radius: 2px;
       background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
-      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 24px -6px rgba(46,158,158,0.45);
+      box-shadow: 0 0 0 1px rgba(27,122,134,0.3), 0 0 24px -6px rgba(27,122,134,0.45);
       cursor: pointer;
       transition: transform 180ms ease, box-shadow 200ms ease, filter 180ms ease;
       overflow: hidden;
@@ -379,10 +379,10 @@
     }
     .gantt__bar:hover {
       filter: brightness(1.12);
-      box-shadow: 0 0 0 1px rgba(46,158,158,0.6), 0 0 32px -4px rgba(46,158,158,0.65);
+      box-shadow: 0 0 0 1px rgba(27,122,134,0.6), 0 0 32px -4px rgba(27,122,134,0.65);
     }
     .gantt__bar.is-active {
-      box-shadow: 0 0 0 1px var(--teal), 0 0 36px -2px rgba(46,158,158,0.8), inset 0 0 0 1px rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 1px var(--teal), 0 0 36px -2px rgba(27,122,134,0.8), inset 0 0 0 1px rgba(255,255,255,0.18);
     }
     .gantt__bar__label {
       position: relative;
@@ -426,7 +426,7 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, rgba(46,158,158,0.65), rgba(46,158,158,0.1));
+      background: linear-gradient(180deg, rgba(27,122,134,0.65), rgba(27,122,134,0.1));
       pointer-events: auto;
     }
     .gantt__gate::before {
@@ -438,7 +438,7 @@
       height: 12px;
       background: var(--teal);
       transform: rotate(45deg);
-      box-shadow: 0 0 12px rgba(46,158,158,0.8), 0 0 0 2px var(--ink-card);
+      box-shadow: 0 0 12px rgba(27,122,134,0.8), 0 0 0 2px var(--ink-card);
     }
     .gantt__gate::after {
       content: attr(data-label);
@@ -461,7 +461,7 @@
       margin-top: 36px;
       padding: 36px 36px 40px;
       background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
-      border: 1px solid rgba(46,158,158,0.25);
+      border: 1px solid rgba(27,122,134,0.25);
       border-radius: 8px;
       opacity: 0;
       transform: translateY(12px);
@@ -473,7 +473,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 80% at 10% 0%, rgba(46,158,158,0.15), transparent 70%);
+      background: radial-gradient(ellipse 60% 80% at 10% 0%, rgba(27,122,134,0.15), transparent 70%);
       pointer-events: none;
     }
     .gantt__detail.is-visible {
@@ -735,8 +735,8 @@
     .risks__dot {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(46,158,158,0.95), rgba(31,118,118,0.7));
-      box-shadow: 0 0 0 1px rgba(46,158,158,0.5), 0 0 18px rgba(46,158,158,0.5);
+      background: radial-gradient(circle at 30% 30%, rgba(27,122,134,0.95), rgba(0,83,87,0.7));
+      box-shadow: 0 0 0 1px rgba(27,122,134,0.5), 0 0 18px rgba(27,122,134,0.5);
       cursor: pointer;
       transform: translate(-50%, -50%);
       transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 200ms ease, filter 180ms ease;
@@ -746,7 +746,7 @@
     }
     .risks__dot:hover {
       transform: translate(-50%, -50%) scale(1.12);
-      box-shadow: 0 0 0 2px var(--teal), 0 0 26px rgba(46,158,158,0.7);
+      box-shadow: 0 0 0 2px var(--teal), 0 0 26px rgba(27,122,134,0.7);
       filter: brightness(1.08);
     }
     .risks__dot.is-danger {
@@ -757,7 +757,7 @@
       box-shadow: 0 0 0 2px var(--risk-red), 0 0 26px rgba(184,74,74,0.75);
     }
     .risks__dot.is-active {
-      box-shadow: 0 0 0 2px var(--teal), 0 0 36px rgba(46,158,158,0.9);
+      box-shadow: 0 0 0 2px var(--teal), 0 0 36px rgba(27,122,134,0.9);
     }
     .risks__dot.is-danger.is-active {
       box-shadow: 0 0 0 2px var(--risk-red), 0 0 36px rgba(184,74,74,0.9);
@@ -820,14 +820,14 @@
       height: 10px;
       border-radius: 50%;
       background: var(--teal);
-      box-shadow: 0 0 8px rgba(46,158,158,0.5);
+      box-shadow: 0 0 8px rgba(27,122,134,0.5);
     }
     .risks__legend__dot.danger::before { background: var(--risk-red); box-shadow: 0 0 8px rgba(184,74,74,0.5); }
 
     /* Risk detail card */
     .risks__detail {
       background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
-      border: 1px solid rgba(46,158,158,0.25);
+      border: 1px solid rgba(27,122,134,0.25);
       border-radius: 8px;
       padding: 32px 32px 36px;
       position: relative;
@@ -838,7 +838,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 90% 0%, rgba(46,158,158,0.15), transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 90% 0%, rgba(27,122,134,0.15), transparent 70%);
       pointer-events: none;
     }
     .risks__detail.is-danger {
@@ -968,7 +968,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 100% at 10% 50%, rgba(46,158,158,0.1), transparent 70%);
+      background: radial-gradient(ellipse 60% 100% at 10% 50%, rgba(27,122,134,0.1), transparent 70%);
       pointer-events: none;
     }
     .gates__track {
@@ -984,7 +984,7 @@
       height: 100%;
       width: 100%;
       background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
-      box-shadow: 0 0 22px rgba(46,158,158,0.55);
+      box-shadow: 0 0 22px rgba(27,122,134,0.55);
     }
     .gates__marks {
       position: relative;
@@ -1006,7 +1006,7 @@
       width: 18px;
       height: 18px;
       background: var(--teal);
-      box-shadow: 0 0 18px rgba(46,158,158,0.7), 0 0 0 3px var(--ink-card);
+      box-shadow: 0 0 18px rgba(27,122,134,0.7), 0 0 0 3px var(--ink-card);
     }
     .gates__mark__id {
       font-family: var(--mono);
@@ -1076,7 +1076,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(46,158,158,0.08), transparent 70%);
+      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(27,122,134,0.08), transparent 70%);
       pointer-events: none;
     }
     .deps__label {
@@ -1133,7 +1133,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,158,158,0.06), transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,122,134,0.06), transparent 70%);
       pointer-events: none;
     }
     .budget__label {
@@ -1156,7 +1156,7 @@
       border-radius: 3px;
       overflow: hidden;
       margin-bottom: 18px;
-      box-shadow: 0 0 0 1px rgba(46,158,158,0.3), 0 0 28px -6px rgba(46,158,158,0.35);
+      box-shadow: 0 0 0 1px rgba(27,122,134,0.3), 0 0 28px -6px rgba(27,122,134,0.35);
     }
     .budget__bar__seg {
       position: relative;
@@ -1235,7 +1235,7 @@
     }
     .budget__table tbody tr { transition: background 180ms ease; }
     .budget__table tbody tr.is-active td {
-      background: rgba(46,158,158,0.08);
+      background: rgba(27,122,134,0.08);
     }
     .budget__table tbody tr.is-active td:first-child {
       box-shadow: inset 2px 0 0 var(--teal);
@@ -1303,14 +1303,14 @@
       transition: border-color 220ms ease, transform 220ms ease;
     }
     .pay__card:hover {
-      border-color: rgba(46,158,158,0.4);
+      border-color: rgba(27,122,134,0.4);
       transform: translateY(-2px);
     }
     .pay__card::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(46,158,158,0.08), transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 0% 0%, rgba(27,122,134,0.08), transparent 70%);
       pointer-events: none;
     }
     .pay__card__pct {
@@ -1382,7 +1382,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 80% 0%, rgba(46,158,158,0.06), transparent 70%);
+      background: radial-gradient(ellipse 80% 60% at 80% 0%, rgba(27,122,134,0.06), transparent 70%);
       pointer-events: none;
     }
     .cadence__head {
@@ -1438,8 +1438,8 @@
       transition: border-color 200ms ease, background 200ms ease;
     }
     .cadence__day:hover {
-      border-color: rgba(46,158,158,0.3);
-      background: rgba(46,158,158,0.05);
+      border-color: rgba(27,122,134,0.3);
+      background: rgba(27,122,134,0.05);
     }
     .cadence__day__head {
       font-family: var(--mono);
@@ -1484,8 +1484,8 @@
       margin-top: auto;
     }
     .cadence__day--sync {
-      background: linear-gradient(160deg, rgba(46,158,158,0.12) 0%, rgba(46,158,158,0.03) 80%);
-      border-color: rgba(46,158,158,0.3);
+      background: linear-gradient(160deg, rgba(27,122,134,0.12) 0%, rgba(27,122,134,0.03) 80%);
+      border-color: rgba(27,122,134,0.3);
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -1736,7 +1736,7 @@
     <div class="site-nav__footer">
       Interactive scenarios. Your assumptions, your answer.<br><br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
-      Agency OS · April 2026
+      Small College Consulting · April 2026
     </div>
   </aside>
 
@@ -1918,7 +1918,7 @@
               </div>
               <div class="risks__detail__mit">How to read this</div>
               <div class="risks__detail__mit-body">Bigger dot = higher severity (likelihood × impact). Teal = manageable. Red = danger zone. Numbers inside each dot match the order they appear in our risk register.</div>
-              <div class="risks__detail__owner">Owner<b>Agency OS · Program Lead</b></div>
+              <div class="risks__detail__owner">Owner<b>Small College Consulting · Program Lead</b></div>
             </div>
           </div>
         </div>
@@ -2000,7 +2000,7 @@
           <svg class="deps__svg" viewBox="0 0 1080 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#2E9E9E"></path>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B7A86"></path>
               </marker>
               <marker id="arrowGhost" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.28)"></path>
@@ -2013,8 +2013,8 @@
 
             <!-- Phase 1 node -->
             <g transform="translate(40, 125)">
-              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
-              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 01</text>
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 01</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Discovery</text>
               <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">6 weeks</text>
             </g>
@@ -2029,24 +2029,24 @@
 
             <!-- Phase 3 node -->
             <g transform="translate(285, 195)">
-              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
-              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 03</text>
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 03</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Development</text>
               <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">12 weeks</text>
             </g>
 
             <!-- Phase 4 node -->
             <g transform="translate(570, 125)">
-              <rect width="180" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
-              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 04</text>
+              <rect width="180" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 04</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Migration &amp; QA</text>
               <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">8 weeks</text>
             </g>
 
             <!-- Phase 5 node -->
             <g transform="translate(870, 125)">
-              <rect width="170" height="70" rx="5" fill="url(#nodeGrad)" stroke="#2E9E9E" stroke-width="1.25"></rect>
-              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#2E9E9E" letter-spacing="1.2">PHASE 05</text>
+              <rect width="170" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 05</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Launch</text>
               <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">10 weeks</text>
             </g>
@@ -2056,24 +2056,24 @@
             <text x="218" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">content model</text>
 
             <!-- P1 → P3 (lower split, critical path) -->
-            <path d="M 200 185 C 235 185 240 230 285 230" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
-            <text x="210" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">page inventory</text>
+            <path d="M 200 185 C 235 185 240 230 285 230" fill="none" stroke="#1B7A86" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="210" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#1B7A86" letter-spacing="0.6">page inventory</text>
 
             <!-- P2 → P4 (upper merge, ghost — design handoff) -->
             <path d="M 445 90 C 510 90 520 140 570 140" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
             <text x="468" y="110" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">component library</text>
 
             <!-- P3 → P4 (lower merge, critical path) -->
-            <path d="M 445 230 C 510 230 520 180 570 180" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
-            <text x="462" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">migration tooling</text>
+            <path d="M 445 230 C 510 230 520 180 570 180" fill="none" stroke="#1B7A86" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="462" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#1B7A86" letter-spacing="0.6">migration tooling</text>
 
             <!-- P4 → P5 (straight, critical path) -->
-            <path d="M 750 160 L 870 160" fill="none" stroke="#2E9E9E" stroke-width="1.6" marker-end="url(#arrow)"></path>
-            <text x="770" y="152" font-family="JetBrains Mono, monospace" font-size="8" fill="#2E9E9E" letter-spacing="0.6">clean staging</text>
+            <path d="M 750 160 L 870 160" fill="none" stroke="#1B7A86" stroke-width="1.6" marker-end="url(#arrow)"></path>
+            <text x="770" y="152" font-family="JetBrains Mono, monospace" font-size="8" fill="#1B7A86" letter-spacing="0.6">clean staging</text>
 
             <!-- Dotted parallel indicator between P2 and P3 -->
-            <path d="M 365 125 L 365 195" stroke="rgba(46,158,158,0.35)" stroke-width="1" stroke-dasharray="3 3"></path>
-            <text x="372" y="164" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(46,158,158,0.65)" letter-spacing="0.6">parallel · weeks 10–12</text>
+            <path d="M 365 125 L 365 195" stroke="rgba(27,122,134,0.35)" stroke-width="1" stroke-dasharray="3 3"></path>
+            <text x="372" y="164" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(27,122,134,0.65)" letter-spacing="0.6">parallel · weeks 10–12</text>
           </svg>
 
           <div class="deps__note">
@@ -2245,7 +2245,7 @@
       <section class="assumptions">
         <div class="assumptions__label">How this plan was built</div>
         <div class="assumptions__body">
-          <strong>This isn't a gut-feel timeline.</strong> We built it using PERT-style critical-path modeling on the five phases, then ran a <em>Monte Carlo</em> simulation on Phase 4 (migration) — the biggest variance source in any higher-ed project — to stress-test the launch date across 10,000 runs. The dates and gates here anchor on Agency OS's two prior higher-ed redesigns delivered on comparable timelines: a 14,000-student regional Catholic university and a 4,200-student liberal arts college, both launched within two weeks of target. Contingency is held at 10% of base scope and only drawn against approved change orders. Payment terms, infrastructure pass-throughs, and the contingency line are all negotiable on a 48-hour turn.
+          <strong>This isn't a gut-feel timeline.</strong> We built it using PERT-style critical-path modeling on the five phases, then ran a <em>Monte Carlo</em> simulation on Phase 4 (migration) — the biggest variance source in any higher-ed project — to stress-test the launch date across 10,000 runs. The dates and gates here anchor on Small College Consulting's two prior higher-ed redesigns delivered on comparable timelines: a 14,000-student regional Catholic university and a 4,200-student liberal arts college, both launched within two weeks of target. Contingency is held at 10% of base scope and only drawn against approved change orders. Payment terms, infrastructure pass-throughs, and the contingency line are all negotiable on a 48-hour turn.
           <div class="assumptions__list">
             <div><span>01</span>PERT modeling on all 5 phases; critical path = P1 → P3 → P4 → P5</div>
             <div><span>02</span>Monte Carlo on Phase 4 (n=10,000) · P80 finish = Jan 24, P95 = Feb 2</div>
@@ -2282,7 +2282,7 @@
           '<b>Kickoff report</b> with confirmed success metrics tied to enrollment intelligence'
         ],
         roles: [
-          '<b>Agency OS:</b> Strategy Lead · IA Director · Research Associate',
+          '<b>Small College Consulting:</b> Strategy Lead · IA Director · Research Associate',
           '<b>Holy Family:</b> Rick Mitchell · Advancement · Enrollment · IT'
         ],
         milestones: [
@@ -2308,7 +2308,7 @@
           '<b>Prototype handoff</b> in Figma with dev-ready specs and Storybook outline'
         ],
         roles: [
-          '<b>Agency OS:</b> Design Director · Senior Designer · UX Engineer',
+          '<b>Small College Consulting:</b> Design Director · Senior Designer · UX Engineer',
           '<b>Holy Family:</b> Rick · Advancement lead · Marketing reviewer'
         ],
         milestones: [
@@ -2334,7 +2334,7 @@
           '<b>Performance budget</b>: LCP <2.0s on 4G, Core Web Vitals in green'
         ],
         roles: [
-          '<b>Agency OS:</b> Lead Engineer · 2× Full-stack · QA Engineer · DevOps',
+          '<b>Small College Consulting:</b> Lead Engineer · 2× Full-stack · QA Engineer · DevOps',
           '<b>Holy Family:</b> Rick (commit access) · IT (DNS, Slate creds)'
         ],
         milestones: [
@@ -2360,7 +2360,7 @@
           '<b>UAT scripts</b> for 12 critical user flows, ready for HFU testing'
         ],
         roles: [
-          '<b>Agency OS:</b> Content Strategist · 2× Migration Engineers · QA Lead',
+          '<b>Small College Consulting:</b> Content Strategist · 2× Migration Engineers · QA Lead',
           '<b>Holy Family:</b> Content reviewers · Accessibility coordinator'
         ],
         milestones: [
@@ -2386,7 +2386,7 @@
           '<b>Post-launch monitoring</b>: 30-day hypercare, daily checks, handoff at G6'
         ],
         roles: [
-          '<b>Agency OS:</b> Program Lead · Support Engineer · Trainer',
+          '<b>Small College Consulting:</b> Program Lead · Support Engineer · Trainer',
           '<b>Holy Family:</b> Rick + cabinet · IT · Content team · Enrollment'
         ],
         milestones: [
@@ -2534,7 +2534,7 @@
         x: 50, y: 17, size: 24, danger: false,
         likelihood: 'Low', impact: 'Medium',
         description: 'Any critical HFU team member — Rick, a content owner, an IT admin — going unavailable for 2+ weeks during a key phase creates unplanned bottlenecks.',
-        mitigation: 'Every Agency OS training session is recorded. The runbook doesn\'t depend on any one person. Rick has a named backup on the steering committee. Every gate has a secondary signer documented in the contract.',
+        mitigation: 'Every Small College Consulting training session is recorded. The runbook doesn\'t depend on any one person. Rick has a named backup on the steering committee. Every gate has a secondary signer documented in the contract.',
         owner: 'Program Lead'
       }
     ];

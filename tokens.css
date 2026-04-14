@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════════
    HFU PROPOSAL:DESIGN TOKENS
-   Adapted from Agency OS Landing design system (warm editorial, restrained).
+   Adapted from Small College Consulting Landing design system (warm editorial, restrained).
    Plain CSS custom properties. No build step. Import this first.
 
    Philosophy:
@@ -29,8 +29,8 @@
      ═══════════════════════════════════════════════════════════════════════════ */
 
   /* Brand accent (agency) */
-  /* NOTE 2026-04-10: darkened from 174 55% 40% (#2E9E9E) to satisfy WCAG 2.2 AA 4.5:1 body-text contrast. */
-  --teal:          174 62% 27%;   /* #2E9E9E:primary accent */
+  /* NOTE 2026-04-10: darkened from 174 55% 40% (#1B7A86) to satisfy WCAG 2.2 AA 4.5:1 body-text contrast. */
+  --teal:          174 62% 27%;   /* #1B7A86:primary accent */
   --teal-bright:   174 55% 45%;   /* hover state */
   --teal-muted:    174 35% 55%;   /* disabled / subtle */
 
