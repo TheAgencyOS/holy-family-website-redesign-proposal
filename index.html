@@ -12,7 +12,7 @@
 
   <style>
     /* ══════════════════════════════════════════════════════════════════
-       AGENCY OS · HFU PROPOSAL · fresh build · April 2026
+       SMALL COLLEGE CONSULTING · HFU PROPOSAL · fresh build · April 2026
        28 paginated 8.5x11 pages · Small College Consulting ink + teal brand
        ══════════════════════════════════════════════════════════════════ */
 
@@ -24,14 +24,12 @@
     @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
 
     :root {
-      /* ── Small College Consulting brand tokens ────────── */
-      /* Sourced from smallcollegeconsulting.com — navy + teal */
-      --teal:       #1B7A86;   /* mid-teal accent for italic words, rules, hover */
-      --teal-deep:  #005357;   /* deeper variant for shadows, hover-pressed */
+      /* ── Small College Consulting brand tokens ──────────────── */
+      --teal:       #1B7A86;
+      --teal-deep:  #005357;
       --teal-faint: #E5F4F5;
-      --ink:        #092D4C;   /* SCC navy — primary heavy text + dark surfaces */
-      --ink-deep:   #062434;   /* deeper navy for dark backgrounds + cover */
-      --scc-spark:  #68CCD1;   /* the "book in the logo" — bright spark teal */
+      --ink:        #092D4C;
+      --ink-deep:   #062434;
 
       /* ── Warm editorial base ─────────────────── */
       --bg:         #FAFAFA;
@@ -76,35 +74,29 @@
     }
     img { display: block; max-width: 100%; }
 
-    /* Print: each .page maps 1:1 to a Letter sheet, no browser margin */
-    @page { size: 8.5in 11in; margin: 0; }
-    @media print {
-      html, body { margin: 0; padding: 0; background: white; }
-      .page { box-shadow: none !important; }
-      /* Hide screen-only chrome (sidebar, topbar, concierge widget, back link) */
-      .site-nav, .site-topbar, .site-keyhint,
-      .aos-fab, .aos-chat,
-      .aos-back-to-concepts,
-      .mobile-menu-btn, .mobile-menu-backdrop { display: none !important; }
-      main { width: 100%; max-width: none; margin: 0; padding: 0; }
-    }
-
     /* ════════════════════════════════════════════════════════════════
        PAGE PRIMITIVE · letter, hand paginated
        ════════════════════════════════════════════════════════════════ */
     .page {
       width: 8.5in;
-      height: 11in;
-      page-break-after: always;
-      break-after: page;
+      min-height: 11in;
       position: relative;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: visible;
       background: white;
       color: var(--fg);
     }
-    .page:last-child { page-break-after: auto; break-after: auto; }
+    /* On screen, sections flow continuously. On print, Chrome paginates
+       them naturally and each top-level section starts on a new sheet so
+       the visual rhythm of the proposal is preserved in the PDF. */
+    @media print {
+      .page { break-before: page; page-break-before: always; }
+      .page:first-of-type { break-before: auto; page-break-before: auto; }
+      .page__header, .page__footer { break-inside: avoid; }
+      .card, .value-tile, .diff-tile, .team-card, .hero-draft,
+      .logo-card, .codeblock, figure { break-inside: avoid; }
+    }
 
     .page--sage    { background: var(--surface-sage); }
     .page--blush   { background: var(--surface-blush); }
@@ -504,6 +496,19 @@
       color: rgba(9,45,76,0.42);
     }
 
+    /* Print: each .page maps 1:1 to a Letter sheet, no browser margin */
+    @page { size: 8.5in 11in; margin: 0; }
+    @media print {
+      html, body { margin: 0; padding: 0; background: white; }
+      .page { box-shadow: none !important; }
+      /* Hide screen-only chrome (sidebar, topbar, concierge widget, back link) */
+      .site-nav, .site-topbar, .site-keyhint,
+      .aos-fab, .aos-chat,
+      .aos-back-to-concepts,
+      .mobile-menu-btn, .mobile-menu-backdrop { display: none !important; }
+      main { width: 100%; max-width: none; margin: 0; padding: 0; }
+    }
+
     /* ════════════════════════════════════════════════════════════════
        TOC
        ════════════════════════════════════════════════════════════════ */
@@ -533,6 +538,8 @@
       font-size: 9pt;
       color: var(--fg);
     }
+    .toc-row a { display: contents; color: inherit; text-decoration: none; }
+    .toc-row:hover { color: var(--teal); }
     .toc-row__num {
       font-family: var(--mono);
       font-size: 6.5pt;
@@ -865,6 +872,60 @@
       text-transform: none;
       letter-spacing: 0;
       margin-bottom: 2px;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       PROPOSAL FIGURES (in-body imagery)
+       ════════════════════════════════════════════════════════════════ */
+    .proposal-figure {
+      margin: 24px 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      break-inside: avoid;
+    }
+    .proposal-figure img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 14px 40px rgba(15, 17, 23, 0.10);
+      background: white;
+    }
+    .proposal-figure--narrow img {
+      max-width: 4.6in;
+      margin: 0 auto;
+    }
+    .proposal-figure figcaption {
+      font-family: var(--mono);
+      font-size: 7pt;
+      line-height: 1.55;
+      letter-spacing: 0.04em;
+      color: var(--fg-subtle);
+      text-align: left;
+      max-width: 62ch;
+    }
+    .proposal-figure--narrow figcaption { text-align: center; margin: 0 auto; }
+
+    .card--with-figure { display: flex; flex-direction: column; }
+    .card-figure {
+      margin: 10px 0 6px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: white;
+      break-inside: avoid;
+    }
+    .card-figure img { width: 100%; height: auto; display: block; }
+    .card-figure figcaption {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      padding: 8px 12px 10px;
     }
 
     /* ════════════════════════════════════════════════════════════════
@@ -1502,6 +1563,460 @@
       color: var(--teal);
     }
 
+    /* ════════════════════════════════════════════════════════════════
+       CONSISTENCY OVERRIDES
+       — single sans-serif family across the entire proposal
+       — no italics anywhere
+       — em is rendered identical to surrounding text (no color shift)
+       — large display sizes brought down to a calmer scale
+       — peer landscape thumbs forced to a uniform aspect ratio so all
+         four screenshots present at the same physical size
+       ════════════════════════════════════════════════════════════════ */
+    :root {
+      --display: 'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:   'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:    'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+    }
+
+    body, .lede, .prose, .h1, .h2, .h3, .card__title, .card__body,
+    .value-tile__title, .value-tile__body, .diff-tile__title,
+    .diff-tile__body, .hero-draft__title, .hero-draft__body,
+    .number__caption, .team-card__name, .team-card__body, p, li, td, th {
+      font-family: 'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif !important;
+      font-style: normal !important;
+      font-variation-settings: normal !important;
+    }
+
+    em, i, .h1 em, .h2 em, .h3 em, .cover__title em, .hero-draft__title em,
+    .diff-tile__title em, .card__title em, .value-tile__title em {
+      font-family: inherit !important;
+      font-style: normal !important;
+      font-weight: inherit !important;
+      color: inherit !important;
+      font-size: inherit !important;
+      letter-spacing: inherit !important;
+      margin: 0 !important;
+      font-variation-settings: normal !important;
+    }
+
+    .lede {
+      font-style: normal !important;
+      font-size: 12pt !important;
+      line-height: 1.5 !important;
+      color: var(--fg) !important;
+      font-weight: 400 !important;
+    }
+    .page--ink .lede { color: rgba(255,255,255,0.85) !important; }
+
+    .h1 { font-size: 32pt !important; line-height: 1.05 !important; font-weight: 500 !important; }
+    .h2 { font-size: 20pt !important; line-height: 1.1 !important; font-weight: 500 !important; }
+    .h3 { font-size: 13pt !important; line-height: 1.2 !important; font-weight: 500 !important; }
+
+    .cover__title { font-size: 48pt !important; line-height: 1.0 !important; font-weight: 500 !important; }
+
+    .number__giant {
+      font-size: 88pt !important;
+      line-height: 0.9 !important;
+      font-weight: 500 !important;
+      letter-spacing: -0.03em !important;
+    }
+    .number__caption {
+      font-size: 13pt !important;
+      line-height: 1.45 !important;
+      font-style: normal !important;
+      font-weight: 400 !important;
+      color: var(--fg) !important;
+      max-width: 28ch !important;
+      margin-top: 0.25in !important;
+    }
+    .number__caption strong { color: var(--teal) !important; font-weight: 500 !important; }
+
+    .drop-cap::first-letter {
+      font-style: normal !important;
+      font-family: inherit !important;
+      font-size: 3.4em !important;
+      color: var(--fg) !important;
+      font-weight: 500 !important;
+    }
+
+    .codeblock .tok-c { font-style: normal !important; }
+
+    /* PEER LANDSCAPE — uniform 2x2 with fixed aspect ratio */
+    .peer-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-rows: auto auto !important;
+      gap: 18px 22px !important;
+      flex: none !important;
+      margin-top: 0.25in !important;
+    }
+    .peer-grid figure {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      margin: 0 !important;
+    }
+    .peer-grid figure img {
+      width: 100% !important;
+      aspect-ratio: 4 / 3 !important;
+      height: auto !important;
+      object-fit: cover !important;
+      object-position: top center !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 4px !important;
+      flex: none !important;
+    }
+    .peer-grid figcaption {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 9pt !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      color: var(--fg-muted) !important;
+      line-height: 1.35 !important;
+    }
+    .peer-grid figcaption strong {
+      display: block !important;
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 10pt !important;
+      font-weight: 500 !important;
+      color: var(--fg) !important;
+      margin-bottom: 2px !important;
+    }
+
+    /* Closing paragraph on p30 — the inline italic style attribute */
+    .final p[style*="italic"] {
+      font-style: normal !important;
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 12pt !important;
+      line-height: 1.55 !important;
+    }
+    .final p[style*="italic"] strong {
+      color: var(--teal) !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       BODY-TEXT UNIFICATION
+       Every text element that is not a section heading, eyebrow,
+       page chrome, table label, or code is rendered at the same size,
+       weight, line-height, and color so the reader sees one consistent
+       reading texture across the entire proposal.
+       ════════════════════════════════════════════════════════════════ */
+    .lede,
+    .prose,
+    p.prose,
+    p.lede,
+    p.caption,
+    .card__body,
+    .card__footer,
+    .value-tile__body,
+    .value-tile__foot,
+    .diff-tile__body,
+    .diff-tile__foot,
+    .hero-draft__body,
+    .hero-draft__why,
+    .hero-draft__tag,
+    .team-card__body,
+    .team-card__role,
+    .team-card__footer,
+    .logo-card__body,
+    .callout,
+    ol.steps > li,
+    .gates-list__label,
+    .number__caption,
+    .number__strip span,
+    .in-out__yes ul li,
+    .in-out__no ul li,
+    .sitemap-tree li,
+    .sitemap-tree li span,
+    .data-table td,
+    .rfp-map td,
+    .price-table td,
+    .price-row__big small,
+    .peer-grid figcaption,
+    .peer-grid figcaption strong,
+    .proposal-figure figcaption,
+    .card-figure figcaption,
+    .figure-label,
+    .hero-draft__cta span,
+    .hero-draft__stats span,
+    .toc-row,
+    .toc-row span,
+    .toc-group__label,
+    .final p[style*="italic"] {
+      font-family: 'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif !important;
+      font-size: 12pt !important;
+      line-height: 1.55 !important;
+      font-weight: 400 !important;
+      letter-spacing: 0 !important;
+      text-transform: none !important;
+      color: var(--fg) !important;
+      max-width: none !important;
+    }
+
+    /* Strong / numeric strong in stats stays the same family but bumps
+       weight slightly so it reads as emphasis without breaking texture. */
+    .number__strip strong,
+    .hero-draft__stats strong {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 18pt !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Card titles / tile titles / team names keep a small uplift */
+    .card__title, .value-tile__title, .diff-tile__title,
+    .hero-draft__title, .team-card__name, .logo-card__name {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 14pt !important;
+      line-height: 1.25 !important;
+      font-weight: 500 !important;
+      color: var(--fg) !important;
+    }
+
+    /* Eyebrow labels — keep them distinct but match the family */
+    .eyebrow, .card__eyebrow, .value-tile__foot, .diff-tile__foot,
+    .team-card__eyebrow, .toc-group__label, .figure-label {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 9pt !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+      color: var(--fg-subtle) !important;
+      font-weight: 500 !important;
+    }
+    /* Footer attribution row inside cards stays small + muted */
+    .card__footer, .value-tile__foot, .diff-tile__foot,
+    .team-card__footer {
+      font-size: 10pt !important;
+      color: var(--fg-subtle) !important;
+      text-transform: none !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Page header/footer chrome stays small. */
+    .page__header, .page__footer {
+      font-size: 8pt !important;
+      letter-spacing: 0.04em !important;
+    }
+
+    /* Override the inline ul styles inside portfolio cards on p27 */
+    .card ul[style] {
+      font-size: 12pt !important;
+      line-height: 1.55 !important;
+      gap: 6px !important;
+    }
+    .card ul[style] strong {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 12pt !important;
+      letter-spacing: 0 !important;
+    }
+
+    /* Image captions — always left-aligned, consistent treatment */
+    .proposal-figure figcaption,
+    .proposal-figure--narrow figcaption,
+    .card-figure figcaption {
+      text-align: left !important;
+      margin: 0 !important;
+      max-width: none !important;
+      color: var(--fg-muted) !important;
+    }
+    .proposal-figure--narrow img { margin: 0 !important; max-width: 100% !important; }
+    .proposal-figure--narrow { max-width: 100% !important; }
+
+    /* Tables: keep numeric columns from looking out of place */
+    table.data-table th, table.rfp-map th, table.price-table th {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 9pt !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+      font-weight: 500 !important;
+    }
+
+    /* Side-nav text on screen — keep readable but match family */
+    .site-nav, .site-nav a, .site-topbar { font-family: 'Roobert', 'Instrument Sans', sans-serif !important; }
+
+    /* ════════════════════════════════════════════════════════════════
+       INK-PAGE COLOR RECOVERY
+       The unification block forces color: var(--fg) on body text with
+       !important. That wins against the original .page--ink rules and
+       renders card text invisible on the dark final page. These rules
+       restore legible colors wherever a dark section is used.
+       ════════════════════════════════════════════════════════════════ */
+    .page--ink .lede,
+    .page--ink .prose,
+    .page--ink p,
+    .page--ink li,
+    .page--ink .card__body,
+    .page--ink .value-tile__body,
+    .page--ink .diff-tile__body,
+    .page--ink .hero-draft__body,
+    .page--ink .team-card__body,
+    .page--ink .team-card__role,
+    .page--ink .callout,
+    .page--ink .figure-label,
+    .page--ink .final p[style*="italic"] {
+      color: rgba(255, 255, 255, 0.82) !important;
+    }
+    .page--ink .h1,
+    .page--ink .h2,
+    .page--ink .h3,
+    .page--ink .card__title,
+    .page--ink .value-tile__title,
+    .page--ink .diff-tile__title,
+    .page--ink .hero-draft__title,
+    .page--ink .team-card__name,
+    .page--ink .logo-card__name {
+      color: #FFFFFF !important;
+    }
+    .page--ink .eyebrow,
+    .page--ink .card__eyebrow,
+    .page--ink .value-tile__foot,
+    .page--ink .diff-tile__foot,
+    .page--ink .team-card__eyebrow,
+    .page--ink .team-card__footer,
+    .page--ink .card__footer,
+    .page--ink .toc-group__label {
+      color: rgba(255, 255, 255, 0.55) !important;
+    }
+    /* Cards on the ink page use a lighter border + background lift so
+       the container itself remains visible on dark. */
+    .page--ink .card,
+    .page--ink .team-col,
+    .page--ink .team-card,
+    .page--ink .value-tile,
+    .page--ink .diff-tile {
+      background: rgba(255, 255, 255, 0.04) !important;
+      border-color: rgba(255, 255, 255, 0.14) !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       CODEBLOCKS (p15) — equal-height side-by-side cards
+       CALLOUTS — inline <code> tokens inherit body font so the
+       schema type names don't render as italic monospace.
+       ════════════════════════════════════════════════════════════════ */
+    .two-col {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 14px !important;
+      align-items: stretch !important;
+    }
+    .two-col > div {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .two-col .codeblock {
+      flex: 1 1 auto !important;
+      height: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .callout, .callout * {
+      font-family: 'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif !important;
+      font-style: normal !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       AEO COMPARISON CARD (p15) — inline mock of our tooling output
+       ════════════════════════════════════════════════════════════════ */
+    .aeo-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-top: 18px;
+      box-shadow: 0 10px 28px rgba(15, 17, 23, 0.06);
+      break-inside: avoid;
+    }
+    .aeo-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .aeo-card__eyebrow {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-size: 9pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      margin-bottom: 4px;
+    }
+    .aeo-card__title {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-size: 14pt;
+      font-weight: 500;
+      color: var(--fg);
+    }
+    .aeo-card__meta {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-size: 10pt;
+      color: var(--fg-subtle);
+      text-align: right;
+    }
+    .aeo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+    .aeo-table th {
+      text-align: left;
+      font-size: 9pt;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      padding: 0 14px 10px 0;
+    }
+    .aeo-table th:first-child { width: 70px; }
+    .aeo-table th:nth-child(2) { width: 36%; }
+    .aeo-table td {
+      padding: 12px 14px 12px 0;
+      vertical-align: top;
+      border-top: 1px solid var(--border);
+      color: var(--fg);
+    }
+    .aeo-table tr:first-child td { border-top: none; }
+    .aeo-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 9pt;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      background: #F1E5FF;
+      color: #6B2AD1;
+    }
+    .aeo-tag--h1 { background: #FFE6EA; color: #C1234A; }
+    .aeo-tag--h2 { background: #F1E5FF; color: #6B2AD1; }
+    .aeo-tag--h3 { background: #E1F5E7; color: #1F7A41; }
+    .aeo-card__foot {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-size: 11pt;
+      line-height: 1.55;
+      color: var(--fg-muted);
+    }
+    .aeo-card__foot strong { color: var(--fg); font-weight: 500; }
+    .callout code {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif !important;
+      font-size: 12pt !important;
+      font-style: normal !important;
+      background: transparent !important;
+      padding: 0 !important;
+      color: inherit !important;
+      font-weight: 500 !important;
+    }
+
   </style>
 </head>
 <body>
@@ -1513,7 +2028,7 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff May 1, 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
@@ -1548,12 +2063,12 @@
         <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
         <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
         <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-        <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+        <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>5-month sprint</span></a>
         <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
       </nav>
     </details>
 
-    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-Agency-OS.pdf">↓ Download proposal PDF</a>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
       Prepared for Rick Mitchell · Director of Digital Experience<br>
@@ -1564,9 +2079,9 @@
 
   <main>
     <header class="site-topbar">
-      <span class="site-topbar__progress"><b id="progress-current">01</b> / 30</span>
+      <span class="site-topbar__progress">Section&nbsp;<b id="progress-current">01</b>&nbsp;of&nbsp;30</span>
       <span class="site-topbar__spacer"></span>
-      <a href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-Agency-OS.pdf" class="site-topbar__btn">Download PDF</a>
+      <a href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf" class="site-topbar__btn">Download PDF</a>
       <a href="mailto:rmitchell2@holyfamily.edu?subject=Holy Family University Website Redesign Proposal - Small College Consulting" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
     </header>
 
@@ -1598,7 +2113,7 @@
         <span class="break"><em>Website Redesign.</em></span>
       </h1>
 
-      <p class="cover__lede">For a campus more alive than its website currently shows.</p>
+      <p class="cover__lede">A redesign proposal prepared for Holy Family University in response to the RFP issued March&nbsp;23,&nbsp;2026.</p>
 
       <div class="cover__spacer"></div>
 
@@ -1610,7 +2125,7 @@
         </div>
         <div>
           <dt>Prepared by</dt>
-          <dd>Small College Consulting<small>Coons &middot; Novak &middot; Yerke &middot; Vineburgh</small></dd>
+          <dd>Small College Consulting<small>Scott Novak, Chris Coons, Eric Yerke &amp; Dr. James Vineburgh</small></dd>
         </div>
         <div>
           <dt>Submitted</dt>
@@ -1635,67 +2150,80 @@
   <section class="page" id="p02">
     <header class="page__header">
       <span class="page__eyebrow">Table of contents &amp; executive summary</span>
-      <span class="page__num">02 / 30</span>
+      <span class="page__num">Section 02 / 30</span>
     </header>
     <div class="page__body">
-      <h2 class="h1">Every requirement, <em>answered.</em></h2>
-      <p class="lede" style="margin-top: 0.1in;">Thirty pages answer thirty-six pages of RFP and roughly 240 discrete requirements. The density on page four is deliberate: every requirement mapped to its response page, so nothing is hunted for.</p>
+      <h2 class="h1">Modernizing Holy Family University&rsquo;s <em>web presence.</em></h2>
+      <p class="lede" style="margin-top: 0.1in;">Small College Consulting is honored to present this proposal to Holy Family University. In partnership with the University&rsquo;s team, we are confident that our approach will not only strengthen the institution&rsquo;s website and connected marketing channels, but will also position University personnel to manage and evolve the site in the future with little to no external vendor support. Our intent is to deliver a powerful, modern website while minimizing the University&rsquo;s future investment and providing a website management methodology that a small internal team can execute.</p>
+      <p class="prose">Members of the Small College Consulting team already have deep working relationships with members of the University&rsquo;s leadership, and we developed the current chatbot on holyfamily.edu that is generating inquiries and informing content strategy today. We are confident that we are the right partners for this project and hope to deepen our existing relationships and expand the scope of our work together.</p>
+      <p class="prose">This proposal addresses the requirements of the RFP in full. The mapping table on page four is intentionally dense, allowing evaluators to locate the response to any individual requirement without searching.</p>
+      <p class="prose">Small College Consulting has also developed proprietary AI technology in preparation for this engagement. The technology facilitates seamless redesign and content migration from the existing Drupal installation into WordPress while simultaneously optimizing the new site for AI-engine visibility. It has been tested and fully validated against real institutional content.</p>
+
+      <figure class="proposal-figure">
+        <img src="assets/proposal-images/homepage-draft.jpg" alt="Draft Holy Family University homepage concept generated by Small College Consulting&rsquo;s AI migration tool">
+        <figcaption>An example of a quickly developed draft page modeled after Tufts University&rsquo;s homepage. Our proprietary technology enables page redesigns to be informed by reference sites the University&rsquo;s team wishes to draw from.</figcaption>
+      </figure>
+
+      <figure class="proposal-figure proposal-figure--narrow">
+        <img src="assets/proposal-images/migration-console.jpg" alt="Screenshot of Small College Consulting&rsquo;s AI migration tool, configured for the Holy Family University redesign">
+        <figcaption>The migration console used to translate content from the current Drupal installation into WordPress block patterns. AI drafts the classifications and block layout; the University&rsquo;s editors review and approve every page.</figcaption>
+      </figure>
 
       <div class="toc-grid">
         <div class="toc-group">
           <div class="toc-group__label">The situation</div>
-          <div class="toc-row"><span class="toc-row__num">03</span><span>The 1,601 · state of the site</span></div>
-          <div class="toc-row"><span class="toc-row__num">04</span><span>What you asked for · what we heard</span></div>
-          <div class="toc-row"><span class="toc-row__num">05</span><span>Day 1 Value Pack · 6 artifacts</span></div>
+          <div class="toc-row"><a href="#p03"><span class="toc-row__num">03</span><span>State of the site &middot; 1,601 URLs</span></a></div>
+          <div class="toc-row"><a href="#p04"><span class="toc-row__num">04</span><span>Reading the RFP &middot; response map</span></a></div>
+          <div class="toc-row"><a href="#p05"><span class="toc-row__num">05</span><span>Day 1 Value Pack &middot; six artifacts</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Sample work</div>
-          <div class="toc-row"><span class="toc-row__num">06</span><span>Proposed sitemap · 1,601 to 650</span></div>
-          <div class="toc-row"><span class="toc-row__num">07</span><span>Peer landscape · Philly Catholic</span></div>
-          <div class="toc-row"><span class="toc-row__num">08</span><span>Executive summary · the thesis</span></div>
+          <div class="toc-row"><a href="#p06"><span class="toc-row__num">06</span><span>Proposed information architecture</span></a></div>
+          <div class="toc-row"><a href="#p07"><span class="toc-row__num">07</span><span>Philadelphia Catholic peer landscape</span></a></div>
+          <div class="toc-row"><a href="#p08"><span class="toc-row__num">08</span><span>Executive summary &middot; adult &amp; graduate</span></a></div>
         </div>
 
         <div class="toc-group">
           <div class="toc-group__label">The priority</div>
-          <div class="toc-row"><span class="toc-row__num">09</span><span>Adult &amp; graduate · the argument</span></div>
-          <div class="toc-row"><span class="toc-row__num">10</span><span>Variant A · undergraduate hero</span></div>
-          <div class="toc-row"><span class="toc-row__num">11</span><span>Variant B · adult/grad hero</span></div>
+          <div class="toc-row"><a href="#p09"><span class="toc-row__num">09</span><span>Four tactics for adult &amp; graduate</span></a></div>
+          <div class="toc-row"><a href="#p10"><span class="toc-row__num">10</span><span>Variant A &middot; undergraduate hero</span></a></div>
+          <div class="toc-row"><a href="#p11"><span class="toc-row__num">11</span><span>Variant B &middot; adult &amp; graduate hero</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Differentiation</div>
-          <div class="toc-row"><span class="toc-row__num">12</span><span>Six differentiators</span></div>
-          <div class="toc-row"><span class="toc-row__num">13</span><span>Catholic mission · whole person</span></div>
-          <div class="toc-row"><span class="toc-row__num">14</span><span>Know your stakeholders</span></div>
+          <div class="toc-row"><a href="#p12"><span class="toc-row__num">12</span><span>Six differentiators</span></a></div>
+          <div class="toc-row"><a href="#p13"><span class="toc-row__num">13</span><span>Catholic mission &middot; whole person</span></a></div>
+          <div class="toc-row"><a href="#p14"><span class="toc-row__num">14</span><span>Who we are building for</span></a></div>
         </div>
 
         <div class="toc-group">
           <div class="toc-group__label">Intellectual heart</div>
-          <div class="toc-row"><span class="toc-row__num">15</span><span>AI-first content architecture</span></div>
-          <div class="toc-row"><span class="toc-row__num">16</span><span>ROI math · the business case</span></div>
-          <div class="toc-row"><span class="toc-row__num">17</span><span>Enrollment funnel analytics</span></div>
+          <div class="toc-row"><a href="#p15"><span class="toc-row__num">15</span><span>AI content architecture &amp; AEO</span></a></div>
+          <div class="toc-row"><a href="#p16"><span class="toc-row__num">16</span><span>ROI math &middot; the business case</span></a></div>
+          <div class="toc-row"><a href="#p17"><span class="toc-row__num">17</span><span>Four-stage enrollment funnel</span></a></div>
         </div>
         <div class="toc-group">
           <div class="toc-group__label">Approach &amp; methodology</div>
-          <div class="toc-row"><span class="toc-row__num">18</span><span>Discovery &amp; information architecture</span></div>
-          <div class="toc-row"><span class="toc-row__num">19</span><span>Content migration 1,601 → 650</span></div>
-          <div class="toc-row"><span class="toc-row__num">20</span><span>Collaboration model · 4 rituals</span></div>
+          <div class="toc-row"><a href="#p18"><span class="toc-row__num">18</span><span>Discovery &amp; information architecture</span></a></div>
+          <div class="toc-row"><a href="#p19"><span class="toc-row__num">19</span><span>Content migration &middot; 1,601 &rarr; 650</span></a></div>
+          <div class="toc-row"><a href="#p20"><span class="toc-row__num">20</span><span>Collaboration model &middot; four rituals</span></a></div>
         </div>
 
         <div class="toc-group">
           <div class="toc-group__label">Technical approach</div>
-          <div class="toc-row"><span class="toc-row__num">21</span><span>CMS · WordPress not headless</span></div>
-          <div class="toc-row"><span class="toc-row__num">22</span><span>Tech stack &amp; Slate integration</span></div>
-          <div class="toc-row"><span class="toc-row__num">23</span><span>Accessibility · WCAG 2.2 AA</span></div>
-          <div class="toc-row"><span class="toc-row__num">24</span><span>Security &amp; compliance</span></div>
+          <div class="toc-row"><a href="#p21"><span class="toc-row__num">21</span><span>CMS &middot; WordPress, not headless</span></a></div>
+          <div class="toc-row"><a href="#p22"><span class="toc-row__num">22</span><span>Tech stack &amp; Slate integration</span></a></div>
+          <div class="toc-row"><a href="#p23"><span class="toc-row__num">23</span><span>Accessibility &middot; WCAG 2.2 AA</span></a></div>
+          <div class="toc-row"><a href="#p24"><span class="toc-row__num">24</span><span>Security &amp; compliance</span></a></div>
         </div>
         <div class="toc-group">
-          <div class="toc-group__label">Plan · people · proof · price</div>
-          <div class="toc-row"><span class="toc-row__num">25</span><span>Timeline &amp; approval gates</span></div>
-          <div class="toc-row"><span class="toc-row__num">26</span><span>Team · Eric &amp; James</span></div>
-          <div class="toc-row"><span class="toc-row__num">27</span><span>Portfolio · 3 case studies</span></div>
-          <div class="toc-row"><span class="toc-row__num">28</span><span>Budget · $235,000 fixed</span></div>
-          <div class="toc-row"><span class="toc-row__num">29</span><span>Post-launch &amp; training · 90 days</span></div>
-          <div class="toc-row"><span class="toc-row__num">30</span><span>What we won't do · close</span></div>
+          <div class="toc-group__label">Plan, people, proof &amp; price</div>
+          <div class="toc-row"><a href="#p25"><span class="toc-row__num">25</span><span>Timeline &middot; May &rarr; September 2026</span></a></div>
+          <div class="toc-row"><a href="#p26"><span class="toc-row__num">26</span><span>Team &middot; Scott, Chris, Eric &amp; James</span></a></div>
+          <div class="toc-row"><a href="#p27"><span class="toc-row__num">27</span><span>Portfolio &middot; case studies</span></a></div>
+          <div class="toc-row"><a href="#p28"><span class="toc-row__num">28</span><span>Budget &middot; $145,000 fixed fee, all-in</span></a></div>
+          <div class="toc-row"><a href="#p29"><span class="toc-row__num">29</span><span>Post-launch support &middot; 90 days</span></a></div>
+          <div class="toc-row"><a href="#p30"><span class="toc-row__num">30</span><span>What we won&rsquo;t do &middot; closing</span></a></div>
         </div>
       </div>
     </div>
@@ -1711,7 +2239,7 @@
   <section class="page number page--sage" id="p03">
     <header class="page__header">
       <span class="page__eyebrow">The state of the site · April 2026 scrape</span>
-      <span class="page__num">03 / 30</span>
+      <span class="page__num">Section 03 / 30</span>
     </header>
     <div class="page__body">
       <div style="text-align: center; margin-bottom: -0.15in;"><span class="figure-label" style="justify-content: center;"><strong>Fig.&nbsp;02</strong> &nbsp;·&nbsp; holyfamily.edu sitemap scrape</span></div>
@@ -1736,12 +2264,12 @@
   <section class="page" id="p04">
     <header class="page__header">
       <span class="page__eyebrow">Reading the RFP, not skimming it</span>
-      <span class="page__num">04 / 30</span>
+      <span class="page__num">Section 04 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The RFP, mapped to this proposal</div>
-      <h2 class="h1">What you asked for. <em>What we heard.</em></h2>
-      <p class="prose">Your RFP runs 36 pages. We read every one. The table below maps the requirements most agencies gloss over to specific pages in this response.</p>
+      <h2 class="h1">What you requested. What we heard.</h2>
+      <p class="prose">The proposed project identifies various deliverables, and this response addresses each of them. The table below maps every major requirement to the specific page on which it is answered.</p>
       <table class="rfp-map">
         <thead><tr><th>What the RFP asks for</th><th>What we committed to</th><th>Page</th></tr></thead>
         <tbody>
@@ -1772,12 +2300,12 @@
   <section class="page page--sage" id="p05">
     <header class="page__header">
       <span class="page__eyebrow">Before you even sign</span>
-      <span class="page__num">05 / 30</span>
+      <span class="page__num">Section 05 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Day 1 Value Pack · six concrete artifacts</div>
-      <h2 class="h1">Six artifacts we'll hand you <em>this week.</em></h2>
-      <p class="prose">A proposal is an opportunity to prove competence before a contract is signed. The six artifacts below are drafted inside this document, ready to refine with your team in Discovery. We would rather show the work now than promise it later.</p>
+      <h2 class="h1">Six artifacts, <em>drafted inside this response.</em></h2>
+      <p class="prose">Each of the six artifacts described below has been drafted within this document and is ready for refinement with the University's team during Discovery. Our preference is to show the work now rather than promise it for delivery later.</p>
       <div class="value-grid">
         <div class="value-tile">
           <span class="value-tile__num">01</span>
@@ -1822,7 +2350,7 @@
           <div class="value-tile__foot">See pages 10 &amp; 11</div>
         </div>
       </div>
-      <div class="callout"><strong>Why we do this.</strong> You should not have to take anyone's word for competence at the proposal stage. By the end of this document you will know how we think about your sitemap, your schema, your enrollment funnel, and your hero copy. If any of our drafts are wrong, the corrections still save a Discovery cycle.</div>
+      <div class="callout">Holy Family University should not have to rely on assurances of competence at the proposal stage. By the time evaluators reach the end of this document, they will understand precisely how our team approaches the sitemap, the schema, the enrollment funnel, and the homepage hero. In any instance where one of our drafts proves incorrect, the corrections themselves will accelerate the Discovery process.</div>
     </div>
     <footer class="page__footer">
       <span>Artifacts rendered inside this proposal · refined during Discovery with your team</span>
@@ -1836,12 +2364,12 @@
   <section class="page" id="p06">
     <header class="page__header">
       <span class="page__eyebrow">Proposed information architecture</span>
-      <span class="page__num">06 / 30</span>
+      <span class="page__num">Section 06 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Sitemap, drafted · 1,601 → ~650 pages</div>
-      <h2 class="h1">An opinionated IA for <em>holyfamily.edu.</em></h2>
-      <p class="prose">Your current site has 1,601 URLs across 180+ distinct top-level prefixes. Our first-pass recommendation consolidates to eight sections and roughly 650 active pages, a 60 percent reduction. Every URL is justified by a primary audience. We expect half of this to change during Discovery. The other half is load-bearing.</p>
+      <h2 class="h1">A first-pass IA for <em>holyfamily.edu.</em></h2>
+      <p class="prose">The current site comprises 1,601 URLs distributed across more than 180 distinct top-level prefixes. The first-pass recommendation presented here consolidates that inventory into eight sections and approximately 650 active pages, a reduction of roughly sixty percent. Every URL is justified by a primary audience. We anticipate that a portion of this recommendation will evolve during Discovery; the remainder reflects structural decisions we believe will hold.</p>
       <div class="sitemap-tree">
         <div class="tree-root"><span>/ &nbsp; holyfamily.edu</span><span>Target ~650 pages · from 1,601</span></div>
         <ul>
@@ -1859,7 +2387,7 @@
           <li><span><strong>/directory/</strong> &nbsp; faculty &amp; staff · single source</span><span>~150 pgs</span></li>
         </ul>
       </div>
-      <div class="callout"><strong>The 60 percent cut is a cost lever, not a promise to delete content.</strong> 500+ news articles older than two years move to an archive subdomain with 301s preserved. 23 duplicate RFI forms collapse to one smart form routed to Slate by program. Duplicate program pages consolidate into canonical parents with sub-tracks. Card sort and tree test validate the remaining IA with real users before Phase 2 closes.</div>
+      <div class="callout"><strong>A sixty-percent reduction is a planning target, not a commitment to delete content.</strong> Roughly 500 news articles older than two years will move to an archive subdomain with their 301 redirects preserved. The twenty-three duplicate request-for-information forms will collapse into a single smart form routed to Slate by program. Duplicate program pages will consolidate into canonical parents with sub-tracks. A card sort and tree test will validate the remaining information architecture with real users before Phase 2 closes.</div>
     </div>
     <footer class="page__footer">
       <span>RFP Section B.3 · Information Architecture Approach · first-pass recommendation</span>
@@ -1873,12 +2401,12 @@
   <section class="page page--blush" id="p07">
     <header class="page__header">
       <span class="page__eyebrow">The Philadelphia Catholic peer landscape</span>
-      <span class="page__num">07 / 30</span>
+      <span class="page__num">Section 07 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Your neighborhood, on the web</div>
-      <h2 class="h1">Holy Family versus the <em>Philly Catholic set.</em></h2>
-      <p class="prose">Your real competitors on a visit weekend: La Salle, Villanova, Neumann, Chestnut Hill. Every peer has modernized. Holy Family is the outlier today. This is fixable in ten months.</p>
+      <h2 class="h1">Holy Family and its <em>Philadelphia Catholic peers.</em></h2>
+      <p class="prose">The institutions most directly competing for the attention of a prospective Holy Family student on any given visit weekend include La Salle, Villanova, and Neumann. Each of these peers has modernized its website in recent years. Holy Family has not yet done so. The five-month timeline outlined in this response is structured to close that gap before the start of the next strategic plan cycle.</p>
       <div class="figure-label" style="margin-top: 0.1in;"><strong>Fig.&nbsp;03</strong> &nbsp;·&nbsp; Peer homepage captures, April 2026</div>
       <div class="peer-grid">
         <figure>
@@ -1911,29 +2439,29 @@
   <section class="page" id="p08">
     <header class="page__header">
       <span class="page__eyebrow">Executive Summary · for the President's Cabinet</span>
-      <span class="page__num">08 / 30</span>
+      <span class="page__num">Section 08 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The thesis of this response</div>
       <h2 class="h1">More applications. <em>Specifically adult and graduate.</em></h2>
-      <p class="lede">The real Holy Family lives on the ground. Ninety-three percent of graduates placed into full-time work within six months. Forty percent of the student body studying Nursing and Health Sciences. The Sisters of the Holy Family of Nazareth still shaping a 1954 founding into a vibrant Catholic learning community. That university does not live on holyfamily.edu today, and the gap between the two is the reason prospective adult and graduate applicants leave without applying. Closing the gap is the entire work of this proposal. Conservative math on page sixteen shows a $2.5M year-one return on a $235K investment.</p>
+      <p class="lede">Holy Family University graduate outcomes are impressive. Ninety-three percent of recent graduates secure full-time employment within six months. Forty percent of the student body pursues programs in Nursing and Health Sciences. The Sisters of the Holy Family of Nazareth continue to shape what began as a 1954 founding into a vibrant Catholic learning community. However, that value proposition is not adequately represented on holyfamily.edu today, and the distance between the two is a principal reason prospective adult and graduate applicants leave the site without applying. Closing that distance is the central purpose of this proposal. The conservative analysis presented on page sixteen projects a $2.5M year-one return on the $145K investment.</p>
       <div class="grid-3" style="margin-top: 0.3in;">
         <div class="card">
           <div class="card__eyebrow">Commitment 01 · enrollment</div>
           <div class="card__title">Adult &amp; graduate applications, <em>up 40%.</em></div>
-          <div class="card__body">Your RFP names Adult and Graduate enrollment as the top growth priority. We draft Variant B, an entire homepage built for a 34-year-old Nursing applicant on a phone at 9 PM, and ship it in base scope. Four specific conversion moves on page 09.</div>
+          <div class="card__body">The RFP identifies adult and graduate enrollment as the top growth priority. Variant B, an entire homepage drafted for a thirty-four-year-old Nursing applicant browsing on a phone in the evening, is included in the base scope of this engagement. Four specific conversion tactics are detailed on page 09.</div>
           <div class="card__footer">See pages 09–11, 16, 17</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Commitment 02 · collaboration</div>
-          <div class="card__title">Your team is a <em>co-builder,</em> not a client.</div>
-          <div class="card__body">Rick Mitchell's team gets shared GitHub write access at kickoff, not at handoff. Code review in both directions. Weekly working sessions, not status meetings. Your 2025 prep work ingested week one with zero rework.</div>
+          <div class="card__title">The University team is a <em>co-builder,</em> not a client.</div>
+          <div class="card__body">Rick Mitchell's team will receive shared GitHub write access at kickoff rather than at handoff. Code review will run in both directions, and the regular cadence will consist of working sessions rather than status meetings. The University's 2025 preparation materials will be ingested in the first week of Discovery, eliminating rework.</div>
           <div class="card__footer">See page 20</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Commitment 03 · AI architecture</div>
           <div class="card__title">llms.txt + schema, <em>drafted for you.</em></div>
-          <div class="card__body">Half of prospective students already research with ChatGPT and Perplexity. We draft your llms.txt and schema.org pack inside this proposal so when a parent asks "is Holy Family worth it?", the first-surface answer is your 93% employment rate, not a marketing blurb.</div>
+          <div class="card__body">Roughly half of prospective students now research universities through ChatGPT and Perplexity on a weekly basis. The llms.txt file and schema.org pack are drafted inside this proposal so that when a parent asks an AI assistant whether Holy Family is worth the investment, the first answer surfaced is the University's ninety-three percent employment outcome rather than generic marketing copy.</div>
           <div class="card__footer">See page 15</div>
         </div>
       </div>
@@ -1950,31 +2478,31 @@
   <section class="page page--sand" id="p09">
     <header class="page__header">
       <span class="page__eyebrow">The RFP's loudest signal · Adult &amp; Graduate enrollment</span>
-      <span class="page__num">09 / 30</span>
+      <span class="page__num">Section 09 / 30</span>
     </header>
     <div class="page__body">
-      <h2 class="h1">Four moves that turn browsers <em>into applicants.</em></h2>
-      <p class="lede">Section 4 of your RFP names Adult and Graduate enrollment as the top growth priority. These applicants browse from phones at night between shifts and need cost and schedule visible above the fold. The four tactics below are specific moves we will ship, not observations about who they are.</p>
+      <h2 class="h1">Four tactics for <em>adult and graduate enrollment.</em></h2>
+      <p class="lede">Section 4 of the University's RFP identifies adult and graduate enrollment as the top growth priority. These applicants typically browse from phones in the evening between shifts and need cost and scheduling information to be visible above the fold. The four tactics described below are concrete moves this engagement will ship, not observations about the audience itself.</p>
       <div class="grid-2" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Move 01 · Decision info above the fold</div>
           <div class="card__title">Tuition, schedule, time-to-degree <em>on the hero.</em></div>
-          <div class="card__body">No "request info to see pricing." No gated PDFs. Every adult and graduate program page shows total cost, per-credit cost, time to complete part-time, and career outcomes before any scroll. <strong style="color: var(--fg);">Expected lift: +25–35% application-start rate.</strong></div>
+          <div class="card__body">No "request info to see pricing." No gated PDFs. Every adult and graduate program page will display total cost, per-credit cost, part-time time-to-completion, and career outcomes before any scroll. <strong style="color: var(--fg);">Projected lift: +25–35% application-start rate.</strong></div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Move 02 · One smart RFI form</div>
           <div class="card__title">23 duplicates collapse <em>to one.</em></div>
-          <div class="card__body">Your site has 23 separate request-information forms. We collapse them into one Gravity Form with program routing, conditional questions, and real-time Slate webhook delivery. <strong style="color: var(--fg);">Expected lift: +15–20% inquiry volume.</strong></div>
+          <div class="card__body">The current site contains twenty-three separate request-for-information forms. These will be consolidated into a single Gravity Form with program routing, conditional questions, and real-time delivery to Slate via webhook. <strong style="color: var(--fg);">Projected lift: +15–20% inquiry volume.</strong></div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Move 03 · Variant B adult hero</div>
           <div class="card__title">A homepage <em>drafted for them.</em></div>
-          <div class="card__body">Page 11 shows the drafted adult and graduate hero. "Finish what you started. On your schedule." Credit for prior learning, time-to-degree, cost up front. Switched via UTM and returning-visitor behavior. <strong style="color: var(--fg);">Expected lift: +40–60% on adult/grad paid landing.</strong></div>
+          <div class="card__body">Page 11 presents the drafted adult and graduate hero. The headline reads "Finish what you started. On your schedule," with credit for prior learning, time-to-degree, and cost displayed up front. The variant is served conditionally based on UTM source and returning-visitor behavior. <strong style="color: var(--fg);">Projected lift: +40–60% on adult and graduate paid landing pages.</strong></div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Move 04 · Slate funnel measurement</div>
           <div class="card__title">From visit to deposit, <em>attributed.</em></div>
-          <div class="card__body">GA4 four-stage funnel, Slate Ping on every page, cross-domain tracking through the application portal, and a Looker Studio dashboard Katherine Primus reads herself. See page 17. <strong style="color: var(--fg);">Expected outcome: first clear ROI attribution.</strong></div>
+          <div class="card__body">A four-stage GA4 funnel, Slate Ping on every page, cross-domain tracking through the application portal, and a Looker Studio dashboard configured for Katherine Primus's team to read directly. See page 17. <strong style="color: var(--fg);">Projected outcome: first clear ROI attribution.</strong></div>
         </div>
       </div>
     </div>
@@ -1990,11 +2518,11 @@
   <section class="page" id="p10">
     <header class="page__header">
       <span class="page__eyebrow">Drafted homepage hero · Variant A</span>
-      <span class="page__num">10 / 30</span>
+      <span class="page__num">Section 10 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Variant A · 18-year-old undergraduate · first-time visitor</div>
-      <h2 class="h1">The first twelve seconds, <em>drafted.</em></h2>
+      <h2 class="h1">The first impression, <em>drafted.</em></h2>
       <div class="hero-draft">
         <div class="hero-draft__tag">Prospective undergraduate · Philadelphia region · first-time visitor</div>
         <h3 class="hero-draft__title">Become the person <em>Holy Family</em> is looking for.</h3>
@@ -2009,7 +2537,7 @@
           <div><strong>1954</strong><span>Founded by the Sisters of the Holy Family of Nazareth</span></div>
         </div>
       </div>
-      <div class="hero-draft__why"><strong>Why this matters.</strong> Your current homepage asks prospective students "What will you study?" That is a question they are visiting the site to answer, not to answer for you. Our draft replaces the question with a declarative statement and three decisive statistics, every one of them verifiable on your own site today.</div>
+      <div class="hero-draft__why"><strong>Why this matters.</strong> The current homepage asks prospective students, "What will you study?" That is a question prospective students visit the site to answer for themselves, not one they expect the institution to ask of them. The draft above replaces the question with a declarative statement and three substantive figures, each of which is verifiable on the University's existing site.</div>
     </div>
     <footer class="page__footer">
       <span>Copy sample · refined with Katherine Primus during Discovery · not final</span>
@@ -2023,7 +2551,7 @@
   <section class="page" id="p11">
     <header class="page__header">
       <span class="page__eyebrow">Drafted homepage hero · Variant B · the money page</span>
-      <span class="page__num">11 / 30</span>
+      <span class="page__num">Section 11 / 30</span>
     </header>
     <div class="page__body">
       <h2 class="h1">The same homepage, <em>drafted for them.</em></h2>
@@ -2041,7 +2569,7 @@
           <div><strong>93%</strong><span>Graduate employment within six months</span></div>
         </div>
       </div>
-      <div class="hero-draft__why"><strong>The single biggest enrollment lever on this site.</strong> Every competing regional university still leads with undergraduate hero imagery. At a conservative 40% lift on adult and graduate paid-channel traffic, Variant B delivers roughly <strong style="color: var(--teal);">thirty incremental enrollments</strong> in year one &mdash; approximately <strong style="color: var(--teal);">$900K</strong> at mean tuition. One page pays back a third of the project.</div>
+      <div class="hero-draft__why"><strong>The most significant enrollment lever on the site.</strong> Every competing regional university continues to lead with undergraduate hero imagery. On a conservative projected lift of forty percent for adult and graduate paid-channel traffic, Variant B would generate approximately <strong style="color: var(--teal);">thirty incremental enrollments</strong> in year one, equivalent to roughly <strong style="color: var(--teal);">$900,000</strong> at mean tuition. On these assumptions, a single page could recover nearly a third of the total project cost.</div>
     </div>
     <footer class="page__footer">
       <span>Both variants in base scope · variant switched via UTM + behavior · no add-on</span>
@@ -2055,7 +2583,7 @@
   <section class="page page--lavender" id="p12">
     <header class="page__header">
       <span class="page__eyebrow">Section G · Innovation &amp; Differentiation</span>
-      <span class="page__num">12 / 30</span>
+      <span class="page__num">Section 12 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Six specific commitments in base scope</div>
@@ -2076,7 +2604,7 @@
         <div class="diff-tile">
           <div class="diff-tile__num">03</div>
           <div class="diff-tile__title">Honest <em>platform advice.</em></div>
-          <div class="diff-tile__body">Traditional WordPress, not headless. The RFP preference is correct for Rick's two-person team. We will not upsell architecture your team cannot sustainably operate.</div>
+          <div class="diff-tile__body">Traditional WordPress rather than headless. The RFP's stated preference is the right one for Rick Mitchell's two-person team. We would not recommend an architecture the University could not sustainably operate.</div>
           <div class="diff-tile__foot">Detail: p.21</div>
         </div>
         <div class="diff-tile">
@@ -2111,11 +2639,11 @@
   <section class="page" id="p13">
     <header class="page__header">
       <span class="page__eyebrow">Section G.2 · Cultural fit &amp; values</span>
-      <span class="page__num">13 / 30</span>
+      <span class="page__num">Section 13 / 30</span>
     </header>
     <div class="page__body">
       <h2 class="h1">Founded in 1954 by the Sisters of the Holy Family <em>of Nazareth.</em></h2>
-      <p class="lede">Holy Family University educates the whole person for a life of integrity, service, and personal excellence. Almost every agency will quote that mission back as a setup for a generic "inclusive design" pitch. We read it as an instruction manual for how this site should be built.</p>
+      <p class="lede">Holy Family University educates the whole person for a life of integrity, service, and personal excellence. That mission statement is often cited at the front of a proposal as a preamble to a generic inclusive-design pitch. We read it instead as an instruction manual for how the site itself should be built.</p>
       <div class="grid-2" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Whole person</div>
@@ -2151,12 +2679,12 @@
   <section class="page" id="p14">
     <header class="page__header">
       <span class="page__eyebrow">We read your leadership page</span>
-      <span class="page__num">14 / 30</span>
+      <span class="page__num">Section 14 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The decision-making unit, named</div>
       <h2 class="h1">Who we are <em>building for.</em></h2>
-      <p class="prose">The RFP names Rick Mitchell as the primary contact, but a decision at this scale involves the full President's Cabinet. We have read your public leadership page. Below is our read of who will evaluate this proposal, what each person cares about, and how this response serves each goal.</p>
+      <p class="prose">The RFP names Rick Mitchell as the primary contact, but a decision of this scale necessarily involves key members of the university leadership team across departments. Drawing on the University's public leadership page, the cards below describe our understanding of who might evaluate this proposal, what each leader is likely to prioritize, and how this response is designed to address each set of concerns.</p>
       <div class="grid-3" style="margin-top: 0.2in;">
         <div class="card">
           <div class="card__eyebrow">President · since 2021</div>
@@ -2192,7 +2720,7 @@
           <div class="card__eyebrow">VP Finance &amp; Admin</div>
           <div class="card__title">Eric Nelson, MBA</div>
           <div class="card__body"><strong style="color: var(--fg);">Wants:</strong> Fixed fee. Milestone invoicing. No scope creep.</div>
-          <div class="card__body"><strong style="color: var(--fg);">We serve it by:</strong> Fixed-fee $235K (p.27). Transparent in/out. Kill-switch at every gate.</div>
+          <div class="card__body"><strong style="color: var(--fg);">We serve it by:</strong> Fixed-fee $145K, all-in (p.27). Transparent in/out. Kill-switch at every gate.</div>
         </div>
       </div>
     </div>
@@ -2208,12 +2736,12 @@
   <section class="page" id="p15">
     <header class="page__header">
       <span class="page__eyebrow">RFP Section 6 · AI-optimized content architecture</span>
-      <span class="page__num">15 / 30</span>
+      <span class="page__num">Section 15 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Drafted for holyfamily.edu · not a promise</div>
       <h2 class="h1">llms.txt and schema, <em>written for you.</em></h2>
-      <p class="prose">Roughly half of prospective students now research universities through ChatGPT, Claude, Gemini, and Perplexity on a weekly basis. Ninety-three percent of AI search sessions end without a single click through to a source. The content these systems surface is increasingly the first impression a family forms of the university. Section 6 of your RFP asks seven specific questions about AI content architecture. Below is the actual llms.txt file and JSON-LD EducationalOrganization payload we would ship on day one of development, filled in with real Holy Family data.</p>
+      <p class="prose">Roughly half of prospective students now research universities through ChatGPT, Claude, Gemini, and Perplexity on a weekly basis. Ninety-three percent of AI search sessions end without a single click through to the source institution. The content these systems surface is increasingly the first impression that a prospective family forms of the University. Section 6 of the RFP poses seven specific questions about AI content architecture. The materials below show the llms.txt file and JSON-LD EducationalOrganization payload that would ship on the first day of development, populated with real Holy Family data.</p>
       <div class="figure-label" style="margin-top: 0.12in;"><strong>Fig.&nbsp;04</strong> &nbsp;·&nbsp; Actual files, drafted for holyfamily.edu</div>
       <div class="two-col" style="margin-top: 8px;">
         <div>
@@ -2265,6 +2793,14 @@
         </div>
       </div>
       <div class="callout"><strong>Phase 2 ships the full schema pack:</strong> <code>EducationalOrganization</code>, <code>CollegeOrUniversity</code>, <code>EducationalOccupationalProgram</code> on every program page, <code>Course</code>, <code>Person</code> on every faculty profile, <code>Event</code>, <code>NewsArticle</code>, <code>FAQPage</code>. All JSON-LD, server-rendered, reachable without JavaScript execution as the RFP requires for agentic browsing.</div>
+
+      <h3 class="h2" style="margin-top: 0.35in;">Copy rewritten for AI engine visibility.</h3>
+      <p class="prose">Schema and llms.txt describe the site to AI engines, but the copy on every page still has to read clearly to those engines once they land. Small College Consulting&rsquo;s proprietary content technology automatically rewrites headings, metadata, and body copy across the entire website for answer-engine optimization (AEO). Each page&rsquo;s original copy is compared against an AI-optimized rewrite before anything ships; the University&rsquo;s editors accept, reject, or refine every change.</p>
+
+      <figure class="proposal-figure">
+        <img src="assets/proposal-images/aeo-comparison.jpg" alt="Small College Consulting AEO tool output comparing current holyfamily.edu homepage headings against AI-optimized rewrites, with accompanying AEO and GEO suggestions">
+        <figcaption>Live output from our AEO tooling, run against holyfamily.edu. The tool detects every heading on a page and proposes an AI-optimized rewrite alongside concrete AEO and GEO suggestions (keyword coverage, credibility signals, geographic grounding). Every heading on the site is processed this way during migration and the University&rsquo;s editors review and approve each rewrite before publishing.</figcaption>
+      </figure>
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · llms.txt · Schema.org Structured Data · Agentic Browsing Optimization</span>
@@ -2278,16 +2814,16 @@
   <section class="page page--sand" id="p16">
     <header class="page__header">
       <span class="page__eyebrow">The business case · for Eric Nelson, MBA</span>
-      <span class="page__num">16 / 30</span>
+      <span class="page__num">Section 16 / 30</span>
     </header>
     <div class="page__body">
-      <h2 class="h1">A $235K investment, <em>a $2.5M year-one return.</em></h2>
+      <h2 class="h1">A $145K investment, <em>a $2.5M year-one return.</em></h2>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.35in; align-items: center; margin-top: 0.15in;">
         <div>
           <div class="figure-label"><strong>Fig.&nbsp;01</strong> &nbsp;·&nbsp; Year-one enrollment return</div>
           <div style="font-family: var(--display); font-weight: 400; font-size: 76pt; line-height: 0.88; letter-spacing: -0.032em; color: var(--teal); font-feature-settings: 'tnum' 1;">+$2.5M</div>
-          <p class="lede" style="font-size: 12pt; margin-top: 16px; max-width: 34ch;">Conservative 8% conversion lift plus SEO recovery. Payback under six months. Five to ten times return on the $235K investment, year one alone.</p>
+          <p class="lede" style="font-size: 12pt; margin-top: 16px; max-width: 34ch;">A conservative eight-percent conversion lift combined with SEO recovery produces a payback period of under three months. On these assumptions, the year-one return represents approximately fifteen to twenty times the $145K investment.</p>
         </div>
         <div>
           <table class="data-table" style="margin-top: 0;">
@@ -2315,7 +2851,7 @@
               </tr>
               <tr>
                 <td><strong>Project cost (fixed fee)</strong></td>
-                <td class="num"><strong>$235K</strong></td>
+                <td class="num"><strong>$145K</strong></td>
               </tr>
               <tr>
                 <td><strong>Year-one ROI multiple</strong></td>
@@ -2326,7 +2862,7 @@
         </div>
       </div>
 
-      <div class="callout"><strong>The cost of waiting.</strong> Every additional year on the current site costs HFU roughly the projected year-one gain above. La Salle, Villanova, Neumann, and Chestnut Hill have already modernized. Every admissions cycle on the current site is a cycle of unnecessary friction during the decision stage of the funnel.</div>
+      <div class="callout">The cost of delay. Each additional year spent on the current site is estimated to cost the University approximately the projected year-one gain shown above. La Salle, Villanova, and Neumann have each modernized their websites in recent years. Each admissions cycle conducted on the current platform introduces avoidable friction at the decision stage of the funnel.</div>
     </div>
     <footer class="page__footer">
       <span>Conservative assumptions throughout · actual HFU figures replace placeholders in Discovery week one</span>
@@ -2340,38 +2876,38 @@
   <section class="page" id="p17">
     <header class="page__header">
       <span class="page__eyebrow">RFP Section 6 · Enrollment funnel measurement</span>
-      <span class="page__num">17 / 30</span>
+      <span class="page__num">Section 17 / 30</span>
     </header>
     <div class="page__body">
       <h2 class="h1">A four-stage funnel, <em>measured end to end.</em></h2>
-      <p class="lede">Awareness → consideration → decision → conversion. Every stage tracked, every source attributed, every lift measurable. We preserve your existing GA4 and GTM container (<code>GTM-5FPBQK3</code>) and extend it so Katherine Primus's team reads the funnel directly in Looker Studio.</p>
+      <p class="lede">Awareness, consideration, decision, and conversion: each stage tracked, each source attributed, each lift measurable. The University's existing GA4 implementation and GTM container (<code>GTM-5FPBQK3</code>) will be preserved and extended so that Katherine Primus's team can read the funnel directly within Looker Studio.</p>
       <div class="grid-4" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Stage 01 · Awareness</div>
           <div class="card__title">They <em>find you.</em></div>
           <div class="card__body">Program page views, video plays, blog engagement, time on site. Sources attributed: organic, AI referral, paid, social, direct.</div>
-          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Target lift: +25% sessions</div>
+          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Projected lift: +25% sessions</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Stage 02 · Consideration</div>
           <div class="card__title">They <em>compare.</em></div>
           <div class="card__body">RFI form starts, campus visit scheduling, financial aid calculator, program comparisons, return visits.</div>
-          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Target lift: +30% RFI submits</div>
+          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Projected lift: +30% RFI submits</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Stage 03 · Decision</div>
           <div class="card__title">They <em>commit.</em></div>
           <div class="card__body">Apply Now clicks, application portal visits, net-price calculator, scholarship views, cross-domain Slate handoff.</div>
-          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Target lift: +15% app starts</div>
+          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Projected lift: +15% app starts</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Stage 04 · Conversion</div>
           <div class="card__title">They <em>apply.</em></div>
           <div class="card__body">Application submission, deposit payment, enrollment confirmation, attribution back to original source via UTM + Slate Ping.</div>
-          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Target lift: +8% enrollments</div>
+          <div class="card__footer" style="color: var(--teal); border-top-color: var(--teal-faint);">Projected lift: +8% enrollments</div>
         </div>
       </div>
-      <div class="callout"><strong>Delivered at launch.</strong> GA4 preserved and extended with 28 custom events. GTM container retained. Data layer documented. Cross-domain tracking to the Slate application portal. A Looker Studio dashboard with a funnel visualization, source attribution, and program-level drilldown. Plus a 60-minute training session so Katherine Primus's team reads the funnel without calling us. Target lifts above are industry benchmarks for a well-executed higher-ed redesign within twelve months post-launch.</div>
+      <div class="callout"><strong>Delivered at launch.</strong> GA4 will be preserved and extended with twenty-eight custom events. The GTM container will be retained, the data layer fully documented, and cross-domain tracking to the Slate application portal will be configured. A Looker Studio dashboard featuring funnel visualization, source attribution, and program-level drilldown will be delivered, along with a sixty-minute training session that prepares Katherine Primus's team to read the funnel without ongoing agency support. The projected lifts above reflect industry benchmarks for a well-executed higher-education redesign within twelve months following launch.</div>
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · Analytics &amp; Enrollment Funnel Measurement · full framework</span>
@@ -2385,7 +2921,7 @@
   <section class="page" id="p18">
     <header class="page__header">
       <span class="page__eyebrow">Section B.2–B.3 · Discovery &amp; IA methodology</span>
-      <span class="page__num">18 / 30</span>
+      <span class="page__num">Section 18 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">How we listen before we build</div>
@@ -2411,12 +2947,12 @@
   <section class="page page--sage" id="p19">
     <header class="page__header">
       <span class="page__eyebrow">Section B.6 · Content strategy &amp; migration</span>
-      <span class="page__num">19 / 30</span>
+      <span class="page__num">Section 19 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">The real scope is smaller · the real cost is lower</div>
       <h2 class="h1">1,601 URLs to <em>approximately 650.</em></h2>
-      <p class="lede">Migration at the surface is a labor cost. Migration under the surface is content strategy. A sixty percent reduction is not a promise to delete content, it is a commitment to identify what earns its place and protect the URL equity of what does not. AI drafts the classifications. Editors and your team make the final calls. Tests verify nothing breaks.</p>
+      <p class="lede">Viewed only at its surface, content migration appears to be a labor cost. Examined more carefully, it is a question of content strategy. A sixty-percent reduction is not a commitment to delete content; it is a commitment to identify the pages that earn their place in the new site and to protect the URL equity of those that do not. AI drafts the initial classifications, the editorial team and University staff make the final decisions, and automated tests verify that nothing breaks along the way.</p>
       <table class="data-table" style="margin-top: 0.2in;">
         <thead><tr><th>Action</th><th class="num">URLs</th><th>Outcome</th></tr></thead>
         <tbody>
@@ -2443,34 +2979,34 @@
   <section class="page" id="p20">
     <header class="page__header">
       <span class="page__eyebrow">Collaborative model · 15 percent of the evaluation</span>
-      <span class="page__num">20 / 30</span>
+      <span class="page__num">Section 20 / 30</span>
     </header>
     <div class="page__body">
-      <h2 class="h1">Rick's team builds <em>with</em> us, not receives from us.</h2>
-      <p class="lede">Four phrases in your RFP point in the same direction: partners not obstacles, working sessions not presentations, knowledge transfer throughout the project, code review from your developers. Each is a settled preference. This response addresses each with a concrete ritual, not an adjective.</p>
+      <h2 class="h1">The University team builds <em>with</em> us, not receives from us.</h2>
+      <p class="lede">Four phrases in the RFP all point in the same direction: partners rather than obstacles, working sessions rather than presentations, knowledge transfer throughout the project, and code review from the University's developers. Each reflects a settled preference on the part of the institution. This response addresses each with a concrete ritual rather than an adjective.</p>
       <div class="grid-2" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Ritual 01 · kickoff day one</div>
           <div class="card__title">Shared GitHub <em>write access.</em></div>
-          <div class="card__body">Not read access. Not at handoff. Your team commits alongside ours from week one — feature branches, pull requests, issue tracker, project board, all open to both sides immediately.</div>
+          <div class="card__body">Not read access, and not at handoff. The University's team will commit alongside ours from week one. Feature branches, pull requests, the issue tracker, and the project board are open to both sides from the outset.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Ritual 02 · every pull request</div>
-          <div class="card__title">Code review <em>both directions.</em></div>
-          <div class="card__body">Every PR requires one named reviewer from each side. Nothing merges without dual sign-off. Institutional context is captured in comments, not tribal memory.</div>
+          <div class="card__title">Code review in <em>both directions.</em></div>
+          <div class="card__body">Every pull request requires a named reviewer from each side. Nothing merges to the main branch without dual sign-off. Institutional context is captured in pull-request comments rather than left to informal memory.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Ritual 03 · every Tuesday</div>
-          <div class="card__title">45-minute <em>working pair,</em> not status.</div>
-          <div class="card__body">A live session on the hardest decision of the week. Whiteboard the tradeoff, commit the answer to the repo. Rotating attendees so institutional knowledge spreads across the team.</div>
+          <div class="card__title">A 45-minute <em>working pair,</em> not a status meeting.</div>
+          <div class="card__body">A live working session focused on the most difficult decision of the week. The tradeoff is whiteboarded together and the resulting decision is committed to the repository. Attendees rotate so that institutional knowledge spreads across the full team.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Ritual 04 · week one</div>
-          <div class="card__title">Your 2025 prep, <em>ingested.</em></div>
-          <div class="card__body">Your 2025 content audit, governance guidelines, IA analysis, and analytics baselines become our starting position. Zero rework. Phase 1 closes two weeks earlier than a standard Discovery cycle.</div>
+          <div class="card__title">The University's 2025 preparation work, <em>ingested.</em></div>
+          <div class="card__body">The content audit, governance guidelines, information-architecture analysis, and analytics baselines completed by the University in 2025 become the starting position for our Discovery. No rework is required. As a result, Phase 1 closes approximately two weeks earlier than a standard Discovery cycle.</div>
         </div>
       </div>
-      <div class="callout"><strong>What this means for the Cabinet.</strong> When our ninety days of post-launch support end, your team owns this codebase as deeply as any internal team owns a site they built themselves. The next template, the next form, the next section ships without an external support ticket.</div>
+      <div class="callout">What this means for the university: When the ninety days of post-launch support conclude, the University's team will own this codebase as fully as any internal team owns a site it has built itself. The next template, the next form, and the next section will ship without recourse to an external support ticket.</div>
     </div>
     <footer class="page__footer">
       <span>RFP Section A.4 and B.8 · Collaborative Development Experience &amp; Process</span>
@@ -2484,32 +3020,32 @@
   <section class="page" id="p21">
     <header class="page__header">
       <span class="page__eyebrow">Section C.1 · CMS recommendation</span>
-      <span class="page__num">21 / 30</span>
+      <span class="page__num">Section 21 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Traditional WordPress, not headless · honest tradeoff math</div>
       <h2 class="h1">WordPress, <em>not headless.</em></h2>
-      <p class="prose">Your RFP prefers WordPress and explicitly invites a headless vs. traditional rationale. For Rick Mitchell's two-person team running this site for five years, traditional wins on every axis that matters. The largest talent pool, the most mature plugin ecosystem, the lowest total cost of ownership. We are not upselling an architecture your team cannot sustainably operate.</p>
+      <p class="prose">The University's RFP expresses a preference for WordPress and explicitly invites a rationale comparing traditional and headless approaches. For Rick Mitchell's two-person team, which will be responsible for operating this site over the next five years, the traditional approach is the stronger choice on every axis that matters: the largest talent pool, the most mature plugin ecosystem, and the lowest total cost of ownership. We would not recommend an architecture that the University's internal team could not sustainably operate.</p>
       <div class="grid-2" style="margin-top: 0.2in;">
         <div class="card">
           <div class="card__eyebrow">Why WordPress</div>
           <div class="card__title">Editorial usability <em>for a small team.</em></div>
-          <div class="card__body">Rick's team publishes content, not support tickets. Gutenberg real-time preview, in-context editing, media library. The benchmark for content author experience, especially after WordPress 6.x.</div>
+          <div class="card__body">Rick Mitchell's team needs to publish content rather than support tickets. The Gutenberg editor provides real-time preview, in-context editing, and a mature media library. Since the WordPress 6.x release cycle, this editorial environment has set the benchmark for content-author experience among open-source content management systems.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Why WordPress</div>
-          <div class="card__title">Largest <em>developer ecosystem.</em></div>
-          <div class="card__body">When Holy Family needs a developer in three years, WordPress talent is abundant and competitively priced. Drupal talent is smaller and more expensive. Across five years that difference compounds into real dollars.</div>
+          <div class="card__title">The largest <em>developer ecosystem.</em></div>
+          <div class="card__body">When the University needs to engage an additional developer in two or three years, WordPress talent is abundant and competitively priced. The Drupal talent pool is smaller and substantially more expensive. Across a five-year horizon, that difference compounds into a meaningful dollar figure.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Why not headless</div>
           <div class="card__title">Editorial workflow <em>degrades.</em></div>
-          <div class="card__body">Real-time preview and in-context editing require expensive re-engineering. Yoast, Gravity Forms, GTM integration all assume a traditional front-end. Two codebases to maintain. Permanent React/Next.js skills dependency.</div>
+          <div class="card__body">Real-time preview and in-context editing require costly re-engineering in a headless configuration. Yoast, Gravity Forms, and GTM integration all assume a traditional front end. The University would be left maintaining two codebases and dependent on React and Next.js skills indefinitely.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Future proof</div>
           <div class="card__title">REST API <em>ready.</em></div>
-          <div class="card__body">ACF Pro exposes every post type via REST from day one. If HFU ever needs a mobile app, digital signage, or a decoupled front end in the future, the content layer is already headless-ready. You pay for that flexibility only when you need it.</div>
+          <div class="card__body">ACF Pro exposes every custom post type via the REST API from the first day of development. If the University at any point requires a mobile application, digital signage, or a decoupled front end, the content layer will already be headless-ready. The institution incurs the cost of that flexibility only at the point of actual need.</div>
         </div>
       </div>
     </div>
@@ -2525,16 +3061,16 @@
   <section class="page page--sand" id="p22">
     <header class="page__header">
       <span class="page__eyebrow">Section C.2–C.5 · Technical architecture &amp; integrations</span>
-      <span class="page__num">22 / 30</span>
+      <span class="page__num">Section 22 / 30</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">The boring stack, on purpose</div>
+      <div class="eyebrow">A proven stack, intentionally chosen</div>
       <h2 class="h1">Tools your team <em>already knows how to run.</em></h2>
       <div class="logo-row">
         <div class="logo-card">
           <div class="logo-card__logo"><img src="assets/logos/wordpress-logo.png" alt="WordPress logo"></div>
           <div class="logo-card__name">WordPress</div>
-          <div class="logo-card__body">Custom block theme. Gutenberg patterns. Editorial workflow built for Rick's team.</div>
+          <div class="logo-card__body">A custom block theme with Gutenberg patterns and an editorial workflow configured for Rick Mitchell's team.</div>
         </div>
         <div class="logo-card">
           <div class="logo-card__logo"><img src="assets/logos/pantheon-logo.svg" alt="Pantheon logo"></div>
@@ -2576,12 +3112,12 @@
   <section class="page" id="p23">
     <header class="page__header">
       <span class="page__eyebrow">Section C.4 · WCAG 2.2 AA</span>
-      <span class="page__num">23 / 30</span>
+      <span class="page__num">Section 23 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Integrated throughout, not retrofitted</div>
       <h2 class="h1">WCAG 2.2 AA, <em>shifted left.</em></h2>
-      <p class="lede">Your RFP insists accessibility be "integrated throughout the design and development process, not retrofitted." That language exists because a prior vendor did the opposite. Automated tools catch 30 to 57 percent of real WCAG failures. The other 70 percent is manual, and it is where we spend real hours.</p>
+      <p class="lede">The RFP insists that accessibility be "integrated throughout the design and development process, not retrofitted." We take that language at face value. Automated tools catch between thirty and fifty-seven percent of real WCAG failures; the remainder must be addressed manually, and that is where the majority of accessibility hours on this project will be spent.</p>
       <ol class="steps" style="margin-top: 0.25in;">
         <li><strong>Design phase.</strong> Color contrast validated to 4.5:1 before mockups ship. 44×44 px touch targets in wireframes. Focus states designed as a first-class visual element for every interactive component.</li>
         <li><strong>Development phase.</strong> Semantic HTML and ARIA from the first line. axe-core in the CI pipeline. Pull requests with accessibility regressions cannot merge.</li>
@@ -2602,7 +3138,7 @@
   <section class="page page--lavender" id="p24">
     <header class="page__header">
       <span class="page__eyebrow">Section 6 · Security requirements</span>
-      <span class="page__num">24 / 30</span>
+      <span class="page__num">Section 24 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">For Mark Green, Ed.D. · VP Institutional Effectiveness &amp; IT</div>
@@ -2642,12 +3178,12 @@
   <section class="page page--sage" id="p25">
     <header class="page__header">
       <span class="page__eyebrow">Section D · Timeline &amp; approval gates</span>
-      <span class="page__num">25 / 30</span>
+      <span class="page__num">Section 25 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Ten months, five phases, five kill-switch gates</div>
-      <h2 class="h1">June 2026 to <em>April 2027.</em></h2>
-      <p class="prose">Target go-live: March 1, 2027 with a four-week buffer in Phase 5. Phase 4 intentionally schedules automated migration across winter break so university-dependent activities land in January when staff return.</p>
+      <h2 class="h1">May to <em>September 2026.</em></h2>
+      <p class="prose">The target go-live date is March 1, 2027, with a four-week buffer built into Phase 5. Phase 4 deliberately schedules automated migration work across the winter break, so that activities requiring active University participation fall in January when staff return.</p>
       <div class="figure-label" style="margin-top: 0.12in;"><strong>Fig.&nbsp;05</strong> &nbsp;·&nbsp; Ten-month engagement · five approval gates</div>
       <ol class="timeline-bar">
         <li>
@@ -2696,46 +3232,47 @@
        ═══════════════════════════════════════════════════════════ -->
   <section class="page" id="p26">
     <header class="page__header">
-      <span class="page__eyebrow">Section A.1–A.2 · Firm overview &amp; team</span>
-      <span class="page__num">26 / 30</span>
+      <span class="page__eyebrow">Section A.1–A.2 · Agency overview &amp; team</span>
+      <span class="page__num">Section 26 / 30</span>
     </header>
     <div class="page__body">
-      <h2 class="h1">A team that has <em>lived</em> small-college leadership.</h2>
-      <p class="prose">Small College Consulting brings together partners who have run enrollment, marketing, and digital at small institutions &mdash; and now build for them. Holy Family draws on this full bench through one engagement, with the four leads below named at contract.</p>
-      <div class="team-grid" style="grid-template-columns: 1fr 1fr; gap: 14px;">
+      <div class="eyebrow">The four people on this engagement</div>
+      <h2 class="h1">Small College Consulting. <em>Designed for institutions that own their sites.</em></h2>
+      <p class="prose">Small College Consulting works exclusively with institutions of Holy Family University's size and character, providing strategic, customized solutions designed for the realities of small colleges. Every architectural decision on this engagement is measured against a single question: will the University's own team be able to operate the site after the engagement concludes? The four individuals introduced below are the same four people who will be working with Rick Mitchell's team in week one and in week forty. There is no separate pitch team, and no substitution of delivery staff after contract signing.</p>
+      <div class="team-grid">
         <div class="team-card">
-          <div class="team-card__eyebrow">Partner &middot; Enrollment</div>
-          <div class="team-card__name">Chris Coons</div>
-          <div class="team-card__role">Enrollment strategy &middot; admissions ops &middot; 30 years</div>
-          <div class="team-card__body">Thirty years of enrollment management. Chief enrollment officer at two small colleges, served at five total. Joined Underscore (Slate development) and continued at Carnegie post-merger, helping small colleges exceed new-student enrollment goals. Brings to the engagement an unrivaled command of Slate workflows and admissions best practices.</div>
-          <div class="team-card__footer">Alma mater · West Virginia Wesleyan College</div>
-        </div>
-        <div class="team-card">
-          <div class="team-card__eyebrow">Partner &middot; Marketing &amp; Strategy</div>
+          <div class="team-card__eyebrow">Partner · Enrollment Strategy</div>
           <div class="team-card__name">Scott Novak</div>
-          <div class="team-card__role">Market strategy &middot; brand &middot; 300+ small-college engagements</div>
-          <div class="team-card__body">Founder of Underscore, the dedicated Slate development practice that became part of Carnegie in 2021. As Carnegie's Chief Development Officer, started the Small College Initiative. Hosts the <em style="color: var(--teal-deep);">Small College Movement</em> podcast. Has worked with more than 300 small colleges and universities on their marketing and enrollment goals.</div>
-          <div class="team-card__footer">Alma mater · Susquehanna University</div>
+          <div class="team-card__role">Market positioning · Slate optimization · enrollment strategy</div>
+          <div class="team-card__body">A thirty-year authority on enrollment market trends in higher education and the founder of Underscore, the Slate optimization firm acquired by Carnegie in 2021. Subsequently launched Carnegie's Small College Initiative and hosts the Small College Movement podcast. Has worked with more than three hundred institutions and brings direct subject-matter expertise on the Slate integration patterns that anchor the technical architecture of this proposal.</div>
+          <div class="team-card__footer">Strategy · Slate architecture · executive review</div>
         </div>
         <div class="team-card">
-          <div class="team-card__eyebrow">Engagement Lead &middot; Strategy &amp; Delivery</div>
+          <div class="team-card__eyebrow">Partner · Enrollment Management</div>
+          <div class="team-card__name">Chris Coons</div>
+          <div class="team-card__role">Enrollment strategy · admissions practice · funnel optimization</div>
+          <div class="team-card__body">Three decades of senior enrollment-management experience, including service as chief enrollment officer at two small colleges and prior work with Underscore and Carnegie. Specializes in enrollment best practices and conducts admissions trainings for institutions across the country. Anchors the funnel measurement framework and the adult and graduate enrollment tactics described on pages 09 and 17.</div>
+          <div class="team-card__footer">Discovery · funnel design · stakeholder review</div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__eyebrow">Engagement Lead · Strategy &amp; Delivery</div>
           <div class="team-card__name">Eric Yerke</div>
-          <div class="team-card__role">Scope &middot; timeline &middot; budget &middot; technical architecture</div>
-          <div class="team-card__body">Leads the end-to-end engagement and owns the relationship with Rick Mitchell's team. Responsible for every decision that affects scope, timeline, budget, content strategy, technical architecture, and the collaborative development model. Daily presence on the project through the 90-day post-launch window.</div>
-          <div class="team-card__footer">100% dedicated &middot; Phase 1 through Day 90</div>
+          <div class="team-card__role">Scope · timeline · budget · technical architecture</div>
+          <div class="team-card__body">Responsible for design, content strategy, technical architecture, and the collaborative development model. Keeps design and content decisions grounded in what prospective students, adult learners, and graduate applicants actually do rather than what the team might assume. Maintains a daily presence on the project through the ninety-day post-launch window.</div>
+          <div class="team-card__footer">100% dedicated · Phase 1 through Day 90</div>
         </div>
         <div class="team-card">
-          <div class="team-card__eyebrow">Engagement Lead &middot; Research &amp; Institutional Fit</div>
+          <div class="team-card__eyebrow">Engagement Lead · Research &amp; Institutional Fit</div>
           <div class="team-card__name">Dr. James Vineburgh</div>
-          <div class="team-card__role">Stakeholder research &middot; UX testing &middot; institutional alignment</div>
-          <div class="team-card__body">Leads stakeholder research, user testing, and institutional alignment across the President's Cabinet, the four deans, enrollment, and the content liaisons from each school. Keeps the design grounded in what prospective students, adult learners, and graduate applicants do, not what we assume.</div>
-          <div class="team-card__footer">Discovery &middot; IA validation &middot; UAT &middot; launch review</div>
+          <div class="team-card__role">Stakeholder research · UX testing · institutional alignment</div>
+          <div class="team-card__body">Leads stakeholder research, user testing, and institutional alignment across the President&rsquo;s Cabinet, the four deans, the enrollment leadership team, and the content liaisons from each school. Keeps design and content decisions grounded in what prospective students, adult learners, and graduate applicants actually do rather than what the team might assume.</div>
+          <div class="team-card__footer">Discovery · IA validation · UAT · launch review</div>
         </div>
       </div>
-      <div class="callout" style="margin-top: 0.18in;"><strong>Team stability commitment.</strong> The four named leads above are the delivered team. No rotation off the project after kickoff. Any substitution requires written agreement from Rick Mitchell. <strong>Subcontractors (Sec. A.6):</strong> none. All design, development, accessibility, and migration work is delivered by Small College Consulting staff. Third-party tools (Pantheon, ACF Pro, Gravity Forms, Slate) are vendors, not subcontractors.</div>
+      <div class="callout"><strong>Team stability commitment.</strong> The four named leads above constitute the delivered team. No rotation off the project will occur after kickoff. The extended team (UX lead, lead WordPress engineer, accessibility specialist, and content strategist) will be named at contract execution. Any substitution will require written agreement from Rick Mitchell. <strong>Subcontractors (Section A.6):</strong> none. All design, development, accessibility, and migration work will be delivered by Small College Consulting staff. Third-party tools (Pantheon, ACF Pro, Gravity Forms, Slate) are vendors, not subcontractors.</div>
     </div>
     <footer class="page__footer">
-      <span>RFP Section A.1 and A.2 &middot; Firm Information &amp; Team Composition</span>
+      <span>RFP Section A.1 and A.2 · Agency Information &amp; Team Composition</span>
       <span>26 / 30</span>
     </footer>
   </section>
@@ -2746,23 +3283,22 @@
   <section class="page page--sand" id="p27">
     <header class="page__header">
       <span class="page__eyebrow">Section A.3 · Higher education portfolio</span>
-      <span class="page__num">27 / 30</span>
+      <span class="page__num">Section 27 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Three case studies that map to Holy Family's scope</div>
-      <h2 class="h1">University redesigns that <em>still ship.</em></h2>
-      <p class="lede">Each case study below represents an engagement similar in scale, platform, or stakeholder dynamic to Holy Family University. Every outcome is measurable. Live URLs and direct references available to the shortlist.</p>
+      <h2 class="h1">Higher-education redesigns, <em>delivered and operating.</em></h2>
+      <p class="lede">Each case study below represents an engagement comparable in scale, platform, or stakeholder dynamic to Holy Family University. Every outcome cited is measurable. Live URLs and direct references will be provided to the shortlist.</p>
       <div class="grid-3" style="margin-top: 0.35in;">
-        <div class="card">
-          <div class="card__eyebrow">Case Study One</div>
-          <div class="card__title">[Institution name]</div>
-          <div class="card__body">[Two-sentence scope. Drupal to WordPress migration, enrollment-focused redesign, WCAG 2.2 AA conformance, Slate integration, similar size to HFU.]</div>
-          <ul style="list-style: none; font-size: 8.5pt; line-height: 1.5; color: var(--fg-muted); display: flex; flex-direction: column; gap: 4px; margin-top: 8px;">
-            <li><strong style="color: var(--teal); font-family: var(--mono); font-size: 7pt; letter-spacing: 0.08em;">[+XX%]</strong> [RFI conversion lift]</li>
-            <li><strong style="color: var(--teal); font-family: var(--mono); font-size: 7pt; letter-spacing: 0.08em;">[+XX%]</strong> [Enrollment growth, year one]</li>
-            <li><strong style="color: var(--teal); font-family: var(--mono); font-size: 7pt; letter-spacing: 0.08em;">[X,XXX → X,XXX]</strong> [Pages consolidated]</li>
-          </ul>
-          <div class="card__footer">[Year range] · Live at [URL]</div>
+        <div class="card card--with-figure">
+          <div class="card__eyebrow">Case Study One · Holy Family University</div>
+          <div class="card__title">Enrollment-focused AI chatbot, <em>already live.</em></div>
+          <div class="card__body">An AI concierge designed and deployed by Small College Consulting on Holy Family&rsquo;s Admissions &amp; Aid pages. The chatbot answers prospective-student questions in context, captures inquiries, and feeds the University&rsquo;s enrollment team with intent signals that inform content strategy for the forthcoming redesign.</div>
+          <figure class="card-figure">
+            <img src="assets/proposal-images/chatbot-live.jpg" alt="The Small College Consulting chatbot active on the Holy Family University Admissions &amp; Aid page">
+            <figcaption>The chatbot in production on holyfamily.edu/admissions-aid.</figcaption>
+          </figure>
+          <div class="card__footer">Live today &middot; <a href="https://www.holyfamily.edu/admissions-aid" target="_blank" rel="noopener">holyfamily.edu/admissions-aid</a></div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Case Study Two</div>
@@ -2787,7 +3323,7 @@
           <div class="card__footer">[Year range] · Live at [URL]</div>
         </div>
       </div>
-      <div class="callout"><strong>References.</strong> Three higher-education references with direct contact information delivered to the shortlist. All three have confirmed willingness to take a call from Rick Mitchell or Katherine Primus. One reference specifically covers collaborative development with a small internal team. One covers adult/graduate enrollment optimization. One covers Drupal-to-WordPress migration at scale.</div>
+      <div class="callout"><strong>References.</strong> Three higher-education references will be provided to the shortlist with direct contact information. Each reference has confirmed willingness to take a call from Rick Mitchell or Katherine Primus. One reference covers collaborative development with a small internal team; a second covers adult and graduate enrollment optimization; the third covers Drupal-to-WordPress migration at scale.</div>
     </div>
     <footer class="page__footer">
       <span>RFP Section A.3 &amp; A.5 · Portfolio and References</span>
@@ -2796,20 +3332,20 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       28 · BUDGET · $235K FIXED
+       28 · BUDGET · $145K FIXED, ALL-IN
        ═══════════════════════════════════════════════════════════ -->
   <section class="page" id="p28">
     <header class="page__header">
       <span class="page__eyebrow">Section E · Budget &amp; pricing</span>
-      <span class="page__num">28 / 30</span>
+      <span class="page__num">Section 28 / 30</span>
     </header>
     <div class="page__body">
       <div class="price-row" style="margin-top: 0;">
         <div>
-          <h2 class="h1" style="font-size: 30pt;">Fixed fee.<br>One quote.<br><em>No scope creep.</em></h2>
+          <h2 class="h1" style="font-size: 30pt;">A single fixed fee.<br><em>No scope creep.</em></h2>
         </div>
         <div class="price-row__big">
-          $235,000
+          $145,000
           <small>Base scope · comparable peers $250K – $450K</small>
         </div>
       </div>
@@ -2862,33 +3398,33 @@
   <section class="page page--blush" id="p29">
     <header class="page__header">
       <span class="page__eyebrow">Section F · Post-launch support</span>
-      <span class="page__num">29 / 30</span>
+      <span class="page__num">Section 29 / 30</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Ninety days, then full ownership</div>
       <h2 class="h1">Stabilize. Optimize. <em>Hand off.</em></h2>
-      <p class="lede">A 90-day stabilization window is included in the base scope. The clock starts the day production goes live. After day 90, your team runs the site without calling us. Any continued support is optional, month-to-month, and cancellable.</p>
+      <p class="lede">A ninety-day stabilization window is included in the base scope. The clock begins on the day the production site goes live. After day ninety, the University's team operates the site without continuing agency involvement. Any further support is optional, month-to-month, and cancellable.</p>
       <div class="grid-3" style="margin-top: 0.3in;">
         <div class="card">
           <div class="card__eyebrow">Day 0 – 30 · Stabilize</div>
-          <div class="card__title">Unlimited <em>bug fixes.</em></div>
-          <div class="card__body">Any defect traceable to our deliverables, fixed at no cost. Slate webhook monitored daily. GA4 funnel baseline captured. SLA: 4h critical, 1 business day major, 3 days minor.</div>
+          <div class="card__title">Unlimited <em>defect resolution.</em></div>
+          <div class="card__body">Any defect traceable to our deliverables will be corrected at no cost. The Slate webhook will be monitored daily, and the GA4 funnel baseline captured. Service-level commitments: four hours for critical issues, one business day for major issues, three days for minor issues.</div>
           <div class="card__footer">Included in base scope</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Day 31 – 60 · Optimize</div>
-          <div class="card__title">Data review &amp; <em>tuning.</em></div>
-          <div class="card__body">Heatmap and session recording review on program pages and admissions flow. Full 1,601 URL redirect audit. SEO health check. 20 hours of editor support for content updates.</div>
+          <div class="card__title">Data review and <em>tuning.</em></div>
+          <div class="card__body">Review of heatmap and session-recording data across program pages and the admissions flow. A full audit of the 1,601 URL redirect map. An SEO health check. Twenty hours of editor support to assist with content updates during this window.</div>
           <div class="card__footer">Included in base scope</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Day 61 – 90 · Hand off</div>
           <div class="card__title">Full <em>ownership transfer.</em></div>
-          <div class="card__body">Final issues resolved. Day-90 runbook delivered. Source code, design files, documentation, and licenses transferred. Two recorded training sessions. We step back.</div>
+          <div class="card__body">Final outstanding issues will be resolved. A day-ninety runbook will be delivered. Source code, design files, documentation, and license credentials will be transferred to the University. Two recorded training sessions will be provided. The agency then steps back.</div>
           <div class="card__footer">Included in base scope</div>
         </div>
       </div>
-      <div class="callout"><strong>Training &amp; knowledge transfer.</strong> Two recorded half-day admin sessions for content editors and web liaisons. One full-day developer handoff for Rick's team covering theme architecture, ACF field groups, the Pantheon Dev/Test/Live workflow, and component-library extension. A library of 15+ short tutorials captured inside your actual WordPress environment. Weekly 30-minute office hours for the first 30 days. <strong>Optional monthly retainer after day 90: $3,500/mo, month-to-month, cancel any time.</strong></div>
+      <div class="callout"><strong>Training and knowledge transfer.</strong> Two recorded half-day administration sessions will be delivered for content editors and web liaisons. A full-day developer handoff for Rick Mitchell's team will cover theme architecture, ACF field groups, the Pantheon Dev/Test/Live workflow, and component-library extension. A library of more than fifteen short tutorials, recorded inside the University's actual WordPress environment, will be provided. Weekly thirty-minute office hours will be held during the first thirty days. <strong>Optional monthly retainer after day ninety: $3,500 per month, month-to-month, cancellable at any time.</strong></div>
     </div>
     <footer class="page__footer">
       <span>RFP Section F · 90-day support in base scope · extended support is optional</span>
@@ -2902,33 +3438,33 @@
   <section class="page final page--ink" id="p30">
     <header class="page__header">
       <span class="page__eyebrow">In closing · Section G · what we won't do</span>
-      <span class="page__num">30 / 30</span>
+      <span class="page__num">Section 30 / 30</span>
     </header>
     <div class="page__body">
       <h2 class="h1" style="color: white;">We build for ownership, <em>not dependency.</em></h2>
       <div class="grid-2" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Anti-pattern 01</div>
-          <div class="card__title">We won't bolt accessibility on <em>at the end.</em></div>
-          <div class="card__body">Contrast validated before mockups, axe-core in CI, manual screen reader on every template, ACR at launch. Not a remediation plan.</div>
+          <div class="card__title">Accessibility will not be <em>bolted on at the end.</em></div>
+          <div class="card__body">Color contrast will be validated before mockups ship. axe-core will run in continuous integration. Manual screen-reader testing will be performed on every template. An Accessibility Conformance Report will be delivered at launch, not a remediation plan.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Anti-pattern 02</div>
-          <div class="card__title">We won't disappear <em>at launch.</em></div>
-          <div class="card__body">Your team is committing code by week three. A day-90 runbook, recorded trainings, and a written succession plan are project deliverables.</div>
+          <div class="card__title">The agency will not <em>disappear at launch.</em></div>
+          <div class="card__body">The University's team will be committing code to the shared repository by week three. A day-ninety runbook, recorded training sessions, and a written succession plan are all project deliverables.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Anti-pattern 03</div>
-          <div class="card__title">We won't present slides and <em>call it collaboration.</em></div>
-          <div class="card__body">Weekly 45-minute pair on the hardest decision of the week. At finalist presentation we will whiteboard a real IA problem with your team, not present to you.</div>
+          <div class="card__title">Slide presentations will not <em>substitute for collaboration.</em></div>
+          <div class="card__body">A weekly forty-five-minute working pair will be devoted to the hardest decision of the week. At the finalist presentation, our team will whiteboard a live information-architecture problem alongside the University's team rather than present slides to it.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Anti-pattern 04</div>
-          <div class="card__title">We won't treat your team <em>as obstacles.</em></div>
-          <div class="card__body">Rick writes Drupal and React himself. The engagement model is designed for him to extend the site during the build, not receive a finished artifact.</div>
+          <div class="card__title">The University team will not be <em>treated as an obstacle.</em></div>
+          <div class="card__body">Rick Mitchell writes Drupal and React himself. The engagement model is structured so that he and his team can extend the site during the build rather than receive a finished artifact at handoff.</div>
         </div>
       </div>
-      <p style="font-family: var(--serif); font-style: italic; font-size: 12.5pt; line-height: 1.46; color: rgba(255,255,255,0.78); margin-top: 0.18in; max-width: 58ch; font-variation-settings: 'opsz' 18;">When Dr. Prisco's next strategic plan begins in June 2026, we would like the website launching beside it to match the ambition. When our ninety days of post-launch support end, we would like Rick Mitchell's team operating this site without ever calling us. <strong style="color: var(--teal); font-style: normal; font-weight: 400;">Fixed fee of $235,000. Eric Yerke and Dr. James Vineburgh available May 5&ndash;8 for finalist presentations.</strong></p>
+      <p style="font-family: var(--serif); font-style: italic; font-size: 12.5pt; line-height: 1.46; color: rgba(255,255,255,0.78); margin-top: 0.18in; max-width: 58ch; font-variation-settings: 'opsz' 18;">When Dr. Prisco's next strategic plan begins in summer 2026, our intent is to deliver a website launching beside it that matches the ambition of the plan. We recommend a five-month engagement with go-live on September 1, 2026 &mdash; in time to influence the Spring and Fall 2027 incoming class. When the 90 days of post-launch support conclude, our intent is for Rick Mitchell's team to be operating this site independently. <strong style="color: var(--teal); font-style: normal; font-weight: 400;">Fixed fee of $145,000, all-in. Scott Novak, Chris Coons, Eric Yerke, and James Vineburgh are available for finalist presentations.</strong></p>
     </div>
     <footer class="page__footer">
       <span>Small College Consulting · Holy Family University Website Redesign Proposal · Sections A through G · proposal valid 90 days</span>
@@ -2941,6 +3477,33 @@
   <aside class="site-keyhint" role="note">Navigate <kbd>J</kbd> next <kbd>K</kbd> prev</aside>
 
   <script src="portal.js" defer></script>
+  <script>
+    // Live section-in-view indicator for the top bar. Observes every
+    // .page section and updates #progress-current to the two-digit id
+    // of whichever section has the largest intersection with the
+    // viewport. This is what honestly answers "where am I in the
+    // proposal right now".
+    (function () {
+      var target = document.getElementById('progress-current');
+      if (!target || !('IntersectionObserver' in window)) return;
+      var sections = document.querySelectorAll('section.page[id]');
+      if (!sections.length) return;
+      var visibility = new Map();
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { visibility.set(e.target, e.intersectionRatio); });
+        var best = null, bestRatio = 0;
+        visibility.forEach(function (ratio, el) {
+          if (ratio > bestRatio) { bestRatio = ratio; best = el; }
+        });
+        if (!best) return;
+        var id = best.id || '';
+        var num = id.replace(/^p/, '');
+        if (num.length === 1) num = '0' + num;
+        if (num) target.textContent = num;
+      }, { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+      sections.forEach(function (s) { obs.observe(s); });
+    })();
+  </script>
 <script src="chat/portal-chat.js" defer></script>
 </body>
 </html>

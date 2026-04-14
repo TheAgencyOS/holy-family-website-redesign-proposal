@@ -770,17 +770,17 @@
     /* ── Pricing ─────────────────────────────────────────────────── */
     .price-row {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 0.4in;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 0.3in;
       align-items: end;
     }
     .price-row__big {
       font-family: var(--display);
       font-weight: 400;
-      font-size: 56pt;
-      line-height: 0.85;
+      font-size: 46pt;
+      line-height: 0.9;
       color: var(--fg);
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
       text-align: right;
       font-feature-settings: 'tnum' 1;
       white-space: nowrap;
@@ -789,11 +789,15 @@
       display: block;
       font-family: var(--mono);
       font-weight: 400;
-      font-size: 7.5pt;
-      letter-spacing: 0.12em;
+      font-size: 7pt;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--fg-subtle);
-      margin-top: 14px;
+      margin-top: 12px;
+      max-width: 36ch;
+      margin-left: auto;
+      white-space: normal;
+      line-height: 1.45;
     }
     .price-table {
       width: 100%;
@@ -1114,7 +1118,7 @@
     <div class="cover__inner">
       <div class="cover__top">
         <span class="cover__top-mark">Proposal · 001</span>
-        <span class="cover__top-num">01 / 12</span>
+        <span class="cover__top-num">01 / 15</span>
       </div>
 
       <div class="cover__eyebrow">Holy Family University · Website Redesign RFP</div>
@@ -1124,7 +1128,7 @@
         <span class="break">for <em>ownership.</em></span>
       </h1>
 
-      <p class="cover__lede">A ten-month rebuild of holyfamily.edu on WordPress — designed, engineered, and handed off so your team runs it without us.</p>
+      <p class="cover__lede">A focused five-month rebuild of holyfamily.edu on WordPress — live by September 1, 2026, in time to influence the Spring and Fall 2027 incoming class.</p>
 
       <div class="cover__spacer"></div>
 
@@ -1136,7 +1140,7 @@
         </div>
         <div>
           <dt>Prepared by</dt>
-          <dd>[Agency Name]<small>[City, State]</small></dd>
+          <dd>Small College Consulting<small>Charlotte, North Carolina</small></dd>
         </div>
         <div>
           <dt>Submitted</dt>
@@ -1155,21 +1159,84 @@
     </div>
   </section>
 
+  
+  <!-- ════════════════════════════════════════════════════════════════
+       PAGE 2: LETTER FROM SMALL COLLEGE CONSULTING (transmittal)
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page" id="p-letter">
+    <header class="page__header">
+      <span class="page__eyebrow">A letter to Holy Family University</span>
+      <span class="page__num">02 / 15</span>
+    </header>
+    <div class="page__body">
+      <h2 class="h1">Modernizing Holy Family University&rsquo;s <em>web presence.</em></h2>
+      <p class="lede" style="margin-top: 0.1in;">Small College Consulting is honored to present this proposal to Holy Family University. In partnership with the University&rsquo;s team, we are confident that our approach will not only strengthen the institution&rsquo;s website and connected marketing channels, but will also position University personnel to manage and evolve the site in the future with little to no external vendor support. Our intent is to deliver a powerful, modern website while minimizing the University&rsquo;s future investment and providing a website management methodology that a small internal team can execute.</p>
+      <p class="prose">Members of the Small College Consulting team already have deep working relationships with members of the University&rsquo;s leadership, and we developed the current chatbot on holyfamily.edu that is generating inquiries and informing content strategy today. We are confident that we are the right partners for this project and hope to deepen our existing relationships and expand the scope of our work together.</p>
+      <p class="prose">This proposal addresses the requirements of the RFP in full. We have also developed proprietary AI technology in preparation for this engagement. The technology facilitates seamless redesign and content migration from the existing Drupal installation into WordPress while simultaneously optimizing the new site for AI-engine visibility. It has been tested and validated against real institutional content.</p>
+      <p class="prose">We recommend a five-month engagement beginning May 1, 2026 and launching on September 1, 2026 &mdash; in time to influence the Spring and Fall 2027 incoming class. The complete investment is a fixed fee of <strong>$145,000, all-in</strong>, including Slate integration, the AI Concierge for admissions, accessibility compliance to WCAG 2.2 AA, content migration, training, and 90 days of post-launch support. At any milestone, Holy Family may pause the engagement, take ownership of all work-to-date, and return to a traditional vendor without penalty.</p>
+      <p class="prose">We look forward to the committee&rsquo;s questions.</p>
+      <p class="prose" style="margin-top: 0.3in;"><strong>Scott Novak &amp; Chris Coons</strong><br><span style="font-style: italic; color: var(--fg-muted, #666);">Partners, Small College Consulting</span></p>
+    </div>
+    <footer class="page__footer">
+      <span>Transmittal letter</span>
+      <span>02 / 15</span>
+    </footer>
+  </section>
+
   <!-- ════════════════════════════════════════════════════════════════
        PAGE 2: THE NUMBER
        ════════════════════════════════════════════════════════════════ -->
-  <section class="page number page--sage">
+  <section class="page page--sage">
     <header class="page__header">
       <span class="page__eyebrow">The state of the site</span>
-      <span class="page__num">02 / 12</span>
+      <span class="page__num">03 / 15</span>
     </header>
     <div class="page__body">
-      <div class="number__giant">1,601</div>
-      <p class="number__caption">URLs on holyfamily.edu today.<br><strong>654 of them are news articles.</strong></p>
+      <div class="eyebrow">A site that is failing the people it is meant to serve</div>
+      <h2 class="h1" style="max-width: 18ch;">A 1,601-page site, six years of <em>organic drift.</em></h2>
+      <p class="lede">The April 10, 2026 scrape of holyfamily.edu returned 1,601 URLs, not the &ldquo;approximately 1,300&rdquo; cited in the RFP. Six years of departmental publishing without centralized governance has produced an information architecture that competes with itself for every prospective student&rsquo;s attention.</p>
+
+      <div class="stat-strip" style="margin-top: 0.45in;">
+        <div class="stat">
+          <div class="stat__num">1,601</div>
+          <div class="stat__label">Indexed URLs<br>April 2026 scrape</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">654</div>
+          <div class="stat__label">News articles<br>41% of the sitemap</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">23</div>
+          <div class="stat__label">Duplicate RFI<br>forms</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">910</div>
+          <div class="stat__label">Stale URLs<br>not updated since 2024</div>
+        </div>
+      </div>
+
+      <div class="stat-strip" style="margin-top: 0.25in; padding-top: 0.25in;">
+        <div class="stat">
+          <div class="stat__num"><em>21.19s</em></div>
+          <div class="stat__label">Mobile largest<br>contentful paint</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">51</div>
+          <div class="stat__label">Lighthouse mobile<br>performance score</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">96<small style="font-size: 0.45em; color: var(--fg-subtle); margin-left: 4px;">/&nbsp;60%</small></div>
+          <div class="stat__label">Lighthouse a11y vs.<br>manual WCAG gap</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><em>4.24.24</em></div>
+          <div class="stat__label">ADA Title II deadline<br>that has already passed</div>
+        </div>
+      </div>
     </div>
     <footer class="page__footer">
-      <span>Sitemap scrape · 2026-04-10</span>
-      <span>23 duplicate request-for-information forms · 910 stale URLs</span>
+      <span>Sources &middot; sitemap.xml scrape, Lighthouse 12.8.2, ADA Title II Final Rule, axe-core baseline</span>
+      <span>03 / 15</span>
     </footer>
   </section>
 
@@ -1179,7 +1246,7 @@
   <section class="page">
     <header class="page__header">
       <span class="page__eyebrow">The current experience</span>
-      <span class="page__num">03 / 12</span>
+      <span class="page__num">04 / 15</span>
     </header>
     <div class="page__body">
       <div class="bleed-image">
@@ -1193,7 +1260,7 @@
     </div>
     <footer class="page__footer">
       <span>Sources: Lighthouse 12.8.2, sitemap.xml scrape</span>
-      <span>03 / 12</span>
+      <span>04 / 15</span>
     </footer>
   </section>
 
@@ -1203,7 +1270,7 @@
   <section class="page page--blush">
     <header class="page__header">
       <span class="page__eyebrow">Where modern Catholic universities are</span>
-      <span class="page__num">04 / 12</span>
+      <span class="page__num">05 / 15</span>
     </header>
     <div class="page__body">
       <h2 class="bleed-image__title" style="margin-bottom: 8px;">Today versus <em>2024.</em></h2>
@@ -1221,7 +1288,7 @@
     </div>
     <footer class="page__footer">
       <span>Peer screenshots · April 2026</span>
-      <span>04 / 12</span>
+      <span>05 / 15</span>
     </footer>
   </section>
 
@@ -1231,7 +1298,7 @@
   <section class="page mockup-page page--lavender">
     <header class="page__header">
       <span class="page__eyebrow">What it could look like</span>
-      <span class="page__num">05 / 12</span>
+      <span class="page__num">06 / 15</span>
     </header>
     <div class="page__body">
       <div class="mockup-page__head">
@@ -1253,7 +1320,7 @@
     </div>
     <footer class="page__footer">
       <span>Inspired by Classroom X template · HFU navy #06213F · HFU yellow #FFCC15</span>
-      <span>05 / 12</span>
+      <span>06 / 15</span>
     </footer>
   </section>
 
@@ -1263,7 +1330,7 @@
   <section class="page mockup-page page--sage">
     <header class="page__header">
       <span class="page__eyebrow">A second visual direction</span>
-      <span class="page__num">06 / 12</span>
+      <span class="page__num">07 / 15</span>
     </header>
     <div class="page__body">
       <div class="mockup-page__head">
@@ -1285,7 +1352,7 @@
     </div>
     <footer class="page__footer">
       <span>Inspired by Maxion Home Three template · HFU brand throughout</span>
-      <span>06 / 12</span>
+      <span>07 / 15</span>
     </footer>
   </section>
 
@@ -1294,61 +1361,91 @@
        ════════════════════════════════════════════════════════════════ -->
   <section class="page">
     <header class="page__header">
-      <span class="page__eyebrow">Our approach</span>
-      <span class="page__num">07 / 12</span>
+      <span class="page__eyebrow">Our approach &middot; the three pillars</span>
+      <span class="page__num">08 / 15</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">Four moves, ten months</div>
-      <h2 class="h1">Four moves. <em>One outcome.</em></h2>
+      <div class="eyebrow">Three pillars, one engagement</div>
+      <h2 class="h1">Whole Person. Enrollment Intelligence. <em>AI Migration Lab.</em></h2>
+      <p class="lede" style="max-width: 60ch;">Every section traces back to one of three commitments. Together they are how a five-month engagement at $145,000 ships what traditional agencies charge twice as much to deliver in twice the time.</p>
       <ol class="approach-list" style="margin-top: 0.3in;">
         <li>
-          <span class="approach-list__num">01</span>
+          <span class="approach-list__num">I</span>
           <div>
-            <h3 class="approach-list__title">Consolidate 1,601 URLs to approximately <em>1,200.</em></h3>
-            <p class="approach-list__body">An AI-assisted audit retires stale news, merges 23 duplicate request-for-information forms into one smart form, and resolves 180-plus top-level sections into a clean 8 to 12.</p>
+            <h3 class="approach-list__title">Whole Person Thesis &mdash; <em>strategic anchor.</em></h3>
+            <p class="approach-list__body">The site reflects the formation Holy Family actually offers &mdash; academic, vocational, spiritual &mdash; without flattening it into marketing copy. Program pages, faculty profiles, and student stories are written and structured so a prospective student and their family can recognize the institution, not just receive a pitch. Mission integration sits in the main narrative, not buried in an &ldquo;About&rdquo; subfolder.</p>
           </div>
         </li>
         <li>
-          <span class="approach-list__num">02</span>
+          <span class="approach-list__num">II</span>
           <div>
-            <h3 class="approach-list__title">Migrate Drupal 10 to <em>WordPress</em> on Pantheon.</h3>
-            <p class="approach-list__body">A custom block theme, Advanced Custom Fields Pro for content modeling, and a Dev / Test / Live workflow Rick Mitchell's team already knows how to run.</p>
+            <h3 class="approach-list__title">Enrollment Intelligence &mdash; <em>conversion thesis.</em></h3>
+            <p class="approach-list__body">Every design and technical decision traces to a measurable enrollment outcome &mdash; RFI conversion, application starts, yield. Slate is integrated via Gravity Forms webhook on day one, not a post-launch afterthought. The 23 duplicate RFI forms collapse into one smart form with program routing. An AI Concierge for admissions ships in the base scope &mdash; the same architecture is producing 2,300+ leads at a peer institution today, with no active management.</p>
           </div>
         </li>
         <li>
-          <span class="approach-list__num">03</span>
+          <span class="approach-list__num">III</span>
           <div>
-            <h3 class="approach-list__title">Integrate Slate via <em>Gravity Forms</em> webhooks.</h3>
-            <p class="approach-list__body">Native WordPress forms styled to match the design system, posting directly to Slate's Source Format endpoint in real time. Slate Ping site-wide on day one.</p>
-          </div>
-        </li>
-        <li>
-          <span class="approach-list__num">04</span>
-          <div>
-            <h3 class="approach-list__title">Build <em>WCAG 2.2 AA</em> from day one.</h3>
-            <p class="approach-list__body">Accessibility shifted left into design tokens, the component library, content editor guardrails, and CI-integrated axe-core. Manual screen reader audit on every template.</p>
+            <h3 class="approach-list__title">AI Migration Lab &mdash; <em>technical thesis.</em></h3>
+            <p class="approach-list__body">The Drupal&rarr;WordPress migration uses AI where AI is reliable (content audit, HTML cleanup, alt text, meta descriptions, semantic redirect mapping, post-migration QA) and human review where judgment matters. AI drafts, humans decide, code executes, tests verify. This is the principal reason five months is realistic.</p>
           </div>
         </li>
       </ol>
-
-      <dl class="sig-strip">
-        <div class="sig-strip__item">
-          <dt>URLs retired</dt>
-          <dd><em>401</em><small>Stale news, duplicate forms, orphaned pages</small></dd>
-        </div>
-        <div class="sig-strip__item">
-          <dt>Top-level sections</dt>
-          <dd>180 → <em>10</em><small>One information architecture, not one hundred</small></dd>
-        </div>
-        <div class="sig-strip__item">
-          <dt>Mobile LCP target</dt>
-          <dd>21.19s → <em>under 2.5s</em><small>Core Web Vitals green on every template</small></dd>
-        </div>
-      </dl>
     </div>
     <footer class="page__footer">
       <span>RFP Section B · Approach and Methodology</span>
-      <span>07 / 12</span>
+      <span>08 / 15</span>
+    </footer>
+  </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+       PAGE 9: AI CONCIERGE & ENROLLMENT INTELLIGENCE PROOF
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--blush">
+    <header class="page__header">
+      <span class="page__eyebrow">Enrollment Intelligence &middot; the proof point</span>
+      <span class="page__num">09 / 15</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Already running, already producing</div>
+      <h2 class="h1" style="max-width: 22ch;">2,300 admissions leads. <em>Zero active management.</em></h2>
+      <p class="lede">An AI admissions concierge built by James Vineburgh while at Carnegie has been live on a peer institution&rsquo;s admissions site since 2025. As of April 2026, it has produced more than 2,300 captured leads with no one tuning it, no one feeding it new content, and no monthly platform fee. The same architecture is included in HFU&rsquo;s base scope.</p>
+
+      <div class="stat-strip" style="margin-top: 0.5in;">
+        <div class="stat">
+          <div class="stat__num"><em>2,300+</em></div>
+          <div class="stat__label">Captured leads<br>since 2025, unattended</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">$0</div>
+          <div class="stat__label">Annual platform fee<br>included in base scope</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><em>$23K&ndash;$40K</em></div>
+          <div class="stat__label">What Gravyty / Ivy.ai<br>charge for the same use case</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">24/7</div>
+          <div class="stat__label">Available outside<br>admissions business hours</div>
+        </div>
+      </div>
+
+      <div class="gates" style="margin-top: 0.45in;">
+        <div class="gates__head">
+          <div class="eyebrow" style="margin-bottom: 6px;">What the concierge does on holyfamily.edu</div>
+          <p class="gates__note">A retrieval-augmented chat surface, grounded only in HFU&rsquo;s approved knowledge base &mdash; programs, faculty, admissions, financial aid, campus visits. It captures leads, routes them to Slate via the same Gravity Forms webhook used elsewhere in the site, and operates under the same FERPA-safe pattern (no authenticated student record access).</p>
+        </div>
+        <ol class="gates__list">
+          <li><span class="gates__num">01</span><span class="gates__label">Answers prospective-student questions in real time, 24/7</span><span class="gates__date">FAQ deflection</span></li>
+          <li><span class="gates__num">02</span><span class="gates__label">Captures name, email, program of interest mid-conversation</span><span class="gates__date">Lead capture</span></li>
+          <li><span class="gates__num">03</span><span class="gates__label">Routes captured leads directly to Slate as Source Format records</span><span class="gates__date">Slate routing</span></li>
+          <li><span class="gates__num">04</span><span class="gates__label">Operates on retrieval from approved content only &mdash; no hallucinated answers</span><span class="gates__date">RAG grounded</span></li>
+        </ol>
+      </div>
+    </div>
+    <footer class="page__footer">
+      <span>Reference benchmark &middot; 2,300+ leads since Q1 2025 at a peer institution, unattended</span>
+      <span>09 / 15</span>
     </footer>
   </section>
 
@@ -1358,56 +1455,56 @@
   <section class="page page--sand">
     <header class="page__header">
       <span class="page__eyebrow">Timeline</span>
-      <span class="page__num">08 / 12</span>
+      <span class="page__num">10 / 15</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Phases and gates</div>
-      <h2 class="h1" style="max-width: 22ch;">June 2026 to <em>April&nbsp;2027.</em></h2>
-      <p class="lede">Five phases. Four formal approval gates. A four week buffer in phase five for any UAT slippage. The launch window targets March 1, 2027.</p>
+      <h2 class="h1" style="max-width: 22ch;">May to <em>September&nbsp;2026.</em></h2>
+      <p class="lede">A five-month engagement beginning May 1, 2026 and launching on September 1, 2026 &mdash; in time to influence the Spring and Fall 2027 incoming class. Five phases, four formal approval gates, and disciplined parallel workstreams between design, development, and content migration.</p>
       <ol class="timeline-bar">
         <li>
-          <span class="timeline-bar__weeks">Weeks 1 to 6</span>
+          <span class="timeline-bar__weeks">Weeks 1 to 3</span>
           <span class="timeline-bar__name">Discovery<br>and Strategy</span>
-          <span class="timeline-bar__dates">Jun to Jul 2026</span>
+          <span class="timeline-bar__dates">May 1 to May 22</span>
         </li>
         <li>
-          <span class="timeline-bar__weeks">Weeks 7 to 14</span>
+          <span class="timeline-bar__weeks">Weeks 3 to 6</span>
           <span class="timeline-bar__name">Design<br>System</span>
-          <span class="timeline-bar__dates">Jul to Sep 2026</span>
+          <span class="timeline-bar__dates">May 18 to Jun 12</span>
         </li>
         <li>
-          <span class="timeline-bar__weeks">Weeks 15 to 26</span>
+          <span class="timeline-bar__weeks">Weeks 5 to 12</span>
           <span class="timeline-bar__name">Development<br>and CMS</span>
-          <span class="timeline-bar__dates">Sep to Nov 2026</span>
+          <span class="timeline-bar__dates">Jun 1 to Jul 24</span>
         </li>
         <li>
-          <span class="timeline-bar__weeks">Weeks 27 to 34</span>
+          <span class="timeline-bar__weeks">Weeks 11 to 16</span>
           <span class="timeline-bar__name">Migration<br>and Testing</span>
-          <span class="timeline-bar__dates">Dec to Jan 2027</span>
+          <span class="timeline-bar__dates">Jul 13 to Aug 21</span>
         </li>
         <li>
-          <span class="timeline-bar__weeks">Weeks 35 to 40</span>
+          <span class="timeline-bar__weeks">Weeks 16 to 18</span>
           <span class="timeline-bar__name">Training<br>and Launch</span>
-          <span class="timeline-bar__dates">Feb to Apr 2027</span>
+          <span class="timeline-bar__dates">Aug 18 to Sep 1</span>
         </li>
       </ol>
 
       <div class="gates">
         <div class="gates__head">
           <div class="eyebrow" style="margin-bottom: 6px;">Four formal approval gates</div>
-          <p class="gates__note">Each gate requires a signed deliverable from the prior phase before the next phase begins. No work proceeds past a gate without Rick Mitchell's written approval.</p>
+          <p class="gates__note">Each gate requires a signed deliverable from the prior phase before the next phase begins. No work proceeds past a gate without Rick Mitchell&rsquo;s written approval. At any milestone, Holy Family may pause the engagement and take ownership of all work-to-date without penalty.</p>
         </div>
         <ol class="gates__list">
-          <li><span class="gates__num">G1</span><span class="gates__label">Content model and information architecture approved</span><span class="gates__date">Jul 10, 2026</span></li>
-          <li><span class="gates__num">G2</span><span class="gates__label">Design system and component library approved</span><span class="gates__date">Sep 4, 2026</span></li>
-          <li><span class="gates__num">G3</span><span class="gates__label">Feature-complete site on Pantheon Dev environment</span><span class="gates__date">Nov 25, 2026</span></li>
-          <li><span class="gates__num">G4</span><span class="gates__label">Migrated content, accessibility report, release candidate</span><span class="gates__date">Jan 22, 2027</span></li>
+          <li><span class="gates__num">G1</span><span class="gates__label">Content model and information architecture approved</span><span class="gates__date">May 22, 2026</span></li>
+          <li><span class="gates__num">G2</span><span class="gates__label">Design system and component library approved</span><span class="gates__date">Jun 12, 2026</span></li>
+          <li><span class="gates__num">G3</span><span class="gates__label">Feature-complete site on Pantheon Dev environment</span><span class="gates__date">Jul 24, 2026</span></li>
+          <li><span class="gates__num">G4</span><span class="gates__label">Migrated content, accessibility report, release candidate</span><span class="gates__date">Aug 21, 2026</span></li>
         </ol>
       </div>
     </div>
     <footer class="page__footer">
       <span>RFP Section D · Timeline and Project Management</span>
-      <span>08 / 12</span>
+      <span>10 / 15</span>
     </footer>
   </section>
 
@@ -1417,34 +1514,37 @@
   <section class="page">
     <header class="page__header">
       <span class="page__eyebrow">Investment</span>
-      <span class="page__num">09 / 12</span>
+      <span class="page__num">11 / 15</span>
     </header>
     <div class="page__body">
       <div class="price-row">
         <div>
-          <div class="eyebrow">One quote</div>
-          <h2 class="h1" style="font-size: 30pt; max-width: 14ch;">Fixed fee.<br>One quote.<br><em>No&nbsp;scope&nbsp;creep.</em></h2>
+          <div class="eyebrow">One quote &middot; all-in</div>
+          <h2 class="h1" style="font-size: 26pt; max-width: 16ch; line-height: 0.95;">Fixed fee. One quote. <em>Reversible at every gate.</em></h2>
         </div>
         <div class="price-row__big">
-          $245,000
-          <small>Base scope · 90 day post-launch support included</small>
+          $145,000
+          <small>Base scope &middot; Slate integration, AI Concierge, WCAG 2.2 AA, training, 90-day support included</small>
         </div>
       </div>
+
       <table class="price-table">
-        <tr><td>01</td><td>Discovery and strategy</td><td>8%</td></tr>
-        <tr><td>02</td><td>Information architecture and content strategy</td><td>12%</td></tr>
-        <tr><td>03</td><td>Design system and UX</td><td>18%</td></tr>
-        <tr><td>04</td><td>Development and CMS build</td><td>32%</td></tr>
-        <tr><td>05</td><td>Slate CRM integration</td><td>8%</td></tr>
-        <tr><td>06</td><td>Content migration and QA</td><td>14%</td></tr>
-        <tr><td>07</td><td>Training, launch, 90 day post-launch support</td><td>8%</td></tr>
-        <tr class="price-table__total"><td></td><td>Total fixed fee</td><td>100% · $245,000</td></tr>
+        <tr><td>01</td><td>Discovery, strategy, and stakeholder interviews</td><td>10%</td></tr>
+        <tr><td>02</td><td>Information architecture and content audit</td><td>12%</td></tr>
+        <tr><td>03</td><td>Design system, UX, component library</td><td>18%</td></tr>
+        <tr><td>04</td><td>WordPress development and CMS build on Pantheon</td><td>26%</td></tr>
+        <tr><td>05</td><td>Slate CRM integration and AI Concierge for admissions</td><td>14%</td></tr>
+        <tr><td>06</td><td>Drupal&rarr;WordPress migration, AEO, accessibility QA</td><td>14%</td></tr>
+        <tr><td>07</td><td>Training, launch, 90-day post-launch support</td><td>6%</td></tr>
+        <tr class="price-table__total"><td></td><td>Total fixed fee, all-in</td><td>100% &middot; $145,000</td></tr>
       </table>
-      <p class="price-note">Fixed-fee engagement. Two documented change-order rounds are included before kickoff. Work proceeds only against signed phase approvals; no hourly overage billing.</p>
+
+      <p class="price-note"><strong>Reversibility.</strong> At any milestone, Holy Family may pause the engagement, take ownership of all work-to-date, and return to a traditional vendor without penalty.</p>
+      <p class="price-note" style="margin-top: 0.08in;"><strong>Excluded.</strong> Pantheon hosting, third-party subscriptions (Halda, Gravyty), Slate portal SSO, multilingual, and net-new copywriting beyond AI-optimized migration of existing content. Optional add-ons priced separately during Discovery.</p>
     </div>
     <footer class="page__footer">
       <span>RFP Section E · Budget and Pricing</span>
-      <span>09 / 12</span>
+      <span>11 / 15</span>
     </footer>
   </section>
 
@@ -1454,7 +1554,7 @@
   <section class="page page--blush">
     <header class="page__header">
       <span class="page__eyebrow">After launch</span>
-      <span class="page__num">10 / 12</span>
+      <span class="page__num">12 / 15</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Ninety days, then full ownership</div>
@@ -1494,7 +1594,64 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section F · Post-Launch Support</span>
-      <span>10 / 12</span>
+      <span>12 / 15</span>
+    </footer>
+  </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+       PAGE 13: THE TEAM
+       ════════════════════════════════════════════════════════════════ -->
+  <section class="page page--sand">
+    <header class="page__header">
+      <span class="page__eyebrow">The team</span>
+      <span class="page__num">13 / 15</span>
+    </header>
+    <div class="page__body">
+      <div class="eyebrow">Senior practitioners on every deliverable</div>
+      <h2 class="h1" style="max-width: 22ch;">Four people. <em>One engagement.</em></h2>
+      <p class="lede" style="max-width: 60ch;">Small-college strategic discipline from Small College Consulting, paired with senior-level web and AI execution from the engagement team. No junior bench inheriting the project after the pitch.</p>
+
+      <div class="why-grid" style="margin-top: 0.4in;">
+        <div class="why-card">
+          <div class="why__num why-card__num">SN</div>
+          <h3 class="why-card__title">Scott Novak &middot; <em>strategic lead.</em></h3>
+          <p class="why-card__body">Partner, Small College Consulting. 30 years of small-college market and enrollment authority. Founder of Underscore (Slate development), now part of Carnegie. Former Chief Development Officer at Carnegie. Has worked with 300+ small colleges. Hosts the <em>Small College Movement</em> podcast.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">CC</div>
+          <h3 class="why-card__title">Chris Coons &middot; <em>enrollment strategist.</em></h3>
+          <p class="why-card__body">Partner, Small College Consulting. 30 years of enrollment management. Chief enrollment officer at two small colleges; worked at five total. Joined Underscore as enrollment consultant; continued through the Carnegie merger. Ensures every design and content decision traces back to RFI, application, and yield outcomes.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">JV</div>
+          <h3 class="why-card__title">James Vineburgh &middot; <em>engagement lead.</em></h3>
+          <p class="why-card__body">Day-to-day client lead, scope owner, integrator of strategy and execution. Direct prior working relationships with members of the Holy Family administration. Designed and deployed the AI admissions concierge that has produced 2,300+ unattended leads at a peer institution since 2025 &mdash; included in HFU&rsquo;s base scope here.</p>
+        </div>
+        <div class="why-card">
+          <div class="why__num why-card__num">EY</div>
+          <h3 class="why-card__title">Eric Yerke &middot; <em>AI developer &amp; lead web designer.</em></h3>
+          <p class="why-card__body">Four years as AI Developer and Web Designer in higher-education marketing technology. Multi-thousand-page CMS migrations and design-system development. Owns the production component library, Drupal&rarr;WordPress migration, AI Concierge configuration, and the WCAG 2.2 AA pipeline.</p>
+        </div>
+      </div>
+
+      <dl class="sig-strip">
+        <div class="sig-strip__item">
+          <dt>Combined small-college years</dt>
+          <dd><em>60+</em><small>Across the firm&rsquo;s two partners</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Affiliate consultant bench</dt>
+          <dd><em>On call</em><small>Advancement, academic, former presidents, athletics</small></dd>
+        </div>
+        <div class="sig-strip__item">
+          <dt>Project allocation</dt>
+          <dd><em>Senior</em><small>Eric ~70%, James ~50%, Chris ~15%, Scott ~10%</small></dd>
+        </div>
+      </dl>
+    </div>
+    <footer class="page__footer">
+      <span>RFP Section A &middot; Agency Information &amp; Experience</span>
+      <span>13 / 15</span>
     </footer>
   </section>
 
@@ -1504,7 +1661,7 @@
   <section class="page page--sand">
     <header class="page__header">
       <span class="page__eyebrow">Why us</span>
-      <span class="page__num">11 / 12</span>
+      <span class="page__num">14 / 15</span>
     </header>
     <div class="page__body">
       <div class="eyebrow">Four reasons</div>
@@ -1517,13 +1674,13 @@
         </div>
         <div class="why-card">
           <div class="why__num why-card__num">02</div>
-          <h3 class="why-card__title">Right-sized.</h3>
-          <p class="why-card__body">Senior practitioners on every deliverable, not a junior bench inheriting the project after the pitch. Holy Family University is a priority engagement, not a mid-tier account subsidizing larger ones.</p>
+          <h3 class="why-card__title">Right-sized for HFU.</h3>
+          <p class="why-card__body">Higher-ed agency benchmarks for this scope land between $250K and $450K+ (est., from published RFP awards). $145K reflects a team sized to fit a 3,700-student institution with a two-person internal web team &mdash; not subsidizing larger accounts.</p>
         </div>
         <div class="why-card">
           <div class="why__num why-card__num">03</div>
           <h3 class="why-card__title">Self-sufficiency over dependency.</h3>
-          <p class="why-card__body">Our knowledge transfer plan ends agency involvement at day ninety. Compare this to a continuous-improvement retainer model. You should not need us once we leave.</p>
+          <p class="why-card__body">Documented component library, recorded training, content governance playbook, deployment runbooks. Our knowledge transfer ends agency involvement at day 90. The reversibility clause means HFU can take ownership of every artifact at any milestone.</p>
         </div>
         <div class="why-card">
           <div class="why__num why-card__num">04</div>
@@ -1549,7 +1706,7 @@
     </div>
     <footer class="page__footer">
       <span>RFP Section G · Innovation and Differentiation</span>
-      <span>11 / 12</span>
+      <span>14 / 15</span>
     </footer>
   </section>
 
@@ -1559,7 +1716,7 @@
   <section class="page final page--ink">
     <header class="page__header">
       <span class="page__eyebrow">In closing</span>
-      <span class="page__num">12 / 12</span>
+      <span class="page__num">15 / 15</span>
     </header>
     <div class="page__body">
       <h2 class="final__title">We build for ownership, <em>not dependency.</em></h2>
@@ -1576,8 +1733,8 @@
       </dl>
     </div>
     <footer class="page__footer">
-      <span>[Agency Name] · Holy Family University Website Redesign Proposal</span>
-      <span>12 / 12</span>
+      <span>Small College Consulting · Holy Family University Website Redesign Proposal</span>
+      <span>15 / 15</span>
     </footer>
   </section>
 
