@@ -737,14 +737,14 @@
       margin-top: 0.2in;
     }
     .value-tile {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px 16px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      border-radius: 0;
+      padding: 16px 0 4px;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      min-height: 1.75in;
       position: relative;
     }
     .value-tile__num {
@@ -1057,14 +1057,14 @@
       margin-top: 0.25in;
     }
     .diff-tile {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px 18px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      border-radius: 0;
+      padding: 16px 0 4px;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      min-height: 1.6in;
     }
     .diff-tile__num {
       font-family: var(--mono);
@@ -1174,7 +1174,6 @@
     .codeblock .tok-n { color: #F5C971; }
     .codeblock .tok-p { color: #8BD8FF; }
     .two-col {
-      flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
@@ -1191,14 +1190,14 @@
       margin-top: 0.2in;
     }
     .logo-card {
-      padding: 18px 18px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 4px;
+      padding: 16px 0 4px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      border-radius: 0;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-height: 1.45in;
     }
     .logo-card__logo {
       height: 28px;
@@ -1532,13 +1531,14 @@
       margin-top: 0.25in;
     }
     .team-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 24px 28px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border);
+      border-radius: 0;
+      padding: 18px 0 8px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
     .team-card__eyebrow {
       font-family: var(--mono);
@@ -1909,20 +1909,23 @@
        schema type names don't render as italic monospace.
        ════════════════════════════════════════════════════════════════ */
     .two-col {
-      display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
-      gap: 14px !important;
-      align-items: stretch !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+      max-height: 4.6in;
+      overflow: hidden;
     }
     .two-col > div {
-      display: flex !important;
-      flex-direction: column !important;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 4.6in;
     }
     .two-col .codeblock {
-      flex: 1 1 auto !important;
-      height: 100% !important;
-      display: flex !important;
-      flex-direction: column !important;
+      flex: 0 0 auto;
+      max-height: 4.6in;
+      overflow: hidden;
     }
 
     .callout, .callout * {
@@ -2756,7 +2759,7 @@
     <div class="page__body">
       <div class="eyebrow">Drafted for holyfamily.edu · not a promise</div>
       <h2 class="h1">llms.txt and schema, <em>written for you.</em></h2>
-      <p class="prose">Roughly half of prospective students now research universities through ChatGPT, Claude, Gemini, and Perplexity on a weekly basis. Ninety-three percent of AI search sessions end without a single click through to the source institution. The content these systems surface is increasingly the first impression that a prospective family forms of the University. Section 6 of the RFP poses seven specific questions about AI content architecture. The materials below show the llms.txt file and JSON-LD EducationalOrganization payload that would ship on the first day of development, populated with real Holy Family data.</p>
+      <p class="prose">Roughly half of prospective students now research universities through ChatGPT, Claude, Gemini, and Perplexity weekly. Ninety-three percent of those sessions end without a single click-through to the source. The content these systems surface is increasingly the first impression a prospective family forms of the University. Section 6 of the RFP poses seven specific questions on AI content architecture; the materials below show the llms.txt file and JSON-LD payload that ship on day one, populated with real Holy Family data.</p>
       <div class="figure-label" style="margin-top: 0.12in;"><strong>Fig.&nbsp;04</strong> &nbsp;·&nbsp; Actual files, drafted for holyfamily.edu</div>
       <div class="two-col" style="margin-top: 8px;">
         <div>
@@ -2807,15 +2810,9 @@
           </div>
         </div>
       </div>
-      <div class="callout"><strong>Phase 2 ships the full schema pack:</strong> <code>EducationalOrganization</code>, <code>CollegeOrUniversity</code>, <code>EducationalOccupationalProgram</code> on every program page, <code>Course</code>, <code>Person</code> on every faculty profile, <code>Event</code>, <code>NewsArticle</code>, <code>FAQPage</code>. All JSON-LD, server-rendered, reachable without JavaScript execution as the RFP requires for agentic browsing.</div>
+      <div class="callout"><strong>Phase 2 ships the full schema pack:</strong> <code>EducationalOrganization</code>, <code>CollegeOrUniversity</code>, <code>EducationalOccupationalProgram</code> on every program page, <code>Course</code> and <code>Person</code> on every faculty profile, plus <code>Event</code>, <code>NewsArticle</code>, and <code>FAQPage</code>. All JSON-LD, server-rendered, reachable without JavaScript execution &mdash; the RFP&rsquo;s requirement for agentic browsing.</div>
 
-      <h3 class="h2" style="margin-top: 0.35in;">Copy rewritten for AI engine visibility.</h3>
-      <p class="prose">Schema and llms.txt describe the site to AI engines, but the copy on every page still has to read clearly to those engines once they land. Small College Consulting&rsquo;s proprietary content technology automatically rewrites headings, metadata, and body copy across the entire website for answer-engine optimization (AEO). Each page&rsquo;s original copy is compared against an AI-optimized rewrite before anything ships; the University&rsquo;s editors accept, reject, or refine every change.</p>
-
-      <figure class="proposal-figure">
-        <img src="assets/proposal-images/aeo-comparison.jpg" alt="Small College Consulting AEO tool output comparing current holyfamily.edu homepage headings against AI-optimized rewrites, with accompanying AEO and GEO suggestions">
-        <figcaption>Live output from our AEO tooling, run against holyfamily.edu. The tool detects every heading on a page and proposes an AI-optimized rewrite alongside concrete AEO and GEO suggestions (keyword coverage, credibility signals, geographic grounding). Every heading on the site is processed this way during migration and the University&rsquo;s editors review and approve each rewrite before publishing.</figcaption>
-      </figure>
+      <p class="caption" style="margin-top: 0.18in;">Copy rewriting for AI engine visibility is documented separately; our AEO tooling detects every heading and proposes an AI-optimized rewrite with AEO/GEO suggestions, reviewed and approved by HFU editors before publishing.</p>
     </div>
     <footer class="page__footer">
       <span>RFP Section 6 · llms.txt · Schema.org Structured Data · Agentic Browsing Optimization</span>
@@ -2998,7 +2995,7 @@
     </header>
     <div class="page__body">
       <h2 class="h1">The University team builds <em>with</em> us, not receives from us.</h2>
-      <p class="lede">Four phrases in the RFP all point in the same direction: partners rather than obstacles, working sessions rather than presentations, knowledge transfer throughout the project, and code review from the University's developers. Each reflects a settled preference on the part of the institution. This response addresses each with a concrete ritual rather than an adjective.</p>
+      <p class="lede">The RFP signals a clear preference: partners rather than vendors, working sessions rather than presentations, knowledge transfer throughout, and code review from the University's developers. Each signal is addressed below with a concrete ritual.</p>
       <div class="grid-2" style="margin-top: 0.15in;">
         <div class="card">
           <div class="card__eyebrow">Ritual 01 · kickoff day one</div>
@@ -3018,10 +3015,10 @@
         <div class="card">
           <div class="card__eyebrow">Ritual 04 · week one</div>
           <div class="card__title">The University's 2025 preparation work, <em>ingested.</em></div>
-          <div class="card__body">The content audit, governance guidelines, information-architecture analysis, and analytics baselines completed by the University in 2025 become the starting position for our Discovery. No rework is required. As a result, Phase 1 closes approximately two weeks earlier than a standard Discovery cycle.</div>
+          <div class="card__body">The content audit, governance guidelines, IA analysis, and analytics baselines completed by the University in 2025 become our starting position. No rework required. Phase 1 closes about two weeks earlier than a standard Discovery cycle.</div>
         </div>
       </div>
-      <div class="callout">What this means for the university: When the ninety days of post-launch support conclude, the University's team will own this codebase as fully as any internal team owns a site it has built itself. The next template, the next form, and the next section will ship without recourse to an external support ticket.</div>
+      
     </div>
     <footer class="page__footer">
       <span>RFP Section A.4 and B.8 · Collaborative Development Experience &amp; Process</span>
@@ -3040,32 +3037,32 @@
     <div class="page__body">
       <div class="eyebrow">Traditional WordPress, not headless · honest tradeoff math</div>
       <h2 class="h1">WordPress, <em>not headless.</em></h2>
-      <p class="prose">The University's RFP expresses a preference for WordPress and explicitly invites a rationale comparing traditional and headless approaches. For Rick Mitchell's two-person team, which will be responsible for operating this site over the next five years, the traditional approach is the stronger choice on every axis that matters: the largest talent pool, the most mature plugin ecosystem, and the lowest total cost of ownership. We would not recommend an architecture that the University's internal team could not sustainably operate.</p>
+      <p class="prose">The RFP expresses a preference for WordPress and invites a rationale comparing traditional versus headless. For Rick Mitchell's two-person team, which will operate this site for the next five years, traditional WordPress wins on every axis that matters: the largest talent pool, the most mature plugin ecosystem, and the lowest total cost of ownership.</p>
       <div class="grid-2" style="margin-top: 0.2in;">
         <div class="card">
           <div class="card__eyebrow">Why WordPress</div>
           <div class="card__title">Editorial usability <em>for a small team.</em></div>
-          <div class="card__body">Rick Mitchell's team needs to publish content rather than support tickets. The Gutenberg editor provides real-time preview, in-context editing, and a mature media library. Since the WordPress 6.x release cycle, this editorial environment has set the benchmark for content-author experience among open-source content management systems.</div>
+          <div class="card__body">Rick Mitchell's team needs to publish content, not open support tickets. Gutenberg provides real-time preview, in-context editing, and a mature media library — the benchmark for content-author experience among open-source CMSes.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Why WordPress</div>
           <div class="card__title">The largest <em>developer ecosystem.</em></div>
-          <div class="card__body">When the University needs to engage an additional developer in two or three years, WordPress talent is abundant and competitively priced. The Drupal talent pool is smaller and substantially more expensive. Across a five-year horizon, that difference compounds into a meaningful dollar figure.</div>
+          <div class="card__body">When HFU needs to engage an additional developer in two or three years, WordPress talent is abundant and competitively priced. The Drupal pool is smaller and more expensive. Over a five-year horizon, that difference compounds.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Why not headless</div>
           <div class="card__title">Editorial workflow <em>degrades.</em></div>
-          <div class="card__body">Real-time preview and in-context editing require costly re-engineering in a headless configuration. Yoast, Gravity Forms, and GTM integration all assume a traditional front end. The University would be left maintaining two codebases and dependent on React and Next.js skills indefinitely.</div>
+          <div class="card__body">Real-time preview and in-context editing require costly re-engineering in a headless setup. Yoast, Gravity Forms, and GTM assume a traditional front end. HFU would maintain two codebases and depend on React skills indefinitely.</div>
         </div>
         <div class="card">
           <div class="card__eyebrow">Future proof</div>
           <div class="card__title">REST API <em>ready.</em></div>
-          <div class="card__body">ACF Pro exposes every custom post type via the REST API from the first day of development. If the University at any point requires a mobile application, digital signage, or a decoupled front end, the content layer will already be headless-ready. The institution incurs the cost of that flexibility only at the point of actual need.</div>
+          <div class="card__body">ACF Pro exposes every custom post type via the REST API from day one. If HFU ever needs a mobile app, digital signage, or a decoupled front end, the content layer is already headless-ready. The cost of that flexibility is deferred until the institution actually needs it.</div>
         </div>
       </div>
     </div>
     <footer class="page__footer">
-      <span>RFP Section C.1 · CMS Recommendation · traditional WordPress with headless-ready REST architecture</span>
+      <span>RFP Section C.1 · CMS Recommendation</span>
       <span>21 / 30</span>
     </footer>
   </section>
@@ -3113,7 +3110,7 @@
           <div class="logo-card__body">Source platform. FG Drupal to WordPress Premium reads the database directly.</div>
         </div>
       </div>
-      <div class="callout"><strong>Slate is three patterns, all WordPress-native, zero script embeds.</strong> (1) Gravity Forms webhook posts submissions to Slate Source Format in real time. (2) Slate Ping tracking on every page day one via your existing GTM-5FPBQK3 container. (3) Slate Query Builder returns JSON for dynamic program listings, events, and deadlines, cached in WordPress with configurable refresh. NC State documented this pattern end to end. Applicant portal SSO is an IT dependency, not agency scope. <strong>Language translation:</strong> Google Translate widget preserved site-wide via a semantic <code>lang</code> attribute and a language selector in the utility nav, positioned to meet WCAG 2.2 AA bypass requirements.</div>
+      <div class="callout"><strong>Slate integrates through three WordPress-native patterns</strong> with zero script embeds: Gravity Forms webhook posts submissions to the Slate Source Format endpoint, Slate Ping tracks every page via your GTM-5FPBQK3 container, and Slate Query Builder returns JSON for dynamic program listings cached in WordPress. NC State documented this pattern end to end.</div>
     </div>
     <footer class="page__footer">
       <span>RFP Section C.2–C.5 · Technical Architecture, Hosting, Accessibility, Integration</span>
