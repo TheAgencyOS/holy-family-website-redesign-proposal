@@ -87,12 +87,20 @@
       background: white;
       color: var(--fg);
     }
-    /* On screen, sections flow continuously. On print, Chrome paginates
-       them naturally and each top-level section starts on a new sheet so
-       the visual rhythm of the proposal is preserved in the PDF. */
+    /* On screen, sections flow continuously. On print, each .page maps
+       to exactly one Letter sheet — no overflow onto a second page. */
     @media print {
-      .page { break-before: page; page-break-before: always; }
+      .page {
+        break-before: page;
+        page-break-before: always;
+        break-after: page;
+        page-break-after: always;
+        height: 11in !important;
+        max-height: 11in !important;
+        overflow: hidden !important;
+      }
       .page:first-of-type { break-before: auto; page-break-before: auto; }
+      .page:last-of-type { break-after: auto; page-break-after: auto; }
       .page__header, .page__footer { break-inside: avoid; }
       .card, .value-tile, .diff-tile, .team-card, .hero-draft,
       .logo-card, .codeblock, figure { break-inside: avoid; }
@@ -244,7 +252,7 @@
       color: var(--fg-muted);
       max-width: 58ch;
       text-wrap: pretty;
-      hyphens: auto;
+      hyphens: manual;
     }
     .prose + .prose { margin-top: 12px; }
     .page--ink .prose { color: rgba(255,255,255,0.75); }
