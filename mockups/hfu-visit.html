@@ -2374,6 +2374,7 @@
     </div>
   </header>
 
+  <main>
   <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
   <section class="hero">
     <div class="hero__bg">
@@ -2736,6 +2737,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ═════════════════════ FOOTER ═════════════════════ -->
   <footer class="foot">
     <div class="foot__inner">
@@ -2798,37 +2801,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Calendar nav (dummy: just flashes active on tap for demo feel)
-    document.querySelectorAll('.calendar__nav button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.animate([
-          { background: 'hsl(var(--hfu-yellow) / 0.3)' },
-          { background: 'transparent' }
-        ], { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
-      });
-    });
-
-    // Sport chip staggered hover reveal (light touch)
-    document.querySelectorAll('.sport-chip').forEach((chip, i) => {
-      chip.style.transitionDelay = (i * 20) + 'ms';
-    });
-
-    // Club cards: subtle tilt on pointer move for desktop only
-    if (window.matchMedia('(hover: hover) and (min-width: 720px)').matches) {
-      document.querySelectorAll('.club').forEach(card => {
-        card.addEventListener('pointermove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          card.style.transform = `translateY(-4px) rotateX(${(-y * 2).toFixed(2)}deg) rotateY(${(x * 2).toFixed(2)}deg)`;
-        });
-        card.addEventListener('pointerleave', () => {
-          card.style.transform = '';
-        });
-      });
-    }
-  </script>
 </body>
 </html>
