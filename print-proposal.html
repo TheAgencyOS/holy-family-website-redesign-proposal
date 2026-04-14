@@ -135,8 +135,8 @@
     .page--blush { background: var(--surface-blush); }
     .page--lavender { background: var(--surface-lavender); }
     .page--sand { background: var(--surface-sand); }
-    .page--ink { background: #0F1117; color: #F5F6F8; }
-    .page--ink h1, .page--ink h2, .page--ink h3, .page--ink p { color: #F5F6F8; }
+    .page--ink { background: var(--surface, #FAFAF8); color: var(--fg); }
+    .page--ink h1, .page--ink h2, .page--ink h3, .page--ink p { color: var(--fg); }
     .page--ink em { color: var(--teal); }
 
     /* ── Page header (eyebrow + page count) ───────────────────────── */
@@ -152,7 +152,7 @@
       text-transform: uppercase;
       color: var(--fg-subtle);
     }
-    .page--ink .page__header { color: rgba(255,255,255,0.55); }
+    .page--ink .page__header { color: var(--fg-subtle); }
 
     .page__eyebrow { display: inline-flex; align-items: center; gap: 10px; }
     .page__eyebrow::before {
@@ -186,15 +186,15 @@
       text-transform: uppercase;
       color: var(--fg-subtle);
     }
-    .page--ink .page__footer { color: rgba(255,255,255,0.55); }
+    .page--ink .page__footer { color: var(--fg-subtle); }
     .page__footer > span:last-child { text-align: right; white-space: nowrap; }
 
     /* ════════════════════════════════════════════════════════════════
        COVER — full-bleed ink with dramatic typographic composition
        ════════════════════════════════════════════════════════════════ */
     .cover {
-      background: #0B0D13;
-      color: #F5F6F8;
+      background: var(--surface, #FAFAF8);
+      color: var(--fg);
       overflow: hidden;
     }
     /* Cover is its own full-bleed layout — not the default page shell */
@@ -206,8 +206,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+        linear-gradient(to right, rgba(15,17,23,0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15,17,23,0.035) 1px, transparent 1px);
       background-size: calc((8.5in - 1.4in) / 12) calc((8.5in - 1.4in) / 12);
       background-position: 0.7in 0.7in;
       pointer-events: none;
@@ -223,7 +223,7 @@
       font-size: 260pt;
       line-height: 0.8;
       letter-spacing: -0.06em;
-      color: rgba(255,255,255,0.035);
+      color: rgba(15,17,23,0.04);
       pointer-events: none;
       font-feature-settings: 'tnum' 1;
       user-select: none;
@@ -254,7 +254,7 @@
       font-size: 8pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.55);
+      color: var(--fg-subtle);
     }
     .cover__top-mark {
       display: inline-flex;
@@ -269,7 +269,7 @@
     }
     .cover__top-num {
       font-feature-settings: 'tnum' 1;
-      color: rgba(245,246,248,0.4);
+      color: var(--fg-subtle);
     }
 
     .cover__eyebrow {
@@ -297,7 +297,7 @@
       line-height: 0.92;
       letter-spacing: -0.035em;
       margin-top: 0.35in;
-      color: #FFFFFF;
+      color: var(--fg);
     }
     .cover__title em {
       font-style: italic;
@@ -317,7 +317,7 @@
       font-weight: 400;
       font-size: 17pt;
       line-height: 1.3;
-      color: rgba(245,246,248,0.72);
+      color: var(--fg);
     }
 
     .cover__spacer { flex: 1; }
@@ -325,7 +325,7 @@
     .cover__rule {
       width: 100%;
       height: 1px;
-      background: rgba(245,246,248,0.14);
+      background: var(--border);
       margin-bottom: 0.35in;
     }
 
@@ -339,14 +339,14 @@
       font-size: 7pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.4);
+      color: var(--fg-subtle);
       margin-bottom: 10px;
     }
     .cover__meta dd {
       font-family: var(--display);
       font-weight: 600;
       font-size: 11pt;
-      color: #FFFFFF;
+      color: var(--fg);
       line-height: 1.25;
     }
     .cover__meta dd small {
@@ -354,7 +354,7 @@
       font-family: var(--body);
       font-weight: 400;
       font-size: 8.5pt;
-      color: rgba(245,246,248,0.5);
+      color: var(--fg-muted, #6B6B68);
       margin-top: 4px;
     }
 
@@ -366,7 +366,7 @@
       font-size: 7pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.38);
+      color: var(--fg-subtle);
     }
 
     /* ── Number page (giant stat) ─────────────────────────────────── */
@@ -977,7 +977,7 @@
       font-family: var(--display);
       font-style: italic;
       font-size: 15pt;
-      color: rgba(245,246,248,0.72);
+      color: var(--fg);
       margin-top: 0.45in;
       max-width: 42ch;
       line-height: 1.4;
@@ -997,16 +997,15 @@
       font-size: 7.5pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(245,246,248,0.45);
+      color: var(--fg-subtle);
       margin-bottom: 8px;
     }
     .final__meta dd {
       font-family: var(--display);
       font-weight: 600;
       font-size: 11pt;
-      color: #FFFFFF;
+      color: var(--fg);
     }
-    .page--ink .final__meta { border-top-color: rgba(245,246,248,0.18); }
 
     /* ── Section signature (anchors short pages with a closing stat strip) ── */
     .sig-strip {
@@ -1216,7 +1215,7 @@
       <span class="page__num">03 / 15</span>
     </header>
     <div class="page__body">
-      <div class="eyebrow">A site that is failing the people it is meant to serve</div>
+      <div class="eyebrow">A site straining to keep up with the audiences it serves</div>
       <h2 class="h1" style="max-width: 18ch;">A 1,601-page site, six years of <em>organic drift.</em></h2>
       <p class="lede">The April 10, 2026 scrape of holyfamily.edu returned 1,601 URLs, not the &ldquo;approximately 1,300&rdquo; cited in the RFP. Six years of departmental publishing without centralized governance has produced an information architecture that competes with itself for every prospective student&rsquo;s attention.</p>
 
@@ -1274,7 +1273,7 @@
     </header>
     <div class="page__body">
       <div class="bleed-image">
-        <h2 class="bleed-image__title">A site that has reached the end of its <em>useful life.</em></h2>
+        <h2 class="bleed-image__title">A site ready for a <em>generational refresh.</em></h2>
         <p class="bleed-image__lede">Drupal 10 on Pantheon. 21.19 second mobile largest contentful paint. Roughly four megabytes of unoptimized imagery on the homepage. A Lighthouse accessibility score of 96 that masks the 60-plus percent of WCAG failures only manual testing catches.</p>
         <div class="bleed-image__frame">
           <img src="assets/screenshots/hfu-home.png" alt="Current Holy Family University homepage">
@@ -1298,7 +1297,7 @@
     </header>
     <div class="page__body">
       <h2 class="bleed-image__title" style="margin-bottom: 8px;">Today versus <em>2024.</em></h2>
-      <p class="bleed-image__lede">A gap you can measure in seconds. Holy Family as it exists today, next to a peer Catholic university that relaunched its site in 2024. Same audience. Same category. A different century of craft.</p>
+      <p class="bleed-image__lede">A gap you can measure in seconds. Holy Family as it exists today, next to a peer Catholic university that relaunched its site in 2024. Same audience. Same category. A useful comparison.</p>
       <div class="compare-grid" style="margin-top: 18px;">
         <figure>
           <img src="assets/screenshots/hfu-home.png" alt="Holy Family University homepage today">
@@ -1740,7 +1739,7 @@
   <!-- ════════════════════════════════════════════════════════════════
        PAGE 12: FINAL CTA
        ════════════════════════════════════════════════════════════════ -->
-  <section class="page final page--ink">
+  <section class="page final">
     <header class="page__header">
       <span class="page__eyebrow">In closing</span>
       <span class="page__num">15 / 15</span>
