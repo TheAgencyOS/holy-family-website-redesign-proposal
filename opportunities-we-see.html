@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The gap we observed — Holy Family Client Portal</title>
-  <meta name="description" content="A short, evidence-led reading of holyfamily.edu as it stands in April 2026. Seven quiet observations, seven humble responses, every claim cited.">
+  <title>Opportunities we see — Holy Family Client Portal</title>
+  <meta name="description" content="Seven openings where the real warmth of Holy Family's campus could come forward online. Evidence-led, cited, offered as notes in the margin.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -522,6 +522,254 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
+       INFOGRAPHICS · editorial, light, token-only
+       ══════════════════════════════════════════════════════════════ */
+    .figure {
+      margin: 28px 0 10px;
+      padding: 28px 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .figure__kicker {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .figure__kicker::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .figure__cap {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      line-height: 1.7;
+    }
+
+    /* ── Funnel: 60k → 900 → 198 → +50–70 ─────────────────────── */
+    .funnel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      align-items: stretch;
+    }
+    .funnel__step {
+      padding: 16px 14px 14px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      position: relative;
+    }
+    .funnel__step--final {
+      background: var(--teal-soft);
+      border-color: var(--teal-line);
+    }
+    .funnel__bar {
+      height: 4px;
+      background: var(--ink-5);
+      border-radius: 2px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .funnel__bar span {
+      display: block;
+      height: 100%;
+      background: var(--teal);
+    }
+    .funnel__num {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 17pt;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .funnel__step--final .funnel__num { color: var(--teal-deep); }
+    .funnel__label {
+      margin-top: 6px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      line-height: 1.5;
+    }
+    .funnel__sub {
+      margin-top: 2px;
+      font-family: var(--body);
+      font-size: 8pt;
+      color: var(--ink-3);
+    }
+
+    /* ── Ratio: 1× organic vs 4.4× AI ─────────────────────────── */
+    .ratio {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .ratio__row {
+      display: grid;
+      grid-template-columns: 110px 1fr 60px;
+      gap: 18px;
+      align-items: center;
+    }
+    .ratio__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .ratio__track {
+      height: 10px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .ratio__fill {
+      display: block;
+      height: 100%;
+      background: var(--ink-4);
+    }
+    .ratio__fill--teal { background: var(--teal); }
+    .ratio__num {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 13pt;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-align: right;
+    }
+    .ratio__num--teal { color: var(--teal-deep); }
+
+    /* ── Voices: student vs site word pairs ───────────────────── */
+    .voices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .voices__col__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
+    }
+    .voices__col--students .voices__col__label { color: var(--teal); border-bottom-color: var(--teal-line); }
+    .voices__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 8px;
+    }
+    .voices__list li {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13pt;
+      color: var(--ink-2);
+      line-height: 1.3;
+    }
+    .voices__col--students .voices__list li { color: var(--teal-deep); }
+    .voices__list li::after {
+      content: '·';
+      margin-left: 8px;
+      color: var(--ink-5);
+      font-style: normal;
+    }
+    .voices__list li:last-child::after { content: ''; margin: 0; }
+
+    /* ── Timeline: accessibility deadline → kickoff → launch ── */
+    .timeline {
+      position: relative;
+      padding: 10px 0 0;
+    }
+    .timeline__rail {
+      position: relative;
+      height: 2px;
+      background: var(--line-2);
+      margin: 40px 10px 50px;
+    }
+    .timeline__rail::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 18%;
+      background: var(--ink-4);
+    }
+    .timeline__rail::after {
+      content: '';
+      position: absolute;
+      left: 18%;
+      top: 0;
+      height: 100%;
+      width: 82%;
+      background: var(--teal);
+    }
+    .timeline__mark {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--ink-3);
+    }
+    .timeline__mark--teal { border-color: var(--teal); }
+    .timeline__mark--filled { background: var(--teal); border-color: var(--teal-deep); }
+    .timeline__tag {
+      position: absolute;
+      transform: translateX(-50%);
+      text-align: center;
+      width: 130px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      line-height: 1.6;
+    }
+    .timeline__tag--above { bottom: calc(100% + 14px); }
+    .timeline__tag--below { top: calc(100% + 14px); }
+    .timeline__tag b {
+      display: block;
+      font-family: var(--display);
+      font-style: normal;
+      font-size: 9pt;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      text-transform: none;
+      margin-bottom: 2px;
+    }
+    .timeline__tag--teal b { color: var(--teal-deep); }
+
+    /* ══════════════════════════════════════════════════════════════
        RESPONSIVE
        ══════════════════════════════════════════════════════════════ */
     @media screen and (max-width: 760px) {
@@ -532,6 +780,12 @@
       .response__row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
       .rfp__body { font-size: 18pt; }
       .hero__title { font-size: clamp(26pt, 7vw, 38pt); }
+      .funnel { grid-template-columns: 1fr 1fr; }
+      .voices { grid-template-columns: 1fr; gap: 22px; }
+      .ratio__row { grid-template-columns: 90px 1fr 50px; gap: 12px; }
+      .timeline__tag { width: 92px; font-size: 5pt; }
+      .timeline__tag b { font-size: 7.5pt; }
+      .figure { padding: 22px 18px 18px; }
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -586,19 +840,19 @@
 
   <main>
     <header class="site-topbar">
-      <span class="site-topbar__title">The gap we observed · April 2026</span>
+      <span class="site-topbar__title">Opportunities we see · April 2026</span>
       <span class="site-topbar__spacer"></span>
       <a href="index.html" class="site-topbar__btn">← Proposal</a>
-      <a href="mailto:rmitchell2@holyfamily.edu?subject=The gap we observed · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Opportunities we see · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
     </header>
 
     <article class="wrap">
 
       <!-- ─── HERO ────────────────────────────────────────────── -->
       <section class="hero">
-        <div class="eyebrow">A careful reading &middot; April 2026</div>
-        <h1 class="hero__title">Your campus is warmer than your website <em>admits.</em></h1>
-        <p class="hero__lede">Ten days inside holyfamily.edu, five peer sites read side-by-side, and two hundred public reviews. What follows is <strong>what we observed</strong> &mdash; offered as notes in the margin, not a pitch. Each gap is also an enrollment number: a prospective student who could not find the answer she needed, an inquiry that never became an application, an admit that did not yield. Every quote is cited. Every estimate is labeled.</p>
+        <div class="eyebrow">Seven openings &middot; April 2026</div>
+        <h1 class="hero__title">There is a warmer Holy Family <em>waiting</em> to come forward online.</h1>
+        <p class="hero__lede">Ten days inside holyfamily.edu, five peer sites read side-by-side, and two hundred public reviews. What follows is <strong>seven openings we see</strong> &mdash; places where the real warmth of the campus is ready to step into the homepage, the adult-learner page, the program page. Each opening is also an enrollment number: a prospective student who would find the answer she needed, an inquiry that would become an application, an admit who would yield. Every quote is cited. Every estimate is labeled.</p>
       </section>
 
       <!-- ─── OPENING QUOTE · from the RFP itself ────────────── -->
@@ -609,25 +863,59 @@
       </section>
 
       <!-- ─── INTRO NOTE ─────────────────────────────────────── -->
-      <p class="intro">The current site is a fine small-university website. The observation we keep returning to is more specific than &ldquo;it looks dated.&rdquo; It is that <em>the warmth of the actual campus</em> &mdash; the 91% who feel safe, the faculty who know every student by name, the monthly career fairs, the 83% first-year retention &mdash; is not visible in the first four seconds of a prospective student's visit. The seven notes below are the places where we think the gap is widest.</p>
+      <p class="intro">The current site is a fine small-university website. The thing we keep returning to is more specific than &ldquo;it could look newer.&rdquo; It is that <em>the warmth of the actual campus</em> &mdash; the 91% who feel safe, the faculty who know every student by name, the monthly career fairs, the 83% first-year retention &mdash; is ready to show up in the first four seconds of a prospective student's visit. The seven openings below are the places where we think that warmth has the most room to come forward.</p>
 
       <!-- ─── OBSERVATIONS ───────────────────────────────────── -->
       <section class="observations">
         <header class="observations__head">
-          <div class="eyebrow">Seven observations</div>
-          <h2 class="observations__title">Ordered, roughly, by how much revenue we think each one is leaving on the table.</h2>
+          <div class="eyebrow">Seven openings</div>
+          <h2 class="observations__title">Ordered, roughly, by how much enrollment we think each one could add in the first year.</h2>
         </header>
 
         <!-- 01 -->
         <article class="obs">
           <div class="obs__num">01</div>
           <div class="obs__body">
-            <h3 class="obs__title">The real Holy Family is already warmer than the site.</h3>
-            <p>Read the homepage once, then read the first page of Niche reviews. The students describe Holy Family the way the RFP describes it &mdash; warm, small, attentive. The website describes it the way a template describes a small private university. There is a three-foot gap between the two voices.</p>
+            <h3 class="obs__title">Your students have already written a warmer voice for you.</h3>
+            <p>Read the homepage once, then read the first page of Niche reviews. Students describe Holy Family the way the RFP describes it &mdash; warm, small, attentive. The opportunity is to let that voice step onto the homepage: adopt the words students already use, and the site starts sounding like the campus.</p>
             <div class="obs__cite">
               <p class="obs__cite__body">&ldquo;From the beginning, I felt a strong sense of community. The small class sizes made it easy to connect with professors, and the supportive environment encouraged me to stay focused on my goals.&rdquo;</p>
               <p class="obs__cite__attr">Current undergraduate &middot; Niche.com &middot; accessed April 2026</p>
             </div>
+
+            <figure class="figure" role="img" aria-label="Two voices. Students say community, small, supportive, focused, attentive, family. The current site says excellence, innovation, opportunity, distinctive, comprehensive, future.">
+              <figcaption class="figure__kicker">Two voices, one campus</figcaption>
+              <div class="voices">
+                <div class="voices__col voices__col--students">
+                  <div class="voices__col__label">Words students use</div>
+                  <ul class="voices__list">
+                    <li>community</li>
+                    <li>small</li>
+                    <li>supportive</li>
+                    <li>focused</li>
+                    <li>attentive</li>
+                    <li>family</li>
+                    <li>safe</li>
+                    <li>known</li>
+                  </ul>
+                </div>
+                <div class="voices__col voices__col--site">
+                  <div class="voices__col__label">Words the homepage uses</div>
+                  <ul class="voices__list">
+                    <li>excellence</li>
+                    <li>innovation</li>
+                    <li>opportunity</li>
+                    <li>distinctive</li>
+                    <li>comprehensive</li>
+                    <li>future</li>
+                    <li>experience</li>
+                    <li>diverse</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="figure__cap">Sources: Niche.com student reviews &middot; holyfamily.edu homepage copy &middot; April 2026</div>
+            </figure>
+
             <a class="obs__link" href="mission.html">Whole person thesis &rarr;</a>
           </div>
         </article>
@@ -636,8 +924,8 @@
         <article class="obs">
           <div class="obs__num">02</div>
           <div class="obs__body">
-            <h3 class="obs__title">The growth audience is being shown someone else's brochure.</h3>
-            <p>The RFP names <strong>Adult and Graduate</strong> as the growth priority. The live homepage and admissions pages are photographed and written for traditional 17-year-olds. Cost-per-credit, time-to-degree, and evening-class availability &mdash; the three things an adult learner needs above the fold &mdash; appear nowhere on the admissions hero.</p>
+            <h3 class="obs__title">The adult-learner audience is ready for a page of its own.</h3>
+            <p>The RFP names <strong>Adult and Graduate</strong> as the growth priority, and the opportunity here is direct: a dedicated flow for the 34-year-old nursing applicant researching her next step at 9:47 p.m. on her phone. Cost-per-credit, time-to-degree, and evening-class availability &mdash; the three things she needs above the fold &mdash; become the hero, and the traditional-age story keeps its own front door.</p>
             <a class="obs__link" href="personas.html">Student personas &rarr;</a>
           </div>
         </article>
@@ -646,8 +934,29 @@
         <article class="obs">
           <div class="obs__num">03</div>
           <div class="obs__body">
-            <h3 class="obs__title">The accessibility deadline has already passed.</h3>
-            <p>The ADA Title II WCAG 2.1 AA compliance date for public-university digital content was <strong>April 24, 2026</strong>, two weeks ago. A retrofit of 1,300 Drupal pages runs about 60&ndash;70% of a rebuild. Starting fresh is not the more expensive choice when the legal floor is already behind us.</p>
+            <h3 class="obs__title">Accessibility is a reason to start fresh, not to retrofit.</h3>
+            <p>The ADA Title II WCAG 2.1 AA compliance date for public-university digital content was <strong>April 24, 2026</strong>. A retrofit of 1,300 Drupal pages runs about 60&ndash;70% of a rebuild on its own. Building the new site with <strong>WCAG 2.2 AA in the design system from day one</strong> turns the timeline into an argument for, not against, a fresh build &mdash; and it lines up cleanly with the Fall 2026 recruitment cycle.</p>
+
+            <figure class="figure" role="img" aria-label="Timeline: April 24 2026 WCAG deadline, April 2026 today, June 2026 kickoff, September 1 2026 launch in time for Fall 2026 recruitment.">
+              <figcaption class="figure__kicker">From here to launch</figcaption>
+              <div class="timeline">
+                <div class="timeline__rail">
+                  <div class="timeline__mark" style="left: 0%;"></div>
+                  <div class="timeline__tag timeline__tag--above" style="left: 0%;"><b>Apr 24, 2026</b>WCAG 2.1 AA<br>deadline</div>
+
+                  <div class="timeline__mark timeline__mark--teal" style="left: 18%;"></div>
+                  <div class="timeline__tag timeline__tag--below" style="left: 18%;"><b>Apr 2026</b>Today &middot;<br>proposal</div>
+
+                  <div class="timeline__mark timeline__mark--teal" style="left: 46%;"></div>
+                  <div class="timeline__tag timeline__tag--above timeline__tag--teal" style="left: 46%;"><b>Jun 2026</b>Kickoff</div>
+
+                  <div class="timeline__mark timeline__mark--filled" style="left: 100%;"></div>
+                  <div class="timeline__tag timeline__tag--below timeline__tag--teal" style="left: 100%;"><b>Sep 1, 2026</b>Launch &middot; Fall<br>recruitment</div>
+                </div>
+              </div>
+              <div class="figure__cap">ADA Title II final rule &middot; RFP Section 11 &middot; small college consulting recommendation</div>
+            </figure>
+
             <a class="obs__link" href="runway.html">3-month runway &rarr;</a>
           </div>
         </article>
@@ -656,8 +965,40 @@
         <article class="obs">
           <div class="obs__num">04</div>
           <div class="obs__body">
-            <h3 class="obs__title">The math is forgiving.</h3>
-            <p>On a funnel of roughly <strong>60,000 monthly visitors</strong> (SEMrush est.) at a 1.5% inquiry rate and 22% inquiry-to-application, published redesign-plus-CRO benchmarks land between 25% and 35% lift in the first year. That is 50&ndash;70 incremental applications per month on the conservative end &mdash; enough to pay for the project long before year one closes.</p>
+            <h3 class="obs__title">The math is generous &mdash; a modest lift pays for the project.</h3>
+            <p>On a funnel of roughly <strong>60,000 monthly visitors</strong> (SEMrush est.) at a 1.5% inquiry rate and 22% inquiry-to-application, published redesign-plus-CRO benchmarks land between 25% and 35% lift in the first year. That is <strong>50&ndash;70 incremental applications per month</strong> on the conservative end &mdash; enough to return the cost of the project long before year one closes.</p>
+
+            <figure class="figure" role="img" aria-label="Funnel: 60,000 monthly visitors, 900 inquiries at 1.5 percent, 198 applications at 22 percent, plus 50 to 70 incremental applications per month with a 25 to 35 percent lift.">
+              <figcaption class="figure__kicker">The enrollment funnel &middot; conservative est.</figcaption>
+              <div class="funnel">
+                <div class="funnel__step">
+                  <div class="funnel__bar"><span style="width: 100%;"></span></div>
+                  <div class="funnel__num">60,000</div>
+                  <div class="funnel__label">Monthly visitors</div>
+                  <div class="funnel__sub">SEMrush est.</div>
+                </div>
+                <div class="funnel__step">
+                  <div class="funnel__bar"><span style="width: 30%;"></span></div>
+                  <div class="funnel__num">900</div>
+                  <div class="funnel__label">Inquiries</div>
+                  <div class="funnel__sub">1.5% rate</div>
+                </div>
+                <div class="funnel__step">
+                  <div class="funnel__bar"><span style="width: 14%;"></span></div>
+                  <div class="funnel__num">198</div>
+                  <div class="funnel__label">Applications</div>
+                  <div class="funnel__sub">22% of inquiries</div>
+                </div>
+                <div class="funnel__step funnel__step--final">
+                  <div class="funnel__bar"><span style="width: 100%;"></span></div>
+                  <div class="funnel__num">+50&ndash;70</div>
+                  <div class="funnel__label">Incremental apps &middot; mo.</div>
+                  <div class="funnel__sub">25&ndash;35% lift, est.</div>
+                </div>
+              </div>
+              <div class="figure__cap">Sources: SEMrush traffic est. &middot; Ruffalo Noel Levitz 2025 higher-ed benchmarks &middot; published redesign + CRO lift ranges</div>
+            </figure>
+
             <a class="obs__link" href="enrollment.html">Enrollment intelligence &rarr;</a>
           </div>
         </article>
@@ -666,8 +1007,8 @@
         <article class="obs">
           <div class="obs__num">05</div>
           <div class="obs__body">
-            <h3 class="obs__title">Drupal is a great tool &mdash; the wrong-sized one for this team.</h3>
-            <p>Drupal is built for a five-engineer team carrying a thousand-page library. Holy Family has a director of digital experience and one strategist. The RFP names the preference for WordPress. The migration path is solid (FG Drupal &rarr; WP All Import, AI-assisted content QA, redirect parity), and the 1,300 pages compress to about 650 through your existing content audit.</p>
+            <h3 class="obs__title">WordPress fits this team more naturally.</h3>
+            <p>Drupal is built for a five-engineer team carrying a thousand-page library; the RFP names the preference for WordPress, and we agree. The opportunity is a CMS the Director of Digital Experience and one strategist can ship campaign pages from in days, not months. The migration path is well-trodden (FG Drupal &rarr; WP All Import, AI-assisted content QA, redirect parity), and the 1,300 pages compress to about 650 through the content audit you already have drafts of.</p>
             <a class="obs__link" href="ai-lab.html">AI migration lab &rarr;</a>
           </div>
         </article>

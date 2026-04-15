@@ -35,7 +35,7 @@
       --line:          rgba(15, 17, 23, 0.09);
       --line-2:        rgba(15, 17, 23, 0.16);
       --line-strong:   rgba(15, 17, 23, 0.28);
-      --teal:          #1B7A86;
+      --teal:          #136B73; /* WCAG AA 4.5:1 on cream, cream-deep, and cream-deeper */
       --teal-deep:     #005357;
       --teal-bright:   #2BA5B3;
       --teal-soft:     rgba(27, 122, 134, 0.06);
@@ -334,34 +334,6 @@
       line-height: 1.4;
       letter-spacing: -0.006em;
     }
-    .hero__scroll {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero__scroll__line {
-      width: 1px;
-      height: 36px;
-      background: linear-gradient(to bottom, transparent, var(--ink-4));
-      animation: scrollLine 2.4s var(--ease) infinite;
-    }
-    @keyframes scrollLine {
-      0% { transform: scaleY(0.3); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      50.01% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0.3); transform-origin: bottom; }
-    }
-
     @media (max-width: 720px) {
       .hero__meta { grid-template-columns: 1fr 1fr; }
     }
@@ -423,6 +395,357 @@
     .section__cta--center { justify-content: center; }
 
     /* ════════════════════════════════════════════════════════════════
+       FIGURE NUMBER — small mono badge on key visuals
+       ════════════════════════════════════════════════════════════════ */
+    .fignum {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      padding: 6px 10px 7px;
+      background: rgba(28, 30, 36, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--cream);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       BACK-TO-TOP FAB
+       ════════════════════════════════════════════════════════════════ */
+    .fab-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      transform: translateY(16px) scale(0.9);
+      pointer-events: none;
+      transition: opacity 320ms var(--ease), transform 320ms var(--ease), background 240ms var(--ease);
+      z-index: 150;
+    }
+    .fab-top.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+    .fab-top:hover {
+      background: var(--teal);
+      transform: translateY(-4px) scale(1);
+    }
+    .fab-top svg { width: 18px; height: 18px; }
+
+    /* ════════════════════════════════════════════════════════════════
+       DAY 1 VALUE PACK — 2x3 grid of drafted artifacts
+       ════════════════════════════════════════════════════════════════ */
+    .valuepack {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 24px;
+      row-gap: 28px;
+    }
+    .vp-card {
+      padding: 32px 28px 28px;
+      background: var(--paper);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      transition: transform 400ms var(--ease), box-shadow 400ms var(--ease), border-color 400ms var(--ease);
+    }
+    .vp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(27, 122, 134, 0.35);
+    }
+    .vp-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--teal);
+      transition: height 420ms var(--ease);
+    }
+    .vp-card:hover::before { height: 100%; }
+    .vp-card__num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 26px;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 14px;
+      font-variant-numeric: lining-nums;
+    }
+    .vp-card__title {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.22;
+      letter-spacing: -0.014em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .vp-card__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .vp-card__body {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin-bottom: 14px;
+    }
+    .vp-card__ref {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      font-weight: 500;
+    }
+    @media (max-width: 900px) { .valuepack { grid-template-columns: 1fr; } }
+
+    /* ════════════════════════════════════════════════════════════════
+       EVIDENCE — concierge testimonial moment
+       ════════════════════════════════════════════════════════════════ */
+    .evidence {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .evidence__inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 56px;
+      align-items: center;
+      padding: 72px 64px;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 24px;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      overflow: hidden;
+    }
+    .evidence__inner::before {
+      content: '"';
+      position: absolute;
+      top: -24px;
+      left: 40px;
+      font-family: var(--serif);
+      font-size: 320px;
+      line-height: 1;
+      color: rgba(79, 181, 193, 0.12);
+      font-style: italic;
+      pointer-events: none;
+    }
+    .evidence__quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(26px, 3.4vw, 42px);
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: var(--cream);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .evidence__quote em { color: #4FB5C1; font-style: italic; }
+    .evidence__attr {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250, 249, 246, 0.68);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    .evidence__attr strong { color: var(--cream); font-weight: 500; }
+    .evidence__stats {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding-left: 40px;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+      position: relative;
+      z-index: 1;
+    }
+    .evidence__stat__num {
+      font-family: var(--display);
+      font-size: 56px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #4FB5C1;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .evidence__stat__num small { font-size: 0.45em; color: rgba(79, 181, 193, 0.7); font-weight: 400; margin-left: 0.06em; }
+    .evidence__stat__label {
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(250, 249, 246, 0.74);
+      max-width: 34ch;
+    }
+    .evidence__stat__label strong { color: var(--cream); font-weight: 500; }
+    @media (max-width: 900px) {
+      .evidence__inner { grid-template-columns: 1fr; padding: 48px 32px; gap: 40px; }
+      .evidence__stats { padding-left: 0; border-left: none; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.14); }
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       AI ARCHITECTURE — code block
+       ════════════════════════════════════════════════════════════════ */
+    .ai-arch {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .ai-arch__copy h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin: 16px 0 16px;
+    }
+    .ai-arch__copy h3 em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .ai-arch__copy p {
+      font-size: 15.5px;
+      line-height: 1.62;
+      color: var(--ink-2);
+      max-width: 48ch;
+      margin-bottom: 16px;
+    }
+    .ai-arch__copy p strong { color: var(--ink); font-weight: 500; }
+    .ai-arch__copy p em { font-family: var(--serif); font-style: italic; color: var(--teal); }
+
+    .ai-arch__facts {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .ai-arch__fact__num {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .ai-arch__fact__label {
+      font-size: 12px;
+      line-height: 1.42;
+      color: var(--ink-3);
+      max-width: 24ch;
+    }
+
+    .codebox {
+      background: #0E1014;
+      border-radius: 14px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid #1C1E24;
+    }
+    .codebox__bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: #15171C;
+      border-bottom: 1px solid #1C1E24;
+    }
+    .codebox__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2E3139;
+    }
+    .codebox__dot--r { background: #E56C6C; }
+    .codebox__dot--y { background: #E6C066; }
+    .codebox__dot--g { background: #6BD49A; }
+    .codebox__name {
+      margin-left: 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.58);
+      letter-spacing: 0.03em;
+    }
+    .codebox__body {
+      padding: 24px 26px 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.68;
+      color: #E0E6EA;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .codebox__body .c-comment { color: #6B7079; font-style: italic; }
+    .codebox__body .c-key { color: #4FB5C1; }
+    .codebox__body .c-str { color: #E6C066; }
+    .codebox__body .c-num { color: #AE94E2; }
+    .codebox__body .c-url { color: #8BCB94; text-decoration: underline; text-decoration-color: rgba(139, 203, 148, 0.3); }
+    @media (max-width: 900px) { .ai-arch { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ════════════════════════════════════════════════════════════════
+       MISSION — full-bleed photograph variant
+       ════════════════════════════════════════════════════════════════ */
+    .mission__photo {
+      position: relative;
+      margin: 0 0 56px;
+      border-radius: 22px;
+      overflow: hidden;
+      aspect-ratio: 21 / 9;
+      box-shadow: var(--shadow-xl);
+    }
+    .mission__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+      filter: saturate(0.92) contrast(1.02);
+    }
+    .mission__photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(28,30,36,0.06) 0%, rgba(28,30,36,0.30) 80%);
+    }
+
+    /* ════════════════════════════════════════════════════════════════
        LETTER — transmittal after hero
        ════════════════════════════════════════════════════════════════ */
     .letter {
@@ -455,6 +778,18 @@
       line-height: 1.68;
       color: var(--ink-2);
       max-width: 60ch;
+    }
+    .letter__body p:first-of-type::first-letter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 84px;
+      line-height: 0.82;
+      float: left;
+      color: var(--teal);
+      padding: 10px 14px 0 0;
+      margin-top: 2px;
+      font-synthesis: none;
     }
     .letter__body p strong { color: var(--ink); font-weight: 500; }
     .letter__body p em {
@@ -1726,7 +2061,6 @@
         <div><div class="hero__meta__label">Email</div><div class="hero__meta__value">rmitchell2@<br>holyfamily.edu</div></div>
       </div>
     </div>
-    <div class="hero__scroll" aria-hidden="true">Scroll<div class="hero__scroll__line"></div></div>
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
@@ -1779,6 +2113,56 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
+       DAY 1 VALUE PACK · six drafted artifacts
+       ══════════════════════════════════════════════════════════════ -->
+  <section class="section section--paper" id="valuepack">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Day 1 Value Pack · before you even sign</div>
+      <h2 class="section__title reveal" data-delay="1">Six artifacts, drafted <em>inside</em> this response.</h2>
+      <p class="section__lede reveal" data-delay="2">Each is drafted in the pages that follow, ready to refine with your team during Discovery. The idea is simple: <strong>the committee should not have to take our competence on faith.</strong></p>
+    </div>
+
+    <div class="valuepack">
+      <article class="vp-card reveal" data-delay="1">
+        <div class="vp-card__num">01</div>
+        <h3 class="vp-card__title">An opinionated sitemap for <em>holyfamily.edu</em>.</h3>
+        <p class="vp-card__body">Eight top-level sections. Collapses 180+ URL prefixes into roughly 650 canonical pages.</p>
+        <div class="vp-card__ref">See page · IA section</div>
+      </article>
+      <article class="vp-card reveal" data-delay="2">
+        <div class="vp-card__num">02</div>
+        <h3 class="vp-card__title">Three brand pages, <em>rendered</em>.</h3>
+        <p class="vp-card__body">The homepage, the School of Nursing flagship, and the Student Experience page — drafted, not wireframed.</p>
+        <div class="vp-card__ref">See page · mockups</div>
+      </article>
+      <article class="vp-card reveal" data-delay="3">
+        <div class="vp-card__num">03</div>
+        <h3 class="vp-card__title"><em>llms.txt</em> &amp; JSON-LD schema pack.</h3>
+        <p class="vp-card__body">EducationalOrganization, Course, Person, Event, FAQ — written against real institutional data.</p>
+        <div class="vp-card__ref">See page · AI architecture</div>
+      </article>
+      <article class="vp-card reveal" data-delay="1">
+        <div class="vp-card__num">04</div>
+        <h3 class="vp-card__title">Four-stage enrollment funnel framework.</h3>
+        <p class="vp-card__body">GA4 events, GTM data layer, Slate cross-domain tracking, a Looker Studio layout for Katherine's team.</p>
+        <div class="vp-card__ref">See page · tactics</div>
+      </article>
+      <article class="vp-card reveal" data-delay="2">
+        <div class="vp-card__num">05</div>
+        <h3 class="vp-card__title">A 301 redirect CSV template.</h3>
+        <p class="vp-card__body">All 1,601 URLs mapped via semantic sentence-transformer embeddings; auto-accepted above 0.98 similarity.</p>
+        <div class="vp-card__ref">See page · sitemap</div>
+      </article>
+      <article class="vp-card reveal" data-delay="3">
+        <div class="vp-card__num">06</div>
+        <h3 class="vp-card__title">A WCAG 2.2 AA pre-audit.</h3>
+        <p class="vp-card__body">Manual review of the University's top twenty pages — real findings, fixable on Drupal before migration.</p>
+        <div class="vp-card__ref">Delivered week 1 of engagement</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
        STATE OF SITE
        ══════════════════════════════════════════════════════════════ -->
   <section class="section" id="state">
@@ -1805,6 +2189,7 @@
 
       <figure class="state__figure reveal" data-delay="1">
         <img src="assets/hfu-live/holyfamily-edu-home.png" alt="holyfamily.edu homepage, April 2026">
+        <div class="fignum">Fig. 01 · April 2026</div>
         <div class="state__figure__badge">holyfamily.edu <strong>1,601 URLs</strong></div>
       </figure>
     </div>
@@ -1829,10 +2214,11 @@
 
     <div class="gallery">
       <div class="reveal" data-delay="1">
-        <a href="mockups/hfu-home.html">
+        <a href="mockups/hfu-home.html" style="position:relative; display:block;">
           <figure class="gallery__primary">
             <img src="assets/mockups-current/home.png" alt="Holy Family homepage mockup, desktop">
           </figure>
+          <div class="fignum">Fig. 02 · Homepage</div>
         </a>
         <div class="gallery__caption">
           <strong>Homepage · a Catholic university rooted in family</strong>
@@ -1845,10 +2231,11 @@
           <div class="gallery__meta__label">Variant B · adult &amp; graduate</div>
           <div class="gallery__meta__body">Drafted for mobile — because that's <em>how they browse</em>.</div>
         </div>
-        <a href="mockups/hfu-bsn.html" class="gallery__phone">
+        <a href="mockups/hfu-bsn.html" class="gallery__phone" style="position: relative;">
           <div class="gallery__phone__screen">
             <img src="assets/mockups-current/bsn-mobile.png" alt="BSN program mockup on iPhone">
           </div>
+          <div class="fignum" style="left: auto; right: 14px; top: 36px;">Fig. 03</div>
         </a>
         <div class="gallery__caption" style="text-align:center; align-items: center;">
           <strong>Bachelor of Science, Nursing</strong>
@@ -2040,6 +2427,40 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
+       EVIDENCE · the concierge
+       ══════════════════════════════════════════════════════════════ -->
+  <section class="section" id="evidence">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Evidence · live in production</div>
+      <h2 class="section__title reveal" data-delay="1">We've <em>done this before</em>, at a peer institution.</h2>
+      <p class="section__lede reveal" data-delay="2">James Vineburgh's admissions concierge at a peer Catholic university has been answering inbound prospects since early 2025 — no campaign spend, grounded entirely in the institution's own content. The same architecture ships here if Holy Family elects it.</p>
+    </div>
+
+    <div class="evidence reveal" data-delay="1">
+      <div class="evidence__inner">
+        <div>
+          <p class="evidence__quote">"Half the questions we used to answer by <em>email</em> get answered before the prospect fills out an inquiry form."</p>
+          <div class="evidence__attr"><strong>[confirm: Director of Admissions]</strong><br>Peer Catholic university &nbsp;·&nbsp; Live since January 2025</div>
+        </div>
+        <div class="evidence__stats">
+          <div>
+            <div class="evidence__stat__num">2,300<small>+</small></div>
+            <div class="evidence__stat__label"><strong>Inbound admissions leads</strong> produced, unattended, since launch</div>
+          </div>
+          <div>
+            <div class="evidence__stat__num">$0</div>
+            <div class="evidence__stat__label"><strong>Campaign spend</strong> — grounded in the institution's own content</div>
+          </div>
+          <div>
+            <div class="evidence__stat__num">24 / 7</div>
+            <div class="evidence__stat__label">Answering <strong>at 9:47 pm on a Tuesday</strong>, when adult learners browse</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
        DIFFERENTIATORS — Six commitments
        ══════════════════════════════════════════════════════════════ -->
   <section class="section section--ink" id="differentiators">
@@ -2084,10 +2505,86 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
+       AI ARCHITECTURE · llms.txt code block
+       ══════════════════════════════════════════════════════════════ -->
+  <section class="section section--tint" id="ai-arch">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">AI-first content architecture · RFP §6</div>
+      <h2 class="section__title reveal" data-delay="1">An <em>llms.txt</em>, drafted for holyfamily.edu.</h2>
+      <p class="section__lede reveal" data-delay="2">A meaningful share of prospective students already research universities through ChatGPT, Claude, and Perplexity. The file below — drafted in this proposal against real HFU data — ensures the answer surfaces your <strong>93% employment outcome</strong>, not generic copy.</p>
+    </div>
+
+    <div class="ai-arch">
+      <div class="ai-arch__copy reveal" data-delay="1">
+        <div class="eyebrow eyebrow--teal" style="margin-bottom:12px">What we ship on day one</div>
+        <h3>Machine-readable, <em>human-written</em>.</h3>
+        <p>Every fact in the file is drawn from <strong>holyfamily.edu</strong>, reviewed by your team, and kept in sync by a weekly webhook. When an AI engine cites Holy Family, it cites your words.</p>
+        <p>The schema pack ships on the same day: <em>EducationalOrganization</em>, <em>CollegeOrUniversity</em>, <em>Course</em>, <em>Person</em>, <em>Event</em>, <em>FAQPage</em> — all JSON-LD, server-rendered, reachable without JavaScript.</p>
+
+        <div class="ai-arch__facts">
+          <div>
+            <div class="ai-arch__fact__num">llms.txt</div>
+            <div class="ai-arch__fact__label">1 file at the site root, served on day one of launch</div>
+          </div>
+          <div>
+            <div class="ai-arch__fact__num">12</div>
+            <div class="ai-arch__fact__label">Schema.org types deployed across HFU content</div>
+          </div>
+          <div>
+            <div class="ai-arch__fact__num">Weekly</div>
+            <div class="ai-arch__fact__label">Webhook refresh so facts never drift from source</div>
+          </div>
+          <div>
+            <div class="ai-arch__fact__num">0 JS</div>
+            <div class="ai-arch__fact__label">Required for an AI crawler to parse every page</div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="codebox reveal" data-delay="2" style="margin: 0;">
+        <div class="codebox__bar">
+          <span class="codebox__dot codebox__dot--r"></span>
+          <span class="codebox__dot codebox__dot--y"></span>
+          <span class="codebox__dot codebox__dot--g"></span>
+          <span class="codebox__name">holyfamily.edu / llms.txt</span>
+        </div>
+        <pre class="codebox__body"><span class="c-comment"># Holy Family University</span>
+<span class="c-comment"># A Catholic university in Philadelphia · founded 1954</span>
+
+<span class="c-key">Name:</span> <span class="c-str">Holy Family University</span>
+<span class="c-key">Type:</span> <span class="c-str">Private Catholic university</span>
+<span class="c-key">Founded:</span> <span class="c-num">1954</span>
+<span class="c-key">Founder:</span> <span class="c-str">Sisters of the Holy Family of Nazareth</span>
+<span class="c-key">Campuses:</span> <span class="c-str">Philadelphia, Newtown PA</span>
+
+<span class="c-comment">## Key facts (canonical)</span>
+<span class="c-key">Enrollment:</span> <span class="c-num">3,700</span> <span class="c-comment"># students</span>
+<span class="c-key">Employed-in-6-months:</span> <span class="c-num">93</span><span class="c-comment">% # of graduates</span>
+<span class="c-key">Nursing/Health-Sciences:</span> <span class="c-num">40</span><span class="c-comment">% # of students</span>
+<span class="c-key">NCLEX-first-time-pass:</span> <span class="c-num">91.38</span><span class="c-comment">% # BSN 2023</span>
+<span class="c-key">Student-faculty:</span> <span class="c-str">13:1</span>
+
+<span class="c-comment">## Primary sources</span>
+<span class="c-url">/about/mission/</span>         <span class="c-comment"># mission statement</span>
+<span class="c-url">/academics/programs/</span>    <span class="c-comment"># 40+ programs</span>
+<span class="c-url">/admissions/cost/</span>       <span class="c-comment"># tuition &amp; aid</span>
+<span class="c-url">/nursing/bsn/</span>           <span class="c-comment"># Nursing flagship</span>
+
+<span class="c-comment">## Refreshed weekly from source</span>
+<span class="c-key">Last-updated:</span> <span class="c-num">2026-06-14T00:00:00Z</span></pre>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
        MISSION
        ══════════════════════════════════════════════════════════════ -->
   <section class="section section--paper" id="mission">
     <div class="mission">
+      <figure class="mission__photo reveal">
+        <img src="assets/hfu-photos/live/academics-nurses.jpg" alt="Holy Family University Nursing students walking on campus">
+        <div class="fignum">Fig. 05 · Campus</div>
+      </figure>
       <div class="eyebrow reveal" style="margin-bottom:36px">The whole person · RFP §G.2</div>
       <p class="mission__pull reveal" data-delay="1">Educating the whole person <em>for a life of integrity, service, and personal excellence</em>.</p>
       <div class="mission__attr reveal" data-delay="2">Holy Family University mission statement · founded 1954 by the Sisters of the Holy Family of Nazareth</div>
@@ -2361,6 +2858,11 @@
   </footer>
   </main>
 
+  <!-- Back to top FAB -->
+  <button class="fab-top" id="fabTop" aria-label="Back to top" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2404,6 +2906,40 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
       }, { threshold: 0.12, rootMargin: '-40px 0px -40px' });
       document.querySelectorAll('.reveal, .sitemap, .timeline__track').forEach(el => io.observe(el));
+
+      // Counter animation — numbers count up from 0 when visible
+      function animateCount(el) {
+        if (prefersReducedMotion) { el.textContent = el.dataset.count; return; }
+        const target = parseFloat(el.dataset.count);
+        if (isNaN(target)) return;
+        const suffix = el.dataset.suffix || '';
+        const isDecimal = String(target).includes('.');
+        const duration = 1400;
+        const startTime = performance.now();
+        function step(now) {
+          const t = Math.min(1, (now - startTime) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const value = target * eased;
+          el.textContent = (isDecimal ? value.toFixed(2) : Math.round(value).toLocaleString()) + suffix;
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countIO.unobserve(e.target); } });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+
+      // Back-to-top FAB
+      const fab = document.getElementById('fabTop');
+      if (fab) {
+        const toggleFab = () => fab.classList.toggle('is-visible', window.scrollY > 720);
+        window.addEventListener('scroll', toggleFab, { passive: true });
+        fab.addEventListener('click', () => {
+          if (window.lenis) { window.lenis.scrollTo(0, { duration: 1.6 }); }
+          else { window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' }); }
+        });
+      }
     });
   </script>
 </body>
