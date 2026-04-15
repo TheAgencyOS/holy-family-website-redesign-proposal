@@ -636,155 +636,114 @@
     }
     .cadence {
       margin-top: 8px;
-      padding: 26px 26px 22px;
+      padding: 28px 30px 20px;
       background: var(--paper);
       border: 1px solid var(--rule);
       border-radius: 4px;
     }
     .cadence__head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 26px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--rule-soft);
-    }
-    .cadence__kicker {
       font-family: var(--mono);
       font-size: 6pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-mute);
+      padding-bottom: 14px;
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--rule-soft);
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
-    .cadence__kicker::before {
+    .cadence__head::before {
       content: '';
-      width: 20px;
+      width: 22px;
       height: 1px;
       background: var(--teal);
     }
-    .cadence__shift {
+    .cadence__row {
       display: grid;
-      grid-template-columns: auto 160px auto;
-      align-items: center;
-      gap: 12px;
-      font-family: var(--mono);
-      font-size: 5.5pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      grid-template-columns: 98px 220px 1fr 180px;
+      gap: 24px;
+      align-items: baseline;
+      padding: 22px 0 20px;
+      border-bottom: 1px solid var(--rule-soft);
     }
-    .cadence__shift__from { color: var(--ink-mute); }
-    .cadence__shift__to { color: var(--teal-deep); }
-    .cadence__shift__rail {
-      height: 4px;
-      background: linear-gradient(
-        to right,
-        var(--ink-mute) 0%,
-        var(--ink-mute) 35%,
-        var(--teal) 60%,
-        var(--teal-deep) 100%
-      );
-      border-radius: 2px;
-      opacity: 0.55;
-    }
-    .cadence__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--rule-soft);
-      border: 1px solid var(--rule-soft);
-    }
-    .cadence__q {
-      padding: 22px 18px 20px;
-      background: var(--paper);
-      position: relative;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 12px;
-    }
-    .cadence__q__label {
+    .cadence__row:last-child { border-bottom: 0; padding-bottom: 4px; }
+    .cadence__row__label {
       font-family: var(--mono);
       font-size: 6pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink-mute);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      line-height: 1.5;
     }
-    .cadence__q__label b {
+    .cadence__row__label b {
+      display: block;
       color: var(--ink);
-      font-weight: 500;
-    }
-    .cadence__q__label span {
-      font-family: var(--mono);
-      font-size: 5pt;
-      letter-spacing: 0.12em;
-      color: var(--ink-whisper);
-    }
-    .cadence__q__title {
       font-family: var(--display);
       font-weight: 500;
-      font-size: 11.5pt;
+      font-size: 13pt;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      text-transform: none;
+    }
+    .cadence__row--hfu .cadence__row__label b { color: var(--teal-deep); }
+    .cadence__row__title {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 12pt;
       color: var(--ink);
       letter-spacing: -0.008em;
       line-height: 1.28;
     }
-    .cadence__q__title em {
+    .cadence__row__title em {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
       color: var(--teal);
     }
-    .cadence__q__body {
+    .cadence__row__body {
       font-family: var(--body);
-      font-size: 8.5pt;
-      line-height: 1.55;
+      font-size: 9.5pt;
+      line-height: 1.58;
       color: var(--ink-body);
     }
-    .cadence__q__meter {
-      margin-top: 6px;
-      padding-top: 10px;
-      border-top: 1px solid var(--rule-soft);
+    .cadence__row__meter {
+      display: grid;
+      gap: 8px;
+      align-self: center;
     }
-    .cadence__q__meter__bar {
+    .cadence__row__meter__bar {
       display: grid;
       grid-template-columns: var(--scc-share, 100%) var(--hfu-share, 0%);
-      height: 4px;
-      border-radius: 2px;
+      height: 5px;
+      border-radius: 3px;
       overflow: hidden;
       background: var(--rule-soft);
-      margin-bottom: 8px;
     }
-    .cadence__q__meter__bar::before {
+    .cadence__row__meter__bar::before {
       content: '';
       background: var(--ink-mute);
+      opacity: 0.55;
     }
-    .cadence__q__meter__bar::after {
+    .cadence__row__meter__bar::after {
       content: '';
       background: var(--teal);
     }
-    .cadence__q__meter__labels {
+    .cadence__row__meter__labels {
       display: flex;
       justify-content: space-between;
       font-family: var(--mono);
-      font-size: 5pt;
-      letter-spacing: 0.12em;
+      font-size: 5.5pt;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--ink-mute);
     }
-    .cadence__q__meter__labels b {
+    .cadence__row__meter__labels b {
       color: var(--ink-body);
       font-weight: 500;
     }
-    .cadence__q--hfu {
-      background: var(--teal-glow);
-    }
-    .cadence__q--hfu .cadence__q__label b { color: var(--teal-deep); }
-    .cadence__q--hfu .cadence__q__meter__labels b { color: var(--teal-deep); }
+    .cadence__row--hfu .cadence__row__meter__labels b:last-child { color: var(--teal-deep); }
 
     /* ══════════════════════════════════════════════════════════════
        CODA — quiet method note
@@ -1012,9 +971,13 @@
       .idea-02__title,
       .idea-04__title,
       .idea-06__title { font-size: 22pt; }
-      .cadence__grid { grid-template-columns: repeat(2, 1fr); }
-      .cadence__head { flex-direction: column; align-items: flex-start; gap: 14px; }
-      .cadence__shift { grid-template-columns: auto 1fr auto; width: 100%; }
+      .cadence { padding: 22px 18px 14px; }
+      .cadence__row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 20px 0 18px;
+      }
+      .cadence__row__meter { max-width: 220px; margin-top: 4px; }
       .filecard__body { font-size: 8pt; padding: 18px 18px; }
     }
   </style>
@@ -1452,56 +1415,46 @@
             </div>
 
             <div class="cadence" aria-label="Quarterly cadence, handback at Q3">
-              <div class="cadence__head">
-                <div class="cadence__kicker">Year one &middot; who drives the audit</div>
-                <div class="cadence__shift" role="img" aria-label="Ownership shifts from Small College Consulting to Holy Family over four quarters">
-                  <span class="cadence__shift__from">SCC led</span>
-                  <span class="cadence__shift__rail"></span>
-                  <span class="cadence__shift__to">HFU owned</span>
+              <div class="cadence__head">Year one &middot; who drives the audit</div>
+
+              <div class="cadence__row" style="--scc-share: 100%; --hfu-share: 0%;">
+                <div class="cadence__row__label"><b>Q1</b>Baseline</div>
+                <h4 class="cadence__row__title">Set the <em>baseline.</em></h4>
+                <p class="cadence__row__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard.</p>
+                <div class="cadence__row__meter">
+                  <div class="cadence__row__meter__bar"></div>
+                  <div class="cadence__row__meter__labels"><b>SCC 100%</b><span>HFU 0%</span></div>
                 </div>
               </div>
-              <div class="cadence__grid">
 
-                <div class="cadence__q" style="--scc-share: 100%; --hfu-share: 0%;">
-                  <div class="cadence__q__label"><b>Q1</b><span>Baseline</span></div>
-                  <h4 class="cadence__q__title">Set the <em>baseline</em>.</h4>
-                  <p class="cadence__q__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard.</p>
-                  <div class="cadence__q__meter">
-                    <div class="cadence__q__meter__bar"></div>
-                    <div class="cadence__q__meter__labels"><b>SCC 100%</b><span>HFU 0%</span></div>
-                  </div>
+              <div class="cadence__row" style="--scc-share: 70%; --hfu-share: 30%;">
+                <div class="cadence__row__label"><b>Q2</b>Fix at source</div>
+                <h4 class="cadence__row__title">Correct the <em>drift.</em></h4>
+                <p class="cadence__row__body">Re-run the audit, fix errors in the CMS (not in prompts), re-index, re-submit. HFU shadows.</p>
+                <div class="cadence__row__meter">
+                  <div class="cadence__row__meter__bar"></div>
+                  <div class="cadence__row__meter__labels"><b>SCC 70%</b><span>HFU 30%</span></div>
                 </div>
+              </div>
 
-                <div class="cadence__q" style="--scc-share: 70%; --hfu-share: 30%;">
-                  <div class="cadence__q__label"><b>Q2</b><span>Fix at source</span></div>
-                  <h4 class="cadence__q__title">Correct the <em>drift</em>.</h4>
-                  <p class="cadence__q__body">Re-run the audit, fix errors in the CMS (not in prompts), re-index, re-submit. HFU shadows.</p>
-                  <div class="cadence__q__meter">
-                    <div class="cadence__q__meter__bar"></div>
-                    <div class="cadence__q__meter__labels"><b>SCC 70%</b><span>HFU 30%</span></div>
-                  </div>
+              <div class="cadence__row cadence__row--hfu" style="--scc-share: 40%; --hfu-share: 60%;">
+                <div class="cadence__row__label"><b>Q3</b>Handback</div>
+                <h4 class="cadence__row__title">Transfer the <em>playbook.</em></h4>
+                <p class="cadence__row__body">Prompts, rubric, dashboards, and vendor logins move to HFU. Run the audit together, side-by-side.</p>
+                <div class="cadence__row__meter">
+                  <div class="cadence__row__meter__bar"></div>
+                  <div class="cadence__row__meter__labels"><span>SCC 40%</span><b>HFU 60%</b></div>
                 </div>
+              </div>
 
-                <div class="cadence__q cadence__q--hfu" style="--scc-share: 40%; --hfu-share: 60%;">
-                  <div class="cadence__q__label"><b>Q3</b><span>Handback</span></div>
-                  <h4 class="cadence__q__title">Transfer the <em>playbook</em>.</h4>
-                  <p class="cadence__q__body">Prompts, rubric, dashboards, and vendor logins move to HFU. Run the audit together, side-by-side.</p>
-                  <div class="cadence__q__meter">
-                    <div class="cadence__q__meter__bar"></div>
-                    <div class="cadence__q__meter__labels"><b>SCC 40%</b><span>HFU 60%</span></div>
-                  </div>
+              <div class="cadence__row cadence__row--hfu" style="--scc-share: 10%; --hfu-share: 90%;">
+                <div class="cadence__row__label"><b>Q4</b>Internal cadence</div>
+                <h4 class="cadence__row__title">Holy Family <em>owns it.</em></h4>
+                <p class="cadence__row__body">HFU runs the quarterly audit in-house. SCC on call for edge cases &mdash; no retainer required.</p>
+                <div class="cadence__row__meter">
+                  <div class="cadence__row__meter__bar"></div>
+                  <div class="cadence__row__meter__labels"><span>SCC 10%</span><b>HFU 90%</b></div>
                 </div>
-
-                <div class="cadence__q cadence__q--hfu" style="--scc-share: 10%; --hfu-share: 90%;">
-                  <div class="cadence__q__label"><b>Q4</b><span>Internal cadence</span></div>
-                  <h4 class="cadence__q__title">Holy Family <em>owns it.</em></h4>
-                  <p class="cadence__q__body">HFU runs the quarterly audit in-house. SCC on call for edge cases &mdash; no retainer required.</p>
-                  <div class="cadence__q__meter">
-                    <div class="cadence__q__meter__bar"></div>
-                    <div class="cadence__q__meter__labels"><b>HFU 90%</b><span>SCC 10%</span></div>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>

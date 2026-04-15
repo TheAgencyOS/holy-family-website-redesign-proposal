@@ -32,10 +32,17 @@ const HTML_PAGES = [
 // The action-items doc is the authoritative source for pricing, timeline,
 // team, and partnership — per CLAUDE.md it wins over any older draft. Keep
 // it first so it's never truncated if the budget is hit.
+//
+// Documents listed here get run through sanitizeInternal() below to strip
+// internal strategy notes, partner arrangement details, coaching language,
+// attendee lists, and any "Agency OS" mention before they land in context.
+//
+// Deliberately excluded — internal-only, never grounded into the concierge:
+//   - 2026-04-11 hfu-rfp-what-they-actually-want.md (strategic analysis of
+//     the committee; "how to speak to it" coaching — concierge-inappropriate)
 const MD_DOCS = [
   '../2026-04-14 scc-strategy-call-action-items.md',
   '../Executive-Summary.md',
-  '../2026-04-11 hfu-rfp-what-they-actually-want.md',
   '../COMPLETE-PROPOSAL.md',
   'BRIEFING.md',
 ];
@@ -78,6 +85,78 @@ function stripMd(md) {
     .trim();
 }
 
+// Scrub internal-only language from MD docs before they become concierge
+// grounding. Anything HFU should never hear quoted back gets removed here.
+// This is belt-and-suspenders alongside the system-prompt rules — if it's
+// not in the context, it cannot leak.
+function sanitizeInternal(md) {
+  let out = md;
+
+  // Strip YAML frontmatter entirely (it carries attendees, internal tags,
+  // authorship metadata that has no committee-facing value).
+  out = out.replace(/^---\n[\s\S]*?\n---\n/, '');
+
+  // Remove every mention of internal tooling / parent agency branding.
+  // These phrases must never appear in grounding, even incidentally.
+  const forbiddenPhrases = [
+    /\bAgency OS\b/gi,
+    /\bHigh Tide\b/gi,
+    /\(Agency OS\)/gi,
+  ];
+  for (const re of forbiddenPhrases) out = out.replace(re, '');
+
+  // Drop attendee lines and "working session" preambles that list who was
+  // on the internal call.
+  out = out.replace(/^attendees:.*$/gim, '');
+  out = out.replace(/Working session with [^\n.]*\./gi, '');
+
+  // Drop internal coaching / outbound-action / framing-advice subsections.
+  // These read like "here's how to talk to HFU" — concierge speaks to HFU,
+  // not about how to speak to them. We split on top-level (##) boundaries
+  // and filter out sections whose heading matches any internal pattern.
+  // Split-filter approach handles the "last section in file" edge case that
+  // lookahead-regex approaches miss (JS regex has no \Z anchor).
+  const internalHeadingPatterns = [
+    /^##+\s*Scott'?s outbound action/i,
+    /^##+\s*Outbound action/i,
+    /^##+\s*Internal notes?/i,
+    /^##+\s*Internal-only/i,
+    /^##+\s*Coaching notes?/i,
+    /^##+\s*Framing notes?/i,
+    /^##+\s*How we talk about this internally/i,
+    /^##+\s*Partner arrangement/i,
+    /^##+\s*Team cut/i,
+    /^##+\s*Pricing rationale/i,
+    /^##+\s*Internal pricing/i,
+    /^##+\s*Strategic framing/i,
+    /^##+\s*How to speak to/i,
+    /^##+\s*Proposal implications?/i,
+    /^##+\s*Committee intelligence/i,
+    /^##+\s*Post-win commitments/i,
+    /^##+\s*Owner checklist/i,
+    /^##+\s*Scott'?s checklist/i,
+    /^##+\s*Eric'?s checklist/i,
+    /^##+\s*James'?s checklist/i,
+  ];
+  const chunks = out.split(/(?=^##\s)/m);
+  out = chunks
+    .filter((chunk) => !internalHeadingPatterns.some((re) => re.test(chunk)))
+    .join('');
+
+  // Targeted line-level scrubs — catch common leaky patterns that can slip
+  // through even well-structured docs.
+  const leakyLinePatterns = [
+    /^.*\b(internal partner arrangement|team cut|private; not disclosed|not disclosed to HFU)\b.*$/gim,
+    /^.*\bcall Eddie before submission\b.*$/gim,
+  ];
+  for (const re of leakyLinePatterns) out = out.replace(re, '');
+
+  // Collapse blank-line runs left behind by the scrubs.
+  out = out.replace(/\n{3,}/g, '\n\n');
+
+  return out;
+}
+
 function safeRead(rel) {
   try {
     return fs.readFileSync(path.resolve(SITE_DIR, rel), 'utf8');
@@ -115,7 +194,7 @@ try {
 for (const doc of MD_DOCS) {
   const raw = safeRead(doc);
   if (!raw) continue;
-  const text = stripMd(raw);
+  const text = stripMd(sanitizeInternal(raw));
   if (text) sections.push({ source: path.basename(doc), text });
 }
 
