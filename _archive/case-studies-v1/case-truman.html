@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Study 01 · Truman State University · Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+
+    :root {
+      /* Warm editorial light. Per CLAUDE.md: no dark content backgrounds. */
+      --teal:          #005357;
+      --teal-deep:     #00373A;
+      --teal-soft:     rgba(0, 83, 87, 0.06);
+      --teal-glow:     rgba(0, 83, 87, 0.12);
+      --hfu-navy:      #06213F;
+      --hfu-yellow:    #FFCC15;
+
+      /* Institution accent (Truman State, Pantone 2607 C, purple) */
+      --inst-accent:        #4F2D7F;
+      --inst-accent-deep:   #371E5A;
+      --inst-accent-soft:   rgba(79, 45, 127, 0.07);
+      --inst-accent-glow:   rgba(79, 45, 127, 0.14);
+      --inst-accent-hair:   rgba(79, 45, 127, 0.24);
+
+      --ink:           #FAF8F3;
+      --ink-card:      #FFFFFF;
+      --ink-card-2:    #F1EDE4;
+      --line:          rgba(6, 33, 63, 0.10);
+      --line-strong:   rgba(6, 33, 63, 0.18);
+      --text:          rgba(6, 33, 63, 0.92);
+      --text-dim:      rgba(6, 33, 63, 0.62);
+      --text-ghost:    rgba(6, 33, 63, 0.38);
+
+      --display:       'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:          'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:         'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:          'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE SHELL
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+      min-width: 0;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 44px 56px 120px;
+      min-width: 0;
+    }
+
+    /* Breadcrumbs, tight to topbar */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin: 14px 0 36px;
+    }
+    .breadcrumbs a { color: var(--text-dim); }
+    .breadcrumbs a:hover { color: var(--teal); }
+    .breadcrumbs__sep { color: var(--text-ghost); opacity: 0.5; }
+    .breadcrumbs__current { color: var(--text); }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 80px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -140px -200px auto -200px;
+      height: 460px;
+      background:
+        radial-gradient(ellipse 55% 70% at 18% 30%, var(--inst-accent-glow), transparent 62%),
+        radial-gradient(ellipse 70% 60% at 85% 20%, rgba(0,83,87,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--inst-accent);
+      margin-bottom: 28px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--inst-accent); }
+    .eyebrow__dot { color: var(--text-ghost); }
+
+    /* Institution bar, logo + name + location */
+    .inst-bar {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--inst-accent);
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(6,33,63,0.04);
+    }
+    .inst-bar__logo {
+      width: 68px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .inst-bar__logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+    .inst-bar__meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .inst-bar__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inst-accent);
+    }
+    .inst-bar__name {
+      font-family: var(--display);
+      font-size: 15pt;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .inst-bar__sub {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+    }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(34pt, 5.2vw, 54pt);
+      line-height: 1.02;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      max-width: 20ch;
+      margin-bottom: 28px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      color: var(--inst-accent);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 14pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       BODY GRID, 8-col content + 4-col sticky meta
+       ══════════════════════════════════════════════════════════════ */
+    .case-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 72px;
+      padding-top: 72px;
+      border-top: 1px solid var(--line);
+    }
+
+    .case-body > section + section { margin-top: 64px; }
+
+    .sec__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--inst-accent);
+      margin-bottom: 18px;
+    }
+    .sec__kicker::before { content: ''; width: 24px; height: 1px; background: var(--inst-accent); }
+
+    .sec__heading {
+      font-family: var(--display);
+      font-size: 22pt;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.15;
+      max-width: 24ch;
+    }
+
+    .sec__heading em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--inst-accent);
+      font-weight: 400;
+      font-size: 1.05em;
+    }
+
+    .sec__body p {
+      font-size: 11pt;
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 62ch;
+    }
+    .sec__body p + p { margin-top: 14px; }
+    .sec__body p strong { color: var(--text); font-weight: 600; }
+
+    /* Scope list, two-column for density */
+    .scope-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 28px;
+      margin-top: 18px;
+    }
+    .scope-list li {
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text);
+      padding-left: 16px;
+      position: relative;
+    }
+    .scope-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 1px;
+      background: var(--inst-accent);
+    }
+
+    /* Outcomes, prose-integrated with small labels. No giant numerals. */
+    .outcomes {
+      background: var(--inst-accent-soft);
+      border: 1px solid var(--inst-accent-hair);
+      border-left: 3px solid var(--inst-accent);
+      padding: 28px 32px;
+      margin-top: 22px;
+      border-radius: 2px;
+    }
+    .outcomes__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inst-accent-deep);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .outcomes__row + .outcomes__row {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--inst-accent-hair);
+    }
+    .outcomes__row p {
+      font-size: 11pt;
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 58ch;
+    }
+    .outcomes__row p strong {
+      font-weight: 600;
+      color: var(--inst-accent-deep);
+    }
+    .confirm-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      background: rgba(6,33,63,0.05);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* Pull quote */
+    .pullquote {
+      margin-top: 48px;
+      padding: 36px 40px 32px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      position: relative;
+    }
+    .pullquote::before {
+      content: '\201C';
+      position: absolute;
+      top: 4px;
+      left: 24px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 56pt;
+      line-height: 1;
+      color: var(--inst-accent);
+      opacity: 0.35;
+    }
+    .pullquote__text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18pt;
+      line-height: 1.4;
+      color: var(--text);
+      max-width: 52ch;
+      letter-spacing: -0.005em;
+      padding-left: 36px;
+    }
+    .pullquote__attrib {
+      margin-top: 22px;
+      padding-left: 36px;
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      font-style: normal;
+    }
+    .pullquote__attrib strong { color: var(--text); font-weight: 600; }
+
+    /* ══════════════════════════════════════════════════════════════
+       STICKY META COLUMN
+       ══════════════════════════════════════════════════════════════ */
+    .case-meta {
+      position: sticky;
+      top: 40px;
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .meta-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .meta-card__head {
+      padding: 14px 18px;
+      background: var(--ink-card-2);
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .meta-card__body { padding: 18px; }
+
+    .meta-row { display: flex; flex-direction: column; gap: 3px; }
+    .meta-row + .meta-row { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
+    .meta-row__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .meta-row__value {
+      font-family: var(--body);
+      font-size: 10pt;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .meta-row__value strong { font-weight: 600; }
+
+    .relevance-card {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--teal);
+      border-radius: 2px;
+      padding: 22px 20px 20px;
+    }
+    .relevance-card__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .relevance-card__heading {
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .relevance-card__heading em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .relevance-card__body p {
+      font-size: 10pt;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .relevance-card__body p + p { margin-top: 10px; }
+
+    /* ══════════════════════════════════════════════════════════════
+       CLOSING, read next
+       ══════════════════════════════════════════════════════════════ */
+    .read-next {
+      margin-top: 96px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .read-next__card {
+      padding: 22px 24px;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      transition: border-color 150ms ease, transform 150ms ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .read-next__card:hover {
+      border-color: var(--teal);
+      transform: translateY(-1px);
+    }
+    .read-next__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 10px;
+    }
+    .read-next__title {
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .read-next__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .read-next__sub {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .wrap { padding: 32px 24px 80px; }
+      .case-grid { grid-template-columns: 1fr; gap: 48px; padding-top: 48px; }
+      .case-meta { position: static; }
+      .scope-list { grid-template-columns: 1fr; }
+      .read-next { grid-template-columns: 1fr; }
+      .hero__title { font-size: 30pt; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       PRINT, for proposal PDF export
+       ══════════════════════════════════════════════════════════════ */
+    @media print {
+      .site-nav, .site-topbar, .mobile-menu-backdrop { display: none !important; }
+      main { display: block !important; }
+      body { background: #fff; font-size: 10pt; }
+      .wrap { padding: 0.6in 0.7in; max-width: none; }
+      .hero::before { display: none; }
+      .case-grid { grid-template-columns: 1fr 260px; gap: 32px; padding-top: 32px; }
+      .case-meta { position: static; }
+      .pullquote, .outcomes, .meta-card, .relevance-card, .read-next__card { break-inside: avoid; }
+      .read-next { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <div class="portal-tabs__divider">Case studies</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Case studies">
+      <a href="case-truman.html" class="portal-tab is-current"><span class="portal-tab__num">01</span><span>Truman State University</span></a>
+      <a href="case-csumb.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Cal State Monterey Bay</span></a>
+      <a href="case-calhoun.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Calhoun Community College</span></a>
+    </nav>
+
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
+
+    <div class="site-nav__footer">
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Small College Consulting · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Case study 01 &middot; Truman State University</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">&larr; Proposal</a>
+      <a href="case-csumb.html" class="site-topbar__btn site-topbar__btn--primary">Next case &rarr;</a>
+    </header>
+
+    <div class="wrap">
+
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Proposal</a>
+        <span class="breadcrumbs__sep">/</span>
+        <a href="index.html#case-studies">Case studies</a>
+        <span class="breadcrumbs__sep">/</span>
+        <span class="breadcrumbs__current">01 Truman State</span>
+      </nav>
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow">
+          <span>Case study 01</span>
+          <span class="eyebrow__dot">&middot;</span>
+          <span>Enrollment strategy &amp; competitive repositioning</span>
+        </div>
+
+        <div class="inst-bar" role="group" aria-label="Institution">
+          <div class="inst-bar__logo">
+            <img src="assets/case-studies/truman/logo-horiz-wiki.png" alt="Truman State University logo">
+          </div>
+          <div class="inst-bar__meta">
+            <span class="inst-bar__kicker">Client institution</span>
+            <span class="inst-bar__name">Truman State University</span>
+            <span class="inst-bar__sub">Public liberal arts &middot; Kirksville, Missouri &middot; ~4,000 students</span>
+          </div>
+        </div>
+
+        <h1 class="hero__title">Competing inside a crowded public system, with <em>clarity</em> instead of spend.</h1>
+        <p class="hero__lede">Truman faced the same structural pressure Holy Family faces: a mission-distinct institution working inside a competitive landscape dominated by larger, better-resourced peers. The engagement focused on sharper positioning, funnel alignment, and disciplined execution inside an existing budget. <strong>The same model we propose for Holy Family.</strong></p>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           BODY
+           ════════════════════════════════════════════════════════════ -->
+      <div class="case-grid">
+        <div class="case-body">
+
+          <section>
+            <span class="sec__kicker">The challenge</span>
+            <h2 class="sec__heading">Recruiting against the University of Missouri system, on a regional budget.</h2>
+            <div class="sec__body">
+              <p>Truman operates inside a competitive Missouri public landscape where the University of Missouri institutions carry stronger name recognition, broader program portfolios, and larger marketing budgets. That combination produced brand-perception pressure, yield pressure, and enrollment-growth constraints inside a real budget envelope. The institution did not need louder marketing; it needed sharper strategy and a funnel that converted.</p>
+            </div>
+          </section>
+
+          <section>
+            <span class="sec__kicker">The engagement</span>
+            <h2 class="sec__heading">Funnel assessment, positioning review, messaging refinement, CRM alignment.</h2>
+            <div class="sec__body">
+              <p>The work began with a full enrollment-funnel assessment and a review of Truman's brand positioning against the Missouri public landscape. From there the engagement produced competitive differentiators, a refined messaging architecture, a recruitment strategy aligned to institutional strengths, and a set of conversion improvements made inside Truman's existing CRM environment.</p>
+
+              <ul class="scope-list">
+                <li>Enrollment funnel assessment across inquiry, application, admit, and deposit stages.</li>
+                <li>Brand positioning review against the Missouri public university landscape.</li>
+                <li>Competitive differentiator identification, tested against the recruitment audience.</li>
+                <li>Messaging architecture refinement and alignment across channels.</li>
+                <li>Recruitment strategy rebuilt around institutional strengths rather than generic "best value" framing.</li>
+                <li>Conversion work inside Truman's existing CRM environment, with no platform migration required.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <span class="sec__kicker">Our role</span>
+            <h2 class="sec__heading">Scott Novak led directly, alongside Truman's admissions leadership.</h2>
+            <div class="sec__body">
+              <p>Small College Consulting served as strategic enrollment advisor. Scott Novak led the engagement directly, working with Truman's admissions leadership rather than replacing it. The team did not swap platforms, replace staff, or introduce expensive new tools. The improvements came from strategic clarity and disciplined execution inside existing capacity.</p>
+            </div>
+          </section>
+
+          <section>
+            <span class="sec__kicker">The outcome</span>
+            <h2 class="sec__heading">Stronger differentiation, tighter marketing-to-enrollment alignment.</h2>
+
+            <div class="outcomes">
+              <span class="outcomes__label">Measured outcomes</span>
+              <div class="outcomes__row">
+                <p><strong>Strengthened competitive differentiation</strong> against larger Missouri public peers, with messaging architecture tested against recruitment audiences rather than internal preferences.</p>
+              </div>
+              <div class="outcomes__row">
+                <p><strong>Tighter alignment between marketing activity and enrollment KPIs,</strong> with recruitment campaigns aligned to the admissions funnel rather than run as standalone brand exercises.</p>
+              </div>
+              <div class="outcomes__row">
+                <p><strong>Performance improvement delivered inside the existing budget envelope,</strong> with no net increase in marketing spend and no vendor dependency introduced. <span class="confirm-tag">Specific metric, to be released by Truman</span></p>
+              </div>
+            </div>
+
+            <div class="pullquote">
+              <p class="pullquote__text">Quote to be requested from Alison Schweizer, Director of Admission, Truman State University, for inclusion in the final submitted proposal.</p>
+              <p class="pullquote__attrib"><strong>Alison Schweizer</strong><br>Director of Admission, Truman State University<br>Reference for this engagement (see Section A.5)</p>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Sticky meta column -->
+        <aside class="case-meta" aria-label="Engagement metadata">
+
+          <div class="meta-card">
+            <div class="meta-card__head">At a glance</div>
+            <div class="meta-card__body">
+              <div class="meta-row">
+                <span class="meta-row__label">Institution</span>
+                <span class="meta-row__value">Truman State University</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">Type</span>
+                <span class="meta-row__value">Public liberal arts university, Missouri state system</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">Enrollment</span>
+                <span class="meta-row__value">~4,000 undergraduates</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">Engagement</span>
+                <span class="meta-row__value">Enrollment strategy &amp; competitive repositioning</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">Window</span>
+                <span class="meta-row__value"><span class="confirm-tag">Dates, pending Scott's release</span></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">SCC role</span>
+                <span class="meta-row__value">Strategic enrollment advisor (Scott Novak, lead)</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-row__label">Reference</span>
+                <span class="meta-row__value">Alison Schweizer<br>Director of Admission<br><a href="mailto:agus@truman.edu">agus@truman.edu</a></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relevance-card">
+            <div class="relevance-card__kicker">Relevance to Holy Family</div>
+            <h3 class="relevance-card__heading">The closest structural parallel in this set, <em>mission-distinct, budget-disciplined.</em></h3>
+            <div class="relevance-card__body">
+              <p>Like Holy Family, Truman is a mission-distinct institution competing against larger, better-resourced peers, working to grow enrollment inside a real budget. The engagement model, strategic clarity and disciplined execution rather than matching competitor ad spend, is the same model proposed for the HFU redesign.</p>
+              <p>Section B describes how the approach runs through the redesign itself, from IA and program-page architecture to Slate-instrumented RFI capture.</p>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- ════════════════════════════════════════════════════════════
+           READ NEXT
+           ════════════════════════════════════════════════════════════ -->
+      <nav class="read-next" aria-label="Read next">
+        <a href="index.html" class="read-next__card">
+          <div class="read-next__label">&larr; Back to proposal</div>
+          <div class="read-next__title">Holy Family Website <em>Redesign</em></div>
+          <div class="read-next__sub">Main proposal, Section A.3 references this case study</div>
+        </a>
+        <a href="case-csumb.html" class="read-next__card">
+          <div class="read-next__label">Case study 02 &rarr;</div>
+          <div class="read-next__title">Cal State <em>Monterey Bay</em></div>
+          <div class="read-next__sub">Brand transformation &amp; enrollment-focused marketing, 15% growth Fall 2024</div>
+        </a>
+      </nav>
+
+    </div>
+  </main>
+
+</body>
+</html>

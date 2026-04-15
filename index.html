@@ -1700,8 +1700,8 @@
     }
     .member:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
     .member__avatar {
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: var(--cream-deep);
       border: 1px solid var(--line-2);
@@ -1714,6 +1714,13 @@
       color: var(--teal);
       letter-spacing: -0.02em;
       margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .member__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .member__role {
       font-family: var(--mono);
@@ -2102,7 +2109,7 @@
       <article class="anchor-card reveal" data-delay="2">
         <div class="anchor-card__label">Investment</div>
         <h3 class="anchor-card__value">$145,000</h3>
-        <p class="anchor-card__body">All-in base scope. Slate integration included. Optional add-ons priced separately per RFP §E. Soft-exit at any approval gate with full IP retained.</p>
+        <p class="anchor-card__body">All-in base scope. Slate integration included. Optional add-ons priced separately per RFP Section E. Soft-exit at any approval gate with full IP retained.</p>
       </article>
       <article class="anchor-card reveal" data-delay="3">
         <div class="anchor-card__label">Evidence</div>
@@ -2278,7 +2285,7 @@
       <div class="sitemap__aside">
         <div class="eyebrow eyebrow--teal" style="margin-bottom:18px">Method</div>
         <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 18px;">Scrape of <strong>holyfamily.edu/sitemap.xml</strong> on 11 April 2026. Every URL receives a <em>validated 301</em> mapped via sentence-transformer embeddings, auto-accepted above 0.98 similarity.</p>
-        <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 24px;"><strong>RFP §B.3</strong>, Information Architecture Approach. Card sort and tree test validate before Phase 2 closes.</p>
+        <p style="font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 24px;"><strong>RFP Section B.3</strong>, Information Architecture Approach. Card sort and tree test validate before Phase 2 closes.</p>
         <a href="sitemap-atlas.html" class="btn btn--teal btn--sm">Open the sitemap atlas
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
         </a>
@@ -2365,7 +2372,7 @@
       <article class="commit reveal" data-delay="1">
         <div class="commit__badge">Commitment 01 · Enrollment</div>
         <h3 class="commit__title">Adult &amp; graduate applications, <em>up measurably</em>.</h3>
-        <p class="commit__body">RFP §4 names this as the top growth priority. Variant B, a homepage drafted for a 34-year-old Nursing applicant on her phone, ships in <strong>base scope</strong>, not as an add-on.</p>
+        <p class="commit__body">RFP Section 4 names this as the top growth priority. Variant B, a homepage drafted for a 34-year-old Nursing applicant on her phone, ships in <strong>base scope</strong>, not as an add-on.</p>
         <div class="commit__stat"><div class="commit__stat__num">+40%</div><div class="commit__stat__label">Target lift on adult &amp; graduate paid landing pages · est.</div></div>
       </article>
       <article class="commit reveal" data-delay="2">
@@ -2390,7 +2397,7 @@
     <div class="section__head">
       <div class="eyebrow section__eyebrow reveal">The priority the RFP names most</div>
       <h2 class="section__title reveal" data-delay="1">Four moves for adult &amp; graduate enrollment.</h2>
-      <p class="section__lede reveal" data-delay="2">RFP §4 names adult and graduate as the top growth priority. These applicants browse from phones, in the evening, after work. They need cost and schedule above the fold. The four moves below ship in base scope.</p>
+      <p class="section__lede reveal" data-delay="2">RFP Section 4 names adult and graduate as the top growth priority. These applicants browse from phones, in the evening, after work. They need cost and schedule above the fold. The four moves below ship in base scope.</p>
       <div class="section__cta reveal" data-delay="3">
         <a href="personas.html" class="btn btn--teal btn--sm">Student personas &amp; enrollment intelligence
           <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
@@ -2509,7 +2516,7 @@
        ══════════════════════════════════════════════════════════════ -->
   <section class="section section--tint" id="ai-arch">
     <div class="section__head">
-      <div class="eyebrow section__eyebrow reveal">AI-first content architecture · RFP §6</div>
+      <div class="eyebrow section__eyebrow reveal">AI-first content architecture · RFP Section 6</div>
       <h2 class="section__title reveal" data-delay="1">An <em>llms.txt</em>, drafted for holyfamily.edu.</h2>
       <p class="section__lede reveal" data-delay="2">A meaningful share of prospective students already research universities through ChatGPT, Claude, and Perplexity. The file below, drafted in this proposal against real HFU data, ensures the answer surfaces your <strong>93% employment outcome</strong>, not generic copy.</p>
     </div>
@@ -2585,7 +2592,7 @@
         <img src="assets/hfu-photos/live/academics-nurses.jpg" alt="Holy Family University Nursing students walking on campus">
         <div class="fignum">Fig. 05 · Campus</div>
       </figure>
-      <div class="eyebrow reveal" style="margin-bottom:36px">The whole person · RFP §G.2</div>
+      <div class="eyebrow reveal" style="margin-bottom:36px">The whole person · RFP Section G.2</div>
       <p class="mission__pull reveal" data-delay="1">Educating the whole person <em>for a life of integrity, service, and personal excellence</em>.</p>
       <div class="mission__attr reveal" data-delay="2">Holy Family University mission statement · founded 1954 by the Sisters of the Holy Family of Nazareth</div>
 
@@ -2643,31 +2650,688 @@
 
     <div class="team">
       <article class="member reveal" data-delay="1">
-        <div class="member__avatar">SN</div>
+        <div class="member__avatar"><img src="assets/team/scott-novak.webp" alt="Scott Novak headshot" loading="lazy"></div>
         <div class="member__role">Partner · Strategic Lead</div>
         <h3 class="member__name">Scott Novak</h3>
         <p class="member__bio">30+ years in small-college enrollment. Founder of Underscore, acquired by Carnegie in 2021. <em>300+ institutions advised</em>.</p>
       </article>
       <article class="member reveal" data-delay="2">
-        <div class="member__avatar">CC</div>
+        <div class="member__avatar"><img src="assets/team/chris-coons.webp" alt="Chris Coons headshot" loading="lazy"></div>
         <div class="member__role">Partner · Enrollment</div>
         <h3 class="member__name">Chris Coons</h3>
         <p class="member__bio">Prior chief enrollment officer at two small colleges. Ensures every design &amp; content decision traces to <em>RFI, application, yield</em>.</p>
       </article>
       <article class="member reveal" data-delay="3">
-        <div class="member__avatar">JV</div>
+        <div class="member__avatar"><img src="assets/team/james-vineburgh.jpeg" alt="James Vineburgh headshot" loading="lazy"></div>
         <div class="member__role">Engagement Lead · AI Architect</div>
         <h3 class="member__name">James Vineburgh</h3>
         <p class="member__bio">Built the Carnegie admissions concierge (<em>2,300+ unattended leads</em> since 2025). Day-to-day client lead.</p>
       </article>
       <article class="member reveal" data-delay="4">
-        <div class="member__avatar">EY</div>
+        <div class="member__avatar"><img src="assets/team/eric-yerke.jpg" alt="Eric Yerke headshot" loading="lazy"></div>
         <div class="member__role">Lead Designer · AI Developer</div>
         <h3 class="member__name">Eric Yerke</h3>
         <p class="member__bio">Multi-thousand-page CMS migrations and design-system work. Owns the <em>component library</em>, migration tooling, and WCAG pipeline through day 90.</p>
       </article>
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+  <!-- ══════════════════════════════════════════════════════════════
+       CASE STUDIES · Section A.3 · editorial spreads v3
+       Patterns adapted from components.html: two-col section head,
+       c-outcome stat band, hfu-pullquote (diamond pins), hfu-subhead.
+       ══════════════════════════════════════════════════════════════ -->
+  <style>
+    #case-studies {
+      --cs-truman:   #4F2D7F;
+      --cs-csumb:    #003A70;
+      --cs-calhoun:  #8A1A2B;
+    }
+
+    /* Two-column head (borrowed from hfu-section__head) */
+    #case-studies .section__head {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 56px;
+      align-items: end;
+      max-width: 1120px;
+    }
+    #case-studies .section__title { margin-bottom: 0; max-width: 18ch; }
+    #case-studies .section__lede { max-width: 52ch; }
+    @media (max-width: 820px) {
+      #case-studies .section__head { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    #case-studies .case-stream {
+      max-width: 1080px;
+      margin: 3.5rem auto 0;
+      padding: 0 1.25rem;
+    }
+
+    .case-spread {
+      padding: 2.25rem 0 6.5rem;
+      position: relative;
+    }
+    .case-spread + .case-spread { padding-top: 0; }
+
+    /* ── Chapter opener: big typographic break between cases ──── */
+    .case-spread__chapter {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1.5rem 0 1.25rem;
+      margin-bottom: 4rem;
+      border-top: 5px solid currentColor;
+      position: relative;
+    }
+    .case--truman  .case-spread__chapter { color: var(--cs-truman); }
+    .case--csumb   .case-spread__chapter { color: var(--cs-csumb); }
+    .case--calhoun .case-spread__chapter { color: var(--cs-calhoun); }
+    .case-spread__chapter::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: var(--line);
+    }
+    .case-spread__chapter__no {
+      font-family: var(--mono);
+      font-size: 15px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: currentColor;
+      white-space: nowrap;
+    }
+    .case-spread__chapter__of {
+      font-family: var(--body);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--ink-3);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-left: 0.75rem;
+    }
+    .case-spread__chapter__kind {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--ink-3);
+      text-align: right;
+      line-height: 1.4;
+      max-width: 44ch;
+    }
+    .case-spread__chapter__kind strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── Ribbon: logo row ──────────────────────────────────────── */
+    .case-spread__top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.75rem;
+    }
+    .case-spread__tag { display: flex; flex-direction: column; gap: 7px; }
+    .case-spread__num {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .case-spread__num::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+    .case--truman  .case-spread__num { color: var(--cs-truman); }
+    .case--csumb   .case-spread__num { color: var(--cs-csumb); }
+    .case--calhoun .case-spread__num { color: var(--cs-calhoun); }
+    .case-spread__kind {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--ink-3);
+      line-height: 1.4;
+    }
+    .case-spread__logo {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 60px;
+    }
+    .case-spread__logo img { max-height: 60px; width: auto; display: block; }
+
+    /* ── Editorial masthead: big name + origin line ─────────────── */
+    .case-spread__name {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5.6vw, 4.25rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+      color: var(--ink);
+      margin: 0 0 0.4rem;
+      max-width: 18ch;
+    }
+    .case-spread__name em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+    .case--truman  .case-spread__name em { color: var(--cs-truman); }
+    .case--csumb   .case-spread__name em { color: var(--cs-csumb); }
+    .case--calhoun .case-spread__name em { color: var(--cs-calhoun); }
+
+    .case-spread__origin {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 3rem;
+    }
+
+    /* ── Body prose ─────────────────────────────────────────────── */
+    .case-spread__prose p {
+      font-family: var(--body);
+      font-size: 19px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      max-width: 62ch;
+    }
+    .case-spread__prose p + p { margin-top: 1rem; }
+    .case-spread__prose em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.05em;
+      color: var(--ink);
+    }
+    .case-spread__prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── Editorial pullquote (diamond-pin pattern, per-case accent) ── */
+    .case-spread__pull {
+      padding: 52px 0 48px;
+      margin: 3rem 0;
+      text-align: center;
+      position: relative;
+    }
+    .case-spread__pull::before,
+    .case-spread__pull::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+    }
+    .case-spread__pull::before { top: 0; }
+    .case-spread__pull::after  { bottom: 0; }
+    .case--truman  .case-spread__pull::before,
+    .case--truman  .case-spread__pull::after  { background: var(--cs-truman); }
+    .case--csumb   .case-spread__pull::before,
+    .case--csumb   .case-spread__pull::after  { background: var(--cs-csumb); }
+    .case--calhoun .case-spread__pull::before,
+    .case--calhoun .case-spread__pull::after  { background: var(--cs-calhoun); }
+
+    .case-spread__pull__pin {
+      position: absolute;
+      width: 8px; height: 8px;
+      transform: rotate(45deg);
+      left: 50%; margin-left: -4px;
+    }
+    .case-spread__pull__pin--top    { top: -4px; }
+    .case-spread__pull__pin--bottom { bottom: -4px; }
+    .case--truman  .case-spread__pull__pin { background: var(--cs-truman); }
+    .case--csumb   .case-spread__pull__pin { background: var(--cs-csumb); }
+    .case--calhoun .case-spread__pull__pin { background: var(--cs-calhoun); }
+
+    .case-spread__pull blockquote {
+      margin: 0 auto;
+      max-width: 28ch;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.75rem, 3.2vw, 2.375rem);
+      line-height: 1.18;
+      letter-spacing: -0.018em;
+      color: var(--ink);
+    }
+    .case-spread__pull__by {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+
+    /* ── Subhead bar (borrowed from hfu-subhead) ───────────────── */
+    .case-spread__subhead {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+      margin: 3rem 0 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .case-spread__subhead__label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .case--truman  .case-spread__subhead__label { color: var(--cs-truman); }
+    .case--csumb   .case-spread__subhead__label { color: var(--cs-csumb); }
+    .case--calhoun .case-spread__subhead__label { color: var(--cs-calhoun); }
+    .case-spread__subhead__hint {
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: var(--ink-3);
+      font-style: italic;
+    }
+
+    /* ── Outcomes, stat-tile variant (adapted from .c-outcome) ─── */
+    .case-spread__outcomes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      padding: 1.5rem 0;
+    }
+    .case-spread__oitem {
+      padding: 0 1.75rem;
+      border-right: 1px solid var(--line);
+    }
+    .case-spread__oitem:first-child { padding-left: 0; }
+    .case-spread__oitem:last-child  { padding-right: 0; border-right: none; }
+
+    .case-spread__onum {
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 2.8vw, 2.125rem);
+      line-height: 1;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-variant-numeric: lining-nums;
+    }
+    .case-spread__onum em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+    }
+    .case-spread__onum small {
+      font-size: 0.42em;
+      vertical-align: 0.4em;
+      margin-left: 2px;
+    }
+    .case--truman  .case-spread__onum em,
+    .case--truman  .case-spread__onum small { color: var(--cs-truman); }
+    .case--csumb   .case-spread__onum em,
+    .case--csumb   .case-spread__onum small { color: var(--cs-csumb); }
+    .case--calhoun .case-spread__onum em,
+    .case--calhoun .case-spread__onum small { color: var(--cs-calhoun); }
+
+    .case-spread__olabel {
+      font-family: var(--body);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-3);
+    }
+    .case-spread__olabel strong {
+      color: var(--ink);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13.5px;
+      letter-spacing: -0.005em;
+    }
+    .case-spread__olabel__src {
+      display: block;
+      margin-top: 8px;
+      font-style: italic;
+      color: var(--ink-4);
+      font-size: 11.5px;
+    }
+
+    /* ── Outcomes, prose variant (for qualitative cases) ───────── */
+    .case-spread__outcomes--prose { display: block; padding: 1rem 0 0.5rem; }
+    .case-spread__outcomes--prose p {
+      font-family: var(--display);
+      font-size: clamp(1.125rem, 1.9vw, 1.375rem);
+      line-height: 1.4;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-weight: 500;
+      max-width: 46ch;
+    }
+    .case-spread__outcomes--prose p + p {
+      margin-top: 1.125rem;
+      padding-top: 1.125rem;
+      border-top: 1px dashed var(--line);
+    }
+    .case-spread__outcomes--prose em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .case--truman  .case-spread__outcomes--prose em { color: var(--cs-truman); }
+
+    .case-spread__confirm {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      background: rgba(15, 17, 23, 0.05);
+      padding: 3px 10px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* ── Relevance closing panel ───────────────────────────────── */
+    .case-spread__relevance { margin-top: 3rem; max-width: 66ch; }
+    .case-spread__relevance .case-spread__subhead {
+      border-bottom-color: var(--teal);
+      border-bottom-width: 2px;
+    }
+    .case-spread__relevance .case-spread__subhead__label { color: var(--teal); }
+    .case-spread__relevance p {
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink-2);
+    }
+    .case-spread__relevance p + p { margin-top: 0.75rem; }
+    .case-spread__relevance strong { color: var(--ink); font-weight: 600; }
+
+    /* ── Cinema-poster credit strip ────────────────────────────── */
+    .case-spread__credit {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      line-height: 1.85;
+    }
+    .case-spread__credit b { color: var(--ink); font-weight: 500; }
+    .case-spread__credit a { color: var(--teal); text-decoration: none; border-bottom: 1px solid rgba(19, 107, 115, 0.35); }
+    .case-spread__credit a:hover { border-bottom-color: var(--teal); }
+    .case-spread__credit .sep { color: var(--ink-5); margin: 0 0.5rem; }
+
+    @media (max-width: 780px) {
+      .case-spread { padding: 3.5rem 0 3rem; }
+      .case-spread__top { grid-template-columns: 1fr; gap: 1.25rem; }
+      .case-spread__logo { justify-content: flex-start; height: 48px; }
+      .case-spread__logo img { max-height: 48px; }
+      .case-spread__name { font-size: 2.125rem; }
+      .case-spread__outcomes { grid-template-columns: 1fr; gap: 1.25rem; padding: 1rem 0; }
+      .case-spread__oitem { padding: 0 0 1.25rem; border-right: none; border-bottom: 1px solid var(--line); }
+      .case-spread__oitem:last-child { border-bottom: none; padding-bottom: 0; }
+      .case-spread__credit .sep { display: block; color: transparent; margin: 0; height: 4px; }
+    }
+
+    @media print {
+      .case-spread { page-break-before: always; padding: 0.4in 0; }
+      .case-spread:first-of-type { page-break-before: auto; }
+      .case-spread + .case-spread { border-top: none; }
+      .case-spread__pull, .case-spread__outcomes, .case-spread__relevance, .case-spread__credit {
+        break-inside: avoid;
+      }
+    }
+  </style>
+
+  <section class="section section--paper" id="case-studies">
+    <div class="section__head">
+      <div>
+        <div class="eyebrow section__eyebrow reveal">Case studies &middot; Section A.3</div>
+        <h2 class="section__title reveal" data-delay="1">Three engagements. References <em>who did the work.</em></h2>
+      </div>
+      <p class="section__lede reveal" data-delay="2">Named, contactable engagements from the Small College Consulting team's direct history, including Red Cactus Marketing's lead engagement at California State University, Monterey Bay. Each case is paired with the reference in Section A.5 who participated. We present what each case actually proves, not what would flatter the proposal.</p>
+    </div>
+
+    <div class="case-stream">
+
+      <!-- ─────────────────────────────────────────────────────────
+           TRUMAN STATE UNIVERSITY
+           ───────────────────────────────────────────────────────── -->
+      <article class="case-spread case--truman reveal">
+        <div class="case-spread__chapter">
+          <div class="case-spread__chapter__no">Case 01<span class="case-spread__chapter__of">of three</span></div>
+          <div class="case-spread__chapter__kind"><strong>Enrollment strategy</strong><br>Competitive repositioning inside a crowded public system</div>
+        </div>
+
+        <header class="case-spread__top">
+          <div class="case-spread__tag">
+            <span class="case-spread__num">Truman State University</span>
+            <span class="case-spread__kind">Public liberal arts &middot; Kirksville, Missouri</span>
+          </div>
+          <div class="case-spread__logo">
+            <img src="assets/case-studies/truman/logo-horiz-wiki.png" alt="Truman State University logo">
+          </div>
+        </header>
+
+        <h3 class="case-spread__name">Truman State <em>University</em></h3>
+        <p class="case-spread__origin">Public liberal arts &middot; Kirksville, Missouri &middot; approx. 4,000 students</p>
+
+        <div class="case-spread__prose">
+          <p>Truman operates inside a Missouri public landscape where the University of Missouri institutions carry stronger name recognition, broader program portfolios, and larger marketing budgets. That combination produced brand-perception pressure, yield pressure, and enrollment-growth constraints inside a real budget envelope. The institution did not need louder marketing. It needed <em>sharper strategy</em> and a funnel that converted.</p>
+        </div>
+
+        <div class="case-spread__pull">
+          <span class="case-spread__pull__pin case-spread__pull__pin--top" aria-hidden="true"></span>
+          <blockquote>Sharper strategy, not louder marketing.</blockquote>
+          <div class="case-spread__pull__by">Our read on the engagement</div>
+          <span class="case-spread__pull__pin case-spread__pull__pin--bottom" aria-hidden="true"></span>
+        </div>
+
+        <div class="case-spread__prose">
+          <p>Scott Novak led the engagement directly. Small College Consulting served as strategic enrollment advisor, working alongside Truman's admissions leadership rather than replacing it. The work ran through an enrollment funnel assessment, a brand positioning review against the Missouri public set, competitive differentiator identification tested against real recruitment audiences, messaging architecture refinement, and conversion improvements inside Truman's existing CRM. No platform migrations. No new vendor dependencies.</p>
+        </div>
+
+        <header class="case-spread__subhead">
+          <span class="case-spread__subhead__label">What the work produced</span>
+          <span class="case-spread__subhead__hint">Qualitative outcomes, metric pending release</span>
+        </header>
+
+        <div class="case-spread__outcomes--prose">
+          <p><em>Strengthened competitive differentiation</em> against larger Missouri public peers, with messaging architecture tested against recruitment audiences rather than internal preferences.</p>
+          <p><em>Tighter alignment</em> between marketing activity and enrollment KPIs, with recruitment campaigns tied to the admissions funnel rather than run as standalone brand exercises.</p>
+          <p><em>Performance improvement</em> delivered inside the existing budget envelope, with no net increase in marketing spend and no new vendor dependency. <span class="case-spread__confirm">Specific metric, pending release</span></p>
+        </div>
+
+        <div class="case-spread__relevance">
+          <header class="case-spread__subhead">
+            <span class="case-spread__subhead__label">Relevance to Holy Family</span>
+            <span class="case-spread__subhead__hint">Closest structural parallel in this set</span>
+          </header>
+          <p>A mission-distinct institution competing against larger, better-resourced peers, working to grow enrollment inside a real budget. <strong>The engagement model, strategic clarity and disciplined execution rather than matching competitor ad spend, is the same model we propose for Holy Family's redesign.</strong> Section B describes how the approach runs through the redesign itself, from IA and program-page architecture to Slate-instrumented RFI capture.</p>
+        </div>
+
+        <div class="case-spread__credit">
+          Reference <span class="sep">&middot;</span> <b>Alison Schweizer</b>, Director of Admission <span class="sep">&middot;</span> <a href="mailto:agus@truman.edu">agus@truman.edu</a> <span class="sep">&middot;</span> (660) 785-4114
+        </div>
+      </article>
+
+      <!-- ─────────────────────────────────────────────────────────
+           CALIFORNIA STATE UNIVERSITY, MONTEREY BAY
+           ───────────────────────────────────────────────────────── -->
+      <article class="case-spread case--csumb reveal">
+        <div class="case-spread__chapter">
+          <div class="case-spread__chapter__no">Case 02<span class="case-spread__chapter__of">of three</span></div>
+          <div class="case-spread__chapter__kind"><strong>Brand and recruitment marketing</strong><br>Research-grounded platform, enrollment-aligned campaign</div>
+        </div>
+
+        <header class="case-spread__top">
+          <div class="case-spread__tag">
+            <span class="case-spread__num">Cal State Monterey Bay</span>
+            <span class="case-spread__kind">CSU system (23 campuses) &middot; Seaside, California</span>
+          </div>
+          <div class="case-spread__logo">
+            <img src="assets/case-studies/csumb/logo-primary.jpg" alt="California State University, Monterey Bay logo">
+          </div>
+        </header>
+
+        <h3 class="case-spread__name">California State University, <em>Monterey Bay</em></h3>
+        <p class="case-spread__origin">Public regional &middot; CSU system (23 campuses) &middot; Seaside, California</p>
+
+        <div class="case-spread__prose">
+          <p>Cal State Monterey Bay competes inside the California State University system, one of the most competitive higher-education markets in the country. The engagement, led by <em>Beatrice Szalas of Red Cactus Marketing</em> (named creative partner for this HFU proposal, see Section A.2), opened with qualitative and quantitative research across students, faculty, staff, and alumni, and three annual statewide awareness surveys of more than 1,000 California residents in priority markets, conducted in 2023, 2024, and 2025 to measure progress.</p>
+        </div>
+
+        <div class="case-spread__pull">
+          <span class="case-spread__pull__pin case-spread__pull__pin--top" aria-hidden="true"></span>
+          <blockquote>A brand platform that converted into enrollment.</blockquote>
+          <div class="case-spread__pull__by">Our read on the engagement</div>
+          <span class="case-spread__pull__pin case-spread__pull__pin--bottom" aria-hidden="true"></span>
+        </div>
+
+        <div class="case-spread__prose">
+          <p>The resulting brand platform, <em>The Strength of Us</em>, was built to transition directly into a performance-driven recruitment campaign rather than sit as a standalone brand exercise. Deliverables included messaging architecture, visual identity, recruitment and digital campaign assets, video storytelling, campus-wide brand-guidelines training, and an internal template system (InDesign, Canva, Word, PowerPoint) that let internal teams produce on-brand materials without agency involvement.</p>
+        </div>
+
+        <header class="case-spread__subhead">
+          <span class="case-spread__subhead__label">What the work produced</span>
+          <span class="case-spread__subhead__hint">Public, verifiable outcomes</span>
+        </header>
+
+        <div class="case-spread__outcomes">
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum"><em>15</em><small>%</small></div>
+            <div class="case-spread__olabel">
+              <strong>Enrollment growth, Fall 2024</strong>
+              Highest increase across the 23-campus CSU system that cycle, with record enrollment again in 2025.
+              <span class="case-spread__olabel__src">Source: CSU system enrollment release.</span>
+            </div>
+          </div>
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum"><em>No.&nbsp;</em>1</div>
+            <div class="case-spread__olabel">
+              <strong>Western Regional University for Social Mobility</strong>
+              <em>U.S. News &amp; World Report,</em> 2025.
+            </div>
+          </div>
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum">12<small>+</small></div>
+            <div class="case-spread__olabel">
+              <strong>National industry recognitions</strong>
+              Across MARCOM, Hermes, and the Higher Education Advertising Awards.
+            </div>
+          </div>
+        </div>
+
+        <div class="case-spread__relevance">
+          <header class="case-spread__subhead">
+            <span class="case-spread__subhead__label">Relevance to Holy Family</span>
+            <span class="case-spread__subhead__hint">Brand that converts, not brand that sits</span>
+          </header>
+          <p>Like Holy Family, Monterey Bay is a mission-distinct institution inside a larger competitive landscape with limited brand oxygen. <strong>The case establishes two things that matter for the HFU redesign.</strong> First, that disciplined research and clear positioning can produce measurable enrollment growth, not softer awareness gains alone. Second, that a brand platform can transition cleanly into a performance-driven recruitment campaign and into Slate-instrumented program and RFI pages, which is the same sequence we propose for Holy Family.</p>
+        </div>
+
+        <div class="case-spread__credit">
+          Reference <span class="sep">&middot;</span> <b>Dr. Aaron Bryant</b>, former AVP Marketing &amp; Communications, CSUMB <span class="sep">&middot;</span> <a href="mailto:aaroncbryantmba@gmail.com">aaroncbryantmba@gmail.com</a> <span class="sep">&middot;</span> (480) 710-9624
+        </div>
+      </article>
+
+      <!-- ─────────────────────────────────────────────────────────
+           CALHOUN COMMUNITY COLLEGE
+           ───────────────────────────────────────────────────────── -->
+      <article class="case-spread case--calhoun reveal">
+        <div class="case-spread__chapter">
+          <div class="case-spread__chapter__no">Case 03<span class="case-spread__chapter__of">of three</span></div>
+          <div class="case-spread__chapter__kind"><strong>Adult-learner enrollment</strong><br>GED program recruitment, full-funnel digital</div>
+        </div>
+
+        <header class="case-spread__top">
+          <div class="case-spread__tag">
+            <span class="case-spread__num">Calhoun Community College</span>
+            <span class="case-spread__kind">Public two-year &middot; North Alabama</span>
+          </div>
+          <div class="case-spread__logo">
+            <img src="assets/case-studies/calhoun/logo.svg" alt="Calhoun Community College logo">
+          </div>
+        </header>
+
+        <h3 class="case-spread__name">Calhoun Community <em>College</em></h3>
+        <p class="case-spread__origin">Public two-year &middot; North Alabama &middot; adult education and workforce</p>
+
+        <div class="case-spread__prose">
+          <p>Calhoun needed to grow GED-program enrollment among adults without a high school diploma, a population that is difficult to identify, difficult to reach, and rarely responds to generic "adult learner" creative. The team built a full-funnel digital campaign grounded in the specific barriers adult learners report, <em>time, transportation, perceived accessibility,</em> and the specific motivations that move them, <em>career outcomes, flexibility, real credentials.</em></p>
+        </div>
+
+        <div class="case-spread__pull">
+          <span class="case-spread__pull__pin case-spread__pull__pin--top" aria-hidden="true"></span>
+          <blockquote>Start where the adult learner actually is.</blockquote>
+          <div class="case-spread__pull__by">Our read on the engagement</div>
+          <span class="case-spread__pull__pin case-spread__pull__pin--bottom" aria-hidden="true"></span>
+        </div>
+
+        <div class="case-spread__prose">
+          <p>The Small College Consulting team led strategy, media planning, campaign execution, and reporting. Creative support came from Red Cactus Marketing. Segmentation was demographic, behavioral, and geographic. Optimization ran daily against cost-per-enrollment and lead quality rather than impression counts.</p>
+        </div>
+
+        <header class="case-spread__subhead">
+          <span class="case-spread__subhead__label">What the work produced</span>
+          <span class="case-spread__subhead__hint">Target vs. actual, within the allocated budget</span>
+        </header>
+
+        <div class="case-spread__outcomes">
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum">60<small>+</small></div>
+            <div class="case-spread__olabel">
+              <strong>GED participants enrolled</strong>
+              Against a program target of 35.
+            </div>
+          </div>
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum"><em>71</em><small>%</small></div>
+            <div class="case-spread__olabel">
+              <strong>Above enrollment target</strong>
+              Delivered inside the allocated budget, with strong cost-per-enrollment efficiency.
+            </div>
+          </div>
+          <div class="case-spread__oitem">
+            <div class="case-spread__onum"><em>&frac12;</em></div>
+            <div class="case-spread__olabel">
+              <strong>Of the typical recruitment cycle</strong>
+              End to end, from campaign launch to final enrollment.
+              <span class="case-spread__olabel__src">Source: Calhoun campaign reconciliation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-spread__relevance">
+          <header class="case-spread__subhead">
+            <span class="case-spread__subhead__label">Relevance to Holy Family</span>
+            <span class="case-spread__subhead__hint">Adult-learner enrollment, proven under discipline</span>
+          </header>
+          <p>Adult learners are an explicit Holy Family enrollment priority (RFP Section 6, Primary Goal #2). <strong>This case is direct, measured evidence that the motivations adult learners actually bring, career outcomes, accessibility, flexibility, are addressable through disciplined targeting,</strong> not generic "adult learner" creative. The same conversion discipline applies to Holy Family's adult-accelerated and graduate programs, where RFI-to-application velocity is the metric that matters for the Fall 2026 recruitment cycle the redesign is pacing to.</p>
+        </div>
+
+        <div class="case-spread__credit">
+          Reference <span class="sep">&middot;</span> <b>Sherika Attipoe</b>, Asst. Director of PR &amp; Digital Media <span class="sep">&middot;</span> <a href="mailto:sherika.attipoe@calhoun.edu">sherika.attipoe@calhoun.edu</a> <span class="sep">&middot;</span> (256) 306-2560
+        </div>
+      </article>
+
+    </div>
+  </section>
+
 
   <!-- ══════════════════════════════════════════════════════════════
        STEWARDSHIP · after launch
@@ -3060,7 +3724,7 @@
   </style>
   <section class="section section--paper" id="stewardship">
     <div class="section__head section__head--center">
-      <div class="eyebrow section__eyebrow reveal">After launch · RFP §F Post-Launch Support</div>
+      <div class="eyebrow section__eyebrow reveal">After launch · RFP Section F Post-Launch Support</div>
       <h2 class="section__title reveal" data-delay="1">A website in 2026 is <em>not a deliverable</em>.</h2>
       <p class="section__lede reveal" data-delay="2">Launch is the opening of a longer conversation: with WordPress, with WCAG, and with a generation of AI systems that will keep releasing through 2027 and beyond. Three things drift at three different speeds. The chart below shows one year after launch; each mark is one real event.</p>
     </div>
@@ -3074,18 +3738,20 @@
 
       <div class="cadence__chart">
         <div class="cadence__axis" aria-hidden="true">
-          <span class="cadence__axis-spacer">—</span>
+          <span class="cadence__axis-spacer" aria-hidden="true"></span>
           <div class="cadence__axis-months">
             <span>Sep '26</span><span>Dec</span><span>Mar '27</span><span>Jun</span><span>Sep '27</span>
           </div>
+          <span class="cadence__axis-spacer" aria-hidden="true"></span>
         </div>
 
         <div class="cadence__row">
           <div class="cadence__label">
             <span class="cadence__label-name">AI model releases</span>
-            <span class="cadence__label-rate">≈ every two weeks</span>
+            <span class="cadence__label-rate">ChatGPT, Claude, Gemini, Perplexity · ≈ every two weeks</span>
           </div>
-          <div class="cadence__track cadence__track--fast" role="img" aria-label="Dense tick marks representing frequent AI model releases across the year"></div>
+          <div class="cadence__track cadence__track--fast" role="img" aria-label="Dense tick marks across the full year showing frequent AI model releases"></div>
+          <div class="cadence__count"><strong>≈ 26</strong><span class="cadence__count-label">events / yr</span></div>
         </div>
 
         <div class="cadence__row">
@@ -3093,17 +3759,18 @@
             <span class="cadence__label-name">WordPress core + plugins</span>
             <span class="cadence__label-rate">core every ≈ four months · plugins ongoing</span>
           </div>
-          <div class="cadence__track cadence__track--medium" role="img" aria-label="Medium ticks with three taller markers for WordPress core releases">
+          <div class="cadence__track cadence__track--medium" role="img" aria-label="Medium ticks for plugin updates with three taller markers for WordPress core releases">
             <span class="cadence__core" data-pos="17" aria-hidden="true"></span>
             <span class="cadence__core" data-pos="50" aria-hidden="true"></span>
             <span class="cadence__core" data-pos="83" aria-hidden="true"></span>
           </div>
+          <div class="cadence__count"><strong>3 + ≈ 20</strong><span class="cadence__count-label">core + plugins</span></div>
         </div>
 
         <div class="cadence__row">
           <div class="cadence__label">
             <span class="cadence__label-name">WCAG + schema audits</span>
-            <span class="cadence__label-rate">quarterly · one annual manual</span>
+            <span class="cadence__label-rate">quarterly · one annual manual review</span>
           </div>
           <div class="cadence__track" role="img" aria-label="Four evenly-spaced dots for quarterly accessibility audits, with the final marked as the annual manual review">
             <span class="cadence__audit" data-pos="12" aria-hidden="true"></span>
@@ -3111,11 +3778,13 @@
             <span class="cadence__audit" data-pos="62" aria-hidden="true"></span>
             <span class="cadence__audit cadence__audit--manual" data-pos="87" aria-hidden="true"></span>
           </div>
+          <div class="cadence__count"><strong>4</strong><span class="cadence__count-label">audits / yr</span></div>
         </div>
       </div>
 
       <div class="cadence__legend" aria-hidden="true">
-        <span class="cadence__legend-item"><span class="cadence__legend-swatch cadence__legend-swatch--tick"></span>AI release or plugin update</span>
+        <span class="cadence__legend-item"><span class="cadence__legend-swatch cadence__legend-swatch--tick"></span>AI release</span>
+        <span class="cadence__legend-item"><span class="cadence__legend-swatch cadence__legend-swatch--plug"></span>Plugin update</span>
         <span class="cadence__legend-item"><span class="cadence__legend-swatch cadence__legend-swatch--core"></span>WordPress core major release</span>
         <span class="cadence__legend-item"><span class="cadence__legend-swatch cadence__legend-swatch--audit"></span>Accessibility &amp; schema audit</span>
       </div>
@@ -3134,7 +3803,7 @@
         </div>
         <aside class="drift__cite">
           <span class="drift__cite-label">Answers</span>
-          RFP §6<br>
+          RFP Section 6<br>
           Monitoring AI system accuracy in representing HFU content
         </aside>
       </li>
@@ -3148,7 +3817,7 @@
         </div>
         <aside class="drift__cite">
           <span class="drift__cite-label">Answers</span>
-          RFP §6<br>
+          RFP Section 6<br>
           CMS Requirements &amp; Security Standards
         </aside>
       </li>
@@ -3162,8 +3831,8 @@
         </div>
         <aside class="drift__cite">
           <span class="drift__cite-label">Answers</span>
-          RFP §4 Goal 5<br>
-          §6 Performance &amp; Accessibility
+          RFP Section 4 Goal 5<br>
+          Section 6 Performance &amp; Accessibility
         </aside>
       </li>
     </ol>
@@ -3198,7 +3867,7 @@
        ══════════════════════════════════════════════════════════════ -->
   <section class="section section--tint" id="budget">
     <div class="section__head">
-      <div class="eyebrow section__eyebrow reveal">Budget · RFP §E</div>
+      <div class="eyebrow section__eyebrow reveal">Budget · RFP Section E</div>
       <h2 class="section__title reveal" data-delay="1">One fixed fee. <em>No scope creep</em>.</h2>
       <p class="section__lede reveal" data-delay="2">The base scope is priced at $145,000, all-in, including Slate integration. Optional add-ons are priced separately so the committee can scope each independently.</p>
     </div>

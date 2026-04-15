@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Enrollment Intelligence — Holy Family Client Portal</title>
+  <title>Enrollment Intelligence · Holy Family Client Portal</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1121,7 +1121,7 @@
           </div>
           <div class="kicker">Enrollment intelligence<span class="kicker__counter">· 01 of 07</span></div>
           <h1 class="hero__title">Every enrolled student the website is <em class="accent">leaving on the table.</em></h1>
-          <p class="hero__lede">The Holy Family redesign isn't a marketing project. It's an <strong>enrollment infrastructure upgrade,</strong> sharpened for the adult and graduate growth focus the University named in Section 4 of the RFP. Move the needle on a single funnel stage &mdash; 60,000 monthly visitors, a 1.5&nbsp;% baseline inquiry rate, a 22&nbsp;% yield &mdash; and the math starts producing real enrolled students with real tuition. This page lets you set the assumptions and watch the enrollment growth recalculate.</p>
+          <p class="hero__lede">The Holy Family redesign isn't a marketing project. It's an <strong>enrollment infrastructure upgrade,</strong> sharpened for the adult and graduate growth focus the University named in Section 4 of the RFP. Move the needle on a single funnel stage (60,000 monthly visitors, a 1.5&nbsp;% baseline inquiry rate, a 22&nbsp;% yield) and the math starts producing real enrolled students with real tuition. This page lets you set the assumptions and watch the enrollment growth recalculate.</p>
 
           <div class="hero__stats">
             <div class="hero__stat">
@@ -1157,7 +1157,7 @@
             <span class="num-badge">{ 01 }</span>
             <span class="kicker">Funnel map · the enrollment machine</span>
           </div>
-          <h2 class="section__title">From a visitor to a <em class="accent">matriculated student</em> — in five steps.</h2>
+          <h2 class="section__title">From a visitor to a <em class="accent">matriculated student</em>, in five steps.</h2>
           <p class="section__lede">The current Holy Family funnel leaks at every stage. Most of it is fixable with content architecture and a smart form, not a miracle. Here is the current shape, next to where a modern redesign realistically lands.</p>
         </div>
 
@@ -1352,14 +1352,14 @@
       <section class="assumptions">
         <div class="assumptions__label">{ 04 } The model, honestly</div>
         <div class="assumptions__body">
-          <strong>Every number on this page is interactive — drag the sliders, change the model.</strong> We built this because the competition will email you a ROI slide with numbers you can't audit. Here's ours, with the full arithmetic exposed. If any of these assumptions are wrong for Holy Family, change them and we'll ship a new model on 48 hours' notice.
+          <strong>Every number on this page is interactive.</strong> Drag the sliders, change the model. We built this because the competition will email you a ROI slide with numbers you can't audit. Here's ours, with the full arithmetic exposed. If any of these assumptions are wrong for Holy Family, change them and we'll ship a new model on 48 hours' notice.
           <div class="assumptions__list">
             <div><span>01</span>Baseline inquiry rate: 1.5% of visitors (higher-ed industry average, Hanover Research 2024)</div>
             <div><span>02</span>Application start rate: 15% of RFI, conservative Catholic-private Northeast band</div>
             <div><span>03</span>Admit rate: 65%, matching HFU's published 2025 data</div>
             <div><span>04</span>Yield: 22%, the regional Catholic-private benchmark</div>
             <div><span>05</span>Tuition blended net of aid across UG and grad programs</div>
-            <div><span>06</span>Year-one revenue only — the 4-year LTV figure quadruples it</div>
+            <div><span>06</span>Year-one revenue only. The 4-year LTV figure quadruples it</div>
             <div><span>07</span>Cost engine = phase-1 discovery + build + content migration, no retainer</div>
             <div><span>08</span>Payback math divides cost by weekly revenue at the selected conversion lift</div>
           </div>
@@ -1443,7 +1443,7 @@
       el('outDelta').textContent    = '+' + fmt(Math.round(deltaEnroll)) + ' new enrolled students';
       el('outRevenue').textContent  = fmtMBare(y1Revenue);
       el('out4yr').textContent      = fmtM(ltvRevenue);
-      el('outPayback').textContent  = paybackDays === Infinity ? '— ' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
+      el('outPayback').textContent  = paybackDays === Infinity ? 'n/a' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
       el('outRFI').textContent      = '+' + fmt(Math.round(deltaRFI));
       el('outApps').textContent     = '+' + fmt(Math.round(deltaApps));
 
@@ -1489,7 +1489,7 @@
       el('pb26').textContent = fmtM(h1);
       el('pb52').textContent = fmtM(y1);
 
-      el('paybackBig').textContent = paybackDays === Infinity ? '— never' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
+      el('paybackBig').textContent = paybackDays === Infinity ? 'never' : (paybackDays < 365 ? paybackDays + ' days' : (paybackDays/365).toFixed(1) + ' yrs');
       // Fill % of the bar: how far payback sits along a 52-week year
       const fillPct = paybackDays === Infinity ? 0 : Math.min(100, (paybackDays / 365) * 100);
       el('paybackFill').style.width = Math.max(4, fillPct).toFixed(1) + '%';

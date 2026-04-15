@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI — Holy Family Client Portal</title>
+  <title>AI · Holy Family Client Portal</title>
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -654,9 +654,9 @@
     .idea-07 { padding: 112px 0 112px; }
     .idea-07__grid {
       display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 72px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
     }
     .cadence {
       margin-top: 8px;
@@ -686,30 +686,46 @@
     }
     .cadence__row {
       display: grid;
-      grid-template-columns: 98px 220px 1fr 180px;
-      gap: 24px;
-      align-items: baseline;
-      padding: 22px 0 20px;
+      grid-template-columns: 1fr 190px;
+      grid-template-areas:
+        "label ship"
+        "title ship"
+        "body  ship";
+      column-gap: 28px;
+      row-gap: 8px;
+      align-items: start;
+      padding: 22px 0 22px;
       border-bottom: 1px solid var(--rule-soft);
     }
     .cadence__row:last-child { border-bottom: 0; padding-bottom: 4px; }
+    .cadence__row__label { grid-area: label; }
+    .cadence__row__title { grid-area: title; }
+    .cadence__row__body  { grid-area: body; }
+    .cadence__row__ship  { grid-area: ship; }
     .cadence__row__label {
       font-family: var(--mono);
       font-size: 6pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-mute);
       line-height: 1.5;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
     }
     .cadence__row__label b {
-      display: block;
       color: var(--ink);
-      font-family: var(--display);
-      font-weight: 500;
-      font-size: 13pt;
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-      text-transform: none;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 6pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .cadence__row__label b::after {
+      content: '·';
+      margin-left: 10px;
+      color: var(--ink-mute);
+      font-weight: 400;
     }
     .cadence__row--hfu .cadence__row__label b { color: var(--teal-deep); }
     .cadence__row__title {
@@ -778,14 +794,23 @@
 
     /* Quiet handback trajectory — a single purposeful graphic at the top of the cadence */
     .cadence__arc {
-      margin: 4px 0 6px;
-      padding: 14px 0 14px;
+      margin: 6px 0 10px;
+      padding: 16px 0 18px;
       border-bottom: 1px solid var(--rule-soft);
       display: grid;
-      grid-template-columns: 98px 220px 1fr 180px;
-      gap: 24px;
-      align-items: center;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "label  title"
+        "track  track"
+        "legend legend";
+      column-gap: 28px;
+      row-gap: 12px;
+      align-items: baseline;
     }
+    .cadence__arc__label  { grid-area: label; }
+    .cadence__arc__title  { grid-area: title; text-align: right; }
+    .cadence__arc__track  { grid-area: track; }
+    .cadence__arc__legend { grid-area: legend; }
     .cadence__arc__label {
       font-family: var(--mono);
       font-size: 5.5pt;
@@ -1425,7 +1450,7 @@
           <div class="journey__head">
             <span class="journey__kicker">The enrollment journey</span>
             <h2 class="journey__title">How a curious student becomes <em>an applicant.</em></h2>
-            <p class="journey__lede">Five stages every prospective student moves through — and where AI does quiet work at each one, on behalf of Holy Family's team.</p>
+            <p class="journey__lede">Five stages every prospective student moves through, and where AI does quiet work at each one, on behalf of Holy Family's team.</p>
           </div>
 
           <div class="journey__flow">
@@ -1441,20 +1466,20 @@
               <div class="journey__dot">2</div>
               <div class="journey__label">Finds Holy Family</div>
               <div class="journey__what">The answer comes back with Holy Family named, and links straight to holyfamily.edu.</div>
-              <div class="journey__ai"><b>AI on HFU's side</b>Holy Family shows up in the answer — not a third-party ranking page.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>Holy Family shows up in the answer, not a third-party ranking page.</div>
             </div>
 
             <div class="journey__stage journey__stage--anchor">
               <div class="journey__dot">3</div>
               <div class="journey__label">Explores</div>
-              <div class="journey__what">They land on a page built for someone like them — a working nurse, a transfer parent, an adult returner.</div>
+              <div class="journey__what">They land on a page built for someone like them: a working nurse, a transfer parent, an adult returner.</div>
               <div class="journey__ai"><b>AI on HFU's side</b>Marketing ships tailored landing pages in days, not months.</div>
             </div>
 
             <div class="journey__stage">
               <div class="journey__dot">4</div>
               <div class="journey__label">Asks</div>
-              <div class="journey__what">They have a question at 11 pm — about aid, transfer credits, clinical hours — and get a real answer.</div>
+              <div class="journey__what">They have a question at 11 pm about aid, transfer credits, or clinical hours, and get a real answer.</div>
               <div class="journey__ai"><b>AI on HFU's side</b>A concierge answers in Holy Family's voice when counselors are home.</div>
             </div>
 
@@ -1480,16 +1505,16 @@
           <div class="missions__head">
             <span class="missions__kicker">Try a mission</span>
             <h2 class="missions__title">Put the AI to work. <em>Pick a mission.</em></h2>
-            <p class="missions__lede">Each button opens the concierge in the corner and asks it to do one real enrollment task on Holy Family's behalf. No setup, no sign-in — just click and watch.</p>
+            <p class="missions__lede">Each button opens the concierge in the corner and asks it to do one real enrollment task on Holy Family's behalf. No setup, no sign-in. Just click and watch.</p>
           </div>
 
           <div class="missions__grid">
 
             <button type="button" class="mission" data-mission="capture-lead"
-              data-prompt="Walk me through how the 24/7 admissions concierge described in the proposal captures a prospective student at 11 pm — what questions it asks, how it stays in Holy Family's voice, and what lands in Slate for an admissions counselor the next morning.">
+              data-prompt="Walk me through how the 24/7 admissions concierge described in the proposal captures a prospective student at 11 pm: what questions it asks, how it stays in Holy Family's voice, and what lands in Slate for an admissions counselor the next morning.">
               <span class="mission__tag">Capture</span>
               <span class="mission__title">Capture a prospective student as a lead.</span>
-              <span class="mission__body">Hear how the concierge runs the conversation a counselor would run — and what it hands off.</span>
+              <span class="mission__body">Hear how the concierge runs the conversation a counselor would run, and what it hands off.</span>
               <span class="mission__foot">Try it</span>
             </button>
 
@@ -1513,12 +1538,12 @@
               data-prompt="Walk me through the Monday memo from the content engine described in the proposal. How does the weekly pipeline mine real prospect questions to propose three blog drafts, how does it stay in Holy Family's voice, and how is a human always in the loop before anything publishes?">
               <span class="mission__tag">Propose</span>
               <span class="mission__title">Propose this week's three blog posts.</span>
-              <span class="mission__body">How the Monday memo gets three drafts to marketing — with the reasoning behind each pick.</span>
+              <span class="mission__body">How the Monday memo gets three drafts to marketing, with the reasoning behind each pick.</span>
               <span class="mission__foot">Try it</span>
             </button>
 
             <button type="button" class="mission" data-mission="transfer-student"
-              data-prompt="Walk me through how the adult-learner concierge in the proposal would handle a 34-year-old transfer student with 48 prior credits who is working full-time and considering finishing a bachelor's at Holy Family. What does the conversation cover — transfer credit, cost after aid, FAFSA calendar — and where does it hand off to a named admissions counselor?">
+              data-prompt="Walk me through how the adult-learner concierge in the proposal would handle a 34-year-old transfer student with 48 prior credits who is working full-time and considering finishing a bachelor's at Holy Family. What does the conversation cover across transfer credit, cost after aid, and FAFSA calendar, and where does it hand off to a named admissions counselor?">
               <span class="mission__tag">Counsel</span>
               <span class="mission__title">Counsel a transfer student with 48 credits.</span>
               <span class="mission__body">How the adult-learner concierge turns a late-evening question into a real inquiry.</span>
@@ -1526,7 +1551,7 @@
             </button>
 
             <button type="button" class="mission" data-mission="enrollment-memo"
-              data-prompt="Describe the quarterly enrollment intelligence memo from the proposal. What does Holy Family's marketing lead see in it — which programs are gaining traction in AI search, which prospect questions are rising, which pages to update — and how does the team act on it?">
+              data-prompt="Describe the quarterly enrollment intelligence memo from the proposal. What does Holy Family's marketing lead see in it (which programs are gaining traction in AI search, which prospect questions are rising, which pages to update) and how does the team act on it?">
               <span class="mission__tag">Brief</span>
               <span class="mission__title">Brief the marketing lead on this quarter.</span>
               <span class="mission__body">What the quarterly enrollment intelligence memo contains, and how the team acts on it.</span>
@@ -1559,7 +1584,7 @@
                 The site ships with a canonical <strong>llms.txt</strong> file, <strong>schema.org</strong> markup on every program page (<code>CollegeOrUniversity</code>, <code>EducationalOccupationalProgram</code>, <code>Course</code>, <code>Offer</code>, <code>FAQPage</code>, <code>BreadcrumbList</code>), a tuned <code>robots.txt</code> that welcomes <strong>GPTBot, ClaudeBot, PerplexityBot,</strong> and <strong>Google-Extended</strong>, and a citation baseline measured in July 2026 with 30- and 90-day re-checks. We verify Holy Family's Google Knowledge Panel and submit structured answers for the questions prospective families actually ask.
               </p>
               <ul class="meat">
-                <li><b>llms.txt</b><span>Canonical program list, tuition, deadlines, accreditation — one file every assistant reads.</span></li>
+                <li><b>llms.txt</b><span>Canonical program list, tuition, deadlines, and accreditation. One file every assistant reads.</span></li>
                 <li><b>Schema</b><span>Six <code>schema.org</code> types wired per page. Programs exposed as machine-readable offers.</span></li>
                 <li><b>Crawler policy</b><span><code>robots.txt</code> tuned for GPTBot, ClaudeBot, PerplexityBot, Google-Extended.</span></li>
                 <li><b>Baseline</b><span>Ten standard questions across four assistants, July 2026. Re-checked at 30 and 90 days.</span></li>
@@ -1569,7 +1594,7 @@
 
               <div class="why">
                 <span class="why__label">How it<br>helps enroll</span>
-                <p class="why__body">When a family asks ChatGPT "is Holy Family a good nursing school?", the answer <strong>cites holyfamily.edu directly</strong> — not a third-party ranking site whose copy you don't control. More citations become more direct traffic, more RFIs, and more applications through a channel most universities have left entirely to chance.</p>
+                <p class="why__body">When a family asks ChatGPT "is Holy Family a good nursing school?", the answer <strong>cites holyfamily.edu directly</strong>, not a third-party ranking site whose copy you don't control. More citations become more direct traffic, more RFIs, and more applications through a channel most universities have left entirely to chance.</p>
               </div>
 
               <div class="tag-row">
@@ -1618,12 +1643,12 @@
               <span class="num-mark">Idea 02 &nbsp;/&nbsp; AI page generation</span>
               <h2 class="idea-02__title">From brief to shipped page, <em>in a day.</em></h2>
               <p class="split-body">
-                A <strong>WordPress Gutenberg workflow</strong> where marketing fills a one-screen brief — audience, three outcomes, three differentiators, proof points, primary CTA — and the system returns a full draft landing page: hero, outcome sections, FAQ block, SEO title and meta, <code>EducationalOccupationalProgram</code> schema, alt text, and internal links back to financial aid and related programs. Every draft lands in a <strong>side-by-side diff review</strong> and never goes public without a human click. Tuition, deadlines, and aid figures are pulled from canonical CMS fields, so the system <strong>cannot hallucinate a number</strong>.
+                A <strong>WordPress Gutenberg workflow</strong> where marketing fills a one-screen brief (audience, three outcomes, three differentiators, proof points, primary CTA) and the system returns a full draft landing page: hero, outcome sections, FAQ block, SEO title and meta, <code>EducationalOccupationalProgram</code> schema, alt text, and internal links back to financial aid and related programs. Every draft lands in a <strong>side-by-side diff review</strong> and never goes public without a human click. Tuition, deadlines, and aid figures are pulled from canonical CMS fields, so the system <strong>cannot hallucinate a number</strong>.
               </p>
 
               <div class="why">
                 <span class="why__label">How it<br>helps enroll</span>
-                <p class="why__body">Marketing ships 5× more landing pages without waiting on an agency. Every new audience — transfer nurses, working parents, Philadelphia-area adults, international students — gets <strong>its own tailored page in days, not months</strong>, and every page is a new doorway into the funnel.</p>
+                <p class="why__body">Marketing ships 5× more landing pages without waiting on an agency. Every new audience (transfer nurses, working parents, Philadelphia-area adults, international students) gets <strong>its own tailored page in days, not months</strong>, and every page is a new doorway into the funnel.</p>
               </div>
 
               <div class="tag-row">
@@ -1640,7 +1665,7 @@
               </li>
               <li>
                 <b>Draft</b>
-                <span><strong>Gutenberg blocks, not a text dump.</strong> Hero, outcomes, FAQ, CTA — all arrive as real editable blocks on HFU's brand.</span>
+                <span><strong>Gutenberg blocks, not a text dump.</strong> Hero, outcomes, FAQ, and CTA all arrive as real editable blocks on HFU's brand.</span>
               </li>
               <li>
                 <b>Facts</b>
@@ -1674,12 +1699,12 @@
               <span class="num-mark">Idea 03 &nbsp;/&nbsp; Autoblogging &amp; content engine</span>
               <h2 class="split-title">A content engine that proposes, <em>never publishes.</em></h2>
               <p class="split-body">
-                A weekly pipeline that mines the questions prospective students are asking — through site search, the admissions chatbot, internal search logs, and Google Search Console — and returns <strong>three blog-post drafts every Monday morning</strong> in Holy Family's voice, each with SEO title, meta, <code>Article</code> schema, internal links, and alt text. They land in the marketing inbox as Gutenberg drafts. Nothing publishes without a human click. Once approved, posts are scheduled, image-tagged from the HFU media library, and tracked in Google Search Console so next week's topic brief learns from what worked.
+                A weekly pipeline that mines the questions prospective students are asking (through site search, the admissions chatbot, internal search logs, and Google Search Console) and returns <strong>three blog-post drafts every Monday morning</strong> in Holy Family's voice, each with SEO title, meta, <code>Article</code> schema, internal links, and alt text. They land in the marketing inbox as Gutenberg drafts. Nothing publishes without a human click. Once approved, posts are scheduled, image-tagged from the HFU media library, and tracked in Google Search Console so next week's topic brief learns from what worked.
               </p>
 
               <div class="why">
                 <span class="why__label">How it<br>helps enroll</span>
-                <p class="why__body">Holy Family publishes <strong>12 approved posts a month</strong> — 144 pieces of indexed content a year — each targeting a real question a prospective student already asked. Every post is a search-engine doorway into the funnel that the site didn't have the day before.</p>
+                <p class="why__body">Holy Family publishes <strong>12 approved posts a month</strong>, or 144 pieces of indexed content a year, each targeting a real question a prospective student already asked. Every post is a search-engine doorway into the funnel that the site didn't have the day before.</p>
               </div>
 
               <div class="tag-row">
@@ -1705,7 +1730,7 @@
                 <span class="memo__arrow memo__arrow--next">2</span>
                 <div>
                   <strong>"Transfer credit after ten years out of school"</strong>
-                  From the chatbot — asked 23 times in March. Adult-learner angle, registrar-approved.
+                  From the chatbot, asked 23 times in March. Adult-learner angle, registrar-approved.
                 </div>
               </div>
               <div class="memo__row">
@@ -1751,7 +1776,7 @@
               My daughter is finishing her associate's in nursing this May. Can she transfer to Holy Family for her BSN?
             </div>
             <div class="bubble bubble--ans">
-              Yes — Holy Family's <strong>RN-to-BSN track</strong> is built for exactly this. Most students transfer in around 60 credits and finish the BSN in 15 months, online, with three start dates a year.
+              Yes. Holy Family's <strong>RN-to-BSN track</strong> is built for exactly this. Most students transfer in around 60 credits and finish the BSN in 15 months, online, with three start dates a year.
               <span class="bubble__meta">Cited · /academics/rn-to-bsn</span>
             </div>
             <div class="bubble bubble--ask">
@@ -1766,25 +1791,25 @@
           </figure>
 
           <p class="idea-04__body">
-            A conversational assistant built on <strong>retrieval-augmented generation over 400+ Holy Family pages</strong> — program descriptions, syllabi, financial-aid FAQs, application deadlines, student-life content. It answers in the voice of admissions (few-shot tuned to real counselor replies), captures each conversation as a <strong>structured Slate contact record</strong> with name, email, program interest, and transcript, and books a human counselor the moment a question crosses the hand-off rules — typically the first specific financial-aid or graduate-application question.
+            A conversational assistant built on <strong>retrieval-augmented generation over 400+ Holy Family pages</strong>: program descriptions, syllabi, financial-aid FAQs, application deadlines, and student-life content. It answers in the voice of admissions (few-shot tuned to real counselor replies), captures each conversation as a <strong>structured Slate contact record</strong> with name, email, program interest, and transcript, and books a human counselor the moment a question crosses the hand-off rules, typically the first specific financial-aid or graduate-application question.
           </p>
 
           <ul class="meat meat--centered">
-            <li><b>RAG corpus</b><span>400+ pages embedded and re-indexed on every publish — programs, aid, academics, student life.</span></li>
+            <li><b>RAG corpus</b><span>400+ pages embedded and re-indexed on every publish: programs, aid, academics, student life.</span></li>
             <li><b>Voice</b><span>Few-shot tuned to real admissions responses. Reads like a counselor, not a generic model.</span></li>
-            <li><b>Slate-captured</b><span>Every conversation lands as a structured lead: name, email, program, stage, transcript — not a silo.</span></li>
-            <li><b>Human hand-off</b><span>Financial aid, graduate apps, international — rules trigger a booking with a named counselor.</span></li>
-            <li><b>Multilingual</b><span>English, Spanish, Portuguese — matched to Philadelphia's prospective-student demographics.</span></li>
-            <li><b>Always on</b><span>Answers at 9 pm, 11 pm, 2 am — the hours an admissions office isn't staffed and prospects are researching.</span></li>
+            <li><b>Slate-captured</b><span>Every conversation lands as a structured lead (name, email, program, stage, transcript), not a silo.</span></li>
+            <li><b>Human hand-off</b><span>Financial aid, graduate apps, and international: rules trigger a booking with a named counselor.</span></li>
+            <li><b>Multilingual</b><span>English, Spanish, and Portuguese, matched to Philadelphia's prospective-student demographics.</span></li>
+            <li><b>Always on</b><span>Answers at 9 pm, 11 pm, 2 am: the hours an admissions office isn't staffed and prospects are researching.</span></li>
           </ul>
 
           <div class="why why--centered">
             <span class="why__label">How it<br>helps enroll</span>
-            <p class="why__body">The reference build has generated <strong>more than 2,300 inbound leads since early 2025</strong> at a peer Catholic institution, with no campaign spend — pure organic capture at hours no admissions office is open. Every conversation becomes a Slate lead a counselor can follow up on Monday morning.</p>
+            <p class="why__body">The reference build has generated <strong>more than 2,300 inbound leads since early 2025</strong> at a peer Catholic institution, with no campaign spend. Pure organic capture at hours no admissions office is open. Every conversation becomes a Slate lead a counselor can follow up on Monday morning.</p>
           </div>
 
           <p class="idea-04__attr">
-            — James Vineburgh's prior build at a peer Catholic institution. Same architecture, re-tuned to Holy Family's voice and Slate instance.
+            James Vineburgh's prior build at a peer Catholic institution. Same architecture, re-tuned to Holy Family's voice and Slate instance.
           </p>
 
           <div class="idea-04__tags">
@@ -1812,7 +1837,7 @@
                 What nursing program fits around a full-time job?
               </div>
               <div class="bubble bubble--ans">
-                The <strong>RN-to-BSN online track</strong> is designed for working nurses — 15 months, fully remote, evening support, rolling admissions. Three start dates a year.
+                The <strong>RN-to-BSN online track</strong> is designed for working nurses: 15 months, fully remote, evening support, rolling admissions. Three start dates a year.
                 <span class="bubble__meta">Cited &middot; /academics/rn-to-bsn</span>
               </div>
             </figure>
@@ -1821,19 +1846,19 @@
               <span class="num-mark">Idea 05 &nbsp;/&nbsp; Conversational site search</span>
               <h2 class="split-title">Search that understands <em>intent.</em></h2>
               <p class="split-body">
-                A site search that embeds <strong>every program page, blog post, and the full financial-aid library</strong> into a vector index, classifies query intent (info / price / apply / compare), and returns a direct answer with <strong>cited sources</strong> — not a list of keyword matches. Every query is logged. The top 50 questions each week become marketing's standing content brief for the autoblogging engine.
+                A site search that embeds <strong>every program page, blog post, and the full financial-aid library</strong> into a vector index, classifies query intent (info / price / apply / compare), and returns a direct answer with <strong>cited sources</strong>, not a list of keyword matches. Every query is logged. The top 50 questions each week become marketing's standing content brief for the autoblogging engine.
               </p>
 
               <ul class="meat meat--single">
                 <li><b>Vector index</b><span>1,200+ pages embedded; re-indexed on every publish.</span></li>
-                <li><b>Intent classifier</b><span>Routes query to info, price, apply, or compare — each with its own response shape.</span></li>
+                <li><b>Intent classifier</b><span>Routes query to info, price, apply, or compare. Each has its own response shape.</span></li>
                 <li><b>Cited answers</b><span>Every response links to the source page. No unsourced claims.</span></li>
                 <li><b>Weekly brief</b><span>Top 50 queries delivered to marketing Monday morning. Feeds the content engine.</span></li>
               </ul>
 
               <div class="why">
                 <span class="why__label">How it<br>helps enroll</span>
-                <p class="why__body">"What nursing program fits around a full-time job" returns a <strong>direct answer</strong> instead of twelve keyword matches. Prospects find the right page on the first try, and marketing sees every unanswered question — <strong>the pages write themselves</strong> because prospects asked for them in their own words.</p>
+                <p class="why__body">"What nursing program fits around a full-time job" returns a <strong>direct answer</strong> instead of twelve keyword matches. Prospects find the right page on the first try, and marketing sees every unanswered question, so <strong>the pages write themselves</strong> because prospects asked for them in their own words.</p>
               </div>
 
               <div class="tag-row">
@@ -1856,10 +1881,10 @@
           <h2 class="idea-06__title">For the student at <em>9:47 pm,</em> after the kids are asleep.</h2>
           <div class="idea-06__prose">
             <p>
-              A narrower concierge, built for the RFP's <strong>Goal #2 audience</strong> — adult and graduate prospects. It walks through transfer evaluation using <strong>registrar-approved credit tables</strong> (not a marketing estimate), models <strong>cost after aid</strong> against actual Pell and Pennsylvania state-grant eligibility, knows the <strong>FAFSA calendar</strong>, and offers a <strong>single next step</strong> — with a named counselor on the other side.
+              A narrower concierge, built for the RFP's <strong>Goal #2 audience</strong>: adult and graduate prospects. It walks through transfer evaluation using <strong>registrar-approved credit tables</strong> (not a marketing estimate), models <strong>cost after aid</strong> against actual Pell and Pennsylvania state-grant eligibility, knows the <strong>FAFSA calendar</strong>, and offers a <strong>single next step</strong>, with a named counselor on the other side.
             </p>
             <p>
-              The number a working parent actually needs is <strong>cost after aid, not before,</strong> with the caveats named. The answer on transfer credit is <strong>what the registrar will actually approve,</strong> not a recruiter's guess. And the close isn't three email-capture walls — it's one specific action: <em>book a 20-minute call with Maria on Tuesday at 8:15 pm.</em>
+              The number a working parent actually needs is <strong>cost after aid, not before,</strong> with the caveats named. The answer on transfer credit is <strong>what the registrar will actually approve,</strong> not a recruiter's guess. And the close isn't three email-capture walls. It's one specific action: <em>book a 20-minute call with Maria on Tuesday at 8:15 pm.</em>
             </p>
             <p>
               The page meets a prospective student at the only hour of the day that's actually theirs. It respects that hour by answering in one screen, not walking them through a funnel.
@@ -1868,7 +1893,7 @@
 
           <div class="why">
             <span class="why__label">How it<br>helps enroll</span>
-            <p class="why__body">RFP Goal #2 is adult learners — and adult learners research at night. A generic site treats them like traditional freshmen. This pathway answers the three questions they actually have (<strong>transfer credit, cost after aid, one next step</strong>) and books the follow-up — <strong>inside the one window the day gives them</strong>.</p>
+            <p class="why__body">RFP Goal #2 is adult learners, and adult learners research at night. A generic site treats them like traditional freshmen. This pathway answers the three questions they actually have (<strong>transfer credit, cost after aid, one next step</strong>) and books the follow-up <strong>inside the one window the day gives them</strong>.</p>
           </div>
 
           <div class="tag-row" style="margin-top: 20px;">
@@ -1898,19 +1923,19 @@
               <span class="num-mark">Idea 07 &nbsp;/&nbsp; AI response monitor</span>
               <h2 class="split-title">Four times a year, we check <em>the machines.</em></h2>
               <p class="split-body">
-                Every quarter we ask ChatGPT, Claude, Perplexity, and Gemini <strong>the same ten questions a prospective family would ask</strong> — tuition, deadlines, program names, accreditation, aid, transfer credit, accelerated paths, graduate options, locations, contact info. We flag what's wrong, <strong>correct the drift at the CMS source</strong> (not through prompt engineering), re-generate the <code>llms.txt</code> and sitemap, re-submit to Google and Bing, and verify the fix in the next cycle. Two pages, not a dashboard.
+                Every quarter we ask ChatGPT, Claude, Perplexity, and Gemini <strong>the same ten questions a prospective family would ask</strong>: tuition, deadlines, program names, accreditation, aid, transfer credit, accelerated paths, graduate options, locations, and contact info. We flag what's wrong, <strong>correct the drift at the CMS source</strong> (not through prompt engineering), re-generate the <code>llms.txt</code> and sitemap, re-submit to Google and Bing, and verify the fix in the next cycle. Two pages, not a dashboard.
               </p>
 
               <ul class="meat meat--single">
                 <li><b>Scope</b><span>10 prompts × 4 assistants = 40 audited answers per quarter.</span></li>
                 <li><b>Fix at source</b><span>Drift corrected in the CMS, not hidden in a prompt. Re-indexed, re-submitted, verified.</span></li>
-                <li><b>Scorecard</b><span>Citation rate, accuracy, recency — tracked quarter over quarter.</span></li>
+                <li><b>Scorecard</b><span>Citation rate, accuracy, and recency, tracked quarter over quarter.</span></li>
                 <li><b>Handback</b><span>At Q3, the playbook, prompts, and scoring rubric stay with Holy Family. Internal team runs Q4.</span></li>
               </ul>
 
               <div class="why">
                 <span class="why__label">How it<br>helps enroll</span>
-                <p class="why__body">LLMs drift. A program name changes, an aid figure updates, an accreditation is renewed — and the assistants keep answering with stale data for months. The audit catches it, fixes it at the source, and verifies the correction — <strong>so every citation keeps pointing prospective families at the right answer</strong>.</p>
+                <p class="why__body">LLMs drift. A program name changes, an aid figure updates, an accreditation is renewed, and the assistants keep answering with stale data for months. The audit catches it, fixes it at the source, and verifies the correction, <strong>so every citation keeps pointing prospective families at the right answer</strong>.</p>
               </div>
 
               <div class="tag-row">
@@ -1936,7 +1961,7 @@
               <div class="cadence__row">
                 <div class="cadence__row__label"><b>Q1</b>Baseline</div>
                 <h4 class="cadence__row__title">Set the <em>baseline.</em></h4>
-                <p class="cadence__row__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard &mdash; and the first drafted llms.txt sitting at the site root.</p>
+                <p class="cadence__row__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard, and the first drafted llms.txt sitting at the site root.</p>
                 <div class="cadence__row__ship">
                   <span class="cadence__row__ship__label">What ships</span>
                   <ul>
@@ -1978,7 +2003,7 @@
               <div class="cadence__row cadence__row--hfu">
                 <div class="cadence__row__label"><b>Q4</b>Internal cadence</div>
                 <h4 class="cadence__row__title">Holy Family <em>owns it.</em></h4>
-                <p class="cadence__row__body">HFU runs the quarterly audit in-house. SCC on call for edge cases, no retainer required &mdash; the playbook is yours and the team is trained to use it.</p>
+                <p class="cadence__row__body">HFU runs the quarterly audit in-house. SCC on call for edge cases, no retainer required. The playbook is yours and the team is trained to use it.</p>
                 <div class="cadence__row__ship">
                   <span class="cadence__row__ship__label">What ships</span>
                   <ul>
@@ -2013,7 +2038,7 @@
       <footer class="cta">
         <div class="wrap wrap--narrow">
           <p class="cta__line">
-            The engineering behind these ideas — the migration pipeline, the drafted <code>llms.txt</code>, the schema generator — lives next door.
+            The engineering behind these ideas, from the migration pipeline to the drafted <code>llms.txt</code> and the schema generator, lives next door.
           </p>
           <a href="ai-lab.html" class="cta__link">
             Read the AI migration lab
