@@ -76,14 +76,17 @@
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
+    /* Main is a flex column on both screen and print so we can
+       sequence Section A→G via CSS `order` without DOM reordering. */
     body > main {
       background: var(--cream);
       padding: 0 !important;
       gap: 0 !important;
       align-items: stretch !important;
       min-width: 0;
+      display: flex !important;
+      flex-direction: column !important;
     }
-    @media screen { body > main { display: block !important; } }
 
     *, *::before, *::after { box-sizing: border-box; }
     html { font-size: 16px; -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
@@ -2002,6 +2005,202 @@
     @media screen { .appendix-cover { display: none !important; } }
 
     /* ════════════════════════════════════════════════════════════════
+       RFP SECTION 9 STRUCTURE
+       Response must be organised under Section A–G. Dividers below
+       precede every major section group, and flex `order` on main
+       sequences the existing section blocks into the right order on
+       both screen and print.
+
+       Main body (≤40 pages, RFP hard limit):
+         1  Cover                     hero             order: 1
+         2  Table of Contents         toc              order: 5
+         3  Executive Summary         letter / thesis  order 10-11
+         4  Section A — Agency        team + valuepack order 20-21
+         5  Section B — Approach      commitments ...  order 30-35
+         6  Section C — Technical     state / ai-arch  order 40-42
+         7  Section D — Timeline      timeline         order 50
+         8  Section E — Budget        budget           order 60
+         9  Section F — Post-launch   stewardship      order 70
+        10  Section G — Innovation    peers / mission  order 80-81
+        11  Closing                   closing          order 90
+
+       Appendices (excluded from 40-page count per RFP Sec 9):
+         A.1 Case studies (full spreads)              order 100+
+         A.2 Team bios (full)                          order 110+
+         A.3 Deep-dive briefs (merged in build-pdf)    order 200+
+       ════════════════════════════════════════════════════════════════ */
+    .rfp-divider {
+      padding: 72px 40px 56px;
+      background: var(--ink);
+      color: var(--cream);
+      text-align: left;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .rfp-divider__inner { max-width: 1120px; margin: 0 auto; }
+    .rfp-divider__eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal-bright);
+      margin-bottom: 16px;
+    }
+    .rfp-divider__label {
+      font-family: var(--display);
+      font-size: clamp(38px, 5.6vw, 64px);
+      line-height: 1.04;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      margin: 0 0 18px 0;
+    }
+    .rfp-divider__label em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal-bright);
+      font-synthesis: none;
+    }
+    .rfp-divider__lede {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.5;
+      color: rgba(250, 249, 246, 0.80);
+      max-width: 62ch;
+      margin: 0;
+    }
+    .rfp-divider__items {
+      margin: 22px 0 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 249, 246, 0.66);
+    }
+    .rfp-divider__items li { padding: 4px 0; }
+    .rfp-divider__items b { color: var(--cream); font-weight: 500; letter-spacing: 0.14em; margin-right: 8px; }
+
+    /* ── Table of Contents (Section 9 requirement) ──────────────── */
+    .toc {
+      padding: 80px 40px 72px;
+      background: var(--paper);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .toc__inner { max-width: 1120px; margin: 0 auto; }
+    .toc__eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .toc__title {
+      font-family: var(--display);
+      font-size: clamp(38px, 5.2vw, 60px);
+      line-height: 1.04;
+      color: var(--ink);
+      margin: 0 0 40px 0;
+      letter-spacing: -0.032em;
+    }
+    .toc__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .toc__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .toc__item {
+      display: grid;
+      grid-template-columns: 3.25em 1fr auto;
+      gap: 1.2em;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+      font-size: 15px;
+    }
+    .toc__item--section > .toc__label { font-weight: 500; color: var(--ink); }
+    .toc__item--sub { padding-left: 1.2em; color: var(--ink-2); font-size: 13.5px; }
+    .toc__item--sub > .toc__num { color: var(--ink-4); }
+    .toc__num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding-top: 4px;
+    }
+    .toc__label { color: var(--ink); }
+    .toc__label em { font-family: var(--serif); font-style: italic; color: var(--teal); }
+    .toc__page {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-2);
+      letter-spacing: 0.08em;
+      padding-top: 4px;
+    }
+    .toc__page::before { content: "p. "; opacity: 0.6; }
+    .toc__group {
+      margin-top: 34px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border-top: 2px solid var(--ink);
+      padding-top: 14px;
+      margin-bottom: -1px;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       FLEX ORDER · sequence the existing DOM into Section A→G order
+       on both screen and print without physically moving elements.
+       ════════════════════════════════════════════════════════════════ */
+    main > * { order: 500; }              /* default: pushed below */
+    main > #hero                 { order: 1;   }
+    main > #toc                  { order: 5;   }
+    main > #letter               { order: 10;  }
+    main > #thesis               { order: 11;  }
+    main > #sec-a-divider        { order: 15;  }
+    main > #valuepack            { order: 16;  }  /* A.3 portfolio teaser */
+    main > #team                 { order: 17;  }  /* A.2 team composition */
+    main > #evidence             { order: 18;  }  /* A.4 collaboration */
+    main > #sec-b-divider        { order: 20;  }
+    main > #commitments          { order: 21;  }
+    main > #tactics              { order: 22;  }
+    main > #mockups              { order: 23;  }
+    main > #sitemap              { order: 24;  }
+    main > #sec-c-divider        { order: 30;  }
+    main > #state                { order: 31;  }
+    main > #ai-arch              { order: 32;  }
+    main > #differentiators      { order: 33;  }
+    main > #sec-d-divider        { order: 40;  }
+    main > #timeline             { order: 41;  }
+    main > #sec-e-divider        { order: 50;  }
+    main > #budget               { order: 51;  }
+    main > #sec-f-divider        { order: 60;  }
+    main > #stewardship          { order: 61;  }
+    main > #sec-g-divider        { order: 70;  }
+    main > #peers                { order: 71;  }
+    main > #mission              { order: 72;  }
+    main > #closing              { order: 80;  }
+    /* Appendix */
+    main > .appendix-cover       { order: 100; }
+    main > #related              { order: 101; }
+    main > #case-studies         { order: 110; }
+    main > .footer               { order: 900; }
+
+    /* ════════════════════════════════════════════════════════════════
        PRINT · fit the proposal into the 40-page RFP envelope
        Main proposal runs to <= page 40; appendix sections flow after.
        The PDF must visually mirror the on-screen design (colors, tints,
@@ -2049,17 +2248,9 @@
         width: 100% !important;
         align-items: stretch !important;
       }
-      main > * { order: 0; }
-      /* Main body (40 pages): hero…team, case-studies, stewardship, budget, closing.
-         #budget and #closing are pulled past #related via flex `order`
-         so the main body ends cleanly before the appendix divider. */
-      #budget         { order: 10; }
-      #closing        { order: 20; }
-      /* Appendix starts here — cover page, then #related as the index,
-         then (post-merge) all deep-dive PDFs concatenated by build-pdf.sh */
-      .appendix-cover { order: 30; }
-      #related        { order: 40; }
-      .footer         { order: 100; }
+      /* The shared Section A→G `order` map above already applies to
+         print (since it's outside @media print). No per-print override
+         needed — main flex keeps everything in the right sequence. */
 
       /* Force .reveal visible — animations don't run during print */
       .reveal,
@@ -2117,14 +2308,31 @@
       .section__cta { margin-top: 10pt !important; }
 
       .hero {
-        /* Fill the first page — the title + dek are sparse, so centring
-           them vertically on a nearly-full page reads as a proper cover. */
-        min-height: 9.2in !important;
-        padding: 1.2in 0.6in 0.6in !important;
+        /* Fill the first page and vertically centre the title + dek.
+           The height is chosen to fit tightly inside one Letter page
+           at our render scale: (11in - 0.8in top/bottom margins) / 0.78 ≈ 13.1in,
+           so we use ~12.5in to guarantee the hero occupies the full page
+           without spilling onto page 2. */
+        min-height: 12.5in !important;
+        height: 12.5in !important;
+        padding: 0 0.6in !important;
         display: flex !important;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: stretch !important;
         page-break-after: always;
+      }
+      .hero__inner { margin: auto !important; }
+
+      .appendix-cover {
+        /* Same cover-height trick for the appendix divider */
+        min-height: 12.5in !important;
+        height: 12.5in !important;
+        padding: 0 1in !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
       }
       .hero__title { font-size: 30pt !important; line-height: 1.06 !important; }
       .hero__dek { font-size: 12pt !important; }
@@ -2294,6 +2502,49 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
+       TABLE OF CONTENTS · RFP Section 9 requirement
+       Real DOM content, so screen and PDF both render it.
+       Page numbers are injected by build-pdf.js after a first-pass
+       render finds where each section lands in the final PDF.
+       ══════════════════════════════════════════════════════════════ -->
+  <section class="toc" id="toc">
+    <div class="toc__inner">
+      <div class="toc__eyebrow reveal">Table of Contents · RFP Section 9</div>
+      <h2 class="toc__title reveal" data-delay="1">How this proposal is <em>organised</em>.</h2>
+      <ol class="toc__list">
+        <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">Executive Summary</span><span class="toc__page" data-toc-page="letter">—</span></li>
+        <li class="toc__group">Section A · Agency Information &amp; Experience</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.1</span><span class="toc__label">Agency overview &amp; Day-1 Value Pack</span><span class="toc__page" data-toc-page="valuepack">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.2</span><span class="toc__label">Team composition (full bios in Appendix)</span><span class="toc__page" data-toc-page="team">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.3</span><span class="toc__label">Higher-ed portfolio (full case studies in Appendix)</span><span class="toc__page" data-toc-page="case-studies">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.4</span><span class="toc__label">Collaborative development experience</span><span class="toc__page" data-toc-page="evidence">—</span></li>
+        <li class="toc__group">Section B · Approach &amp; Methodology</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.1</span><span class="toc__label">Project approach &amp; three commitments</span><span class="toc__page" data-toc-page="commitments">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.2</span><span class="toc__label">Tactics · four moves for adult &amp; grad enrollment</span><span class="toc__page" data-toc-page="tactics">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.3</span><span class="toc__label">Design process &amp; mockups</span><span class="toc__page" data-toc-page="mockups">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.4</span><span class="toc__label">Information architecture</span><span class="toc__page" data-toc-page="sitemap">—</span></li>
+        <li class="toc__group">Section C · Technical Approach</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.1</span><span class="toc__label">State of holyfamily.edu · audit &amp; CMS recommendation</span><span class="toc__page" data-toc-page="state">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.2</span><span class="toc__label">AI-first content architecture · llms.txt &amp; schema</span><span class="toc__page" data-toc-page="ai-arch">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.3</span><span class="toc__label">Technical differentiators &amp; integrations</span><span class="toc__page" data-toc-page="differentiators">—</span></li>
+        <li class="toc__group">Section D · Timeline &amp; Project Management</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">D.1</span><span class="toc__label">Five gates · June → September 2026</span><span class="toc__page" data-toc-page="timeline">—</span></li>
+        <li class="toc__group">Section E · Budget &amp; Pricing</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">E.1</span><span class="toc__label">$145,000 fixed fee · assumptions &amp; exclusions</span><span class="toc__page" data-toc-page="budget">—</span></li>
+        <li class="toc__group">Section F · Post-Launch Support</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">F.1</span><span class="toc__label">Ninety-day stewardship · after launch</span><span class="toc__page" data-toc-page="stewardship">—</span></li>
+        <li class="toc__group">Section G · Additional Information &amp; Differentiation</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">G.1</span><span class="toc__label">Philadelphia Catholic peer landscape</span><span class="toc__page" data-toc-page="peers">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">G.2</span><span class="toc__label">Whole-person mission alignment</span><span class="toc__page" data-toc-page="mission">—</span></li>
+        <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">In closing</span><span class="toc__page" data-toc-page="closing">—</span></li>
+        <li class="toc__group">Appendix · excluded from the 40-page count per RFP Section 9</li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">Apx</span><span class="toc__label">Full case studies · Truman · CSUMB · Calhoun</span><span class="toc__page" data-toc-page="case-studies">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">Apx</span><span class="toc__label">Deep-dive briefs (enrollment, AI, peers, sitemap, personas, runway, mission, components, discovery)</span><span class="toc__page" data-toc-page="appendix-start">—</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
        LETTER
        ══════════════════════════════════════════════════════════════ -->
   <section class="section section--paper" id="letter">
@@ -2345,6 +2596,25 @@
   <!-- ══════════════════════════════════════════════════════════════
        DAY 1 VALUE PACK · six drafted artifacts
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section A · Agency Information & Experience
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-a-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section A · RFP §9</div>
+      <h2 class="rfp-divider__label">Agency <em>information</em> &amp; experience.</h2>
+      <p class="rfp-divider__lede">Who we are, who's on the engagement, the higher-ed work we've delivered, and the references who will speak to it.</p>
+      <ul class="rfp-divider__items">
+        <li><b>A.1</b> Agency overview &amp; Day-1 Value Pack</li>
+        <li><b>A.2</b> Team composition &amp; roles</li>
+        <li><b>A.3</b> Higher-education portfolio</li>
+        <li><b>A.4</b> Collaborative development experience</li>
+        <li><b>A.5</b> References (contactable)</li>
+        <li><b>A.6</b> Subcontractors · none</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section section--paper" id="valuepack">
     <div class="section__head">
       <div class="eyebrow section__eyebrow reveal">Day 1 Value Pack · before you even sign</div>
@@ -2395,6 +2665,24 @@
   <!-- ══════════════════════════════════════════════════════════════
        STATE OF SITE
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section C · Technical Approach
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-c-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section C · RFP §9</div>
+      <h2 class="rfp-divider__label">Technical <em>approach</em>.</h2>
+      <p class="rfp-divider__lede">CMS recommendation with rationale, architecture, hosting &amp; environment workflow, WCAG 2.2 AA compliance, and integration capabilities for the Holy Family redesign.</p>
+      <ul class="rfp-divider__items">
+        <li><b>C.1</b> CMS recommendation · WordPress on Pantheon</li>
+        <li><b>C.2</b> Technical architecture &amp; stack</li>
+        <li><b>C.3</b> Hosting &amp; infrastructure · Pantheon</li>
+        <li><b>C.4</b> Accessibility compliance · WCAG 2.2 AA</li>
+        <li><b>C.5</b> Integration capabilities · Slate, GA4, GTM</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section" id="state">
     <div class="state">
       <div class="state__copy">
@@ -2543,6 +2831,22 @@
   <!-- ══════════════════════════════════════════════════════════════
        PEERS
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section G · Additional Information & Differentiation
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-g-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section G · RFP §9</div>
+      <h2 class="rfp-divider__label">Additional information &amp; <em>differentiation</em>.</h2>
+      <p class="rfp-divider__lede">What makes us a fit for Holy Family specifically: peer landscape context, cultural &amp; mission alignment, and the questions we would surface during Discovery.</p>
+      <ul class="rfp-divider__items">
+        <li><b>G.1</b> Innovation &amp; differentiation</li>
+        <li><b>G.2</b> Cultural fit &amp; values</li>
+        <li><b>G.3</b> Questions for clarification</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section section--tint" id="peers">
     <div class="section__head">
       <div class="eyebrow section__eyebrow reveal">The neighborhood · Philadelphia Catholic peers</div>
@@ -2578,6 +2882,28 @@
   <!-- ══════════════════════════════════════════════════════════════
        COMMITMENTS · executive summary
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section B · Approach & Methodology
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-b-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section B · RFP §9</div>
+      <h2 class="rfp-divider__label">Approach &amp; <em>methodology</em>.</h2>
+      <p class="rfp-divider__lede">The philosophy, discovery cadence, IA and design process, development rhythm, content migration, stakeholder engagement, collaborative workflow, and risk posture that runs this engagement.</p>
+      <ul class="rfp-divider__items">
+        <li><b>B.1</b> Project approach &amp; audience strategy</li>
+        <li><b>B.2</b> Discovery &amp; strategy methodology</li>
+        <li><b>B.3</b> Information architecture approach</li>
+        <li><b>B.4</b> Design process</li>
+        <li><b>B.5</b> Development methodology</li>
+        <li><b>B.6</b> Content strategy &amp; migration</li>
+        <li><b>B.7</b> Stakeholder management</li>
+        <li><b>B.8</b> Collaborative development process</li>
+        <li><b>B.9</b> Risk management</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section" id="commitments">
     <div class="section__head">
       <div class="eyebrow section__eyebrow reveal">Executive summary · for the President's Cabinet</div>
@@ -2819,6 +3145,23 @@
   <!-- ══════════════════════════════════════════════════════════════
        TIMELINE · five gates
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section D · Timeline & Project Management
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-d-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section D · RFP §9</div>
+      <h2 class="rfp-divider__label">Timeline &amp; project <em>management</em>.</h2>
+      <p class="rfp-divider__lede">Five gates from June kickoff to September 1 launch, project management cadence, change control, and QA process through the whole lifecycle.</p>
+      <ul class="rfp-divider__items">
+        <li><b>D.1</b> Proposed timeline · 5 gates</li>
+        <li><b>D.2</b> Project management approach</li>
+        <li><b>D.3</b> Change management</li>
+        <li><b>D.4</b> Quality assurance</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section section--ink" id="timeline">
     <div class="section__head">
       <div class="eyebrow eyebrow--light section__eyebrow reveal">Five gates · June to September 2026</div>
@@ -3927,6 +4270,22 @@
       #stewardship .pull { font-size: 1.125rem; margin-top: 4rem; }
     }
   </style>
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section F · Post-Launch Support
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-f-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section F · RFP §9</div>
+      <h2 class="rfp-divider__label">Post-launch <em>support</em>.</h2>
+      <p class="rfp-divider__lede">The 90-day stewardship period included in base scope, ongoing support options, and the training &amp; knowledge-transfer plan that leaves Holy Family's team fluent by day 90.</p>
+      <ul class="rfp-divider__items">
+        <li><b>F.1</b> 90-day support · included in base scope</li>
+        <li><b>F.2</b> Ongoing support options</li>
+        <li><b>F.3</b> Training &amp; knowledge transfer</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section section--paper" id="stewardship">
     <div class="section__head section__head--center">
       <div class="eyebrow section__eyebrow reveal">After launch · RFP Section F Post-Launch Support</div>
@@ -4069,6 +4428,24 @@
   <!-- ══════════════════════════════════════════════════════════════
        BUDGET
        ══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════════════
+       RFP Section E · Budget & Pricing
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="rfp-divider" id="sec-e-divider">
+    <div class="rfp-divider__inner">
+      <div class="rfp-divider__eyebrow">Section E · RFP §9</div>
+      <h2 class="rfp-divider__label">Budget &amp; <em>pricing</em>.</h2>
+      <p class="rfp-divider__lede">One fixed, all-in fee. Phased breakdown, optional add-on pricing, payment schedule, assumptions &amp; exclusions, and the value proposition behind every line.</p>
+      <ul class="rfp-divider__items">
+        <li><b>E.1</b> Cost breakdown · base scope</li>
+        <li><b>E.1</b> Optional add-ons</li>
+        <li><b>E.1</b> Payment schedule</li>
+        <li><b>E.2</b> Assumptions &amp; exclusions</li>
+        <li><b>E.3</b> Value proposition</li>
+      </ul>
+    </div>
+  </div>
+
   <section class="section section--tint" id="budget">
     <div class="section__head">
       <div class="eyebrow section__eyebrow reveal">Budget · RFP Section E</div>

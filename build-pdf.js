@@ -74,18 +74,52 @@ function startServer() {
   });
 }
 
-async function renderPage(browser, url, outPath) {
+// Two-pass main render: first pass finds the page numbers where each
+// `#anchor` lands, second pass re-renders with those numbers injected
+// into the TOC via ?toc=… query string JSON.
+async function findSectionPages(browser) {
+  const anchors = [
+    'letter','valuepack','team','case-studies','evidence',
+    'commitments','tactics','mockups','sitemap',
+    'state','ai-arch','differentiators',
+    'timeline','budget','stewardship',
+    'peers','mission','closing'
+  ];
+  const tmp = path.join(OUT_DIR, 'probe-main.pdf');
+  await renderPage(browser, 'index.html', tmp, { forTocProbe: true });
+  const out = require('child_process').spawnSync('python3', ['-c', `
+import sys, json
+from pypdf import PdfReader
+r = PdfReader(sys.argv[1])
+pages = [p.extract_text() or '' for p in r.pages]
+found = { 'main-body-pages': len(pages) }
+for anchor in sys.argv[2:]:
+    needle = 'TOCMK' + anchor + 'TOCMK'
+    for i, t in enumerate(pages):
+        if needle in t:
+            found[anchor] = i + 1
+            break
+print(json.dumps(found))
+`, tmp, ...anchors], { encoding: 'utf-8' });
+  if (out.status !== 0) { console.error(out.stderr); return {}; }
+  try {
+    const found = JSON.parse(out.stdout.trim());
+    // appendix-start = first page after the main body finishes
+    found['appendix-start'] = (found['main-body-pages'] || 0) + 1;
+    return found;
+  } catch { return {}; }
+}
+
+async function renderPage(browser, url, outPath, opts = {}) {
   const page = await browser.newPage();
+  page.on('console', m => { if (String(m.text()).startsWith('PROBE')) console.log('   · ' + m.text()); });
   // Wide desktop viewport so layouts that expect 1100-1280 px render
   // at their designed width. pdf(scale) then shrinks to Letter.
-  // Render at 1040 CSS px with scale 0.72 and 0.35" margins:
-  //   content printed width = 1040 × 0.72 = 748.8 px
+  // Render at 960 CSS px with scale 0.78 and 0.35" margins:
+  //   content printed width = 960 × 0.78 = 748.8 px
   //   Letter content area   = (8.5 - 0.7) × 96 = 748.8 px
-  // Exact fit with text as large as we can afford. Desktop layouts
-  // designed for 1100+ will still overflow their column specs; see
-  // the `.section, .anchors, ...` max-width overrides in the print
-  // CSS for the clamp that keeps them inside viewport width.
-  await page.setViewport({ width: 1040, height: 1500, deviceScaleFactor: 2 });
+  // Exact fit, with larger text than the previous 1040 × 0.72.
+  await page.setViewport({ width: 960, height: 1400, deviceScaleFactor: 2 });
   await page.goto(`http://localhost:${PORT}/${url}`, {
     waitUntil: ['load', 'networkidle0'],
     timeout: 90000,
@@ -93,17 +127,78 @@ async function renderPage(browser, url, outPath) {
   // Print CSS should already handle reveal visibility, but force any
   // IntersectionObserver-driven class now, in case a deep-dive page
   // has its own observers that haven't fired yet.
-  await page.evaluate(() => {
+  await page.evaluate((opts) => {
     document.querySelectorAll('.reveal, [data-reveal], [data-animate]').forEach(el => {
       el.classList.add('is-in', 'is-visible', 'in-view');
       el.style.opacity = '1';
       el.style.transform = 'none';
     });
-  });
+    // First-pass probe: inject an invisible-but-extractable marker
+    // next to each id so the second pass can find which printed PDF
+    // page each anchor lands on via text extraction. The marker must
+    // be (a) small enough not to shift pagination, (b) visible-enough
+    // for Chrome to include it in the PDF text layer. White 6pt text
+    // on the white paper satisfies both.
+    if (opts.forTocProbe) {
+      const ids = ['letter','valuepack','team','case-studies','evidence',
+        'commitments','tactics','mockups','sitemap',
+        'state','ai-arch','differentiators',
+        'timeline','budget','stewardship',
+        'peers','mission','closing'];
+      let added = 0;
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) { console.log('PROBE-MISS', id); continue; }
+        // Marker is a visible-but-small fingerprint. Use 5pt in a
+        // near-cream color so it lands in the text layer cleanly.
+        const mk = document.createElement('div');
+        mk.textContent = 'TOCMK' + id + 'TOCMK';
+        mk.setAttribute('style',
+          'font-size:5pt;line-height:1;color:#FAF9F6;' +
+          'background:transparent;font-family:monospace;' +
+          'margin:0;padding:0;');
+        el.insertBefore(mk, el.firstChild);
+        added++;
+      }
+      console.log('PROBE-ADDED', added, 'markers');
+    }
+    // Second-pass: inject real page numbers into the TOC.
+    if (opts.tocPages) {
+      document.querySelectorAll('[data-toc-page]').forEach(el => {
+        const key = el.getAttribute('data-toc-page');
+        if (opts.tocPages[key]) el.textContent = String(opts.tocPages[key]);
+      });
+    }
+  }, opts);
   await page.emulateMediaType('print');
-  // Give fonts a beat to finish swapping
+  // Force every lazy image to load eagerly and scroll through the
+  // document so IntersectionObserver-driven lazy loads fire. The
+  // team section's .member__avatar <img loading="lazy"> elements
+  // are below the fold and would otherwise never load before print.
+  await page.evaluate(async () => {
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      img.loading = 'eager';
+      if (!img.complete && img.dataset.src) img.src = img.dataset.src;
+    });
+    // Trigger lazy loaders by scrolling through the document
+    const h = document.documentElement.scrollHeight;
+    for (let y = 0; y <= h; y += 500) {
+      window.scrollTo(0, y);
+      await new Promise(r => setTimeout(r, 30));
+    }
+    window.scrollTo(0, 0);
+    // Wait for every <img> to finish (or fail) loading
+    await Promise.all(Array.from(document.images).map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise(res => {
+        img.addEventListener('load', res, { once: true });
+        img.addEventListener('error', res, { once: true });
+        setTimeout(res, 4000);
+      });
+    }));
+  });
   await page.evaluateHandle('document.fonts.ready');
-  await new Promise(r => setTimeout(r, 400));
+  await new Promise(r => setTimeout(r, 600));
   await page.pdf({
     path: outPath,
     format: 'Letter',
@@ -111,7 +206,7 @@ async function renderPage(browser, url, outPath) {
     // Scale < 1 shrinks the 1280-px layout so its full width fits the
     // 8.5" Letter paper without horizontal clipping. 0.62 ≈ 710/1144
     // (Letter content width ÷ desktop canvas after margins).
-    scale: 0.72,
+    scale: 0.78,
     margin: { top: '0.4in', bottom: '0.4in', left: '0.35in', right: '0.35in' },
     preferCSSPageSize: false,
   });
@@ -159,6 +254,11 @@ if main_pages > 40:
     args: ['--no-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=medium'],
   });
 
+  // --- First pass: render main with toc probe markers to locate sections
+  console.log('» First pass · probing section page numbers');
+  const tocPages = await findSectionPages(browser);
+  console.log('  · TOC page map:', JSON.stringify(tocPages));
+
   const produced = [];
   for (const pg of PAGES) {
     const src = path.join(ROOT, pg.url);
@@ -168,7 +268,10 @@ if main_pages > 40:
     }
     const out = path.join(OUT_DIR, `${pg.id}.pdf`);
     console.log(`» Rendering ${pg.id} · ${pg.url}`);
-    await renderPage(browser, pg.url, out);
+    // Second pass for index.html uses the probed page numbers so the
+    // TOC ships with real numbers. Deep-dive pages render normally.
+    const opts = pg.id === '00-main' ? { tocPages } : {};
+    await renderPage(browser, pg.url, out, opts);
     produced.push(out);
   }
   await browser.close();
