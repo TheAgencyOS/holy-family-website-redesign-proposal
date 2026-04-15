@@ -95,6 +95,23 @@ for (const page of HTML_PAGES) {
   if (text) sections.push({ source: page, text });
 }
 
+// Small College Consulting public site — captured HTML snapshots so the
+// concierge knows the agency's public positioning, services, team, and
+// specialities as HFU's evaluators would see it. These are high-priority
+// grounding sources; they're inserted before the long-form MD docs so the
+// char-budget tail-trim never drops them.
+const SCC_PAGES_DIR = path.resolve(__dirname, 'scc-site');
+try {
+  for (const file of fs.readdirSync(SCC_PAGES_DIR).sort()) {
+    if (!file.endsWith('.html')) continue;
+    const raw = fs.readFileSync(path.resolve(SCC_PAGES_DIR, file), 'utf8');
+    const text = stripHtml(raw);
+    if (text) sections.push({ source: `smallcollegeconsulting.com/${file.replace(/\.html$/, '').replace(/^home$/, '')}`, text });
+  }
+} catch (e) {
+  // Directory absent — SCC site context simply won't be included.
+}
+
 for (const doc of MD_DOCS) {
   const raw = safeRead(doc);
   if (!raw) continue;
@@ -106,7 +123,7 @@ for (const doc of MD_DOCS) {
 // still leaves headroom for the system prompt (~4k), 20 turns of history,
 // and a 700-token response. Bumped from 220k so the authoritative docs and
 // all proposal pages fit without tail-truncation.
-const CHAR_BUDGET = 320_000;
+const CHAR_BUDGET = 380_000;
 let used = 0;
 const trimmed = [];
 for (const s of sections) {

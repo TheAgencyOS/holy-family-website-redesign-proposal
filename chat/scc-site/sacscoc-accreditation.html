@@ -1,0 +1,1779 @@
+<!doctype html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      class="">
+<head>
+    <meta charset="utf-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    window._currentDevice = 'desktop';
+    window.Parameters = window.Parameters || {
+        HomeUrl: 'https://www.smallcollegeconsulting.com/',
+
+        SystemID: 'US_DIRECT_PRODUCTION',
+        SiteAlias: 'f92b4549',
+        SiteType: atob('RFVEQU9ORQ=='),
+        PublicationDate: 'Apr 14, 2026',
+        ExternalUid: 'looka',
+        IsSiteMultilingual: false,
+        InitialPostAlias: '',
+        InitialPostPageUuid: '',
+        InitialDynamicItem: '',
+        DynamicPageInfo: {
+            isDynamicPage: false,
+            base64JsonRowData: 'null',
+        },
+        InitialPageAlias: 'sacscoc-accreditation',
+        InitialPageUuid: '8e9b1a0e604f4db7858027c5f0bbd074',
+        InitialPageId: '1202840437',
+        InitialEncodedPageAlias: 'c2Fjc2NvYy1hY2NyZWRpdGF0aW9u',
+        InitialHeaderUuid: '8b75e0c33fd648819bacd21078ac801a',
+        CurrentPageUrl: '',
+        IsCurrentHomePage: false,
+        AllowAjax: false,
+        AfterAjaxCommand: null,
+        HomeLinkText: 'Back To Home',
+        UseGalleryModule: false,
+        CurrentThemeName: 'Layout Theme',
+        ThemeVersion: '500000',
+        DefaultPageAlias: '',
+        RemoveDID: true,
+        WidgetStyleID: null,
+        IsHeaderFixed: false,
+        IsHeaderSkinny: false,
+        IsBfs: true,
+        StorePageAlias: 'null',
+        StorePagesUrls: 'e30=',
+        IsNewStore: 'false',
+        StorePath: '',
+        StoreId: 'null',
+        StoreVersion: 0,
+        StoreBaseUrl: '',
+        StoreCleanUrl: true,
+        StoreDisableScrolling: true,
+        IsStoreSuspended: false,
+        HasCustomDomain: true,
+        SimpleSite: false,
+        showCookieNotification: false,
+        cookiesNotificationMarkup: 'null',
+        translatedPageUrl: '',
+        isFastMigrationSite: false,
+        sidebarPosition: 'NA',
+        currentLanguage: 'en',
+        currentLocale: 'en',
+        NavItems: '{}',
+        errors: {
+            general: 'There was an error connecting to the page.<br/> Make sure you are not offline.',
+            password: 'Incorrect name/password combination',
+            tryAgain: 'Try again'
+        },
+        NavigationAreaParams: {
+            ShowBackToHomeOnInnerPages: true,
+            NavbarSize: -1,
+            NavbarLiveHomePage: 'https://www.smallcollegeconsulting.com/',
+            BlockContainerSelector: '.dmBody',
+            NavbarSelector: '#dmNav:has(a)',
+            SubNavbarSelector: '#subnav_main'
+        },
+        hasCustomCode: false,
+        planID: '7',
+        customTemplateId: 'null',
+        siteTemplateId: 'null',
+        productId: 'DM_DIRECT',
+        disableTracking: false,
+        pageType: 'FROM_SCRATCH',
+        isRuntimeServer: true,
+        isInEditor: false,
+        hasNativeStore: false,
+        defaultLang: 'en',
+        hamburgerMigration: null,
+        isFlexSite: false
+    };
+
+    window.Parameters.LayoutID = {};
+    window.Parameters.LayoutID[window._currentDevice] = 6;
+    window.Parameters.LayoutVariationID = {};
+    window.Parameters.LayoutVariationID[window._currentDevice] = 5;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Injecting site-wide to the head -->
+
+
+
+
+<!-- End Injecting site-wide to the head -->
+
+<!-- Inject secured cdn script -->
+
+
+<!-- ========= Meta Tags ========= -->
+<!-- PWA settings -->
+<script>
+    function toHash(str) {
+        var hash = 5381, i = str.length;
+        while (i) {
+            hash = hash * 33 ^ str.charCodeAt(--i)
+        }
+        return hash >>> 0
+    }
+</script>
+<script>
+    (function (global) {
+    //const cacheKey = global.cacheKey;
+    const isOffline = 'onLine' in navigator && navigator.onLine === false;
+    const hasServiceWorkerSupport = 'serviceWorker' in navigator;
+    if (isOffline) {
+        console.log('offline mode');
+    }
+    if (!hasServiceWorkerSupport) {
+        console.log('service worker is not supported');
+    }
+    if (hasServiceWorkerSupport && !isOffline) {
+        window.addEventListener('load', function () {
+            const serviceWorkerPath = '/runtime-service-worker.js?v=3';
+            navigator.serviceWorker
+                .register(serviceWorkerPath, { scope: './' })
+                .then(
+                    function (registration) {
+                        // Registration was successful
+                        console.log(
+                            'ServiceWorker registration successful with scope: ',
+                            registration.scope
+                        );
+                    },
+                    function (err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    }
+                )
+                .catch(function (err) {
+                    console.log(err);
+                });
+        });
+
+        // helper function to refresh the page
+        var refreshPage = (function () {
+            var refreshing;
+            return function () {
+                if (refreshing) return;
+                // prevent multiple refreshes
+                var refreshkey = 'refreshed' + location.href;
+                var prevRefresh = localStorage.getItem(refreshkey);
+                if (prevRefresh) {
+                    localStorage.removeItem(refreshkey);
+                    if (Date.now() - prevRefresh < 30000) {
+                        return; // dont go into a refresh loop
+                    }
+                }
+                refreshing = true;
+                localStorage.setItem(refreshkey, Date.now());
+                console.log('refereshing page');
+                window.location.reload();
+            };
+        })();
+
+        function messageServiceWorker(data) {
+            return new Promise(function (resolve, reject) {
+                if (navigator.serviceWorker.controller) {
+                    var worker = navigator.serviceWorker.controller;
+                    var messageChannel = new MessageChannel();
+                    messageChannel.port1.onmessage = replyHandler;
+                    worker.postMessage(data, [messageChannel.port2]);
+                    function replyHandler(event) {
+                        resolve(event.data);
+                    }
+                } else {
+                    resolve();
+                }
+            });
+        }
+    }
+})(window);
+</script>
+<!-- Add manifest -->
+<!-- End PWA settings -->
+
+
+
+<link rel="canonical" href="https://www.smallcollegeconsulting.com/sacscoc-accreditation">
+
+<meta id="view" name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!--Add favorites icons-->
+
+<link rel="apple-touch-icon"
+      href="https://irp.cdn-website.com/f92b4549/dms3rep/multi/New+Logo_blue+on+white.png"/>
+
+<link rel="icon" type="image/x-icon" href="https://irp.cdn-website.com/f92b4549/site_favicon_16_1748879126863.ico"/>
+
+<!-- End favorite icons -->
+<link rel="preconnect" href="https://lirp.cdn-website.com/"/>
+
+
+
+<!-- render the required CSS and JS in the head section -->
+<script id='d-js-dmapi'>
+    window.SystemID = 'US_DIRECT_PRODUCTION';
+
+    if (!window.dmAPI) {
+        window.dmAPI = {
+            registerExternalRuntimeComponent: function () {
+            },
+            getCurrentDeviceType: function () {
+                return window._currentDevice;
+            },
+            runOnReady: (ns, fn) => {
+                const safeFn = dmAPI.toSafeFn(fn);
+                ns = ns || 'global_' + Math.random().toString(36).slice(2, 11);
+                const eventName = 'afterAjax.' + ns;
+
+                if (document.readyState === 'complete') {
+                    $.DM.events.off(eventName).on(eventName, safeFn);
+                    setTimeout(function () {
+                        safeFn({
+                            isAjax: false,
+                        });
+                    }, 0);
+                } else {
+                    window?.waitForDeferred?.('dmAjax', () => {
+                        $.DM.events.off(eventName).on(eventName, safeFn);
+                        safeFn({
+                            isAjax: false,
+                        });
+                    });
+                }
+            },
+            toSafeFn: (fn) => {
+                if (fn?.safe) {
+                    return fn;
+                }
+                const safeFn = function (...args) {
+                    try {
+                        return fn?.apply(null, args);
+                    } catch (e) {
+                        console.log('function failed ' + e.message);
+                    }
+                };
+                safeFn.safe = true;
+                return safeFn;
+            }
+        };
+    }
+
+    if (!window.requestIdleCallback) {
+        window.requestIdleCallback = function (fn) {
+            setTimeout(fn, 0);
+        }
+    }
+</script>
+
+<!-- loadCSS function header.jsp-->
+
+
+
+
+
+
+<script id="d-js-load-css">
+/**
+ * There are a few <link> tags with CSS resource in them that are preloaded in the page
+ * in each of those there is a "onload" handler which invokes the loadCSS callback
+ * defined here.
+ * We are monitoring 3 main CSS files - the runtime, the global and the page.
+ * When each load we check to see if we can append them all in a batch. If threre
+ * is no page css (which may happen on inner pages) then we do not wait for it
+ */
+(function () {
+  let cssLinks = {};
+  function loadCssLink(link) {
+    link.onload = null;
+    link.rel = "stylesheet";
+    link.type = "text/css";
+  }
+  
+    function checkCss() {
+      const pageCssLink = document.querySelector("[id*='CssLink']");
+      const widgetCssLink = document.querySelector("[id*='widgetCSS']");
+
+        if (cssLinks && cssLinks.runtime && cssLinks.global && (!pageCssLink || cssLinks.page) && (!widgetCssLink || cssLinks.widget)) {
+            const storedRuntimeCssLink = cssLinks.runtime;
+            const storedPageCssLink = cssLinks.page;
+            const storedGlobalCssLink = cssLinks.global;
+            const storedWidgetCssLink = cssLinks.widget;
+
+            storedGlobalCssLink.disabled = true;
+            loadCssLink(storedGlobalCssLink);
+
+            if (storedPageCssLink) {
+                storedPageCssLink.disabled = true;
+                loadCssLink(storedPageCssLink);
+            }
+
+            if(storedWidgetCssLink) {
+                storedWidgetCssLink.disabled = true;
+                loadCssLink(storedWidgetCssLink);
+            }
+
+            storedRuntimeCssLink.disabled = true;
+            loadCssLink(storedRuntimeCssLink);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    storedRuntimeCssLink.disabled = false;
+                    storedGlobalCssLink.disabled = false;
+                    if (storedPageCssLink) {
+                      storedPageCssLink.disabled = false;
+                    }
+                    if (storedWidgetCssLink) {
+                      storedWidgetCssLink.disabled = false;
+                    }
+                    // (SUP-4179) Clear the accumulated cssLinks only when we're
+                    // sure that the document has finished loading and the document 
+                    // has been parsed.
+                    if(document.readyState === 'interactive') {
+                      cssLinks = null;
+                    }
+                }, 0);
+            });
+        }
+    }
+  
+
+  function loadCSS(link) {
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var noCSS = !!urlParams.get("nocss");
+      var cssTimeout = urlParams.get("cssTimeout") || 0;
+
+      if (noCSS) {
+        return;
+      }
+      if (link.href && link.href.includes("d-css-runtime")) {
+        cssLinks.runtime = link;
+        checkCss();
+      } else if (link.id === "siteGlobalCss") {
+        cssLinks.global = link;
+        checkCss();
+      } 
+      
+      else if (link.id && link.id.includes("CssLink")) {
+        cssLinks.page = link;
+        checkCss();
+      } else if (link.id && link.id.includes("widgetCSS")) {
+        cssLinks.widget = link;
+        checkCss();
+      }
+      
+      else {
+        requestIdleCallback(function () {
+          window.setTimeout(function () {
+            loadCssLink(link);
+          }, parseInt(cssTimeout, 10));
+        });
+      }
+    } catch (e) {
+      throw e
+    }
+  }
+  window.loadCSS = window.loadCSS || loadCSS;
+})();
+</script>
+
+
+
+<script data-role="deferred-init" type="text/javascript">
+    /* usage: window.getDeferred(<deferred name>).resolve() or window.getDeferred(<deferred name>).promise.then(...)*/
+    function Def() {
+        this.promise = new Promise((function (a, b) {
+            this.resolve = a, this.reject = b
+        }).bind(this))
+    }
+
+    const defs = {};
+    window.getDeferred = function (a) {
+        return null == defs[a] && (defs[a] = new Def), defs[a]
+    }
+    window.waitForDeferred = function (b, a, c) {
+        let d = window?.getDeferred?.(b);
+        d
+            ? d.promise.then(a)
+            : c && ["complete", "interactive"].includes(document.readyState)
+                ? setTimeout(a, 1)
+                : c
+                    ? document.addEventListener("DOMContentLoaded", a)
+                    : console.error(`Deferred  does not exist`);
+    };
+</script>
+<style id="forceCssIncludes">
+    /* This file is auto-generated from a `scss` file with the same name */
+
+.videobgwrapper{overflow:hidden;position:absolute;z-index:0;width:100%;height:100%;top:0;left:0;pointer-events:none;border-radius:inherit}.videobgframe{position:absolute;width:101%;height:100%;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);object-fit:fill}#dm video.videobgframe{margin:0}@media (max-width:767px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:80vh}}@media (min-width:1025px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}@media (min-width:768px) and (max-width:1024px){.responsiveTablet .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}#dm [data-show-on-page-only]{display:none!important}#dmRoot div.stickyHeaderFix div.site_content{margin-top:0!important}#dmRoot div.stickyHeaderFix div.hamburger-header-container{position:relative}
+    
+
+</style>
+<style id="cssVariables" type="text/css">
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Google Fonts Include -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- loadCSS function fonts.jsp-->
+
+
+
+<link type="text/css" rel="stylesheet" href="https://irp.cdn-website.com/fonts/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Belgrano:ital,wght@0,400&family=Staatliches:ital,wght@0,400&family=Indie+Flower:ital,wght@0,400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bebas+Neue:ital,wght@0,400&family=DM+Sans:ital,wght@0,100..1000;1,100..1000&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Alata:ital,wght@0,400&family=Alice:ital,wght@0,400&family=Rock+Salt:ital,wght@0,400&family=DM+Serif+Text:ital,wght@0,400;1,400&family=Cinzel:ital,wght@0,400..900;1,400..900&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Delius:ital,wght@0,400&amp;subset=latin-ext&amp;display=swap"  />
+
+<link type="text/css" rel="stylesheet" href="https://irp.cdn-website.com/fonts/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Exo:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;subset=latin-ext&amp;display=swap"  />
+
+
+
+
+
+<!-- RT CSS Include d-css-runtime-desktop-one-package-structured-global-->
+<link rel="stylesheet" type="text/css" href="https://static.cdn-website.com/mnlt/production/6359/_dm/s/rt/dist/css/d-css-runtime-desktop-one-package-structured-global.min.css" />
+
+<!-- End of RT CSS Include -->
+
+<link type="text/css" rel="stylesheet" href="https://irp.cdn-website.com/WIDGET_CSS/b7e98c27094d82e339e70f1518bc351d.css" id="widgetCSS" />
+
+<!-- Support `img` size attributes -->
+<style>img[width][height] {
+  height: auto;
+}</style>
+
+<!-- Support showing sticky element on page only -->
+<style>
+  body[data-page-alias="sacscoc-accreditation"] #dm [data-show-on-page-only="sacscoc-accreditation"] {
+    display: block !important;
+  }
+</style>
+
+<!-- This is populated in Ajax navigation -->
+<style id="pageAdditionalWidgetsCss" type="text/css">
+</style>
+
+
+
+
+<!-- Site CSS -->
+<link type="text/css" rel="stylesheet" href="https://irp.cdn-website.com/f92b4549/files/f92b4549_1.min.css?v=04d0b913795c0c0c75361499d9f1b86f" id="siteGlobalCss" />
+
+
+
+<style id="customWidgetStyle" type="text/css">
+    
+</style>
+<style id="innerPagesStyle" type="text/css">
+    
+</style>
+
+
+<style
+        id="additionalGlobalCss" type="text/css"
+>
+</style>
+
+<style id="pagestyle" type="text/css">
+    *#dm *.dmBody div.dmform-error
+{
+	color:rgba(0,0,0,1) !important;
+}
+*#dm *.dmBody *.u_1662811305:before
+{
+	opacity:0.5 !important;
+	background-color:rgb(28,35,48) !important;
+}
+*#dm *.dmBody *.u_1662811305.before
+{
+	opacity:0.5 !important;
+	background-color:rgb(28,35,48) !important;
+}
+*#dm *.dmBody div.dmforminput textarea
+{
+	color:rgb(115,111,111) !important;
+	font-weight:normal !important;
+	text-decoration:none !important;
+}
+*#dm *.dmBody div.dmforminput *.fileUploadLink
+{
+	color:rgb(115,111,111) !important;
+	font-weight:normal !important;
+	text-decoration:none !important;
+}
+*#dm *.dmBody div.checkboxwrapper span
+{
+	color:rgb(115,111,111) !important;
+	font-weight:normal !important;
+	text-decoration:none !important;
+}
+*#dm *.dmBody div.radiowrapper span
+{
+	color:rgb(115,111,111) !important;
+	font-weight:normal !important;
+	text-decoration:none !important;
+}
+*#dm *.dmBody div.u_1683190946
+{
+	background-color:rgba(0,0,0,0) !important;
+	border-style:solid !important;
+	border-width:0 !important;
+}
+*#dm *.dmBody div.u_1662811305:before
+{
+	background-color:rgba(0,0,0,1) !important;
+	opacity:0.3 !important;
+}
+*#dm *.dmBody div.u_1662811305.before
+{
+	background-color:rgba(0,0,0,1) !important;
+	opacity:0.3 !important;
+}
+*#dm *.dmBody div.u_1662811305>.bgExtraLayerOverlay
+{
+	opacity:0.3 !important;
+	background-color:rgba(0,0,0,1) !important;
+}
+*#dm *.dmBody div.u_1941417359
+{
+	background-color:rgba(255,255,255,1) !important;
+	border-top-style:solid !important;
+	border-top-color:rgba(226,226,226,1) !important;
+	border-bottom-style:solid !important;
+	border-bottom-color:rgba(226,226,226,1) !important;
+	border-top-width:0 !important;
+	border-bottom-width:0 !important;
+}
+*#dm *.dmBody div.u_1916453126
+{
+	border-left-style:solid !important;
+	border-left-color:rgba(210,210,210,1) !important;
+	border-left-width:0 !important;
+}
+*#dm *.dmBody div.u_1712695556
+{
+	background-color:rgba(8,32,44,1) !important;
+}
+*#dm *.dmBody nav.u_1630621681
+{
+	color:black !important;
+}
+*#dm *.dmBody div.u_1662811305
+{
+	background-repeat:no-repeat !important;
+	background-image:none !important;
+	box-shadow:none !important;
+	-moz-box-shadow:none !important;
+	-webkit-box-shadow:none !important;
+	background-color:rgba(12,48,66,1) !important;
+	border-style:solid !important;
+	border-color:rgba(0,0,0,0) !important;
+	border-width:1px !important;
+}
+*#dm *.dmBody *.u_1188832200
+{
+	width:100% !important;
+}
+
+</style>
+
+<style id="pagestyleDevice" type="text/css">
+    *#dm *.dmBody div.u_1683190946
+{
+	padding-right:40px !important;
+	padding-left:40px !important;
+	padding-top:0 !important;
+	padding-bottom:0 !important;
+}
+*#dm *.dmBody div.u_1916453126
+{
+	padding-right:40px !important;
+	padding-left:30px !important;
+	margin-left:0 !important;
+	padding-top:0 !important;
+	padding-bottom:0 !important;
+	margin-top:0 !important;
+	margin-bottom:0 !important;
+	margin-right:0 !important;
+}
+*#dm *.dmBody div.u_1856929711
+{
+	margin-right:0 !important;
+	padding-left:0 !important;
+	padding-right:0 !important;
+	margin-left:0 !important;
+	padding-top:0 !important;
+	padding-bottom:0 !important;
+	margin-top:0 !important;
+	margin-bottom:0 !important;
+}
+*#dm *.dmBody div.u_1941417359
+{
+	float:none !important;
+	top:0 !important;
+	left:0 !important;
+	width:auto !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:116px !important;
+	padding-left:0 !important;
+	padding-bottom:16px !important;
+	max-width:100% !important;
+	padding-right:0 !important;
+	min-width:0 !important;
+	text-align:center !important;
+	margin-left:0 !important;
+	margin-top:0 !important;
+	margin-bottom:0 !important;
+	margin-right:0 !important;
+	min-height:auto !important;
+}
+*#dm *.dmBody div.u_1712695556
+{
+	float:none !important;
+	top:0 !important;
+	left:0 !important;
+	width:auto !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:100px !important;
+	padding-left:40px !important;
+	padding-bottom:50px !important;
+	max-width:none !important;
+	padding-right:40px !important;
+	min-width:0 !important;
+	text-align:center !important;
+	margin-left:0px !important;
+	margin-top:0px !important;
+	margin-bottom:0px !important;
+	margin-right:0px !important;
+}
+*#dm *.dmBody div.u_1438382061
+{
+	float:none !important;
+	top:0px !important;
+	left:0 !important;
+	width:calc(100% - 135px) !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:2px !important;
+	padding-left:0px !important;
+	padding-bottom:2px !important;
+	margin-right:auto !important;
+	margin-left:auto !important;
+	max-width:850px !important;
+	margin-top:-88px !important;
+	margin-bottom:8px !important;
+	padding-right:0px !important;
+	min-width:25px !important;
+	min-height:auto !important;
+}
+*#dm *.dmBody div.u_1729831447
+{
+	float:none !important;
+	top:0px !important;
+	left:0px !important;
+	width:calc(100% - 145px) !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:2px !important;
+	padding-left:0px !important;
+	padding-bottom:2px !important;
+	margin-right:145px !important;
+	margin-left:145px !important;
+	max-width:985px !important;
+	margin-top:13px !important;
+	margin-bottom:8px !important;
+	padding-right:0px !important;
+	min-width:25px !important;
+	min-height:auto !important;
+}
+*#dm *.dmBody div.u_1680341512
+{
+	float:none !important;
+	top:0px !important;
+	left:0px !important;
+	width:calc(100% - 79px) !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:2px !important;
+	padding-left:0px !important;
+	padding-bottom:2px !important;
+	margin-right:0px !important;
+	margin-left:79px !important;
+	max-width:916px !important;
+	margin-top:-62px !important;
+	margin-bottom:8px !important;
+	padding-right:0px !important;
+	min-width:25px !important;
+	min-height:auto !important;
+}
+*#dm *.dmBody div.u_1662811305
+{
+	float:none !important;
+	top:0 !important;
+	left:0 !important;
+	width:auto !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:114.5px !important;
+	padding-left:20px !important;
+	padding-bottom:39.5px !important;
+	max-width:100% !important;
+	padding-right:20px !important;
+	min-width:0 !important;
+	text-align:center !important;
+	background-attachment:initial !important;
+	background-size:cover !important;
+	background-repeat:no-repeat !important;
+	margin-right:0px !important;
+	margin-left:0px !important;
+	margin-top:0px !important;
+	margin-bottom:0px !important;
+	background-position:50% 0 !important;
+	min-height:auto !important;
+}
+*#dm *.dmBody div.u_1604465861
+{
+	float:none !important;
+	top:0px !important;
+	left:0 !important;
+	width:calc(100% - 0px) !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:2px !important;
+	padding-left:0px !important;
+	padding-bottom:2px !important;
+	min-height:auto !important;
+	margin-right:auto !important;
+	margin-left:auto !important;
+	max-width:100% !important;
+	margin-top:-45px !important;
+	margin-bottom:8px !important;
+	padding-right:0px !important;
+	min-width:25px !important;
+}
+*#dm *.dmBody div.u_1188832200
+{
+	float:none !important;
+	top:0px !important;
+	left:0 !important;
+	width:188px !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:0px !important;
+	padding-left:0px !important;
+	padding-bottom:0px !important;
+	min-height:auto !important;
+	margin-right:auto !important;
+	margin-left:auto !important;
+	max-width:100% !important;
+	margin-top:0 !important;
+	margin-bottom:0 !important;
+	padding-right:0px !important;
+	min-width:0 !important;
+	text-align:center !important;
+}
+*#dm *.dmBody div.u_1986637604
+{
+	float:none !important;
+	top:0px !important;
+	left:0px !important;
+	width:calc(100% - 471px) !important;
+	position:relative !important;
+	height:auto !important;
+	padding-top:2px !important;
+	padding-left:0px !important;
+	padding-bottom:2px !important;
+	min-height:auto !important;
+	margin-right:416px !important;
+	margin-left:471px !important;
+	max-width:260px !important;
+	margin-top:0px !important;
+	margin-bottom:0px !important;
+	padding-right:0px !important;
+	min-width:25px !important;
+}
+
+</style>
+
+<!-- Flex Sections CSS -->
+
+
+
+
+
+
+
+<style id="globalFontSizeStyle" type="text/css">
+    .font-size-60, .size-60, .size-60 > font { font-size: 60px !important; }.font-size-24, .size-24, .size-24 > font { font-size: 24px !important; }.font-size-32, .size-32, .size-32 > font { font-size: 32px !important; }.font-size-18, .size-18, .size-18 > font { font-size: 18px !important; }.font-size-16, .size-16, .size-16 > font { font-size: 16px !important; }.font-size-13, .size-13, .size-13 > font { font-size: 13px !important; }
+</style>
+<style id="pageFontSizeStyle" type="text/css">
+</style>
+
+
+
+
+<style id="hideAnimFix">
+  .dmDesktopBody:not(.editGrid) [data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) [data-anim-extended] {
+    visibility: hidden;
+  }
+
+  .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-extended] {
+    visibility: hidden !important;
+  }
+
+  #dmRoot:not(.editGrid) .flex-element [data-anim-extended] {
+    visibility: hidden;
+  }
+
+</style>
+
+
+
+
+<style id="fontFallbacks">
+    @font-face {
+  font-family: "Raleway Fallback";
+  src: local('Arial');
+  ascent-override: 89.616%;
+  descent-override: 22.3087%;
+  size-adjust: 104.892%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Belgrano Fallback";
+  src: local('Arial');
+  ascent-override: 87.5736%;
+  descent-override: 24.5914%;
+  size-adjust: 113.0478%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Staatliches Fallback";
+  src: local('Arial');
+  ascent-override: 110.3516%;
+  descent-override: 34.8479%;
+  size-adjust: 86.0885%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Indie Flower Fallback";
+  src: local('Arial');
+  ascent-override: 101.0963%;
+  descent-override: 50.8533%;
+  size-adjust: 96.0177%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Roboto Fallback";
+  src: local('Arial');
+  ascent-override: 92.6709%;
+  descent-override: 24.3871%;
+  size-adjust: 100.1106%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Amiri Fallback";
+  src: local('Arial');
+  ascent-override: 123.7258%;
+  descent-override: 69.7884%;
+  size-adjust: 90.846%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Montserrat Fallback";
+  src: local('Arial');
+  ascent-override: 84.9466%;
+  descent-override: 22.0264%;
+  size-adjust: 113.954%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Poppins Fallback";
+  src: local('Arial');
+  ascent-override: 92.326%;
+  descent-override: 30.7753%;
+  line-gap-override: 8.793%;
+  size-adjust: 113.7274%;
+}@font-face {
+  font-family: "Noto Sans Fallback";
+  src: local('Arial');
+  ascent-override: 100.1833%;
+  descent-override: 27.459%;
+  size-adjust: 106.7044%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Bebas Neue Fallback";
+  src: local('Arial');
+  ascent-override: 116.5002%;
+  descent-override: 38.8334%;
+  size-adjust: 77.2531%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "DM Sans Fallback";
+  src: local('Arial');
+  ascent-override: 94.3696%;
+  descent-override: 29.4905%;
+  size-adjust: 105.1186%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Noto Serif Fallback";
+  src: local('Arial');
+  ascent-override: 98.7162%;
+  descent-override: 27.0569%;
+  size-adjust: 108.2903%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Roboto Slab Fallback";
+  src: local('Arial');
+  ascent-override: 97.7562%;
+  descent-override: 25.2818%;
+  size-adjust: 107.1903%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Ubuntu Fallback";
+  src: local('Arial');
+  ascent-override: 90.8147%;
+  descent-override: 18.4163%;
+  line-gap-override: 2.7283%;
+  size-adjust: 102.6265%;
+}@font-face {
+  font-family: "Alata Fallback";
+  src: local('Arial');
+  ascent-override: 107.1847%;
+  descent-override: 27.2834%;
+  size-adjust: 102.6265%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Alice Fallback";
+  src: local('Arial');
+  ascent-override: 89.5621%;
+  descent-override: 23.0556%;
+  size-adjust: 101.4938%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Rock Salt Fallback";
+  src: local('Arial');
+  ascent-override: 112.6419%;
+  descent-override: 54.69%;
+  line-gap-override: 2.2209%;
+  size-adjust: 140.708%;
+}@font-face {
+  font-family: "DM Serif Text Fallback";
+  src: local('Arial');
+  ascent-override: 103.6954%;
+  descent-override: 33.5309%;
+  size-adjust: 99.908%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Cinzel Fallback";
+  src: local('Arial');
+  ascent-override: 76.7937%;
+  descent-override: 29.2697%;
+  size-adjust: 127.0938%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Arial Fallback";
+  src: local('Arial');
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Barlow Fallback";
+  src: local('Arial');
+  ascent-override: 103.1323%;
+  descent-override: 20.6265%;
+  size-adjust: 96.9628%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Overlock Fallback";
+  src: local('Arial');
+  ascent-override: 106.0693%;
+  descent-override: 27.8898%;
+  size-adjust: 91.0726%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Lato Fallback";
+  src: local('Arial');
+  ascent-override: 101.3181%;
+  descent-override: 21.865%;
+  size-adjust: 97.4159%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Delius Fallback";
+  src: local('Arial');
+  ascent-override: 97.1488%;
+  descent-override: 26.6026%;
+  size-adjust: 101.4938%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Rubik Fallback";
+  src: local('Arial');
+  ascent-override: 88.5654%;
+  descent-override: 23.6806%;
+  size-adjust: 105.5717%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Exo Fallback";
+  src: local('Arial');
+  ascent-override: 95.3209%;
+  descent-override: 31.1077%;
+  size-adjust: 105.1186%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Open Sans Fallback";
+  src: local('Arial');
+  ascent-override: 101.1768%;
+  descent-override: 27.7323%;
+  size-adjust: 105.6416%;
+  line-gap-override: 0%;
+ }
+</style>
+
+
+<!-- End render the required css and JS in the head section -->
+
+
+
+
+
+
+
+
+
+  <link type="application/rss+xml" rel="alternate" href="https://www.smallcollegeconsulting.com/feed/rss2"/>
+  <link type="application/atom+xml" rel="alternate" href="https://www.smallcollegeconsulting.com/feed/atom"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.smallcollegeconsulting.com/sacscoc-accreditation"/>
+  <title>
+    
+    SACSCOC Accreditation | Small College Consulting
+  
+  </title>
+  <meta name="description" content="Get expert support for SACSCOC accreditation. Tailored services ensure your college meets compliance &amp; prepares effectively. Contact us today!"/>
+
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="SACSCOC Accreditation | Small College Consulting"/>
+  <meta name="twitter:description" content="Get expert support for SACSCOC accreditation. Tailored services ensure your college meets compliance &amp; prepares effectively. Contact us today!"/>
+  <meta name="twitter:image" content="https://lirp.cdn-website.com/f92b4549/dms3rep/multi/opt/New+Logo_blue+on+white-1920w.png"/>
+  <meta property="og:description" content="Get expert support for SACSCOC accreditation. Tailored services ensure your college meets compliance &amp; prepares effectively. Contact us today!"/>
+  <meta property="og:title" content="SACSCOC Accreditation | Small College Consulting"/>
+  <meta property="og:image" content="https://lirp.cdn-website.com/f92b4549/dms3rep/multi/opt/New+Logo_blue+on+white-1920w.png"/>
+
+
+
+
+<!-- SYS- VVNfRElSRUNUX1BST0RVQ1RJT04= -->
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body id="dmRoot" data-page-alias="sacscoc-accreditation"  class="dmRoot dmDesktopBody fix-mobile-scrolling addCanvasBorder dmResellerSite dmLargeBody responsiveTablet "
+      style="padding:0;margin:0;"
+      
+    >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= Site Content ========= -->
+<div id="dm" class='dmwr'>
+    
+    <div class="dm_wrapper standard-var5 widgetStyle-3 standard">
+         <div dmwrapped="true" id="1901957768" class="dm-home-page" themewaschanged="true"> <div dmtemplateid="Hamburger" data-responsive-name="ResponsiveDesktopTopTabletHamburger" class="runtime-module-container dm-bfs dm-layout-sec hasAnimations rows-1200 hamburger-reverse layout-drawer_push-content hasStickyHeader dmPageBody d-page-1716942098 inputs-css-clean dmFreeHeader" id="dm-outer-wrapper" data-page-class="1716942098" data-soch="true" data-background-parallax-selector=".dmHomeSection1, .dmSectionParallex"> <div id="dmStyle_outerContainer" class="dmOuter"> <div id="dmStyle_innerContainer" class="dmInner"> <div class="dmLayoutWrapper standard-var dmStandardDesktop"> <div id="site_content"> <div class="p_hfcontainer showOnMedium"> <div id="hamburger-drawer" class="hamburger-drawer layout-drawer" layout="2fef9973807a46bbbdad5938e9d68e93===header" data-origin="side-reverse" data-auto-height="true" data-push-content="true"> <div class="u_1672964499 dmRespRow middleDrawerRow" style="text-align: center;" id="1672964499"> <div class="dmRespColsWrapper" id="1863812149"> <div class="u_1925396758 dmRespCol small-12 medium-12 large-12 empty-column" id="1925396758"></div> 
+</div> 
+</div> 
+ <div class="u_1267204463 dmRespRow" style="text-align: center;" id="1267204463"> <div class="dmRespColsWrapper" id="1255890306"> <div class="u_1245316120 dmRespCol small-12 medium-12 large-12" id="1245316120"> <nav class="u_1268786317 effect-text-color main-navigation unifiednav dmLinksMenu" role="navigation" layout-main="vertical_nav_layout_4" layout-sub="" data-show-vertical-sub-items="HIDE" id="1268786317" dmle_extension="onelinksmenu" data-element-type="onelinksmenu" data-logo-src="" alt="" data-nav-structure="VERTICAL" wr="true" icon="true" surround="true" adwords="" navigation-id="unifiedNav"> <ul role="menubar" class="unifiednav__container  " data-auto="navigation-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/" class="unifiednav__item  dmUDNavigationItem_00  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Introduction" data-auto="page-text-style">Introduction<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/about" class="unifiednav__item  dmUDNavigationItem_010101436714  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         About
+        " data-auto="page-text-style">About<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/specialities" class="unifiednav__item  dmUDNavigationItem_010101357537  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Consultative Services" data-auto="page-text-style">Consultative Services<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/small-college-voice-ai" class="unifiednav__item  dmUDNavigationItem_010101959296  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Small College AI" data-auto="page-text-style">Small College AI<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/affiliate-consultants" class="unifiednav__item  dmUDNavigationItem_010101119407  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Affiliate Consultants" data-auto="page-text-style">Affiliate Consultants<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/sacscoc-accreditation" class="unifiednav__item  dmNavItemSelected  dmUDNavigationItem_010101861715  " target="" data-target-page-alias="" aria-current="page" data-auto="selected-page"> <span class="nav-item-text " data-link-text="SACSCOC Accreditation" data-auto="page-text-style">SACSCOC Accreditation<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/future-options-assessment" class="unifiednav__item  dmUDNavigationItem_010101191377  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Future Options Assessment" data-auto="page-text-style">Future Options Assessment<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/contact" class="unifiednav__item  dmUDNavigationItem_010101943230  " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Contact
+        " data-auto="page-text-style">Contact<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</nav> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1156223334 dmRespRow" style="text-align: center;" id="1156223334"> <div class="dmRespColsWrapper" id="1439706940"> <div class="u_1829935405 dmRespCol small-12 medium-12 large-12" id="1829935405"> <a data-display-type="block" class="u_1652060487 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient" file="false" href="/contact" data-element-type="dButtonLinkId" id="1652060487"> <span class="iconBg" id="1795867943"> <span class="icon hasFontIcon icon-star" id="1408339259"></span> 
+</span> 
+ <span class="text" id="1419385459">Book a consultation</span> 
+</a> 
+ <div class="u_1795023086 align-center text-align-center dmSocialHub gapSpacing" id="1795023086" dmle_extension="social_hub" data-element-type="social_hub" wr="true" networks="" icon="true" surround="true" adwords=""> <div class="socialHubWrapper"> <div class="socialHubInnerDiv "> <a href="https://twitter.com/" target="_blank" dm_dont_rewrite_url="true" aria-label="twitter" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Twitter&apos;)"> <span class="dmSocialTwitter dm-social-icons-twitter oneIcon socialHubIcon style8" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+ <a href="http://linkedin.com/" target="_blank" dm_dont_rewrite_url="true" aria-label="linkedin" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Linkedin&apos;)"> <span class="dmSocialLinkedin icon-linkedin oneIcon socialHubIcon style8" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+ <a href="https://wa.me/" dm_dont_rewrite_url="true" aria-label="whatsapp" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Whatsapp&apos;)"> <span class="dmSocialWhatsapp dm-social-icons-whatsapp oneIcon socialHubIcon style8" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="layout-drawer-overlay" id="layout-drawer-overlay"></div> 
+</div> 
+ <div class="site_content"> <div id="hamburger-header-container" class="showOnMedium hamburger-header-container p_hfcontainer"> <div id="hamburger-header" class="hamburger-header p_hfcontainer" layout="44dc38f951e9489490b055748e10ba9f===header"> <div class="u_1705692124 dmRespRow backgroundLogoBackgroundColor" style="text-align: center;" id="1705692124"> <div class="dmRespColsWrapper" id="1469942216"> <div class="u_1655486006 dmRespCol small-12 large-6 medium-6" id="1655486006"> <div class="u_1923160809 imageWidget align-center" data-element-type="image" data-widget-type="image" id="1923160809"> <a href="/" id="1573522578" file="false"><img src="https://lirp.cdn-website.com/f92b4549/dms3rep/multi/opt/New+Logo_blue+on+white-1920w.png" id="1761992403" class="" data-inject="logo" data-dm-image-path="https://irp.cdn-website.com/f92b4549/dms3rep/multi/New+Logo_blue+on+white.png" width="1920" height="1080" alt="Logo for Small College Consulting: Blue and teal illustration of a building above an open book, with company name." onerror="handleImageLoadError(this)"/></a> 
+</div> 
+</div> 
+ <div class="u_1855030259 dmRespCol small-12 large-6 medium-6" id="1855030259"> <a data-display-type="block" class="u_1093406081 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient backgroundOnLogoBackgroundColor" file="false" href="/contact" data-element-type="dButtonLinkId" id="1093406081"> <span class="iconBg" id="1912178202"> <span class="icon hasFontIcon icon-star" id="1114284616"></span> 
+</span> 
+ <span class="text logoBackgroundColor" id="1565180134">Contact Us</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <button class="showOnMedium layout-drawer-hamburger hamburger-on-header" id="layout-drawer-hamburger" aria-label="menu" aria-controls="hamburger-drawer" aria-expanded="false"> <span class="hamburger__slice"></span> 
+ <span class="hamburger__slice"></span> 
+ <span class="hamburger__slice"></span> 
+</button> 
+ <div class="dmHeaderContainer fHeader d-header-wrapper showOnLarge"> <div id="hcontainer" class="u_hcontainer dmHeader p_hfcontainer" freeheader="true" headerlayout="b58ba5b5703b4cd7b5f5f7951565dc87===horizontal-layout-5" layout="f014fc9487554eb885e18628ee6309e9===header" mini-header-show-only-navigation-row="true"> <div dm:templateorder="85" class="dmHeaderResp dmHeaderStack noSwitch" id="1709005236"> <div class="u_1465769121 dmRespRow dmDefaultListContentRow" style="text-align:center" id="1465769121"> <div class="dmRespColsWrapper" id="1404094177"> <div class="u_1392608182 small-12 dmRespCol large-2 medium-2" id="1392608182"> <div class="u_1418865570 imageWidget align-center hasFullWidth" data-element-type="image" data-widget-type="image" id="1418865570"> <a href="/" id="1256295644"><img src="https://lirp.cdn-website.com/f92b4549/dms3rep/multi/opt/New+Logo_blue+on+white-1920w.png" alt="Logo for Small College Consulting: Blue and teal illustration of a building above an open book, with company name." id="1121882727" class="" data-dm-image-path="https://irp.cdn-website.com/f92b4549/dms3rep/multi/New+Logo_blue+on+white.png" width="1920" height="1080" onerror="handleImageLoadError(this)"/></a> 
+</div> 
+</div> 
+ <div class="u_1550057671 dmRespCol small-12 large-8 medium-8" id="1550057671"> <span id="1404306328"></span> 
+ <nav class="u_1630621681 effect-top-bottom main-navigation unifiednav dmLinksMenu" role="navigation" layout-main="horizontal_nav_layout_3" layout-sub="submenu_horizontal_1" data-show-vertical-sub-items="HOVER" id="1630621681" dmle_extension="onelinksmenu" data-element-type="onelinksmenu" data-inject="menu" wr="true" icon="true" surround="true" adwords="" navigation-id="unifiedNav"> <ul role="menubar" class="unifiednav__container  " data-auto="navigation-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/" class="unifiednav__item  dmUDNavigationItem_00 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Introduction" data-auto="page-text-style">Introduction<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/about" class="unifiednav__item  dmUDNavigationItem_010101436714 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         About
+        " data-auto="page-text-style">About<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/specialities" class="unifiednav__item  dmUDNavigationItem_010101357537 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Consultative Services" data-auto="page-text-style">Consultative Services<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/small-college-voice-ai" class="unifiednav__item  dmUDNavigationItem_010101959296 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Small College AI" data-auto="page-text-style">Small College AI<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/affiliate-consultants" class="unifiednav__item  dmUDNavigationItem_010101119407 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Affiliate Consultants" data-auto="page-text-style">Affiliate Consultants<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/sacscoc-accreditation" class="unifiednav__item  dmNavItemSelected  dmUDNavigationItem_010101861715 white-text " target="" data-target-page-alias="" aria-current="page" data-auto="selected-page"> <span class="nav-item-text " data-link-text="SACSCOC Accreditation" data-auto="page-text-style">SACSCOC Accreditation<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/future-options-assessment" class="unifiednav__item  dmUDNavigationItem_010101191377 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="Future Options Assessment" data-auto="page-text-style">Future Options Assessment<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/contact" class="unifiednav__item  dmUDNavigationItem_010101943230 white-text " target="" data-target-page-alias=""> <span class="nav-item-text " data-link-text="
+         Contact
+        " data-auto="page-text-style">Contact<span class="icon icon-angle-down"></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</nav> 
+</div> 
+ <div class="u_1005306451 dmRespCol small-12 large-2 medium-2" id="1005306451"> <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1579187056" file="false" href="http://www.nscec.com" data-element-type="dButtonLinkId" id="1579187056" target="_blank"> <span class="iconBg" aria-hidden="true" id="1183567949"> <span class="icon hasFontIcon icon-star" id="1395685744"></span> 
+</span> 
+ <span class="text" id="1331860467">National Small College Conference</span> 
+</a> 
+ <a data-display-type="block" class="align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient flexButton u_1199018709" file="false" href="https://youtube.com/@smallcollegemovement?si=1rbYoENntLPM2q7C" data-element-type="dButtonLinkId" id="1199018709" target="_blank"> <span class="iconBg" aria-hidden="true" id="1960894684"> <span class="icon hasFontIcon icon-star" id="1576682207"></span> 
+</span> 
+ <span class="text" id="1407429211">Small College Movement Podcast</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="stickyHeaderSpacer" id="stickyHeaderSpacer" data-new="true"></div> 
+ <div dmwrapped="true" id="dmFirstContainer" class="dmBody u_dmStyle_template_sacscoc-accreditation dm-home-page" themewaschanged="true"> <div id="allWrapper" class="allWrapper"><!-- navigation placeholders --> <div id="dm_content" class="dmContent" role="main"> <div dm:templateorder="170" class="dmHomeRespTmpl mainBorder dmRespRowsWrapper dmFullRowRespTmpl" id="1716942098"> <div class="u_1662811305 dmRespRow dmSectionNoParallax" style="text-align: center;" id="1662811305" data-gallery-bg="eyJzbGlkZXMiOlsiaHR0cHM6Ly9pcnQtY2RuLm11bHRpc2NyZWVuc2l0ZS5jb20vbWQvdW5zcGxhc2gvZG1zM3JlcC9tdWx0aS9waG90by0xNTAyNDg3MTAzMzY3LWM5OGY3MTk2MDRmNi5qcGciXSwic3BlZWQiOiIzIiwidHJhbnNpdGlvbiI6InNsaWRlUmlnaHQifQ==" mode="1"> <div class="dmRespColsWrapper" id="1174015445"> <div class="u_1856929711 dmRespCol small-12 medium-12 large-12" id="1856929711"> <div class="u_1604465861 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1604465861" style="transition: none 0s ease 0s; text-align: left; display: block;"> <h1 class="m-size-48 text-align-center size-60"><span class="m-font-size-48 font-size-60" style="color:rgb(255, 255, 255);display:unset;font-family:Barlow, 'Barlow Fallback';">SACSCOC Accreditation</span></h1> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1941417359 dmRespRow" style="text-align: center;" id="1941417359"> <div class="dmRespColsWrapper" id="1215094190"> <div class="u_1683190946 dmRespCol small-12 medium-12 large-12" id="1683190946" data-anim-desktop="none"> <span id="1464799156"></span> 
+ <div class="u_1438382061 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1438382061" style="transition: none; text-align: left; display: block;"><p class="m-size-16 text-align-center size-24" style="line-height: 1.5;"><strong class="font-size-24 m-font-size-16" m-font-size-set="true" style="font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';font-style:normal;">Strategic. Structured. Confident Accreditation Preparation.</strong></p><p style="line-height: 1.5;"><span style="display: initial;"><br/></span></p><p class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Small College Consulting partners with institutional leaders to navigate SACSCOC accreditation with clarity and confidence. We understand the unique capacity challenges of small colleges and provide practical, high-impact support that strengthens documentation, prepares campus teams, and reduces accreditation risk.</span></p><p><br/></p> <h2 class="text-align-center m-size-16 size-24"><strong class="m-font-size-16 font-size-24" m-font-size-set="true" style="font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Why Strategic Accreditation Support Matters</strong></h2> 
+<p><br/></p><p class="m-size-16"><span m-font-size-set="true" style="display: initial; font-weight: normal;" class="m-font-size-16">SACSCOC reaffirmation is more than a compliance exercise. It is a high-stakes institutional milestone. Clear organization, strong narratives, and confident committee preparation can significantly influence outcomes.</span></p><p><br/></p><p class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Our approach helps institutions:</span></p> <ul class="defaultList bullet"><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Reduce last-minute compliance stress</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Strengthen narrative clarity and evidence alignment</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Prepare leadership for peer review engagement</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Respond strategically to committee findings</span></li><li class="m-size-16" style="line-height: 1.5;"><span class="m-font-size-16" m-font-size-set="true" style="display: initial; font-weight: normal;">Position the institution for a successful outcome</span><span style="display: initial;"><br/><br/></span></li></ul> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1712695556 dmRespRow" style="text-align: center;" id="1712695556"> <div class="dmRespColsWrapper" id="1178802578"> <div class="dmRespCol small-12 u_1916453126 medium-12 large-12" id="1916453126"> <div class="u_1680341512 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1680341512" style="transition: none 0s ease 0s; text-align: left; display: block;"> <h2 class="text-align-center m-text-align-center m-size-26 size-32"><span class="font-size-32 m-font-size-26" style="color:rgb(255, 255, 255);display:unset;font-family:Barlow, 'Barlow Fallback';">Our Core Accreditation Services</span></h2> 
+</div> 
+ <div class="u_1729831447 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1729831447" style="transition: none; text-align: left; display: block;"> <h3 class="size-18 m-size-16" style="line-height: 1.5;"><strong class="font-size-18 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Decennial Reaffirmation Partnership (3-Year Support)</strong></h3> 
+<p class="size-16 m-size-16"><span style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';" class="font-size-16 m-font-size-16" m-font-size-set="true">A comprehensive engagement aligned with SACSCOC&rsquo;s official timeline.</span></p><p><span style="display: initial;"><br/></span></p> <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Leadership orientation and reaffirmation planning</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Compliance Certification coaching and draft review</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Focused Report development after Off-Site review</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">On-Site Visit preparation and leadership coaching</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Board action interpretation and Monitoring Report support</span></li><li><span style="display: initial;"><br/></span></li></ul> 
+ <h3 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="m-font-size-16 font-size-18" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Compliance Certification Intensive</strong></h3> 
+<p class="m-size-16 size-16"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Targeted support during the critical writing and documentation phase.</span></p> <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Author training workshops</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Narrative review and editing guidance</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Evidence organization strategy</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Submission readiness assessment</span></li><li><span style="display: initial;"><br/></span></li></ul> 
+ <h3 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="m-font-size-16 font-size-18" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Peer Review &amp; On-Site Visit Preparation</strong></h3> 
+ <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">High-impact preparation for the most visible stage of reaffirmation.</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Off-Site findings interpretation</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Focused Report strategy and drafting support</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">On-Site agenda development and logistics guidance</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Leadership interview preparation</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Response Report drafting assistance</span></li></ul> 
+<p><span style="display: initial;"><br/></span></p> <h3 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="m-font-size-16 font-size-18" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Fifth-Year Interim Report Support</strong></h3> 
+<p class="m-size-16 size-16"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Structured, efficient guidance for interim compliance reporting.</span></p> <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Instruction interpretation and planning support</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Narrative coaching and documentation alignment</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Draft review and improvement recommendations</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Committee response guidance if needed</span></li></ul> 
+<p><span style="display: initial;"><br/></span></p> <h3 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="m-font-size-16 font-size-18" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Specialized Accreditation Consulting</strong></h3> 
+ <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Substantive Change applications</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Sanctions response strategy</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Special Committee preparation</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Candidacy readiness consulting</span></li></ul> 
+<p><span style="display: initial;"><br/></span></p> <h2 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="m-font-size-16 font-size-18" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Flexible Engagement Options</strong></h2> 
+<p class="m-size-16 size-16"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">We tailor our work to your institution&rsquo;s needs through:</span></p> <ul class="defaultList bullet"><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Multi-year comprehensive partnerships</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Phase-specific service packages</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Retainer advisory relationships</span></li><li class="m-size-16 size-16" style="color: rgb(255, 255, 255);"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">Short-term targeted consulting projects</span></li></ul> 
+<p><br/></p><p><span style="display: initial;"><br/></span></p> <h2 class="m-size-16 size-18" style="line-height: 1.5;"><strong class="font-size-18 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:bold;display:initial;font-family:Lato, 'Lato Fallback';">Begin with a Strategic Conversation</strong></h2> 
+<p class="m-size-16 size-16"><span class="font-size-16 m-font-size-16" m-font-size-set="true" style="color:rgb(255, 255, 255);font-weight:400;display:initial;font-family:Lato, 'Lato Fallback';">We welcome the opportunity to discuss your upcoming SACSCOC milestones and explore how Small College Consulting can support your institution&rsquo;s success.</span><span style="display: initial;"><br/></span></p></div> 
+ <div class="u_1188832200 imageWidget align-center" data-element-type="image" data-widget-type="image" id="1188832200"><img src="https://lirp.cdn-website.com/f92b4549/dms3rep/multi/opt/Headshot+Mynatt-1920w.jpg" alt="A man with gray hair and a mustache smiles while wearing a light blue button-down shirt and a patterned necktie." id="1538705608" class="" width="317" height="342" data-dm-image-path="https://irp.cdn-website.com/f92b4549/dms3rep/multi/Headshot+Mynatt.jpg" onerror="handleImageLoadError(this)"/></div> 
+ <div class="u_1986637604 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1986637604" style="text-align: left; display: block; transition: none;"><p><strong style="font-weight: bold; display: initial; color: rgb(255, 255, 255);">Danny Mynatt, Ph.D.</strong></p><p><br/></p> <ul class="defaultList bullet"><li style="color: rgb(255, 255, 255);"><span style="font-weight: normal; display: initial; color: rgb(255, 255, 255);">Affiliate Consultant</span></li><li style="color: rgb(255, 255, 255);"><span style="font-weight: normal; display: initial; color: rgb(255, 255, 255);">SACSCOC Accreditation Specialist</span></li><li style="color: rgb(255, 255, 255);"><span style="font-weight: normal; display: initial; color: rgb(255, 255, 255);">Former Provost, Vice Provost, Dean at several small colleges and universities</span></li><li style="color: rgb(255, 255, 255);"><span style="font-weight: normal; display: initial; color: rgb(255, 255, 255);">Chaired 17 SACSCOC Committees</span></li><li><span style="display: initial;"><br/></span></li></ul> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="dmFooterContainer"> <div id="fcontainer" class="u_fcontainer f_hcontainer dmFooter p_hfcontainer"> <div dm:templateorder="250" class="dmFooterResp generalFooter" id="1943048428"> <div class="dmRespRow u_1531474404" id="1531474404"> <div class="dmRespColsWrapper" id="1057911084"> <div class="dmRespCol large-6 medium-6 small-12" id="1294007559"> <div class="dmNewParagraph u_1873663506" data-element-type="paragraph" data-version="5" id="1873663506" style="transition: opacity 1s ease-in-out 0s;"><p class="m-size-9 size-13"><span class="font-size-13 m-font-size-9" style="display: initial; color: rgb(255, 255, 255);">Copyright small college consulting 2024</span></p></div> 
+</div> 
+ <div class="dmRespCol small-12 large-6 medium-6 content-removed" id="1790854489"> <div class="align-center text-align-center dmSocialHub gapSpacing" id="1329075088" dmle_extension="social_hub" data-element-type="social_hub" wr="true" networks="" icon="true" surround="true" adwords=""> <div class="socialHubWrapper"> <div class="socialHubInnerDiv "> <a href="mailto:info@smallcollegeconsulting.com" dm_dont_rewrite_url="true" aria-label="email" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Email&apos;)"> <span class="dmSocialEmail dm-social-icons-email oneIcon socialHubIcon style6" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+ <a href="https://www.linkedin.com/company/small-college-consulting/?viewAsMember=true" target="_blank" dm_dont_rewrite_url="true" aria-label="linkedin" onclick="dm_gaq_push_event &amp;&amp; dm_gaq_push_event(&apos;socialLink&apos;, &apos;click&apos;, &apos;Linkedin&apos;)"> <span class="dmSocialLinkedin icon-linkedin oneIcon socialHubIcon style6" aria-hidden="true" data-hover-effect=""></span> 
+</a> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div id="1236746004" dmle_extension="powered_by" data-element-type="powered_by" icon="true" surround="false"></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+
+    </div>
+</div>
+<!--  Add full CSS and Javascript before the close tag of the body if needed -->
+<!-- ========= JS Section ========= -->
+<script>
+    var isWLR = true;
+
+    window.customWidgetsFunctions = {};
+    window.customWidgetsStrings = {};
+    window.collections = {};
+    window.currentLanguage = "ENGLISH"
+    window.isSitePreview = false;
+</script>
+<script type="text/javascript">
+
+    var d_version = "production_6359";
+    var build = "2026-04-14T12_49_38";
+    window['v' + 'ersion'] = d_version;
+
+    function buildEditorParent() {
+        window.isMultiScreen = true;
+        window.editorParent = {};
+        window.previewParent = {};
+        window.assetsCacheQueryParam = "?version=2026-04-14T12_49_38";
+        try {
+            var _p = window.parent;
+            if (_p && _p.document && _p.$ && _p.$.dmfw) {
+                window.editorParent = _p;
+            } else if (_p.isSitePreview) {
+                window.previewParent = _p;
+            }
+        } catch (e) {
+
+        }
+    }
+
+    buildEditorParent();
+</script>
+
+<!-- Load jQuery -->
+<script type="text/javascript" id='d-js-jquery'
+        src="https://static.cdn-website.com/libs/jquery/jquery-3.7.0.min.js"></script>
+<!-- End Load jQuery -->
+<!-- Injecting site-wide before scripts -->
+<!-- End Injecting site-wide to the head -->
+
+
+<script>
+    var _jquery = window.$;
+
+    var jqueryAliases = ['$', 'jquery', 'jQuery'];
+
+    jqueryAliases.forEach((alias) => {
+        Object.defineProperty(window, alias, {
+            get() {
+                return _jquery;
+            },
+            set() {
+                console.warn("Trying to over-write the global jquery object!");
+            }
+        });
+    });
+    window.jQuery.migrateMute = true;
+</script>
+<script>
+    window.cookiesNotificationMarkupPreview = 'null';
+</script>
+
+<!-- HEAD RT JS Include -->
+<script id='d-js-params'>
+    window.INSITE = window.INSITE || {};
+    window.INSITE.device = "desktop";
+
+    window.rtCommonProps = {};
+    rtCommonProps["rt.ajax.ajaxScriptsFix"] =true;
+    rtCommonProps["rt.pushnotifs.sslframe.encoded"] = 'aHR0cHM6Ly97c3ViZG9tYWlufS5wdXNoLW5vdGlmcy5jb20=';
+    rtCommonProps["runtimecollector.url"] = 'https://rtc.multiscreensite.com';
+    rtCommonProps["performance.tabletPreview.removeScroll"] = 'false';
+    rtCommonProps["inlineEditGrid.snap"] =true;
+    rtCommonProps["popup.insite.cookie.ttl"] = '0.5';
+    rtCommonProps["rt.pushnotifs.force.button"] =true;
+    rtCommonProps["common.mapbox.token"] = 'pk.eyJ1IjoiZGFubnliMTIzIiwiYSI6ImNqMGljZ256dzAwMDAycXBkdWxwbDgzeXYifQ.Ck5P-0NKPVKAZ6SH98gxxw';
+    rtCommonProps["common.mapbox.js.override"] =false;
+    rtCommonProps["common.here.appId"] = 'iYvDjIQ2quyEu0rg0hLo';
+    rtCommonProps["common.here.appCode"] = '1hcIxLJcbybmtBYTD9Z1UA';
+    rtCommonProps["isCoverage.test"] =false;
+    rtCommonProps["ecommerce.ecwid.script"] = 'https://app.multiscreenstore.com/script.js';
+    rtCommonProps["common.resources.dist.cdn"] =true;
+    rtCommonProps["common.build.dist.folder"] = 'production/6359';
+    rtCommonProps["common.resources.cdn.host"] = 'https://static.cdn-website.com';
+    rtCommonProps["common.resources.folder"] = 'https://static.cdn-website.com/mnlt/production/6359';
+    rtCommonProps["feature.flag.runtime.backgroundSlider.preload.slowly"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.jitAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.sites.google.analytics.gtag"] =true;
+    rtCommonProps["feature.flag.runOnReadyNewTask"] =true;
+    rtCommonProps["isAutomation.test"] =false;
+    rtCommonProps["booking.cal.api.domain"] = 'api.cal.com';
+
+    
+    rtCommonProps['common.mapsProvider'] = 'mapbox';
+    
+    rtCommonProps['common.mapsProvider.version'] = '0.52.0';
+    rtCommonProps['common.geocodeProvider'] = 'mapbox';
+    rtCommonProps['server.for.resources'] = '';
+    rtCommonProps['feature.flag.lazy.widgets'] = true;
+    rtCommonProps['feature.flag.single.wow'] = false;
+    rtCommonProps['feature.flag.disallowPopupsInEditor'] = true;
+    rtCommonProps['feature.flag.mark.anchors'] = true;
+    rtCommonProps['captcha.public.key'] = '6LffcBsUAAAAAMU-MYacU-6QHY4iDtUEYv_Ppwlz';
+    rtCommonProps['captcha.invisible.public.key'] = '6LeiWB8UAAAAAHYnVJM7_-7ap6bXCUNGiv7bBPME';
+    rtCommonProps["images.sizes.small"] =160;
+    rtCommonProps["images.sizes.mobile"] =640;
+    rtCommonProps["images.sizes.tablet"] =1280;
+    rtCommonProps["images.sizes.desktop"] =1920;
+    rtCommonProps["modules.resources.cdn"] =true;
+    rtCommonProps["import.images.storage.imageCDN"] = 'https://lirp.cdn-website.com/';
+    rtCommonProps["feature.flag.runtime.inp.threshold"] =150;
+    rtCommonProps["feature.flag.performance.logs"] =false;
+    rtCommonProps["site.widget.form.captcha.type"] = 'g_recaptcha';
+    rtCommonProps["friendly.captcha.site.key"] = 'FCMGSQG9GVNMFS8K';
+    rtCommonProps["cookiebot.mapbox.consent.category"] = 'marketing';
+    // feature flags that's used out of runtime module (in  legacy files)
+    rtCommonProps["platform.monolith.personalization.dateTimeCondition.popupMsgAction.moveToclient.enabled"] =true;
+
+    window.rtFlags = {};
+    rtFlags["unsuspendEcwidStoreOnRuntime.enabled"] =true;
+    rtFlags["scripts.widgetCount.enabled"] =true;
+    rtFlags["fnb.animations.tracking.enabled"] =true;
+    rtFlags["ecom.ecwidNewUrlStructure.enabled"] = false;
+    rtFlags["ecom.ecwid.accountPage.emptyBaseUrl.enabled"] = true;
+    rtFlags["ecom.ecwid.pages.links.disable.listeners"] = true;
+    rtFlags["ecom.ecwid.storefrontV3.enabled"] = false;
+    rtFlags["ecom.ecwid.old.store.fix.facebook.share"] = true;
+    rtFlags["feature.flag.photo.gallery.exact.size"] =true;
+    rtFlags["geocode.search.localize"] =false;
+    rtFlags["feature.flag.runtime.newAnimation.asyncInit.setTimeout.enabled"] =false;
+    rtFlags["twitter.heightLimit.enabled"] = true;
+    rtFlags["runtime.lottieOverflow"] =false;
+    rtFlags["runtime.monitoring.sentry.ignoreErrors"] = "";
+    rtFlags["streamline.monolith.personalization.supportMultipleConditions.enabled"] =false;
+    rtFlags["flex.animation.design.panel.layout"] =true;
+    rtFlags["runtime.cwv.report.cls.enabled"] =false;
+    rtFlags["runtime.cwv.report.lcp.enabled"] =false;
+    rtFlags["contact.form.useActiveForm"] =true;
+    rtFlags["contact.form.custom.errors.enabled"] =false;
+    rtFlags["runtime.ssr.productStore.internal.observer"] =true;
+    rtFlags["runtime.ssr.productCustomizations"] =true;
+    rtFlags["runtime.ssr.runtime.filter-sort.newFilterSortWidgetWithOptions.enabled"] =true;
+    rtFlags["runtime.ssr.ssrSlider.jumpThreshold.enabled"] =true;
+</script>
+<script src="https://static.cdn-website.com/mnlt/production/6359/_dm/s/rt/dist/scripts/d-js-one-runtime-unified-desktop.min.js"  id="d-js-core"></script>
+<!-- End of HEAD RT JS Include -->
+<script src="https://static.cdn-website.com/mnlt/production/6359/_dm/s/rt/dist/scripts/d-js-jquery-migrate.min.js" ></script>
+<script>
+    
+    $(window).bind("orientationchange", function (e) {
+        $.layoutManager.initLayout();
+        
+    });
+    $(document).resize(function () {
+        
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="d_track_campaign">
+    (function() {
+        if (!window.location.search) {
+            return;
+        }
+        const cleanParams = window.location.search.substring(1); // Strip ?
+        const queryParams = cleanParams.split('&');
+
+        const expires = 'expires=' + new Date().getTime() + 24 * 60 * 60 * 1000;
+        const domain = 'domain=' + window.location.hostname;
+        const path = "path=/";
+
+        queryParams.forEach((param) => {
+            const [key, value = ''] = param.split('=');
+            if (key.startsWith('utm_')) {
+                const cookieName = "_dm_rt_" + key.substring(4);
+                const cookie = cookieName + "=" + value;
+                const joined = [cookie, expires, domain, path].join(";");
+                document.cookie = joined;
+            }
+        });
+    }());
+</script>
+<script type="text/javascript" >
+    var _dm_gaq = {};
+    var _gaq = _gaq || [];
+    var _dm_insite = [];
+</script>
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SZ071685ER"></script>
+
+<script type="text/javascript" id="d_track_ga">
+    window.dataLayer = window.dataLayer || [];
+    _dm_gaq.siteAlias = 'f92b4549';
+    _dm_gaq.externalGaqID = 'non-empty';
+
+    function gtag() { dataLayer.push(arguments); }
+
+    function pushInsiteImpressions(id) {
+        _dm_insite.forEach((rule) => {
+            _dm_gaq.pushEvent(id, 'insite_impression', 'insite', rule.ruleType + '__' + rule.ruleId);
+        });
+    }
+
+    _dm_gaq.pushEvent = function(trackingId, event, category, label, value, additionalParams = {}) {
+        const eventProps = {
+            event_category: category,
+            event_label: label,
+            value,
+            ...additionalParams
+        };
+        gtag('event', event, eventProps);
+    }
+
+    gtag('js', new Date())
+
+    
+gtag('set', 'developer_id.dMDU5Nj', true);
+gtag('config', 'G-SZ071685ER', {
+    'send_page_view': false,
+    'linker': {
+        'domains': ['www.smallcollegeconsulting.com']
+    }
+});
+
+    _dm_gaq.pushEvent('', 'page_view');
+
+    pushInsiteImpressions(_dm_gaq.externalGaqID);
+</script>
+
+
+<script type="text/javascript" id="d_track_sp">
+    ;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+        p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+        };p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+        n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d32hwlnfiv2gyn.cloudfront.net/sp-2.0.0-dm-0.1.min.js","snowplow"));
+    window.dmsnowplow  = window.snowplow;
+
+    dmsnowplow('newTracker', 'cf', 'd32hwlnfiv2gyn.cloudfront.net', { // Initialise a tracker
+        appId: 'f92b4549'
+    });
+
+    // snowplow queries element styles so we wait until CSS calculations are done.
+    requestAnimationFrame(() => {
+        dmsnowplow('trackPageView');
+        _dm_insite.forEach((rule) => {
+            // Specifically in popup only the client knows if it is shown or not so we don't always want to track its impression here
+            // the tracking is in popup.js
+            if (rule.actionName !== "popup") {
+                dmsnowplow('trackStructEvent', 'insite', 'impression', rule.ruleType, rule.ruleId);
+            }
+            window?.waitForDeferred?.('dmAjax', () => {
+                $.DM.events.trigger('event-ruleTriggered', {value: rule});
+            });
+        });
+    });
+</script>
+
+
+
+<div style="display:none;" id="P6iryBW0Wu"></div>
+
+<!-- photoswipe markup -->
+
+
+
+
+
+
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div id="fb-root"
+        data-locale="en"></div>
+<!-- Alias: f92b4549 -->
+<div class="dmPopupMask" id="dmPopupMask"></div>
+<div id="dmPopup" class="dmPopup">
+	<div class="dmPopupCloseWrapper"> <div class="dmPopupClose dm-common-icons-close oneIcon" onclick="dmHidePopup(event);"></div> </div>
+ 	<div class="dmPopupTitle"> <span></span> Share by:</div> 
+	<div class="data"></div>
+</div><script id="d_track_personalization">
+	window?.waitForDeferred?.('dmAjax', () => {
+		// Collects client data and updates cookies used by smart sites
+		window.expireDays = 365;
+		window.visitLength = 30 * 60000;
+		$.setCookie("dm_timezone_offset", (new Date()).getTimezoneOffset(), window.expireDays);
+			setSmartSiteCookiesInternal("dm_this_page_view","dm_last_page_view","dm_total_visits","dm_last_visit");
+	});
+</script>
+<script type="text/javascript">
+    
+    Parameters.NavigationAreaParams.MoreButtonText = 'MORE';
+    
+    Parameters.NavigationAreaParams.LessButtonText = 'LESS';
+    Parameters.HomeLinkText = 'Home';
+    </script>
+<!--  End Script tags -->
+<!--  Site Wide Html Markup -->
+<!--  Site Wide Html Markup -->
+</body>
+</html>
