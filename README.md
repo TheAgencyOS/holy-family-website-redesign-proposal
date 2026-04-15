@@ -21,7 +21,7 @@
 ### Editing the proposal
 
 1. Edit `index.html`.
-2. Commit and push to `main`. Vercel auto-deploys to https://holy-family-two.vercel.app/.
+2. Commit and push to `main`. Vercel auto-deploys to https://hfu-web-proposal.vercel.app/.
 
 ### PDF generation is on hold
 
