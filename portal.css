@@ -144,6 +144,24 @@ select:-webkit-autofill {
     print-color-adjust: exact !important;
     color-adjust: exact !important;
   }
+
+  /* ── UNCLIP EVERYTHING ───────────────────────────────────
+     Screen CSS uses 100vh heroes, overflow:hidden wrappers, and
+     fixed heights — all of which clip content during pagination.
+     Neutralise on print so text and images never get cut off. */
+  html, body, main, section, article, aside, header, footer, div,
+  figure, picture, ul, ol, li, p, blockquote, pre, table {
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    contain: none !important;
+    clip-path: none !important;
+  }
+  /* Sticky/fixed page chrome floats over content in print — drop it */
+  .site-nav, .site-topbar, .site-progress, .mobile-menu-btn,
+  .scroll-progress, .fab-top, .jump-to-top {
+    position: static !important;
+  }
   html, body {
     background: white;
     font-size: 10.25pt;
