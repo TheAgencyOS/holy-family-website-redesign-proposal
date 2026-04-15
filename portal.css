@@ -131,14 +131,84 @@ select:-webkit-autofill {
    PRINT vs SCREEN · the site is the proposal, but screen has chrome
    ════════════════════════════════════════════════════════════════ */
 
-/* ── Print overrides ────────────────────────────────────── */
+/* ── Print overrides ──────────────────────────────────────
+   Shared across index.html and every deep-dive appendix page.
+   The PDF must mirror the on-screen design, so print-color-adjust
+   is forced exact. Images, figures, and named block components
+   must never split across pages when avoidable. */
 @media print {
-  html, body { background: white; }
-  .page { box-shadow: none; }
+  @page { size: Letter; margin: 0.5in 0.55in; }
+
+  html, body, * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  html, body {
+    background: white;
+    font-size: 10.25pt;
+    line-height: 1.4;
+  }
+
+  /* Kill all the chrome — sidebar, toggles, scroll progress, chat */
   .site-nav, .site-topbar, .site-progress, .site-keyhint,
-  .mobile-menu-btn, .mobile-menu-backdrop, .jump-to-top { display: none !important; }
-  main { padding: 0 !important; gap: 0 !important; display: block !important; }
+  .mobile-menu-btn, .mobile-menu-backdrop, .jump-to-top,
+  .scroll-progress, .skip-link, .fab-top, #fabTop,
+  .portal-chat, #portal-chat, [data-concierge], .concierge {
+    display: none !important;
+  }
+
   body { display: block !important; grid-template-columns: none !important; }
+  main {
+    padding: 0 !important;
+    gap: 0 !important;
+    display: block !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Force reveal / intersection-observer driven elements visible —
+     JS animations don't run during a print render. */
+  .reveal, .reveal[data-delay],
+  [data-reveal], [data-animate],
+  .sitemap, .timeline__track {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── Images & figures must never split across pages ── */
+  img, svg, picture, video, canvas {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+  figure, picture, .img, .image, .media, .screenshot,
+  .mockup, .mockup-frame, .fig, .figure, .card, .vp-card,
+  .case-spread, .case-spread__logo, .case-spread__outcomes,
+  .case-spread__pull, .case-spread__credit,
+  .stat, .metric, .tile, .panel, .persona, .persona-card,
+  .timeline__row, .drift, .commitment, .tactic,
+  blockquote, table, tr, thead, tfoot {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Keep headings glued to the content that follows */
+  h1, h2, h3, h4, h5 {
+    break-after: avoid-page !important;
+    page-break-after: avoid !important;
+    break-inside: avoid !important;
+  }
+  p, li { orphans: 3; widows: 3; }
+
+  /* Page box shadow doesn't print */
+  .page { box-shadow: none !important; }
 }
 
 /* ── Screen: sidebar + main layout ──────────────────────── */

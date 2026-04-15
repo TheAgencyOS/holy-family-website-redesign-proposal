@@ -1995,6 +1995,9 @@
       .footer__bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
     }
 
+    /* Appendix cover is a print-only divider — hidden on screen */
+    @media screen { .appendix-cover { display: none !important; } }
+
     /* ════════════════════════════════════════════════════════════════
        PRINT · fit the proposal into the 40-page RFP envelope
        Main proposal runs to <= page 40; appendix sections flow after.
@@ -2030,8 +2033,12 @@
         display: block !important;
         grid-template-columns: none !important;
       }
+      /* Flex main so we can reorder sections with `order` without
+         touching DOM. Main body runs in DOM order (order: 0), budget
+         and closing are pulled up, then the appendix block lands last. */
       main, main#main-content {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
         padding: 0 !important;
         margin: 0 !important;
         gap: 0 !important;
@@ -2039,6 +2046,17 @@
         width: 100% !important;
         align-items: stretch !important;
       }
+      main > * { order: 0; }
+      /* Main body (40 pages): hero…team, case-studies, stewardship, budget, closing.
+         #budget and #closing are pulled past #related via flex `order`
+         so the main body ends cleanly before the appendix divider. */
+      #budget         { order: 10; }
+      #closing        { order: 20; }
+      /* Appendix starts here — cover page, then #related as the index,
+         then (post-merge) all deep-dive PDFs concatenated by build-pdf.sh */
+      .appendix-cover { order: 30; }
+      #related        { order: 40; }
+      .footer         { order: 100; }
 
       /* Force .reveal visible — animations don't run during print */
       .reveal,
@@ -2060,7 +2078,27 @@
         break-inside: auto;
       }
       .section:first-of-type { padding-top: 0.18in !important; }
-      .section__head { margin: 0 0 0.18in 0 !important; max-width: 100% !important; }
+      .section__head {
+        margin: 0 0 0.18in 0 !important;
+        max-width: 100% !important;
+        /* Glue the header to the content that follows — stops orphaned
+           section titles from sitting alone at the bottom of a page. */
+        break-after: avoid-page !important;
+        page-break-after: avoid !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      .section__head + * {
+        break-before: avoid-page !important;
+        page-break-before: avoid !important;
+      }
+      /* Letter signatures and timeline rows — keep with preceding prose
+         so the closing doesn't strand on its own page. */
+      .letter__sig, .letter__signatures, .letter__signoff,
+      .timeline__row, .budget-row, .case-spread__credit {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
       .section__eyebrow { margin-bottom: 6pt !important; font-size: 8pt !important; }
       .section__title {
         font-size: 22pt !important;
@@ -2102,19 +2140,68 @@
         page-break-before: always;
       }
 
-      /* ── Appendix · everything below the 40-page main proposal ── */
-      #case-studies, #stewardship, #related {
+      /* ── Appendix · full cover page + hard breaks between sections ── */
+      .appendix-cover {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 9.5in;
+        padding: 1.2in 1in !important;
+        background: var(--ink, #0f172a) !important;
+        color: var(--cream, #faf9f6) !important;
         page-break-before: always;
+        page-break-after: always;
+        break-before: page;
+        break-after: page;
       }
-      #case-studies::before {
-        content: "Appendix";
-        display: block;
+      .appendix-cover__eyebrow {
         font-family: var(--mono, monospace);
         font-size: 9pt;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #888;
-        margin-bottom: 8pt;
+        opacity: 0.7;
+        margin-bottom: 0.3in;
+      }
+      .appendix-cover__title {
+        font-family: var(--display, serif);
+        font-size: 72pt;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.4in 0;
+        color: var(--teal-bright, #5eead4);
+      }
+      .appendix-cover__lede {
+        font-family: var(--serif, Georgia, serif);
+        font-size: 14pt;
+        line-height: 1.4;
+        max-width: 48ch;
+        margin-bottom: 0.5in;
+        opacity: 0.82;
+      }
+      .appendix-cover__toc {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 12pt;
+        line-height: 1.8;
+        border-top: 1px solid rgba(255,255,255,0.18);
+        padding-top: 0.3in;
+        width: 100%;
+        max-width: 5.8in;
+      }
+      .appendix-cover__toc li { display: flex; gap: 1em; }
+      .appendix-cover__toc span {
+        font-family: var(--mono, monospace);
+        font-size: 9pt;
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+        min-width: 2.2em;
+        padding-top: 0.35em;
+      }
+
+      #case-studies, #stewardship, #budget, #closing, #related {
+        page-break-before: always;
       }
 
       /* Case study spreads: tighten so cases don't each sprawl */
@@ -4020,7 +4107,31 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-       RELATED PAGES — link grid
+       APPENDIX COVER — print-only divider page. Main body runs up to
+       #closing (which is ordered after #related via flex); this cover
+       marks the start of the appendix, which in the final merged PDF
+       includes this #related index plus every deep-dive page appended
+       by build-pdf.sh.
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="appendix-cover" aria-hidden="true">
+    <div class="appendix-cover__eyebrow">Holy Family University · Website Redesign Proposal</div>
+    <div class="appendix-cover__title">Appendix</div>
+    <div class="appendix-cover__lede">Supplementary materials referenced throughout the main proposal. The deep-dive briefs that follow are the same live research pages available at hfu-web-proposal.vercel.app.</div>
+    <ol class="appendix-cover__toc">
+      <li><span>A.1</span> Index of deep dives</li>
+      <li><span>A.2</span> Enrollment intelligence</li>
+      <li><span>A.3</span> AI migration lab</li>
+      <li><span>A.4</span> Peer landscape</li>
+      <li><span>A.5</span> Sitemap atlas</li>
+      <li><span>A.6</span> Student personas</li>
+      <li><span>A.7</span> Three-month sprint (runway)</li>
+      <li><span>A.8</span> Whole-person thesis</li>
+      <li><span>A.9</span> What AI can do · component library · discovery · mockups portal</li>
+    </ol>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       RELATED PAGES — link grid (appendix index)
        ══════════════════════════════════════════════════════════════ -->
   <section class="section" id="related">
     <div class="section__head">
