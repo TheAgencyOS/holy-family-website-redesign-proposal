@@ -2295,6 +2295,1171 @@
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════
+       VISIT PAGE — token extensions + component additions
+       Extends the base :root with component-library tokens drawn from
+       /site/components.html, then layers page-specific scheduling
+       components on top. Every color references a :root property.
+       ═════════════════════════════════════════════════════════════════════ */
+    :root {
+      /* extended component tokens */
+      --paper:           0 0% 100%;
+      --white:           0 0% 100%;
+      --hfu-rose:        335 60% 38%;
+      --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+      /* semantic feedback (matches components.html) */
+      --ok:              152 58% 34%;
+      --ok-soft:         152 58% 94%;
+      --warn:            38 90% 46%;
+      --warn-soft:       38 90% 94%;
+      --danger:          4 70% 48%;
+      --danger-soft:     4 70% 95%;
+
+      /* calendar hero accent tints (newtown vs philadelphia, cream-friendly) */
+      --campus-phl:      204 100% 33%;   /* matches --hfu-blue */
+      --campus-new:      44 95% 46%;     /* matches --hfu-yellow-deep */
+    }
+
+    /* shared section rhythm (warm cream is default body bg) */
+    .v-section {
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+    }
+    .v-section--alt {
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border-soft));
+      border-bottom: 1px solid hsl(var(--border-soft));
+    }
+    .v-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .v-eyebrow {
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .v-eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .v-section__head {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+    .v-section__head h2 {
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      letter-spacing: -0.024em;
+      color: hsl(var(--hfu-navy));
+      margin-top: 16px;
+      line-height: 1.05;
+    }
+    .v-section__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .v-section__head p {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 48ch;
+    }
+    @media (max-width: 820px) {
+      .v-section__head { grid-template-columns: 1fr; align-items: start; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       CALENDAR HERO — two-column, no full-bleed photo
+       Left: eyebrow + headline + lede + 3 visit cards + CTAs
+       Right: editorial two-campus schematic (SVG-style diagram)
+       ═════════════════════════════════════════════════════════════════ */
+    .v-hero {
+      background: hsl(var(--bg));
+      padding: clamp(0.75rem, 1.25vw, 1rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+      border-bottom: 1px solid hsl(var(--border-soft));
+      position: relative;
+      overflow: hidden;
+    }
+    .v-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 92% 8%, hsl(var(--hfu-yellow) / 0.14), transparent 48%),
+        radial-gradient(ellipse at 8% 92%, hsl(var(--hfu-blue) / 0.08), transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .v-hero__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 980px) {
+      .v-hero__inner { grid-template-columns: 1fr; }
+    }
+    .v-hero__crumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 22px;
+    }
+    .v-hero__crumbs a { color: hsl(var(--fg-muted)); }
+    .v-hero__crumbs a:hover { color: hsl(var(--hfu-blue)); }
+    .v-hero__crumbs svg { width: 9px; height: 9px; opacity: 0.55; }
+    .v-hero__crumbs .is-current { color: hsl(var(--hfu-navy)); font-weight: 500; }
+    .v-hero h1 {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      color: hsl(var(--hfu-navy));
+      font-weight: 350;
+      margin: 18px 0 22px;
+      max-width: 16ch;
+    }
+    .v-hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .v-hero__lede {
+      font-size: clamp(16px, 1.15vw, 18px);
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 48ch;
+      margin-bottom: 32px;
+    }
+
+    /* stacked list of upcoming dates */
+    .v-hero__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      max-width: 520px;
+    }
+    .v-datecard {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 18px 22px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r);
+      text-align: left;
+      color: inherit;
+      transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out), border-color 260ms var(--ease-out);
+      cursor: pointer;
+    }
+    .v-datecard:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .v-datecard__date {
+      text-align: center;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      background: hsl(var(--bg-alt));
+    }
+    .v-datecard__month {
+      display: block;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 0;
+    }
+    .v-datecard__day {
+      display: block;
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 350;
+      color: hsl(var(--hfu-navy));
+      padding: 8px 0 10px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 60;
+    }
+    .v-datecard__body {
+      min-width: 0;
+    }
+    .v-datecard__kind {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 4px;
+      display: block;
+    }
+    .v-datecard h3 {
+      font-family: var(--display);
+      font-size: 17px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 60;
+      margin-bottom: 6px;
+    }
+    .v-datecard__meta {
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-muted));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+    .v-datecard__meta span + span::before {
+      content: "·";
+      margin-right: 12px;
+      color: hsl(var(--fg-subtle));
+    }
+    .v-datecard__cta {
+      font-family: var(--body);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .v-datecard__cta svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
+    .v-datecard:hover .v-datecard__cta svg { transform: translateX(3px); }
+    .v-datecard--phl { border-left: 3px solid hsl(var(--campus-phl)); }
+    .v-datecard--new { border-left: 3px solid hsl(var(--campus-new)); }
+    @media (max-width: 560px) {
+      .v-datecard { grid-template-columns: 56px 1fr; gap: 14px; padding: 14px 16px; }
+      .v-datecard__cta { grid-column: 1 / -1; justify-self: start; padding-top: 6px; }
+      .v-datecard__day { font-size: 22px; padding: 6px 0 8px; }
+    }
+
+    .v-hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .v-hero__note {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      color: hsl(var(--fg-subtle));
+      margin-left: 6px;
+    }
+
+    /* ── Two-campus schematic (RIGHT column, replaces cinematic photo) ─ */
+    .v-map {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-sm);
+      padding: clamp(1.5rem, 2.5vw, 2rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .v-map__caption {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 4px;
+    }
+    .v-map__title {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 15px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 18px;
+      letter-spacing: -0.005em;
+    }
+    .v-map__diagram {
+      position: relative;
+      aspect-ratio: 5 / 4;
+      background:
+        radial-gradient(ellipse at 20% 75%, hsl(var(--hfu-yellow) / 0.10), transparent 45%),
+        radial-gradient(ellipse at 78% 22%, hsl(var(--hfu-blue) / 0.08), transparent 45%),
+        hsl(var(--bg));
+      border-radius: var(--r);
+      border: 1px dashed hsl(var(--border));
+      overflow: hidden;
+    }
+    .v-map__diagram svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .v-map__pin {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 14px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-strong));
+      border-radius: var(--r-sm);
+      box-shadow: var(--shadow-sm);
+      font-family: var(--body);
+      min-width: 172px;
+    }
+    .v-map__pin-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .v-map__pin-name {
+      font-family: var(--display);
+      font-size: 17px;
+      line-height: 1.1;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
+    }
+    .v-map__pin-addr {
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.45;
+    }
+    .v-map__pin-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px hsl(var(--bg));
+    }
+    .v-map__pin--phl {
+      top: 62%;
+      left: 10%;
+    }
+    .v-map__pin--phl::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      left: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: hsl(var(--campus-phl));
+      box-shadow: 0 0 0 4px hsl(var(--bg));
+    }
+    .v-map__pin--new {
+      top: 10%;
+      right: 8%;
+    }
+    .v-map__pin--new::before {
+      content: "";
+      position: absolute;
+      top: -6px;
+      right: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: hsl(var(--campus-new));
+      box-shadow: 0 0 0 4px hsl(var(--bg));
+    }
+    .v-map__drive {
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: 100px;
+      padding: 8px 16px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: hsl(var(--hfu-navy));
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+    .v-map__drive strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 14px;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+      font-variation-settings: "opsz" 60;
+    }
+    .v-map__legend {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-muted));
+    }
+    .v-map__legend-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .v-map__legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex: 0 0 auto;
+    }
+    .v-map__legend-item strong {
+      display: block;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    @media (max-width: 560px) {
+      .v-map__pin { min-width: 148px; padding: 10px 12px; }
+      .v-map__pin-name { font-size: 15px; }
+      .v-map__drive { font-size: 10px; padding: 6px 12px; }
+      .v-map__legend { grid-template-columns: 1fr; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════
+       COMPONENT LIBRARY ADDITIONS (scoped to the visit page)
+       Mirrors the base classes from /site/components.html so the page
+       uses the same vocabulary as the rest of the client portal.
+       ═════════════════════════════════════════════════════════════════ */
+
+    /* Card frame shared by c-event / c-visit / c-voice / c-program */
+    .hfu-card {
+      position: relative;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    }
+    a.hfu-card, button.hfu-card { text-decoration: none; color: inherit; cursor: pointer; text-align: left; }
+    .hfu-card--hoverable:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .hfu-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    /* Callout banner (thin info bar) — hfu-callout */
+    .hfu-callout {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 22px 26px;
+      border-radius: var(--r);
+      border-left: 3px solid hsl(var(--hfu-blue));
+      background: hsl(var(--hfu-blue) / 0.06);
+    }
+    .hfu-callout__icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-blue) / 0.14);
+      color: hsl(var(--hfu-blue));
+      display: grid; place-items: center;
+    }
+    .hfu-callout__icon svg { width: 18px; height: 18px; }
+    .hfu-callout__eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 4px;
+      display: block;
+    }
+    .hfu-callout h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.15;
+      margin-bottom: 6px;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-callout h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .hfu-callout p {
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+    .hfu-callout__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 13.5px;
+      font-weight: 600;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      transition: background 200ms var(--ease-out), transform 200ms var(--ease-out);
+      white-space: nowrap;
+    }
+    .hfu-callout__cta:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
+    .hfu-callout__cta svg { width: 12px; height: 12px; }
+    .hfu-callout--warn {
+      border-left-color: hsl(var(--warn));
+      background: hsl(var(--warn-soft));
+    }
+    .hfu-callout--warn .hfu-callout__icon { background: hsl(var(--warn) / 0.18); color: hsl(var(--warn)); }
+    .hfu-callout--warn .hfu-callout__eyebrow { color: hsl(var(--warn)); }
+    .hfu-callout--yellow {
+      border-left-color: hsl(var(--hfu-yellow-deep));
+      background: hsl(var(--hfu-yellow) / 0.16);
+    }
+    .hfu-callout--yellow .hfu-callout__icon { background: hsl(var(--hfu-yellow-deep) / 0.22); color: hsl(var(--hfu-yellow-deep)); }
+    .hfu-callout--yellow .hfu-callout__eyebrow { color: hsl(var(--hfu-yellow-deep)); }
+    .hfu-callout--yellow h3 em { color: hsl(var(--hfu-yellow-deep)); }
+    @media (max-width: 720px) {
+      .hfu-callout { grid-template-columns: 44px 1fr; }
+      .hfu-callout__cta { grid-column: 1 / -1; justify-self: start; }
+    }
+
+    /* Tabs (sliding underline) — hfu-tabs */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      flex-wrap: wrap;
+    }
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 12px; right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+    /* Tab panels */
+    .hfu-tab-panel {
+      display: none;
+      margin-top: 36px;
+    }
+    .hfu-tab-panel.is-active {
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) 2fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .hfu-tab-panel.is-active { grid-template-columns: 1fr; }
+    }
+    .v-campus-card {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      padding: 26px 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .v-campus-card__label {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .v-campus-card h3 {
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 400;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.016em;
+      line-height: 1.15;
+      font-variation-settings: "opsz" 60;
+    }
+    .v-campus-card__addr {
+      font-family: var(--body);
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.55;
+    }
+    .v-campus-card__facts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .v-campus-card__fact {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 14px;
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.5;
+    }
+    .v-campus-card__fact strong {
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-navy));
+      font-weight: 700;
+    }
+    .v-campus-card__link {
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .v-campus-card__link svg { width: 11px; height: 11px; }
+
+    .v-campus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    @media (max-width: 600px) {
+      .v-campus-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Program-card variant used inside the tabs for "what to see" */
+    .c-program {
+      padding: 24px 24px 20px;
+      min-height: 200px;
+    }
+    .c-program__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .c-program__school {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .c-program h3 {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.18;
+      letter-spacing: -0.012em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-program p {
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.55;
+      flex: 1;
+    }
+    .c-program__pin {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed hsl(var(--border-soft));
+    }
+
+    /* Event card — c-event */
+    .c-event {
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .c-event__date {
+      width: 72px;
+      border-radius: var(--r-sm);
+      border: 1px solid hsl(var(--border));
+      overflow: hidden;
+      text-align: center;
+      background: hsl(var(--paper));
+    }
+    .c-event__month {
+      display: block;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 0;
+    }
+    .c-event__day {
+      display: block;
+      font-family: var(--display);
+      font-size: 30px;
+      font-weight: 350;
+      color: hsl(var(--hfu-navy));
+      padding: 8px 0 10px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-event h3 {
+      font-family: var(--display);
+      font-size: 18px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 6px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-event__meta {
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-muted));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+    }
+    .c-event__meta span + span::before {
+      content: "·";
+      margin-right: 12px;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* Visit-day card (navy) — c-visit (used in hero row on desktop-large) */
+    .c-visit {
+      padding: 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: linear-gradient(180deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-navy-soft)) 100%);
+      color: hsl(var(--white));
+      border-color: hsl(var(--hfu-navy-deep));
+    }
+    .c-visit__top {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .c-visit__date {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border: 1px solid hsl(var(--hfu-yellow) / 0.5);
+      border-radius: 100px;
+    }
+    .c-visit__kind {
+      font-family: var(--body);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--white) / 0.7);
+    }
+    .c-visit h3 {
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.15;
+      color: hsl(var(--white));
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.014em;
+    }
+    .c-visit__meta {
+      font-family: var(--body);
+      font-size: 13px;
+      color: hsl(var(--white) / 0.78);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .c-visit__foot {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid hsl(var(--white) / 0.14);
+    }
+    .c-visit__capacity {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: hsl(var(--white) / 0.56);
+      letter-spacing: 0.06em;
+    }
+    .c-visit__cta {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      color: hsl(var(--hfu-yellow));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .c-visit__cta svg { width: 11px; height: 11px; }
+
+    /* Voice testimonial card — c-voice */
+    .c-voice {
+      padding: 32px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .c-voice__tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .c-voice__mark {
+      font-family: var(--display);
+      font-size: 64px;
+      line-height: 0.3;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: -0.04em;
+    }
+    .c-voice blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.4;
+      letter-spacing: -0.008em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+      margin: 0;
+      flex: 1;
+    }
+    .c-voice__by {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .c-voice__avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--border));
+      background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow) / 0.7), hsl(var(--hfu-blue) / 0.8) 70%);
+      flex: 0 0 auto;
+    }
+    .c-voice__attr strong {
+      display: block;
+      font-family: var(--body);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+    }
+    .c-voice__attr span {
+      display: block;
+      font-family: var(--body);
+      font-size: 11.5px;
+      color: hsl(var(--fg-subtle));
+      margin-top: 2px;
+    }
+    .c-voice--blue  { background: hsl(var(--hfu-blue) / 0.06); border-color: hsl(var(--hfu-blue) / 0.2); }
+    .c-voice--blue .c-voice__mark { color: hsl(var(--hfu-blue)); }
+    .c-voice--yellow { background: hsl(var(--hfu-yellow) / 0.12); border-color: hsl(var(--hfu-yellow) / 0.5); }
+    .c-voice--yellow .c-voice__mark { color: hsl(var(--hfu-yellow-deep)); }
+    .c-voice--rose  { background: hsl(var(--hfu-rose) / 0.06); border-color: hsl(var(--hfu-rose) / 0.25); }
+    .c-voice--rose .c-voice__mark { color: hsl(var(--hfu-rose)); }
+    .c-voice--yellow .c-voice__avatar { background: radial-gradient(circle at 35% 30%, hsl(var(--hfu-blue) / 0.7), hsl(var(--hfu-navy) / 0.85) 70%); }
+    .c-voice--rose .c-voice__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-rose) / 0.7), hsl(var(--hfu-navy) / 0.85) 70%); }
+
+    /* Accordion — hfu-acc */
+    .hfu-acc { display: flex; flex-direction: column; }
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 22px 4px;
+      transition: background 200ms var(--ease-out);
+    }
+    .hfu-acc details:last-child { border-bottom: 1px solid hsl(var(--border)); }
+    .hfu-acc summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__chev {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+      flex: 0 0 auto;
+    }
+    .hfu-acc__chev svg { width: 11px; height: 11px; }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-acc details > div {
+      padding-top: 14px;
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+
+    /* Timeline — hfu-timeline */
+    .hfu-timeline {
+      position: relative;
+      padding-left: 40px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .hfu-timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px; bottom: 10px;
+      left: 13px;
+      width: 1px;
+      background: hsl(var(--border));
+    }
+    .hfu-timeline__item {
+      position: relative;
+    }
+    .hfu-timeline__item::before {
+      content: "";
+      position: absolute;
+      left: -32px; top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-timeline__item.is-current::before {
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+    }
+    .hfu-timeline__date {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .hfu-timeline__title {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin: 4px 0 6px;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-timeline__body {
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.58;
+      color: hsl(var(--fg-muted));
+      max-width: 54ch;
+    }
+
+    /* Form controls — hfu-fieldset, hfu-field, hfu-input, hfu-select */
+    .hfu-fieldset {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 820px;
+    }
+    .hfu-field { display: flex; flex-direction: column; gap: 8px; }
+    .hfu-field--full { grid-column: 1 / -1; }
+    .hfu-field__label {
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+    }
+    .hfu-field__hint {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+    }
+    .hfu-input,
+    .hfu-select,
+    .hfu-textarea {
+      font-family: var(--body);
+      font-size: 14.5px;
+      padding: 13px 18px;
+      background: hsl(var(--paper));
+      color: hsl(var(--fg));
+      border: 1px solid hsl(var(--border-strong));
+      border-radius: var(--r);
+      outline: none;
+      transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+      width: 100%;
+      font: inherit;
+      font-size: 14.5px;
+    }
+    .hfu-input::placeholder,
+    .hfu-textarea::placeholder { color: hsl(var(--fg-subtle)); }
+    .hfu-input:hover,
+    .hfu-select:hover,
+    .hfu-textarea:hover { border-color: hsl(var(--hfu-navy) / 0.35); }
+    .hfu-input:focus,
+    .hfu-select:focus,
+    .hfu-textarea:focus {
+      border-color: hsl(var(--hfu-blue));
+      box-shadow: 0 0 0 3px hsl(var(--hfu-blue) / 0.14);
+    }
+    .hfu-textarea { min-height: 100px; resize: vertical; line-height: 1.55; }
+    .hfu-select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 40px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none' stroke='%23052039' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M1 1l4 4 4-4'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 10px 6px;
+      cursor: pointer;
+    }
+    .v-form-submit {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .v-form-note {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* Large callout card — c-callout (navy variant) */
+    .c-callout {
+      padding: 44px 40px;
+      border-radius: var(--r-lg);
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+    .c-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-callout h3 em { font-style: italic; font-weight: 300; }
+    .c-callout p {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+    .c-callout--navy {
+      background: radial-gradient(ellipse at 80% 10%, hsl(var(--hfu-blue) / 0.28), transparent 55%), hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white));
+    }
+    .c-callout--navy h3 { color: hsl(var(--white)); }
+    .c-callout--navy h3 em { color: hsl(var(--hfu-yellow)); }
+    .c-callout--navy p { color: hsl(var(--white) / 0.82); }
+    @media (max-width: 720px) {
+      .c-callout { grid-template-columns: 1fr; padding: 32px 28px; }
+    }
+
+    /* Decorative section rule */
+    .v-rule {
+      height: 1px;
+      background: hsl(var(--border-soft));
+      margin: clamp(3rem, 5vw, 4rem) 0;
+      border: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="components-restore.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -2319,10 +3484,6 @@
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
@@ -2375,61 +3536,541 @@
   </header>
 
   <main>
-  <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="The Newtown campus entrance at Holy Family University">
-    </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__grain"></div>
+  <!-- ═════════════════════ CALENDAR HERO (two-column, no full-bleed photo) ═════════════════════ -->
+  <section class="v-hero" aria-label="Visit Holy Family">
+    <div class="v-hero__inner">
 
-    <div class="hero__inner">
-      <div class="hero__crumbs">
-        <a href="hfu-home.html">Home</a>
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <a href="hfu-admissions.html">Admissions &amp; Aid</a>
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <span class="is-current">Visit</span>
+      <!-- LEFT: eyebrow + headline + lede + 3 visit cards + CTAs -->
+      <div>
+        <div class="v-hero__crumbs">
+          <a href="hfu-home.html">Home</a>
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
+          <a href="hfu-admissions.html">Admissions &amp; Aid</a>
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
+          <span class="is-current">Visit</span>
+        </div>
+
+        <span class="v-eyebrow">Plan a visit</span>
+
+        <h1>Come <em>see</em> it.</h1>
+
+        <p class="v-hero__lede">A quick, low-pressure scheduler for campus tours, info sessions, and open houses across both HFU campuses. Pick a date that fits. Adjust later if it doesn&#39;t.</p>
+
+        <!-- three stacked visit cards, one per upcoming date -->
+        <div class="v-hero__list" role="list">
+          <a href="#request" class="v-datecard v-datecard--phl" role="listitem" aria-label="Daily Campus Tour on Saturday May 10 at the Philadelphia campus">
+            <span class="v-datecard__date">
+              <span class="v-datecard__month">May</span>
+              <span class="v-datecard__day">10</span>
+            </span>
+            <span class="v-datecard__body">
+              <span class="v-datecard__kind">Daily Campus Tour</span>
+              <h3>Saturday tour &middot; Philadelphia</h3>
+              <span class="v-datecard__meta">
+                <span>Sat &middot; 10:00 am</span>
+                <span>Philadelphia campus</span>
+                <span>75 min</span>
+              </span>
+            </span>
+            <span class="v-datecard__cta">
+              Book
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </span>
+          </a>
+
+          <a href="#request" class="v-datecard v-datecard--new" role="listitem" aria-label="Adult Learner Info Session on Saturday June 7 at the Newtown campus">
+            <span class="v-datecard__date">
+              <span class="v-datecard__month">Jun</span>
+              <span class="v-datecard__day">07</span>
+            </span>
+            <span class="v-datecard__body">
+              <span class="v-datecard__kind">Adult Learner Info Session</span>
+              <h3>Evening session &middot; Newtown</h3>
+              <span class="v-datecard__meta">
+                <span>Sat &middot; 6:00 pm</span>
+                <span>Newtown campus</span>
+                <span>90 min</span>
+              </span>
+            </span>
+            <span class="v-datecard__cta">
+              Book
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </span>
+          </a>
+
+          <a href="#request" class="v-datecard v-datecard--phl" role="listitem" aria-label="Nursing Simulation Lab Open House on Saturday June 21 at the Philadelphia campus">
+            <span class="v-datecard__date">
+              <span class="v-datecard__month">Jun</span>
+              <span class="v-datecard__day">21</span>
+            </span>
+            <span class="v-datecard__body">
+              <span class="v-datecard__kind">Nursing Sim Lab Open House</span>
+              <h3>Half-day preview &middot; Philadelphia</h3>
+              <span class="v-datecard__meta">
+                <span>Sat &middot; 9:00 am</span>
+                <span>Philadelphia campus</span>
+                <span>Drop in</span>
+              </span>
+            </span>
+            <span class="v-datecard__cta">
+              Book
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="v-hero__ctas">
+          <a href="#request" class="btn btn--primary">
+            Book a visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="#calendar" class="btn btn--secondary">
+            See all dates
+          </a>
+          <span class="v-hero__note">Most dates confirm within a business day.</span>
+        </div>
       </div>
 
-      <span class="hero__eyebrow">Visit Holy Family</span>
+      <!-- RIGHT: editorial two-campus schematic (labeled diagram, no photo hero) -->
+      <aside class="v-map" aria-label="Two campuses: Philadelphia and Newtown">
+        <div class="v-map__caption">Two campuses</div>
+        <div class="v-map__title">Philadelphia &amp; Newtown &mdash; about 23 miles apart along I-95.</div>
 
-      <h1>Come see where you <em>belong.</em></h1>
+        <div class="v-map__diagram" role="img" aria-label="Schematic map showing the Philadelphia campus in Northeast Philadelphia and the Newtown campus in Bucks County, roughly 40 minutes apart.">
+          <!-- Stylized route between the two campus pins -->
+          <svg viewBox="0 0 500 400" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <pattern id="v-map-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                <path d="M 24 0 L 0 0 0 24" fill="none" stroke="hsl(var(--border))" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="500" height="400" fill="url(#v-map-grid)" opacity="0.55"/>
+            <!-- Schuylkill / Delaware-esque abstract river band -->
+            <path d="M -20 260 C 120 240, 240 300, 380 250 S 540 210, 540 210" fill="none" stroke="hsl(var(--hfu-blue) / 0.22)" stroke-width="14" stroke-linecap="round"/>
+            <!-- Route line (dashed) -->
+            <path d="M 90 300 C 180 220, 280 170, 410 100" fill="none" stroke="hsl(var(--hfu-navy) / 0.55)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="5 6"/>
+            <!-- Interstate marker (I-95 style) -->
+            <g transform="translate(250 205)">
+              <rect x="-16" y="-12" width="32" height="22" rx="3" fill="hsl(var(--paper))" stroke="hsl(var(--hfu-navy))" stroke-width="1.2"/>
+              <text x="0" y="3" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600" fill="hsl(var(--hfu-navy))">I-95</text>
+            </g>
+            <!-- Cardinal note (N) -->
+            <g transform="translate(30 40)" opacity="0.55">
+              <circle r="14" fill="none" stroke="hsl(var(--hfu-navy))" stroke-width="0.8"/>
+              <path d="M 0 -8 L 4 6 L 0 2 L -4 6 Z" fill="hsl(var(--hfu-navy))"/>
+              <text x="0" y="26" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="hsl(var(--hfu-navy))">N</text>
+            </g>
+          </svg>
 
-      <p class="hero__lead">Visiting our campus is one of the most important steps in the college selection process, and there&#39;s nothing like seeing it firsthand. We would be thrilled to show you around and answer your questions.</p>
+          <!-- Philadelphia pin card (bottom-left area) -->
+          <div class="v-map__pin v-map__pin--phl">
+            <span class="v-map__pin-label">Philadelphia</span>
+            <span class="v-map__pin-name">Frankford Ave.</span>
+            <span class="v-map__pin-addr">9801 Frankford Avenue<br>Philadelphia, PA 19114</span>
+          </div>
 
-      <div class="hero__ctas">
-        <a href="#open-house" class="btn btn--primary btn--lg">
-          Register for Open House
+          <!-- Drive-time annotation (middle) -->
+          <div class="v-map__drive">
+            <strong>~40 min drive</strong>
+            23 miles &middot; I-95 N
+          </div>
+
+          <!-- Newtown pin card (top-right area) -->
+          <div class="v-map__pin v-map__pin--new">
+            <span class="v-map__pin-label">Newtown</span>
+            <span class="v-map__pin-name">One Campus Drive</span>
+            <span class="v-map__pin-addr">One Campus Drive<br>Newtown, PA 18940</span>
+          </div>
+        </div>
+
+        <div class="v-map__legend">
+          <div class="v-map__legend-item">
+            <span class="v-map__legend-swatch" style="background: hsl(var(--campus-phl));"></span>
+            <div>
+              <strong>Philadelphia campus</strong>
+              Traditional undergraduate, nursing &amp; residential life
+            </div>
+          </div>
+          <div class="v-map__legend-item">
+            <span class="v-map__legend-swatch" style="background: hsl(var(--campus-new));"></span>
+            <div>
+              <strong>Newtown campus</strong>
+              Adult, graduate &amp; continuing programs
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 1 · SPRING OPEN HOUSE CALLOUT (hfu-callout) ═════════════════════ -->
+  <section class="v-section" id="calendar" aria-labelledby="v-open-house-title">
+    <div class="v-wrap">
+      <div class="hfu-callout hfu-callout--yellow">
+        <div class="hfu-callout__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="16" rx="2"/>
+            <path d="M3 11h18"/>
+            <path d="M8 3v4"/>
+            <path d="M16 3v4"/>
+          </svg>
+        </div>
+        <div>
+          <span class="hfu-callout__eyebrow">Featured event</span>
+          <h3 id="v-open-house-title">Spring <em>Open House</em> &middot; Saturday April 26, 2026</h3>
+          <p>A half-day preview for juniors, seniors, transfer students, and families. Academic workshops, campus tours, financial-aid sessions, and light refreshments. Philadelphia campus, 9:00 am check-in through 12:30 pm close.</p>
+        </div>
+        <a href="#request" class="hfu-callout__cta">
+          Reserve a seat
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
-        <a href="#tour" class="btn btn--glass btn--lg">
-          Schedule a Private Tour
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 2 · TWO-CAMPUS TABS (hfu-tabs + hfu-card + c-program) ═════════════════════ -->
+  <section class="v-section v-section--alt" aria-labelledby="v-campuses-title">
+    <div class="v-wrap">
+      <header class="v-section__head">
+        <div>
+          <span class="v-eyebrow">Where you&#39;ll visit</span>
+          <h2 id="v-campuses-title">Two campuses. One <em>university.</em></h2>
+        </div>
+        <p>Most visits can be hosted on either campus. Residential undergraduate life leans Philadelphia; adult, graduate, and continuing programs lean Newtown.</p>
+      </header>
+
+      <div class="hfu-tabs" role="tablist" aria-label="Campus selection">
+        <button type="button" class="is-active" role="tab" aria-selected="true" aria-controls="v-tab-phl" id="v-tab-phl-btn" data-tab="phl">Philadelphia campus</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="v-tab-new" id="v-tab-new-btn" data-tab="new">Newtown campus</button>
       </div>
 
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">2</div>
-          <div class="label">Campuses in<br>Greater Philadelphia</div>
+      <!-- Philadelphia panel -->
+      <div class="hfu-tab-panel is-active" role="tabpanel" id="v-tab-phl" aria-labelledby="v-tab-phl-btn">
+        <div class="v-campus-card">
+          <span class="v-campus-card__label">Philadelphia</span>
+          <h3>9801 Frankford Avenue</h3>
+          <p class="v-campus-card__addr">Philadelphia, PA 19114<br>Northeast Philadelphia &middot; Torresdale</p>
+          <div class="v-campus-card__facts">
+            <div class="v-campus-card__fact"><strong>Drive time</strong><span>~25 minutes from Center City &middot; easy SEPTA access</span></div>
+            <div class="v-campus-card__fact"><strong>Parking</strong><span>Visitor lot at the main entrance &middot; arrive 15 min early</span></div>
+            <div class="v-campus-card__fact"><strong>Best for</strong><span>Nursing, undergraduate residential programs, campus ministry</span></div>
+          </div>
+          <a href="#" class="v-campus-card__link">
+            Directions &amp; parking
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
         </div>
-        <div class="hero__stat">
-          <div class="num">Apr 26</div>
-          <div class="label">Spring Open House<br>&middot; 2026</div>
+        <div class="v-campus-grid">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Nursing &amp; Allied Health</span></div>
+            <h3>Nursing Simulation Lab</h3>
+            <p>High-fidelity manikins, debriefing suites, and the clinical skills lab where BSN students practice.</p>
+            <div class="c-program__pin">Building B &middot; second floor</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Academic life</span></div>
+            <h3>Holy Family Library</h3>
+            <p>Quiet floors, study rooms, and the archive of Sisters of the Holy Family of Nazareth records.</p>
+            <div class="c-program__pin">Main building &middot; ground floor</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Residential life</span></div>
+            <h3>Stevenson Lane Apartments</h3>
+            <p>Upper-class apartment-style housing a short walk from the main quad.</p>
+            <div class="c-program__pin">East side of campus</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Mission</span></div>
+            <h3>Holy Family Chapel</h3>
+            <p>The chapel at the heart of the Philadelphia campus. Mass, quiet hours, and reflection spaces.</p>
+            <div class="c-program__pin">Main quad</div>
+          </article>
         </div>
-        <div class="hero__stat">
-          <div class="num">Daily</div>
-          <div class="label">Student-Led<br>Campus Tours</div>
+      </div>
+
+      <!-- Newtown panel -->
+      <div class="hfu-tab-panel" role="tabpanel" id="v-tab-new" aria-labelledby="v-tab-new-btn" hidden>
+        <div class="v-campus-card">
+          <span class="v-campus-card__label">Newtown</span>
+          <h3>One Campus Drive</h3>
+          <p class="v-campus-card__addr">Newtown, PA 18940<br>Bucks County &middot; ~40 min north of Center City</p>
+          <div class="v-campus-card__facts">
+            <div class="v-campus-card__fact"><strong>Drive time</strong><span>~40 min from Philadelphia campus via I-95 N</span></div>
+            <div class="v-campus-card__fact"><strong>Parking</strong><span>Free on-site lot &middot; arrive 10 min early</span></div>
+            <div class="v-campus-card__fact"><strong>Best for</strong><span>Adult learners, graduate, online-program orientation</span></div>
+          </div>
+          <a href="#" class="v-campus-card__link">
+            Directions &amp; parking
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
         </div>
-        <div class="hero__stat">
-          <div class="num">Sat + Eve</div>
-          <div class="label">Working-Family<br>Tour Options</div>
+        <div class="v-campus-grid">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Adult &amp; graduate</span></div>
+            <h3>Accelerated Learning Classrooms</h3>
+            <p>Purpose-built for the 7-week adult format &mdash; evening and weekend cohorts meet here.</p>
+            <div class="c-program__pin">Academic wing</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Career services</span></div>
+            <h3>Advising &amp; Career Center</h3>
+            <p>Walk-in advising for adult learners &mdash; financial aid and credit-transfer questions welcome.</p>
+            <div class="c-program__pin">Student services corridor</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Community</span></div>
+            <h3>Commons &amp; Dining</h3>
+            <p>Casual meeting place for working-adult cohorts. Quiet study nooks on the mezzanine.</p>
+            <div class="c-program__pin">Main entrance</div>
+          </article>
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top"><span class="c-program__school">Academic life</span></div>
+            <h3>Teaching &amp; Learning Labs</h3>
+            <p>Two smart-classroom studios used by the Education &amp; Human Services programs.</p>
+            <div class="c-program__pin">Academic wing</div>
+          </article>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero__scroll">Scroll to explore</div>
+  <!-- ═════════════════════ 3 · TYPICAL TOUR TIMELINE (hfu-timeline) ═════════════════════ -->
+  <section class="v-section" aria-labelledby="v-timeline-title">
+    <div class="v-wrap">
+      <header class="v-section__head">
+        <div>
+          <span class="v-eyebrow">What a visit feels like</span>
+          <h2 id="v-timeline-title">A typical 90-minute <em>tour.</em></h2>
+        </div>
+        <p>No pressure and no script. A current student walks you through it. You can stop, skip steps, or stay longer at what you care about.</p>
+      </header>
+
+      <ol class="hfu-timeline">
+        <li class="hfu-timeline__item">
+          <span class="hfu-timeline__date">Min 0 &middot; Arrival</span>
+          <h3 class="hfu-timeline__title">Check in at the admissions welcome desk</h3>
+          <p class="hfu-timeline__body">Name tag, a campus map, and a quick hello from the counselor assigned to your region. Coffee, tea, and water on the sideboard.</p>
+        </li>
+        <li class="hfu-timeline__item is-current">
+          <span class="hfu-timeline__date">Min 10 &middot; Orientation</span>
+          <h3 class="hfu-timeline__title">Meet your student ambassador</h3>
+          <p class="hfu-timeline__body">A current HFU student &mdash; often in your program of interest &mdash; introduces themselves and asks what you&#39;d like to see first.</p>
+        </li>
+        <li class="hfu-timeline__item">
+          <span class="hfu-timeline__date">Min 20 &middot; The walk</span>
+          <h3 class="hfu-timeline__title">Walk the campus the way students live it</h3>
+          <p class="hfu-timeline__body">The quad, residence halls (Philadelphia) or adult-learner commons (Newtown), a classroom, and at least one program-specific space &mdash; nursing sim lab, teaching studio, or advising center.</p>
+        </li>
+        <li class="hfu-timeline__item">
+          <span class="hfu-timeline__date">Min 50 &middot; Program deep-dive</span>
+          <h3 class="hfu-timeline__title">Sit in on a class or meet a faculty member</h3>
+          <p class="hfu-timeline__body">When classes are in session, your ambassador can drop you into a lecture in your area of interest. If not, we arrange a brief chat with a faculty member or program director.</p>
+        </li>
+        <li class="hfu-timeline__item">
+          <span class="hfu-timeline__date">Min 70 &middot; Admissions &amp; aid</span>
+          <h3 class="hfu-timeline__title">One-on-one with your counselor</h3>
+          <p class="hfu-timeline__body">Private conversation about your application, aid questions, transfer credit, and the steps that make sense from where you are right now.</p>
+        </li>
+        <li class="hfu-timeline__item">
+          <span class="hfu-timeline__date">Min 90 &middot; Wrap</span>
+          <h3 class="hfu-timeline__title">Next steps &mdash; or none at all</h3>
+          <p class="hfu-timeline__body">If you&#39;re ready, we talk application timeline. If you aren&#39;t, that&#39;s fine too. You leave with a packet you can re-read later and an email address for follow-up questions.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 4 · VISIT FAQ ACCORDION (hfu-acc) ═════════════════════ -->
+  <section class="v-section v-section--alt" aria-labelledby="v-faq-title">
+    <div class="v-wrap">
+      <header class="v-section__head">
+        <div>
+          <span class="v-eyebrow">Before you come</span>
+          <h2 id="v-faq-title">Visit <em>FAQ.</em></h2>
+        </div>
+        <p>The questions we&#39;re asked most. If yours isn&#39;t here, email <a href="mailto:admissions@holyfamily.edu" style="color: hsl(var(--hfu-blue)); font-weight: 600;">admissions@holyfamily.edu</a> &mdash; a counselor will reply within one business day.</p>
+      </header>
+
+      <div class="hfu-acc">
+        <details>
+          <summary>
+            <span>What should I bring?</span>
+            <span class="hfu-acc__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg></span>
+          </summary>
+          <div>Just yourself and a list of questions. Transfer students attending Instant Decision Day should also bring an official transcript &mdash; we can do a credit evaluation on the spot. Everything else is handled at check-in.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Can my family come with me?</span>
+            <span class="hfu-acc__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg></span>
+          </summary>
+          <div>Yes, and we encourage it. Most visits include a parent, guardian, spouse, or partner. Please add them when you book so your ambassador knows the group size, and let us know if anyone needs accessibility accommodations.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Is there parking on either campus?</span>
+            <span class="hfu-acc__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg></span>
+          </summary>
+          <div>Free visitor parking at both campuses. Philadelphia visitors use the main lot off Frankford Avenue; Newtown visitors use the lot at One Campus Drive. A parking pass is emailed with your booking confirmation.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Do you offer weekend or evening options?</span>
+            <span class="hfu-acc__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg></span>
+          </summary>
+          <div>Yes &mdash; Saturday tours run twice a month at 10:00 am and 1:00 pm, and we offer evening tours at 6:00 pm during the academic year. Adult-learner info sessions are Tuesday and Thursday evenings at the Newtown campus.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Can I take a virtual tour instead?</span>
+            <span class="hfu-acc__chev" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg></span>
+          </summary>
+          <div>Yes. The virtual tour is a self-paced 360 walk-through of both campuses with narration from current students. It&#39;s not a substitute for being here in person, but it&#39;s a useful first look, especially for out-of-state families.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 5 · STUDENT AMBASSADOR VOICES (c-voice) ═════════════════════ -->
+  <section class="v-section" aria-labelledby="v-voices-title">
+    <div class="v-wrap">
+      <header class="v-section__head">
+        <div>
+          <span class="v-eyebrow">Student ambassadors</span>
+          <h2 id="v-voices-title">Who you&#39;ll meet on the <em>walk.</em></h2>
+        </div>
+        <p>Every tour is led by a current student. Here&#39;s a sample of who might be at the door when you arrive &mdash; quotes are illustrative of the kinds of stories ambassadors share during a visit.</p>
+      </header>
+
+      <div class="hfu-card-grid">
+        <article class="hfu-card c-voice c-voice--blue">
+          <span class="c-voice__tag">Illustrative &middot; composite voice</span>
+          <span class="c-voice__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>I grew up ten minutes from the Philadelphia campus and never knew the nursing sim lab was here. When I tell prospective students that, their parents usually light up.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar" aria-hidden="true"></div>
+            <div class="c-voice__attr">
+              <strong>Maya, BSN candidate</strong>
+              <span>Philadelphia campus &middot; Class of 2027</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hfu-card c-voice c-voice--yellow">
+          <span class="c-voice__tag">Illustrative &middot; composite voice</span>
+          <span class="c-voice__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>I work days and take classes in Newtown at night. When I do evening tours, I tell people what the parking lot actually looks like at 6:00 pm. That&#39;s the part that matters.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar" aria-hidden="true"></div>
+            <div class="c-voice__attr">
+              <strong>Dre, MBA candidate</strong>
+              <span>Newtown campus &middot; adult learner program</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hfu-card c-voice c-voice--rose">
+          <span class="c-voice__tag">Illustrative &middot; composite voice</span>
+          <span class="c-voice__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>Families ask me the same three questions every time: is it safe, will my kid be known by name, and is the chapel still active. Yes, yes, and yes &mdash; and I show them.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar" aria-hidden="true"></div>
+            <div class="c-voice__attr">
+              <strong>Sofia, Education junior</strong>
+              <span>Philadelphia campus &middot; Student ambassador lead</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 6 · VISIT INTEREST FORM (hfu-field / hfu-input / hfu-select / hfu-fieldset) ═════════════════════ -->
+  <section class="v-section v-section--alt" id="request" aria-labelledby="v-form-title">
+    <div class="v-wrap">
+      <header class="v-section__head">
+        <div>
+          <span class="v-eyebrow">Tell us what you want to see</span>
+          <h2 id="v-form-title">Short form. Real person <em>replies.</em></h2>
+        </div>
+        <p>A counselor reads every submission and writes back with 2&ndash;3 date options that match what you asked for. No marketing drip, no auto-enrollment in anything.</p>
+      </header>
+
+      <form class="hfu-fieldset" onsubmit="return false;" aria-label="Visit interest form">
+        <label class="hfu-field">
+          <span class="hfu-field__label">Your name</span>
+          <input type="text" class="hfu-input" placeholder="First and last" autocomplete="name">
+        </label>
+        <label class="hfu-field">
+          <span class="hfu-field__label">Email</span>
+          <input type="email" class="hfu-input" placeholder="you@example.com" autocomplete="email">
+          <span class="hfu-field__hint">We won&#39;t share your address.</span>
+        </label>
+        <label class="hfu-field">
+          <span class="hfu-field__label">Audience</span>
+          <select class="hfu-select">
+            <option>First-year applicant</option>
+            <option>Transfer student</option>
+            <option>Adult learner</option>
+            <option>Graduate student</option>
+            <option>Parent or family member</option>
+          </select>
+        </label>
+        <label class="hfu-field">
+          <span class="hfu-field__label">Preferred campus</span>
+          <select class="hfu-select">
+            <option>Either campus</option>
+            <option>Philadelphia campus</option>
+            <option>Newtown campus</option>
+            <option>Virtual tour</option>
+          </select>
+        </label>
+        <label class="hfu-field">
+          <span class="hfu-field__label">Preferred date</span>
+          <input type="date" class="hfu-input" aria-label="Preferred date">
+          <span class="hfu-field__hint">We&#39;ll suggest nearby options if this one&#39;s full.</span>
+        </label>
+        <label class="hfu-field">
+          <span class="hfu-field__label">How many people</span>
+          <select class="hfu-select">
+            <option>Just me</option>
+            <option>Me + 1 family member</option>
+            <option>Me + 2 family members</option>
+            <option>Me + 3 or more</option>
+          </select>
+        </label>
+        <label class="hfu-field hfu-field--full">
+          <span class="hfu-field__label">Anything specific you want to see</span>
+          <textarea class="hfu-textarea" placeholder="Nursing sim lab, advising for transfer credits, a class in your program of interest..."></textarea>
+          <span class="hfu-field__hint">Optional. Helps us match you with the right ambassador.</span>
+        </label>
+        <div class="v-form-submit hfu-field--full">
+          <button type="submit" class="btn btn--primary">
+            Request a visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </button>
+          <span class="v-form-note">Replies within one business day, Monday through Friday.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ 7 · PRIVATE VISIT CALLOUT (c-callout navy) ═════════════════════ -->
+  <section class="v-section" aria-labelledby="v-private-title">
+    <div class="v-wrap">
+      <article class="c-callout c-callout--navy">
+        <div>
+          <h3 id="v-private-title">Request a <em>private visit.</em></h3>
+          <p>For out-of-state families, groups of five or more, or schedules that don&#39;t line up with the public calendar, we arrange one-on-one visits on weekdays and Saturdays. Email directly and we&#39;ll coordinate from there.</p>
+        </div>
+        <div>
+          <a href="mailto:admissions@holyfamily.edu?subject=Private%20visit%20request" class="btn btn--primary btn--lg">
+            Email admissions
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- ═════════════════════ WAYS TO VISIT ═════════════════════ -->

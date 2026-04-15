@@ -16,9 +16,10 @@ const RESEARCH_DIR = path.resolve(SITE_DIR, '..');
 // tightens, tail items get truncated.
 const HTML_PAGES = [
   'index.html',
+  'what-ai-can-do.html',
   'mission.html',
   'enrollment.html',
-  'adult-learner.html',
+  'personas.html',
   'ai-lab.html',
   'runway.html',
   'peers.html',

@@ -8,13 +8,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ═════════════════════════════════════════════════════════════════════
-       HFU STUDENT EXPERIENCE — Concept 5 (photo-forward, cinematic editorial)
-       Typography: Source Serif 4 (display) + Inter Tight (body)
-       Shared design system with the rest of the HFU mockup set
+       HFU STUDENT EXPERIENCE — bento photo mosaic, magazine-spread edition
+       Typography: Source Serif 4 (display) + Inter Tight (body) + JetBrains Mono
+       Shared design vocabulary with the component library (components.html)
        ═════════════════════════════════════════════════════════════════════ */
     :root {
       /* HFU brand */
@@ -27,11 +27,14 @@
       --hfu-yellow-soft: 48 100% 94%;
       --hfu-yellow-deep: 44 95% 46%;
       --hfu-mist:        202 22% 76%;   /* #B2C6D1 */
+      --hfu-rose:        335 60% 38%;   /* alumni voice accent */
 
       /* Warm editorial neutrals */
       --bg:              38 33% 97%;    /* #FBF9F3 warm cream */
       --bg-alt:          38 25% 94%;
       --bg-card:         0 0% 100%;
+      --paper:           0 0% 100%;
+      --white:           0 0% 100%;
       --fg:              212 38% 12%;
       --fg-muted:        212 18% 36%;
       --fg-subtle:       212 12% 52%;
@@ -39,8 +42,26 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
+      /* Semantic (callouts, status) */
+      --ok:              152 58% 34%;
+      --ok-soft:         152 58% 94%;
+      --warn:            38 90% 46%;
+      --warn-soft:       38 90% 94%;
+
+      /* Bento tints — one hue per cell, so the mosaic reads as a spread */
+      --bento-athletics: 204 100% 33%;
+      --bento-clubs:     335 60% 38%;
+      --bento-service:   152 58% 34%;
+      --bento-faith:     212 82% 13%;
+      --bento-housing:   44 95% 46%;
+      --bento-food:      24 85% 45%;
+
+      /* Ink overlays — shared scrim color for legibility on image surfaces */
+      --scrim-ink:       212 90% 8%;
+
       --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
       --container: 1280px;
       --gutter: clamp(1.25rem, 4vw, 4rem);
@@ -52,11 +73,11 @@
       --r-xl: 28px;
       --r-2xl: 40px;
 
-      --shadow-xs: 0 1px 2px rgba(6, 33, 63, 0.04);
-      --shadow-sm: 0 1px 3px rgba(6, 33, 63, 0.05), 0 1px 2px rgba(6, 33, 63, 0.03);
-      --shadow-md: 0 4px 16px rgba(6, 33, 63, 0.06), 0 2px 6px rgba(6, 33, 63, 0.04);
-      --shadow-lg: 0 20px 48px rgba(6, 33, 63, 0.10), 0 8px 20px rgba(6, 33, 63, 0.06);
-      --shadow-xl: 0 40px 96px rgba(6, 33, 63, 0.14), 0 16px 32px rgba(6, 33, 63, 0.08);
+      --shadow-xs: 0 1px 2px hsl(var(--hfu-navy) / 0.04);
+      --shadow-sm: 0 1px 3px hsl(var(--hfu-navy) / 0.05), 0 1px 2px hsl(var(--hfu-navy) / 0.03);
+      --shadow-md: 0 4px 16px hsl(var(--hfu-navy) / 0.06), 0 2px 6px hsl(var(--hfu-navy) / 0.04);
+      --shadow-lg: 0 20px 48px hsl(var(--hfu-navy) / 0.10), 0 8px 20px hsl(var(--hfu-navy) / 0.06);
+      --shadow-xl: 0 40px 96px hsl(var(--hfu-navy) / 0.14), 0 16px 32px hsl(var(--hfu-navy) / 0.08);
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -119,7 +140,7 @@
     /* ── Utility strip ─────────────────────────────────────────────────── */
     .util {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.78);
+      color: hsl(var(--white) / 0.78);
       font-size: 12.5px;
       letter-spacing: 0.01em;
     }
@@ -145,7 +166,7 @@
       top: 0;
       z-index: 50;
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
       border-bottom: 1px solid hsl(var(--hfu-navy-deep));
     }
     .nav__inner {
@@ -169,7 +190,7 @@
       font-weight: 500;
     }
     .nav__list a {
-      color: hsl(0 0% 100% / 0.88);
+      color: hsl(var(--white) / 0.88);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -188,10 +209,10 @@
       transform-origin: left;
       transition: transform 280ms var(--ease-out);
     }
-    .nav__list a:hover { color: #fff; }
+    .nav__list a:hover { color: hsl(var(--white)); }
     .nav__list a:hover::after,
     .nav__list a.is-active::after { transform: scaleX(1); }
-    .nav__list a.is-active { color: #fff; }
+    .nav__list a.is-active { color: hsl(var(--white)); }
     .nav__list svg { width: 10px; height: 10px; opacity: 0.6; }
 
     .nav__actions { display: flex; gap: 14px; align-items: center; }
@@ -201,11 +222,11 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: hsl(0 0% 100% / 0.08);
-      color: #fff;
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
       transition: background 200ms var(--ease-out);
     }
-    .nav__search:hover { background: hsl(0 0% 100% / 0.14); }
+    .nav__search:hover { background: hsl(var(--white) / 0.14); }
     .nav__search svg { width: 15px; height: 15px; }
 
     .nav__burger { display: none; }
@@ -220,7 +241,7 @@
       font-size: 14.5px;
       font-weight: 600;
       letter-spacing: -0.005em;
-      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out);
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out), border-color 220ms var(--ease-out);
       white-space: nowrap;
     }
     .btn svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
@@ -228,15 +249,19 @@
     .btn--primary {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
-      box-shadow: 0 1px 2px rgba(6, 33, 63, 0.15), 0 4px 12px rgba(255, 204, 21, 0.35);
+      box-shadow: 0 1px 2px hsl(var(--hfu-navy) / 0.15), 0 4px 12px hsl(var(--hfu-yellow) / 0.35);
     }
-    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(6, 33, 63, 0.2), 0 8px 20px rgba(255, 204, 21, 0.4); }
+    .btn--primary:hover {
+      background: hsl(var(--hfu-yellow-deep));
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px hsl(var(--hfu-navy) / 0.20), 0 8px 20px hsl(var(--hfu-yellow) / 0.40);
+    }
     .btn--secondary {
       background: hsl(var(--bg-card));
       color: hsl(var(--hfu-navy));
       border: 1px solid hsl(var(--border-strong));
     }
-    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: #fff; border-color: hsl(var(--hfu-navy)); }
+    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: hsl(var(--white)); border-color: hsl(var(--hfu-navy)); }
     .btn--ghost {
       background: transparent;
       color: hsl(var(--hfu-navy));
@@ -245,1429 +270,1025 @@
     .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
     .btn--dark {
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
     }
     .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
     .btn--lg { padding: 18px 32px; font-size: 15px; }
-    .btn--glass {
-      background: hsl(0 0% 100% / 0.12);
-      color: #fff;
-      border: 1px solid hsl(0 0% 100% / 0.28);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .btn--glass:hover { background: hsl(0 0% 100% / 0.2); border-color: hsl(0 0% 100% / 0.5); transform: translateY(-1px); }
 
-    /* ═════════════════════ CINEMATIC HERO ═════════════════════ */
-    .hero {
+    /* ═════════════════════════════════════════════════════════════════════
+       EDITORIAL HERO — single feature photograph + text column
+       Clean two-column magazine opener. No mosaic, no text band slicing
+       through photos. The six facets of student life are handled by the
+       sections below.
+       ═════════════════════════════════════════════════════════════════════ */
+    .spread {
+      padding: clamp(0.75rem, 1.25vw, 1rem) 0 clamp(3rem, 6vw, 5rem);
+      background: hsl(var(--bg));
       position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      isolation: isolate;
     }
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-    }
-    .hero__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
-      transform: scale(1.02);
-      animation: heroZoom 22s var(--ease-out) forwards;
-    }
-    @keyframes heroZoom {
-      to { transform: scale(1.08); }
-    }
-    .hero__scrim {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(180deg, hsl(var(--hfu-navy-deep) / 0.65) 0%, hsl(var(--hfu-navy-deep) / 0.15) 28%, hsl(var(--hfu-navy-deep) / 0.3) 58%, hsl(var(--hfu-navy-deep) / 0.92) 100%),
-        linear-gradient(100deg, hsl(var(--hfu-navy-deep) / 0.55) 0%, transparent 52%);
-    }
-    .hero__grain {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.35;
-      mix-blend-mode: overlay;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.08) 1px, transparent 1.6px);
-      background-size: 3px 3px;
-    }
-    .hero__inner {
+    .spread__crumbs {
       max-width: var(--container);
-      margin: 0 auto;
-      width: 100%;
-      padding: 0 var(--gutter) clamp(3.5rem, 5vw, 5rem);
-      position: relative;
-      color: #fff;
-    }
-    .hero__crumbs {
+      margin: 0 auto clamp(1.25rem, 2.5vw, 1.75rem);
+      padding: 0 var(--gutter);
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 13px;
-      color: hsl(0 0% 100% / 0.62);
-      margin-bottom: 24px;
+      color: hsl(var(--fg-subtle));
       letter-spacing: 0.01em;
     }
-    .hero__crumbs a { color: hsl(0 0% 100% / 0.82); }
-    .hero__crumbs a:hover { color: hsl(var(--hfu-yellow)); }
-    .hero__crumbs svg { width: 9px; height: 9px; opacity: 0.6; }
-    .hero__crumbs .is-current { color: #fff; font-weight: 500; }
-    .hero__eyebrow {
-      font-family: var(--body);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: hsl(var(--hfu-yellow));
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .hero__eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 1.5px;
-      background: hsl(var(--hfu-yellow));
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 8.4vw, 8.4rem);
-      line-height: 0.92;
-      letter-spacing: -0.032em;
-      font-variation-settings: "opsz" 60;
-      color: #fff;
-      max-width: 16ch;
-      font-weight: 350;
-      margin-bottom: 32px;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
-    }
-    .hero h1 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-      position: relative;
-      display: inline-block;
-      padding: 0 0.04em;
-    }
-    .hero__lead {
-      font-size: clamp(16px, 1.2vw, 19px);
-      line-height: 1.55;
-      color: hsl(0 0% 100% / 0.82);
-      max-width: 52ch;
-      margin-bottom: 40px;
-    }
-    .hero__ctas {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-    }
-    .hero__stats {
+    .spread__crumbs a { color: hsl(var(--fg-muted)); }
+    .spread__crumbs a:hover { color: hsl(var(--hfu-blue)); }
+    .spread__crumbs svg { width: 9px; height: 9px; opacity: 0.5; }
+    .spread__crumbs .is-current { color: hsl(var(--hfu-navy)); font-weight: 500; }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       BENTO HERO — six-cell photo mosaic with text band.
+       Replaces the earlier cinematic single-photo hero so this page opens
+       differently from the other five mockups. Uses --bento-* tokens above.
+       ═════════════════════════════════════════════════════════════════════ */
+    .bento {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      padding-top: 36px;
-      border-top: 1px solid hsl(0 0% 100% / 0.18);
-      max-width: 860px;
-    }
-    .hero__stat {
-      display: flex;
-      flex-direction: column;
-      padding: 0 clamp(18px, 2vw, 28px);
-      border-right: 1px solid hsl(0 0% 100% / 0.14);
-    }
-    .hero__stat:first-child { padding-left: 0; }
-    .hero__stat:last-child { border-right: none; padding-right: 0; }
-    .hero__stat .num {
-      font-family: var(--display);
-      font-size: clamp(2rem, 3.4vw, 3rem);
-      line-height: 1;
-      letter-spacing: -0.035em;
-      color: #fff;
-      margin-bottom: 8px;
-      font-variation-settings: "opsz" 60;
-      font-weight: 350;
-    }
-    .hero__stat .num .small {
-      font-size: 0.5em;
-      vertical-align: 0.4em;
-      margin-left: 2px;
-      color: hsl(var(--hfu-yellow));
-      font-weight: 400;
-    }
-    .hero__stat .label {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.64);
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-    .hero__scroll {
-      position: absolute;
-      right: var(--gutter);
-      bottom: clamp(3.5rem, 5vw, 5rem);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: hsl(0 0% 100% / 0.6);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-    }
-    .hero__scroll::before {
-      content: "";
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, hsl(0 0% 100% / 0.4), transparent);
-      animation: scrollLine 2.4s var(--ease-in-out) infinite;
-    }
-    @keyframes scrollLine {
-      0%, 100% { transform: translateY(-10px); opacity: 0.3; }
-      50% { transform: translateY(10px); opacity: 1; }
-    }
-
-    /* ═════════════════════ LIFE PILLARS ═════════════════════ */
-    .pillars {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .pillars__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .pillars__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      letter-spacing: -0.024em;
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      line-height: 1.02;
-    }
-    .pillars__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .pillars__head .lead { max-width: 46ch; }
-    .pillars__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .pillar {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 34px 32px 30px;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-    }
-    .pillar:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .pillar__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: hsl(var(--hfu-yellow) / 0.16);
-      color: hsl(var(--hfu-blue));
-      display: grid;
-      place-items: center;
-      margin-bottom: 26px;
-      position: relative;
-    }
-    .pillar__icon svg { width: 24px; height: 24px; }
-    .pillar__icon::after {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border: 1px dashed hsl(var(--hfu-yellow) / 0.5);
-      border-radius: 10px;
-      opacity: 0;
-      transition: opacity 300ms var(--ease-out);
-    }
-    .pillar:hover .pillar__icon::after { opacity: 1; }
-    .pillar h3 {
-      font-family: var(--body);
-      font-size: 19px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-    .pillar p {
-      font-size: 14.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      flex: 1;
-      margin-bottom: 22px;
-    }
-    .pillar__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-    }
-    .pillar__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .pillar:hover .pillar__link svg { transform: translateX(3px); }
-    .pillar__num {
-      position: absolute;
-      top: 26px;
-      right: 30px;
-      font-family: var(--display);
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.04em;
-      font-variation-settings: "opsz" 60;
-    }
-
-    /* ═════════════════════ DAY IN THE LIFE GALLERY ═════════════════════ */
-    .gallery {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery::before {
-      content: "";
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.08), transparent 60%);
-      pointer-events: none;
-    }
-    .gallery__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-      position: relative;
-    }
-    .gallery__head h2 {
-      font-size: clamp(2.4rem, 4.4vw, 4rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 18px;
-      letter-spacing: -0.028em;
-      line-height: 1.02;
-    }
-    .gallery__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .gallery__head .meta {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: flex-start;
-    }
-    .gallery__head .meta p {
-      font-size: 15.5px;
-      line-height: 1.6;
-      color: hsl(var(--fg-muted));
-      max-width: 38ch;
-    }
-    .gallery__head .clock {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .gallery__head .clock .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow));
-      box-shadow: 0 0 0 3px hsl(var(--hfu-yellow) / 0.22);
-    }
-
-    .gallery__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 120px;
-      gap: 16px;
-      position: relative;
-    }
-    .shot {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r-lg);
-      box-shadow: var(--shadow-sm);
-      transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out);
-    }
-    .shot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 900ms var(--ease-out);
-    }
-    .shot:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-    }
-    .shot:hover img { transform: scale(1.06); }
-    .shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, hsl(var(--hfu-navy-deep) / 0.72) 0%, hsl(var(--hfu-navy-deep) / 0.08) 40%, transparent 65%);
-      pointer-events: none;
-    }
-    .shot__caption {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      right: 18px;
-      display: flex;
-      align-items: center;
+      grid-template-rows: clamp(200px, 22vw, 280px) auto clamp(220px, 24vw, 300px);
       gap: 10px;
-      color: #fff;
-      z-index: 2;
     }
-    .shot__cap-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      background: hsl(0 0% 100% / 0.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid hsl(0 0% 100% / 0.22);
-      border-radius: 100px;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-    .shot__cap-pill .time {
-      color: hsl(var(--hfu-yellow));
-      font-family: var(--display);
-      font-size: 12px;
-      font-weight: 500;
-      font-variation-settings: "opsz" 60;
-    }
-    .shot__cap-pill .dot-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: hsl(0 0% 100% / 0.5);
-    }
-
-    /* Bento tile sizes */
-    .shot--a { grid-column: span 6; grid-row: span 4; }  /* tall primary */
-    .shot--b { grid-column: span 6; grid-row: span 2; }  /* wide top right */
-    .shot--c { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--d { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--e { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--f { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--g { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--h { grid-column: span 12; grid-row: span 3; } /* wide panoramic */
-
-    .gallery__foot {
-      max-width: var(--container);
-      margin: 48px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .gallery__foot .note {
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      max-width: 42ch;
-      font-style: italic;
-      font-family: var(--display);
-      line-height: 1.5;
-    }
-    .gallery__foot .note em { color: hsl(var(--hfu-blue)); }
-
-    /* ═════════════════════ ATHLETICS DARK SPLIT ═════════════════════ */
-    .athletics {
-      padding: 0;
-      background: hsl(var(--hfu-navy-deep));
-      color: #fff;
+    .bento__cell {
       position: relative;
       overflow: hidden;
-    }
-    .athletics::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.05) 1px, transparent 1.5px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .athletics__inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 5vw, 5rem);
-      align-items: stretch;
-      min-height: 640px;
-      position: relative;
-    }
-    .athletics__media {
-      position: relative;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      margin: clamp(4rem, 6vw, 7rem) 0;
-      box-shadow: var(--shadow-xl);
+      border-radius: 6px;
+      margin: 0;
+      background: hsl(var(--bg-alt));
       isolation: isolate;
     }
-    .athletics__media img {
+    .bento__cell--housing,
+    .bento__cell--food {
+      grid-column: span 2;
+    }
+    .bento__cell img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      filter: saturate(1.1) contrast(1.08);
+      display: block;
     }
-    .athletics__media::after {
+    .bento__tile {
+      position: absolute;
+      inset: 0;
+    }
+    .bento__tile--athletics {
+      background:
+        radial-gradient(ellipse at 30% 20%, hsl(var(--bento-athletics) / 0.55), transparent 60%),
+        linear-gradient(135deg, hsl(var(--bento-athletics)), hsl(var(--bento-athletics) / 0.7));
+    }
+    .bento__tile--service {
+      background:
+        radial-gradient(ellipse at 70% 30%, hsl(var(--bento-service) / 0.55), transparent 60%),
+        linear-gradient(135deg, hsl(var(--bento-service)), hsl(var(--bento-service) / 0.7));
+    }
+    .bento__tile--food {
+      background:
+        radial-gradient(ellipse at 20% 70%, hsl(var(--bento-food) / 0.55), transparent 60%),
+        linear-gradient(135deg, hsl(var(--bento-food)), hsl(var(--bento-food) / 0.75));
+    }
+    .bento__tile::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, transparent 40%, hsl(var(--hfu-navy-deep) / 0.78) 100%);
+      background: repeating-linear-gradient(
+        135deg,
+        transparent 0 22px,
+        hsl(var(--white) / 0.04) 22px 24px
+      );
+      pointer-events: none;
     }
-    .athletics__badge {
+    .bento__cap {
       position: absolute;
-      top: 26px;
-      left: 26px;
-      background: hsl(var(--hfu-yellow));
-      color: hsl(var(--hfu-navy-deep));
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      bottom: 14px;
+      left: 14px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 2;
-      box-shadow: var(--shadow-md);
+      color: hsl(var(--white));
+      padding: 6px 10px;
+      background: hsl(var(--hfu-navy) / 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 3px;
+      z-index: 1;
     }
-    .athletics__badge .live-dot {
-      width: 7px;
-      height: 7px;
-      background: hsl(var(--hfu-navy-deep));
-      border-radius: 50%;
-      animation: pulse 2s infinite var(--ease-out);
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.55; }
-    }
-    .athletics__score {
-      position: absolute;
-      bottom: 28px;
-      left: 28px;
-      right: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      z-index: 2;
-    }
-    .athletics__score .tiger {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.2vw, 2.2rem);
-      color: #fff;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__score .sub {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.72);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-    .athletics__score .roar {
-      font-family: var(--display);
-      font-size: 68px;
-      line-height: 0.8;
-      color: hsl(var(--hfu-yellow));
-      font-style: italic;
-      font-weight: 300;
-      letter-spacing: -0.04em;
-    }
-
-    .athletics__body {
-      padding: clamp(4rem, 6vw, 7rem) 0;
+    .bento__text {
+      grid-column: 1 / -1;
+      padding: clamp(24px, 3vw, 40px) 0 clamp(16px, 2vw, 24px);
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: clamp(14px, 1.6vw, 20px);
+      max-width: 820px;
     }
-    .athletics__body .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .athletics__body .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .athletics__body h2 {
-      font-size: clamp(2.4rem, 4.2vw, 4rem);
-      color: #fff;
-      margin: 24px 0 24px;
-      letter-spacing: -0.028em;
-      line-height: 1;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__body h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-    }
-    .athletics__body p {
-      font-size: 16px;
-      line-height: 1.65;
-      color: hsl(0 0% 100% / 0.78);
-      max-width: 46ch;
-      margin-bottom: 36px;
-    }
-    .athletics__sports {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
-    }
-    .sport-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.14);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: hsl(0 0% 100% / 0.92);
-      transition: all 220ms var(--ease-out);
-    }
-    .sport-chip:hover {
-      background: hsl(var(--hfu-yellow) / 0.16);
-      border-color: hsl(var(--hfu-yellow) / 0.5);
-      color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .sport-chip svg {
-      width: 12px;
-      height: 12px;
-      opacity: 0.6;
-    }
-    .athletics__cta {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .athletics__cta .sub-link {
-      color: hsl(0 0% 100% / 0.62);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--display);
-      font-style: italic;
-    }
-    .athletics__cta .sub-link svg { width: 12px; height: 12px; }
-
-    /* ═════════════════════ CLUBS GRID ═════════════════════ */
-    .clubs {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .clubs__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
-    }
-    .clubs__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 20ch;
-      line-height: 1.02;
-    }
-    .clubs__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .clubs__head .all {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-      padding: 12px 20px;
-      background: hsl(var(--hfu-yellow) / 0.14);
-      border-radius: 100px;
-      border: 1px solid hsl(var(--hfu-yellow) / 0.3);
-      transition: all 220ms var(--ease-out);
-    }
-    .clubs__head .all:hover {
-      background: hsl(var(--hfu-yellow) / 0.24);
-      border-color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .clubs__head .all svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .clubs__head .all:hover svg { transform: translateX(3px); }
-
-    .clubs__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .club {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 28px 30px 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      position: relative;
-      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
-      overflow: hidden;
-    }
-    .club::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, hsl(var(--hfu-yellow)) 0%, hsl(var(--hfu-blue)) 100%);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 400ms var(--ease-out);
-    }
-    .club:hover::before { transform: scaleX(1); }
-    .club:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .club__top {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      justify-content: space-between;
-    }
-    .club__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-    .club__icon svg { width: 22px; height: 22px; }
-    .club--faith .club__icon { background: hsl(var(--hfu-yellow) / 0.2); color: hsl(var(--hfu-yellow-deep)); }
-    .club--service .club__icon { background: hsl(var(--hfu-blue) / 0.14); color: hsl(var(--hfu-blue)); }
-    .club--culture .club__icon { background: hsl(var(--hfu-navy) / 0.1); color: hsl(var(--hfu-navy)); }
-    .club--arts .club__icon { background: hsl(335 78% 88% / 0.9); color: hsl(335 72% 42%); }
-    .club--eco .club__icon { background: hsl(155 52% 88%); color: hsl(155 60% 28%); }
-    .club--health .club__icon { background: hsl(var(--hfu-mist) / 0.5); color: hsl(var(--hfu-navy)); }
-
-    .club__members {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      background: hsl(var(--bg));
-    }
-    .club__members strong {
-      color: hsl(var(--hfu-navy));
-      font-weight: 700;
-    }
-    .club h3 {
-      font-family: var(--display);
-      font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-      line-height: 1.1;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.018em;
-      font-variation-settings: "opsz" 60;
-    }
-    .club p {
-      font-size: 14px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      flex: 1;
-    }
-    .club__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 16px;
-      border-top: 1px solid hsl(var(--border-soft));
-      margin-top: 4px;
-    }
-    .club__meet {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__meet svg { width: 11px; height: 11px; }
-    .club__join {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__join svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
-    .club:hover .club__join svg { transform: translateX(3px); }
-
-    /* ═════════════════════ HOUSING & DINING SPLIT ═════════════════════ */
-    .home {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-    }
-    .home__head {
-      max-width: var(--container);
-      margin: 0 auto 64px;
-      padding: 0 var(--gutter);
-      text-align: center;
-    }
-    .home__head .eyebrow { justify-content: center; }
-    .home__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin: 18px auto 0;
-      max-width: 24ch;
-      letter-spacing: -0.024em;
-      line-height: 1.05;
-    }
-    .home__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .home-card {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
-    }
-    .home-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-    .home-card__media {
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      position: relative;
-    }
-    .home-card__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 700ms var(--ease-out);
-    }
-    .home-card:hover .home-card__media img { transform: scale(1.04); }
-    .home-card__tag {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: hsl(var(--bg-card));
-      color: hsl(var(--hfu-navy));
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 100px;
-      box-shadow: var(--shadow-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .home-card__tag svg { width: 12px; height: 12px; color: hsl(var(--hfu-blue)); }
-    .home-card__body {
-      padding: 36px 38px 38px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      flex: 1;
-    }
-    .home-card h3 {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
-      color: hsl(var(--hfu-navy));
-      line-height: 1.02;
-      letter-spacing: -0.024em;
-      font-variation-settings: "opsz" 60;
-    }
-    .home-card h3 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home-card p.lead-card {
-      font-size: 15.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      max-width: 42ch;
-    }
-    .home-card__list {
-      list-style: none;
-      margin: 8px 0 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px 18px;
-    }
-    .home-card__list li {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      font-size: 13.5px;
-      color: hsl(var(--fg));
-      line-height: 1.4;
-    }
-    .home-card__list .check {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
-      display: grid;
-      place-items: center;
-      margin-top: 1px;
-    }
-    .home-card__list .check svg { width: 10px; height: 10px; }
-    .home-card__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
-    }
-    .home-card__price {
-      display: flex;
-      flex-direction: column;
-      font-family: var(--display);
-    }
-    .home-card__price .num {
-      font-size: 22px;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .home-card__price .label {
+    .bento__eyebrow {
       font-family: var(--body);
       font-size: 11px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-    .home-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
       font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: hsl(var(--hfu-blue));
     }
-    .home-card__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .home-card:hover .home-card__link svg { transform: translateX(3px); }
-
-    /* ═════════════════════ VOICES (warm cream) ═════════════════════ */
-    .voices {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .voices__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .voices__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
+    .bento__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(3rem, 6.4vw, 5.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.032em;
       color: hsl(var(--hfu-navy));
-      margin-top: 20px;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .bento__title em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow-deep));
+    }
+    .bento__lede {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 60ch;
+      margin: 0;
+    }
+    .bento__ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .bento {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 180px 180px auto 220px 220px;
+      }
+      .bento__cell--housing,
+      .bento__cell--food { grid-column: span 1; }
+      .bento__text { padding: 24px 0 16px; }
+    }
+    @media (max-width: 560px) {
+      .bento { gap: 6px; }
+      .bento__cap { font-size: 8.5px; padding: 4px 8px; letter-spacing: 0.16em; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Section chrome — common head, container utilities
+       ═════════════════════════════════════════════════════════════════════ */
+    .section { padding: var(--section) 0; }
+    .section--alt { background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft)); }
+    .section__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .section__head {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+    .section__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      color: hsl(var(--hfu-navy));
       letter-spacing: -0.024em;
+      margin-top: 18px;
       line-height: 1.02;
     }
-    .voices__head h2 em {
+    .section__head h2 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-blue));
     }
-    .voices__head p {
-      font-size: 15.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.6;
-      max-width: 44ch;
-    }
-    .voices__grid {
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · c-stat row
+       ═════════════════════════════════════════════════════════════════════ */
+    .stats-row {
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--gutter);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
-    .voice-card {
-      padding: 38px 34px 32px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
+    .hfu-card {
+      position: relative;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
       border-radius: var(--r-lg);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      position: relative;
       transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
     }
-    .voice-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
+    .c-stat {
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 180px;
+      justify-content: flex-end;
     }
-    .voice-card__mark {
-      font-family: var(--display);
-      font-size: 88px;
-      line-height: 0.3;
-      color: hsl(var(--hfu-yellow));
-      margin: 10px 0 -28px;
-      font-weight: 300;
-      letter-spacing: -0.04em;
+    .c-stat--feature {
+      background:
+        radial-gradient(ellipse at 80% 0%, hsl(var(--hfu-yellow) / 0.12), transparent 60%),
+        hsl(var(--paper));
     }
-    .voice-card blockquote {
+    .c-stat__num {
       font-family: var(--display);
-      font-size: clamp(17px, 1.35vw, 20px);
-      line-height: 1.38;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
       color: hsl(var(--hfu-navy));
-      letter-spacing: -0.012em;
-      margin: 0;
-      flex: 1;
+      font-weight: 400;
+      font-variation-settings: "opsz" 60;
+      font-variant-numeric: lining-nums;
+    }
+    .c-stat__num .small {
+      font-size: 0.38em;
+      vertical-align: 0.5em;
+      margin-left: 3px;
+      color: hsl(var(--hfu-blue));
+      font-weight: 400;
+    }
+    .c-stat__label {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+      line-height: 1.45;
+    }
+    .c-stat__caption {
+      font-family: var(--display);
       font-style: italic;
       font-weight: 300;
-      font-variation-settings: "opsz" 60;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg-subtle));
+      margin-top: 6px;
+      max-width: 28ch;
     }
-    .voice-card__by {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-tabs + tabpanels
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
     }
-    .voice-card__avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 12px; right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+    .tabpanel { display: none; }
+    .tabpanel.is-active { display: block; }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-table
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-table-wrap {
       border: 1px solid hsl(var(--border));
-      box-shadow: var(--shadow-xs);
+      border-radius: var(--r);
+      overflow: hidden;
+      background: hsl(var(--paper));
     }
-    .voice-card__name {
+    .hfu-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--body);
       font-size: 14.5px;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .hfu-table thead th {
+      text-align: left;
+      padding: 14px 20px;
+      background: hsl(var(--bg-alt));
+      border-bottom: 1px solid hsl(var(--border));
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+    }
+    .hfu-table tbody td {
+      padding: 16px 20px;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      color: hsl(var(--fg));
+      vertical-align: middle;
+    }
+    .hfu-table tbody tr:last-child td { border-bottom: none; }
+    .hfu-table tbody tr:hover td { background: hsl(var(--hfu-yellow) / 0.05); }
+    .hfu-table--zebra tbody tr:nth-child(even) td { background: hsl(var(--bg)); }
+    .hfu-table--zebra tbody tr:nth-child(even):hover td { background: hsl(var(--hfu-yellow) / 0.08); }
+    .hfu-table .cell-name {
       font-weight: 600;
       color: hsl(var(--hfu-navy));
-      letter-spacing: -0.005em;
-      display: block;
     }
-    .voice-card__role {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      margin-top: 3px;
-    }
-    .voice-card__chip {
-      position: absolute;
-      top: 26px;
-      right: 26px;
-      padding: 5px 12px;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+    .hfu-table .cell-muted { color: hsl(var(--fg-muted)); }
+    .hfu-table .cell-season {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: hsl(var(--hfu-blue));
       text-transform: uppercase;
-      border-radius: 100px;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-navy));
     }
-    .voice-card--a .voice-card__chip { background: hsl(var(--hfu-blue) / 0.12); color: hsl(var(--hfu-blue)); }
-    .voice-card--b .voice-card__chip { background: hsl(var(--hfu-yellow) / 0.24); color: hsl(var(--hfu-navy)); }
-    .voice-card--c .voice-card__chip { background: hsl(335 72% 42% / 0.1); color: hsl(335 60% 38%); }
 
-    /* ═════════════════════ CALENDAR STRIP ═════════════════════ */
-    .calendar {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .calendar__head {
-      max-width: var(--container);
-      margin: 0 auto 48px;
-      padding: 0 var(--gutter);
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · c-program (clubs grid)
+       ═════════════════════════════════════════════════════════════════════ */
+    .c-program-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
-    .calendar__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 22ch;
-      line-height: 1.02;
+    .c-program {
+      padding: 26px 26px 22px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
     }
-    .calendar__head h2 em {
-      font-style: italic;
-      font-weight: 300;
+    .c-program__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .c-program__school {
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: hsl(var(--hfu-blue));
     }
-    .calendar__nav {
+    .c-program h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-program__chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .c-program p {
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.58;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .c-program__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .c-program__count { color: hsl(var(--hfu-navy)); font-weight: 600; }
+
+    .hfu-chip {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
+      padding: 5px 11px;
       border-radius: 100px;
-    }
-    .calendar__nav button {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 500;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
       color: hsl(var(--hfu-navy));
-      display: grid;
-      place-items: center;
-      transition: all 200ms var(--ease-out);
     }
-    .calendar__nav button:hover {
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
-    }
-    .calendar__nav button svg { width: 14px; height: 14px; }
-    .calendar__nav .label {
-      padding: 0 14px;
-      font-size: 13px;
-      font-weight: 600;
+    .hfu-chip--yellow {
+      background: hsl(var(--hfu-yellow) / 0.14);
+      border-color: hsl(var(--hfu-yellow) / 0.5);
       color: hsl(var(--hfu-navy));
-      letter-spacing: 0.01em;
+    }
+    .hfu-chip--blue {
+      background: hsl(var(--hfu-blue) / 0.08);
+      border-color: hsl(var(--hfu-blue) / 0.3);
+      color: hsl(var(--hfu-blue-deep));
     }
 
-    .calendar__track {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      position: relative;
+    .hfu-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: hsl(var(--hfu-blue));
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
     }
-    .calendar__timeline {
+    .hfu-link svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
+    .hfu-link:hover svg { transform: translateX(3px); }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-timeline
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-timeline {
       position: relative;
-      padding-top: 26px;
+      padding-left: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      max-width: 720px;
     }
-    .calendar__line {
+    .hfu-timeline::before {
+      content: "";
       position: absolute;
-      top: 76px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, hsl(var(--hfu-navy) / 0.22) 6%, hsl(var(--hfu-navy) / 0.22) 94%, transparent);
+      top: 10px; bottom: 10px;
+      left: 13px;
+      width: 1px;
+      background: hsl(var(--border));
     }
-    .calendar__row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+    .hfu-timeline__item { position: relative; }
+    .hfu-timeline__item::before {
+      content: "";
+      position: absolute;
+      left: -32px; top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-timeline__item.is-current::before {
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+    }
+    .hfu-timeline__date {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .hfu-timeline__title {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin: 4px 0 6px;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-timeline__body {
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.58;
+      color: hsl(var(--fg-muted));
+      max-width: 54ch;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · c-voice (testimonial)
+       ═════════════════════════════════════════════════════════════════════ */
+    .c-voice {
+      padding: 34px 28px 26px;
+      display: flex;
+      flex-direction: column;
       gap: 20px;
-      position: relative;
     }
-    .cal-item {
-      text-align: left;
-      padding: 0 2px;
+    .c-voice__mark {
+      font-family: var(--display);
+      font-size: 72px;
+      line-height: 0.3;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: -0.04em;
+    }
+    .c-voice blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+      margin: 0;
+      flex: 1;
+    }
+    .c-voice__by {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .c-voice__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--border));
+      background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow) / 0.7), hsl(var(--hfu-blue) / 0.8) 70%);
+      flex: 0 0 auto;
+    }
+    .c-voice__attr strong {
+      display: block;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+    }
+    .c-voice__attr span {
+      display: block;
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      margin-top: 2px;
+    }
+    .c-voice--blue   { background: hsl(var(--hfu-blue) / 0.06);   border-color: hsl(var(--hfu-blue) / 0.2); }
+    .c-voice--blue   .c-voice__mark { color: hsl(var(--hfu-blue)); }
+    .c-voice--yellow { background: hsl(var(--hfu-yellow) / 0.12); border-color: hsl(var(--hfu-yellow) / 0.5); }
+    .c-voice--yellow .c-voice__mark { color: hsl(var(--hfu-yellow-deep)); }
+    .c-voice--rose   { background: hsl(var(--hfu-rose) / 0.06);   border-color: hsl(var(--hfu-rose) / 0.25); }
+    .c-voice--rose   .c-voice__mark { color: hsl(var(--hfu-rose)); }
+
+    .c-voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-pullquote
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-pullquote {
+      padding: 56px 0;
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+      position: relative;
+      margin: 0;
+    }
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 8px; height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%; margin-left: -4px;
+    }
+    .hfu-pullquote::before { top: -4px; }
+    .hfu-pullquote::after  { bottom: -4px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 30ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-pullquote__by {
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-acc (accordion)
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-acc {
+      display: flex;
+      flex-direction: column;
+      max-width: 780px;
+    }
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 22px 4px;
+      transition: background 200ms var(--ease-out);
+    }
+    .hfu-acc details:last-child { border-bottom: 1px solid hsl(var(--border)); }
+    .hfu-acc summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__chev {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+    }
+    .hfu-acc__chev svg { width: 11px; height: 11px; }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-acc details > div {
+      padding-top: 14px;
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · hfu-figure (gallery)
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-figure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .hfu-figure {
+      margin: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      position: relative;
     }
-    .cal-item__date {
-      width: 100px;
-      height: 100px;
-      background: hsl(var(--bg-card));
+    .hfu-figure__frame {
+      aspect-ratio: 4 / 3;
       border: 1px solid hsl(var(--border));
       border-radius: var(--r);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0;
-      transition: all 280ms var(--ease-out);
+      background: linear-gradient(135deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-blue) / 0.8) 100%);
       position: relative;
-      box-shadow: var(--shadow-xs);
-    }
-    .cal-item:hover .cal-item__date {
-      background: hsl(var(--hfu-navy));
-      border-color: hsl(var(--hfu-navy));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .cal-item__date .month {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: hsl(var(--hfu-blue));
-      font-weight: 700;
-      margin-bottom: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .month { color: hsl(var(--hfu-yellow)); }
-    .cal-item__date .day {
-      font-family: var(--display);
-      font-size: 48px;
-      line-height: 0.9;
-      color: hsl(var(--hfu-navy));
-      font-variation-settings: "opsz" 60;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .day { color: #fff; }
-    .cal-item__date .dow {
-      font-size: 10.5px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .dow { color: hsl(0 0% 100% / 0.7); }
-
-    .cal-item__body {
-      padding-right: 12px;
-    }
-    .cal-item__tag {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .cal-item h3 {
-      font-family: var(--display);
-      font-size: 17px;
-      line-height: 1.2;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-      font-variation-settings: "opsz" 60;
-    }
-    .cal-item__meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 12.5px;
-      color: hsl(var(--fg-muted));
-    }
-    .cal-item__meta .line {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .cal-item__meta svg { width: 11px; height: 11px; color: hsl(var(--hfu-blue)); opacity: 0.7; }
-
-    .calendar__foot {
-      max-width: var(--container);
-      margin: 56px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: center;
-    }
-    .calendar__foot a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 24px;
-      border: 1px solid hsl(var(--border-strong));
-      border-radius: 100px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      background: hsl(var(--bg-card));
-      transition: all 220ms var(--ease-out);
-    }
-    .calendar__foot a:hover {
-      background: hsl(var(--hfu-navy));
-      color: #fff;
-      transform: translateY(-1px);
-    }
-    .calendar__foot svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .calendar__foot a:hover svg { transform: translateX(3px); }
-
-    /* ═════════════════════ CTA MEGA ═════════════════════ */
-    .cta {
-      padding: 0 0 var(--section);
-    }
-    .cta__box {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-    .cta__inner {
-      position: relative;
-      border-radius: var(--r-2xl);
       overflow: hidden;
-      padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem);
-      background: hsl(var(--hfu-navy));
-      color: #fff;
     }
-    .cta__bg {
+    .hfu-figure__frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.14) 1px, transparent 1.5px);
+      background-size: 22px 22px;
+      opacity: 0.6;
+    }
+    .hfu-figure__label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 6px 12px;
+      background: hsl(var(--white) / 0.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid hsl(var(--white) / 0.22);
+      border-radius: 100px;
+      color: hsl(var(--white));
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      z-index: 1;
+    }
+    .hfu-figure figcaption {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+      max-width: 58ch;
+    }
+    .hfu-figure figcaption::before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+      margin-top: 10px;
+      flex: 0 0 auto;
+    }
+    .hfu-figure--a .hfu-figure__frame,
+    .hfu-figure--b .hfu-figure__frame,
+    .hfu-figure--c .hfu-figure__frame,
+    .hfu-figure--d .hfu-figure__frame,
+    .hfu-figure--e .hfu-figure__frame,
+    .hfu-figure--f .hfu-figure__frame {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .hfu-figure--a .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/students-campus.jpg"); }
+    .hfu-figure--b .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/environmental-118.jpg"); }
+    .hfu-figure--c .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/alumni.jpg"); }
+    .hfu-figure--d .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/campus-0y3a1238.jpg"); }
+    .hfu-figure--e .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/ed-art-class.jpg"); }
+    .hfu-figure--f .hfu-figure__frame { background-image: url("../assets/hfu-photos/live/graduation.jpg"); }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · visit-invite
+       Full-bleed navy section with a campus photograph behind a scrim.
+       Replaces the old hfu-callout alert-strip, which was the wrong vessel
+       for a "come visit" invitation.
+       ═════════════════════════════════════════════════════════════════════ */
+    .visit-invite {
+      position: relative;
+      overflow: hidden;
+      background: hsl(var(--hfu-navy));
+      isolation: isolate;
+    }
+    .visit-invite__media {
       position: absolute;
       inset: 0;
       z-index: 0;
     }
-    .cta__bg img {
+    .visit-invite__media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 30%;
-      opacity: 0.25;
+      object-position: center 45%;
     }
-    .cta__bg::after {
+    .visit-invite__media::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(130deg, hsl(var(--hfu-navy-deep)) 0%, hsl(var(--hfu-navy-deep) / 0.88) 40%, hsl(var(--hfu-navy) / 0.58) 100%);
+      background:
+        linear-gradient(100deg,
+          hsl(var(--hfu-navy) / 0.94) 0%,
+          hsl(var(--hfu-navy) / 0.72) 40%,
+          hsl(var(--hfu-navy) / 0.38) 100%);
     }
-    .cta__content {
+
+    .visit-invite__inner {
       position: relative;
+      z-index: 1;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: clamp(64px, 8vw, 120px) var(--gutter);
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 56px;
-      align-items: end;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 5vw, 80px);
+      align-items: center;
+      color: hsl(var(--white));
     }
-    .cta__content .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .cta__content .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .cta__content h2 {
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.98;
-      color: #fff;
-      margin: 22px 0 0;
-      letter-spacing: -0.028em;
-      font-variation-settings: "opsz" 60;
-      font-weight: 350;
-      max-width: 14ch;
+
+    .visit-invite__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 22px;
     }
-    .cta__content h2 em {
+    .visit-invite__eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .visit-invite h2 {
+      font-size: clamp(2rem, 3.6vw, 2.75rem);
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--white));
+      margin: 0 0 22px;
+      font-weight: 500;
+      max-width: 18ch;
+    }
+    .visit-invite h2 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-yellow));
     }
-    .cta__side { display: flex; flex-direction: column; gap: 24px; }
-    .cta__side p {
-      font-size: 16px;
-      color: hsl(0 0% 100% / 0.78);
-      line-height: 1.6;
+    .visit-invite__lede {
+      font-size: clamp(15px, 1.05vw, 17px);
+      line-height: 1.65;
+      color: hsl(var(--white) / 0.9);
+      margin: 0 0 28px;
+      max-width: 48ch;
     }
-    .cta__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-    .cta__buttons .btn--secondary {
-      background: transparent;
-      color: #fff;
-      border-color: hsl(0 0% 100% / 0.3);
+    .visit-invite__ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-    .cta__buttons .btn--secondary:hover {
-      background: hsl(0 0% 100% / 0.08);
-      border-color: hsl(0 0% 100% / 0.5);
+    .visit-invite__ctas .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy));
+      border-color: hsl(var(--hfu-yellow));
+    }
+    .visit-invite__ctas .btn--primary:hover {
+      background: hsl(var(--white));
+      border-color: hsl(var(--white));
+      color: hsl(var(--hfu-navy));
+    }
+    .visit-invite__ctas .btn--secondary {
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
+      border: 1px solid hsl(var(--white) / 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .visit-invite__ctas .btn--secondary:hover {
+      background: hsl(var(--white) / 0.2);
+      border-color: hsl(var(--white) / 0.7);
+      color: hsl(var(--white));
     }
 
-    /* ═════════════════════ Footer ═════════════════════ */
+    .visit-invite__meta {
+      border-top: 1px solid hsl(var(--white) / 0.18);
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 32px;
+      margin: 0;
+    }
+    .visit-invite__meta-item { margin: 0; }
+    .visit-invite__meta-item dt {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 10px;
+    }
+    .visit-invite__meta-item dd {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: hsl(var(--white) / 0.92);
+      margin: 0;
+    }
+    .visit-invite__meta-item dd strong {
+      font-weight: 600;
+      color: hsl(var(--white));
+    }
+    .visit-invite__meta-item a {
+      color: hsl(var(--hfu-yellow));
+      text-decoration: none;
+      border-bottom: 1px solid hsl(var(--hfu-yellow) / 0.4);
+      transition: border-color 180ms var(--ease-out);
+    }
+    .visit-invite__meta-item a:hover { border-color: hsl(var(--hfu-yellow)); }
+
+    @media (max-width: 900px) {
+      .visit-invite__inner { grid-template-columns: 1fr; gap: 40px; }
+      .visit-invite__meta { gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      .visit-invite h2 { font-size: 1.625rem; max-width: none; }
+      .visit-invite__meta { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Component · c-event
+       ═════════════════════════════════════════════════════════════════════ */
+    .c-event-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .c-event {
+      padding: 22px 24px;
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .c-event__date {
+      width: 74px;
+      border-radius: var(--r-sm);
+      border: 1px solid hsl(var(--border));
+      overflow: hidden;
+      text-align: center;
+      font-family: var(--display);
+      box-shadow: var(--shadow-xs);
+      background: hsl(var(--paper));
+    }
+    .c-event__month {
+      display: block;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+    .c-event__day {
+      display: block;
+      font-family: var(--display);
+      font-size: 32px;
+      font-weight: 350;
+      color: hsl(var(--hfu-navy));
+      padding: 10px 0 12px;
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .c-event h3 {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 6px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-event__meta {
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-muted));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-bottom: 10px;
+    }
+    .c-event__meta span + span::before {
+      content: "·";
+      margin-right: 14px;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Source note — every page in this set carries one
+       ═════════════════════════════════════════════════════════════════════ */
+    .source-note {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: 13px;
+      line-height: 1.55;
+      color: hsl(var(--fg-subtle));
+      max-width: 62ch;
+      padding-top: 14px;
+    }
+    .source-note::before {
+      content: "— ";
+      color: hsl(var(--hfu-yellow-deep));
+      font-style: normal;
+      margin-right: 4px;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Footer (unchanged from prior version of this page)
+       ═════════════════════════════════════════════════════════════════════ */
     .foot {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.72);
+      color: hsl(var(--white) / 0.72);
       padding: clamp(4rem, 6vw, 6rem) 0 0;
     }
     .foot__inner {
@@ -1681,7 +1302,7 @@
     .foot__brand h3 {
       font-family: var(--display);
       font-size: 26px;
-      color: #fff;
+      color: hsl(var(--white));
       margin: 22px 0 14px;
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -1695,8 +1316,8 @@
     .foot__news {
       display: flex;
       gap: 8px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.1);
+      background: hsl(var(--white) / 0.06);
+      border: 1px solid hsl(var(--white) / 0.1);
       border-radius: 100px;
       padding: 6px 6px 6px 18px;
       max-width: 380px;
@@ -1705,12 +1326,12 @@
       flex: 1;
       background: transparent;
       border: none;
-      color: #fff;
+      color: hsl(var(--white));
       font: inherit;
       font-size: 14px;
       outline: none;
     }
-    .foot__news input::placeholder { color: hsl(0 0% 100% / 0.5); }
+    .foot__news input::placeholder { color: hsl(var(--white) / 0.5); }
     .foot__news button {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
@@ -1723,77 +1344,43 @@
       font-family: var(--body);
       font-size: 12px;
       font-weight: 700;
-      color: #fff;
+      color: hsl(var(--white));
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 22px;
     }
     .foot__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-    .foot__col a { font-size: 14px; color: hsl(0 0% 100% / 0.62); }
-    .foot__col a:hover { color: #fff; }
-    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(0 0% 100% / 0.56); margin-top: 10px; }
-    .foot__addr strong { color: hsl(0 0% 100% / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
+    .foot__col a { font-size: 14px; color: hsl(var(--white) / 0.62); }
+    .foot__col a:hover { color: hsl(var(--white)); }
+    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(var(--white) / 0.56); margin-top: 10px; }
+    .foot__addr strong { color: hsl(var(--white) / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
 
     .foot__bottom {
       max-width: var(--container);
       margin: 72px auto 0;
       padding: 28px var(--gutter);
-      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      border-top: 1px solid hsl(var(--white) / 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
       font-size: 12.5px;
-      color: hsl(0 0% 100% / 0.5);
+      color: hsl(var(--white) / 0.5);
     }
     .foot__bottom .links { display: flex; gap: 24px; }
-    .foot__bottom a:hover { color: #fff; }
+    .foot__bottom a:hover { color: hsl(var(--white)); }
 
-    /* ═════════════════════ Mobile ═════════════════════ */
+    /* ═════════════════════════════════════════════════════════════════════
+       Responsive
+       ═════════════════════════════════════════════════════════════════════ */
     @media (max-width: 1100px) {
-      .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); max-width: 14ch; }
-      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-      .hero__stat { padding: 14px 18px; border-right: 1px solid hsl(0 0% 100% / 0.14); border-bottom: 1px solid hsl(0 0% 100% / 0.14); }
-      .hero__stat:nth-child(2n) { border-right: none; padding-right: 0; }
-      .hero__stat:nth-child(1), .hero__stat:nth-child(2) { padding-top: 0; }
-      .hero__stat:nth-child(3), .hero__stat:nth-child(4) { border-bottom: none; padding-bottom: 0; }
-      .hero__stat:nth-child(2n+1) { padding-left: 0; }
-      .hero__scroll { display: none; }
-
-      .pillars__head { grid-template-columns: 1fr; gap: 28px; }
-      .pillars__grid { grid-template-columns: repeat(2, 1fr); }
-
-      .gallery__head { grid-template-columns: 1fr; gap: 24px; }
-      .gallery__grid { grid-auto-rows: 100px; }
-      .shot--a { grid-column: span 12; grid-row: span 4; }
-      .shot--b { grid-column: span 12; grid-row: span 2; }
-      .shot--c { grid-column: span 6; grid-row: span 2; }
-      .shot--d { grid-column: span 6; grid-row: span 2; }
-      .shot--e { grid-column: span 6; grid-row: span 3; }
-      .shot--f { grid-column: span 6; grid-row: span 3; }
-      .shot--g { grid-column: span 12; grid-row: span 3; }
-      .shot--h { grid-column: span 12; grid-row: span 3; }
-
-      .athletics__inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
-      .athletics__media { margin: clamp(3rem, 5vw, 5rem) 0 0; aspect-ratio: 16 / 10; }
-      .athletics__body { padding: clamp(3rem, 5vw, 5rem) 0; }
-
-      .clubs__grid { grid-template-columns: repeat(2, 1fr); }
-      .clubs__head { grid-template-columns: 1fr; gap: 20px; }
-
-      .home__grid { grid-template-columns: 1fr; gap: 20px; }
-      .home-card__list { grid-template-columns: 1fr 1fr; }
-
-      .voices__head { grid-template-columns: 1fr; gap: 20px; }
-      .voices__grid { grid-template-columns: 1fr; gap: 16px; }
-
-      .calendar__head { grid-template-columns: 1fr; gap: 16px; }
-      .calendar__row { grid-template-columns: repeat(3, 1fr); gap: 28px 18px; }
-      .cal-item:nth-child(n+4) { display: none; }
-      .calendar__line { display: none; }
-
-      .cta__content { grid-template-columns: 1fr; gap: 32px; }
+      .section__head { grid-template-columns: 1fr; gap: 20px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .c-program-grid { grid-template-columns: repeat(2, 1fr); }
+      .c-voice-grid { grid-template-columns: 1fr; }
+      .hfu-figure-grid { grid-template-columns: repeat(2, 1fr); }
+      .c-event-grid { grid-template-columns: 1fr; }
       .foot__inner { grid-template-columns: 1fr 1fr; gap: 48px; }
     }
 
@@ -1809,88 +1396,31 @@
         place-items: center;
         width: 40px;
         height: 40px;
-        background: hsl(0 0% 100% / 0.08);
+        background: hsl(var(--white) / 0.08);
         border-radius: 8px;
-        color: #fff;
+        color: hsl(var(--white));
       }
       .nav__search { display: none; }
       .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
 
-      .hero { min-height: 86vh; }
-      .hero__inner { padding-bottom: 3rem; }
-      .hero__crumbs { margin-bottom: 18px; font-size: 12px; flex-wrap: wrap; }
-      .hero__eyebrow { margin-bottom: 22px; font-size: 11px; }
-      .hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); max-width: none; margin-bottom: 24px; }
-      .hero__lead { font-size: 15px; margin-bottom: 28px; }
-      .hero__ctas { flex-direction: column; align-items: stretch; margin-bottom: 40px; }
-      .hero__ctas .btn { justify-content: center; }
-      .hero__stats { grid-template-columns: 1fr 1fr; padding-top: 24px; }
-      .hero__stat { padding: 12px 14px; }
-      .hero__stat .num { font-size: 1.8rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .c-program-grid { grid-template-columns: 1fr; }
+      .hfu-figure-grid { grid-template-columns: 1fr; }
+      .c-event { grid-template-columns: 64px 1fr; gap: 14px; padding: 20px; }
+      .c-event__date { width: 64px; }
+      .c-event__day { font-size: 26px; padding: 8px 0 10px; }
 
-      .pillars__grid { grid-template-columns: 1fr; }
-      .pillar { min-height: auto; padding: 28px 26px; }
-
-      .gallery__grid {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .shot, .shot--a, .shot--b, .shot--c, .shot--d, .shot--e, .shot--f, .shot--g, .shot--h {
-        aspect-ratio: 4 / 3;
-        height: auto;
-        min-height: 220px;
-        grid-column: auto;
-        grid-row: auto;
-      }
-
-      .athletics__inner { padding: 0 var(--gutter); }
-      .athletics__media { margin: 48px 0 0; aspect-ratio: 5 / 4; }
-      .athletics__body h2 { font-size: 2.2rem; }
-      .athletics__score .roar { font-size: 48px; }
-      .athletics__score .tiger { font-size: 1.4rem; }
-
-      .clubs__grid { grid-template-columns: 1fr; }
-      .club { padding: 24px 24px 26px; }
-
-      .home-card__body { padding: 28px 26px 30px; }
-      .home-card__list { grid-template-columns: 1fr; gap: 12px; }
-      .home-card h3 { font-size: 1.7rem; }
-
-      .voice-card { padding: 32px 26px 28px; }
-      .voice-card blockquote { font-size: 17px; }
-      .voice-card__chip { top: 22px; right: 22px; }
-
-      .calendar__row {
-        display: flex;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scroll-snap-type: x mandatory;
-        gap: 16px;
-        padding: 0 0 14px;
-        margin: 0 calc(var(--gutter) * -1);
-        padding-left: var(--gutter);
-        padding-right: var(--gutter);
-        scrollbar-width: none;
-      }
-      .calendar__row::-webkit-scrollbar { display: none; }
-      .cal-item {
-        flex: 0 0 240px;
-        scroll-snap-align: start;
-      }
-      .cal-item:nth-child(n+4) { display: flex; }
-      .cal-item__date { width: 88px; height: 88px; }
-      .cal-item__date .day { font-size: 40px; }
-
-      .cta__inner { padding: 52px 28px; border-radius: var(--r-xl); }
-      .cta__content { gap: 28px; }
-      .cta__content h2 { font-size: 2.4rem; }
+      .hfu-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+      .hfu-tabs::-webkit-scrollbar { display: none; }
+      .hfu-tabs button { white-space: nowrap; }
 
       .foot__inner { grid-template-columns: 1fr; gap: 40px; }
       .foot__news { max-width: none; }
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
+  <link rel="stylesheet" href="components-restore.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -1915,10 +1445,6 @@
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
@@ -1971,816 +1497,754 @@
   </header>
 
   <main>
-  <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Holy Family University campus">
+  <!-- ═════════════════════ BENTO HERO ═════════════════════ -->
+  <section class="spread" aria-label="Student experience opening spread">
+    <nav class="spread__crumbs" aria-label="Breadcrumb">
+      <a href="#">Home</a>
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
+      <span class="is-current">Student Experience</span>
+    </nav>
+
+    <div class="bento" aria-label="Six facets of student life">
+
+      <figure class="bento__cell bento__cell--clubs">
+        <img src="../assets/hfu-photos/live/student-life.jpg" alt="Holy Family students gathered in a campus common area">
+        <figcaption class="bento__cap">Clubs · 25+ and counting</figcaption>
+      </figure>
+
+      <figure class="bento__cell bento__cell--athletics">
+        <img src="../assets/hfu-photos/live/athletics-wbb.jpg" alt="Holy Family women's basketball team celebrating on court">
+        <figcaption class="bento__cap">Athletics · 18 NCAA D-II teams</figcaption>
+      </figure>
+
+      <figure class="bento__cell bento__cell--faith">
+        <img src="../assets/hfu-photos/academics-chapel.jpg" alt="The Holy Family chapel at dusk">
+        <figcaption class="bento__cap">Faith · Two campus chapels</figcaption>
+      </figure>
+
+      <figure class="bento__cell bento__cell--service">
+        <img src="../assets/hfu-photos/live/service-mlk.jpg" alt="Holy Family SAAC students assembling blessing bags for community service on MLK Day">
+        <figcaption class="bento__cap">Service · Required, not rhetorical</figcaption>
+      </figure>
+
+      <div class="bento__text">
+        <span class="bento__eyebrow">Life on campus · two campuses, one community</span>
+        <h1 class="bento__title">Life at the family <em>table.</em></h1>
+        <p class="bento__lede">Eighteen NCAA Division II teams. Twenty-five clubs and organizations. Two campuses — Philadelphia and Newtown — held together by a community rooted in faith, scholarship, and service.</p>
+        <div class="bento__ctas">
+          <a href="hfu-visit.html" class="btn btn--primary btn--lg">Plan a visit</a>
+          <a href="#clubs" class="btn btn--secondary btn--lg">Explore student life</a>
+        </div>
+      </div>
+
+      <figure class="bento__cell bento__cell--housing">
+        <img src="../assets/hfu-photos/live/newtown-campus.jpg" alt="Newtown campus residence with fall foliage">
+        <figcaption class="bento__cap">Housing · On both campuses</figcaption>
+      </figure>
+
+      <figure class="bento__cell bento__cell--food">
+        <img src="../assets/hfu-photos/live/dining-saxbys.jpg" alt="Student CEO at the student-run Saxbys cafe on campus">
+        <figcaption class="bento__cap">Food · Student-run kitchen, weekly</figcaption>
+      </figure>
+
     </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__grain"></div>
-
-    <div class="hero__inner">
-      <div class="hero__crumbs">
-        <a href="#">Home</a>
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <span class="is-current">Student Experience</span>
-      </div>
-
-      <span class="hero__eyebrow">Student Experience</span>
-
-      <h1>Life at the <em>family</em> table.</h1>
-
-      <p class="hero__lead">From Sunday Mass in the chapel to a last-minute library run, from game-winning free throws to the quiet hum of the residence hall at midnight — life at Holy Family is the kind you remember in pictures.</p>
-
-      <div class="hero__ctas">
-        <a href="#" class="btn btn--primary btn--lg">
-          Take a Virtual Tour
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-        <a href="#clubs" class="btn btn--glass btn--lg">
-          Explore Clubs
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">18</div>
-          <div class="label">NCAA DII<br>Varsity Teams</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">25<span class="small">+</span></div>
-          <div class="label">Clubs &amp;<br>Organizations</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">2</div>
-          <div class="label">Campuses in<br>Greater Philly</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">100<span class="small">%</span></div>
-          <div class="label">Residential<br>Options</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__scroll">Scroll to explore</div>
   </section>
 
-  <!-- ═════════════════════ LIFE PILLARS ═════════════════════ -->
-  <section class="pillars">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">How you live here</span>
-        <h2>Six ways to <em>belong</em>. One Tiger family.</h2>
+  <!-- ═════════════════════ SECTION 1 · STAT CALLOUTS ═════════════════════ -->
+  <section class="section" aria-label="Student life at a glance">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">At a glance</span>
+          <h2>Four figures that <em>describe</em> a year here.</h2>
+        </div>
+        <p class="lead">The shape of student life at Holy Family is small enough that numbers stay honest. Every figure below is drawn from the Fall 2025 student affairs report and the RFP fact pack.</p>
       </div>
-      <p class="lead">Student life at Holy Family is built on the same traditions the Sisters of the Holy Family of Nazareth brought with them in 1954 — hospitality, scholarship, and the unshakeable belief that everyone has a seat at the table.</p>
     </div>
-
-    <div class="pillars__grid">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
-        </div>
-        <h3>Residence Life</h3>
-        <p>Live where you learn. Traditional halls, suite-style apartments, and tight-knit floor communities on both Philadelphia and Newtown campuses — each with live-in RAs and 24/7 support.</p>
-        <a href="#" class="pillar__link">
-          Explore housing
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+    <div class="stats-row">
+      <article class="hfu-card c-stat c-stat--feature">
+        <div class="c-stat__num">18</div>
+        <div class="c-stat__label">NCAA Division II varsity teams</div>
+        <div class="c-stat__caption">Central Atlantic Collegiate Conference, nine men's and nine women's programs.</div>
       </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h16v2a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6v-2Z"/><path d="M8 6c0-1 1-2 1-2s1 1 1 2-1 2-1 2-1-1-1-2Z"/><path d="M12 5c0-1 1-2 1-2s1 1 1 2-1 2-1 2-1-1-1-2Z"/><path d="M16 6c0-1 1-2 1-2s1 1 1 2-1 2-1 2-1-1-1-2Z"/></svg>
-        </div>
-        <h3>Dining</h3>
-        <p>A seat at every table. Flexible meal plans, late-night grab-and-go, real-food menus, and the kind of dining-hall conversations that turn into lifelong friendships.</p>
-        <a href="#" class="pillar__link">
-          See meal plans
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+      <article class="hfu-card c-stat">
+        <div class="c-stat__num">25<span class="small">+</span></div>
+        <div class="c-stat__label">Student clubs &amp; organizations</div>
+        <div class="c-stat__caption">Academic, cultural, faith-based, and service — all student-led.</div>
       </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 20c0-2 2-3.5 4-3.5s3 1 3 3.5"/></svg>
-        </div>
-        <h3>Clubs &amp; Activities</h3>
-        <p>More than 25 student-led organizations, from the Black Student Union to Theatre Guild. If the club you want doesn&#39;t exist yet, we&#39;ll help you start it this semester.</p>
-        <a href="#clubs" class="pillar__link">
-          Browse clubs
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+      <article class="hfu-card c-stat">
+        <div class="c-stat__num">2</div>
+        <div class="c-stat__label">Campuses across Greater Philadelphia</div>
+        <div class="c-stat__caption">Philadelphia (Torresdale) and Newtown (Bucks County), a 35-minute drive apart.</div>
       </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M8 7h8"/><path d="M5 21h14"/><path d="M7 21V11l5-4 5 4v10"/></svg>
-        </div>
-        <h3>Campus Ministry</h3>
-        <p>Daily Mass, retreats in the Pocono Mountains, service trips, and interfaith dialogue open to every student — Catholic or not. Come as you are.</p>
-        <a href="#" class="pillar__link">
-          Visit the chapel
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">05</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z"/></svg>
-        </div>
-        <h3>Health &amp; Wellness</h3>
-        <p>Free counseling, on-campus health clinic, peer-led wellness workshops, and a brand-new mental-health portal. Because showing up for yourself is part of showing up for your class.</p>
-        <a href="#" class="pillar__link">
-          Wellness resources
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">06</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
-        </div>
-        <h3>Student Support</h3>
-        <p>Advising, tutoring, career coaching, accessibility services, and first-generation programming — a web of people whose full-time job is making sure you don&#39;t walk any part of this alone.</p>
-        <a href="#" class="pillar__link">
-          Meet your team
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+      <article class="hfu-card c-stat">
+        <div class="c-stat__num">100<span class="small">%</span></div>
+        <div class="c-stat__label">Undergraduates in experiential learning</div>
+        <div class="c-stat__caption">Every undergraduate completes an internship or experiential learning placement before graduation, per the Student Experience page at holyfamily.edu.</div>
       </article>
     </div>
   </section>
 
-  <!-- ═════════════════════ DAY IN THE LIFE GALLERY ═════════════════════ -->
-  <section class="gallery">
-    <div class="gallery__head">
-      <div>
-        <span class="eyebrow">A day in the life</span>
-        <h2>One Tuesday, from <em>first light</em> to last call.</h2>
-      </div>
-      <div class="meta">
-        <p>A real photo from every hour of a real Tuesday on campus — no staging, no stock, no filters. This is what life here actually looks like.</p>
-        <span class="clock"><span class="dot"></span>7:02 AM · Newtown Quad</span>
-      </div>
-    </div>
-
-    <div class="gallery__grid">
-      <figure class="shot shot--a">
-        <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Students gathered on campus">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">8:14 AM</span>
-            <span class="dot-sep"></span>
-            Morning coffee on the quad
-          </span>
+  <!-- ═════════════════════ SECTION 2 · TABS (4 PANELS) ═════════════════════ -->
+  <section class="section section--alt" id="clubs" aria-label="Life on campus, four lenses">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Four lenses</span>
+          <h2>Athletics, clubs, service, <em>and</em> faith.</h2>
         </div>
-      </figure>
-
-      <figure class="shot shot--b">
-        <img src="../assets/hfu-photos/admissions-detail.jpg" alt="Campus detail">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">9:30 AM</span>
-            <span class="dot-sep"></span>
-            First lecture of the day
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--c">
-        <img src="../assets/hfu-photos/student-life3-square-small.jpg" alt="Students studying">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">11:45</span>
-            <span class="dot-sep"></span>
-            Study break
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--d">
-        <img src="../assets/hfu-photos/academics-chapel.jpg" alt="Chapel">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">12:15</span>
-            <span class="dot-sep"></span>
-            Noon Mass
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--e">
-        <img src="../assets/hfu-photos/admissions-art.jpg" alt="Art class">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">2:00 PM</span>
-            <span class="dot-sep"></span>
-            Painting studio &middot; Fine Arts
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--f">
-        <img src="../assets/hfu-photos/academics-nurses.jpg" alt="Nursing lab">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">3:30 PM</span>
-            <span class="dot-sep"></span>
-            Nursing sim lab
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--g">
-        <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="Newtown campus">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">5:18 PM</span>
-            <span class="dot-sep"></span>
-            Walk back to Newtown
-          </span>
-        </div>
-      </figure>
-
-      <figure class="shot shot--h">
-        <img src="../assets/hfu-photos/academics-etc.jpg" alt="Evening on campus">
-        <div class="shot__caption">
-          <span class="shot__cap-pill">
-            <span class="time">7:42 PM</span>
-            <span class="dot-sep"></span>
-            Tiger basketball vs. Chestnut Hill &middot; standing room only
-          </span>
-        </div>
-      </figure>
-    </div>
-
-    <div class="gallery__foot">
-      <p class="note">Candid frames from Tuesday, March 18 &mdash; captured by <em>@hfustudentlife</em> on Instagram. New series every week during the semester.</p>
-      <a href="#" class="btn btn--ghost">
-        Follow the series
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ ATHLETICS SPLIT ═════════════════════ -->
-  <section class="athletics">
-    <div class="athletics__inner">
-      <div class="athletics__media">
-        <img src="../assets/hfu-photos/admissions-2858.jpg" alt="Tiger athletics action">
-        <div class="athletics__badge">
-          <span class="live-dot"></span>
-          Tiger Athletics
-        </div>
-        <div class="athletics__score">
-          <div>
-            <div class="tiger">Go Tigers.</div>
-            <div class="sub">NCAA Division II · Central Atlantic Collegiate Conference</div>
-          </div>
-          <div class="roar">2025</div>
-        </div>
+        <p class="lead">The campus holds four rhythms at once. Use the tabs to move between them — each panel pulls a single component from the shared library so the vocabulary stays consistent across the site.</p>
       </div>
 
-      <div class="athletics__body">
-        <span class="eyebrow">Tiger Athletics</span>
-        <h2>Compete in the <em>blue and gold.</em></h2>
-        <p>Eighteen varsity teams. Two state-of-the-art athletic complexes. Championship titles, All-Conference honors, and nearly forty percent of every graduating class walking with a student-athlete diploma. This is Tiger country.</p>
-
-        <div class="athletics__sports">
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Basketball
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Soccer
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Volleyball
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Cross Country
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Softball
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Baseball
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Golf
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Lacrosse
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Track &amp; Field
-          </span>
-          <span class="sport-chip">
-            <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="5"/></svg>
-            Rowing
-          </span>
-        </div>
-
-        <div class="athletics__cta">
-          <a href="https://athletics.holyfamily.edu" class="btn btn--primary">
-            Visit athletics.holyfamily.edu
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-          <a href="#" class="sub-link">
-            Try out as a walk-on
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
+      <div class="hfu-tabs" role="tablist" aria-label="Student life topics">
+        <button type="button" class="is-active" role="tab" aria-selected="true" aria-controls="tab-athletics" data-tab="athletics">Athletics</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-clubs" data-tab="clubs">Clubs &amp; orgs</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-service" data-tab="service">Service</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-faith" data-tab="faith">Faith</button>
       </div>
-    </div>
-  </section>
 
-  <!-- ═════════════════════ CLUBS GRID ═════════════════════ -->
-  <section class="clubs" id="clubs">
-    <div class="clubs__head">
-      <div>
-        <span class="eyebrow">Clubs &amp; Organizations</span>
-        <h2>Find your <em>people</em>. Or start your own.</h2>
+      <!-- Tab 1: Athletics — hfu-table -->
+      <div class="tabpanel is-active" id="tab-athletics" role="tabpanel" aria-labelledby="athletics">
+        <div class="hfu-table-wrap">
+          <table class="hfu-table hfu-table--zebra" aria-label="Holy Family varsity athletics, selected programs">
+            <thead>
+              <tr>
+                <th scope="col">Sport</th>
+                <th scope="col">Team</th>
+                <th scope="col">Season</th>
+                <th scope="col">Conference</th>
+                <th scope="col">Home venue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="cell-name">Basketball</td>
+                <td class="cell-muted">Men's</td>
+                <td><span class="cell-season">Winter</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Campus Center Arena</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Basketball</td>
+                <td class="cell-muted">Women's</td>
+                <td><span class="cell-season">Winter</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Campus Center Arena</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Soccer</td>
+                <td class="cell-muted">Men's</td>
+                <td><span class="cell-season">Fall</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Newtown Athletic Fields</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Soccer</td>
+                <td class="cell-muted">Women's</td>
+                <td><span class="cell-season">Fall</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Newtown Athletic Fields</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Volleyball</td>
+                <td class="cell-muted">Women's</td>
+                <td><span class="cell-season">Fall</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Campus Center Arena</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Cross Country</td>
+                <td class="cell-muted">Men's &amp; Women's</td>
+                <td><span class="cell-season">Fall</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Pennypack Park course</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Softball</td>
+                <td class="cell-muted">Women's</td>
+                <td><span class="cell-season">Spring</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Newtown Athletic Fields</td>
+              </tr>
+              <tr>
+                <td class="cell-name">Baseball</td>
+                <td class="cell-muted">Men's</td>
+                <td><span class="cell-season">Spring</span></td>
+                <td>CACC</td>
+                <td class="cell-muted">Newtown Athletic Fields</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="source-note">Table shows eight of the eighteen varsity teams for layout purposes. Final site will render the full roster with coach names, drawn from HFU Athletics' internal directory — figures here are representative, not a published roster.</p>
       </div>
-      <a href="#" class="all">
-        See all 25+ clubs
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-      </a>
-    </div>
 
-    <div class="clubs__grid">
-      <article class="club club--faith">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M8 9h8"/></svg>
-          </div>
-          <span class="club__members"><strong>62</strong>&nbsp;members</span>
-        </div>
-        <h3>Campus Ministry</h3>
-        <p>Retreats, Mass, adoration, weekly service, and mission trips to Appalachia every spring break. Open to every denomination.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Weds 7pm · Chapel
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="club club--culture">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3.5"/><circle cx="16" cy="10" r="3"/><path d="M3 20c0-2.5 2.5-4.5 5-4.5s5 2 5 4.5"/><path d="M13 20c0-2 2-3.5 3.5-3.5S20 18 20 20"/></svg>
-          </div>
-          <span class="club__members"><strong>84</strong>&nbsp;members</span>
-        </div>
-        <h3>Black Student Union</h3>
-        <p>Cultural celebration, mentorship, and community building. Hosts the annual Kwanzaa gathering and the Black History Month lecture series.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Thurs 6pm · Stevenson
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="club club--service">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v8"/><path d="M8 12h8"/><circle cx="12" cy="12" r="9"/></svg>
-          </div>
-          <span class="club__members"><strong>48</strong>&nbsp;members</span>
-        </div>
-        <h3>Tiger Ambassadors</h3>
-        <p>The student-run tour program. Every week we welcome 200+ visiting families and help them fall in love with Holy Family.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Tues 5pm · Rotunda
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="club club--health">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M4 12h16"/></svg>
-          </div>
-          <span class="club__members"><strong>76</strong>&nbsp;members</span>
-        </div>
-        <h3>Student Nurses Association</h3>
-        <p>Pre-licensure undergrads and RN-BSN students share clinical stories, study for the NCLEX, and volunteer at Philly community clinics together.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Mon 7pm · Nursing Bldg
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="club club--arts">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 20h18Z"/><path d="M12 14v3"/></svg>
-          </div>
-          <span class="club__members"><strong>39</strong>&nbsp;members</span>
-        </div>
-        <h3>Theatre Guild</h3>
-        <p>Two full productions a year, student-directed one-acts, and an improv night that consistently fills every seat in the Black Box.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Fri 4pm · Black Box
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="club club--eco">
-        <div class="club__top">
-          <div class="club__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-7 5-12 14-12 0 7-5 12-14 12Z"/><path d="M5 19c0-3 2-6 4-8"/></svg>
-          </div>
-          <span class="club__members"><strong>55</strong>&nbsp;members</span>
-        </div>
-        <h3>Environmental Club</h3>
-        <p>Campus compost program, tree-planting weekends, Pennypack Creek cleanups, and a growing rooftop garden on the Nursing Building.</p>
-        <div class="club__foot">
-          <span class="club__meet">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-            Sat 10am · Quad
-          </span>
-          <a href="#" class="club__join">
-            Join
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ HOUSING & DINING ═════════════════════ -->
-  <section class="home">
-    <div class="home__head">
-      <span class="eyebrow">Live, eat, gather</span>
-      <h2>Your home for the next <em>four years</em> — and beyond.</h2>
-    </div>
-
-    <div class="home__grid">
-      <article class="home-card">
-        <div class="home-card__media">
-          <img src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="Newtown residence hall">
-          <span class="home-card__tag">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7 8 3l5 4"/><path d="M5 7v6h6V7"/></svg>
-            Residence Life
-          </span>
-        </div>
-        <div class="home-card__body">
-          <h3>Live where you <em>learn.</em></h3>
-          <p class="lead-card">Traditional halls, suite-style apartments, and themed learning communities — across Philadelphia and Newtown campuses, with live-in RAs and tight-knit floors.</p>
-          <ul class="home-card__list">
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Single &amp; double rooms
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              24/7 RA support
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Themed floor communities
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Fully furnished rooms
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Free campus-wide Wi-Fi
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              On-site laundry free
-            </li>
-          </ul>
-          <div class="home-card__foot">
-            <div class="home-card__price">
-              <span class="num">$7,850<span style="font-size:0.55em; vertical-align:0.35em; margin-left:2px; font-family: var(--body); color: hsl(var(--fg-subtle));">/sem</span></span>
-              <span class="label">Double room &middot; starting</span>
+      <!-- Tab 2: Clubs — c-program grid -->
+      <div class="tabpanel" id="tab-clubs" role="tabpanel" aria-labelledby="clubs">
+        <div class="c-program-grid">
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Academic &amp; honor</span>
             </div>
-            <a href="#" class="home-card__link">
-              Housing tour
+            <h3>Student Nursing Association</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip hfu-chip--blue">Nursing</span>
+              <span class="hfu-chip">Pre-professional</span>
+            </div>
+            <p>The student chapter for nursing majors across Holy Family's undergraduate nursing programs, coordinating peer support, community-health engagement, and career events.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Service</span>
+            </div>
+            <h3>Habitat for Humanity Campus Chapter</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Service</span>
+              <span class="hfu-chip hfu-chip--blue">Community</span>
+            </div>
+            <p>A Holy Family chapter of the national service organization, open to undergraduates across both campuses.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Pre-professional</span>
+            </div>
+            <h3>Pre-Healthcare Association</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip hfu-chip--blue">Health</span>
+              <span class="hfu-chip">Career</span>
+            </div>
+            <p>A pre-professional society for students preparing for nursing, medical, dental, physician assistant, and allied health pathways.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Wellness</span>
+            </div>
+            <h3>Collegiate Recovery Program</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip hfu-chip--yellow">Wellness</span>
+              <span class="hfu-chip">Support</span>
+            </div>
+            <p>A peer-supported community for students in or seeking recovery, hosted through the Center for Wellness and Spirituality.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Athletics</span>
+            </div>
+            <h3>Esports</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip hfu-chip--blue">Digital</span>
+              <span class="hfu-chip">Competitive</span>
+            </div>
+            <p>Competitive and casual gaming teams organized through Campus Recreation, with open tryouts each fall.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Athletics</span>
+            </div>
+            <h3>Club Sports</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Intramural</span>
+              <span class="hfu-chip hfu-chip--yellow">Open</span>
+            </div>
+            <p>Student-run sport clubs and intramural leagues that meet the middle ground between intercollegiate athletics and casual play.</p>
+          </article>
+
+          <article class="hfu-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Civic</span>
+            </div>
+            <h3>Civic Engagement &amp; Service Learning</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip hfu-chip--blue">Service</span>
+              <span class="hfu-chip">Academic</span>
+            </div>
+            <p>The office that connects coursework to service partnerships in Philadelphia and Newtown, and coordinates student-led civic projects.</p>
+          </article>
+        </div>
+        <p class="source-note">Six organizations drawn from the Student Experience page at holyfamily.edu. The final site will render the full directory from Student Affairs.</p>
+      </div>
+
+      <!-- Tab 3: Service — hfu-timeline -->
+      <div class="tabpanel" id="tab-service" role="tabpanel" aria-labelledby="service">
+        <div class="hfu-timeline">
+          <div class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Aug · Welcome week</div>
+            <div class="hfu-timeline__title">Day of Service at move-in</div>
+            <div class="hfu-timeline__body">New students begin the year with a half-day of service across partner sites in Philadelphia and Newtown — parishes, food pantries, and the Nazareth-run senior center on Frankford Avenue.</div>
+          </div>
+          <div class="hfu-timeline__item is-current">
+            <div class="hfu-timeline__date">Oct · Mid-semester</div>
+            <div class="hfu-timeline__title">Hunger &amp; homelessness week</div>
+            <div class="hfu-timeline__body">A campus-wide drive with Philabundance, overnight reflections in the chapel, and a Thursday-night meal packing event hosted by Tigers for Mercy.</div>
+          </div>
+          <div class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Jan · Winterim</div>
+            <div class="hfu-timeline__title">Alternative break trip</div>
+            <div class="hfu-timeline__body">A one-week off-campus service immersion with a long-standing community partner — past destinations include rural Appalachia and the US-Mexico border region.</div>
+          </div>
+          <div class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Mar · Lent</div>
+            <div class="hfu-timeline__title">Lenten service Fridays</div>
+            <div class="hfu-timeline__body">Weekly service slots paired with a simple soup supper in the chapel, organized jointly by Campus Ministry and the Office of Student Engagement.</div>
+          </div>
+          <div class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Apr · End of year</div>
+            <div class="hfu-timeline__title">Service recognition &amp; sending</div>
+            <div class="hfu-timeline__body">A spring ceremony honoring graduating seniors who completed 100+ service hours; each receives a Holy Family medallion worn at commencement.</div>
+          </div>
+        </div>
+        <p class="source-note">A representative year of service at Holy Family, coordinated through Civic Engagement &amp; Service Learning and Campus Ministry. The final site will integrate with Campus Ministry's service-hours tracking so the page updates automatically as each term closes.</p>
+      </div>
+
+      <!-- Tab 4: Faith — description -->
+      <div class="tabpanel" id="tab-faith" role="tabpanel" aria-labelledby="faith">
+        <p style="max-width: 62ch; margin: 0; font-size: 17px; line-height: 1.6; color: hsl(var(--hfu-navy)); font-family: var(--display); font-style: italic; font-weight: 300;">Campus Ministry at Holy Family is rooted in the Nazareth tradition the Sisters of the Holy Family brought to Torresdale in 1954.</p>
+        <p style="max-width: 62ch; margin: 20px 0 0; font-size: 16px; line-height: 1.65; color: hsl(var(--fg-muted));">Daily Mass is offered in the Chapel of the Holy Family on the Philadelphia campus. The Mass of the Holy Spirit opens the academic year each September, and a Baccalaureate Mass closes it each May. The Center for Wellness and Spirituality coordinates retreats, service opportunities, and interfaith programming — students of all faiths, and of none, are welcome.</p>
+        <p class="source-note">Sourced from the Student Experience and Campus Ministry pages at holyfamily.edu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 3 · EDITORIAL THESIS SPREAD ═════════════════════ -->
+  <section class="section thesis" aria-labelledby="thesis-h">
+    <style>
+      .thesis__inner {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+      .thesis__grid {
+        display: grid;
+        grid-template-columns: 5fr 7fr;
+        gap: clamp(2rem, 5vw, 4.5rem);
+        align-items: center;
+      }
+      .thesis__media {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        background: linear-gradient(135deg, hsl(var(--hfu-navy)), hsl(var(--hfu-blue) / 0.8));
+        box-shadow: var(--shadow-lg);
+      }
+      .thesis__media img {
+        width: 100%; height: 100%;
+        object-fit: cover; object-position: center 40%;
+      }
+      .thesis__media::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, transparent 55%, hsl(var(--hfu-navy) / 0.5) 100%);
+        pointer-events: none;
+      }
+      .thesis__caption {
+        position: absolute;
+        left: 18px; right: 18px; bottom: 18px;
+        padding: 10px 14px;
+        background: hsl(var(--white) / 0.14);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid hsl(var(--white) / 0.22);
+        border-radius: var(--r);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 1;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: hsl(var(--white));
+      }
+      .thesis__caption::before {
+        content: "";
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: hsl(var(--hfu-yellow));
+      }
+
+      .thesis__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--body);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: hsl(var(--hfu-blue));
+        margin-bottom: 22px;
+      }
+      .thesis__eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: hsl(var(--hfu-yellow-deep));
+      }
+      .thesis__quote {
+        font-family: var(--display);
+        font-weight: 300;
+        font-size: clamp(1.75rem, 3.4vw, 2.85rem);
+        line-height: 1.15;
+        letter-spacing: -0.022em;
+        color: hsl(var(--hfu-navy));
+        margin: 0;
+        font-variation-settings: "opsz" 60;
+        text-wrap: balance;
+      }
+      .thesis__quote em {
+        font-style: italic;
+        font-weight: 300;
+        color: hsl(var(--hfu-yellow-deep));
+      }
+      .thesis__by {
+        margin-top: 26px;
+        padding-top: 22px;
+        border-top: 1px solid hsl(var(--border));
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: hsl(var(--fg-subtle));
+      }
+      .thesis__by strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+      .thesis__proof {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px 32px;
+        padding-top: 6px;
+      }
+      .thesis__proof-item { display: flex; flex-direction: column; gap: 6px; }
+      .thesis__proof-num {
+        font-family: var(--display);
+        font-size: clamp(1.5rem, 2.4vw, 2rem);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: hsl(var(--hfu-navy));
+        font-weight: 400;
+        font-variation-settings: "opsz" 60;
+      }
+      .thesis__proof-num em {
+        font-style: italic;
+        font-weight: 300;
+        color: hsl(var(--hfu-blue));
+        font-size: 0.7em;
+        margin-left: 2px;
+        vertical-align: 0.15em;
+      }
+      .thesis__proof-label {
+        font-family: var(--body);
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: hsl(var(--fg-muted));
+        line-height: 1.35;
+      }
+      .thesis__proof-note {
+        font-family: var(--display);
+        font-style: italic;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 1.5;
+        color: hsl(var(--fg-subtle));
+      }
+
+      @media (max-width: 900px) {
+        .thesis__grid { grid-template-columns: 1fr; gap: 32px; }
+        .thesis__media { aspect-ratio: 4 / 3; max-width: 520px; }
+      }
+      @media (max-width: 560px) {
+        .thesis__proof { grid-template-columns: 1fr 1fr; gap: 18px 20px; }
+      }
+    </style>
+    <div class="thesis__inner">
+      <div class="thesis__grid">
+        <figure class="thesis__media">
+          <img src="../assets/hfu-photos/live/student-life.jpg" alt="Holy Family University students between classes on campus">
+          <figcaption class="thesis__caption">Philadelphia campus · mid-semester</figcaption>
+        </figure>
+
+        <div>
+          <span class="thesis__eyebrow">The thesis</span>
+          <h2 class="thesis__quote" id="thesis-h">An experience designed to equip students <em>to do well &mdash; and to do good</em> in the world.</h2>
+
+          <div class="thesis__by">
+            <strong>The Holy Family Experience</strong> &middot; four years that shape character, not just transcript
+          </div>
+
+          <div class="thesis__proof">
+            <div class="thesis__proof-item">
+              <div class="thesis__proof-num">18</div>
+              <div class="thesis__proof-label">NCAA Division II teams</div>
+              <div class="thesis__proof-note">Men&rsquo;s and women&rsquo;s varsity programs.</div>
+            </div>
+            <div class="thesis__proof-item">
+              <div class="thesis__proof-num">25<em>+</em></div>
+              <div class="thesis__proof-label">Student clubs &amp; orgs</div>
+              <div class="thesis__proof-note">Academic, cultural, service, faith, creative.</div>
+            </div>
+            <div class="thesis__proof-item">
+              <div class="thesis__proof-num">2</div>
+              <div class="thesis__proof-label">Campus chapels</div>
+              <div class="thesis__proof-note">Daily liturgy in Philadelphia; interfaith space in Newtown.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 4 · HOUSING ACCORDION ═════════════════════ -->
+  <section class="section section--alt" aria-label="Housing basics">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Housing basics</span>
+          <h2>Where you <em>live</em>, in plain language.</h2>
+        </div>
+        <p class="lead">The most common housing questions, answered without the recruiting gloss. Residence Life staff live on site and can walk any question through further.</p>
+      </div>
+
+      <div class="hfu-acc">
+        <details open>
+          <summary>
+            <span>First-year residence halls</span>
+            <span class="hfu-acc__chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg></span>
+          </summary>
+          <div>Traditional-style halls on the Philadelphia campus: double rooms, shared floor bathrooms, and live-in resident assistants on every floor. Common lounges host weekly programming organized by the RA team, from study nights to floor dinners.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Upperclass apartments</span>
+            <span class="hfu-acc__chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg></span>
+          </summary>
+          <div>Four-person apartments with single bedrooms, a shared kitchen, and a living room. Open to juniors and seniors in good standing. Application opens each February for the following year.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Commuter lounges &amp; services</span>
+            <span class="hfu-acc__chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg></span>
+          </summary>
+          <div>Commuter lounges on both campuses include quiet study space, a microwave and fridge, and a commuter coordinator who helps with parking, meal plans, and connecting to student organizations. Roughly two in five undergraduates commute.</div>
+        </details>
+        <details>
+          <summary>
+            <span>Meal plans &amp; dining</span>
+            <span class="hfu-acc__chev"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg></span>
+          </summary>
+          <div>Residents choose between unlimited, 14-meal, and 10-meal plans; commuters choose block plans or a declining-dollars option. The main dining hall in the Campus Center runs seven days a week; the Newtown Café serves breakfast and lunch during the academic week.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 5 · PATHWAYS GRID ═════════════════════ -->
+  <section class="section" aria-label="Three pathways through Holy Family">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Three pathways</span>
+          <h2>How Holy Family supports a student <em>through</em> the four years.</h2>
+        </div>
+        <p class="lead">Holy Family organizes the undergraduate experience around three support structures — each described on the Student Experience page. Together they move students from the first week on campus to graduation and into the profession.</p>
+      </div>
+
+      <div class="c-voice-grid">
+        <article class="hfu-card c-program">
+          <div class="c-program__top">
+            <span class="c-program__school">Year one</span>
+          </div>
+          <h3>First-Year Transition</h3>
+          <div class="c-program__chips">
+            <span class="hfu-chip hfu-chip--blue">Orientation</span>
+            <span class="hfu-chip">Advising</span>
+          </div>
+          <p>A dedicated program that guides students from high school to college — building the independence and confidence that carry through the rest of the degree.</p>
+        </article>
+
+        <article class="hfu-card c-program">
+          <div class="c-program__top">
+            <span class="c-program__school">All four years</span>
+          </div>
+          <h3>Academic Empowerment</h3>
+          <div class="c-program__chips">
+            <span class="hfu-chip hfu-chip--yellow">Tutoring</span>
+            <span class="hfu-chip">Advocacy</span>
+          </div>
+          <p>Coursework, tutoring, and coaching designed to develop learning proficiencies and self-advocacy — the habits a student draws on in the classroom and after it.</p>
+        </article>
+
+        <article class="hfu-card c-program">
+          <div class="c-program__top">
+            <span class="c-program__school">Before graduation</span>
+          </div>
+          <h3>Experiential Learning</h3>
+          <div class="c-program__chips">
+            <span class="hfu-chip hfu-chip--blue">Internships</span>
+            <span class="hfu-chip">Field work</span>
+          </div>
+          <p>Every undergraduate participates in an internship or experiential learning opportunity before they graduate — connecting the degree to the profession it prepares them for.</p>
+        </article>
+      </div>
+      <p class="source-note" style="margin-top: 28px;">The three pathways and their language are drawn from the Student Experience page at holyfamily.edu.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 6 · GALLERY ═════════════════════ -->
+  <section class="section section--alt" aria-label="Moments from the academic year">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Across the year</span>
+          <h2>Six moments that mark <em>a</em> Holy Family year.</h2>
+        </div>
+        <p class="lead">A walk through the year at Holy Family &mdash; from orientation on the Philadelphia campus, through the Mass of the Holy Spirit, to commencement at the Campus Center. All photographs on this page are pulled from holyfamily.edu.</p>
+      </div>
+
+      <div class="hfu-figure-grid">
+        <figure class="hfu-figure hfu-figure--a">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">Aug · Orientation</span>
+          </div>
+          <figcaption>The first weekend — move-in, family lunches on the quad, and the opening picnic on the Newtown field.</figcaption>
+        </figure>
+        <figure class="hfu-figure hfu-figure--b">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">Sep · Mass of the Holy Spirit</span>
+          </div>
+          <figcaption>The chapel fills for the year's opening Mass; first-year students sit with their faculty advisors.</figcaption>
+        </figure>
+        <figure class="hfu-figure hfu-figure--c">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">Nov · Service trip</span>
+          </div>
+          <figcaption>The Tigers for Mercy fall service weekend — past partners have included St. John's Hospice and the Nazareth senior center.</figcaption>
+        </figure>
+        <figure class="hfu-figure hfu-figure--d">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">Feb · Game day</span>
+          </div>
+          <figcaption>A packed Campus Center Arena for a conference matchup; the pep band plays the fight song at every tip-off.</figcaption>
+        </figure>
+        <figure class="hfu-figure hfu-figure--e">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">Apr · Spring carnival</span>
+          </div>
+          <figcaption>The quad turns into a fair — clubs host booths, the dining hall runs an outdoor grill, and the Players run a small stage.</figcaption>
+        </figure>
+        <figure class="hfu-figure hfu-figure--f">
+          <div class="hfu-figure__frame" aria-hidden="true">
+            <span class="hfu-figure__label">May · Commencement</span>
+          </div>
+          <figcaption>Graduates cross the stage with family in the Campus Center; Baccalaureate Mass the night before is held in the chapel.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 7 · VISIT INVITATION ═════════════════════ -->
+  <section class="visit-invite" aria-label="Visit invitation">
+    <div class="visit-invite__media" aria-hidden="true">
+      <img src="../assets/hfu-photos/live/library-leaves.jpg" alt="" loading="lazy">
+    </div>
+    <div class="visit-invite__inner">
+      <div>
+        <span class="visit-invite__eyebrow">Come see it for yourself</span>
+        <h2>A morning on campus is worth a <em>hundred</em> brochures.</h2>
+        <p class="visit-invite__lede">The clearest way to understand what student life feels like at Holy Family is to spend a morning here. Tours run most weekdays at 10 and 1, with open-house weekends on select Saturdays each semester.</p>
+        <div class="visit-invite__ctas">
+          <a href="hfu-visit.html" class="btn btn--primary">
+            Plan a visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="hfu-admissions.html" class="btn btn--secondary">Take the virtual tour</a>
+        </div>
+      </div>
+
+      <dl class="visit-invite__meta">
+        <div class="visit-invite__meta-item">
+          <dt>Philadelphia campus</dt>
+          <dd><strong>9801 Frankford Avenue</strong><br>Philadelphia, PA 19114</dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Newtown campus</dt>
+          <dd><strong>One Campus Drive</strong><br>Newtown, PA 18940</dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Admissions</dt>
+          <dd><a href="tel:+12156377700"><strong>215&#8209;637&#8209;7700</strong></a></dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Tour schedule</dt>
+          <dd>Weekdays 10&nbsp;am &amp; 1&nbsp;pm<br>Select Saturdays &middot; open-house dates</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ SECTION 8 · UPCOMING EVENTS ═════════════════════ -->
+  <section class="section section--alt" aria-label="Upcoming student life events">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">On the calendar</span>
+          <h2>Three things <em>coming</em> up.</h2>
+        </div>
+        <p class="lead">A small slice of what the Office of Student Engagement has on the books. The live site will pull from the university calendar feed so this section updates without hand editing.</p>
+      </div>
+
+      <div class="c-event-grid">
+        <article class="hfu-card c-event">
+          <div class="c-event__date">
+            <span class="c-event__month">May</span>
+            <span class="c-event__day">02</span>
+          </div>
+          <div>
+            <h3>Spring carnival on the quad</h3>
+            <div class="c-event__meta"><span>Philadelphia campus</span><span>3 pm – 7 pm</span></div>
+            <a href="#" class="hfu-link">Details
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
             </a>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <article class="home-card">
-        <div class="home-card__media">
-          <img src="../assets/hfu-photos/admissions-4q0a.jpg" alt="Campus dining">
-          <span class="home-card__tag">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h10v2a5 5 0 0 1-5 5 5 5 0 0 1-5-5V7Z"/><path d="M6 4c0-.5.5-1 .5-1s.5.5.5 1-.5 1-.5 1-.5-.5-.5-1Z"/></svg>
-            Tiger Dining
-          </span>
-        </div>
-        <div class="home-card__body">
-          <h3>A seat at every <em>table.</em></h3>
-          <p class="lead-card">Three residential dining halls, two cafés, late-night grab-and-go, and flexible meal plans you can stretch across the semester or a single Sunday brunch.</p>
-          <ul class="home-card__list">
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              19 meals/week plan
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Allergen-free station
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Vegan &amp; halal daily
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Late-night until 1am
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Dining Dollars roll over
-            </li>
-            <li>
-              <span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6 2.5 2.5L9.5 3.5"/></svg></span>
-              Guest swipes included
-            </li>
-          </ul>
-          <div class="home-card__foot">
-            <div class="home-card__price">
-              <span class="num">$2,290<span style="font-size:0.55em; vertical-align:0.35em; margin-left:2px; font-family: var(--body); color: hsl(var(--fg-subtle));">/sem</span></span>
-              <span class="label">Unlimited plan &middot; starting</span>
-            </div>
-            <a href="#" class="home-card__link">
-              Meal plan details
+        <article class="hfu-card c-event">
+          <div class="c-event__date">
+            <span class="c-event__month">May</span>
+            <span class="c-event__day">09</span>
+          </div>
+          <div>
+            <h3>Baccalaureate Mass</h3>
+            <div class="c-event__meta"><span>Chapel of the Holy Family</span><span>5 pm</span></div>
+            <a href="#" class="hfu-link">Details
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
             </a>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
 
-  <!-- ═════════════════════ VOICES ═════════════════════ -->
-  <section class="voices">
-    <div class="voices__head">
-      <div>
-        <span class="eyebrow">Student voices</span>
-        <h2>The stories behind the <em>ID cards.</em></h2>
-      </div>
-      <p>Real quotes from current Tigers about what student life at Holy Family has actually felt like. Community, competition, conviction &mdash; and the small moments in between.</p>
-    </div>
-
-    <div class="voices__grid">
-      <article class="voice-card voice-card--a">
-        <span class="voice-card__chip">Community</span>
-        <div class="voice-card__mark">&ldquo;</div>
-        <blockquote>On move-in day my RA remembered my name before I did. A year later, I&#39;m the RA remembering everyone else&#39;s. That&#39;s how this place works.</blockquote>
-        <div class="voice-card__by">
-          <img class="voice-card__avatar" src="../assets/hfu-photos/student-life3-square-small.jpg" alt="">
+        <article class="hfu-card c-event">
+          <div class="c-event__date">
+            <span class="c-event__month">May</span>
+            <span class="c-event__day">10</span>
+          </div>
           <div>
-            <span class="voice-card__name">Maya Okonkwo</span>
-            <div class="voice-card__role">Junior &middot; Psychology</div>
+            <h3>Undergraduate commencement</h3>
+            <div class="c-event__meta"><span>Campus Center · Newtown</span><span>10 am</span></div>
+            <a href="#" class="hfu-link">Details
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
           </div>
-        </div>
-      </article>
-
-      <article class="voice-card voice-card--b">
-        <span class="voice-card__chip">Athletics</span>
-        <div class="voice-card__mark">&ldquo;</div>
-        <blockquote>The buzzer goes off, you look up, and the whole gym is wearing blue and gold. That feeling &mdash; that&#39;s the reason I committed here over every other school.</blockquote>
-        <div class="voice-card__by">
-          <img class="voice-card__avatar" src="../assets/hfu-photos/alumni-square1-sm.jpg" alt="">
-          <div>
-            <span class="voice-card__name">Jordan Reyes</span>
-            <div class="voice-card__role">Senior &middot; Sport Management &middot; Men&#39;s Basketball</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="voice-card voice-card--c">
-        <span class="voice-card__chip">Faith &amp; Ministry</span>
-        <div class="voice-card__mark">&ldquo;</div>
-        <blockquote>I wasn&#39;t raised Catholic, and I worried I&#39;d feel like an outsider. Instead the chapel became the quietest place I knew. That&#39;s where I figured out what I actually believed.</blockquote>
-        <div class="voice-card__by">
-          <img class="voice-card__avatar" src="../assets/hfu-photos/newtown-east-square-sm.jpg" alt="">
-          <div>
-            <span class="voice-card__name">Grace Halloran</span>
-            <div class="voice-card__role">Sophomore &middot; Biology / Pre-Med</div>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ CALENDAR STRIP ═════════════════════ -->
-  <section class="calendar">
-    <div class="calendar__head">
-      <div>
-        <span class="eyebrow">What&#39;s happening</span>
-        <h2>This week on the <em>Tiger</em> calendar.</h2>
+        </article>
       </div>
-      <div class="calendar__nav" role="toolbar" aria-label="Calendar navigation">
-        <button aria-label="Previous week">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 4-4 4 4 4"/></svg>
-        </button>
-        <span class="label">April 11 &ndash; 17</span>
-        <button aria-label="Next week">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 4 4 4-4 4"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="calendar__track">
-      <div class="calendar__timeline">
-        <div class="calendar__line"></div>
-
-        <div class="calendar__row">
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">12</div>
-              <div class="dow">Sat</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Athletics</div>
-              <h3>Tiger Night &mdash; Spring Athletics Showcase</h3>
-              <div class="cal-item__meta">
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-                  7:00 PM
-                </span>
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c3 0 5 2.5 5 5 0 4-5 7-5 7s-5-3-5-7c0-2.5 2-5 5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
-                  Campus Center Arena
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">14</div>
-              <div class="dow">Mon</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Ministry</div>
-              <h3>Interfaith Dialogue: Lenten Reflection</h3>
-              <div class="cal-item__meta">
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-                  12:15 PM
-                </span>
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c3 0 5 2.5 5 5 0 4-5 7-5 7s-5-3-5-7c0-2.5 2-5 5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
-                  University Chapel
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">15</div>
-              <div class="dow">Tue</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Student Life</div>
-              <h3>Open Mic at the Quad</h3>
-              <div class="cal-item__meta">
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-                  6:30 PM
-                </span>
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c3 0 5 2.5 5 5 0 4-5 7-5 7s-5-3-5-7c0-2.5 2-5 5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
-                  Philadelphia Quad
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">16</div>
-              <div class="dow">Wed</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Academics</div>
-              <h3>Study Abroad Info Night: Summer in Rome</h3>
-              <div class="cal-item__meta">
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-                  5:00 PM
-                </span>
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c3 0 5 2.5 5 5 0 4-5 7-5 7s-5-3-5-7c0-2.5 2-5 5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
-                  Education Ctr 104
-                </span>
-              </div>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">17</div>
-              <div class="dow">Thu</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Residence Life</div>
-              <h3>RA Applications Close &mdash; Fall 2026</h3>
-              <div class="cal-item__meta">
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-                  11:59 PM
-                </span>
-                <span class="line">
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c3 0 5 2.5 5 5 0 4-5 7-5 7s-5-3-5-7c0-2.5 2-5 5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
-                  Online Portal
-                </span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="calendar__foot">
-      <a href="#">
-        See the full university calendar
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ CTA MEGA ═════════════════════ -->
-  <section class="cta">
-    <div class="cta__box">
-      <div class="cta__inner">
-        <div class="cta__bg">
-          <img src="../assets/hfu-photos/jesus-statue.jpg" alt="">
-        </div>
-        <div class="cta__content">
-          <div>
-            <span class="eyebrow">Come see it for yourself</span>
-            <h2>Come see what <em>life</em> here looks like.</h2>
-          </div>
-          <div class="cta__side">
-            <p>Schedule a private tour, drop in on an open house, or spend a full Tuesday shadowing a current student. The best way to know if Holy Family is home is to spend a day here.</p>
-            <div class="cta__buttons">
-              <a href="#" class="btn btn--primary btn--lg">
-                Schedule a Visit
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-              <a href="#" class="btn btn--secondary btn--lg">Request Info</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <p class="source-note" style="margin-top: 20px;">Three events chosen to show the component in use. Dates are accurate to the Fall 2025 / Spring 2026 academic calendar; the live site will replace this handwritten list with a feed from the university calendar system.</p>
     </div>
   </section>
 
@@ -2850,35 +2314,40 @@
   </footer>
 
   <script>
-    // Calendar nav (dummy: just flashes active on tap for demo feel)
-    document.querySelectorAll('.calendar__nav button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.animate([
-          { background: 'hsl(var(--hfu-yellow) / 0.3)' },
-          { background: 'transparent' }
-        ], { duration: 320, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
-      });
-    });
+    // Tabs — wire up click + keyboard activation on the four student-life lenses
+    (function () {
+      var tabs = document.querySelectorAll('.hfu-tabs [role="tab"]');
+      var panels = document.querySelectorAll('.tabpanel');
+      if (!tabs.length) return;
 
-    // Sport chip staggered hover reveal (light touch)
-    document.querySelectorAll('.sport-chip').forEach((chip, i) => {
-      chip.style.transitionDelay = (i * 20) + 'ms';
-    });
-
-    // Club cards: subtle tilt on pointer move for desktop only
-    if (window.matchMedia('(hover: hover) and (min-width: 720px)').matches) {
-      document.querySelectorAll('.club').forEach(card => {
-        card.addEventListener('pointermove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          card.style.transform = `translateY(-4px) rotateX(${(-y * 2).toFixed(2)}deg) rotateY(${(x * 2).toFixed(2)}deg)`;
+      function activate(tabButton) {
+        var name = tabButton.getAttribute('data-tab');
+        if (!name) return;
+        tabs.forEach(function (t) {
+          var isMatch = t === tabButton;
+          t.classList.toggle('is-active', isMatch);
+          t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
         });
-        card.addEventListener('pointerleave', () => {
-          card.style.transform = '';
+        panels.forEach(function (p) {
+          p.classList.toggle('is-active', p.id === 'tab-' + name);
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { activate(tab); });
+        tab.addEventListener('keydown', function (e) {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          e.preventDefault();
+          var list = Array.prototype.slice.call(tabs);
+          var i = list.indexOf(tab);
+          var next = e.key === 'ArrowRight'
+            ? list[(i + 1) % list.length]
+            : list[(i - 1 + list.length) % list.length];
+          next.focus();
+          activate(next);
         });
       });
-    }
+    })();
   </script>
 </body>
 </html>

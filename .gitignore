@@ -25,6 +25,11 @@ audit/
 index-old-wrapper.html
 index.v2.backup.html
 index.v5.backup.html
+index.OLD.html
+index.PRINT-ATTEMPT.html
+
+# Dev-only vendored tooling (loaded for local accessibility audits)
+assets/axe.min.js
 
 # Proposal PDF is SERVED from the live site as the official download target.
 # HFU-Proposal.pdf is intentionally committed — see site/index.html sidebar button.

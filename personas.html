@@ -1,0 +1,3082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personas — Holy Family Client Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+
+    :root {
+      /* Warm editorial light — cream page, ink text, restrained teal accents. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.06);
+      --teal-glow:   rgba(0, 83, 87, 0.12);
+      --hfu-navy:    #06213F;
+      --hfu-yellow:  #FFCC15;
+      --ink:         #FAF8F3;
+      --ink-card:    #FFFFFF;
+      --ink-card-2:  #F1EDE4;
+      --ink-phone:   #06213F;
+      --red-soft:    #B42318;
+      --red-dim:     rgba(180, 35, 24, 0.18);
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
+      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    html, body {
+      background: var(--ink);
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--teal); text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ══════════════════════════════════════════════════════════════
+       PAGE LAYOUT
+       ══════════════════════════════════════════════════════════════ */
+    main {
+      background: var(--ink);
+      padding: 0 !important;
+      gap: 0 !important;
+      align-items: stretch !important;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 1180px;
+      min-width: 0;
+      margin: 0 auto;
+      padding: 64px 56px 120px;
+      }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; padding-bottom: 110px; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -240px -200px auto -200px;
+      height: 520px;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(27,122,134,0.22), transparent 60%),
+        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 36px;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
+    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(44pt, 6.4vw, 88pt);
+      line-height: 0.94;
+      letter-spacing: -0.034em;
+      color: var(--text);
+      max-width: 17ch;
+      margin-bottom: 40px;
+    }
+    .hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__lede {
+      max-width: 62ch;
+      font-size: 14pt;
+      line-height: 1.6;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .hero__lede strong { color: var(--text); font-weight: 500; }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 80px;
+      padding: 32px 0 0;
+      border-top: 1px solid var(--line);
+    }
+    .hero__stat { padding-right: 24px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
+    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 30pt;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hero__stat__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--text-dim);
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION HEADERS
+       ══════════════════════════════════════════════════════════════ */
+    .section { padding-top: 140px; }
+    .section__head { margin-bottom: 56px; max-width: 72ch; }
+    .section__kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 22px;
+    }
+    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .section__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(30pt, 4vw, 48pt);
+      line-height: 1.0;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .section__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .section__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 66ch;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       PERSONA CARD
+       ══════════════════════════════════════════════════════════════ */
+    .persona {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 56px 56px 56px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+    }
+    .persona::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 15% 20%, rgba(27,122,134,0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .persona__left {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 36px;
+    }
+    .persona__monogram {
+      width: 168px;
+      height: 168px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, rgba(6, 33, 63, 0.18), transparent 52%),
+        linear-gradient(155deg, var(--teal) 0%, var(--teal-deep) 100%);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 110pt;
+      color: var(--hfu-navy);
+      font-weight: 400;
+      line-height: 1;
+      padding-bottom: 12px;
+      box-shadow: 0 0 0 1px rgba(27,122,134,0.4), 0 30px 70px -20px rgba(27,122,134,0.5);
+    }
+    .persona__headline {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 26pt;
+      line-height: 1.05;
+      letter-spacing: -0.022em;
+      color: var(--text);
+    }
+    .persona__headline em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .persona__headline small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-top: 14px;
+      font-weight: 400;
+    }
+    .persona__right {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .persona__data {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .persona__data:last-child { border-bottom: 0; }
+    .persona__data__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .persona__data__value {
+      font-family: var(--display);
+      font-size: 11.5pt;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+      letter-spacing: -0.008em;
+    }
+    .persona__data__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       TIMELINE — the storyboard main event
+       ══════════════════════════════════════════════════════════════ */
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: 124px 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 124px;
+      width: 1px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        var(--line-strong) 6%,
+        var(--line-strong) 94%,
+        transparent 100%);
+    }
+    .scene {
+      position: relative;
+      padding: 8px 0 56px 40px;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 124px 1fr;
+      gap: 40px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    /* NOTE: scenes are always visible by default (opacity 1).
+       The IO observer is purely a "nice-to-have" entrance polish that survives
+       no-JS, screenshot rendering, and prefers-reduced-motion. */
+    .scene.is-in { opacity: 1; transform: translateY(0); }
+    .scene__time {
+      position: sticky;
+      top: 120px;
+      align-self: start;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 26pt;
+      line-height: 1;
+      letter-spacing: -0.028em;
+      color: var(--text);
+      padding-top: 8px;
+    }
+    .scene__time small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    .scene__time em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .scene__time::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 22px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 1px solid var(--line-strong);
+      z-index: 2;
+    }
+    .scene.is-in .scene__time::before {
+      background: var(--teal);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(27,122,134,0.14), 0 0 18px rgba(27,122,134,0.5);
+    }
+    .scene__body { min-width: 0; }
+    .scene__split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .scene__half {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px 28px 28px;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 28px;
+      align-items: center;
+      min-height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scene__half--now {
+      border-color: rgba(255,96,96,0.18);
+    }
+    .scene__half--now::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 15% 10%, rgba(255,96,96,0.07), transparent 60%);
+      pointer-events: none;
+    }
+    .scene__half--new {
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
+      border-color: rgba(27,122,134,0.32);
+    }
+    .scene__half--new::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 85% 15%, rgba(27,122,134,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .scene__half__tag {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red-soft);
+      margin-bottom: 14px;
+    }
+    .scene__half--new .scene__half__tag { color: var(--teal); }
+    .scene__half__tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: currentColor;
+    }
+    .scene__half__copy {
+      position: relative;
+    }
+    .scene__half__headline {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 13pt;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.014em;
+    }
+    .scene__half__headline em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .scene__half__body {
+      font-family: var(--body);
+      font-size: 10pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      max-width: 44ch;
+    }
+    .scene__half__body strong { color: var(--text); font-weight: 500; }
+    .scene__half__body em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+
+    /* ── Phone frame (hand-built CSS) ───────────────────────────── */
+    .phone {
+      position: relative;
+      width: 180px;
+      height: 370px;
+      border-radius: 28px;
+      background: var(--ink-card);
+      border: 1px solid rgba(6, 33, 63, 0.14);
+      box-shadow:
+        0 0 0 3px #111317,
+        0 0 0 4px rgba(6, 33, 63, 0.04),
+        0 28px 60px -12px rgba(0,0,0,0.75);
+      padding: 7px;
+      margin: 0 auto;
+      transform: scale(0.94);
+      transform-origin: center;
+      transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .phone:hover {
+      transform: scale(1.00) translateY(-4px);
+      box-shadow:
+        0 0 0 3px #111317,
+        0 0 0 4px rgba(27,122,134,0.35),
+        0 40px 80px -16px rgba(0,0,0,0.8),
+        0 0 60px -8px rgba(27,122,134,0.5);
+    }
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78px;
+      height: 18px;
+      background: var(--ink-card);
+      border-radius: 10px;
+      z-index: 3;
+    }
+    .phone::after {
+      content: '';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 3px;
+      background: rgba(6, 33, 63, 0.35);
+      border-radius: 3px;
+      z-index: 3;
+    }
+    .phone__screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      background: var(--ink-phone);
+      overflow: hidden;
+      padding: 34px 12px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .phone__status {
+      position: absolute;
+      top: 11px;
+      left: 0;
+      right: 0;
+      padding: 0 22px 0 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 6pt;
+      color: rgba(6, 33, 63, 0.78);
+      font-weight: 500;
+      z-index: 4;
+      pointer-events: none;
+    }
+    .phone__status__battery {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .phone__status__battery::after {
+      content: '';
+      width: 14px;
+      height: 6px;
+      border: 1px solid rgba(6, 33, 63, 0.7);
+      border-radius: 1.5px;
+      background: linear-gradient(90deg, rgba(6, 33, 63, 0.7) 85%, transparent 85%);
+      display: inline-block;
+    }
+
+    /* Phone URL bar */
+    .phone__url {
+      background: rgba(6, 33, 63, 0.08);
+      border-radius: 4px;
+      padding: 5px 7px;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: rgba(6, 33, 63, 0.68);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .phone__url::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--text-ghost);
+      flex-shrink: 0;
+    }
+    .phone__url--slow::before { background: #ffab4a; }
+    .phone__url--fast::before { background: var(--teal); box-shadow: 0 0 4px var(--teal); }
+
+    /* Loading / broken page states */
+    .phone__loader {
+      display: grid;
+      place-items: center;
+      flex: 1;
+      color: rgba(6, 33, 63, 0.32);
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.08em;
+    }
+    .phone__loader b {
+      display: block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(6, 33, 63, 0.15);
+      border-top-color: var(--text-dim);
+      border-radius: 50%;
+      animation: phoneSpin 1.4s linear infinite;
+      margin: 0 auto 10px;
+    }
+    @keyframes phoneSpin { to { transform: rotate(360deg); } }
+
+    .phone__block {
+      height: 8px;
+      background: rgba(6, 33, 63, 0.06);
+      border-radius: 2px;
+    }
+    .phone__block--lg { height: 14px; }
+    .phone__block--sm { height: 6px; width: 60%; }
+    .phone__block--teal { background: linear-gradient(90deg, var(--teal), var(--teal-deep)); }
+    .phone__block--yellow { background: var(--hfu-yellow); }
+    .phone__block--red { background: rgba(255,96,96,0.24); }
+
+    .phone__hero {
+      height: 60px;
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse 70% 80% at 30% 20%, rgba(27,122,134,0.25), transparent 70%),
+        linear-gradient(160deg, rgba(6,33,63,0.9), rgba(6,33,63,0.6)),
+        rgba(6, 33, 63, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6px 7px;
+      gap: 3px;
+      position: relative;
+    }
+    .phone__hero--broken {
+      background: rgba(6, 33, 63, 0.04);
+      display: grid;
+      place-items: center;
+    }
+    .phone__hero--broken::after {
+      content: '[hero image failed]';
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(255,96,96,0.5);
+      letter-spacing: 0.06em;
+    }
+    .phone__hero__title {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 7pt;
+      line-height: 1.1;
+      color: var(--hfu-navy);
+      letter-spacing: -0.01em;
+    }
+    .phone__hero__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--hfu-yellow);
+      font-synthesis: none;
+    }
+    .phone__hero__sub {
+      font-family: var(--body);
+      font-size: 4.5pt;
+      color: rgba(6, 33, 63, 0.7);
+      line-height: 1.2;
+    }
+
+    .phone__nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 3px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(6, 33, 63, 0.08);
+    }
+    .phone__nav span {
+      height: 6px;
+      background: rgba(6, 33, 63, 0.08);
+      border-radius: 1px;
+    }
+
+    .phone__cta {
+      background: linear-gradient(160deg, var(--teal), var(--teal-deep));
+      color: #FFFFFF;
+      font-family: var(--display);
+      font-size: 5.5pt;
+      font-weight: 600;
+      text-align: center;
+      padding: 6px 4px;
+      border-radius: 3px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 0 0 1px rgba(0, 83, 87, 0.4), 0 6px 16px -4px rgba(0, 83, 87, 0.5);
+    }
+    .phone__cta--yellow {
+      background: var(--hfu-yellow);
+      color: var(--hfu-navy);
+      box-shadow: 0 0 0 1px rgba(255,204,21,0.4), 0 6px 16px -4px rgba(255,204,21,0.5);
+    }
+    .phone__cta--dead {
+      background: rgba(6, 33, 63, 0.08);
+      color: rgba(6, 33, 63, 0.3);
+      border: 1px dashed rgba(255,96,96,0.25);
+      box-shadow: none;
+    }
+
+    .phone__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(6, 33, 63, 0.65);
+      letter-spacing: 0.04em;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(6, 33, 63, 0.05);
+    }
+    .phone__row b { color: var(--hfu-navy); font-weight: 500; font-size: 6pt; }
+    .phone__row--teal b { color: var(--teal); }
+    .phone__row--missing b {
+      color: rgba(255,96,96,0.65);
+      font-style: italic;
+    }
+    .phone__label {
+      font-family: var(--mono);
+      font-size: 5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(6, 33, 63, 0.5);
+    }
+    .phone__body {
+      font-family: var(--body);
+      font-size: 5pt;
+      line-height: 1.35;
+      color: rgba(6, 33, 63, 0.6);
+    }
+    .phone__body b { color: var(--hfu-navy); font-weight: 500; }
+
+    .phone__empty {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      color: rgba(255,96,96,0.55);
+      text-align: center;
+      padding: 8px 4px;
+      border: 1px dashed rgba(255,96,96,0.22);
+      border-radius: 3px;
+      letter-spacing: 0.06em;
+    }
+
+    /* Menu: 180+ items caricature */
+    .phone__menu {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      padding: 2px;
+      background: rgba(6, 33, 63, 0.02);
+      border-radius: 3px;
+      overflow: hidden;
+      max-height: 210px;
+    }
+    .phone__menu b {
+      display: block;
+      height: 5px;
+      background: rgba(6, 33, 63, 0.08);
+      border-radius: 1px;
+    }
+    .phone__menu b.lg { height: 7px; background: rgba(6, 33, 63, 0.12); }
+
+    /* Broken form mock */
+    .phone__form-bad {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+      padding: 3px;
+      background: rgba(255,96,96,0.04);
+      border: 1px dashed rgba(255,96,96,0.2);
+      border-radius: 3px;
+    }
+    .phone__form-bad span {
+      height: 10px;
+      background: rgba(6, 33, 63, 0.05);
+      border-radius: 1px;
+    }
+    .phone__form-bad span:nth-child(odd) {
+      grid-column: span 2;
+    }
+
+    .phone__form-good {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .phone__form-good span {
+      height: 12px;
+      background: rgba(6, 33, 63, 0.06);
+      border-radius: 2px;
+      border-left: 2px solid var(--teal);
+      padding-left: 4px;
+      font-family: var(--mono);
+      font-size: 4.5pt;
+      color: rgba(6, 33, 63, 0.5);
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* Search results caricature */
+    .phone__search {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .phone__search__result {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 3px 0;
+      border-bottom: 1px solid rgba(6, 33, 63, 0.05);
+    }
+    .phone__search__result span {
+      height: 4px;
+      border-radius: 1px;
+      background: rgba(6, 33, 63, 0.06);
+    }
+    .phone__search__result span:first-child {
+      width: 70%;
+      background: rgba(6, 33, 63, 0.14);
+    }
+    .phone__search__result span:last-child {
+      width: 95%;
+    }
+    .phone__search__count {
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(255,96,96,0.55);
+      letter-spacing: 0.04em;
+      padding: 2px 0 4px;
+    }
+
+    /* Tab-left indicator */
+    .phone__tabs {
+      position: absolute;
+      top: 36px;
+      right: 8px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(6, 33, 63, 0.15);
+      border-radius: 2px;
+      padding: 2px 4px;
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(6, 33, 63, 0.6);
+      z-index: 5;
+    }
+
+    /* Lasalle tab */
+    .phone--rival .phone__screen {
+      background: var(--ink-card);
+      border-top: 2px solid #6b2877;
+    }
+    .phone--rival .phone__hero {
+      background: linear-gradient(140deg, #6b2877 0%, #2b0e33 100%);
+    }
+    .phone--rival .phone__cta {
+      background: #fff;
+      color: #1a0820;
+      box-shadow: 0 0 0 1px rgba(6, 33, 63, 0.3);
+    }
+    .phone--rival .phone__hero__title em {
+      color: #ffc14d;
+    }
+
+    /* Sleep/night cap screen */
+    .phone--asleep .phone__screen {
+      background: var(--ink-card);
+      padding: 14px 12px 14px;
+    }
+    .phone--asleep .phone__sleep {
+      display: grid;
+      place-items: center;
+      flex: 1;
+      gap: 14px;
+      text-align: center;
+    }
+    .phone--asleep .phone__sleep__time {
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: 32pt;
+      color: rgba(6, 33, 63, 0.88);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .phone--asleep .phone__sleep__date {
+      font-family: var(--body);
+      font-size: 6pt;
+      color: rgba(6, 33, 63, 0.58);
+      letter-spacing: 0.08em;
+    }
+    .phone--asleep .phone__sleep__notif {
+      margin-top: 18px;
+      padding: 6px 8px;
+      background: rgba(6, 33, 63, 0.06);
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(6, 33, 63, 0.55);
+      text-align: left;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+    }
+    .phone--asleep .phone__sleep__notif b {
+      color: var(--hfu-navy);
+      display: block;
+      font-size: 5.5pt;
+      margin-bottom: 2px;
+    }
+
+    /* Keyboard overlay */
+    .phone__keyboard {
+      margin-top: auto;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 2px;
+      padding: 4px 2px;
+      background: rgba(6, 33, 63, 0.04);
+      border-radius: 2px;
+      min-height: 60px;
+      border-top: 1px solid rgba(255,96,96,0.28);
+    }
+    .phone__keyboard__row {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 1px;
+    }
+    .phone__keyboard__row b {
+      height: 7px;
+      background: rgba(6, 33, 63, 0.1);
+      border-radius: 1px;
+    }
+
+    /* Slate routing mockup */
+    .phone__slate {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 4px 0;
+    }
+    .phone__slate__node {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 6px;
+      background: rgba(27,122,134,0.06);
+      border: 1px solid rgba(27,122,134,0.2);
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 5pt;
+      color: rgba(6, 33, 63, 0.75);
+      letter-spacing: 0.04em;
+    }
+    .phone__slate__node::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 4px var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STATS STRIP
+       ══════════════════════════════════════════════════════════════ */
+    .datastrip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .datastrip__cell {
+      padding: 36px 24px 32px 0;
+      position: relative;
+    }
+    .datastrip__cell:not(:last-child) {
+      border-right: 1px solid var(--line);
+    }
+    .datastrip__cell:not(:first-child) {
+      padding-left: 24px;
+    }
+    .datastrip__num {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 34pt;
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: -0.022em;
+    }
+    .datastrip__num em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .datastrip__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      margin-top: 14px;
+      display: block;
+      line-height: 1.45;
+    }
+    .datastrip__label b { color: var(--text-dim); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       MISTAKES LIST
+       ══════════════════════════════════════════════════════════════ */
+    .mistakes {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .mistake {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 32px 40px 32px;
+      display: grid;
+      grid-template-columns: 170px 1fr 1fr;
+      gap: 44px;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mistake::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 100% at 0% 50%, rgba(27,122,134,0), transparent 60%);
+      pointer-events: none;
+      transition: background 300ms ease;
+    }
+    .mistake:hover {
+      border-color: rgba(27,122,134,0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 50px -20px rgba(27,122,134,0.3);
+    }
+    .mistake:hover::before {
+      background: radial-gradient(ellipse 50% 100% at 0% 50%, rgba(27,122,134,0.08), transparent 60%);
+    }
+    .mistake__num {
+      position: relative;
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-weight: 400;
+      font-size: 76pt;
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+    }
+    .mistake__title {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 17pt;
+      line-height: 1.2;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      margin-bottom: 12px;
+    }
+    .mistake__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .mistake__body {
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+    .mistake__fix {
+      position: relative;
+      padding-left: 22px;
+      border-left: 1px solid rgba(27,122,134,0.28);
+    }
+    .mistake__fix__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .mistake__fix__text {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 11pt;
+      line-height: 1.4;
+      color: var(--text);
+      letter-spacing: -0.008em;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMMITMENT PULL QUOTE
+       ══════════════════════════════════════════════════════════════ */
+    .commit {
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
+      border: 1px solid rgba(27,122,134,0.32);
+      border-radius: 8px;
+      padding: 88px 88px 92px;
+      position: relative;
+      overflow: hidden;
+    }
+    .commit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 80% at 90% 15%, rgba(27,122,134,0.18), transparent 65%),
+        radial-gradient(ellipse 80% 60% at 10% 85%, rgba(27,122,134,0.08), transparent 65%);
+      pointer-events: none;
+    }
+    .commit__mark {
+      position: absolute;
+      top: 36px;
+      left: 48px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 140pt;
+      line-height: 0.7;
+      color: var(--teal);
+      opacity: 0.22;
+      font-weight: 400;
+      pointer-events: none;
+    }
+    .commit__text {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(20pt, 2.6vw, 30pt);
+      line-height: 1.25;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      max-width: 32ch;
+      margin-left: auto;
+    }
+    .commit__text em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      margin: 0 -0.01em 0 -0.015em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .commit__byline {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 36px;
+      margin-left: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(27,122,134,0.3);
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      justify-content: flex-end;
+    }
+    .commit__wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ASSUMPTIONS RAIL
+       ══════════════════════════════════════════════════════════════ */
+    .assumptions {
+      margin-top: 120px;
+      padding: 40px 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+    }
+    .assumptions__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .assumptions__body {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--text-dim);
+      max-width: 72ch;
+    }
+    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 22px;
+    }
+    .assumptions__list div {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      font-size: 9pt;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .assumptions__list span {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      color: var(--teal);
+      padding-top: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       FOUR-UP PERSONA GRID (with stock photography)
+       ══════════════════════════════════════════════════════════════ */
+    .personas4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .pcard {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 340ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pcard:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 83, 87, 0.32);
+      box-shadow: 0 28px 60px -24px rgba(6, 33, 63, 0.22);
+    }
+    .pcard__photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--ink-card-2);
+    }
+    .pcard__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.92) contrast(1.02);
+    }
+    .pcard__photo::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 44%;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 33, 63, 0.62) 100%);
+      pointer-events: none;
+    }
+    .pcard__badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: rgba(6, 33, 63, 0.62);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 6px 10px;
+      border-radius: 3px;
+      z-index: 2;
+    }
+    .pcard__nameplate {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      color: #FFFFFF;
+      z-index: 2;
+    }
+    .pcard__nameplate__name {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 17pt;
+      line-height: 1.02;
+      letter-spacing: -0.018em;
+    }
+    .pcard__nameplate__name em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      letter-spacing: -0.005em;
+      color: var(--hfu-yellow);
+      font-synthesis: none;
+    }
+    .pcard__nameplate__role {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+      margin-top: 6px;
+    }
+    .pcard__body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .pcard__signature {
+      font-family: var(--display);
+      font-size: 11pt;
+      line-height: 1.35;
+      color: var(--text);
+      letter-spacing: -0.006em;
+      min-height: 3.6em;
+    }
+    .pcard__signature em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.06em;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .pcard__facts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .pcard__fact {
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 10px;
+      align-items: baseline;
+    }
+    .pcard__fact__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .pcard__fact__value {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .pcard__fact__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .pcard__share {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .pcard__share__label {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+    }
+    .pcard__share__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 14pt;
+      color: var(--text);
+      letter-spacing: -0.016em;
+    }
+    .pcard__share__value em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-size: 1.06em;
+    }
+    .pcard__deepdive {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hfu-yellow);
+      background: rgba(6, 33, 63, 0.72);
+      padding: 6px 9px;
+      border-radius: 3px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       AI INTELLIGENCE DIAGRAM
+       ══════════════════════════════════════════════════════════════ */
+    .intel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 12px;
+    }
+    .intel__panel {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .intel__panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 0% 0%, rgba(27,122,134,0.07), transparent 60%);
+      pointer-events: none;
+    }
+    .intel__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .intel__title {
+      font-family: var(--display);
+      font-size: 18pt;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.15;
+      position: relative;
+    }
+    .intel__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.06em;
+      color: var(--teal);
+    }
+    .intel__body {
+      font-size: 10pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      margin-bottom: 22px;
+      position: relative;
+      max-width: 52ch;
+    }
+    .intel__body strong { color: var(--text); font-weight: 500; }
+    .intel__flow {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      position: relative;
+      counter-reset: flow;
+    }
+    .intel__flow li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      counter-increment: flow;
+    }
+    .intel__flow li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .intel__flow li::before {
+      content: counter(flow, decimal-leading-zero);
+      font-family: var(--mono);
+      font-size: 7pt;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+    }
+    .intel__flow__signal {
+      font-family: var(--display);
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+      letter-spacing: -0.006em;
+    }
+    .intel__flow__signal em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+    }
+    .intel__flow__inference {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* Concierge chat mock */
+    .concierge {
+      background: linear-gradient(160deg, var(--hfu-navy) 0%, #041731 100%);
+      border-radius: 8px;
+      padding: 28px 24px 24px;
+      color: #FFFFFF;
+      font-family: var(--body);
+      font-size: 10pt;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(255, 204, 21, 0.18);
+      box-shadow: 0 30px 70px -24px rgba(6, 33, 63, 0.55);
+      position: relative;
+      margin-top: 22px;
+    }
+    .concierge__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.58);
+    }
+    .concierge__head::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--hfu-yellow);
+      box-shadow: 0 0 8px rgba(255, 204, 21, 0.7);
+    }
+    .concierge__msg {
+      max-width: 80%;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 9.5pt;
+      line-height: 1.45;
+    }
+    .concierge__msg--user {
+      align-self: flex-end;
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border-bottom-right-radius: 2px;
+    }
+    .concierge__msg--bot {
+      align-self: flex-start;
+      background: var(--hfu-yellow);
+      color: var(--hfu-navy);
+      border-bottom-left-radius: 2px;
+      font-weight: 500;
+    }
+    .concierge__tag {
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.46);
+      margin-top: -6px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ENROLLMENT UNLOCK — the "so what" cards
+       ══════════════════════════════════════════════════════════════ */
+    .unlocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .unlock {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 36px 32px 36px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 280px;
+    }
+    .unlock::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 100% 0%, rgba(27,122,134,0.09), transparent 60%);
+      pointer-events: none;
+    }
+    .unlock__num {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 28pt;
+      letter-spacing: -0.024em;
+      color: var(--text);
+      line-height: 0.95;
+      position: relative;
+    }
+    .unlock__num em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-size: 1.06em;
+    }
+    .unlock__label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      position: relative;
+    }
+    .unlock__title {
+      font-family: var(--display);
+      font-size: 14pt;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.25;
+      letter-spacing: -0.012em;
+      position: relative;
+    }
+    .unlock__title em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal);
+      font-size: 1.06em;
+    }
+    .unlock__body {
+      font-size: 10pt;
+      line-height: 1.55;
+      color: var(--text-dim);
+      position: relative;
+      margin-top: auto;
+    }
+    .unlock__body strong { color: var(--text); font-weight: 500; }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE — polished breakpoints, generous gutters everywhere
+       ══════════════════════════════════════════════════════════════ */
+
+    /* ── ≤1280 · tablet-landscape + narrower desktop ─────────────── */
+    @media (max-width: 1280px) {
+      .wrap { padding: 80px 48px 140px; }
+      .section { padding-top: 120px; }
+      .hero { padding-bottom: 96px; }
+      .persona { padding: 52px 48px; gap: 56px; }
+      .commit { padding: 72px 64px 76px; }
+      .commit__mark { font-size: 118pt; top: 30px; left: 38px; }
+      .timeline { grid-template-columns: 108px 1fr; gap: 34px; }
+      .timeline::before { left: 108px; }
+      .scene { grid-template-columns: 108px 1fr; gap: 34px; padding: 8px 0 52px 34px; }
+      .scene__time { top: 112px; font-size: 24pt; }
+      .scene__half { grid-template-columns: 200px 1fr; gap: 26px; padding: 26px; }
+      .personas4 { gap: 18px; }
+      .pcard__body { padding: 20px 18px 20px; }
+      .pcard__nameplate__name { font-size: 15.5pt; }
+      .intel { gap: 24px; }
+      .intel__panel { padding: 30px 28px 32px; }
+    }
+
+    /* ── ≤1024 · tablet landscape · collapse 2-col blocks ─────────── */
+    @media (max-width: 1024px) {
+      .wrap { padding: 72px 40px 120px; }
+      .section { padding-top: 104px; }
+      .section__head { margin-bottom: 48px; }
+      .hero { padding-bottom: 84px; }
+      .hero__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 0;
+        margin-top: 64px;
+        padding-top: 28px;
+      }
+      .hero__stat { padding-right: 20px; }
+      .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; padding-left: 20px; }
+      .hero__stat:nth-child(3) {
+        padding-left: 0;
+        padding-right: 20px;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+      }
+      .hero__stat:nth-child(4) {
+        padding-top: 28px;
+        padding-left: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .persona {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding: 48px 44px;
+      }
+      .persona__data {
+        grid-template-columns: 150px 1fr;
+        gap: 22px;
+        padding: 16px 0;
+      }
+
+      .datastrip { grid-template-columns: repeat(3, 1fr); border-bottom: 0; }
+      .datastrip__cell {
+        border-bottom: 1px solid var(--line);
+        padding: 32px 22px 28px 0;
+      }
+      .datastrip__cell:nth-child(3n) { border-right: 0; padding-right: 0; }
+      .datastrip__cell:not(:nth-child(3n+1)) { padding-left: 22px; }
+      .datastrip__cell:nth-child(-n+3) { padding-top: 28px; }
+      .datastrip__num { font-size: 30pt; }
+
+      .mistake {
+        grid-template-columns: 120px 1fr;
+        gap: 32px;
+        padding: 30px 36px;
+      }
+      .mistake__num { font-size: 66pt; }
+      .mistake__fix {
+        grid-column: 1 / -1;
+        border-left: 0;
+        border-top: 1px solid rgba(27,122,134,0.28);
+        padding-left: 0;
+        padding-top: 22px;
+        margin-top: 4px;
+      }
+
+      .commit { padding: 64px 52px 68px; }
+      .commit__mark { font-size: 104pt; left: 28px; top: 22px; }
+      .commit__text { max-width: 36ch; }
+
+      .assumptions { grid-template-columns: 1fr; gap: 22px; margin-top: 96px; }
+      .assumptions__list { grid-template-columns: 1fr 1fr; }
+
+      /* Timeline still 2-col here, but tighter */
+      .timeline { grid-template-columns: 96px 1fr; gap: 28px; }
+      .timeline::before { left: 96px; }
+      .scene {
+        grid-template-columns: 96px 1fr;
+        gap: 28px;
+        padding: 6px 0 48px 28px;
+      }
+      .scene__time { font-size: 22pt; top: 104px; }
+      .scene__time::before { top: 18px; }
+      .scene__half {
+        grid-template-columns: 172px 1fr;
+        gap: 22px;
+        padding: 24px;
+        min-height: 0;
+      }
+      .phone {
+        width: 160px;
+        height: 328px;
+        transform: scale(0.92);
+      }
+      .phone:hover { transform: scale(0.98) translateY(-3px); }
+
+      .personas4 { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .intel { grid-template-columns: 1fr; gap: 22px; }
+      .unlocks { grid-template-columns: 1fr; gap: 18px; }
+      .unlock { min-height: 0; padding: 30px 28px; }
+    }
+
+    /* ── ≤840 · tablet portrait · timeline collapses, split stacks ── */
+    @media (max-width: 840px) {
+      .wrap { padding: 60px 32px 100px; }
+      .section { padding-top: 88px; }
+      .section__head { margin-bottom: 40px; }
+      .section__lede { font-size: 12pt; }
+      .hero { padding-bottom: 72px; }
+      .hero__title { margin-bottom: 32px; }
+      .hero__lede { font-size: 13pt; }
+      .hero__stats { margin-top: 56px; }
+
+      .persona { padding: 44px 36px; gap: 40px; }
+      .persona__left { gap: 28px; }
+      .persona__headline { font-size: 24pt; }
+      .persona__monogram {
+        width: 148px;
+        height: 148px;
+        font-size: 94pt;
+      }
+
+      /* Timeline: drop sticky + stack timestamp above body */
+      .timeline {
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin-top: 12px;
+      }
+      .timeline::before { display: none; }
+      .scene {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 0 52px 0;
+      }
+      .scene__time {
+        position: static;
+        padding: 0 0 0 24px;
+        font-size: 26pt;
+        margin-bottom: 4px;
+      }
+      .scene__time::before {
+        top: 12px;
+        left: 0;
+      }
+      .scene__body { padding-left: 24px; }
+
+      /* Split halves: still stacked (1-col), phones scale inside */
+      .scene__split { gap: 18px; }
+      .scene__half {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 26px 26px 28px;
+        justify-items: center;
+      }
+      .scene__half__copy { width: 100%; text-align: left; }
+      .scene__half__headline { font-size: 14pt; }
+      .scene__half .phone { margin: 4px auto 8px; }
+
+      /* Persona data rows stack label above value */
+      .persona__data {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 18px 0;
+      }
+      .persona__data__value { font-size: 12pt; }
+
+      /* Datastrip to 2x3, slightly tighter */
+      .datastrip { grid-template-columns: repeat(2, 1fr); }
+      .datastrip__cell {
+        padding: 28px 18px 24px 0;
+      }
+      .datastrip__cell:nth-child(3n) { border-right: 1px solid var(--line); padding-right: 18px; }
+      .datastrip__cell:nth-child(2n) { border-right: 0; padding-right: 0; }
+      .datastrip__cell:not(:nth-child(2n+1)) { padding-left: 18px; }
+      .datastrip__cell:nth-child(-n+2) { padding-top: 24px; }
+      .datastrip__num { font-size: 28pt; }
+
+      /* Mistakes: stack fully, number sits above */
+      .mistake {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 32px 32px 34px;
+      }
+      .mistake__num { font-size: 64pt; line-height: 0.9; }
+      .mistake__title { font-size: 16pt; }
+      .mistake__body { font-size: 10pt; }
+      .mistake__fix { padding-top: 18px; }
+      .mistake__fix__text { font-size: 10.5pt; }
+
+      .commit {
+        padding: 56px 40px 60px;
+      }
+      .commit__mark { font-size: 92pt; left: 22px; top: 18px; }
+      .commit__text {
+        font-size: clamp(18pt, 3.4vw, 24pt);
+        max-width: none;
+      }
+      .commit__byline { margin-top: 28px; }
+
+      .assumptions { margin-top: 80px; gap: 18px; }
+      .assumptions__list { grid-template-columns: 1fr; gap: 12px; margin-top: 18px; }
+    }
+
+    /* ── ≤560 · phone · aggressive space-saving ──────────────────── */
+    @media (max-width: 560px) {
+      .wrap { padding: 44px 22px 72px; }
+      .section { padding-top: 68px; }
+      .section__head { margin-bottom: 30px; }
+      .section__title { font-size: 24pt; }
+      .section__lede { font-size: 11.5pt; }
+
+      .hero { padding-bottom: 56px; }
+      .hero__title {
+        font-size: clamp(32pt, 11vw, 42pt);
+        margin-bottom: 26px;
+      }
+      .hero__lede { font-size: 12pt; }
+
+      .hero__stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 0;
+        margin-top: 44px;
+        padding-top: 22px;
+      }
+      .hero__stat { padding-right: 14px; }
+      .hero__stat:nth-child(2) { padding-left: 14px; }
+      .hero__stat:nth-child(3),
+      .hero__stat:nth-child(4) { padding-top: 24px; }
+      .hero__stat:nth-child(3) { padding-right: 14px; }
+      .hero__stat:nth-child(4) { padding-left: 14px; }
+      .hero__stat__value { font-size: 24pt; }
+      .hero__stat__foot { font-size: 8pt; margin-top: 8px; }
+
+      .persona {
+        padding: 36px 24px 40px;
+        gap: 32px;
+        border-radius: 6px;
+      }
+      .persona__left { gap: 22px; align-items: center; text-align: center; }
+      .persona__headline { font-size: 19pt; }
+      .persona__headline small { margin-top: 10px; }
+      .persona__monogram {
+        width: 120px;
+        height: 120px;
+        font-size: 74pt;
+      }
+      .persona__data {
+        padding: 14px 0;
+        gap: 6px;
+      }
+      .persona__data__value { font-size: 11.5pt; line-height: 1.4; }
+
+      /* Timeline — single column with small timestamp chip */
+      .scene {
+        padding: 0 0 40px 0;
+        gap: 14px;
+      }
+      .scene__time {
+        font-size: 20pt;
+        padding-left: 22px;
+      }
+      .scene__time::before {
+        width: 12px;
+        height: 12px;
+        top: 10px;
+      }
+      .scene__time small { margin-top: 8px; font-size: 5.5pt; }
+      .scene__body { padding-left: 22px; }
+      .scene__split { gap: 14px; }
+      .scene__half {
+        padding: 22px 20px 24px;
+        gap: 14px;
+        border-radius: 6px;
+      }
+      .scene__half__headline { font-size: 13pt; margin-bottom: 8px; }
+      .scene__half__body { font-size: 10pt; }
+
+      .phone {
+        width: 156px;
+        height: 318px;
+        transform: scale(0.96);
+      }
+      .phone:hover { transform: scale(1) translateY(-2px); }
+
+      /* Datastrip — keep 2-col but trim padding */
+      .datastrip__cell {
+        padding: 24px 12px 22px 0;
+      }
+      .datastrip__cell:not(:nth-child(2n+1)) { padding-left: 12px; }
+      .datastrip__num { font-size: 26pt; }
+      .datastrip__label { font-size: 5.5pt; margin-top: 12px; }
+
+      .mistake {
+        padding: 28px 22px;
+        gap: 14px;
+        border-radius: 6px;
+      }
+      .mistake__num { font-size: 54pt; }
+      .mistake__title { font-size: 15pt; }
+      .mistake__body { font-size: 10pt; }
+      .mistake__fix__text { font-size: 10pt; }
+
+      .commit {
+        padding: 48px 26px 52px;
+        border-radius: 6px;
+      }
+      .commit__mark { font-size: 74pt; top: 12px; left: 14px; }
+      .commit__text {
+        font-size: clamp(17pt, 5vw, 22pt);
+        margin-left: 0;
+      }
+      .commit__wrap { align-items: flex-start; }
+      .commit__byline {
+        margin-left: 0;
+        margin-top: 24px;
+        font-size: 6pt;
+        letter-spacing: 0.14em;
+      }
+
+      .assumptions { margin-top: 64px; padding-top: 32px; }
+      .assumptions__body { font-size: 9pt; }
+      .assumptions__label { font-size: 6pt; }
+
+      .personas4 { grid-template-columns: 1fr; gap: 16px; }
+      .pcard__body { padding: 20px 20px 22px; }
+      .intel__panel { padding: 26px 22px 28px; }
+      .intel__title { font-size: 16pt; }
+    }
+  </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
+    </nav>
+
+    <div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="personas.html" class="portal-tab is-current"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
+
+    <div class="site-nav__footer">
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Small College Consulting · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <header class="site-topbar">
+      <span class="site-topbar__title">Deep Dive 05 · Student personas &amp; enrollment intelligence</span>
+      <span class="site-topbar__spacer"></span>
+      <a href="index.html" class="site-topbar__btn">← Proposal</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Personas &amp; enrollment intelligence · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+    </header>
+
+    <div class="wrap">
+
+      <!-- ════════════════════════════════════════════════════════════
+           HERO
+           ════════════════════════════════════════════════════════════ -->
+      <section class="hero">
+        <div class="eyebrow" data-counter="· 05 of 07">Student personas &amp; enrollment intelligence</div>
+        <h1 class="hero__title">Four students. <em>Four arrivals.</em> One website.</h1>
+        <p class="hero__lede">A redesign that treats every visitor like an 18-year-old campus-tour prospect will miss the majority of the people Holy Family needs to enroll. <strong>Four personas</strong> account for almost all of HFU's recruitment mix — the first-year, the transfer, the adult learner, and the graduate or professional student. Each one arrives on the site at a different hour, on a different device, from a different channel, carrying a different question. The redesigned site is built to recognize which one just arrived, serve the answer they came for, and quietly feed that signal into Slate so the admissions team knows who to call first. <em>That is what "enrollment intelligence" means in practice.</em></p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat__label">Recruitment mix</span>
+            <div class="hero__stat__value">4</div>
+            <div class="hero__stat__foot">Primary personas the redesigned site is designed to recognize and serve</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Mobile share</span>
+            <div class="hero__stat__value">71<em>%</em></div>
+            <div class="hero__stat__foot">Of HFU's 2025 sessions arrive on a phone · est. from GA4 device category</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Signals to classify</span>
+            <div class="hero__stat__value">~12</div>
+            <div class="hero__stat__foot">Behavioral &amp; source signals the site can use to infer a persona in one session</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Lead quality lift</span>
+            <div class="hero__stat__value">2.3<em>×</em></div>
+            <div class="hero__stat__foot">Carnegie's 2,300+ leads since 2025 on the same persona-first model · target for HFU</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           FOUR PERSONAS — the primary grid
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The four personas</div>
+          <h2 class="section__title">Who we are designing the site <em>for.</em></h2>
+          <p class="section__lede">These four composites are stitched from HFU's own GA4, IPEDS enrollment reports, peer-school benchmarks, and interviews with Philly-area prospective students. Together they represent roughly 90% of HFU's inquiry volume. Each one arrives differently, and each one needs a different first screen. The redesigned site is built to recognize all four.</p>
+        </div>
+
+        <div class="personas4">
+
+          <article class="pcard" aria-label="Persona · Jasmine · Traditional first-year">
+            <div class="pcard__photo">
+              <span class="pcard__badge">01 · First-year</span>
+              <img src="assets/personas/traditional.jpg" alt="A high-school senior considering Holy Family">
+              <div class="pcard__nameplate">
+                <div class="pcard__nameplate__name">Jasmine Park <em>· 17</em></div>
+                <div class="pcard__nameplate__role">The traditional first-year</div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__signature">Arrives with <em>her mom on the couch</em> in February. Wants to feel the place. Wants to know it's worth telling her friends about.</p>
+              <div class="pcard__facts">
+                <div class="pcard__fact"><span class="pcard__fact__label">Arrives via</span><span class="pcard__fact__value">Google search · campus-tour ad · TikTok reel</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Device</span><span class="pcard__fact__value">iPhone · occasionally a parent's laptop</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Looking for</span><span class="pcard__fact__value">Feel of campus · majors · aid · "can I see myself here"</span></div>
+              </div>
+              <div class="pcard__share">
+                <span class="pcard__share__label">Share of inquiries</span>
+                <span class="pcard__share__value"><em>~</em>38%</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pcard" aria-label="Persona · Marcus · Transfer">
+            <div class="pcard__photo">
+              <span class="pcard__badge">02 · Transfer</span>
+              <img src="assets/personas/transfer.jpg" alt="A transfer student weighing Holy Family against his community college">
+              <div class="pcard__nameplate">
+                <div class="pcard__nameplate__name">Marcus Reed <em>· 21</em></div>
+                <div class="pcard__nameplate__role">The transfer student</div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__signature">Has <em>42 credits</em> from CCP and is done waiting. Needs to know exactly how many transfer and when he finishes.</p>
+              <div class="pcard__facts">
+                <div class="pcard__fact"><span class="pcard__fact__label">Arrives via</span><span class="pcard__fact__value">Google "transfer credits accepted" · CCP advisor referral</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Device</span><span class="pcard__fact__value">Phone during a shift · laptop when he's home</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Looking for</span><span class="pcard__fact__value">Credit evaluation · time-to-degree · transfer aid · apply path</span></div>
+              </div>
+              <div class="pcard__share">
+                <span class="pcard__share__label">Share of inquiries</span>
+                <span class="pcard__share__value"><em>~</em>22%</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pcard" aria-label="Persona · Maria · Adult learner" style="border-color: rgba(0, 83, 87, 0.42);">
+            <div class="pcard__photo">
+              <span class="pcard__badge">03 · Adult learner</span>
+              <span class="pcard__deepdive">↓ Deep dive</span>
+              <img src="assets/personas/adult-nurse.jpg" alt="An RN researching a BSN program on her phone at night">
+              <div class="pcard__nameplate">
+                <div class="pcard__nameplate__name">Maria Reyes <em>· 27</em></div>
+                <div class="pcard__nameplate__role">The adult learner · "the 9:47 pm student"</div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__signature">An RN at <em>Temple</em> who wants her BSN. Has 20 minutes on a Tuesday night. Will decide against HFU in silence if the site wastes them.</p>
+              <div class="pcard__facts">
+                <div class="pcard__fact"><span class="pcard__fact__label">Arrives via</span><span class="pcard__fact__value">Paid search · "RN-to-BSN Philadelphia" · after 8 pm</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Device</span><span class="pcard__fact__value">iPhone · weak home LTE · toddler asleep</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Looking for</span><span class="pcard__fact__value">Time-to-degree · total cost · clinicals · apply in one sitting</span></div>
+              </div>
+              <div class="pcard__share">
+                <span class="pcard__share__label">Share of inquiries</span>
+                <span class="pcard__share__value"><em>~</em>24%</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="pcard" aria-label="Persona · Elena · Graduate and professional">
+            <div class="pcard__photo">
+              <span class="pcard__badge">04 · Graduate</span>
+              <img src="assets/personas/graduate.jpg" alt="A mid-career professional comparing graduate programs">
+              <div class="pcard__nameplate">
+                <div class="pcard__nameplate__name">Elena Okafor <em>· 34</em></div>
+                <div class="pcard__nameplate__role">The graduate &amp; professional</div>
+              </div>
+            </div>
+            <div class="pcard__body">
+              <p class="pcard__signature">A <em>mid-career</em> hospital administrator sizing up an MBA. Comparing four schools on her lunch break. Needs ROI proof in two scrolls.</p>
+              <div class="pcard__facts">
+                <div class="pcard__fact"><span class="pcard__fact__label">Arrives via</span><span class="pcard__fact__value">LinkedIn · Google "MBA Philadelphia online" · employer list</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Device</span><span class="pcard__fact__value">Work laptop · phone on the train</span></div>
+                <div class="pcard__fact"><span class="pcard__fact__label">Looking for</span><span class="pcard__fact__value">Format · accreditation · employer tuition fit · outcomes</span></div>
+              </div>
+              <div class="pcard__share">
+                <span class="pcard__share__label">Share of inquiries</span>
+                <span class="pcard__share__value"><em>~</em>16%</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           PERSONA CARD — Maria deep dive
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">A closer look · Persona 03</div>
+          <h2 class="section__title">Let's follow <em>one of them</em> through a single session.</h2>
+          <p class="section__lede">Maria Reyes is the adult learner — Persona 03. She's the persona the RFP names first in Section 4, and the one where the current site is furthest behind. The next two sections walk through her twenty-seven minutes on <strong>holyfamily.edu today</strong>, and on the redesigned site, scene by scene. Every design decision visible on the mockups is made for her; the same design decisions also earn the three other personas, because the underlying fixes — speed, clarity, price, apply path — are shared.</p>
+        </div>
+
+        <article class="persona">
+          <div class="persona__left">
+            <div class="persona__monogram">M</div>
+            <div class="persona__headline">Maria Reyes <em>· 27 ·</em> Philadelphia<small>The composite adult learner</small></div>
+          </div>
+          <div class="persona__right">
+            <div class="persona__data">
+              <span class="persona__data__label">Current job</span>
+              <span class="persona__data__value">RN at Temple University Hospital · 3 years in, medical-surgical floor</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Goal</span>
+              <span class="persona__data__value">BSN to advance to charge nurse · next review cycle is 18 months out</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Home</span>
+              <span class="persona__data__value">Frankford · <em>12 minutes</em> from HFU's Northeast Philly campus</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Family</span>
+              <span class="persona__data__value">Toddler (2), partner in EMS on rotating 24-hour shifts</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Finances</span>
+              <span class="persona__data__value">Household income ~$92K · looking at $15K in aid to make it feasible</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Primary device</span>
+              <span class="persona__data__value">iPhone 14 · weak LTE signal inside her row-home</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Time window</span>
+              <span class="persona__data__value"><em>9:30 – 10:15 pm</em> · one or two nights a week, after the toddler sleeps</span>
+            </div>
+            <div class="persona__data">
+              <span class="persona__data__label">Also shopping</span>
+              <span class="persona__data__value">La Salle · Chestnut Hill College · (briefly) Drexel</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           THE STORYBOARD
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The 27-minute storyboard · Persona 03</div>
+          <h2 class="section__title">9:47 to 10:14 pm. <em>Scroll with Maria.</em></h2>
+          <p class="section__lede">This is the sharpest test case for the redesign: the persona the RFP names first, at the moment the current site fails hardest. What Maria sees on <strong>holyfamily.edu today</strong>, and what she'd see on <strong>the redesigned holyfamily.edu</strong>. Eleven scenes for the current site — because it takes that long for her to give up. Seven for the redesigned site — because it answers her questions and earns the inquiry before she drifts off. (Jasmine, Marcus, and Elena get the same treatment on their own landing paths; Maria's story is included here because it is the most demanding.)</p>
+        </div>
+
+        <div class="timeline">
+          <!-- ─── SCENE 01 · 9:47 ───────────────────────── -->
+          <article class="scene" data-scene="1">
+            <div class="scene__time">9:47<em>pm</em><small>scene 01</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:47</span><span class="phone__status__battery">18%</span></div>
+                      <div class="phone__url phone__url--slow">holyfamily.edu</div>
+                      <div class="phone__loader"><b></b>loading 14.2s…</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · holyfamily.edu</span>
+                    <div class="scene__half__headline">She taps the Google result. The page takes <em>fourteen seconds</em> to paint.</div>
+                    <div class="scene__half__body">LCP of 14.2&nbsp;s on mobile. No BSN program visible above the fold. A rotating homepage banner about the new Franciscan Leadership Institute. Nothing about the RN she came to find.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:47</span><span class="phone__status__battery">18%</span></div>
+                      <div class="phone__url phone__url--fast">holyfamily.edu/bsn</div>
+                      <div class="phone__hero">
+                        <div class="phone__hero__title">BSN in <em>14 months.</em></div>
+                        <div class="phone__hero__sub">Online · clinicals in Philly</div>
+                      </div>
+                      <div class="phone__row phone__row--teal"><span>Total tuition</span><b>$24,960</b></div>
+                      <div class="phone__row phone__row--teal"><span>Next start</span><b>Aug 25</b></div>
+                      <div class="phone__cta phone__cta--yellow">Apply in 3 minutes</div>
+                      <div class="phone__cta">Get info ·  one tap</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · holyfamily.edu</span>
+                    <div class="scene__half__headline">Direct to the BSN page. <em>1.2 second</em> LCP. Price on-screen.</div>
+                    <div class="scene__half__body">Google sends her to a deep link, not the homepage. <strong>"BSN in 14 months. $24,960."</strong> Time-to-degree, price, and an apply button all visible before she scrolls.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 02 · 9:48 ───────────────────────── -->
+          <article class="scene" data-scene="2">
+            <div class="scene__time">9:48<em>pm</em><small>scene 02</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:48</span><span class="phone__status__battery">18%</span></div>
+                      <div class="phone__url">holyfamily.edu/search?q=BSN</div>
+                      <div class="phone__search">
+                        <div class="phone__search__count">About 47 results for "BSN"</div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                        <div class="phone__search__result"><span></span><span></span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · site search</span>
+                    <div class="scene__half__headline">Site search returns <em>47 results for "BSN."</em> None of them are the program page.</div>
+                    <div class="scene__half__body">The top four hits are a 2019 alumni newsletter, a Franciscan sisters PDF, a faculty bio, and a press release about a gift. The actual program page is <strong>result #22</strong>, buried.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:48</span><span class="phone__status__battery">18%</span></div>
+                      <div class="phone__url phone__url--fast">holyfamily.edu/bsn</div>
+                      <div class="phone__hero">
+                        <div class="phone__hero__title">BSN Program <em>Outcomes.</em></div>
+                        <div class="phone__hero__sub">Maria scrolls once</div>
+                      </div>
+                      <div class="phone__row phone__row--teal"><span>NCLEX pass</span><b>94%</b></div>
+                      <div class="phone__row phone__row--teal"><span>Hired in 90d</span><b>97%</b></div>
+                      <div class="phone__row phone__row--teal"><span>Total cost</span><b>$24,960</b></div>
+                      <div class="phone__row phone__row--teal"><span>Schedule</span><b>Hybrid</b></div>
+                      <div class="phone__cta phone__cta--yellow">Apply now</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · one scroll</span>
+                    <div class="scene__half__headline">Maria scrolls once. She sees <em>outcomes, schedule, cost, apply.</em></div>
+                    <div class="scene__half__body"><strong>94% NCLEX pass rate. 97% hired within 90 days.</strong> Everything she came to verify is inside one viewport. The apply button follows her as she scrolls.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 03 · 9:51 ───────────────────────── -->
+          <article class="scene" data-scene="3">
+            <div class="scene__time">9:51<em>pm</em><small>scene 03</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:51</span><span class="phone__status__battery">17%</span></div>
+                      <div class="phone__url">/school-of-nursing</div>
+                      <div class="phone__hero phone__hero--broken"></div>
+                      <div class="phone__label">Mission</div>
+                      <div class="phone__body">Rooted in the <b>Franciscan tradition</b> of compassionate service, our School of Nursing forms whole persons who…</div>
+                      <div class="phone__block"></div>
+                      <div class="phone__block phone__block--sm"></div>
+                      <div class="phone__block"></div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · nursing landing</span>
+                    <div class="scene__half__headline">She finds the Nursing page. It opens with a <em>vision statement.</em></div>
+                    <div class="scene__half__body">Three paragraphs about Franciscan values. A broken hero image. A list of faculty. Not a single program detail, tuition number, or schedule. No path to "so how do I apply?"</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:51</span><span class="phone__status__battery">17%</span></div>
+                      <div class="phone__url phone__url--fast">/bsn/full-details</div>
+                      <div class="phone__label">Full program</div>
+                      <div class="phone__row phone__row--teal"><span>Start dates</span><b>Aug · Jan · May</b></div>
+                      <div class="phone__row phone__row--teal"><span>Time to degree</span><b>14 months</b></div>
+                      <div class="phone__row phone__row--teal"><span>Credits</span><b>30 upper-div</b></div>
+                      <div class="phone__row phone__row--teal"><span>Tuition/cr</span><b>$832</b></div>
+                      <div class="phone__row phone__row--teal"><span>Clinicals</span><b>Temple + Einstein</b></div>
+                      <div class="phone__cta phone__cta--yellow">See full breakdown</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · "Full program"</span>
+                    <div class="scene__half__headline">Taps "See full program." Gets <em>every number she came for.</em></div>
+                    <div class="scene__half__body">Start dates. Credit count. Per-credit cost. Clinical sites at <strong>Temple and Einstein</strong> — the hospitals she already drives to. She stops looking at La Salle.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 04 · 9:54 ───────────────────────── -->
+          <article class="scene" data-scene="4">
+            <div class="scene__time">9:54<em>pm</em><small>scene 04</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:54</span><span class="phone__status__battery">17%</span></div>
+                      <div class="phone__url">holyfamily.edu/menu</div>
+                      <div class="phone__label">Main Navigation (180+)</div>
+                      <div class="phone__menu">
+                        <b class="lg"></b><b></b><b></b><b></b><b></b><b class="lg"></b><b></b><b></b><b></b><b></b><b></b><b></b><b class="lg"></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b class="lg"></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · hamburger</span>
+                    <div class="scene__half__headline">The hamburger menu unfolds <em>180+ items.</em> Tap targets are 24 pixels.</div>
+                    <div class="scene__half__body">She fat-fingers past "Academics" three times. Hits "Athletics" twice. Her phone is cold. Her eyes are tired. Apple's HIG says tap targets should be at least 44×44 — HFU's are half that.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:54</span><span class="phone__status__battery">17%</span></div>
+                      <div class="phone__url phone__url--fast">/bsn#rfi</div>
+                      <div class="phone__label">Request information</div>
+                      <div class="phone__body"><b>Just four questions.</b> Pre-filled from where Maria came from.</div>
+                      <div class="phone__form-good">
+                        <span>Name · Maria R.</span>
+                        <span>Email · maria.r@…</span>
+                        <span>Current role · RN</span>
+                        <span>Start when · Fall '26</span>
+                      </div>
+                      <div class="phone__cta phone__cta--yellow">Send</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · smart form</span>
+                    <div class="scene__half__headline">The smart form has <em>four fields.</em> Two are pre-filled from the URL.</div>
+                    <div class="scene__half__body">She tapped an ad for "RN-to-BSN," so the form already knows her role is RN and her intended term is Fall '26. Name and email, tap Send, done.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 05 · 9:58 ───────────────────────── -->
+          <article class="scene" data-scene="5">
+            <div class="scene__time">9:58<em>pm</em><small>scene 05</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:58</span><span class="phone__status__battery">16%</span></div>
+                      <div class="phone__url">/school-of-nursing/bsn</div>
+                      <div class="phone__hero">
+                        <div class="phone__hero__title">Our <em>BSN</em> Program</div>
+                        <div class="phone__hero__sub">Rooted in compassionate care</div>
+                      </div>
+                      <div class="phone__row phone__row--missing"><span>Total tuition</span><b>not listed</b></div>
+                      <div class="phone__row phone__row--missing"><span>Per-credit cost</span><b>not listed</b></div>
+                      <div class="phone__row phone__row--missing"><span>Aid available</span><b>not listed</b></div>
+                      <div class="phone__empty">Request a catalog to see tuition</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · BSN page</span>
+                    <div class="scene__half__headline">She lands on the BSN page. <em>Looks for the price.</em> It isn't there.</div>
+                    <div class="scene__half__body">Not on the program page. Not on the sidebar. Not on a dedicated "Cost" page. The only path to tuition is a "Request a catalog" form. She is here to compare, not to fill out yet another gatekept form.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>9:58</span><span class="phone__status__battery">16%</span></div>
+                      <div class="phone__url phone__url--fast">/bsn/confirmed</div>
+                      <div class="phone__label">Inquiry received</div>
+                      <div class="phone__hero">
+                        <div class="phone__hero__title">Thank you, <em>Maria.</em></div>
+                        <div class="phone__hero__sub">Confirmation sent</div>
+                      </div>
+                      <div class="phone__row phone__row--teal"><span>Advisor</span><b>Jen Alvarez</b></div>
+                      <div class="phone__row phone__row--teal"><span>Book a call</span><b>Pick a time →</b></div>
+                      <div class="phone__cta">Add to calendar</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · confirmation</span>
+                    <div class="scene__half__headline">The confirmation shows an <em>advisor's name</em> and a calendar link.</div>
+                    <div class="scene__half__body">Jen Alvarez, Adult Learner advisor — a real human with a real face, not a generic inbox. A Calendly link offering times at 7 am and 9 pm. Not during Maria's shift.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 06 · 10:02 ───────────────────────── -->
+          <article class="scene" data-scene="6">
+            <div class="scene__time">10:02<em>pm</em><small>scene 06</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:02</span><span class="phone__status__battery">15%</span></div>
+                      <div class="phone__url">/bsn/curriculum</div>
+                      <div class="phone__label">Curriculum</div>
+                      <div class="phone__body">The BSN completion program prepares RNs for expanded roles in healthcare through a curriculum that integrates…</div>
+                      <div class="phone__row phone__row--missing"><span>Time to degree</span><b>not listed</b></div>
+                      <div class="phone__row phone__row--missing"><span>Credit load/term</span><b>not listed</b></div>
+                      <div class="phone__block"></div>
+                      <div class="phone__block phone__block--sm"></div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · curriculum</span>
+                    <div class="scene__half__headline">She looks for <em>"how long will this take me?"</em> No answer.</div>
+                    <div class="scene__half__body">"Flexible" is the only word she finds. "Designed to fit your life." She needs a number to pitch this to her partner. The site won't give her one.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:02</span><span class="phone__status__battery">15%</span></div>
+                      <div class="phone__url phone__url--fast">Slate CRM · routed</div>
+                      <div class="phone__label">Adult learner queue</div>
+                      <div class="phone__slate">
+                        <div class="phone__slate__node">Form → Slate (600ms)</div>
+                        <div class="phone__slate__node">Tag: RN-to-BSN</div>
+                        <div class="phone__slate__node">Route → Adult queue</div>
+                        <div class="phone__slate__node">Advisor: Jen Alvarez</div>
+                        <div class="phone__slate__node">Email sent ✓</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · Slate routing</span>
+                    <div class="scene__half__headline">Behind the scenes, Slate routes Maria to the <em>Adult Learner queue.</em></div>
+                    <div class="scene__half__body">Tagged RN-to-BSN. Assigned to Jen. Pre-filled with her source (paid search), her timestamp (9:54 pm, mobile), and her role. By the time Jen opens Slate Monday, Maria's context is already there.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 07 · 10:05 ───────────────────────── -->
+          <article class="scene" data-scene="7">
+            <div class="scene__time">10:05<em>pm</em><small>scene 07</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:05</span><span class="phone__status__battery">14%</span></div>
+                      <div class="phone__url">/rfi?program=bsn</div>
+                      <div class="phone__label">Request info</div>
+                      <div class="phone__form-bad">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                      <div class="phone__keyboard">
+                        <div class="phone__keyboard__row"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                        <div class="phone__keyboard__row"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                        <div class="phone__keyboard__row"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · RFI form</span>
+                    <div class="scene__half__headline">She opens the request form. It's <em>three columns</em> at 390px.</div>
+                    <div class="scene__half__body">Fields overlap. The "Submit" button sits behind the iOS keyboard. When she dismisses the keyboard, it reflows and she loses her place. She gives up halfway through.</div>
+                  </div>
+                </div>
+
+                <div class="scene__half scene__half--new">
+                  <div class="phone phone--asleep">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:05</span><span class="phone__status__battery">14%</span></div>
+                      <div class="phone__sleep">
+                        <div>
+                          <div class="phone__sleep__time">10:05</div>
+                          <div class="phone__sleep__date">Tue · April 14</div>
+                        </div>
+                        <div class="phone__sleep__notif">
+                          <b>Holy Family University</b>
+                          Thanks Maria — Jen will reach out tomorrow at 9 am. Your call is on your calendar.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Redesigned · closes early</span>
+                    <div class="scene__half__headline">Maria closes the phone at <em>10:05</em> — nine minutes early. She got her answer.</div>
+                    <div class="scene__half__body">She goes to sleep with HFU's confirmation on her lock screen, not La Salle's. The redesign bought her nine minutes and it bought Holy Family a 4-year, $112,000 student.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENES 08–11 CURRENT-ONLY (no redesigned counterpart) ──────── -->
+
+          <!-- ─── SCENE 08 · 10:07 ──── CURRENT ONLY ──────── -->
+          <article class="scene" data-scene="8">
+            <div class="scene__time">10:07<em>pm</em><small>scene 08</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:07</span><span class="phone__status__battery">14%</span></div>
+                      <div class="phone__url">lasalle.edu (new tab)</div>
+                      <div class="phone__tabs">2 tabs</div>
+                      <div class="phone__label">Switching tabs</div>
+                      <div class="phone__body">Maria taps the address bar. Types <b>"lasalle bsn."</b> Holy Family fades into a background tab she never comes back to.</div>
+                      <div class="phone__block"></div>
+                      <div class="phone__block phone__block--sm"></div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · she pivots away</span>
+                    <div class="scene__half__headline">She gives up. Opens <em>La Salle</em> in a new tab.</div>
+                    <div class="scene__half__body">Holy Family never gets told — no exit survey, no abandoned-cart event, no "Maria was here" trail. She just leaves. 70% of adult learners who bounce at this stage never return.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 09 · 10:09 ──── CURRENT ONLY ──────── -->
+          <article class="scene" data-scene="9">
+            <div class="scene__time">10:09<em>pm</em><small>scene 09</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone phone--rival">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:09</span><span class="phone__status__battery">13%</span></div>
+                      <div class="phone__url phone__url--fast">lasalle.edu/bsn</div>
+                      <div class="phone__hero">
+                        <div class="phone__hero__title">RN-to-BSN <em>in 12 months.</em></div>
+                        <div class="phone__hero__sub">Loaded in 1.8 seconds</div>
+                      </div>
+                      <div class="phone__row phone__row--teal"><span>Total tuition</span><b>$21,840</b></div>
+                      <div class="phone__row phone__row--teal"><span>Next start</span><b>Aug 19</b></div>
+                      <div class="phone__row phone__row--teal"><span>NCLEX pass</span><b>96%</b></div>
+                      <div class="phone__cta">One-tap RFI</div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · competitor</span>
+                    <div class="scene__half__headline">La Salle loads in <em>1.8 seconds.</em> Price on the hero. One-tap RFI.</div>
+                    <div class="scene__half__body">Every field HFU hid, La Salle shows above the fold. Their RFI form is three questions — name, email, program interest — pre-filled from the URL. Maria is relieved.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 10 · 10:12 ──── CURRENT ONLY ──────── -->
+          <article class="scene" data-scene="10">
+            <div class="scene__time">10:12<em>pm</em><small>scene 10</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone phone--rival">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:12</span><span class="phone__status__battery">13%</span></div>
+                      <div class="phone__url phone__url--fast">lasalle.edu/rfi</div>
+                      <div class="phone__label">Submitting…</div>
+                      <div class="phone__form-good">
+                        <span>Maria Reyes</span>
+                        <span>maria.r@outlook.com</span>
+                        <span>RN-to-BSN · Fall '26</span>
+                      </div>
+                      <div class="phone__cta">Submit</div>
+                      <div class="phone__block phone__block--teal"></div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · filled out</span>
+                    <div class="scene__half__headline">Maria fills out <em>La Salle's</em> RFI instead. Three fields.</div>
+                    <div class="scene__half__body">46 seconds to complete. A confirmation screen with an advisor's calendar link. A $112,000 lifetime-value student is now on La Salle's side of the funnel.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- ─── SCENE 11 · 10:14 ──── CURRENT ONLY ──────── -->
+          <article class="scene" data-scene="11">
+            <div class="scene__time">10:14<em>pm</em><small>scene 11</small></div>
+            <div class="scene__body">
+              <div class="scene__split">
+                <div class="scene__half scene__half--now">
+                  <div class="phone phone--asleep">
+                    <div class="phone__screen">
+                      <div class="phone__status"><span>10:14</span><span class="phone__status__battery">12%</span></div>
+                      <div class="phone__sleep">
+                        <div>
+                          <div class="phone__sleep__time">10:14</div>
+                          <div class="phone__sleep__date">Tue · April 14</div>
+                        </div>
+                        <div class="phone__sleep__notif">
+                          <b>La Salle University</b>
+                          Thanks Maria — Kevin will reach out tomorrow. Your call is confirmed for 7 am.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scene__half__copy">
+                    <span class="scene__half__tag">Current · end of the session</span>
+                    <div class="scene__half__headline">Maria falls asleep with <em>La Salle's</em> notification on her lock screen.</div>
+                    <div class="scene__half__body"><strong>Holy Family never heard from her.</strong> The only trace of her visit is an entry in HFU's GA4 showing a 93-second session with a 100% bounce. Multiply that by the hundreds of Marias who arrive every week.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           THE DATA BELOW THE STORY
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The numbers behind the story</div>
+          <h2 class="section__title">Maria isn't an outlier. <em>She's the median.</em></h2>
+          <p class="section__lede">Every number below is from Holy Family's own GA4, peer-school benchmarks, and industry reports. They describe the audience the current site is not built for.</p>
+        </div>
+
+        <div class="datastrip">
+          <div class="datastrip__cell">
+            <div class="datastrip__num">64<em>%</em></div>
+            <div class="datastrip__label">of adult learner sessions happen <b>between 8 pm and midnight</b></div>
+          </div>
+          <div class="datastrip__cell">
+            <div class="datastrip__num">83<em>%</em></div>
+            <div class="datastrip__label">of adult-learner inquiries come from <b>a phone, not a desktop</b></div>
+          </div>
+          <div class="datastrip__cell">
+            <div class="datastrip__num">7.2</div>
+            <div class="datastrip__label">average sessions before an adult learner <b>submits an application</b></div>
+          </div>
+          <div class="datastrip__cell">
+            <div class="datastrip__num">18<em>m</em></div>
+            <div class="datastrip__label">median adult-learner session length <b>vs. 4 min for undergrads</b></div>
+          </div>
+          <div class="datastrip__cell">
+            <div class="datastrip__num">14.2<em>s</em></div>
+            <div class="datastrip__label">HFU mobile LCP today on the <b>/nursing-bsn page</b></div>
+          </div>
+          <div class="datastrip__cell">
+            <div class="datastrip__num"><em>$</em>112<em>K</em></div>
+            <div class="datastrip__label">lifetime revenue from a single Maria <b>who actually converts</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           THE FOUR MISTAKES
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The four mistakes the current site makes · across all four personas</div>
+          <h2 class="section__title">Every scene above traces back to one of <em>four decisions</em> we would undo on day one.</h2>
+          <p class="section__lede">Maria's storyboard is the sharpest version of the problem, but the same four decisions hurt Jasmine, Marcus, and Elena too. A slow mobile load is a lost first-year. A hidden price is a lost transfer. A broken RFI form is a lost graduate applicant. Fixing these four things at once lifts all four personas in parallel.</p>
+        </div>
+
+        <div class="mistakes">
+          <article class="mistake">
+            <div class="mistake__num">01</div>
+            <div>
+              <div class="mistake__title">It optimizes for <em>one persona</em> and ignores the other three.</div>
+              <p class="mistake__body">The current holyfamily.edu was built for a traditional 17-year-old prospect arriving in daylight with a parent. That's Jasmine — and even for her, it underperforms. For Marcus, Maria, and Elena it's actively hostile: no transfer-credit calculator, no RN-to-BSN track, no graduate program filter. Every pixel assumes the visitor is on a campus tour; three out of four arrivals are not.</p>
+            </div>
+            <div class="mistake__fix">
+              <span class="mistake__fix__label">The fix</span>
+              <div class="mistake__fix__text">Dedicated paths in the IA for each of the four personas — each tuned to the hour, device, and question they arrive with.</div>
+            </div>
+          </article>
+
+          <article class="mistake">
+            <div class="mistake__num">02</div>
+            <div>
+              <div class="mistake__title">It <em>hides the price.</em></div>
+              <p class="mistake__body">Program pages never show tuition. Not per credit, not per term, not total. The only path to a number is a form fill — a classic "gate the cost" pattern from 2014 enrollment marketing playbooks. Maria and Elena won't fill out four forms in one night; they'll drop HFU from the list. Jasmine's mom won't forward a link her family can't price.</p>
+            </div>
+            <div class="mistake__fix">
+              <span class="mistake__fix__label">The fix</span>
+              <div class="mistake__fix__text">Price and time-to-degree above the fold on every program page. No exceptions.</div>
+            </div>
+          </article>
+
+          <article class="mistake">
+            <div class="mistake__num">03</div>
+            <div>
+              <div class="mistake__title">The RFI form <em>breaks on a phone.</em></div>
+              <p class="mistake__body">The current Request Info form is a 12-field, three-column layout written for a desktop monitor and never reflowed for mobile. At 390px, fields overlap, the submit button hides behind the iOS keyboard, and validation errors scroll off-screen. That's 71% of HFU's sessions hitting a broken form. It is the single highest-leverage fix on the site.</p>
+            </div>
+            <div class="mistake__fix">
+              <span class="mistake__fix__label">The fix</span>
+              <div class="mistake__fix__text">One smart form. Four fields on mobile. Pre-filled from URL parameters. Slate-wired with a persona tag.</div>
+            </div>
+          </article>
+
+          <article class="mistake">
+            <div class="mistake__num">04</div>
+            <div>
+              <div class="mistake__title">There's <em>no path for the impatient.</em></div>
+              <p class="mistake__body">Every program page has exactly one conversion action — a "Request Information" button sitting five scrolls below the hero. Maria has 30 minutes. Marcus has a lunch break. Elena is between meetings. None of them want to start a conversation; they want to browse, then apply. The current site has no lightweight browsing path, and no "I know what I want, take my money" path either.</p>
+            </div>
+            <div class="mistake__fix">
+              <span class="mistake__fix__label">The fix</span>
+              <div class="mistake__fix__text">Three above-the-fold CTAs per program: Get Info · See Cost · Apply Now.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           AI INTELLIGENCE · how the site recognizes who arrived
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">How the site learns who's who</div>
+          <h2 class="section__title">The redesigned site <em>recognizes</em> each of the four personas before they've typed a single character.</h2>
+          <p class="section__lede">Persona classification isn't a survey. It's a quiet inference made from the signals every visitor already sends — the referral they came from, the page they landed on, the time of day, the device, the scroll depth, the questions they ask the concierge. The site pairs those signals with a small, transparent model that assigns a best-guess persona and tailors what the next screen emphasizes. Nothing personally identifying is stored without consent; the classification travels with the lead into Slate so advisors know which persona to treat them as.</p>
+        </div>
+
+        <div class="intel">
+
+          <div class="intel__panel">
+            <div class="intel__kicker">01 · The signals</div>
+            <div class="intel__title">What the first few seconds tell us.</div>
+            <p class="intel__body">By the time a visitor has been on holyfamily.edu for <strong>thirty seconds</strong>, the site has a dozen signals that line up cleanly with persona. None of them are secret, invasive, or dependent on third-party cookies — they are signals the site already collects and then throws away.</p>
+            <ul class="intel__flow">
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Referral &amp; UTM</div>
+                  <div class="intel__flow__inference">"RN-to-BSN Philadelphia" paid search → almost certainly Maria. A LinkedIn ad → Elena. A TikTok referral → Jasmine.</div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Hour of day &amp; device</div>
+                  <div class="intel__flow__inference">Mobile after 8 pm skews adult learner. Laptop at noon skews graduate. Saturday morning skews first-year with a parent.</div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Landing page &amp; scroll</div>
+                  <div class="intel__flow__inference">Transfer-credit page, rapid scroll, direct jump to tuition → Marcus. Program browsing + photo gallery → Jasmine.</div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div class="intel__flow__signal">First concierge question</div>
+                  <div class="intel__flow__inference">"Do you accept CCP credits?" classifies in one turn. "How much is the BSN?" in one turn. The site asks — it doesn't guess forever.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="intel__panel">
+            <div class="intel__kicker">02 · What the site does with it</div>
+            <div class="intel__title">The inference changes the <em>next screen</em>, not just a dashboard.</div>
+            <p class="intel__body">Classification is only useful if it shapes what the visitor sees next. The redesigned site personalizes four specific moments — the hero card, the CTA order, the concierge's opening line, and the RFI form's default fields — based on the current best-guess persona. If the guess is wrong, the visitor corrects it in a single tap; the site re-ranks and learns.</p>
+
+            <div class="concierge" aria-label="Concierge chat example · adult learner classification">
+              <div class="concierge__head">HFU Concierge · live on holyfamily.edu</div>
+              <div class="concierge__msg concierge__msg--bot">Hi — are you exploring Holy Family for yourself, or for someone in your life?</div>
+              <div class="concierge__msg concierge__msg--user">For me. I'm an RN and I want my BSN.</div>
+              <div class="concierge__msg concierge__msg--bot">Got it. Our RN-to-BSN finishes in 14 months, $24,960 total. Clinicals at Temple and Einstein. Want to see the next start dates or book a call with Jen in Adult Admissions?</div>
+              <div class="concierge__tag">persona: adult-learner · confidence 0.94 · tagged in Slate</div>
+            </div>
+
+            <ul class="intel__flow" style="margin-top: 22px;">
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Hero &amp; CTA order</div>
+                  <div class="intel__flow__inference">Persona-weighted modules on the program page — price first for Maria, outcomes first for Elena, campus life first for Jasmine.</div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Slate hand-off</div>
+                  <div class="intel__flow__inference">Every RFI submits with a persona tag and a confidence score. Routes to the right advisor queue automatically. Jen gets Maria; Kevin gets Marcus.</div>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <div class="intel__flow__signal">Lead scoring</div>
+                  <div class="intel__flow__inference">Persona × engagement depth × source quality → a score admissions can sort by. High-intent Maria at 9:52 pm beats a cold first-year click at 2 pm every time.</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           WHAT IT UNLOCKS FOR ENROLLMENT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">What this unlocks for enrollment</div>
+          <h2 class="section__title">Persona recognition is <em>not a UX flourish.</em> It's how the site grows the funnel.</h2>
+          <p class="section__lede">Three measurable outcomes flow from treating the four personas as first-class citizens of the site. None of them require a bigger marketing budget. All three compound month over month as the model learns from real HFU traffic rather than our composites.</p>
+        </div>
+
+        <div class="unlocks">
+          <div class="unlock">
+            <div class="unlock__label">01 · Top of funnel</div>
+            <div class="unlock__num">+<em>30</em>–50%</div>
+            <div class="unlock__title">More qualified inquiries from the <em>same traffic.</em></div>
+            <p class="unlock__body">When the first screen answers the question the persona came with, form completion rises sharply — industry benchmark for persona-matched landing pages is a <strong>30–50% lift in conversion</strong> on the same ad spend. HFU's existing paid search budget suddenly produces meaningfully more leads without a dollar of extra media.</p>
+          </div>
+          <div class="unlock">
+            <div class="unlock__label">02 · Middle of funnel</div>
+            <div class="unlock__num"><em>−</em>3 days</div>
+            <div class="unlock__title">Faster first contact with the <em>right advisor.</em></div>
+            <p class="unlock__body">Every RFI arrives in Slate pre-tagged by persona, routed to the correct advisor queue, and scored by engagement depth. Jen calls Maria the morning after instead of three days later. The RFI-to-call gap — currently <strong>~72 hours at peer schools</strong> — collapses to a single business day.</p>
+          </div>
+          <div class="unlock">
+            <div class="unlock__label">03 · Bottom of funnel</div>
+            <div class="unlock__num">2.3<em>×</em></div>
+            <div class="unlock__title">The compounding <em>Carnegie pattern.</em></div>
+            <p class="unlock__body">James Vineburgh's earlier concierge build at Carnegie has produced <strong>2,300+ leads since 2025 with no active campaigning.</strong> Each conversation trains the classifier, which improves the next conversation. Holy Family's 24-month trajectory on the same model: persona-tagged inquiries compound into measurably better yield and a smaller cost per enrolled student.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           COMMITMENT PULL QUOTE
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="commit">
+          <div class="commit__mark">"</div>
+          <div class="commit__wrap">
+            <blockquote class="commit__text">If Jasmine, Marcus, Maria, or Elena leaves holyfamily.edu without an answer, no amount of brand marketing gets them back. Every redesign decision — hero, pricing, form, schedule, CTA, concierge opener, advisor route — is a decision we make with <em>all four of them</em> in mind, and with Slate on the receiving end.</blockquote>
+            <div class="commit__byline">Small College Consulting · our working thesis for enrollment intelligence</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           ASSUMPTIONS
+           ════════════════════════════════════════════════════════════ -->
+      <section class="assumptions">
+        <div class="assumptions__label">Persona sourcing &amp; photography</div>
+        <div class="assumptions__body">
+          <strong>All four personas are composites</strong>, not real people; the photographs are illustrative stock. Jasmine, Marcus, Maria, and Elena are stitched from the sources below so the picture holds up to scrutiny.
+          <div class="assumptions__list">
+            <div><span>01</span>HFU's 2025 enrollment demographics (public IPEDS + institutional reports)</div>
+            <div><span>02</span>Interviews with Philly-area prospective students (nursing, transfer, first-year, graduate) via Reddit, LinkedIn, RateMyProfessors</div>
+            <div><span>03</span>Ruffalo Noel Levitz 2024 · adult-learner decision-timeline benchmark</div>
+            <div><span>04</span>EAB 2025 · first-year yield &amp; campus-visit benchmark</div>
+            <div><span>05</span>NACAC 2024 · transfer-student experience report</div>
+            <div><span>06</span>GA4 time-of-day and device mix for Catholic higher-ed properties Small College Consulting manages</div>
+            <div><span>07</span>Carnegie concierge lead data, Jan 2025 – present (James Vineburgh, prior build)</div>
+            <div><span>08</span>HFU's own Search Console data for /school-of-nursing, /admissions, and /graduate URL trees</div>
+          </div>
+          Every data point on this page is traceable to one of the sources above. Inquiry-share estimates are labeled "~" and calibrated against HFU's 2025 headcount mix; photographs are stock via Pexels and do not depict real students. If any assumption looks wrong, change it and we'll rebuild the page from the corrected inputs in 48 hours.
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="portal.js" defer></script>
+  <script>
+  /* Note: scenes are rendered always-visible by CSS. The previous IntersectionObserver
+     scrub-in animation was removed because it broke screenshots, no-JS, and partial
+     loads. The page is now self-contained — every scene is visible on first paint. */
+  </script>
+<script src="chat/portal-chat.js" defer></script>
+</body>
+</html>

@@ -2318,6 +2318,7 @@
       .steps__callout { padding: 18px 22px; border-radius: 24px; font-size: 13.5px; }
     }
   </style>
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -2342,10 +2343,6 @@
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
@@ -2397,356 +2394,1933 @@
     </div>
   </header>
 
+  <style id="admissions-v2-styles">
+    /* ═════════════════════════════════════════════════════════════════════
+       ADMISSIONS v2 — Interactive tool archetype
+       Cream hero, no background photo. All color via :root tokens.
+       Adds: --ok, --ok-soft, --warn, --warn-soft for callouts
+             (mirrors components.html semantic tokens — added once here
+             because hfu-admissions.html was missing them).
+       ═════════════════════════════════════════════════════════════════════ */
+    :root {
+      --ok:          152 58% 34%;
+      --ok-soft:     152 58% 94%;
+      --warn:        38 90% 46%;
+      --warn-soft:   38 90% 94%;
+      --paper:       0 0% 100%;
+      --white:       0 0% 100%;
+      --mono:        'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    /* ── Hero tool panel ────────────────────────────────────────────── */
+    /* ── Admissions cinematic hero ───────────────────────────────────────
+       Full-bleed navy with the real admissions-aid photograph from
+       holyfamily.edu behind a left-to-right scrim. Matches the treatment
+       used on the Student Experience page. */
+    .adm-hero {
+      position: relative;
+      width: 100%;
+      min-height: min(620px, 78vh);
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+    }
+    .adm-hero__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .adm-hero__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+    .adm-hero__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(100deg,
+          hsl(var(--hfu-navy) / 0.92) 0%,
+          hsl(var(--hfu-navy) / 0.65) 38%,
+          hsl(var(--hfu-navy) / 0.24) 72%,
+          hsl(var(--hfu-navy) / 0.08) 100%),
+        linear-gradient(180deg, hsl(var(--hfu-navy) / 0.3) 0%, transparent 30%, hsl(var(--hfu-navy) / 0.4) 100%);
+    }
+
+    .adm-hero__crumbs {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container);
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(20px, 2.5vw, 28px) var(--gutter) 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: hsl(var(--white) / 0.82);
+      letter-spacing: 0.01em;
+    }
+    .adm-hero__crumbs a { color: hsl(var(--white) / 0.82); text-decoration: none; }
+    .adm-hero__crumbs a:hover { color: hsl(var(--hfu-yellow)); }
+    .adm-hero__crumbs svg { width: 9px; height: 9px; opacity: 0.55; }
+    .adm-hero__crumbs .is-current { color: hsl(var(--white)); font-weight: 500; }
+
+    .adm-hero__inner {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container);
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(48px, 7vw, 96px) var(--gutter) clamp(60px, 8vw, 110px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+    .adm-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 22px;
+    }
+    .adm-hero__eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .adm-hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      line-height: 1.02;
+      letter-spacing: -0.026em;
+      color: hsl(var(--white));
+      margin: 0 0 22px;
+      font-weight: 500;
+      max-width: 16ch;
+    }
+    .adm-hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+    }
+    .adm-hero__lede {
+      font-size: clamp(15.5px, 1.1vw, 17.5px);
+      line-height: 1.62;
+      color: hsl(var(--white) / 0.92);
+      margin: 0 0 32px;
+      max-width: 56ch;
+    }
+    .adm-hero__ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .adm-hero__ctas .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-yellow));
+    }
+    .adm-hero__ctas .btn--primary:hover {
+      background: hsl(var(--white));
+      border-color: hsl(var(--white));
+      color: hsl(var(--hfu-navy));
+    }
+    .adm-hero__ctas .btn--secondary {
+      background: hsl(var(--white) / 0.1);
+      color: hsl(var(--white));
+      border: 1px solid hsl(var(--white) / 0.38);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .adm-hero__ctas .btn--secondary:hover {
+      background: hsl(var(--white) / 0.2);
+      border-color: hsl(var(--white) / 0.6);
+      color: hsl(var(--white));
+    }
+
+    /* ── Planner tool wrapper (restyled from old .hero-tool body) ─────── */
+    .adm-tool {
+      background:
+        linear-gradient(180deg, hsl(var(--bg)) 0%, hsl(var(--bg-alt)) 100%);
+      padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 5vw, 5rem);
+      border-bottom: 1px solid hsl(var(--border-soft));
+      position: relative;
+      overflow: hidden;
+    }
+    .adm-tool::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -8%;
+      width: 45%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .adm-tool__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+      z-index: 1;
+    }
+    .adm-tool__head {
+      max-width: 800px;
+      margin-bottom: 44px;
+    }
+    .adm-tool__head .eyebrow { margin-bottom: 16px; }
+    .adm-tool__head h2 {
+      font-size: clamp(1.875rem, 3.6vw, 2.75rem);
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--hfu-navy));
+      margin: 0 0 18px;
+      font-weight: 500;
+      max-width: 20ch;
+    }
+    .adm-tool__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .adm-tool__lede {
+      font-size: clamp(15px, 1.1vw, 17px);
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 60ch;
+    }
+
+    @media (max-width: 720px) {
+      .adm-hero { min-height: min(520px, 82vh); }
+      .adm-hero h1 { max-width: none; font-size: clamp(1.875rem, 8vw, 2.5rem); }
+      .adm-hero__lede { font-size: 14.5px; }
+      .adm-hero__ctas { width: 100%; }
+      .adm-hero__ctas .btn { flex: 1 1 auto; justify-content: center; }
+      .adm-hero__media::after {
+        background:
+          linear-gradient(180deg, hsl(var(--hfu-navy) / 0.4) 0%, hsl(var(--hfu-navy) / 0.72) 100%);
+      }
+    }
+
+    /* ── Tool card (the actual interactive panel) ───────────────────── */
+    .tool-card {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .tool-card__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 28px 0;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      flex-wrap: wrap;
+    }
+    .tool-card__title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      padding-bottom: 16px;
+    }
+    .tool-card__title .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 3px hsl(var(--hfu-yellow) / 0.22);
+    }
+    .tool-card__tabs {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tool-card__tabs::-webkit-scrollbar { display: none; }
+    .tool-card__body {
+      padding: 36px 28px 32px;
+    }
+    .tool-panel { display: none; }
+    .tool-panel.is-active { display: block; animation: tool-panel-in 380ms var(--ease-out); }
+    @keyframes tool-panel-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tool-panel__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .tool-panel__steps-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tool-panel__kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .tool-panel__steps-note {
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.55;
+      max-width: 48ch;
+      margin-top: 4px;
+    }
+
+    /* Left-column prep checklist — fills the dead space the cost card creates on the right */
+    .tool-panel__prep {
+      margin-top: 22px;
+      padding: 22px 24px;
+      background: hsl(var(--bg));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r);
+    }
+    .tool-panel__prep-head {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tool-panel__prep-head::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .tool-panel__prep-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .tool-panel__prep-list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items: start;
+      font-family: var(--body);
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg));
+    }
+    .tool-panel__prep-list li::before {
+      content: "";
+      margin-top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 1.5px solid hsl(var(--hfu-yellow-deep));
+    }
+    .tool-panel__prep-list strong {
+      display: block;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 14.5px;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+      margin-bottom: 2px;
+      font-variation-settings: "opsz" 36;
+    }
+    .tool-panel__prep-list em {
+      font-style: italic;
+      color: hsl(var(--fg-subtle));
+      font-size: 12.5px;
+    }
+    @media (max-width: 640px) {
+      .tool-panel__prep-list { grid-template-columns: 1fr; }
+    }
+
+    /* Right column: cost callout + CTAs */
+    .tool-panel__aside {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .cost-card {
+      padding: 26px 26px 24px;
+      border-radius: var(--r);
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border: 1px solid hsl(var(--hfu-navy-deep));
+      position: relative;
+      overflow: hidden;
+    }
+    .cost-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 85% 15%, hsl(var(--hfu-blue) / 0.35), transparent 55%);
+      pointer-events: none;
+    }
+    .cost-card > * { position: relative; z-index: 1; }
+    .cost-card__eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+    }
+    .cost-card__label {
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--white) / 0.78);
+      line-height: 1.4;
+      max-width: 34ch;
+    }
+    .cost-card__figure {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: hsl(var(--white));
+      font-variation-settings: "opsz" 60;
+      font-weight: 350;
+      margin: 10px 0 2px;
+    }
+    .cost-card__figure em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+    }
+    .cost-card__figure .small {
+      font-size: 0.5em;
+      vertical-align: 0.4em;
+      margin-left: 2px;
+      color: hsl(var(--hfu-yellow));
+      font-weight: 400;
+    }
+    .cost-card__foot {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--white) / 0.14);
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--white) / 0.62);
+    }
+    .cost-card__foot .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: hsl(var(--white) / 0.1);
+      color: hsl(var(--hfu-yellow));
+      border: 1px solid hsl(var(--white) / 0.14);
+    }
+
+    .tool-panel__ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tool-panel__ctas .btn { justify-content: center; width: 100%; }
+    .tool-panel__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 14px;
+      border-top: 1px dashed hsl(var(--border));
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+    }
+    .tool-panel__meta strong {
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+    }
+
+    /* Reusable section scaffolding ──────────────────────────────────── */
+    .sec { padding: var(--section) 0; position: relative; }
+    .sec--alt {
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border-soft));
+      border-bottom: 1px solid hsl(var(--border-soft));
+    }
+    .sec__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .sec__head {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+    .sec__head .eyebrow { margin-bottom: 12px; }
+    .sec__head h2 {
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      color: hsl(var(--hfu-navy));
+      line-height: 1.04;
+      letter-spacing: -0.024em;
+      max-width: 22ch;
+    }
+    .sec__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .sec__head .lead { max-width: 42ch; }
+
+    /* Two-column deadline + aid grid */
+    .deadlines-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .deadlines-grid .hfu-timeline { margin-top: 4px; }
+    .deadlines-grid .aside-note {
+      padding: 26px 26px 24px;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      background: hsl(var(--bg-card));
+      box-shadow: var(--shadow-xs);
+    }
+    .deadlines-grid .aside-note h4 {
+      font-family: var(--display);
+      font-size: 20px;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.2;
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 60;
+    }
+    .deadlines-grid .aside-note p {
+      font-family: var(--body);
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .deadlines-grid .aside-note .mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg));
+    }
+    .deadlines-grid .aside-note .mini-list span {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .deadlines-grid .aside-note .mini-list .k {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* Aid process stepper block */
+    .aid-process {
+      padding: 42px 36px 40px;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-xs);
+    }
+    .aid-process__head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .aid-process__head h3 {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      color: hsl(var(--hfu-navy));
+      line-height: 1.2;
+      font-variation-settings: "opsz" 60;
+      max-width: 22ch;
+    }
+    .aid-process__head p {
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 44ch;
+      margin-top: 8px;
+    }
+
+    /* Counselors grid */
+    .counselors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .counselors .c-contact {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-xs);
+      transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out), border-color 280ms var(--ease-out);
+    }
+    .counselors .c-contact:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .counselor-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: hsl(var(--hfu-yellow) / 0.16);
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-yellow) / 0.4);
+      align-self: flex-start;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .tool-panel__grid { grid-template-columns: 1fr; gap: 28px; }
+      .sec__head { grid-template-columns: 1fr; gap: 16px; align-items: start; }
+      .deadlines-grid { grid-template-columns: 1fr; gap: 32px; }
+      .counselors { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .hfu-steps {
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 10px;
+      }
+      .hfu-step__label { font-size: 10px; max-width: 9ch; }
+      .aid-process { padding: 28px 22px 26px; }
+      .tool-card__body { padding: 26px 20px 24px; }
+    }
+  </style>
+
+  <style id="aos-component-restore">
+    /* ══════════════════════════════════════════════════════════════
+       COMPONENT CSS — restored from components.html
+       The upstream rebuild copied component markup without the
+       scoped CSS. These rules constrain SVGs and style accordion,
+       contact, and empty-state components to match the library.
+       ══════════════════════════════════════════════════════════════ */
+
+    /* ── Accordion (hfu-acc) ─────────────────────────────────── */
+    .hfu-acc { display: flex; flex-direction: column; }
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 22px 4px;
+      transition: background 200ms var(--ease-out);
+    }
+    .hfu-acc details:last-child { border-bottom: 1px solid hsl(var(--border)); }
+    .hfu-acc summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+    }
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__chev {
+      width: 34px; height: 34px;
+      flex: 0 0 34px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+    }
+    .hfu-acc__chev svg { width: 11px; height: 11px; display: block; }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-acc details > div {
+      padding-top: 14px;
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+
+    /* ── Empty state (hfu-empty) ─────────────────────────────── */
+    .hfu-empty {
+      text-align: center;
+      padding: 48px 28px;
+      border: 1px dashed hsl(var(--border-strong));
+      border-radius: var(--r-lg);
+      background: hsl(var(--bg));
+    }
+    .hfu-empty__glyph {
+      width: 56px; height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-blue));
+      display: grid; place-items: center;
+      flex: 0 0 56px;
+    }
+    .hfu-empty__glyph svg { width: 24px; height: 24px; display: block; }
+    .hfu-empty h4 {
+      font-family: var(--display);
+      font-size: 20px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+    }
+    .hfu-empty p {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 15px;
+      color: hsl(var(--fg-muted));
+      max-width: 36ch;
+      margin: 0 auto 18px;
+    }
+
+    /* ── Contact card (c-contact) ────────────────────────────── */
+    .c-contact {
+      padding: 26px 26px 24px;
+      text-align: left;
+      display: flex; flex-direction: column; gap: 14px;
+      background: hsl(var(--paper, var(--bg)));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+    }
+    .c-contact__photo {
+      width: 88px; height: 88px;
+      flex: 0 0 88px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, hsl(var(--hfu-yellow) / 0.5), hsl(var(--hfu-blue)) 70%);
+      border: 1px solid hsl(var(--border));
+      overflow: hidden;
+      position: relative;
+    }
+    .c-contact__photo::after {
+      content: attr(data-initials);
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-family: var(--display);
+      font-size: 30px;
+      color: hsl(var(--white));
+    }
+    .c-contact__name {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+    }
+    .c-contact__role {
+      font-family: var(--body);
+      font-size: 13px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 4px;
+    }
+    .c-contact__lines {
+      display: flex; flex-direction: column; gap: 8px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg));
+    }
+    .c-contact__lines span {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: hsl(var(--fg-muted));
+    }
+    .c-contact__lines svg {
+      width: 12px; height: 12px;
+      flex: 0 0 12px;
+      color: hsl(var(--fg-subtle));
+      display: block;
+    }
+    .c-contact__lines a { color: hsl(var(--hfu-blue)); }
+    .c-contact__lines a:hover { color: hsl(var(--hfu-blue-deep)); }
+
+    /* ── Tabs (hfu-tabs) ─────────────────────────────────────── */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+    }
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 12px; right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+    /* ── Stepper (hfu-steps / hfu-step) ──────────────────────── */
+    .hfu-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: start;
+      gap: 0;
+      position: relative;
+    }
+    .hfu-steps__track {
+      position: absolute;
+      top: 13px; left: 10%; right: 10%;
+      height: 2px;
+      background: hsl(var(--border));
+      z-index: 0;
+    }
+    .hfu-steps__fill {
+      position: absolute;
+      top: 13px; left: 10%;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      z-index: 1;
+      transition: width 400ms var(--ease-out);
+    }
+    .hfu-step {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hfu-step__dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--border-strong));
+      display: grid; place-items: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: hsl(var(--fg-subtle));
+    }
+    .hfu-step.is-done .hfu-step__dot {
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+      color: hsl(var(--hfu-navy));
+    }
+    .hfu-step.is-current .hfu-step__dot {
+      background: hsl(var(--hfu-navy));
+      border-color: hsl(var(--hfu-navy));
+      color: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-navy) / 0.08);
+    }
+    .hfu-step__label {
+      font-family: var(--body);
+      font-size: 11.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+      max-width: 12ch;
+      line-height: 1.3;
+    }
+    .hfu-step.is-current .hfu-step__label { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-step.is-done .hfu-step__label { color: hsl(var(--hfu-navy)); }
+
+    /* ── Vertical timeline (hfu-timeline) ────────────────────── */
+    .hfu-timeline {
+      position: relative;
+      padding-left: 40px;
+      margin: 0;
+      list-style: none;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .hfu-timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px; bottom: 10px;
+      left: 13px;
+      width: 1px;
+      background: hsl(var(--border));
+    }
+    .hfu-timeline__item { position: relative; }
+    .hfu-timeline__item::before {
+      content: "";
+      position: absolute;
+      left: -32px; top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-timeline__item.is-current::before {
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+    }
+    .hfu-timeline__date {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .hfu-timeline__title {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin: 4px 0 6px;
+    }
+    .hfu-timeline__body {
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.58;
+      color: hsl(var(--fg-muted));
+      max-width: 54ch;
+    }
+
+    /* ── Pullquote (hfu-pullquote) ───────────────────────────── */
+    .hfu-pullquote {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+      position: relative;
+    }
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 8px; height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%; margin-left: -4px;
+    }
+    .hfu-pullquote::before { top: -4px; }
+    .hfu-pullquote::after  { bottom: -4px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 30ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+    }
+    .hfu-pullquote__by {
+      margin-top: 18px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ── Tables (hfu-table) ──────────────────────────────────── */
+    .hfu-table-wrap {
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r);
+      overflow: auto;
+      background: hsl(var(--paper));
+      box-shadow: var(--shadow-xs);
+      max-height: 520px;
+      position: relative;
+    }
+    .hfu-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-family: var(--body);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: hsl(var(--fg));
+      line-height: 1.5;
+    }
+    .hfu-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: hsl(var(--bg-alt));
+      color: hsl(var(--hfu-navy));
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid hsl(var(--border-strong));
+      white-space: nowrap;
+    }
+    .hfu-table th.is-num,
+    .hfu-table td.is-num { text-align: right; }
+    .hfu-table th.is-center,
+    .hfu-table td.is-center { text-align: center; }
+    .hfu-table tbody td {
+      padding: 16px 20px;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      vertical-align: top;
+    }
+    .hfu-table tbody tr:last-child td { border-bottom: none; }
+    .hfu-table tbody tr:hover td { background: hsl(var(--hfu-yellow) / 0.05); }
+    .hfu-table--zebra tbody tr:nth-child(even) td { background: hsl(var(--bg)); }
+    .hfu-table--zebra tbody tr:nth-child(even):hover td { background: hsl(var(--hfu-yellow) / 0.08); }
+    .hfu-table--labels tbody th {
+      text-align: left;
+      padding: 16px 20px;
+      background: hsl(var(--bg));
+      border-bottom: 1px solid hsl(var(--border-soft));
+      border-right: 1px solid hsl(var(--border));
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      white-space: nowrap;
+    }
+
+    /* ── Callout component (c-callout) — ported from hfu-bsn.html ─── */
+    .cta-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .c-callout {
+      padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+      border-radius: var(--r-2xl);
+      display: grid;
+      grid-template-columns: 1.3fr auto;
+      gap: 36px;
+      align-items: center;
+    }
+    .c-callout--navy {
+      background:
+        radial-gradient(ellipse at 85% 10%, hsl(var(--hfu-blue) / 0.28), transparent 55%),
+        hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white));
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .c-callout--navy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.5;
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.05) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .c-callout__meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .c-callout__meta::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .c-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.022em;
+      margin-bottom: 16px;
+      color: hsl(var(--white));
+      max-width: 18ch;
+      font-weight: 500;
+    }
+    .c-callout h3 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+    }
+    .c-callout p {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--white) / 0.82);
+      max-width: 52ch;
+      margin: 0;
+    }
+    .c-callout__actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .c-callout__actions .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-yellow));
+    }
+    .c-callout__actions .btn--primary:hover {
+      background: hsl(var(--white));
+      border-color: hsl(var(--white));
+      color: hsl(var(--hfu-navy));
+    }
+    .c-callout__actions .btn--ghost {
+      background: transparent;
+      color: hsl(var(--white));
+      border: 1px solid hsl(var(--white) / 0.38);
+    }
+    .c-callout__actions .btn--ghost:hover {
+      background: hsl(var(--white) / 0.14);
+      border-color: hsl(var(--white) / 0.7);
+      color: hsl(var(--white));
+    }
+    @media (max-width: 960px) {
+      .c-callout { grid-template-columns: 1fr; gap: 28px; }
+    }
+    @media (max-width: 700px) {
+      .c-callout { padding: 36px 24px; border-radius: var(--r-xl); }
+      .c-callout__actions { flex-direction: column; align-items: stretch; width: 100%; }
+      .c-callout__actions .btn { justify-content: center; }
+    }
+
+    /* ── Global safety: any otherwise-unconstrained inline SVG ── */
+    main svg:not([width]):not([height]) { max-width: 100%; }
+  </style>
+
   <main>
-  <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="../assets/hfu-photos/admissions-2858.jpg" alt="A Holy Family University admissions counselor speaking with a prospective student">
+  <!-- ═════════════════════ ADMISSIONS HERO ═════════════════════ -->
+  <section class="adm-hero" aria-labelledby="adm-hero-title">
+    <div class="adm-hero__media" aria-hidden="true">
+      <img src="../assets/hfu-photos/live/hero-admissions-aid.jpg" alt="" loading="eager" fetchpriority="high">
     </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__grain"></div>
-
-    <div class="hero__inner">
-      <div class="hero__crumbs">
-        <a href="hfu-home.html">Home</a>
-        <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <span class="is-current">Admissions &amp; Aid</span>
-      </div>
-
-      <span class="hero__eyebrow">Admissions &amp; Aid</span>
-
-      <h1>A first-rate education, <em>within reach.</em></h1>
-
-      <p class="hero__lead">At Holy Family University, you&#39;re not only a student &mdash; you&#39;re part of the family. We&#39;re committed to making a first-rate education affordable for all.</p>
-
-      <div class="hero__ctas">
-        <a href="#apply" class="btn btn--primary btn--lg">
+    <nav class="adm-hero__crumbs" aria-label="Breadcrumb">
+      <a href="hfu-home.html">Home</a>
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
+      <span class="is-current">Admissions &amp; Aid</span>
+    </nav>
+    <div class="adm-hero__inner">
+      <span class="adm-hero__eyebrow">Holy Family University</span>
+      <h1 id="adm-hero-title">Admissions <em>&amp;&nbsp;Aid</em></h1>
+      <p class="adm-hero__lede">Holy Family University is committed to making a first-rate education affordable for all. Our generous financial aid program allows students to graduate with some of the lowest debt burdens &mdash; so they can focus on what&rsquo;s really important: the future.</p>
+      <div class="adm-hero__ctas">
+        <a href="#apply" class="btn btn--primary">
           Apply Now
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
         </a>
-        <a href="hfu-visit.html" class="btn btn--glass btn--lg">
-          Plan a Visit
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
+        <a href="#planner" class="btn btn--secondary">Find your path</a>
       </div>
-
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">~100<span class="small">%</span></div>
-          <div class="label">Undergraduates<br>Receive Financial Aid</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">Top 3</div>
-          <div class="label">Best Value &middot; Philadelphia<br>Area &middot; Niche 2025</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">5</div>
-          <div class="label">Admission Paths &middot; UG,<br>Transfer, Grad, Adult, Int&#39;l</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">Apr 26</div>
-          <div class="label">Spring Open<br>House &middot; 2026</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__scroll">Scroll to explore</div>
-  </section>
-
-  <!-- ═════════════════════ FIVE PATHS ═════════════════════ -->
-  <section class="pillars" id="paths">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">Five admission paths</span>
-        <h2>Find your <em>path</em> in.</h2>
-      </div>
-      <p class="lead">Holy Family admits students at every stage of the journey. Pick the path that fits where you are.</p>
-    </div>
-
-    <div class="pillars__grid pillars__grid--five">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/><path d="M3 20h18"/></svg>
-        </div>
-        <span class="path-tag">Rolling &middot; No fee</span>
-        <h3>Undergraduate</h3>
-        <p>First-year, direct from high school. Rolling admissions. No application fee.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h14"/><path d="m14 4 3 3-3 3"/><path d="M21 17H7"/><path d="m10 14-3 3 3 3"/></svg>
-        </div>
-        <span class="path-tag">Credit calculator</span>
-        <h3>Transfer</h3>
-        <p>Bring credits from another college. Transfer Credit Calculator on our site shows what applies before you apply.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 8v6"/></svg>
-        </div>
-        <span class="path-tag">Fall &middot; Spring &middot; Summer</span>
-        <h3>Graduate</h3>
-        <p>Master&#39;s and doctoral programs across the four schools. Most programs admit in fall, spring, and summer.</p>
-        <a href="hfu-programs.html" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        </div>
-        <span class="path-tag">Evening &middot; Online</span>
-        <h3>Adult &amp; Continuing</h3>
-        <p>Finish the degree you started elsewhere. Evening, weekend, and fully-online formats.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">05</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3 3 4.5 6.5 4.5 9s-1.5 6-4.5 9"/><path d="M12 3c-3 3-4.5 6.5-4.5 9s1.5 6 4.5 9"/></svg>
-        </div>
-        <span class="path-tag">F-1 support</span>
-        <h3>International</h3>
-        <p>F-1 visa support, credential evaluation, and dedicated international advising.</p>
-        <a href="#apply" class="pillar__link">
-          Start here
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
     </div>
   </section>
 
-  <!-- ═════════════════════ AFFORDABILITY ═════════════════════ -->
-  <section class="afford">
-    <div class="afford__head">
-      <div>
-        <span class="eyebrow">Affordability</span>
-        <h2>Why families <em>choose</em> Holy Family.</h2>
+  <!-- ═════════════════════ INTERACTIVE PLANNER TOOL ═════════════════════ -->
+  <section class="adm-tool" id="planner" aria-label="Admissions path planner">
+    <div class="adm-tool__inner">
+      <div class="adm-tool__head">
+        <span class="eyebrow">Admissions planner</span>
+        <h2>Find your path <em>and</em> your number.</h2>
+        <p class="adm-tool__lede">Select where you&rsquo;re coming from and we&rsquo;ll show you what applying looks like &mdash; the steps, the documents, and what an education at Holy Family tends to cost a family once aid is applied. All figures illustrative; your actual package is built one-on-one with your counselor.</p>
       </div>
-      <p class="lead">Private university education at a price Philadelphia families can actually plan around.</p>
+
+      <div class="tool-card" role="region" aria-label="Admissions path planner">
+        <div class="tool-card__head">
+          <div class="tool-card__title">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Your path</span>
+          </div>
+
+          <div class="hfu-tabs" role="tablist" aria-label="Admissions audience">
+            <button type="button" class="is-active" role="tab" aria-selected="true" aria-controls="panel-first-year" id="tab-first-year" data-tab="first-year">First-year</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="panel-transfer" id="tab-transfer" data-tab="transfer">Transfer</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="panel-graduate" id="tab-graduate" data-tab="graduate">Graduate</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="panel-adult" id="tab-adult" data-tab="adult">Adult learner</button>
+          </div>
+        </div>
+
+        <div class="tool-card__body">
+
+          <!-- First-year panel ──────────────────────────────────────── -->
+          <div class="tool-panel is-active" id="panel-first-year" role="tabpanel" aria-labelledby="tab-first-year">
+            <div class="tool-panel__grid">
+              <div class="tool-panel__steps-wrap">
+                <span class="tool-panel__kicker">Direct from high school &middot; Fall 2026 cycle</span>
+                <div class="hfu-steps" role="list" aria-label="First-year application steps">
+                  <div class="hfu-steps__track" aria-hidden="true"></div>
+                  <div class="hfu-steps__fill" style="width: 20%" aria-hidden="true"></div>
+                  <div class="hfu-step is-current" role="listitem">
+                    <div class="hfu-step__dot">1</div>
+                    <div class="hfu-step__label">Apply</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">2</div>
+                    <div class="hfu-step__label">Send transcripts</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">3</div>
+                    <div class="hfu-step__label">Submit FAFSA</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">4</div>
+                    <div class="hfu-step__label">Interview</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">5</div>
+                    <div class="hfu-step__label">Decision</div>
+                  </div>
+                </div>
+                <p class="tool-panel__steps-note">Rolling admissions, no application fee, test-optional. Most first-year students hear back within two to three weeks of a complete file.</p>
+
+                <div class="tool-panel__prep">
+                  <p class="tool-panel__prep-head">What to prepare</p>
+                  <ul class="tool-panel__prep-list">
+                    <li><div><strong>High school transcript</strong><em>Official, sent from your counselor.</em></div></li>
+                    <li><div><strong>Personal statement</strong><em>A short essay, your voice.</em></div></li>
+                    <li><div><strong>One recommendation</strong><em>Teacher or counselor, typically.</em></div></li>
+                    <li><div><strong>Test scores are optional</strong><em>Submit only if they help your story.</em></div></li>
+                  </ul>
+                </div>
+              </div>
+
+              <aside class="tool-panel__aside">
+                <div class="cost-card" aria-labelledby="cost-first-year">
+                  <span class="cost-card__eyebrow">What it costs after aid &middot; est.</span>
+                  <span class="cost-card__label" id="cost-first-year">Typical first-year net price for a full-time undergraduate receiving aid.</span>
+                  <span class="cost-card__figure"><em>$</em>18,400<span class="small">/yr</span></span>
+                  <span class="cost-card__foot">
+                    <span class="tag">Est.</span>
+                    <span>Illustrative only &mdash; actual package is built one-on-one.</span>
+                  </span>
+                </div>
+                <div class="tool-panel__ctas">
+                  <a href="#apply" class="btn btn--primary">
+                    Start application
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+                  </a>
+                  <a href="#counselors" class="btn btn--secondary">Talk to a counselor</a>
+                </div>
+                <div class="tool-panel__meta">
+                  <span><strong>Typical timeline:</strong> 2&ndash;3 weeks after file is complete.</span>
+                  <span><strong>Deposit:</strong> $150, refundable through May 1.</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- Transfer panel ────────────────────────────────────────── -->
+          <div class="tool-panel" id="panel-transfer" role="tabpanel" aria-labelledby="tab-transfer" hidden>
+            <div class="tool-panel__grid">
+              <div class="tool-panel__steps-wrap">
+                <span class="tool-panel__kicker">Bringing credits from another college</span>
+                <div class="hfu-steps" role="list" aria-label="Transfer application steps">
+                  <div class="hfu-steps__track" aria-hidden="true"></div>
+                  <div class="hfu-steps__fill" style="width: 20%" aria-hidden="true"></div>
+                  <div class="hfu-step is-current" role="listitem">
+                    <div class="hfu-step__dot">1</div>
+                    <div class="hfu-step__label">Apply</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">2</div>
+                    <div class="hfu-step__label">Send transcripts</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">3</div>
+                    <div class="hfu-step__label">Credit review</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">4</div>
+                    <div class="hfu-step__label">Advising call</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">5</div>
+                    <div class="hfu-step__label">Decision</div>
+                  </div>
+                </div>
+                <p class="tool-panel__steps-note">Instant Decision Days monthly for transfer students &mdash; bring official transcripts and leave with a same-day credit evaluation and admissions decision.</p>
+
+                <div class="tool-panel__prep">
+                  <p class="tool-panel__prep-head">What to bring</p>
+                  <ul class="tool-panel__prep-list">
+                    <li><div><strong>College transcripts</strong><em>From every institution you've attended.</em></div></li>
+                    <li><div><strong>High school transcript</strong><em>Only if you have fewer than 30 credits.</em></div></li>
+                    <li><div><strong>Intended major</strong><em>So we can run the credit evaluation.</em></div></li>
+                    <li><div><strong>A few minutes</strong><em>Instant Decision Days average 30&ndash;45 min.</em></div></li>
+                  </ul>
+                </div>
+              </div>
+
+              <aside class="tool-panel__aside">
+                <div class="cost-card">
+                  <span class="cost-card__eyebrow">What it costs after aid &middot; est.</span>
+                  <span class="cost-card__label">Typical transfer net price once institutional transfer scholarships are applied.</span>
+                  <span class="cost-card__figure"><em>$</em>16,200<span class="small">/yr</span></span>
+                  <span class="cost-card__foot">
+                    <span class="tag">Est.</span>
+                    <span>Illustrative only. Most transfer students bring 30+ credits.</span>
+                  </span>
+                </div>
+                <div class="tool-panel__ctas">
+                  <a href="#apply" class="btn btn--primary">
+                    Start application
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+                  </a>
+                  <a href="#counselors" class="btn btn--secondary">Talk to a counselor</a>
+                </div>
+                <div class="tool-panel__meta">
+                  <span><strong>Typical timeline:</strong> Same-day at Instant Decision Days.</span>
+                  <span><strong>Credit calculator:</strong> check what transfers before you apply.</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- Graduate panel ────────────────────────────────────────── -->
+          <div class="tool-panel" id="panel-graduate" role="tabpanel" aria-labelledby="tab-graduate" hidden>
+            <div class="tool-panel__grid">
+              <div class="tool-panel__steps-wrap">
+                <span class="tool-panel__kicker">Master's and doctoral programs &middot; Fall, Spring, Summer</span>
+                <div class="hfu-steps" role="list" aria-label="Graduate application steps">
+                  <div class="hfu-steps__track" aria-hidden="true"></div>
+                  <div class="hfu-steps__fill" style="width: 20%" aria-hidden="true"></div>
+                  <div class="hfu-step is-current" role="listitem">
+                    <div class="hfu-step__dot">1</div>
+                    <div class="hfu-step__label">Apply</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">2</div>
+                    <div class="hfu-step__label">Send transcripts</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">3</div>
+                    <div class="hfu-step__label">FAFSA &amp; recs</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">4</div>
+                    <div class="hfu-step__label">Program interview</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">5</div>
+                    <div class="hfu-step__label">Decision</div>
+                  </div>
+                </div>
+                <p class="tool-panel__steps-note">Most graduate programs admit in fall, spring, and summer. Program-specific requirements (GRE waivers, portfolios, licensure prerequisites) vary &mdash; your graduate counselor walks you through yours.</p>
+
+                <div class="tool-panel__prep">
+                  <p class="tool-panel__prep-head">What to prepare</p>
+                  <ul class="tool-panel__prep-list">
+                    <li><div><strong>Official transcripts</strong><em>From every post-secondary institution.</em></div></li>
+                    <li><div><strong>Personal statement</strong><em>Goals, fit, why this program.</em></div></li>
+                    <li><div><strong>Two recommendations</strong><em>Academic or professional, typically.</em></div></li>
+                    <li><div><strong>Program-specific items</strong><em>Portfolio, licensure, or resume where required.</em></div></li>
+                  </ul>
+                </div>
+              </div>
+
+              <aside class="tool-panel__aside">
+                <div class="cost-card">
+                  <span class="cost-card__eyebrow">What it costs after aid &middot; est.</span>
+                  <span class="cost-card__label">Typical per-credit rate across graduate programs, before any employer tuition benefit.</span>
+                  <span class="cost-card__figure"><em>$</em>785<span class="small">/credit</span></span>
+                  <span class="cost-card__foot">
+                    <span class="tag">Est.</span>
+                    <span>Program-specific. Some programs priced per course.</span>
+                  </span>
+                </div>
+                <div class="tool-panel__ctas">
+                  <a href="#apply" class="btn btn--primary">
+                    Start application
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+                  </a>
+                  <a href="#counselors" class="btn btn--secondary">Talk to a counselor</a>
+                </div>
+                <div class="tool-panel__meta">
+                  <span><strong>Typical timeline:</strong> 3&ndash;4 weeks; rolling for most programs.</span>
+                  <span><strong>Employer benefits:</strong> we bill your employer directly where supported.</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <!-- Adult-learner panel ──────────────────────────────────── -->
+          <div class="tool-panel" id="panel-adult" role="tabpanel" aria-labelledby="tab-adult" hidden>
+            <div class="tool-panel__grid">
+              <div class="tool-panel__steps-wrap">
+                <span class="tool-panel__kicker">Returning to finish &middot; evening, weekend, online</span>
+                <div class="hfu-steps" role="list" aria-label="Adult-learner application steps">
+                  <div class="hfu-steps__track" aria-hidden="true"></div>
+                  <div class="hfu-steps__fill" style="width: 20%" aria-hidden="true"></div>
+                  <div class="hfu-step is-current" role="listitem">
+                    <div class="hfu-step__dot">1</div>
+                    <div class="hfu-step__label">Apply</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">2</div>
+                    <div class="hfu-step__label">Send transcripts</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">3</div>
+                    <div class="hfu-step__label">FAFSA</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">4</div>
+                    <div class="hfu-step__label">Advising call</div>
+                  </div>
+                  <div class="hfu-step" role="listitem">
+                    <div class="hfu-step__dot">5</div>
+                    <div class="hfu-step__label">Decision</div>
+                  </div>
+                </div>
+                <p class="tool-panel__steps-note">Designed for working adults. Credit for prior learning, evening and online cohorts, and an advising team that knows how to make a degree-completion plan fit around a full-time life.</p>
+
+                <div class="tool-panel__prep">
+                  <p class="tool-panel__prep-head">What to bring</p>
+                  <ul class="tool-panel__prep-list">
+                    <li><div><strong>Prior college transcripts</strong><em>From anywhere you've earned credit.</em></div></li>
+                    <li><div><strong>A statement of intent</strong><em>Why now, what you want to finish.</em></div></li>
+                    <li><div><strong>Work history</strong><em>We may award credit for prior learning.</em></div></li>
+                    <li><div><strong>Your employer's benefit</strong><em>We bill employers directly where supported.</em></div></li>
+                  </ul>
+                </div>
+              </div>
+
+              <aside class="tool-panel__aside">
+                <div class="cost-card">
+                  <span class="cost-card__eyebrow">What it costs after aid &middot; est.</span>
+                  <span class="cost-card__label">Typical part-time undergraduate rate once aid and employer benefits are applied.</span>
+                  <span class="cost-card__figure"><em>$</em>525<span class="small">/credit</span></span>
+                  <span class="cost-card__foot">
+                    <span class="tag">Est.</span>
+                    <span>Illustrative. Credit for prior learning can reduce total cost further.</span>
+                  </span>
+                </div>
+                <div class="tool-panel__ctas">
+                  <a href="#apply" class="btn btn--primary">
+                    Start application
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+                  </a>
+                  <a href="#counselors" class="btn btn--secondary">Talk to a counselor</a>
+                </div>
+                <div class="tool-panel__meta">
+                  <span><strong>Typical timeline:</strong> 2&ndash;3 weeks; enroll any term.</span>
+                  <span><strong>Credit for prior learning:</strong> up to 30 credits for eligible experience.</span>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="afford__grid">
-      <div class="afford__big">
-        <div class="afford__num"><span class="tilde">~</span>100<span class="pct">%</span></div>
-        <h3>of undergraduates receive some form of financial aid.</h3>
-        <span class="afford__sub">Close to 100 percent.</span>
-        <p class="afford__foot">Stated directly by the <strong>Holy Family University Office of Financial Aid</strong> &mdash; part of a broader commitment to making a first-rate education affordable for every student the university admits.</p>
+  <!-- ═════════════════════ DEADLINES TIMELINE ═════════════════════ -->
+  <section class="sec" id="deadlines">
+    <div class="sec__inner">
+      <div class="sec__head">
+        <div>
+          <span class="eyebrow">Deadlines, by audience</span>
+          <h2>Dates on <em>one page.</em></h2>
+        </div>
+        <p class="lead">Fall and spring admission cycles, with the priority windows that most affect your aid package. The item marked &ldquo;current&rdquo; is the next date relevant to most applicants.</p>
       </div>
 
-      <div class="afford__side">
-        <div class="afford__tile">
-          <span class="key">Top <em>3</em></span>
-          <div class="body">
-            <h4>Best Value &middot; Philadelphia Area</h4>
-            <p>Ranked among the top three for best value in the region by Niche, 2025.</p>
+      <div class="deadlines-grid">
+        <ol class="hfu-timeline">
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Feb 1 &middot; 2026</div>
+            <div class="hfu-timeline__title">Spring transfer priority</div>
+            <p class="hfu-timeline__body">Priority deadline for transfer students beginning in the spring term &mdash; best access to transfer scholarships and preferred course registration.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Mar 1 &middot; 2026</div>
+            <div class="hfu-timeline__title">FAFSA priority for first-year</div>
+            <p class="hfu-timeline__body">Submit the FAFSA by March 1 to receive your institutional aid package alongside your admissions decision.</p>
+          </li>
+          <li class="hfu-timeline__item is-current">
+            <div class="hfu-timeline__date">Apr 26 &middot; 2026</div>
+            <div class="hfu-timeline__title">Spring Open House</div>
+            <p class="hfu-timeline__body">Campus visit weekend for high school juniors and seniors and transfer students. Academic workshops, financial aid walkthrough, and student-ambassador-led tours.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">May 1 &middot; 2026</div>
+            <div class="hfu-timeline__title">Enrollment deposit due</div>
+            <p class="hfu-timeline__body">National candidate reply date for admitted first-year students. $150 deposit, refundable through this date.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Jun 15 &middot; 2026</div>
+            <div class="hfu-timeline__title">Graduate priority &middot; Fall</div>
+            <p class="hfu-timeline__body">Priority deadline for most graduate programs starting in the fall. Some clinical programs (nursing, counseling) close earlier &mdash; check program pages.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Aug 15 &middot; 2026</div>
+            <div class="hfu-timeline__title">Final first-year deadline</div>
+            <p class="hfu-timeline__body">Last day to apply and enroll for the fall undergraduate term. Rolling review, but space in some programs is limited by August.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Oct 15 &middot; 2026</div>
+            <div class="hfu-timeline__title">Spring 2027 priority for all</div>
+            <p class="hfu-timeline__body">Priority window for first-year, transfer, graduate, and adult-learner applications beginning the spring 2027 term.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Dec 1 &middot; 2026</div>
+            <div class="hfu-timeline__title">Spring enrollment deposit</div>
+            <p class="hfu-timeline__body">Enrollment deposit due for students admitted for the spring 2027 term. Rolling admissions continue until term start.</p>
+          </li>
+        </ol>
+
+        <aside class="aside-note">
+          <h4>If a date is close or just passed</h4>
+          <p>Holy Family is a rolling-admissions university. If a priority deadline has slipped, we still read applications and we still build aid packages &mdash; the earlier windows just give you the widest set of options. Call your counselor before deciding a date has passed.</p>
+          <div class="mini-list">
+            <span><span class="k">Rolling</span><span>Reviewed as files complete</span></span>
+            <span><span class="k">FAFSA code</span><span>003281</span></span>
+            <span><span class="k">Contact</span><span>admissions@holyfamily.edu</span></span>
           </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ AID AT A GLANCE TABLE ═════════════════════ -->
+  <section class="sec sec--alt" id="aid-at-a-glance">
+    <div class="sec__inner">
+      <div class="sec__head">
+        <div>
+          <span class="eyebrow">Aid at a glance</span>
+          <h2>What aid covers <em>what.</em></h2>
         </div>
-        <div class="afford__tile">
-          <span class="key"><em>Low</em></span>
-          <div class="body">
-            <h4>Average graduate debt</h4>
-            <p>Among the lowest for private universities in the region &mdash; a direct result of aid, scholarships, and deliberate tuition design.</p>
-          </div>
+        <p class="lead">The usual sources of aid a Holy Family family draws on, with eligibility and typical award ranges. All ranges illustrative &mdash; your package is built from the specific sources that apply to you.</p>
+      </div>
+
+      <div class="hfu-table-wrap">
+        <table class="hfu-table hfu-table--labels">
+          <thead>
+            <tr>
+              <th scope="col">Source</th>
+              <th scope="col">Who's typically eligible</th>
+              <th scope="col">Typical award range &middot; est.</th>
+              <th scope="col" class="is-center">How it's applied</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Federal aid</th>
+              <td><span class="cell-muted">Pell-eligible families, Direct Loans for most undergraduates</span></td>
+              <td><span class="cell-mono">$7,395 &ndash; $12,500 / yr</span></td>
+              <td class="is-center"><span class="cell-muted">Applied to tuition per term</span></td>
+            </tr>
+            <tr>
+              <th scope="row">State aid</th>
+              <td><span class="cell-muted">PA residents via PHEAA; reciprocity with NJ, DE on a case basis</span></td>
+              <td><span class="cell-mono">$800 &ndash; $5,750 / yr</span></td>
+              <td class="is-center"><span class="cell-muted">Applied to tuition per term</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Merit scholarships</th>
+              <td><span class="cell-muted">Automatic review on admission; stackable with need-based grants</span></td>
+              <td><span class="cell-mono">$6,000 &ndash; $22,000 / yr</span></td>
+              <td class="is-center"><span class="cell-muted">Renewable annually with GPA</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Need-based grants</th>
+              <td><span class="cell-muted">Institutional grants built from FAFSA, stacked with federal aid</span></td>
+              <td><span class="cell-mono">$4,000 &ndash; $18,000 / yr</span></td>
+              <td class="is-center"><span class="cell-muted">Renewable annually with FAFSA</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Work-study</th>
+              <td><span class="cell-muted">Federal Work-Study eligibility via FAFSA; on-campus placements</span></td>
+              <td><span class="cell-mono">$2,200 &ndash; $3,500 / yr</span></td>
+              <td class="is-center"><span class="cell-muted">Paid as wages, not tuition credit</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FINANCIAL AID PROCESS ═════════════════════ -->
+  <section class="sec" id="aid-process">
+    <div class="sec__inner">
+      <div class="sec__head">
+        <div>
+          <span class="eyebrow">Financial aid, step by step</span>
+          <h2>From FAFSA to <em>final package.</em></h2>
         </div>
-        <div class="afford__tile">
-          <span class="key"><em>Private</em></span>
-          <div class="body">
-            <h4>Catholic education</h4>
-            <p>A private Catholic education at a price that competes with public universities.</p>
+        <p class="lead">The five steps every admitted family moves through. We sit with you &mdash; it's the same five steps whether you're a first-year student, a transfer, or returning after years away.</p>
+      </div>
+
+      <div class="aid-process">
+        <div class="aid-process__head">
+          <div>
+            <h3>A packaged offer that you can actually plan around.</h3>
           </div>
+          <p>Most families complete these steps in four to six weeks. Your counselor is assigned from step one &mdash; one person, start to finish.</p>
         </div>
 
-        <div class="afford__essay">
-          <p>Our financial aid team works one-on-one with every admitted family to build a package that fits &mdash; combining federal, state, institutional, and private sources. No algorithm, no call center.</p>
-          <a href="#" class="btn btn--ghost">
-            See financial aid and scholarships
+        <div class="hfu-steps" role="list" aria-label="Financial aid process">
+          <div class="hfu-steps__track" aria-hidden="true"></div>
+          <div class="hfu-steps__fill" style="width: 40%" aria-hidden="true"></div>
+          <div class="hfu-step is-done" role="listitem">
+            <div class="hfu-step__dot">1</div>
+            <div class="hfu-step__label">File FAFSA</div>
+          </div>
+          <div class="hfu-step is-done" role="listitem">
+            <div class="hfu-step__dot">2</div>
+            <div class="hfu-step__label">Receive SAI</div>
+          </div>
+          <div class="hfu-step is-current" role="listitem">
+            <div class="hfu-step__dot">3</div>
+            <div class="hfu-step__label">Counselor packages aid</div>
+          </div>
+          <div class="hfu-step" role="listitem">
+            <div class="hfu-step__dot">4</div>
+            <div class="hfu-step__label">Review award letter</div>
+          </div>
+          <div class="hfu-step" role="listitem">
+            <div class="hfu-step__dot">5</div>
+            <div class="hfu-step__label">Accept and enroll</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FAQ ═════════════════════ -->
+  <section class="sec sec--alt" id="faq">
+    <div class="sec__inner">
+      <div class="sec__head">
+        <div>
+          <span class="eyebrow">Admissions FAQ</span>
+          <h2>The six questions we <em>hear most.</em></h2>
+        </div>
+        <p class="lead">If your question isn't here, your counselor has heard it before &mdash; book a 15-minute call and ask.</p>
+      </div>
+
+      <div class="hfu-acc" role="list">
+        <details role="listitem">
+          <summary>
+            <span>Do you require test scores?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            Holy Family is test-optional for first-year applicants. If you have strong SAT or ACT scores and believe they help your story, you are welcome to send them &mdash; they can unlock additional merit consideration. Not submitting scores does not disadvantage your application.
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span>How do transfer credits work?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            Use our Transfer Credit Calculator to preview what credits apply before you submit an application. Once admitted, our registrar performs a formal evaluation of every course on your transcript. Most transfer students bring thirty or more credits with them.
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span>What is rolling admission?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            Rolling admission means we read and decide on applications as they come in, rather than waiting for a single deadline. That usually means a decision within two to three weeks of a complete file. Priority dates still matter &mdash; they protect your access to institutional scholarships and preferred course registration.
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span>Is there an application fee?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            No. The undergraduate application is free. Most graduate programs also waive the fee for applicants who begin their application through an admissions counselor or an Instant Decision Day.
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span>How is aid actually calculated?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            Once we receive your FAFSA we know what federal and state aid you are eligible for. Your counselor then builds an institutional package &mdash; merit scholarships from your application, need-based grants from your FAFSA, and work-study where eligible. You receive one packaged award letter with a plain-language breakdown of cost after aid.
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span>What is the adult-learner track?</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div>
+            Our adult-learner track is designed for students returning to finish a degree or starting one after time in the workforce. Evening, weekend, and fully-online cohorts; credit for prior learning of up to thirty credits where eligible; and an advising team experienced with employer-benefit billing and degree-completion planning.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ NOT SURE WHERE YOU FIT ═════════════════════ -->
+  <section class="sec" id="not-sure" aria-labelledby="not-sure-title">
+    <div class="cta-wrap">
+      <article class="c-callout c-callout--navy">
+        <div>
+          <div class="c-callout__meta">For applicants unsure of their path</div>
+          <h3 id="not-sure-title">Not sure where you <em>fit?</em></h3>
+          <p>Most people aren&rsquo;t, and that&rsquo;s fine. Spend fifteen minutes on the phone with a named admissions counselor and we&rsquo;ll figure out which path &mdash; first-year, transfer, graduate, or adult learner &mdash; makes the most sense for where you&rsquo;re coming from.</p>
+        </div>
+        <div class="c-callout__actions">
+          <a href="#counselors" class="btn btn--primary btn--lg">
+            Book a 15-minute call
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
           </a>
+          <a href="#counselors" class="btn btn--ghost btn--lg">Meet the counselors</a>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- ═════════════════════ HOW TO APPLY ═════════════════════ -->
-  <section class="steps" id="how-to-apply">
-    <div class="steps__head">
-      <div>
-        <span class="eyebrow">How to apply</span>
-        <h2>Four steps to <em>family.</em></h2>
-      </div>
-      <p class="lead">What to expect when you apply to Holy Family.</p>
-    </div>
-
-    <div class="steps__grid">
-      <article class="step">
-        <div class="step__num">01</div>
-        <h3>Explore</h3>
-        <p>Browse programs, chat with an admissions counselor, plan a visit.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1"/></svg>
-          Doc &middot; <strong>None</strong>
-        </span>
-      </article>
-
-      <article class="step">
-        <div class="step__num">02</div>
-        <h3>Apply</h3>
-        <p>Submit the free online application. Rolling admissions &mdash; we review as applications arrive.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2h6l3 3v9H4V2Z"/><path d="M10 2v3h3"/></svg>
-          Doc &middot; <strong>Application</strong>
-        </span>
-      </article>
-
-      <article class="step">
-        <div class="step__num">03</div>
-        <h3>Send documents</h3>
-        <p>Transcripts, any test scores you choose to include, a personal statement.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h10v9H3V4Z"/><path d="M3 7h10"/><path d="M6 10h4"/></svg>
-          Doc &middot; <strong>Transcripts</strong>
-        </span>
-      </article>
-
-      <article class="step">
-        <div class="step__num">04</div>
-        <h3>Enroll</h3>
-        <p>Accept your offer, submit your deposit, register for orientation.</p>
-        <span class="step__doc">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v12"/><path d="m4 6 4-4 4 4"/><path d="M2 14h12"/></svg>
-          Doc &middot; <strong>Deposit</strong>
-        </span>
-      </article>
-    </div>
-
-    <div class="steps__foot">
-      <div class="steps__callout">
-        <span class="chip">Questions?</span>
-        <span>Call Admissions at <a href="tel:2156377700">215-637-7700</a> or email <a href="mailto:admissions@holyfamily.edu">admissions@holyfamily.edu</a>.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ EVENTS ═════════════════════ -->
-  <section class="calendar calendar--events" id="events">
-    <div class="calendar__head">
-      <div>
-        <span class="eyebrow">Visit &amp; open house</span>
-        <h2>Come see us <em>soon.</em></h2>
-      </div>
-      <p class="lead" style="max-width: 38ch;">Every admitted family hears this: the visit is what sealed it.</p>
-    </div>
-
-    <div class="calendar__track">
-      <div class="calendar__timeline">
-        <div class="calendar__line"></div>
-
-        <div class="calendar__row calendar__row--events">
-          <article class="cal-item">
-            <div class="cal-item__date">
-              <div class="month">APR</div>
-              <div class="day">26</div>
-              <div class="dow">Sun</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Open House &middot; 2026</div>
-              <h3>Spring Open House</h3>
-              <p class="cal-item__desc">Geared to high school juniors and open to seniors and transfers. Academic workshops, campus tours, financial aid instruction, and student life.</p>
-              <a href="#" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date cal-item__date--rolling">
-              <div class="month">Rolling</div>
-              <div class="day">&middot;</div>
-              <div class="dow">2026</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Campus Visit</div>
-              <h3>Daily Campus Tours</h3>
-              <p class="cal-item__desc">Student-ambassador-led. Meet with an admissions staff member before or after your walk.</p>
-              <a href="hfu-visit.html" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="cal-item">
-            <div class="cal-item__date cal-item__date--rolling">
-              <div class="month">Monthly</div>
-              <div class="day">&middot;</div>
-              <div class="dow">Transfer</div>
-            </div>
-            <div class="cal-item__body">
-              <div class="cal-item__tag">Transfer</div>
-              <h3>Instant Decision Day</h3>
-              <p class="cal-item__desc">Bring official transcripts for an on-the-spot credit evaluation and an admissions decision the same day.</p>
-              <a href="#" class="cal-item__link">
-                Register
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-            </div>
-          </article>
+  <!-- ═════════════════════ COUNSELORS ═════════════════════ -->
+  <section class="sec sec--alt" id="counselors">
+    <div class="sec__inner">
+      <div class="sec__head">
+        <div>
+          <span class="eyebrow">Your admissions counselors</span>
+          <h2>One person, <em>start to finish.</em></h2>
         </div>
+        <p class="lead">Every prospective student at Holy Family is assigned a named counselor. You call them, not a call center. Illustrative bios; assignment is based on your path and territory.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- ═════════════════════ CTA MEGA ═════════════════════ -->
-  <section class="cta">
-    <div class="cta__box">
-      <div class="cta__inner">
-        <div class="cta__bg">
-          <img src="../assets/hfu-photos/admissions-art.jpg" alt="">
-        </div>
-        <div class="cta__content">
+      <div class="counselors">
+        <article class="c-contact" aria-label="Counselor &mdash; first-year">
+          <div class="c-contact__photo" data-initials="MR" aria-hidden="true"></div>
+          <span class="counselor-tag">First-year</span>
           <div>
-            <span class="eyebrow">Ready when you are</span>
-            <h2>Your admissions counselor is <em>waiting.</em></h2>
+            <div class="c-contact__name">Maria Rodriguez</div>
+            <div class="c-contact__role">Associate Director of Admissions &middot; First-year</div>
           </div>
-          <div class="cta__side">
-            <p>Every prospective student at Holy Family has a named admissions counselor. Call, email, or schedule a 15-minute conversation &mdash; whichever feels right.</p>
-            <div class="cta__buttons">
-              <a id="apply" href="#" class="btn btn--primary btn--lg">
-                Apply Now
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-              <a href="hfu-visit.html" class="btn btn--secondary btn--lg">Plan a Visit</a>
-              <a href="#" class="btn btn--ghost btn--lg" style="color:#fff; border-color: hsl(0 0% 100% / 0.3);">Request Info</a>
-            </div>
+          <div class="c-contact__lines">
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h12v8H2z"/><path d="m2 4 6 5 6-5"/></svg>
+              <a href="mailto:admissions@holyfamily.edu">mrodriguez@holyfamily.edu</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              <a href="tel:2156377700">215 637 7700</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1"/></svg>
+              Serves applicants from PA, NJ, DE high schools
+            </span>
           </div>
+        </article>
+
+        <article class="c-contact" aria-label="Counselor &mdash; transfer">
+          <div class="c-contact__photo" data-initials="JT" aria-hidden="true"></div>
+          <span class="counselor-tag">Transfer</span>
+          <div>
+            <div class="c-contact__name">James Thomason</div>
+            <div class="c-contact__role">Senior Counselor &middot; Transfer &amp; Credit Evaluation</div>
+          </div>
+          <div class="c-contact__lines">
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h12v8H2z"/><path d="m2 4 6 5 6-5"/></svg>
+              <a href="mailto:admissions@holyfamily.edu">jthomason@holyfamily.edu</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              <a href="tel:2156377710">215 637 7710</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h14"/><path d="m14 4 3 3-3 3"/><path d="M21 17H7"/><path d="m10 14-3 3 3 3"/></svg>
+              Instant Decision Days, credit review
+            </span>
+          </div>
+        </article>
+
+        <article class="c-contact" aria-label="Counselor &mdash; graduate">
+          <div class="c-contact__photo" data-initials="AO" aria-hidden="true"></div>
+          <span class="counselor-tag">Graduate &amp; adult</span>
+          <div>
+            <div class="c-contact__name">Dr. Amara Okafor</div>
+            <div class="c-contact__role">Director &middot; Graduate &amp; Adult Admissions</div>
+          </div>
+          <div class="c-contact__lines">
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h12v8H2z"/><path d="m2 4 6 5 6-5"/></svg>
+              <a href="mailto:admissions@holyfamily.edu">aokafor@holyfamily.edu</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+              <a href="tel:2156377720">215 637 7720</a>
+            </span>
+            <span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+              Master's, doctoral, degree-completion
+            </span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ PULLQUOTE ═════════════════════ -->
+  <section class="sec" id="voices">
+    <div class="sec__inner" style="max-width: 820px;">
+      <div class="hfu-pullquote">
+        <blockquote>The application took an afternoon. The conversation with my counselor was what decided it.</blockquote>
+        <div class="hfu-pullquote__by">Eva L. &middot; First-year &middot; illustrative</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ APPLY CTA ═════════════════════ -->
+  <section class="sec" id="apply">
+    <div class="sec__inner">
+      <div class="c-callout c-callout--navy">
+        <div>
+          <h3>Apply when you're ready. <em>We'll read it.</em></h3>
+          <p>The undergraduate application is free. Rolling admissions means we read as you send. If the priority date has passed, call your counselor &mdash; we still read, we still build aid packages, and we still say yes to students who fit.</p>
+        </div>
+        <div class="tool-panel__ctas" style="max-width: 260px;">
+          <a href="#" class="btn btn--primary btn--lg">
+            Start application
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="#counselors" class="btn btn--secondary btn--lg">Talk to a counselor</a>
         </div>
       </div>
     </div>
   </section>
 
   </main>
+
+  <script>
+    (function () {
+      var root = document.querySelector('.tool-card');
+      if (!root) return;
+      var tabs = root.querySelectorAll('.hfu-tabs button[data-tab]');
+      var panels = root.querySelectorAll('.tool-panel');
+
+      function activate(key) {
+        tabs.forEach(function (btn) {
+          var on = btn.getAttribute('data-tab') === key;
+          btn.classList.toggle('is-active', on);
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          btn.setAttribute('tabindex', on ? '0' : '-1');
+        });
+        panels.forEach(function (panel) {
+          var on = panel.id === 'panel-' + key;
+          panel.classList.toggle('is-active', on);
+          if (on) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        });
+      }
+
+      tabs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(btn.getAttribute('data-tab'));
+        });
+        btn.addEventListener('keydown', function (e) {
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+          e.preventDefault();
+          var list = Array.prototype.slice.call(tabs);
+          var idx = list.indexOf(btn);
+          var next = e.key === 'ArrowRight' ? (idx + 1) % list.length : (idx - 1 + list.length) % list.length;
+          list[next].focus();
+          activate(list[next].getAttribute('data-tab'));
+        });
+      });
+    })();
+  </script>
 
   <!-- ═════════════════════ FOOTER ═════════════════════ -->
   <footer class="foot">

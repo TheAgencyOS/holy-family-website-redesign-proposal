@@ -20,24 +20,27 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.08);
-      --teal-glow:   rgba(27, 122, 134, 0.18);
+      /* Warm editorial light — cream page, ink text, restrained teal accents.
+         Per CLAUDE.md: no dark content backgrounds. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.06);
+      --teal-glow:   rgba(0, 83, 87, 0.12);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
-      --red-soft:    rgba(255, 110, 110, 0.92);
-      --red-bg:      rgba(196, 32, 32, 0.18);
-      --green-soft:  rgba(116, 222, 165, 0.95);
-      --green-bg:    rgba(28, 134, 78, 0.18);
+      --hfu-yellow-deep: #E0A800;
+      --ink:         #FAF8F3;   /* warm cream page */
+      --ink-card:    #FFFFFF;   /* paper cards */
+      --ink-card-2:  #F1EDE4;   /* cream-deep card variant */
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
+      --red-soft:    #B42318;
+      --red-bg:      rgba(180, 35, 24, 0.08);
+      --green-soft:  #0E7A46;
+      --green-bg:    rgba(14, 122, 70, 0.08);
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -280,7 +283,7 @@
       align-items: center;
       gap: 10px;
       padding: 11px 16px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(6, 33, 63, 0.04);
       border: 1px solid var(--line);
       border-radius: 4px;
       font-family: var(--mono);
@@ -295,7 +298,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(6, 33, 63, 0.14);
       transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
     .demo__chip:hover {
@@ -324,7 +327,7 @@
     }
     .demo__panel {
       position: relative;
-      background: #08090E;
+      background: var(--ink-card);
       border: 1px solid var(--line);
       border-radius: 6px;
       min-height: 380px;
@@ -354,7 +357,7 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-ghost);
-      background: rgba(255,255,255,0.015);
+      background: rgba(6, 33, 63, 0.02);
     }
     .demo__panel--before .demo__panel__head {
       color: var(--red-soft);
@@ -367,7 +370,7 @@
       font-size: 6pt;
       padding: 3px 8px;
       border-radius: 2px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(6, 33, 63, 0.05);
       color: var(--text-dim);
       letter-spacing: 0.12em;
     }
@@ -387,10 +390,10 @@
       position: relative;
       z-index: 1;
     }
-    .demo__code .tag { color: rgba(197, 178, 255, 0.85); }
-    .demo__code .attr { color: rgba(255, 204, 21, 0.75); }
-    .demo__code .val { color: rgba(165, 208, 255, 0.85); }
-    .demo__code .txt { color: rgba(255, 255, 255, 0.7); }
+    .demo__code .tag { color: #6A4BD1; }
+    .demo__code .attr { color: #B88500; }
+    .demo__code .val { color: #0068A9; }
+    .demo__code .txt { color: rgba(6, 33, 63, 0.88); }
     .demo__code .cmt { color: var(--text-ghost); font-style: italic; }
     .demo__code .bad {
       color: var(--red-soft);
@@ -422,7 +425,7 @@
     .demo__log {
       position: relative;
       padding: 20px 24px;
-      background: #050609;
+      background: var(--ink-card-2);
       border: 1px solid var(--line);
       border-radius: 6px;
       font-family: var(--mono);
@@ -479,11 +482,11 @@
       align-items: start;
     }
     .term {
-      background: linear-gradient(160deg, #0A0C12 0%, #060709 70%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
       border: 1px solid var(--line);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(27,122,134,0.08);
+      box-shadow: 0 24px 60px -20px rgba(6, 33, 63, 0.10), 0 0 0 1px rgba(0, 83, 87, 0.08);
       position: relative;
     }
     .term::before {
@@ -499,7 +502,7 @@
       gap: 14px;
       padding: 14px 18px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
+      background: rgba(6, 33, 63, 0.03);
       position: relative;
     }
     .term__dots { display: flex; gap: 7px; }
@@ -507,7 +510,7 @@
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
+      background: rgba(6, 33, 63, 0.12);
     }
     .term__dot:nth-child(1) { background: #FF5F57; box-shadow: 0 0 6px rgba(255,95,87,0.25); }
     .term__dot:nth-child(2) { background: #FEBC2E; box-shadow: 0 0 6px rgba(254,188,46,0.25); }
@@ -516,7 +519,7 @@
     .term__url {
       flex: 1;
       padding: 6px 14px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(6, 33, 63, 0.05);
       border: 1px solid var(--line);
       border-radius: 4px;
       font-family: var(--mono);
@@ -536,7 +539,7 @@
       border: 1.5px solid var(--teal);
       flex-shrink: 0;
     }
-    .term__url b { color: white; font-weight: 500; }
+    .term__url b { color: var(--hfu-navy); font-weight: 500; }
 
     .term__copy {
       display: inline-flex;
@@ -575,14 +578,14 @@
       overflow-y: auto;
     }
     .term__body::-webkit-scrollbar { width: 6px; height: 6px; }
-    .term__body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
-    .term__body .h1 { color: white; font-weight: 400; font-size: 10pt; letter-spacing: -0.01em; }
-    .term__body .h2 { color: white; font-weight: 500; font-size: 9pt; }
+    .term__body::-webkit-scrollbar-thumb { background: rgba(6, 33, 63, 0.12); border-radius: 3px; }
+    .term__body .h1 { color: var(--hfu-navy); font-weight: 400; font-size: 10pt; letter-spacing: -0.01em; }
+    .term__body .h2 { color: var(--hfu-navy); font-weight: 500; font-size: 9pt; }
     .term__body .quote { color: var(--text); font-style: italic; }
     .term__body .link { color: var(--teal); }
     .term__body .bullet { color: var(--text-ghost); }
-    .term__body .cmt { color: rgba(255,255,255,0.28); }
-    .term__body .kv b { color: white; font-weight: 500; }
+    .term__body .cmt { color: rgba(6, 33, 63, 0.42); }
+    .term__body .kv b { color: var(--hfu-navy); font-weight: 500; }
 
     .term-note {
       padding: 36px 0 0;
@@ -700,7 +703,7 @@
       font-size: 10pt;
       letter-spacing: -0.01em;
       color: var(--text-dim);
-      background: rgba(255,255,255,0.025);
+      background: rgba(6, 33, 63, 0.03);
       border: 1px solid var(--line);
       border-radius: 4px;
       cursor: pointer;
@@ -731,7 +734,7 @@
 
     .schema__code {
       position: relative;
-      background: #06080C;
+      background: var(--ink-card);
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 28px 32px 32px;
@@ -750,10 +753,10 @@
     }
     .schema__code.is-fading { opacity: 0; }
     .schema__code::-webkit-scrollbar { height: 6px; }
-    .schema__code::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
-    .schema__code .json-key { color: rgba(165, 208, 255, 0.9); }
-    .schema__code .json-str { color: rgba(197, 178, 255, 0.88); }
-    .schema__code .json-num { color: rgba(255, 204, 21, 0.85); }
+    .schema__code::-webkit-scrollbar-thumb { background: rgba(6, 33, 63, 0.12); border-radius: 3px; }
+    .schema__code .json-key { color: #0068A9; }
+    .schema__code .json-str { color: #6A4BD1; }
+    .schema__code .json-num { color: #B88500; }
     .schema__code .json-bool { color: var(--teal); }
     .schema__code .json-punc { color: var(--text-ghost); }
     .schema__code .json-type { color: var(--green-soft); }
@@ -780,7 +783,7 @@
       align-items: center;
       gap: 7px;
       padding: 6px 12px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(6, 33, 63, 0.04);
       border: 1px solid var(--line);
       border-radius: 3px;
       font-family: var(--mono);
@@ -852,7 +855,7 @@
       height: 6px;
       border-radius: 1px;
     }
-    .hours__head__legend .sw--old { background: rgba(255,255,255,0.12); }
+    .hours__head__legend .sw--old { background: rgba(6, 33, 63, 0.12); }
     .hours__head__legend .sw--new { background: var(--teal); box-shadow: 0 0 10px rgba(27,122,134,0.4); }
 
     .hours__rows {
@@ -900,8 +903,8 @@
       transform-origin: left center;
     }
     .hours__bar--old {
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
+      background: rgba(6, 33, 63, 0.10);
+      box-shadow: 0 0 0 1px rgba(6, 33, 63, 0.06) inset;
     }
     .hours__bar--new {
       background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
@@ -911,7 +914,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+      background: linear-gradient(180deg, rgba(6, 33, 63, 0.12) 0%, transparent 50%);
       border-radius: 2px;
       pointer-events: none;
     }
@@ -922,7 +925,7 @@
       font-family: var(--mono);
       font-size: 7pt;
       letter-spacing: 0.08em;
-      color: white;
+      color: var(--hfu-navy);
       padding-left: 10px;
       white-space: nowrap;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
@@ -1210,6 +1213,187 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
+       STACK — THE TOOLS NAMED
+       ══════════════════════════════════════════════════════════════ */
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+    .stack__group {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      padding-top: 44px;
+      border-top: 1px solid var(--line);
+    }
+    .stack__group:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .stack__group-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      position: sticky;
+      top: 32px;
+      align-self: start;
+    }
+    .stack__group-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 32pt;
+      line-height: 0.85;
+      color: var(--teal);
+      font-variant-numeric: oldstyle-nums;
+      font-synthesis: none;
+    }
+    .stack__group-label {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 16pt;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.012em;
+    }
+    .stack__group-sub {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      line-height: 1.7;
+    }
+    .stack__tools {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .stack__group:last-of-type .stack__tools {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: calc(66.66% + 14px);
+    }
+    .tool {
+      position: relative;
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+      transition: border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tool::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(27, 122, 134, 0.08), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tool:hover {
+      border-color: rgba(27, 122, 134, 0.32);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 44px -26px rgba(27, 122, 134, 0.4);
+    }
+    .tool:hover::before { opacity: 1; }
+    .tool--optional {
+      border-style: dashed;
+      border-color: rgba(6, 33, 63, 0.18);
+    }
+    .tool__num {
+      position: relative;
+      font-family: var(--mono);
+      font-size: 6pt;
+      letter-spacing: 0.22em;
+      color: var(--text-ghost);
+      text-transform: uppercase;
+    }
+    .tool__name {
+      position: relative;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 13pt;
+      line-height: 1.25;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      letter-spacing: -0.01em;
+    }
+    .tool__badge {
+      font-family: var(--mono);
+      font-weight: 400;
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      padding: 3px 7px;
+      border: 1px solid rgba(27, 122, 134, 0.38);
+      border-radius: 3px;
+    }
+    .tool__desc {
+      position: relative;
+      font-size: 9.5pt;
+      line-height: 1.6;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+    .tool__meta {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5px 16px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .tool__meta dt {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-ghost);
+      align-self: center;
+    }
+    .tool__meta dd {
+      font-family: var(--body);
+      font-size: 8pt;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .tool__meta dd code {
+      font-family: var(--mono);
+      font-size: 7pt;
+      color: var(--teal);
+      background: rgba(27, 122, 134, 0.08);
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0;
+      display: inline-block;
+      word-break: break-all;
+    }
+    .stack__foot {
+      max-width: 58ch;
+      margin: 16px 0 0 328px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12pt;
+      color: var(--text-dim);
+      line-height: 1.55;
+      padding-left: 20px;
+      border-left: 2px solid rgba(27, 122, 134, 0.5);
+      font-synthesis: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
        RESPONSIVE
        ══════════════════════════════════════════════════════════════ */
     /* Narrow desktop / tablet landscape */
@@ -1265,6 +1449,11 @@
       .compete__cell:last-child::before { left: 26px; top: 30px; }
       .assumptions { margin-top: 88px; padding-top: 32px; grid-template-columns: 1fr; gap: 18px; }
       .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
+      .stack__group { grid-template-columns: 220px 1fr; gap: 32px; }
+      .stack__group-head { position: static; }
+      .stack__tools { grid-template-columns: repeat(2, 1fr); }
+      .stack__group:last-of-type .stack__tools { grid-template-columns: repeat(2, 1fr); max-width: none; }
+      .stack__foot { margin-left: 252px; }
     }
 
     /* Phone */
@@ -1306,6 +1495,14 @@
       .compete__head__col, .compete__cell { padding: 20px 22px; }
       .compete__cell:last-child { padding-left: 38px; }
       .compete__cell:last-child::before { left: 22px; top: 26px; }
+      .stack { gap: 48px; }
+      .stack__group { grid-template-columns: 1fr; gap: 24px; padding-top: 32px; }
+      .stack__group-head { position: static; }
+      .stack__group-num { font-size: 26pt; }
+      .stack__group-label { font-size: 14pt; }
+      .stack__tools,
+      .stack__group:last-of-type .stack__tools { grid-template-columns: 1fr; max-width: none; }
+      .stack__foot { margin-left: 0; font-size: 11pt; }
     }
 
     /* Tight phone */
@@ -1327,6 +1524,8 @@
       .compete__head__col, .compete__cell { padding: 18px 18px; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
@@ -1337,15 +1536,15 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1354,24 +1553,15 @@
       <a href="ai-lab.html" class="portal-tab is-current"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
@@ -1392,8 +1582,8 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="hero">
         <div class="eyebrow" data-counter="· 02 of 07">AI migration lab</div>
-        <h1 class="hero__title">We brought the AI. <em>Rick, press play.</em></h1>
-        <p class="hero__lede">Most agencies will email you a deck about "AI capabilities." We shipped three working demos right into this page. <strong>Paste a Drupal URL and watch the cleanup.</strong> Read the llms.txt we'd ship on launch day. Inspect the Schema.org payload your program pages will emit. No slides, no stock photos of glowing brains. Real tools, real output, live on the page Rick is reading.</p>
+        <h1 class="hero__title">AI as an enrollment instrument. <em>Press play.</em></h1>
+        <p class="hero__lede">The AI work on this engagement is not a capabilities slide &mdash; it's three working demos shipped into this page. <strong>Paste a Drupal URL and watch the cleanup.</strong> Read the llms.txt we'd ship on launch day. Inspect the Schema.org payload program pages will emit. Each demo is also an enrollment lever: clean content lets prospective students find HFU in ChatGPT and Perplexity searches, and the AI concierge James built at Carnegie has produced <strong>2,300+ inbound leads since 2025</strong> with no active campaigning. That is the evidence base for AI as an enrollment tool at Holy Family, not a promise.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">
@@ -1740,22 +1930,149 @@
       </section>
 
       <!-- ════════════════════════════════════════════════════════════
-           STACK RAIL — THE TOOLS NAMED
+           STACK — THE TOOLS NAMED
            ════════════════════════════════════════════════════════════ -->
-      <section class="assumptions">
-        <div class="assumptions__label">The stack, named</div>
-        <div class="assumptions__body">
-          <strong>We don't hide behind "proprietary AI." Here is the exact toolchain that would run your migration.</strong> Every tool is off-the-shelf, well-documented, and your team could run these same pipelines themselves a year after launch if they wanted to. No lock-in.
-          <div class="assumptions__list">
-            <div><span>01</span><b>Claude API (batch mode)</b>Content audits, meta descriptions, alt text generation. $0.038/page, run overnight.</div>
-            <div><span>02</span><b>sentence-transformers</b>Open-source embeddings library for semantic redirect mapping. 0.98 cosine threshold.</div>
-            <div><span>03</span><b>FG Drupal to WordPress</b>Battle-tested migration plugin by Frédéric GILLES. Handles media, users, menus.</div>
-            <div><span>04</span><b>WP-CLI + Drush</b>Command-line tooling both sides of the fence. Reproducible, scriptable, versioned.</div>
-            <div><span>05</span><b>Schema.org vocabulary</b>EducationalOccupationalProgram, Course, Person, FAQ. Standards-compliant JSON-LD.</div>
-            <div><span>06</span><b>Algolia (optional)</b>AI-powered site search with typo tolerance and semantic ranking, if you want it.</div>
-            <div><span>07</span><b>ACF Pro</b>Advanced Custom Fields for mapping Drupal field structures into clean WP content models.</div>
-            <div><span>08</span><b>Playwright + Pa11y</b>Automated post-migration QA for visual regressions and WCAG 2.2 AA compliance.</div>
+      <section class="section">
+        <div class="section__head">
+          <div class="section__kicker">The stack, named · open-source by choice</div>
+          <h2 class="section__title">The tools your team could run <em>themselves.</em></h2>
+          <p class="section__lede">No proprietary black box. Every component below is off-the-shelf, well-documented, and something Rick's team could operate directly a year after launch. The choice was made on maintainability, not on ownership theatre.</p>
+        </div>
+
+        <div class="stack">
+
+          <!-- ── Group 01 · Content processing ─────────────────────── -->
+          <div class="stack__group">
+            <header class="stack__group-head">
+              <span class="stack__group-num">01</span>
+              <div>
+                <div class="stack__group-label">Content processing</div>
+                <div class="stack__group-sub">AI-driven extraction, cleanup, metadata</div>
+              </div>
+            </header>
+            <div class="stack__tools">
+
+              <article class="tool">
+                <div class="tool__num">01</div>
+                <h3 class="tool__name">Claude API <span class="tool__badge">batch mode</span></h3>
+                <p class="tool__desc">Content audits, meta descriptions, and alt-text generation across the 1,601-URL crawl. Runs overnight so there is no daytime load on the team.</p>
+                <dl class="tool__meta">
+                  <dt>Unit</dt><dd>$0.038 per page (est.)</dd>
+                  <dt>Cadence</dt><dd>Overnight batch</dd>
+                  <dt>Docs</dt><dd><code>docs.anthropic.com</code></dd>
+                </dl>
+              </article>
+
+              <article class="tool">
+                <div class="tool__num">02</div>
+                <h3 class="tool__name">sentence-transformers</h3>
+                <p class="tool__desc">Open-source embeddings library used to build the semantic redirect map — old URL to new URL by meaning, not by string match.</p>
+                <dl class="tool__meta">
+                  <dt>License</dt><dd>Apache 2.0</dd>
+                  <dt>Threshold</dt><dd>0.98 cosine</dd>
+                  <dt>Docs</dt><dd><code>sbert.net</code></dd>
+                </dl>
+              </article>
+
+              <article class="tool">
+                <div class="tool__num">03</div>
+                <h3 class="tool__name">Schema.org vocabulary</h3>
+                <p class="tool__desc">EducationalOccupationalProgram, Course, Person, FAQ — standards-compliant JSON-LD emitted on every program page so ChatGPT, Claude, and Perplexity can cite Holy Family directly.</p>
+                <dl class="tool__meta">
+                  <dt>Maintainer</dt><dd>Schema.org community</dd>
+                  <dt>Format</dt><dd>JSON-LD</dd>
+                  <dt>Docs</dt><dd><code>schema.org</code></dd>
+                </dl>
+              </article>
+
+            </div>
           </div>
+
+          <!-- ── Group 02 · Migration plumbing ───────────────────── -->
+          <div class="stack__group">
+            <header class="stack__group-head">
+              <span class="stack__group-num">02</span>
+              <div>
+                <div class="stack__group-label">Migration plumbing</div>
+                <div class="stack__group-sub">Drupal → WordPress, field by field</div>
+              </div>
+            </header>
+            <div class="stack__tools">
+
+              <article class="tool">
+                <div class="tool__num">04</div>
+                <h3 class="tool__name">FG Drupal to WordPress</h3>
+                <p class="tool__desc">Migration plugin by Frédéric GILLES, maintained since 2013. Handles media, users, menus, and the Drupal node-revision history cleanly.</p>
+                <dl class="tool__meta">
+                  <dt>Maintainer</dt><dd>Frédéric GILLES</dd>
+                  <dt>Since</dt><dd>2013, actively maintained</dd>
+                  <dt>Docs</dt><dd><code>wordpress.org/plugins/fg-drupal-to-wp</code></dd>
+                </dl>
+              </article>
+
+              <article class="tool">
+                <div class="tool__num">05</div>
+                <h3 class="tool__name">WP-CLI + Drush</h3>
+                <p class="tool__desc">Command-line tooling on both sides of the fence. Every migration step is reproducible, scriptable, and checked into the repo rather than clicked through a UI.</p>
+                <dl class="tool__meta">
+                  <dt>License</dt><dd>MIT / GPL</dd>
+                  <dt>Used for</dt><dd>DB surgery, cron, QA</dd>
+                  <dt>Docs</dt><dd><code>wp-cli.org</code></dd>
+                </dl>
+              </article>
+
+              <article class="tool">
+                <div class="tool__num">06</div>
+                <h3 class="tool__name">Advanced Custom Fields Pro</h3>
+                <p class="tool__desc">Maps Drupal field structures into clean WordPress content models the internal team can maintain without a developer. Every program template is built on it.</p>
+                <dl class="tool__meta">
+                  <dt>License</dt><dd>Commercial (one-time)</dd>
+                  <dt>Used for</dt><dd>Program templates</dd>
+                  <dt>Docs</dt><dd><code>advancedcustomfields.com</code></dd>
+                </dl>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- ── Group 03 · Post-launch quality ──────────────────── -->
+          <div class="stack__group">
+            <header class="stack__group-head">
+              <span class="stack__group-num">03</span>
+              <div>
+                <div class="stack__group-label">Post-launch quality</div>
+                <div class="stack__group-sub">Automated regression and accessibility</div>
+              </div>
+            </header>
+            <div class="stack__tools">
+
+              <article class="tool">
+                <div class="tool__num">07</div>
+                <h3 class="tool__name">Playwright + Pa11y</h3>
+                <p class="tool__desc">Visual regression suite (Playwright) paired with WCAG 2.2 AA compliance checks (Pa11y). Runs on every deploy and on a weekly cadence after launch.</p>
+                <dl class="tool__meta">
+                  <dt>License</dt><dd>Apache 2.0 / MIT</dd>
+                  <dt>Cadence</dt><dd>Every deploy + weekly</dd>
+                  <dt>Docs</dt><dd><code>playwright.dev</code></dd>
+                </dl>
+              </article>
+
+              <article class="tool tool--optional">
+                <div class="tool__num">08</div>
+                <h3 class="tool__name">Algolia <span class="tool__badge">optional</span></h3>
+                <p class="tool__desc">AI-powered site search with typo tolerance and semantic ranking. Priced separately as a Section E add-on. WordPress native search covers the launch baseline.</p>
+                <dl class="tool__meta">
+                  <dt>License</dt><dd>Commercial, scoped</dd>
+                  <dt>Alternative</dt><dd>WP native search</dd>
+                  <dt>Docs</dt><dd><code>algolia.com</code></dd>
+                </dl>
+              </article>
+
+            </div>
+          </div>
+
+          <p class="stack__foot">If Rick's team ever wants to hand this off to a different vendor, or bring it in-house entirely, the files are plain WordPress and the scripts are plain Python and Bash. Nothing on this page is ours to hold.</p>
+
         </div>
       </section>
 

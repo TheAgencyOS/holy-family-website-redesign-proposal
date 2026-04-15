@@ -20,20 +20,21 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.08);
-      --teal-glow:   rgba(27, 122, 134, 0.18);
+      /* Warm editorial light — cream page, ink text, restrained teal accents. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.06);
+      --teal-glow:   rgba(0, 83, 87, 0.12);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
+      --ink:         #FAF8F3;
+      --ink-card:    #FFFFFF;
+      --ink-card-2:  #F1EDE4;
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -455,7 +456,7 @@
       grid-template-columns: 0.9fr 1.5fr;
       padding: 24px 36px 22px;
       border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.015);
+      background: rgba(6, 33, 63, 0.015);
     }
     .map__head-label {
       font-family: var(--mono);
@@ -662,7 +663,7 @@
       font-size: 9.5pt;
       color: var(--text-ghost);
       padding: 18px 20px 20px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(6, 33, 63, 0.02);
       border: 1px solid var(--line);
       border-radius: 4px;
       margin-bottom: 22px;
@@ -795,7 +796,7 @@
       transition: opacity 320ms ease;
     }
     .heritage__panel--after {
-      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
       border-color: rgba(27,122,134,0.28);
     }
     .heritage__panel-tag {
@@ -817,7 +818,7 @@
 
     /* Browser chrome mock */
     .mock {
-      background: #0A0B12;
+      background: var(--ink-card);
       border: 1px solid var(--line);
       border-radius: 6px;
       overflow: hidden;
@@ -828,7 +829,7 @@
       align-items: center;
       gap: 10px;
       padding: 10px 14px;
-      background: #070910;
+      background: var(--ink-card);
       border-bottom: 1px solid var(--line);
     }
     .mock__dots {
@@ -839,12 +840,12 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.1);
+      background: rgba(6, 33, 63, 0.1);
     }
     .mock__url {
       flex: 1;
       padding: 4px 10px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(6, 33, 63, 0.04);
       border-radius: 3px;
       font-family: var(--mono);
       font-size: 6.5pt;
@@ -856,24 +857,24 @@
 
     /* Before state — dull wall of text */
     .mock--before .mock__body {
-      background: #0B0C12;
+      background: var(--ink-card);
     }
     .mock__before-header {
       font-family: var(--display);
       font-weight: 400;
       font-size: 15pt;
-      color: rgba(255,255,255,0.7);
+      color: rgba(6, 33, 63, 0.7);
       letter-spacing: -0.01em;
       margin-bottom: 4px;
     }
     .mock__before-sub {
       font-family: var(--body);
       font-size: 7.5pt;
-      color: rgba(255,255,255,0.28);
+      color: rgba(6, 33, 63, 0.28);
       margin-bottom: 22px;
     }
     .mock__before-para {
-      background: rgba(255,255,255,0.05);
+      background: rgba(6, 33, 63, 0.05);
       border-radius: 2px;
       height: 6px;
       margin-bottom: 7px;
@@ -898,13 +899,13 @@
       font-size: 5.5pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
+      color: rgba(6, 33, 63, 0.22);
       text-align: center;
     }
 
     /* After state — redesigned */
     .mock--after .mock__body {
-      background: #0A1215;
+      background: var(--ink-card);
     }
     .mock__after-kicker {
       font-family: var(--mono);
@@ -919,7 +920,7 @@
       font-weight: 400;
       font-size: 16pt;
       line-height: 1.02;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.022em;
       margin-bottom: 22px;
     }
@@ -938,8 +939,8 @@
       border-radius: 3px;
       background:
         linear-gradient(135deg, rgba(27,122,134,0.4), rgba(255,204,21,0.18) 45%, rgba(6,33,63,0.85)),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 6px, transparent 6px 12px);
-      border: 1px solid rgba(255,255,255,0.08);
+        repeating-linear-gradient(45deg, rgba(6, 33, 63, 0.04) 0 6px, transparent 6px 12px);
+      border: 1px solid rgba(6, 33, 63, 0.08);
       margin-bottom: 8px;
       position: relative;
       overflow: hidden;
@@ -979,7 +980,7 @@
       line-height: 1.4;
       color: var(--text-dim);
     }
-    .mock__timeline-body b { color: white; font-weight: 500; }
+    .mock__timeline-body b { color: var(--hfu-navy); font-weight: 500; }
     .mock__after-quote {
       padding: 14px 16px;
       background: rgba(27,122,134,0.06);
@@ -1042,7 +1043,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 12pt;
-      color: rgba(255,255,255,0.52);
+      color: rgba(6, 33, 63, 0.52);
       line-height: 1.4;
       margin-bottom: 18px;
       padding-bottom: 18px;
@@ -1364,6 +1365,8 @@
       .measure__card { padding: 22px 20px 24px; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
@@ -1374,15 +1377,15 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1391,24 +1394,15 @@
       <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab is-current"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
@@ -1429,8 +1423,8 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="hero">
         <div class="eyebrow" data-counter="· 07 of 07">Mission engine</div>
-        <h1 class="hero__title">Your Catholic identity is a conversion asset, <em>not a disclaimer.</em></h1>
-        <p class="hero__lede">The five other agencies bidding this RFP will treat mission as branding — a logo lockup, a values page, a photo of the chapel. <strong>We treat it as a conversion asset.</strong> 64% of prospective Catholic university students say faith shaped their school choice. 78% of HFU alumni cite "whole person formation" as the reason they stayed. Every other Catholic university in Philly treats this like a gift shop. We're going to treat it <em>like a strategy.</em></p>
+        <h1 class="hero__title">Your Catholic identity is an enrollment argument, <em>not a disclaimer.</em></h1>
+        <p class="hero__lede">Mission is often treated as branding &mdash; a logo lockup, a values page, a photo of the chapel. <strong>We treat it as an enrollment argument.</strong> Sixty-four percent of prospective Catholic university students say faith shaped their school choice. Seventy-eight percent of HFU alumni cite "whole-person formation" as the reason they stayed. Prospective students who share Holy Family's mission are the University's most yield-dense applicants; the redesign's job is to help them recognize themselves on every page and choose to enroll. Most Catholic peers in Philadelphia surface this only on a values tab. We propose to surface it in the decision moment instead.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">

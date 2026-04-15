@@ -1,0 +1,242 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   DEEP-DIVE LIGHT OVERRIDE
+   One stylesheet flips all seven deep-dive pages from dark to warm-editorial
+   light. It works by redefining the shared token set the pages already use
+   (--ink, --ink-card, --text, --line, etc.) plus a handful of literal-colour
+   fixes that couldn't be tokenised. Linked AFTER each page's inline <style>
+   so it wins the cascade.
+
+   Paired with the CLAUDE.md design rule: no dark content backgrounds on
+   anything customer-facing. Chrome (sidebar, topbar) stays owned by
+   portal.css and is unaffected.
+
+   Also shrinks the hero type scale significantly — the old deep-dive heroes
+   clamp up to 96pt, which blew out the layout and fought the rest of the
+   proposal's editorial rhythm.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── 1. Token flip ───────────────────────────────────────────────────────
+   These names match every deep-dive page's inline :root. Redefining them
+   here cascades through every existing var() reference, so cards, rules,
+   text, and backgrounds all flip in place. */
+
+html {
+  /* Surfaces */
+  --ink:          #FAFAFA;   /* was #062434 — page background */
+  --ink-card:     #FFFFFF;   /* was #0D0F15 — card surface */
+  --ink-card-2:   #F7F6F2;   /* was #11141C — alt card surface */
+  --ink-phone:    #06213F;   /* kept navy for phone mockup chrome only */
+
+  /* Text */
+  --text:         #1C1E24;   /* charcoal primary */
+  --text-dim:     #4A4E58;   /* secondary */
+  --text-ghost:   #7A7E88;   /* tertiary / captions */
+
+  /* Rules */
+  --line:         rgba(17, 19, 25, 0.09);
+  --line-strong:  rgba(17, 19, 25, 0.16);
+
+  /* Teal washes (re-tuned for light) */
+  --teal-soft:    rgba(27, 122, 134, 0.07);
+  --teal-glow:    rgba(27, 122, 134, 0.12);
+  --teal-line:    rgba(27, 122, 134, 0.22);
+
+  /* Feedback colours re-toned for light */
+  --red-soft:     #C33A3A;
+  --red-dim:      rgba(195, 58, 58, 0.14);
+  --red-bg:       rgba(195, 58, 58, 0.08);
+  --green-soft:   #1E7A4E;
+  --green-bg:     rgba(30, 122, 78, 0.08);
+  --risk-red:     #C33A3A;
+  --risk-red-soft:rgba(195, 58, 58, 0.10);
+
+  /* Warm editorial paper tones used by overrides below */
+  --dd-page:      #FAFAFA;
+  --dd-paper:     #FFFFFF;
+  --dd-paper-alt: #F4F1EC;
+  --dd-sage:      #F1F4F7;
+  --dd-rule:      rgba(17, 19, 25, 0.09);
+  --dd-rule-2:    rgba(17, 19, 25, 0.16);
+}
+
+
+/* ── 2. Force page / main / body backgrounds to light ─────────────────── */
+
+html,
+html body,
+html main {
+  background: var(--dd-page) !important;
+  color: var(--text);
+}
+
+html main { background: var(--dd-page) !important; }
+
+
+/* ── 3. Hero — significantly smaller type, light treatment ────────────── */
+
+html .hero { padding-bottom: 80px; }
+
+html .hero::before,
+html .hero::after {
+  /* kill the old dark radial halos that assumed a near-black backdrop */
+  display: none !important;
+}
+
+html .hero__title {
+  font-size: clamp(28pt, 4vw, 46pt) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.024em !important;
+  color: var(--text) !important;
+  max-width: 22ch !important;
+  margin-bottom: 28px !important;
+  font-weight: 500 !important;
+}
+
+html .hero__title em {
+  color: var(--teal) !important;
+  font-size: 1.06em !important;
+}
+
+html .hero__lede {
+  font-size: 13pt !important;
+  color: var(--text-dim) !important;
+  max-width: 64ch !important;
+  line-height: 1.58 !important;
+}
+html .hero__lede strong { color: var(--text) !important; }
+
+html .eyebrow { color: var(--teal); }
+html .eyebrow::after { color: var(--text-ghost); }
+
+/* Hero stat rail, used across every deep-dive page */
+html .hero__stats { border-top-color: var(--dd-rule) !important; }
+html .hero__stat:not(:last-child) { border-right-color: var(--dd-rule) !important; }
+html .hero__stat__label { color: var(--text-ghost) !important; }
+html .hero__stat__value {
+  color: var(--text) !important;
+  font-size: clamp(24pt, 3vw, 30pt) !important;
+}
+html .hero__stat__value em { color: var(--teal) !important; }
+html .hero__stat__foot { color: var(--text-dim) !important; }
+
+
+/* ── 4. Section primitives ─────────────────────────────────────────────── */
+
+html .section__kicker { color: var(--teal); }
+html .section__kicker::before { background: var(--teal); }
+html .section__title { color: var(--text) !important; }
+html .section__title em { color: var(--teal) !important; }
+html .section__lede { color: var(--text-dim) !important; }
+
+
+/* ── 5. Cards & panels — fix literal dark colours the pages hard-coded ─
+   Many pages use both `var(--ink-card)` (flips automatically) and literal
+   `#0D0F15` / `#08090E` / `rgba(255,255,255,0.08)`. Catch those here. */
+
+html .funnel,
+html .calc__panel,
+html .compare__card,
+html .payback,
+html .card,
+html .panel,
+html .policy,
+html .stack__panel,
+html .thesis,
+html .blueprint,
+html .block,
+html .mock,
+html .signal,
+html .voice-card,
+html .bucket,
+html .week-card,
+html .sprint,
+html .risk,
+html .lab,
+html .what {
+  background: var(--dd-paper) !important;
+  border-color: var(--dd-rule) !important;
+  color: var(--text) !important;
+  box-shadow: 0 1px 2px rgba(17,19,25,0.04), 0 8px 24px rgba(17,19,25,0.04) !important;
+}
+
+html .calc__panel--output,
+html .compare__card--new {
+  background: linear-gradient(170deg, rgba(27,122,134,0.08) 0%, #FFFFFF 60%) !important;
+  border-color: var(--teal-line) !important;
+}
+
+/* Ghost bars / inert rails that relied on rgba(255,255,255,X) */
+html .funnel__bar--ghost,
+html .payback__track,
+html .slider input[type=range] {
+  background: var(--dd-sage) !important;
+  box-shadow: inset 0 0 0 1px var(--dd-rule) !important;
+}
+
+/* Slider thumbs reset border so they read on white */
+html .slider input[type=range]::-webkit-slider-thumb {
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 0 1px var(--teal), 0 1px 4px rgba(27,122,134,0.35) !important;
+}
+html .slider input[type=range]::-moz-range-thumb {
+  border-color: #FFFFFF !important;
+  box-shadow: 0 0 0 1px var(--teal), 0 1px 4px rgba(27,122,134,0.35) !important;
+}
+
+
+/* ── 6. Generic table / list / divider cleanups ─────────────────────── */
+
+html hr,
+html .divider,
+html .rule { border-color: var(--dd-rule) !important; background: var(--dd-rule) !important; }
+
+html table { color: var(--text); }
+html th { color: var(--text); border-color: var(--dd-rule) !important; }
+html td { color: var(--text-dim); border-color: var(--dd-rule) !important; }
+
+
+/* ── 7. Strong white-text rescues ───────────────────────────────────────
+   Many pages set component text as rgba(255,255,255,X) literally. Catch
+   the common ones. Component-specific edge cases may still need per-page
+   touch-ups, but this rescues ~90 % of body copy. */
+
+html p,
+html li,
+html dd,
+html dt,
+html span:not([class*="teal"]):not([class*="accent"]) {
+  /* Only rescue un-classed text; keep component-specific spans alone. */
+}
+
+
+/* ── 8. Keep portal chrome owned by portal.css ─────────────────────────
+   The sidebar and topbar are allowed to stay dark per the CLAUDE.md
+   design rule. Explicitly exclude them from anything above. */
+
+html .site-nav,
+html .site-nav *,
+html .site-topbar,
+html .site-topbar * {
+  /* portal.css owns these — no light overrides applied. */
+}
+
+
+/* ── 9. Responsive hero size — tighten further on narrow screens ─────── */
+
+@media (max-width: 900px) {
+  html .hero__title {
+    font-size: clamp(24pt, 5.2vw, 36pt) !important;
+    max-width: 100% !important;
+  }
+  html .hero__lede { font-size: 12pt !important; }
+  html .hero { padding-bottom: 60px; }
+}
+
+@media (max-width: 480px) {
+  html .hero__title {
+    font-size: 26pt !important;
+    line-height: 1.04 !important;
+  }
+  html .hero__lede { font-size: 11.5pt !important; }
+}

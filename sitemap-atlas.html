@@ -20,21 +20,22 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.12);
-      --teal-glow:   rgba(27, 122, 134, 0.28);
-      --teal-dim:    rgba(27, 122, 134, 0.45);
+      /* Warm editorial light — cream page, ink text, restrained teal accents. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.08);
+      --teal-glow:   rgba(0, 83, 87, 0.18);
+      --teal-dim:    rgba(0, 83, 87, 0.35);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
+      --ink:         #FAF8F3;
+      --ink-card:    #FFFFFF;
+      --ink-card-2:  #F1EDE4;
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -109,7 +110,7 @@
       font-size: clamp(48pt, 7.2vw, 96pt);
       line-height: 0.92;
       letter-spacing: -0.034em;
-      color: white;
+      color: var(--hfu-navy);
       max-width: 14ch;
       margin-bottom: 40px;
     }
@@ -130,7 +131,7 @@
       color: var(--text-dim);
       font-weight: 400;
     }
-    .hero__lede strong { color: white; font-weight: 500; }
+    .hero__lede strong { color: var(--hfu-navy); font-weight: 500; }
 
     .hero__stats {
       display: grid;
@@ -157,7 +158,7 @@
       font-weight: 400;
       font-size: 32pt;
       letter-spacing: -0.02em;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1;
     }
     .hero__stat__value em {
@@ -201,7 +202,7 @@
       font-size: clamp(32pt, 4.2vw, 52pt);
       line-height: 1.0;
       letter-spacing: -0.028em;
-      color: white;
+      color: var(--hfu-navy);
       margin-bottom: 22px;
     }
     .section__title em {
@@ -251,7 +252,7 @@
       color: var(--text-ghost);
       margin-bottom: 24px;
     }
-    .treemap__label b { color: white; font-weight: 500; }
+    .treemap__label b { color: var(--hfu-navy); font-weight: 500; }
     .treemap__legend {
       display: flex;
       gap: 20px;
@@ -273,9 +274,9 @@
       height: 10px;
       border-radius: 1px;
     }
-    .treemap__legend-swatch--keep    { background: var(--teal); box-shadow: 0 0 8px rgba(27,122,134,0.5); }
-    .treemap__legend-swatch--consol  { background: rgba(27,122,134,0.4); }
-    .treemap__legend-swatch--archive { background: rgba(255,255,255,0.12); }
+    .treemap__legend-swatch--keep    { background: rgba(0, 83, 87, 0.42); border: 1px solid rgba(0, 83, 87, 0.72); }
+    .treemap__legend-swatch--consol  { background: rgba(0, 83, 87, 0.24); border: 1px solid rgba(0, 83, 87, 0.48); }
+    .treemap__legend-swatch--archive { background: rgba(6, 33, 63, 0.10); border: 1px solid rgba(6, 33, 63, 0.28); }
 
     #treemap-svg {
       display: block;
@@ -298,7 +299,7 @@
       filter: drop-shadow(0 0 14px rgba(27,122,134,0.55));
     }
     .tm-rect {
-      stroke: rgba(255,255,255,0.08);
+      stroke: rgba(6, 33, 63, 0.08);
       stroke-width: 1;
       transition: stroke 220ms ease, filter 220ms ease;
     }
@@ -306,7 +307,7 @@
       font-family: var(--display);
       font-weight: 600;
       font-size: 12pt;
-      fill: white;
+      fill: var(--hfu-navy);
       letter-spacing: -0.012em;
       pointer-events: none;
     }
@@ -316,25 +317,26 @@
       font-size: 6pt;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      fill: rgba(255,255,255,0.55);
+      fill: rgba(6, 33, 63, 0.62);
       pointer-events: none;
     }
-    .tm-sublabel--dim { fill: rgba(255,255,255,0.4); }
+    .tm-sublabel--dim { fill: rgba(6, 33, 63, 0.45); }
 
-    /* Tooltip */
+    /* Tooltip — dark surface with light text for legibility on hover */
     .tm-tooltip {
       position: absolute;
       pointer-events: none;
-      background: rgba(255,255,255,0.95);
+      background: rgba(6, 33, 63, 0.96);
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(27,122,134,0.3);
+      border: 1px solid rgba(0, 83, 87, 0.4);
       border-radius: 4px;
       padding: 12px 14px;
       min-width: 220px;
       font-family: var(--body);
       font-size: 9pt;
-      color: white;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(27,122,134,0.15);
+      color: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 16px 36px rgba(6, 33, 63, 0.22), 0 0 0 1px rgba(0, 83, 87, 0.15);
       z-index: 10;
       opacity: 0;
       transform: translateY(-4px);
@@ -348,11 +350,11 @@
       font-family: var(--display);
       font-size: 11pt;
       font-weight: 400;
-      color: white;
+      color: #FFFFFF;
       letter-spacing: -0.01em;
       margin-bottom: 10px;
       padding-bottom: 8px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
     }
     .tm-tooltip__row {
       display: flex;
@@ -363,7 +365,7 @@
       font-size: 6.5pt;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-ghost);
+      color: rgba(255, 255, 255, 0.58);
       margin-bottom: 6px;
     }
     .tm-tooltip__row:last-child { margin-bottom: 0; }
@@ -373,15 +375,15 @@
       font-weight: 600;
       letter-spacing: -0.01em;
       text-transform: none;
-      color: white;
+      color: #FFFFFF;
     }
-    .tm-tooltip__row--keep b    { color: var(--teal); }
-    .tm-tooltip__row--archive b { color: rgba(255,255,255,0.5); }
+    .tm-tooltip__row--keep b    { color: #7FD4DC; }
+    .tm-tooltip__row--archive b { color: rgba(255, 255, 255, 0.52); }
 
     /* Detail panel under the treemap */
     .tm-detail {
       margin-top: 32px;
-      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
       border: 1px solid rgba(27,122,134,0.28);
       border-radius: 8px;
       padding: 44px 44px 44px;
@@ -419,7 +421,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 28pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.022em;
       line-height: 1.05;
     }
@@ -453,7 +455,7 @@
       font-family: var(--display);
       font-size: 26pt;
       font-weight: 400;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.018em;
       line-height: 1;
     }
@@ -492,7 +494,7 @@
       font-family: var(--display);
       font-size: 13pt;
       font-weight: 500;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1.35;
       letter-spacing: -0.01em;
       margin-bottom: 18px;
@@ -537,7 +539,7 @@
       color: var(--text-dim);
       letter-spacing: 0;
       padding: 4px 0;
-      border-bottom: 1px dashed rgba(255,255,255,0.06);
+      border-bottom: 1px dashed rgba(6, 33, 63, 0.06);
       word-break: break-all;
     }
     .tm-detail__urls li::before {
@@ -558,237 +560,258 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       SECTION 3 — FLOW DIAGRAM
+       SECTION 3 — FLOW (proportional reduction breakdown)
+       Editorial layout: before/after pair → proportional bars →
+       five filter rows ranked by share of the 381 archived.
        ══════════════════════════════════════════════════════════════ */
     .flow {
       background: var(--ink-card);
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 56px 40px 56px;
+      border-radius: 10px;
+      padding: 48px 48px 52px;
       position: relative;
       overflow: hidden;
     }
-    .flow::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(27,122,134,0.08), transparent 70%);
-      pointer-events: none;
-    }
-    .flow__label {
-      position: relative;
+    .flow__methodology {
       font-family: var(--mono);
       font-size: 6.5pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-ghost);
-      margin-bottom: 32px;
       display: flex;
       justify-content: space-between;
+      align-items: baseline;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
     }
-    .flow__label b { color: var(--teal); font-weight: 500; }
-    .flow__stage {
-      position: relative;
+    .flow__methodology b { color: var(--teal); font-weight: 500; }
+
+    /* ── Headline before/after pair ───────────────────────────── */
+    .flow__compare {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
-      gap: 32px;
+      gap: 36px;
       align-items: center;
+      margin-bottom: 56px;
     }
-    .flow__block {
-      padding: 14px 0;
-      min-height: 260px;
+    .flow__side {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
+      gap: 8px;
     }
-    .flow__block-head {
+    .flow__side--after { text-align: right; }
+    .flow__side-label {
       font-family: var(--mono);
       font-size: 6pt;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-ghost);
-      margin-bottom: 14px;
     }
-    .flow__block--in { text-align: left; }
-    .flow__block--out { text-align: right; }
-    .flow__grid {
-      display: grid;
-      gap: 1.5px;
-      align-content: start;
-      width: 100%;
-      max-width: 340px;
-      margin-top: 14px;
-      padding: 10px;
-      background: rgba(0,0,0,0.18);
-      border: 1px solid var(--line);
-      border-radius: 3px;
-    }
-    .flow__block--out .flow__grid {
-      margin-left: auto;
-      border-color: rgba(27,122,134,0.25);
-      background: rgba(27,122,134,0.035);
-    }
-    .flow__grid--before {
-      grid-template-columns: repeat(40, 1fr);
-    }
-    .flow__grid--after {
-      grid-template-columns: repeat(35, 1fr);
-    }
-    .flow__square {
-      width: 100%;
-      aspect-ratio: 1;
-      background: rgba(255,255,255,0.08);
-      border-radius: 0.5px;
-    }
-    .flow__square--keep {
-      background: var(--teal);
-      box-shadow: 0 0 1px rgba(27,122,134,0.6);
-    }
-    .flow__square--archive {
-      background: rgba(255,255,255,0.05);
-    }
-    .flow__num {
+    .flow__side-num {
       font-family: var(--display);
-      font-size: 44pt;
       font-weight: 400;
-      color: white;
-      letter-spacing: -0.028em;
-      line-height: 1;
-      margin-bottom: 6px;
+      font-size: clamp(48pt, 6vw, 76pt);
+      line-height: 0.92;
+      letter-spacing: -0.034em;
+      color: var(--hfu-navy);
+      font-variant-numeric: tabular-nums lining-nums;
     }
-    .flow__num em {
+    .flow__side--after .flow__side-num { color: var(--teal-deep); }
+    .flow__side-sub {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 12pt;
+      color: var(--text-dim);
+    }
+    .flow__arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 180px;
+    }
+    .flow__arrow-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 83, 87, 0.15), var(--teal), rgba(0, 83, 87, 0.15));
+    }
+    .flow__arrow-glyph {
       font-family: var(--serif);
       font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
+      font-size: 28pt;
+      line-height: 0.8;
       color: var(--teal);
-      font-synthesis: none;
     }
-    .flow__num-sub {
+    .flow__arrow-meta {
       font-family: var(--mono);
       font-size: 6pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 16px;
-    }
-    .flow__pipe {
-      position: relative;
-      min-width: 300px;
-      height: 260px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-    }
-    .flow__pipe-label-top {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--text-ghost);
-    }
-    .flow__pipe-label-top b { color: white; font-weight: 500; }
-    .flow__pipe-bar {
-      position: relative;
-      width: 100%;
-      height: 40px;
-      background: linear-gradient(90deg, rgba(27,122,134,0.12) 0%, var(--teal) 50%, rgba(27,122,134,0.12) 100%);
-      border-radius: 2px;
-      box-shadow: 0 0 0 1px rgba(27,122,134,0.3), 0 0 22px -2px rgba(27,122,134,0.35);
-      overflow: hidden;
-    }
-    .flow__pipe-bar::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 60%);
-    }
-    .flow__pipe-bar-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: white;
-      font-weight: 500;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    }
-    .flow__pipe-label-bottom {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      font-style: italic;
     }
 
-    /* Callouts below the pipe */
-    .flow__callouts {
-      position: relative;
-      margin-top: 48px;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
-    }
-    .flow__callout {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 18px 16px 18px;
-      position: relative;
-      cursor: pointer;
-      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
-      min-height: 112px;
+    /* ── Proportional comparison bars ─────────────────────────── */
+    .flow__proportional {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 56px;
     }
-    .flow__callout:hover {
-      transform: translateY(-3px);
-      border-color: rgba(27,122,134,0.4);
-      background: rgba(27,122,134,0.05);
+    .flow__prop-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+      align-items: center;
     }
-    .flow__callout-marker {
+    .flow__prop-label {
       font-family: var(--mono);
-      font-size: 10pt;
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .flow__prop-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 3px;
+      transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .flow__prop-bar--full {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(6, 33, 63, 0.08), rgba(6, 33, 63, 0.18));
+      border: 1px solid rgba(6, 33, 63, 0.18);
+    }
+    .flow__prop-bar--reduced {
+      background: linear-gradient(90deg, rgba(0, 83, 87, 0.18), var(--teal));
+      border: 1px solid rgba(0, 83, 87, 0.45);
+      box-shadow: 0 8px 22px -10px rgba(0, 83, 87, 0.45);
+    }
+    .flow__prop-num {
+      font-family: var(--display);
+      font-size: 13pt;
+      font-weight: 600;
+      letter-spacing: -0.012em;
+      color: var(--hfu-navy);
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .flow__prop-bar--reduced .flow__prop-num { color: #FFFFFF; }
+
+    /* ── Filter breakdown — 5 ranked rows ─────────────────────── */
+    .flow__filters {
+      padding-top: 44px;
+      border-top: 1px solid var(--line);
+    }
+    .flow__filters-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 32px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .flow__filters-title {
+      font-family: var(--display);
+      font-size: 18pt;
+      font-weight: 400;
+      color: var(--hfu-navy);
+      letter-spacing: -0.018em;
+    }
+    .flow__filters-meta {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 11pt;
+      color: var(--text-dim);
+      max-width: 56ch;
+      line-height: 1.45;
+    }
+    .flow__filter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .flow__filter-row {
+      display: grid;
+      grid-template-columns: 38px minmax(220px, 1.2fr) minmax(180px, 2fr) auto auto;
+      align-items: center;
+      gap: 24px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      transition: background 200ms ease;
+    }
+    .flow__filter-row:last-child { border-bottom: 1px solid var(--line); }
+    .flow__filter-row:hover { background: rgba(0, 83, 87, 0.025); }
+    .flow__filter-rank {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18pt;
       color: var(--teal);
-      margin-bottom: 10px;
+      font-variant-numeric: oldstyle-nums;
+      font-synthesis: none;
       line-height: 1;
     }
-    .flow__callout-body {
+    .flow__filter-name {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .flow__filter-name b {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 12pt;
+      color: var(--hfu-navy);
+      letter-spacing: -0.01em;
+    }
+    .flow__filter-name span {
       font-family: var(--body);
       font-size: 9pt;
       color: var(--text-dim);
       line-height: 1.4;
-      margin-bottom: 12px;
     }
-    .flow__callout-body b { color: white; font-weight: 500; }
-    .flow__callout-pct {
+    .flow__filter-bar {
+      position: relative;
+      height: 8px;
+      background: rgba(6, 33, 63, 0.06);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .flow__filter-bar-fill {
+      position: absolute;
+      inset: 0;
+      width: var(--w);
+      background: linear-gradient(90deg, var(--teal-deep), var(--teal));
+      border-radius: 1px;
+      transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .flow__filter-num {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 18pt;
+      color: var(--hfu-navy);
+      font-variant-numeric: tabular-nums lining-nums;
+      letter-spacing: -0.018em;
+      min-width: 50px;
+      text-align: right;
+    }
+    .flow__filter-pct {
       font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      opacity: 0;
-      transform: translateY(3px);
-      transition: opacity 220ms ease, transform 220ms ease;
-    }
-    .flow__callout-pct b {
+      font-size: 8.5pt;
+      letter-spacing: 0.04em;
       color: var(--teal);
       font-weight: 500;
-    }
-    .flow__callout:hover .flow__callout-pct {
-      opacity: 1;
-      transform: translateY(0);
+      min-width: 44px;
+      text-align: right;
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -857,7 +880,7 @@
     }
     .tree__node--term-archive {
       background: var(--ink-card-2);
-      border-color: rgba(255,255,255,0.12);
+      border-color: rgba(6, 33, 63, 0.12);
     }
     .tree__node-label {
       font-family: var(--mono);
@@ -872,7 +895,7 @@
       font-family: var(--display);
       font-size: 10pt;
       font-weight: 500;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1.25;
       letter-spacing: -0.01em;
     }
@@ -883,7 +906,7 @@
       font-family: var(--display);
       font-size: 18pt;
       font-weight: 400;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.015em;
       line-height: 1;
     }
@@ -926,7 +949,7 @@
     }
     .tree-svg path {
       fill: none;
-      stroke: rgba(255,255,255,0.12);
+      stroke: rgba(6, 33, 63, 0.12);
       stroke-width: 1.2;
       stroke-linecap: round;
     }
@@ -965,7 +988,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 16pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.018em;
       line-height: 1.15;
     }
@@ -995,8 +1018,12 @@
     }
     .chaos__btn:hover {
       background: var(--teal);
-      color: var(--ink);
+      color: #FFFFFF;
       border-color: var(--teal);
+    }
+    .chaos__btn:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
     }
 
     .chaos__stage {
@@ -1030,9 +1057,9 @@
       padding: 3px 8px;
       font-family: var(--mono);
       font-size: 7.5pt;
-      color: rgba(255,255,255,0.42);
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(6, 33, 63, 0.42);
+      background: rgba(6, 33, 63, 0.025);
+      border: 1px solid rgba(6, 33, 63, 0.06);
       border-radius: 2px;
       white-space: nowrap;
       letter-spacing: 0;
@@ -1064,15 +1091,15 @@
       align-items: center;
       gap: 10px;
       padding: 20px 18px;
-      background: linear-gradient(160deg, rgba(27,122,134,0.14) 0%, var(--ink-card-2) 85%);
-      border: 1px solid rgba(27,122,134,0.35);
+      background: linear-gradient(160deg, rgba(0, 83, 87, 0.10) 0%, var(--ink-card) 85%);
+      border: 1px solid rgba(0, 83, 87, 0.28);
       border-radius: 4px;
       font-family: var(--display);
       font-size: 12pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(27,122,134,0.08);
+      box-shadow: 0 8px 22px rgba(6, 33, 63, 0.08), 0 0 0 1px rgba(0, 83, 87, 0.06);
     }
     .chaos__after-item span {
       font-family: var(--mono);
@@ -1091,115 +1118,133 @@
       padding-top: 24px;
       border-top: 1px solid var(--line);
     }
-    .chaos__note b { color: white; font-weight: 500; }
+    .chaos__note b { color: var(--hfu-navy); font-weight: 500; }
 
     /* ══════════════════════════════════════════════════════════════
        SECTION 6 — CATEGORY TABLE
+       Clean tabular data — matches the canonical .hfu-table component
+       on components.html. No pills, no inline bars — just rows.
        ══════════════════════════════════════════════════════════════ */
     .cat-table {
       background: var(--ink-card);
       border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 44px 40px 40px;
-      position: relative;
+      border-radius: 10px;
+      padding: 36px 36px 32px;
       overflow: hidden;
     }
-    .cat-table::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 60% 100% at 90% 0%, rgba(27,122,134,0.08), transparent 70%);
-      pointer-events: none;
-    }
     .cat-table__head-label {
-      position: relative;
       font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.18em;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 22px;
+      color: var(--text-ghost);
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
+      gap: 24px;
+      flex-wrap: wrap;
     }
-    .cat-table__head-label span { color: var(--text-ghost); }
+    .cat-table__head-label b { color: var(--hfu-navy); font-weight: 600; }
+
     table.cat {
-      position: relative;
       width: 100%;
-      border-collapse: collapse;
-      font-family: var(--display);
+      border-collapse: separate;
+      border-spacing: 0;
+      font-family: var(--body);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: var(--hfu-navy);
+      line-height: 1.5;
+      table-layout: auto;
     }
     .cat thead th {
-      font-family: var(--mono);
-      font-size: 6pt;
-      letter-spacing: 0.16em;
+      background: var(--ink-card-2);
+      color: var(--hfu-navy);
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      text-align: right;
-      padding: 0 0 16px;
-      font-weight: 400;
-      border-bottom: 1px solid var(--line);
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--line-strong);
+      white-space: nowrap;
       cursor: pointer;
       user-select: none;
       transition: color 180ms ease;
     }
-    .cat thead th:hover { color: var(--teal); }
-    .cat thead th:first-child { text-align: left; }
+    .cat thead th:first-child {
+      border-top-left-radius: 4px;
+    }
+    .cat thead th:last-child {
+      border-top-right-radius: 4px;
+    }
+    .cat thead th[data-sort]:hover { color: var(--teal); }
     .cat thead th.is-sort { color: var(--teal); }
-    .cat thead th.is-sort::after { content: ' ↓'; }
-    .cat thead th.is-sort.is-asc::after { content: ' ↑'; }
-    .cat tbody td {
-      padding: 18px 0;
+    .cat thead th.is-sort::after { content: ' \2193'; margin-left: 4px; opacity: 0.7; }
+    .cat thead th.is-sort.is-asc::after { content: ' \2191'; }
+    .cat__th-rank,
+    .cat__th-total,
+    .cat__th-keep,
+    .cat__th-archive,
+    .cat__th-pct { text-align: right !important; }
+    .cat__th-name { width: 18%; }
+    .cat__th-rationale { width: auto; }
+
+    .cat-row { cursor: pointer; }
+    .cat-row > td {
+      padding: 16px 18px;
       border-bottom: 1px solid var(--line);
-      font-size: 11pt;
-      font-weight: 500;
-      color: white;
-      text-align: right;
-      letter-spacing: -0.01em;
-      transition: color 180ms ease;
+      vertical-align: top;
+      color: var(--hfu-navy);
     }
-    .cat tbody td:first-child {
-      text-align: left;
-      font-weight: 600;
+    .cat-row:last-child > td { border-bottom: none; }
+    .cat-row:nth-child(even) > td { background: rgba(6, 33, 63, 0.025); }
+    .cat-row:hover > td { background: rgba(255, 204, 21, 0.06); }
+    .cat-row:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: -2px;
     }
-    .cat tbody tr {
-      transition: background 220ms ease;
-      cursor: pointer;
+    .cat-row.is-highlight > td:first-child {
+      box-shadow: inset 3px 0 0 var(--teal);
     }
-    .cat tbody tr:hover {
-      background: rgba(255,255,255,0.02);
-    }
-    .cat tbody tr.is-highlight {
-      background: linear-gradient(90deg, rgba(27,122,134,0.1), rgba(27,122,134,0) 80%);
-    }
-    .cat tbody tr.is-highlight td:first-child {
-      color: var(--teal);
-    }
-    .cat tbody tr.is-highlight td:first-child::before {
-      content: '';
-      display: inline-block;
-      width: 14px;
-      height: 1px;
-      background: var(--teal);
-      margin-right: 10px;
-      vertical-align: middle;
-    }
-    .cat__rationale {
-      font-family: var(--body);
-      font-size: 9pt;
-      color: var(--text-dim);
-      font-weight: 400;
-      text-align: left !important;
-      max-width: 260px;
-      line-height: 1.4;
-    }
-    .cat__pct {
-      color: var(--text-dim) !important;
+
+    .cat__rank {
       font-family: var(--mono);
-      font-size: 9pt !important;
+      font-size: 12px;
+      color: var(--text-ghost);
+      text-align: right;
+      letter-spacing: 0.04em;
     }
-    .cat tbody tr.is-highlight .cat__pct { color: var(--teal) !important; }
+    .cat__name {
+      font-weight: 600;
+      font-size: 14.5px;
+      color: var(--hfu-navy);
+    }
+    .cat__total,
+    .cat__keep,
+    .cat__archive,
+    .cat__pct {
+      text-align: right;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .cat__total { font-weight: 600; }
+    .cat__archive { color: var(--text-dim); }
+    .cat__archive--zero { color: var(--text-ghost); }
+    .cat__pct {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+    .cat__pct--zero { color: var(--text-ghost); }
+    .cat__pct--high { color: var(--teal); font-weight: 600; }
+    .cat__rationale {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.55;
+      max-width: 56ch;
+    }
 
     /* ══════════════════════════════════════════════════════════════
        SECTION 7 — PULL QUOTE
@@ -1215,7 +1260,7 @@
       font-size: clamp(24pt, 3.5vw, 42pt);
       line-height: 1.12;
       letter-spacing: -0.022em;
-      color: white;
+      color: var(--hfu-navy);
       max-width: 22ch;
       padding-left: 40px;
     }
@@ -1273,7 +1318,7 @@
       color: var(--text-dim);
       max-width: 72ch;
     }
-    .assumptions__body strong { color: white; font-weight: 500; }
+    .assumptions__body strong { color: var(--hfu-navy); font-weight: 500; }
     .assumptions__list {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1311,10 +1356,62 @@
       font-family: var(--display);
       font-size: 14pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.015em;
       text-transform: none;
       margin-top: 4px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       ACCESSIBILITY — skip link, focus states, reduced motion
+       ══════════════════════════════════════════════════════════════ */
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -44px;
+      padding: 10px 16px;
+      background: var(--hfu-navy);
+      color: #FFFFFF;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      z-index: 1000;
+      transition: top 180ms ease;
+    }
+    .skip-link:focus {
+      top: 12px;
+      outline: 2px solid var(--hfu-yellow);
+      outline-offset: 2px;
+    }
+    /* Visible focus rings for keyboard users */
+    :focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .tm-cell:focus-visible .tm-rect {
+      stroke: var(--hfu-yellow);
+      stroke-width: 3;
+      filter: drop-shadow(0 0 10px rgba(255, 204, 21, 0.6));
+    }
+    .cat tbody tr:focus-visible {
+      background: rgba(0, 83, 87, 0.06);
+      outline: 2px solid var(--teal);
+      outline-offset: -2px;
+    }
+    .cat thead th:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -1334,13 +1431,19 @@
       .tm-detail__head { flex-direction: column; gap: 22px; }
       .tm-detail__numbers { gap: 22px; }
       .tm-detail__body { grid-template-columns: 1fr 1fr; gap: 30px; }
-      .flow { padding: 44px 28px; }
-      .flow__callouts { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .flow { padding: 38px 30px 44px; }
+      .flow__compare { grid-template-columns: 1fr; gap: 24px; text-align: left; }
+      .flow__side--after { text-align: left; }
+      .flow__arrow { min-width: 0; flex-direction: row; gap: 14px; }
+      .flow__arrow-line { width: 60px; height: 1px; }
+      .flow__filter-row { grid-template-columns: 32px 1fr 1fr auto auto; gap: 16px; }
       .tree-wrap { padding: 36px 24px; }
       .chaos { padding: 36px 28px; }
       .chaos__after { grid-template-columns: repeat(3, 1fr); }
       .cat-table { padding: 32px 26px; }
-      .cat__rationale { max-width: 200px; font-size: 8.5pt; }
+      .cat__rationale { max-width: 28ch; font-size: 10pt; }
+      .cat__name { font-size: 13pt; }
+      .cat__total-num { font-size: 22pt; }
     }
 
     /* Tablet portrait — sidebar collapses */
@@ -1357,11 +1460,14 @@
       .treemap-wrap svg { width: 100%; height: auto; }
       .tm-detail { padding: 32px 24px; }
       .tm-detail__body { grid-template-columns: 1fr; gap: 28px; }
-      .flow { padding: 38px 22px; }
-      .flow__stage { grid-template-columns: 1fr; gap: 24px; }
-      .flow__block { align-items: center; text-align: center; }
-      .flow__pipe { writing-mode: horizontal-tb; }
-      .flow__callouts { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .flow { padding: 32px 22px 36px; }
+      .flow__compare { grid-template-columns: 1fr; gap: 18px; }
+      .flow__side--after { text-align: left; }
+      .flow__arrow { display: none; }
+      .flow__prop-row { grid-template-columns: 1fr; gap: 6px; }
+      .flow__prop-bar { height: 36px; padding: 0 12px; }
+      .flow__filter-row { grid-template-columns: 28px 1fr auto auto; gap: 12px; }
+      .flow__filter-bar { grid-column: 1 / -1; order: 99; height: 6px; }
       .tree-wrap { padding: 30px 18px; overflow-x: auto; }
       .tree { min-width: 640px; }
       .chaos { padding: 32px 22px; }
@@ -1369,9 +1475,11 @@
       .chaos__after { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .chaos__toggle { flex-direction: column; align-items: flex-start; gap: 12px; }
       .cat-table { padding: 28px 22px; overflow-x: auto; }
-      table.cat { min-width: 640px; }
-      .cat thead th { font-size: 5.5pt; }
-      .cat tbody td { font-size: 9pt; padding: 12px 8px; }
+      table.cat { min-width: 720px; }
+      .cat thead th { font-size: 5.5pt; padding: 10px 10px 14px; }
+      .cat-row > td { font-size: 10pt; padding: 18px 10px; }
+      .cat__name { font-size: 12pt; }
+      .cat__total-num { font-size: 20pt; }
       .quote { padding: 32px 24px; }
       .quote__body { padding-left: 18px; font-size: 14pt; }
       .quote__attrib { margin-left: 18px; }
@@ -1399,8 +1507,11 @@
       .tm-detail { padding: 26px 20px; }
       .tm-detail__body { gap: 22px; }
       .tm-detail h3 { font-size: 18pt; }
-      .flow { padding: 32px 18px; }
-      .flow__callouts { grid-template-columns: 1fr; gap: 12px; }
+      .flow { padding: 28px 18px; }
+      .flow__side-num { font-size: 44pt; }
+      .flow__filters-title { font-size: 15pt; }
+      .flow__filter-name b { font-size: 11pt; }
+      .flow__filter-num { font-size: 16pt; min-width: 42px; }
       .tree-wrap { padding: 26px 16px; }
       .chaos { padding: 28px 18px; }
       .chaos__after { grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -1426,6 +1537,8 @@
       .quote__body { font-size: 12pt; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
@@ -1436,15 +1549,15 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1453,30 +1566,23 @@
       <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab is-current"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
   </aside>
 
-  <main>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <main id="main-content">
     <header class="site-topbar">
       <span class="site-topbar__title">Deep Dive 04 · Sitemap atlas</span>
       <span class="site-topbar__spacer"></span>
@@ -1492,7 +1598,7 @@
       <section class="hero">
         <div class="eyebrow" data-counter="· 04 of 07">Sitemap atlas · 1,601 URLs</div>
         <h1 class="hero__title">1,601 URLs. <em>1,220 that will matter.</em></h1>
-        <p class="hero__lede">Before we write a single line of WordPress code, <strong>we map every page.</strong> Here is holyfamily.edu today — sorted, sized, and scored. Every archive decision is documented with rationale. Every kept page has a reason. This is what <strong>governance-ready IA</strong> looks like on paper.</p>
+        <p class="hero__lede">Before we write a line of WordPress code, <strong>we map every page.</strong> The atlas below sorts, sizes, and scores holyfamily.edu as it stands today. Every archive decision carries a rationale; every kept page has a job. IA is also an enrollment argument &mdash; fewer URLs competing for crawl budget means prospective adult and graduate students find the right program page in fewer taps and more of them become enrolled students for the Fall 2026 cycle. This is what <strong>governance-ready IA</strong> looks like on paper.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">
@@ -1537,7 +1643,9 @@
               <span class="treemap__legend-item"><span class="treemap__legend-swatch treemap__legend-swatch--archive"></span>Archive</span>
             </div>
           </div>
-          <svg id="treemap-svg" viewBox="0 0 1100 520" preserveAspectRatio="xMidYMid meet"></svg>
+          <svg id="treemap-svg" viewBox="0 0 1100 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Treemap of 1,601 Holy Family URLs sorted into 8 categories. Each rectangle is proportional to the number of URLs and colored by fate — keep, consolidate, or archive. The full category list is also available as a sortable table later on this page.">
+            <title>Holy Family URL treemap — 1,601 URLs in 8 categories</title>
+          </svg>
           <div class="tm-tooltip" id="tmTooltip" role="tooltip" aria-hidden="true"></div>
         </div>
 
@@ -1604,76 +1712,88 @@
         </div>
 
         <div class="flow">
-          <div class="flow__label">
+
+          <div class="flow__methodology">
             <span>Audit pipeline · April 2026</span>
-            <span><b>5 filters · 381 pages archived</b></span>
+            <span><b>5 rule-based filters · 381 pages archived · 24% reduction</b></span>
           </div>
 
-          <div class="flow__stage">
-            <!-- LEFT: 1601 squares -->
-            <div class="flow__block flow__block--in">
-              <div class="flow__block-head">Before · Drupal</div>
-              <div class="flow__num">1,601</div>
-              <div class="flow__num-sub">Raw URLs indexed</div>
-              <div class="flow__grid flow__grid--before" id="flowBefore" aria-hidden="true"></div>
+          <!-- Headline before / after numbers -->
+          <div class="flow__compare">
+            <div class="flow__side">
+              <div class="flow__side-label">Before · Drupal</div>
+              <div class="flow__side-num">1,601</div>
+              <div class="flow__side-sub">raw URLs indexed</div>
             </div>
-
-            <!-- PIPE -->
-            <div class="flow__pipe">
-              <div class="flow__pipe-label-top">audit → <b>dedupe</b> → archive</div>
-              <div class="flow__pipe-bar">
-                <div class="flow__pipe-bar-text">381 archived</div>
-              </div>
-              <div class="flow__pipe-label-bottom">semantically consolidated</div>
+            <div class="flow__arrow" aria-hidden="true">
+              <span class="flow__arrow-line"></span>
+              <span class="flow__arrow-glyph">→</span>
+              <span class="flow__arrow-meta">audit · dedupe · archive</span>
             </div>
-
-            <!-- RIGHT: 1220 squares -->
-            <div class="flow__block flow__block--out">
-              <div class="flow__block-head">After · WordPress</div>
-              <div class="flow__num">1,220</div>
-              <div class="flow__num-sub">Active pages shipped</div>
-              <div class="flow__grid flow__grid--after" id="flowAfter" aria-hidden="true"></div>
+            <div class="flow__side flow__side--after">
+              <div class="flow__side-label">After · WordPress</div>
+              <div class="flow__side-num">1,220</div>
+              <div class="flow__side-sub">active pages shipped</div>
             </div>
           </div>
 
-          <!-- 5 callouts -->
-          <div class="flow__callouts">
-            <div class="flow__callout">
-              <div>
-                <div class="flow__callout-marker">◇</div>
-                <div class="flow__callout-body"><b>Embeddings-based duplicate detection</b> at 0.90 cosine similarity.</div>
-              </div>
-              <div class="flow__callout-pct"><b>22%</b> of reduction</div>
+          <!-- Proportional comparison -->
+          <div class="flow__proportional" aria-label="1,601 URLs reduced to 1,220 — 24% reduction">
+            <div class="flow__prop-row">
+              <span class="flow__prop-label">Drupal index</span>
+              <span class="flow__prop-bar flow__prop-bar--full"><span class="flow__prop-num">1,601</span></span>
             </div>
-            <div class="flow__callout">
-              <div>
-                <div class="flow__callout-marker">◇</div>
-                <div class="flow__callout-body"><b>GA4 traffic filter</b> — fewer than 50 sessions/mo → archive candidate.</div>
-              </div>
-              <div class="flow__callout-pct"><b>41%</b> of reduction</div>
-            </div>
-            <div class="flow__callout">
-              <div>
-                <div class="flow__callout-marker">◇</div>
-                <div class="flow__callout-body"><b>Modification date filter</b> — untouched since 2022 → flagged for review.</div>
-              </div>
-              <div class="flow__callout-pct"><b>18%</b> of reduction</div>
-            </div>
-            <div class="flow__callout">
-              <div>
-                <div class="flow__callout-marker">◇</div>
-                <div class="flow__callout-body"><b>Duplicate forms consolidated</b> — 20+ request-info forms collapsed to 1 smart form.</div>
-              </div>
-              <div class="flow__callout-pct"><b>5%</b> of reduction</div>
-            </div>
-            <div class="flow__callout">
-              <div>
-                <div class="flow__callout-marker">◇</div>
-                <div class="flow__callout-body"><b>News archive</b> — 220 posts moved to a searchable archive subdomain, not deleted.</div>
-              </div>
-              <div class="flow__callout-pct"><b>14%</b> of reduction</div>
+            <div class="flow__prop-row">
+              <span class="flow__prop-label">WordPress launch</span>
+              <span class="flow__prop-bar flow__prop-bar--reduced" style="width: 76.2%"><span class="flow__prop-num">1,220</span></span>
             </div>
           </div>
+
+          <!-- 5 filter breakdown -->
+          <div class="flow__filters">
+            <div class="flow__filters-head">
+              <span class="flow__filters-title">Where the 381 went</span>
+              <span class="flow__filters-meta">Each filter is rule-based, auditable, and reversible. No page archived without a logged rationale.</span>
+            </div>
+            <ol class="flow__filter-list">
+              <li class="flow__filter-row" style="--w: 41%">
+                <span class="flow__filter-rank">01</span>
+                <span class="flow__filter-name"><b>GA4 traffic filter</b><span>fewer than 50 sessions per month</span></span>
+                <span class="flow__filter-bar"><span class="flow__filter-bar-fill"></span></span>
+                <span class="flow__filter-num">156</span>
+                <span class="flow__filter-pct">41%</span>
+              </li>
+              <li class="flow__filter-row" style="--w: 22%">
+                <span class="flow__filter-rank">02</span>
+                <span class="flow__filter-name"><b>Embeddings dedupe</b><span>0.90 cosine similarity threshold</span></span>
+                <span class="flow__filter-bar"><span class="flow__filter-bar-fill"></span></span>
+                <span class="flow__filter-num">84</span>
+                <span class="flow__filter-pct">22%</span>
+              </li>
+              <li class="flow__filter-row" style="--w: 18%">
+                <span class="flow__filter-rank">03</span>
+                <span class="flow__filter-name"><b>Modification date</b><span>untouched since 2022, flagged for review</span></span>
+                <span class="flow__filter-bar"><span class="flow__filter-bar-fill"></span></span>
+                <span class="flow__filter-num">69</span>
+                <span class="flow__filter-pct">18%</span>
+              </li>
+              <li class="flow__filter-row" style="--w: 14%">
+                <span class="flow__filter-rank">04</span>
+                <span class="flow__filter-name"><b>News archive</b><span>moved to searchable subdomain, not deleted</span></span>
+                <span class="flow__filter-bar"><span class="flow__filter-bar-fill"></span></span>
+                <span class="flow__filter-num">53</span>
+                <span class="flow__filter-pct">14%</span>
+              </li>
+              <li class="flow__filter-row" style="--w: 5%">
+                <span class="flow__filter-rank">05</span>
+                <span class="flow__filter-name"><b>Duplicate forms</b><span>20+ request-info forms collapsed into 1 smart form</span></span>
+                <span class="flow__filter-bar"><span class="flow__filter-bar-fill"></span></span>
+                <span class="flow__filter-num">19</span>
+                <span class="flow__filter-pct">5%</span>
+              </li>
+            </ol>
+          </div>
+
         </div>
       </section>
 
@@ -1764,7 +1884,7 @@
         <div class="chaos" id="chaos">
           <div class="chaos__toggle">
             <div class="chaos__title">The current nav · <em>180 top-level sections.</em></div>
-            <button class="chaos__btn" id="chaosBtn" type="button">Show proposed IA →</button>
+            <button class="chaos__btn" id="chaosBtn" type="button" aria-pressed="false" aria-controls="chaosBefore chaosAfter">Show proposed IA →</button>
           </div>
           <div class="chaos__stage">
             <div class="chaos__before" id="chaosBefore"></div>
@@ -1799,18 +1919,19 @@
 
         <div class="cat-table">
           <div class="cat-table__head-label">
-            <span>8 categories · 1,601 URLs · 23.8% reduction</span>
-            <span>Sort by any column →</span>
+            <span><b>8 categories</b> · 1,601 URLs · 381 archived · 23.8% reduction</span>
+            <span>Click any column header to sort</span>
           </div>
           <table class="cat" id="catTable">
             <thead>
               <tr>
-                <th data-sort="name">Category</th>
-                <th data-sort="total" class="is-sort">Total</th>
-                <th data-sort="keep">Kept</th>
-                <th data-sort="archive">Archived</th>
-                <th data-sort="pct">Archive %</th>
-                <th data-sort="rationale">Primary rationale</th>
+                <th class="cat__th-rank" scope="col">#</th>
+                <th class="cat__th-name" data-sort="name" role="columnheader" tabindex="0" aria-sort="none" scope="col">Category</th>
+                <th class="cat__th-total is-sort" data-sort="total" role="columnheader" tabindex="0" aria-sort="descending" scope="col">Total</th>
+                <th class="cat__th-keep" data-sort="keep" role="columnheader" tabindex="0" aria-sort="none" scope="col">Kept</th>
+                <th class="cat__th-archive" data-sort="archive" role="columnheader" tabindex="0" aria-sort="none" scope="col">Archived</th>
+                <th class="cat__th-pct" data-sort="pct" role="columnheader" tabindex="0" aria-sort="none" scope="col">Archive %</th>
+                <th class="cat__th-rationale" data-sort="rationale" role="columnheader" tabindex="0" aria-sort="none" scope="col">Rationale</th>
               </tr>
             </thead>
             <tbody id="catTableBody"></tbody>
@@ -2073,12 +2194,13 @@
     const total = sorted.reduce((s, c) => s + c.total, 0);
 
     function colorFor(cat) {
-      if (cat.action === 'keep')    return { fill: 'rgba(27,122,134,0.22)', stroke: 'rgba(27,122,134,0.55)' };
-      if (cat.action === 'archive') return { fill: 'rgba(255,255,255,0.04)', stroke: 'rgba(255,255,255,0.14)' };
+      // Slightly deeper fills so cells are legible on warm cream background
+      if (cat.action === 'keep')    return { fill: 'rgba(0, 83, 87, 0.42)',  stroke: 'rgba(0, 83, 87, 0.72)' };
+      if (cat.action === 'archive') return { fill: 'rgba(6, 33, 63, 0.10)', stroke: 'rgba(6, 33, 63, 0.28)' };
       // split (keep some, archive some) — blend by keep ratio
       const keepRatio = cat.keep / cat.total;
-      const alpha = 0.07 + keepRatio * 0.20;
-      return { fill: `rgba(27,122,134,${alpha.toFixed(3)})`, stroke: `rgba(27,122,134,${(0.25 + keepRatio*0.3).toFixed(3)})` };
+      const alpha = 0.14 + keepRatio * 0.28;
+      return { fill: `rgba(0, 83, 87, ${alpha.toFixed(3)})`, stroke: `rgba(0, 83, 87, ${(0.36 + keepRatio*0.32).toFixed(3)})` };
     }
 
     // Slice-and-dice: alternate horizontal/vertical cuts by rows to keep
@@ -2317,28 +2439,8 @@
     // FLOW · render 1,601 + 1,220 squares
     // ══════════════════════════════════════════════════════════════════
     function renderFlow() {
-      const before = document.getElementById('flowBefore');
-      const after  = document.getElementById('flowAfter');
-      const keepCount    = 1220;
-      const archiveCount = 381;
-
-      // Before: 1601 squares, teal for 1220, dim for 381
-      const beforeFrag = document.createDocumentFragment();
-      for (let i = 0; i < 1601; i++) {
-        const sq = document.createElement('div');
-        sq.className = 'flow__square ' + (i < keepCount ? 'flow__square--keep' : 'flow__square--archive');
-        beforeFrag.appendChild(sq);
-      }
-      before.appendChild(beforeFrag);
-
-      // After: 1220 squares, all teal
-      const afterFrag = document.createDocumentFragment();
-      for (let i = 0; i < keepCount; i++) {
-        const sq = document.createElement('div');
-        sq.className = 'flow__square flow__square--keep';
-        afterFrag.appendChild(sq);
-      }
-      after.appendChild(afterFrag);
+      // Flow section is now fully declarative HTML — no JS-generated
+      // square grids. Kept as a no-op so boot() stays unchanged.
     }
 
     // ══════════════════════════════════════════════════════════════════
@@ -2486,6 +2588,7 @@
       function setState(isAfter) {
         chaos.classList.toggle('is-after', isAfter);
         btn.textContent = isAfter ? '← Show current chaos' : 'Show proposed IA →';
+        btn.setAttribute('aria-pressed', isAfter ? 'true' : 'false');
         title.innerHTML = isAfter ? AFTER_TEXT : BEFORE_TEXT;
       }
 
@@ -2534,39 +2637,57 @@
       };
       rows.sort(comparator);
 
-      tbody.innerHTML = rows.map(r => `
-        <tr class="${r.isHigh ? 'is-highlight' : ''}" data-cat-id="${r.id}">
-          <td>${r.name}</td>
-          <td>${r.total}</td>
-          <td>${r.keep}</td>
-          <td>${r.archive}</td>
-          <td class="cat__pct">${r.pct.toFixed(1)}%</td>
+      const fmt = (n) => n.toLocaleString('en-US');
+      tbody.innerHTML = rows.map((r, idx) => {
+        const archCls = r.archive === 0 ? ' cat__archive--zero' : '';
+        const pctCls = r.archive === 0
+          ? ' cat__pct--zero'
+          : (r.pct >= 50 ? ' cat__pct--high' : '');
+        return `
+        <tr class="cat-row${r.isHigh ? ' is-highlight' : ''}" data-cat-id="${r.id}" tabindex="0" role="button" aria-label="${r.name}: ${fmt(r.total)} URLs total, ${fmt(r.keep)} kept, ${fmt(r.archive)} archived (${r.pct.toFixed(1)}%)">
+          <td class="cat__rank">${String(idx + 1).padStart(2, '0')}</td>
+          <td class="cat__name">${r.name}</td>
+          <td class="cat__total">${fmt(r.total)}</td>
+          <td class="cat__keep">${fmt(r.keep)}</td>
+          <td class="cat__archive${archCls}">${fmt(r.archive)}</td>
+          <td class="cat__pct${pctCls}">${r.pct.toFixed(1)}%</td>
           <td class="cat__rationale">${r.rationale}</td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
 
-      // Wire row clicks
+      // Wire row activation (click + keyboard)
       tbody.querySelectorAll('tr').forEach(tr => {
-        tr.addEventListener('click', () => {
-          const id = tr.dataset.catId;
-          selectCategory(id);
+        const activate = () => selectCategory(tr.dataset.catId);
+        tr.addEventListener('click', activate);
+        tr.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
         });
       });
     }
 
     function wireCatTableSort() {
       const ths = document.querySelectorAll('#catTable thead th');
+      const sortTh = (th) => {
+        const key = th.dataset.sort;
+        if (sortState.key === key) sortState.asc = !sortState.asc;
+        else { sortState.key = key; sortState.asc = false; }
+
+        ths.forEach(t => {
+          t.classList.remove('is-sort');
+          t.classList.remove('is-asc');
+          t.setAttribute('aria-sort', 'none');
+        });
+        th.classList.add('is-sort');
+        if (sortState.asc) th.classList.add('is-asc');
+        th.setAttribute('aria-sort', sortState.asc ? 'ascending' : 'descending');
+
+        renderCatTable();
+      };
       ths.forEach(th => {
-        th.addEventListener('click', () => {
-          const key = th.dataset.sort;
-          if (sortState.key === key) sortState.asc = !sortState.asc;
-          else { sortState.key = key; sortState.asc = false; }
-
-          ths.forEach(t => { t.classList.remove('is-sort'); t.classList.remove('is-asc'); });
-          th.classList.add('is-sort');
-          if (sortState.asc) th.classList.add('is-asc');
-
-          renderCatTable();
+        th.addEventListener('click', () => sortTh(th));
+        th.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); sortTh(th); }
         });
       });
     }

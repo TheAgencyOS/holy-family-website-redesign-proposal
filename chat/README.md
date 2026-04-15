@@ -42,14 +42,14 @@ This rewrites `chat/context.json` from `index.html`, `mission.html`, `enrollment
 
 ## Design notes
 
-- Launcher uses HFU navy `#0B2D5B → #061C3B` with a teal pulse ring (Agency OS brand accent).
+- Launcher uses HFU navy `#0B2D5B → #061C3B` with a teal pulse ring (Small College Consulting brand accent).
 - Panel: Roobert body, Newsreader display, JetBrains Mono for metadata rails — matching the rest of the site.
 - Mobile (<560px): becomes a bottom sheet, FAB hides while open.
 - Dark-mode aware via `prefers-color-scheme`.
 
 ## System prompt anchors
 
-`api/chat.js` hard-pins the three pillars ("Whole Person Thesis", "Enrollment Intelligence", "AI Migration Lab"), the timeline (June 2026 → April 2027), and the agency identity so the model can't drift on the facts that matter most to the evaluation committee. Temperature is 0.25. Edit the SYSTEM_PROMPT block if you want to tune tone or add more anchors.
+`api/chat.js` hard-pins the three pillars ("Whole Person Thesis", "Enrollment Intelligence", "AI Migration Lab"), the timeline (early June 2026 kickoff → September 1, 2026 launch + 90-day support through November 2026), the $145,000 all-in base scope, and the Small College Consulting agency identity so the model can't drift on the facts that matter most to the evaluation committee. Temperature is 0.25. Edit the SYSTEM_PROMPT block if you want to tune tone or add more anchors.
 
 ## Deploying to Vercel (optional)
 

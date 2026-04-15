@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ═════════════════════════════════════════════════════════════════════
@@ -39,8 +39,19 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
+      /* Reference aliases to keep component library tokens working */
+      --white:           0 0% 100%;
+      --paper:           0 0% 100%;
+      --hfu-rose:        335 60% 38%;
+      --hfu-rose-soft:   335 78% 94%;
+
+      /* Hero pullquote panel accent (warm cream tint) */
+      --panel-ink:       212 38% 12%;
+      --panel-rule:      48 100% 54%;
+
       --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
       --container: 1280px;
       --gutter: clamp(1.25rem, 4vw, 4rem);
@@ -341,14 +352,13 @@
       background: hsl(var(--hfu-yellow));
     }
     .hero h1 {
-      font-size: clamp(3rem, 8.4vw, 8.4rem);
-      line-height: 0.92;
-      letter-spacing: -0.032em;
-      font-variation-settings: "opsz" 60;
+      font-size: clamp(2rem, 4.4vw, 3.75rem);
+      line-height: 1.02;
+      letter-spacing: -0.024em;
       color: #fff;
-      max-width: 16ch;
-      font-weight: 350;
-      margin-bottom: 32px;
+      max-width: 20ch;
+      font-weight: 500;
+      margin-bottom: 26px;
       text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
     }
     .hero h1 em {
@@ -1752,7 +1762,7 @@
 
     /* ═════════════════════ Mobile ═════════════════════ */
     @media (max-width: 1100px) {
-      .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); max-width: 14ch; }
+      .hero h1 { font-size: clamp(1.875rem, 4.8vw, 3.25rem); max-width: 20ch; }
       .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
       .hero__stat { padding: 14px 18px; border-right: 1px solid hsl(0 0% 100% / 0.14); border-bottom: 1px solid hsl(0 0% 100% / 0.14); }
       .hero__stat:nth-child(2n) { border-right: none; padding-right: 0; }
@@ -1820,7 +1830,7 @@
       .hero__inner { padding-bottom: 3rem; }
       .hero__crumbs { margin-bottom: 18px; font-size: 12px; flex-wrap: wrap; }
       .hero__eyebrow { margin-bottom: 22px; font-size: 11px; }
-      .hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); max-width: none; margin-bottom: 24px; }
+      .hero h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); max-width: none; margin-bottom: 22px; }
       .hero__lead { font-size: 15px; margin-bottom: 28px; }
       .hero__ctas { flex-direction: column; align-items: stretch; margin-bottom: 40px; }
       .hero__ctas .btn { justify-content: center; }
@@ -1891,6 +1901,902 @@
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
+
+  <style id="aos-home-rebuild">
+    /* ═════════════════════════════════════════════════════════════════════
+       HFU HOME — REBUILD LAYER
+       Premium hero (marquee + split pullquote panel) + 6 distinct
+       components from components.html inlined as utility classes.
+       All colors reference tokens defined in :root above.
+       ═════════════════════════════════════════════════════════════════════ */
+
+    /* ── Hero: marquee strip (monospace "happening now") ─────────────── */
+    .hero__marquee {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0 22px;
+      margin-top: 40px;
+      border-top: 1px solid hsl(var(--white) / 0.18);
+      border-bottom: 1px solid hsl(var(--white) / 0.18);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      color: hsl(var(--white) / 0.82);
+      overflow: hidden;
+      position: relative;
+      max-width: 860px;
+    }
+    .hero__marquee-label {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-right: 16px;
+      border-right: 1px solid hsl(var(--white) / 0.2);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+    }
+    .hero__marquee-label .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.22);
+      animation: pulse 2s infinite var(--ease-out);
+    }
+    .hero__marquee-track {
+      flex: 1;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent);
+    }
+    .hero__marquee-list {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: max-content;
+      animation: marqueeSlide 42s linear infinite;
+    }
+    .hero__marquee-list li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .hero__marquee-list .cal {
+      color: hsl(var(--hfu-yellow));
+      font-weight: 500;
+    }
+    .hero__marquee-list .sep {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: hsl(var(--white) / 0.35);
+    }
+    @keyframes marqueeSlide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Hero: split editorial panel (pullquote + stat block) ─────────── */
+    .hero__panel {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: clamp(1.5rem, 3vw, 3rem);
+      max-width: 980px;
+      align-items: stretch;
+    }
+    .hero__panel-quote {
+      position: relative;
+      background: hsl(var(--white) / 0.04);
+      border: 1px solid hsl(var(--white) / 0.14);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 52px 38px 30px;
+      border-radius: var(--r-lg);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0;
+    }
+    .hero__panel-quote .mark {
+      position: absolute;
+      top: 30px;
+      left: 34px;
+      font-family: var(--display);
+      font-size: 56px;
+      line-height: 1;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: -0.04em;
+    }
+    .hero__panel-quote blockquote {
+      margin: 0;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(19px, 1.6vw, 24px);
+      line-height: 1.32;
+      letter-spacing: -0.014em;
+      color: hsl(var(--white));
+      font-variation-settings: "opsz" 60;
+      max-width: 38ch;
+    }
+    .hero__panel-quote .by {
+      margin-top: 22px;
+      padding-top: 16px;
+      border-top: 1px solid hsl(var(--white) / 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .hero__panel-quote .by strong {
+      display: block;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--white));
+      letter-spacing: -0.005em;
+    }
+    .hero__panel-quote .by span {
+      display: block;
+      font-family: var(--body);
+      font-size: 11.5px;
+      color: hsl(var(--white) / 0.6);
+      margin-top: 2px;
+    }
+    .hero__panel-quote .tag {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      padding: 4px 10px;
+      border: 1px solid hsl(var(--hfu-yellow) / 0.5);
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .hero__panel-stat {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      row-gap: 14px;
+      background: linear-gradient(
+        140deg,
+        hsl(var(--hfu-yellow) / 0.18) 0%,
+        hsl(var(--hfu-navy-deep) / 0.45) 100%
+      );
+      border: 1px solid hsl(var(--hfu-yellow) / 0.35);
+      border-radius: var(--r-lg);
+      padding: 28px 32px 26px;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      margin: 0;
+    }
+    .hero__panel-stat::before {
+      content: "";
+      position: absolute;
+      top: -60%;
+      right: -40%;
+      width: 140%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.18), transparent 55%);
+      pointer-events: none;
+    }
+    .hero__panel-stat .kicker {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero__panel-stat .figure {
+      font-family: var(--display);
+      font-size: clamp(3rem, 5vw, 4.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      font-variation-settings: "opsz" 60;
+      font-weight: 350;
+      color: hsl(var(--white));
+      position: relative;
+    }
+    .hero__panel-stat .figure .small {
+      font-size: 0.38em;
+      vertical-align: 0.55em;
+      color: hsl(var(--hfu-yellow));
+      margin-left: 4px;
+    }
+    .hero__panel-stat .caption {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: hsl(var(--white) / 0.86);
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--white) / 0.16);
+      max-width: 28ch;
+      position: relative;
+    }
+    .hero__panel-stat .caption span {
+      display: block;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--white) / 0.55);
+      margin-top: 8px;
+    }
+
+    /* ── Section scaffold ─────────────────────────────────────────────── */
+    .sx {
+      padding: var(--section) 0;
+      position: relative;
+    }
+    .sx--alt {
+      background: hsl(var(--bg-alt));
+      border-top: 1px solid hsl(var(--border-soft));
+      border-bottom: 1px solid hsl(var(--border-soft));
+    }
+    .sx__head {
+      max-width: var(--container);
+      margin: 0 auto 56px;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: end;
+    }
+    .sx__head--center {
+      grid-template-columns: 1fr;
+      text-align: center;
+      max-width: 780px;
+      gap: 20px;
+    }
+    .sx__head--center .eyebrow { justify-content: center; }
+    .sx__head--center .lead { margin: 0 auto; }
+    .sx__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      letter-spacing: -0.024em;
+      color: hsl(var(--hfu-navy));
+      margin-top: 20px;
+      line-height: 1.02;
+      max-width: 20ch;
+    }
+    .sx__head--center h2 { max-width: none; }
+    .sx__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .sx__body {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ── Component: hfu-card base (from components.html) ─────────────── */
+    .hfu-card {
+      position: relative;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms var(--ease-out),
+                  box-shadow 320ms var(--ease-out),
+                  border-color 320ms var(--ease-out);
+    }
+    a.hfu-card, button.hfu-card {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .hfu-card--hoverable:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .hfu-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .hfu-card-grid--2 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .hfu-card-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .hfu-card-grid--mixed {
+      /* 3 news + 2 events */
+      grid-template-columns: repeat(6, 1fr);
+      gap: 22px;
+    }
+    .hfu-card-grid--mixed > .c-news-wrap { grid-column: span 2; }
+    .hfu-card-grid--mixed > .c-event-wrap { grid-column: span 3; }
+
+    .hfu-tag {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-navy));
+      background: hsl(var(--hfu-yellow) / 0.16);
+      padding: 5px 10px;
+      border-radius: 100px;
+    }
+
+    .hfu-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: 0.005em;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-link svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 260ms var(--ease-out);
+    }
+    .hfu-link:hover { color: hsl(var(--hfu-blue-deep)); }
+    .hfu-link:hover svg { transform: translateX(3px); }
+
+    /* ── Component: hfu-chip ─────────────────────────────────────────── */
+    .hfu-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 500;
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      color: hsl(var(--hfu-navy));
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Component: c-stat (grid of 4) ───────────────────────────────── */
+    .c-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      background: hsl(var(--bg-card));
+      box-shadow: var(--shadow-xs);
+      overflow: hidden;
+    }
+    .c-stat {
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-right: 1px solid hsl(var(--border));
+      position: relative;
+    }
+    .c-stat:last-child { border-right: none; }
+    .c-stat__num {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      color: hsl(var(--hfu-navy));
+      font-weight: 400;
+      font-variation-settings: "opsz" 60;
+      font-variant-numeric: lining-nums;
+    }
+    .c-stat__num .small {
+      font-size: 0.38em;
+      vertical-align: 0.5em;
+      margin-left: 3px;
+      color: hsl(var(--hfu-blue));
+      font-weight: 400;
+    }
+    .c-stat__label {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+      line-height: 1.45;
+    }
+    .c-stat__caption {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg-subtle));
+      margin-top: 6px;
+      max-width: 28ch;
+    }
+
+    /* ── Component: hfu-tabs + panels ─────────────────────────────────── */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active {
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+    }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+    .hfu-tabs__panel {
+      display: none;
+      animation: panelFade 420ms var(--ease-out);
+    }
+    .hfu-tabs__panel.is-active { display: block; }
+    @keyframes panelFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Component: c-program ─────────────────────────────────────────── */
+    .c-program { padding: 28px 28px 24px; min-height: 280px; }
+    .c-program__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .c-program__school {
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .c-program h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 12px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-program__chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .c-program p {
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.58;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .c-program__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .c-program__credits {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Component: hfu-acc (accordion) ───────────────────────────────── */
+    .hfu-acc {
+      display: flex;
+      flex-direction: column;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 22px 4px;
+      transition: background 200ms var(--ease-out);
+    }
+    .hfu-acc details:last-child {
+      border-bottom: 1px solid hsl(var(--border));
+    }
+    .hfu-acc summary {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: hsl(var(--fg-subtle));
+    }
+    .hfu-acc__chev {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+    }
+    .hfu-acc__chev svg { width: 11px; height: 11px; }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-acc details > div {
+      padding: 14px 0 6px 42px;
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+
+    /* ── Component: c-news and c-event ────────────────────────────────── */
+    .c-news__media {
+      aspect-ratio: 16 / 10;
+      background:
+        linear-gradient(135deg, hsl(var(--hfu-navy) / 0.92) 0%, hsl(var(--hfu-blue) / 0.7) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .c-news__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease-out);
+    }
+    .c-news:hover .c-news__media img { transform: scale(1.04); }
+    .c-news__media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, hsl(var(--hfu-navy-deep) / 0.45) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .c-news__cat {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+    .c-news__body {
+      padding: 22px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .c-news h3 {
+      font-family: var(--display);
+      font-size: clamp(1.2rem, 1.5vw, 1.35rem);
+      line-height: 1.15;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.014em;
+      font-variation-settings: "opsz" 60;
+      font-weight: 400;
+    }
+    .c-news__deck {
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.55;
+      flex: 1;
+    }
+    .c-news__by {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 12px;
+      border-top: 1px dashed hsl(var(--border-soft));
+    }
+
+    .c-event {
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .c-event__date {
+      width: 78px;
+      border-radius: var(--r-sm);
+      border: 1px solid hsl(var(--border));
+      overflow: hidden;
+      text-align: center;
+      font-family: var(--display);
+      box-shadow: 0 1px 2px hsl(var(--hfu-navy) / 0.04);
+      background: hsl(var(--bg-card));
+    }
+    .c-event__month {
+      display: block;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+    .c-event__day {
+      display: block;
+      font-family: var(--display);
+      font-size: 34px;
+      font-weight: 350;
+      color: hsl(var(--hfu-navy));
+      padding: 10px 0 12px;
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .c-event__body h3 {
+      font-family: var(--display);
+      font-size: 19px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+      font-variation-settings: "opsz" 60;
+      font-weight: 400;
+    }
+    .c-event__meta {
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-muted));
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-bottom: 10px;
+    }
+    .c-event__meta span + span::before {
+      content: "·";
+      margin-right: 14px;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ── Component: hfu-pullquote ─────────────────────────────────────── */
+    .hfu-pullquote {
+      padding: 64px 0 60px;
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+      position: relative;
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%;
+      margin-left: -4px;
+    }
+    .hfu-pullquote::before { top: -4px; }
+    .hfu-pullquote::after  { bottom: -4px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 30ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+      line-height: 1.18;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-pullquote__by {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ── Component: c-callout (navy variant = navy text on cream) ─────── */
+    .c-callout {
+      padding: 44px 40px;
+      border-radius: var(--r-lg);
+      display: grid;
+      grid-template-columns: 1.3fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+    .c-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-weight: 400;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-callout h3 em { font-style: italic; font-weight: 300; }
+    .c-callout p {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+    .c-callout--navy {
+      background: hsl(var(--bg-card));
+      border: 1px solid hsl(var(--border));
+      box-shadow: var(--shadow-sm);
+    }
+    .c-callout--navy h3 { color: hsl(var(--hfu-navy)); }
+    .c-callout--navy h3 em { color: hsl(var(--hfu-blue)); }
+    .c-callout--navy p { color: hsl(var(--fg-muted)); }
+    .c-callout__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Mixed grid layout for news (3) + event (2) ───────────────────── */
+    .mix-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(0, auto);
+      gap: 22px;
+    }
+    .mix-grid .c-news { grid-column: span 4; }
+    .mix-grid .c-event { grid-column: span 6; }
+
+    /* ── Mobile ──────────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .hero__panel {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .c-stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .c-stat {
+        border-right: 1px solid hsl(var(--border));
+        border-bottom: 1px solid hsl(var(--border));
+      }
+      .c-stat:nth-child(2n) { border-right: none; }
+      .c-stat:nth-child(n+3) { border-bottom: none; }
+
+      .sx__head { grid-template-columns: 1fr; gap: 24px; }
+
+      .mix-grid { grid-template-columns: repeat(6, 1fr); }
+      .mix-grid .c-news { grid-column: span 3; }
+      .mix-grid .c-event { grid-column: span 3; }
+
+      .c-callout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero__marquee { gap: 12px; margin-top: 32px; }
+      .hero__marquee-label {
+        padding-right: 12px;
+        font-size: 9.5px;
+      }
+      .hero__panel { margin-top: 32px; }
+      .hero__panel-quote { padding: 46px 26px 24px; }
+      .hero__panel-quote .mark { font-size: 48px; top: 24px; left: 26px; }
+      .hero__panel-stat { padding: 24px 24px 22px; }
+
+      .c-stat-grid { grid-template-columns: 1fr; }
+      .c-stat {
+        border-right: none;
+        border-bottom: 1px solid hsl(var(--border));
+      }
+      .c-stat:last-child { border-bottom: none; }
+
+      .hfu-tabs {
+        display: flex;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+      }
+      .hfu-tabs::-webkit-scrollbar { display: none; }
+      .hfu-tabs button {
+        flex: 0 0 auto;
+        padding: 12px 16px 14px;
+        font-size: 13px;
+      }
+
+      .hfu-card-grid--3 { grid-template-columns: 1fr; }
+      .hfu-card-grid--2 { grid-template-columns: 1fr; }
+      .mix-grid { grid-template-columns: 1fr; }
+      .mix-grid .c-news, .mix-grid .c-event { grid-column: span 1; }
+
+      .hfu-pullquote { padding: 48px 0; }
+      .c-callout { padding: 32px 28px; }
+    }
+  </style>
+  <link rel="stylesheet" href="components-restore.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -1915,10 +2821,6 @@
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
@@ -1982,7 +2884,7 @@
     <div class="hero__inner">
       <span class="hero__eyebrow">Philadelphia &middot; Since 1954</span>
 
-      <h1>Prepared for work. Prepared for <em>life.</em></h1>
+      <h1>A Catholic university rooted in <em>family,</em> since 1954.</h1>
 
       <p class="hero__lead">Holy Family University is a Catholic community that educates the whole person &mdash; expert faculty, small classes, and a graduate employment rate that tells the rest of the story. Four schools. Two campuses. One family.</p>
 
@@ -1997,246 +2899,702 @@
         </a>
       </div>
 
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">13:1</div>
-          <div class="label">Student to<br>Faculty Ratio</div>
+      <!-- ── HERO MARQUEE ── in the news ─────────────────────────────── -->
+      <div class="hero__marquee" aria-label="In the news at Holy Family">
+        <div class="hero__marquee-label"><span class="dot"></span>In the news</div>
+        <div class="hero__marquee-track">
+          <ul class="hero__marquee-list">
+            <li><span class="cal">Carnegie</span><span>Classified an &ldquo;Opportunity University&rdquo;</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">United Nations</span><span>President Prisco addresses the UN</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">MONEY</span><span>Named one of America&rsquo;s Best Colleges</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Athletics</span><span>Women&rsquo;s Basketball makes history</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Impact</span><span>Economic impact on the region surges</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Rankings</span><span>Focus on student success fuels national rise</span></li>
+            <li><span class="sep"></span></li>
+            <!-- Duplicate for seamless loop -->
+            <li><span class="cal">Carnegie</span><span>Classified an &ldquo;Opportunity University&rdquo;</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">United Nations</span><span>President Prisco addresses the UN</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">MONEY</span><span>Named one of America&rsquo;s Best Colleges</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Athletics</span><span>Women&rsquo;s Basketball makes history</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Impact</span><span>Economic impact on the region surges</span></li>
+            <li><span class="sep"></span></li>
+            <li><span class="cal">Rankings</span><span>Focus on student success fuels national rise</span></li>
+          </ul>
         </div>
-        <div class="hero__stat">
-          <div class="num">40<span class="small">+</span></div>
-          <div class="label">Bachelor, Master<br>&amp; Doctoral Programs</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">Top<span class="small"> 3</span></div>
-          <div class="label">Best Value, Philadelphia<br>Area &middot; Niche 2025</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">25<span class="small">+</span></div>
-          <div class="label">Student Clubs<br>&amp; Organizations</div>
-        </div>
+      </div>
+
+      <!-- ── HERO SPLIT EDITORIAL PANEL ─ pullquote + stat block ────── -->
+      <div class="hero__panel">
+        <figure class="hero__panel-quote">
+          <span class="mark" aria-hidden="true">&ldquo;</span>
+          <blockquote>My clinical instructor knew my name the second week. That&rsquo;s not a small thing when you&rsquo;re about to step onto a real floor for the first time.</blockquote>
+          <figcaption class="by">
+            <div>
+              <strong>Aaliyah R.</strong>
+              <span>BSN &rsquo;26 &middot; Philadelphia</span>
+            </div>
+            <span class="tag">illustrative</span>
+          </figcaption>
+        </figure>
+
+        <aside class="hero__panel-stat">
+          <div class="kicker">Enrollment snapshot</div>
+          <div class="figure">3,600<span class="small">+</span></div>
+          <div class="caption">
+            Students currently enrolled across the Philadelphia and Newtown campuses, and online.
+            <span>Undergraduate, graduate, and doctoral &middot; HFU Fast Facts</span>
+          </div>
+        </aside>
       </div>
     </div>
 
     <div class="hero__scroll">Scroll to explore</div>
   </section>
 
-  <!-- ═════════════════════ FOUR SCHOOLS ═════════════════════ -->
-  <section class="pillars">
-    <div class="pillars__head">
+  <!-- ═════════════════════ STAT GRID (.c-stat) ═════════════════════ -->
+  <section class="sx">
+    <div class="sx__head sx__head--center">
+      <div>
+        <span class="eyebrow">By the numbers</span>
+        <h2>A small university, <em>close up.</em></h2>
+      </div>
+      <p class="lead">A few figures that shape how the week actually feels on both campuses &mdash; from class size to the path students take after graduation.</p>
+    </div>
+    <div class="sx__body">
+      <div class="c-stat-grid" role="list">
+        <article class="c-stat" role="listitem">
+          <div class="c-stat__num">3,600<span class="small">+</span></div>
+          <div class="c-stat__label">Students enrolled</div>
+          <div class="c-stat__caption">Undergraduate, graduate, and doctoral across two campuses and online.</div>
+        </article>
+        <article class="c-stat" role="listitem">
+          <div class="c-stat__num">13:1</div>
+          <div class="c-stat__label">Student to faculty ratio</div>
+          <div class="c-stat__caption">Undergraduate classes average fifteen students; graduate seminars run smaller.</div>
+        </article>
+        <article class="c-stat" role="listitem">
+          <div class="c-stat__num">71<span class="small">+</span></div>
+          <div class="c-stat__label">Programs across all levels</div>
+          <div class="c-stat__caption">48 undergraduate concentrations &middot; 12 master&rsquo;s &middot; 8 certifications &middot; 3 doctoral.</div>
+        </article>
+        <article class="c-stat" role="listitem">
+          <div class="c-stat__num">92<span class="small">%</span></div>
+          <div class="c-stat__label">Working or in graduate school</div>
+          <div class="c-stat__caption">Recent graduates, within one year of commencement (Career Development Services).</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ RECOGNITION · THE VALUE OF HOLY FAMILY ═════════════════════ -->
+  <section class="sx recog-band" aria-labelledby="value-h" style="padding-top: clamp(2rem, 4vw, 3.5rem); padding-bottom: clamp(3rem, 6vw, 5rem);">
+    <style>
+      .recog-band__inner {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+      .recog-band__head {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto clamp(2rem, 3vw, 2.75rem);
+      }
+      .recog-band__head .eyebrow { justify-content: center; }
+      .recog-band__head h2 {
+        font-family: var(--display);
+        font-size: clamp(1.75rem, 3vw, 2.4rem);
+        color: hsl(var(--hfu-navy));
+        letter-spacing: -0.02em;
+        margin: 14px 0 12px;
+        line-height: 1.08;
+      }
+      .recog-band__head h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+      .recog-band__head p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: hsl(var(--fg-muted));
+        margin: 0;
+      }
+      .recog-band__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .recog-tile {
+        padding: 28px 24px 24px;
+        background: hsl(var(--paper));
+        border: 1px solid hsl(var(--border-soft));
+        border-radius: var(--r-lg);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-height: 220px;
+        transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out), border-color 260ms var(--ease-out);
+      }
+      .recog-tile:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        border-color: hsl(var(--border-strong));
+      }
+      .recog-tile__badge {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        display: grid; place-items: center;
+        background: hsl(var(--hfu-yellow) / 0.14);
+        border: 1px solid hsl(var(--hfu-yellow) / 0.4);
+        color: hsl(var(--hfu-navy));
+        font-family: var(--display);
+        font-size: 18px;
+        line-height: 1;
+        font-variation-settings: "opsz" 36;
+      }
+      .recog-tile__badge--blue  { background: hsl(var(--hfu-blue) / 0.10); border-color: hsl(var(--hfu-blue) / 0.35); color: hsl(var(--hfu-blue-deep)); }
+      .recog-tile__badge--rose  { background: hsl(var(--hfu-rose) / 0.10); border-color: hsl(var(--hfu-rose) / 0.35); color: hsl(var(--hfu-rose)); }
+      .recog-tile__badge--green { background: hsl(152 58% 34% / 0.12); border-color: hsl(152 58% 34% / 0.35); color: hsl(152 58% 30%); }
+      .recog-tile__title {
+        font-family: var(--display);
+        font-size: 17px;
+        line-height: 1.25;
+        color: hsl(var(--hfu-navy));
+        margin: 0;
+        letter-spacing: -0.01em;
+        font-variation-settings: "opsz" 36;
+      }
+      .recog-tile__title em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+      .recog-tile__src {
+        font-family: var(--body);
+        font-size: 13px;
+        line-height: 1.5;
+        color: hsl(var(--fg-muted));
+        flex: 1;
+      }
+      .recog-tile__foot {
+        padding-top: 14px;
+        border-top: 1px solid hsl(var(--border-soft));
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: hsl(var(--hfu-blue));
+      }
+      @media (max-width: 900px) { .recog-band__grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 560px) { .recog-band__grid { grid-template-columns: 1fr; } }
+    </style>
+    <div class="recog-band__inner">
+      <div class="recog-band__head">
+        <span class="eyebrow">The value of Holy Family</span>
+        <h2>What others <em>have noticed.</em></h2>
+        <p>Four third-party recognitions that tell the same story from different angles &mdash; opportunity, value, safety, and outcomes.</p>
+      </div>
+      <div class="recog-band__grid">
+        <article class="recog-tile">
+          <div class="recog-tile__badge recog-tile__badge--blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+          </div>
+          <h3 class="recog-tile__title">Carnegie <em>&ldquo;Opportunity University&rdquo;</em></h3>
+          <p class="recog-tile__src">A new Carnegie classification recognizing schools that combine real access with real mobility for the students they serve.</p>
+          <div class="recog-tile__foot">Carnegie Classification</div>
+        </article>
+
+        <article class="recog-tile">
+          <div class="recog-tile__badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          </div>
+          <h3 class="recog-tile__title">Top 3 Best Value, <em>Philadelphia area</em></h3>
+          <p class="recog-tile__src">Holy Family is ranked a top-three best value among Philadelphia-area colleges &mdash; academic quality measured against net price.</p>
+          <div class="recog-tile__foot">Niche</div>
+        </article>
+
+        <article class="recog-tile">
+          <div class="recog-tile__badge recog-tile__badge--green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 class="recog-tile__title">Safest College <em>in Philadelphia</em></h3>
+          <p class="recog-tile__src">Recognition reflects campus-safety operations and Clery-Act crime data on both campuses.</p>
+          <div class="recog-tile__foot">Niche &middot; back-to-back years</div>
+        </article>
+
+        <article class="recog-tile">
+          <div class="recog-tile__badge recog-tile__badge--rose" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+          </div>
+          <h3 class="recog-tile__title">Top 10 Best Bachelor&rsquo;s, <em>Pennsylvania</em></h3>
+          <p class="recog-tile__src">Holy Family is ranked a top-ten bachelor&rsquo;s-degree program in Pennsylvania, alongside an &ldquo;America&rsquo;s Best Colleges&rdquo; nod from MONEY Magazine.</p>
+          <div class="recog-tile__foot">University HQ &middot; MONEY</div>
+        </article>
+      </div>
+      <p class="source-note" style="margin-top: 24px; text-align: center; font-family: var(--display); font-style: italic; font-weight: 300; font-size: 13px; color: hsl(var(--fg-subtle));">Citations reflect the most recent published rankings as of academic year 2025&ndash;26 and mirror the recognitions currently featured on <span style="white-space: nowrap;">holyfamily.edu</span>.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TABS: FOUR SCHOOLS (.hfu-tabs + .c-program) ═════════════════════ -->
+  <section class="sx sx--alt" id="schools">
+    <div class="sx__head">
       <div>
         <span class="eyebrow">Academics</span>
         <h2>Four schools. One <em>family.</em></h2>
       </div>
-      <p class="lead">&ldquo;Our academic programs span the Schools of Arts and Sciences, Business and Technology, Education, and Nursing and Health Sciences &mdash; designed to foster critical thinking, professional expertise, and a deep sense of ethical responsibility.&rdquo; <span style="color: hsl(var(--fg-subtle)); font-size: 13px; display: block; margin-top: 10px; letter-spacing: 0.02em;">&mdash; Bindhu Alappat, Vice President</span></p>
+      <p class="lead">Each school shapes its own programs around the students it serves &mdash; traditional undergraduates, working adults, clinical cohorts, and educators in practice. Browse by school to see what a degree looks like in each.</p>
     </div>
 
-    <div class="pillars__grid" style="grid-template-columns: repeat(4, 1fr);">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h7a3 3 0 0 1 3 3v12"/><path d="M20 5h-7a3 3 0 0 0-3 3"/><path d="M4 5v14h7"/><path d="M20 5v14h-7"/></svg>
-        </div>
-        <h3>School of Arts &amp; Sciences</h3>
-        <p>A liberal arts foundation grounded in the humanities, social sciences, and natural sciences &mdash; the broad, rigorous core from which every Holy Family degree is shaped.</p>
-        <a href="hfu-programs.html" class="pillar__link">
-          Explore the School
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
-        </div>
-        <h3>School of Business &amp; Technology</h3>
-        <p>Business, computer science, cybersecurity, supply chain, and marketing &mdash; applied programs built alongside Philadelphia employers and designed to put graduates to work.</p>
-        <a href="hfu-programs.html" class="pillar__link">
-          Explore the School
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 4l9 5-9 5-9-5Z"/><path d="M7 11v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/></svg>
-        </div>
-        <h3>School of Education</h3>
-        <p>Teacher certification, special education, educational leadership, and counseling &mdash; preparing educators who carry the Nazareth tradition of teaching the whole person.</p>
-        <a href="hfu-programs.html" class="pillar__link">
-          Explore the School
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6"/><path d="M9 6h6"/><path d="M6 21c0-4 2.5-6 6-6s6 2 6 6"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3>School of Nursing &amp; Health Sciences</h3>
-        <p>BSN, RN-to-BSN, MSN, DNP, radiologic science, and health promotion &mdash; one of the university&rsquo;s oldest commitments and, for many families, the reason they chose us.</p>
-        <a href="hfu-bsn.html" class="pillar__link">
-          Explore the School
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ QUIET CASE ═════════════════════ -->
-  <section class="pillars" style="background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft));">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">Recognition</span>
-        <h2>The quiet case for <em>choosing us.</em></h2>
+    <div class="sx__body">
+      <div class="hfu-tabs" role="tablist" aria-label="Academic schools">
+        <button type="button" class="is-active" role="tab" aria-selected="true" aria-controls="tab-nursing" id="t-nursing">Nursing &amp; Health Sciences</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-arts" id="t-arts">Arts &amp; Sciences</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-business" id="t-business">Business &amp; Technology</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="tab-education" id="t-education">Education</button>
       </div>
-      <p class="lead">We don&rsquo;t lead with rankings, but a handful of independent sources have said it better than we would. These three are the ones we hear most often from admitted families.</p>
-    </div>
 
-    <div class="pillars__grid">
-      <article class="pillar">
-        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">Niche &middot; 2025</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M6 8l6-5 6 5"/><path d="M4 21h16"/></svg>
-        </div>
-        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 3 Best Value College</h3>
-        <p>Ranked among the three best-value colleges in the Philadelphia area by Niche in 2025, based on academic quality and net cost.</p>
-        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; niche.com</span>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">Niche</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.5 3 8 7 9 4-1 7-4.5 7-9V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-        </div>
-        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 3 Safest Campus</h3>
-        <p>Also ranked among the three safest college campuses in the Philadelphia area by Niche &mdash; a reflection of the small, attentive community both campuses try to hold onto.</p>
-        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; niche.com</span>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num" style="font-family: var(--body); font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue));">University HQ</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 8 5-3 5 3-1.5-8"/></svg>
-        </div>
-        <h3 style="font-family: var(--display); font-size: clamp(1.6rem, 2.4vw, 2.1rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.05; margin-bottom: 14px;">Top 10 Bachelor&rsquo;s in Pennsylvania</h3>
-        <p>Listed among the top ten best bachelor&rsquo;s degree programs in Pennsylvania by University HQ, alongside larger public and private institutions across the state.</p>
-        <span class="pillar__link" style="color: hsl(var(--fg-subtle)); cursor: default;">Source &middot; universityhq.org</span>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ WHOLE PERSON MISSION ═════════════════════ -->
-  <section style="padding: var(--section) 0; background: hsl(var(--bg)); position: relative;">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); align-items: center;">
-        <div style="position: relative;">
-          <figure style="position: relative; border-radius: var(--r-2xl); overflow: hidden; box-shadow: var(--shadow-lg); aspect-ratio: 4 / 5;">
-            <img src="../assets/hfu-photos/jesus-statue.jpg" alt="Statue of Jesus with a student on the Newtown campus" style="width: 100%; height: 100%; object-fit: cover;">
-            <figcaption style="position: absolute; left: 22px; bottom: 22px; right: 22px; color: #fff; font-family: var(--body); font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; background: hsl(0 0% 0% / 0.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid hsl(0 0% 100% / 0.22); border-radius: 100px; padding: 8px 16px; display: inline-flex; width: fit-content;">Newtown Campus &middot; Sacred Heart</figcaption>
-          </figure>
-        </div>
-
-        <div>
-          <span class="eyebrow">Our mission</span>
-          <h2 style="font-size: clamp(2.2rem, 4vw, 3.6rem); color: hsl(var(--hfu-navy)); margin-top: 20px; letter-spacing: -0.024em; line-height: 1.02;">Educating the <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">whole person.</em></h2>
-          <blockquote style="margin: 36px 0 0; font-family: var(--display); font-size: clamp(1.35rem, 2vw, 1.8rem); font-weight: 300; font-style: italic; font-variation-settings: 'opsz' 60; line-height: 1.28; color: hsl(var(--hfu-navy)); letter-spacing: -0.012em; border-left: 3px solid hsl(var(--hfu-yellow)); padding-left: 28px;">
-            Holy Family University is a vibrant Catholic learning community that educates the whole person for a life of integrity, service, and personal excellence.
-          </blockquote>
-          <div style="margin-top: 20px; font-family: var(--body); font-size: 12.5px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--fg-subtle)); font-weight: 600;">&mdash; University Mission &middot; founded 1954</div>
-          <p style="margin-top: 32px; font-size: 15.5px; line-height: 1.68; color: hsl(var(--fg-muted)); max-width: 52ch;">
-            Founded in 1954 by the <strong style="color: hsl(var(--hfu-navy)); font-weight: 600;">Sisters of the Holy Family of Nazareth</strong>, the university is grounded in the Nazareth tradition of faith, scholarship, and service &mdash; a reading of Catholic higher education that treats every student as someone worth knowing by name.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ NEWS & STORIES ═════════════════════ -->
-  <section class="pillars" style="background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft));">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">Stories</span>
-        <h2>Lately at <em>Holy Family.</em></h2>
-      </div>
-      <p class="lead">A few recent moments from across the two campuses &mdash; in athletics, in leadership, and in how the university is understood by the people who study it.</p>
-    </div>
-
-    <div class="pillars__grid">
-      <article class="pillar" style="padding: 0; overflow: hidden;">
-        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
-          <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Holy Family volleyball team celebrating" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
-        </div>
-        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
-          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Athletics</div>
-          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">Women&rsquo;s basketball makes program history</h3>
-          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">The Tigers earned the program&rsquo;s first-ever playoff berth &mdash; a milestone season for the team and the Division II conference.</p>
-          <a href="#" class="pillar__link">
-            Read story
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="pillar" style="padding: 0; overflow: hidden;">
-        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
-          <img src="../assets/hfu-photos/academics-etc.jpg" alt="Holy Family brick tower architecture" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
-        </div>
-        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
-          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Leadership</div>
-          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">President addresses the United Nations</h3>
-          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">President Cesa delivered an address at the UN, speaking to the role of Catholic higher education in a global conversation on service and dignity.</p>
-          <a href="#" class="pillar__link">
-            Read story
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="pillar" style="padding: 0; overflow: hidden;">
-        <div style="aspect-ratio: 16 / 10; overflow: hidden; background: hsl(var(--bg-alt));">
-          <img src="../assets/hfu-photos/academics-chapel.jpg" alt="Chapel stained glass detail" style="width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out);">
-        </div>
-        <div style="padding: 28px 30px 26px; display: flex; flex-direction: column; flex: 1;">
-          <div style="font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 14px; font-variant-numeric: tabular-nums;">2025 &middot; Recognition</div>
-          <h3 style="font-family: var(--display); font-size: clamp(1.4rem, 2vw, 1.7rem); font-weight: 350; letter-spacing: -0.02em; color: hsl(var(--hfu-navy)); line-height: 1.12; margin-bottom: 14px;">New Carnegie Classification earned</h3>
-          <p style="font-size: 14.5px; line-height: 1.58; color: hsl(var(--fg-muted)); flex: 1; margin-bottom: 22px;">The university received an updated classification in the Carnegie framework &mdash; a peer benchmark among American colleges and universities.</p>
-          <a href="#" class="pillar__link">
-            Read story
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ CTA MEGA ═════════════════════ -->
-  <section class="cta">
-    <div class="cta__box">
-      <div class="cta__inner">
-        <div class="cta__bg">
-          <img src="../assets/hfu-photos/jesus-statue.jpg" alt="">
-        </div>
-        <div class="cta__content">
-          <div>
-            <span class="eyebrow">Take the next step</span>
-            <h2>Become part of the <em>family.</em></h2>
-          </div>
-          <div class="cta__side">
-            <p>Plan a visit, request information, or start your application. Whichever feels right &mdash; we&rsquo;ll meet you where you are.</p>
-            <div class="cta__buttons">
-              <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
-                Apply Now
+      <!-- Panel 1 · Nursing & Health Sciences -->
+      <div class="hfu-tabs__panel is-active" role="tabpanel" id="tab-nursing" aria-labelledby="t-nursing">
+        <div class="hfu-card-grid hfu-card-grid--3">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health Sciences</span>
+              <span class="hfu-tag">BSN</span>
+            </div>
+            <h3>Bachelor of Science in Nursing</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>A four-year pre-licensure BSN, built with clinical partners across Philadelphia and Bucks County. Path to NCLEX, path to practice.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">124 credits</span>
+              <a href="hfu-bsn.html" class="hfu-link">Learn more
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
               </a>
-              <a href="hfu-visit.html" class="btn btn--secondary btn--lg">Plan a Visit</a>
-              <a href="#" class="btn btn--secondary btn--lg">Request Info</a>
             </div>
-          </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health Sciences</span>
+              <span class="hfu-tag">RN&ndash;BSN</span>
+            </div>
+            <h3>RN to BSN Completion</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Online</span>
+              <span class="hfu-chip">Asynchronous</span>
+              <span class="hfu-chip">12&ndash;24 months</span>
+            </div>
+            <p>For working nurses who already hold an RN license. Finish the BSN around a shift schedule, with advising built around clinical life.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">30 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health Sciences</span>
+              <span class="hfu-tag">DNP</span>
+            </div>
+            <h3>Doctor of Nursing Practice</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Hybrid</span>
+              <span class="hfu-chip">Cohort</span>
+              <span class="hfu-chip">3 years</span>
+            </div>
+            <p>A practice-focused doctorate for advanced-practice nurses and nurse leaders &mdash; clinical, organizational, and educational tracks.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">44 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
         </div>
       </div>
+
+      <!-- Panel 2 · Arts & Sciences -->
+      <div class="hfu-tabs__panel" role="tabpanel" id="tab-arts" aria-labelledby="t-arts" hidden>
+        <div class="hfu-card-grid hfu-card-grid--3">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-tag">BA</span>
+            </div>
+            <h3>English &amp; Communication</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>A writing-intensive humanities program with three concentrations &mdash; literature, professional writing, and communication studies.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">120 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-tag">BS</span>
+            </div>
+            <h3>Psychology</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>Research methods grounded in applied practice &mdash; developmental, clinical, and counseling tracks, with a senior research capstone.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">120 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-tag">BS</span>
+            </div>
+            <h3>Biology, Pre-Health track</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>The foundation sciences for medical, dental, and physician-assistant pathways &mdash; advised jointly by biology and health-sciences faculty.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">124 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel 3 · Business & Technology -->
+      <div class="hfu-tabs__panel" role="tabpanel" id="tab-business" aria-labelledby="t-business" hidden>
+        <div class="hfu-card-grid hfu-card-grid--3">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-tag">BSBA</span>
+            </div>
+            <h3>Bachelor of Business Administration</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>Accounting, finance, management, and marketing &mdash; taught by faculty with Philadelphia-region practice experience.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">120 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-tag">MBA</span>
+            </div>
+            <h3>Master of Business Administration</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Online</span>
+              <span class="hfu-chip">Evening</span>
+              <span class="hfu-chip">18 months</span>
+            </div>
+            <p>Designed for working adults, with weeknight and online modalities and concentrations tracking the employers hiring in the region.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">36 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-tag">Cert</span>
+            </div>
+            <h3>Cybersecurity Certificate</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Online</span>
+              <span class="hfu-chip">Part-time</span>
+              <span class="hfu-chip">9 months</span>
+            </div>
+            <p>An applied credential for IT professionals moving into security roles &mdash; stackable toward the MS in Information Systems.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">15 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel 4 · Education -->
+      <div class="hfu-tabs__panel" role="tabpanel" id="tab-education" aria-labelledby="t-education" hidden>
+        <div class="hfu-card-grid hfu-card-grid--3">
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-tag">BSEd</span>
+            </div>
+            <h3>Elementary Education (PK&ndash;4)</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On campus</span>
+              <span class="hfu-chip">Full-time</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>A teacher-certification pathway built around Philadelphia-area field placements, with a practicum sequence starting sophomore year.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">124 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-tag">MEd</span>
+            </div>
+            <h3>Reading Specialist, PK&ndash;12</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Hybrid</span>
+              <span class="hfu-chip">Evening</span>
+              <span class="hfu-chip">24 months</span>
+            </div>
+            <p>A master&rsquo;s for in-service teachers moving into literacy coaching and reading-specialist roles, with Pennsylvania certification.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">33 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="hfu-card hfu-card--hoverable c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-tag">EdD</span>
+            </div>
+            <h3>Doctor of Education, Educational Leadership</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Hybrid</span>
+              <span class="hfu-chip">Cohort</span>
+              <span class="hfu-chip">3 years</span>
+            </div>
+            <p>A practitioner doctorate for K&ndash;12 and higher-education leaders, built around a dissertation in practice rooted in their own institutions.</p>
+            <div class="c-program__foot">
+              <span class="c-program__credits">54 credits</span>
+              <a href="hfu-programs.html" class="hfu-link">Learn more
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ WHY HFU (.hfu-acc) ═════════════════════ -->
+  <section class="sx">
+    <div class="sx__head sx__head--center">
+      <div>
+        <span class="eyebrow">Why Holy Family</span>
+        <h2>Four things families tell us <em>actually matter.</em></h2>
+      </div>
+      <p class="lead">Four honest answers to the question admitted students ask on every campus walk &mdash; written the way an admissions counselor would actually say them.</p>
+    </div>
+
+    <div class="sx__body">
+      <div class="hfu-acc">
+        <details open>
+          <summary>
+            <span class="hfu-acc__num">01</span>
+            <span>Faith and intellect, held together</span>
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            The Nazareth tradition reads the Catholic intellectual life as a serious academic discipline, not a set of side requirements. Students of every faith are welcome &mdash; the invitation is to take questions about meaning, service, and human dignity as seriously as any other coursework they&rsquo;ll do here.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="hfu-acc__num">02</span>
+            <span>Class sizes that mean you&rsquo;re known</span>
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            A 13:1 student-to-faculty ratio and an average class size under twenty. That means your professor knows when you&rsquo;re struggling before you send the email &mdash; and your advisor knows your name the first time you walk into the office, not the fifteenth. Illustrative: a freshman composition section at Holy Family usually has 16 people in it.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="hfu-acc__num">03</span>
+            <span>Philadelphia as classroom</span>
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            Clinical rotations at Temple Health, Jefferson, and regional hospital systems. Teacher placements across the School District of Philadelphia. Internships in finance, cyber, and biotech within a SEPTA ride of campus. The city is part of the curriculum, not an afterthought tacked onto senior year.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="hfu-acc__num">04</span>
+            <span>Outcomes that match the investment</span>
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            Ranked a top-three best-value college in the Philadelphia area and the Safest College in Philadelphia by Niche, back-to-back. Approximately 92% of graduates are working or enrolled in graduate school within a year of commencement (Career Development Services). When families weigh Holy Family against a state school, the math is usually closer than they expect.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ MIXED GRID: NEWS + EVENTS ═════════════════════ -->
+  <section class="sx sx--alt">
+    <div class="sx__head">
+      <div>
+        <span class="eyebrow">This month</span>
+        <h2>Stories &amp; moments from <em>both campuses.</em></h2>
+      </div>
+      <p class="lead">A few recent features worth reading, and the two visit-days and info sessions coming up on the calendar &mdash; the fastest way to walk the campus before you apply.</p>
+    </div>
+
+    <div class="sx__body">
+      <div class="mix-grid">
+        <!-- News 1 -->
+        <article class="hfu-card hfu-card--hoverable c-news">
+          <div class="c-news__media">
+            <span class="c-news__cat">Athletics</span>
+            <img src="../assets/hfu-photos/8r1a1042.jpg" alt="Holy Family volleyball team celebrating at a match">
+          </div>
+          <div class="c-news__body">
+            <h3>Women&rsquo;s basketball makes program history</h3>
+            <p class="c-news__deck">A milestone season for the Tigers in Division II &mdash; the program&rsquo;s postseason best.</p>
+            <div class="c-news__by">Athletics &middot; recent</div>
+          </div>
+        </article>
+
+        <!-- News 2 -->
+        <article class="hfu-card hfu-card--hoverable c-news">
+          <div class="c-news__media">
+            <span class="c-news__cat">Leadership</span>
+            <img src="../assets/hfu-photos/academics-etc.jpg" alt="Holy Family brick tower against a clear sky">
+          </div>
+          <div class="c-news__body">
+            <h3>President Anne Prisco speaks at the United Nations</h3>
+            <p class="c-news__deck">A Catholic higher-education voice in the global conversation on service, dignity, and the role of small universities in the wider ecosystem.</p>
+            <div class="c-news__by">Office of the President &middot; recent</div>
+          </div>
+        </article>
+
+        <!-- News 3 -->
+        <article class="hfu-card hfu-card--hoverable c-news">
+          <div class="c-news__media">
+            <span class="c-news__cat">Recognition</span>
+            <img src="../assets/hfu-photos/academics-chapel.jpg" alt="Chapel stained glass detail at Holy Family University">
+          </div>
+          <div class="c-news__body">
+            <h3>Carnegie names Holy Family an &ldquo;Opportunity University&rdquo;</h3>
+            <p class="c-news__deck">A new Carnegie Classification recognizing institutions that deliver both access and upward mobility for the students they serve.</p>
+            <div class="c-news__by">Office of the Provost &middot; recent</div>
+          </div>
+        </article>
+
+        <!-- Event 1 -->
+        <article class="hfu-card hfu-card--hoverable c-event">
+          <div class="c-event__date">
+            <span class="c-event__month">Apr</span>
+            <span class="c-event__day">27</span>
+          </div>
+          <div class="c-event__body">
+            <h3>Spring Open House &middot; Philadelphia</h3>
+            <div class="c-event__meta"><span>Philadelphia campus</span><span>10 am &ndash; 2 pm</span></div>
+            <a href="hfu-visit.html" class="hfu-link">RSVP
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Event 2 -->
+        <article class="hfu-card hfu-card--hoverable c-event">
+          <div class="c-event__date">
+            <span class="c-event__month">May</span>
+            <span class="c-event__day">11</span>
+          </div>
+          <div class="c-event__body">
+            <h3>Nursing Info Session</h3>
+            <div class="c-event__meta"><span>Online &middot; Zoom</span><span>7 pm ET</span></div>
+            <a href="hfu-visit.html" class="hfu-link">RSVP
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FULL-WIDTH PULLQUOTE (.hfu-pullquote) ═════════════════════ -->
+  <section class="sx">
+    <div class="sx__body">
+      <div class="hfu-pullquote">
+        <blockquote>The small size isn&rsquo;t a marketing claim. It&rsquo;s the whole pedagogy.</blockquote>
+        <div class="hfu-pullquote__by">A faculty voice &middot; School of Education &middot; illustrative</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ CALLOUT: COME SEE THE CAMPUS (.c-callout--navy) ═════════════════════ -->
+  <section class="sx" style="padding-top: 0;">
+    <div class="sx__body">
+      <article class="c-callout c-callout--navy">
+        <div>
+          <h3>Come see the <em>campus.</em></h3>
+          <p>An hour with a student ambassador is the fastest way to know whether Holy Family is the right fit. We offer public visit-days, private one-on-one walks, and online sessions for adult learners &mdash; your choice.</p>
+        </div>
+        <div class="c-callout__actions">
+          <a href="hfu-visit.html" class="btn btn--primary">
+            Plan a visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="hfu-admissions.html" class="btn btn--secondary">
+            Request info
+          </a>
+        </div>
+      </article>
     </div>
   </section>
 

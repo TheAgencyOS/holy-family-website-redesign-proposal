@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mockups — Holy Family Client Portal</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portal.css">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic;  font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+
+    :root {
+      --teal:         #1B7A86;
+      --teal-deep:    #005357;
+      --teal-glow:    rgba(27, 122, 134, 0.08);
+      --cream:        #FAF8F3;
+      --cream-deep:   #F1EDE4;
+      --paper:        #FFFFFF;
+      --ink:          #06213F;
+      --ink-body:     rgba(6, 33, 63, 0.78);
+      --ink-soft:     rgba(6, 33, 63, 0.58);
+      --ink-mute:     rgba(6, 33, 63, 0.42);
+      --rule:         rgba(6, 33, 63, 0.10);
+      --rule-soft:    rgba(6, 33, 63, 0.05);
+      --rule-strong:  rgba(6, 33, 63, 0.16);
+      --shadow-card:  0 1px 2px rgba(6, 33, 63, 0.04), 0 8px 24px rgba(6, 33, 63, 0.06);
+      --shadow-card-hover: 0 2px 4px rgba(6, 33, 63, 0.06), 0 16px 40px rgba(6, 33, 63, 0.10);
+
+      --display: 'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:    'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:   'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4 { font-weight: 400; }
+    html, body {
+      background: var(--cream);
+      font-family: var(--body);
+      font-size: 11pt;
+      line-height: 1.75;
+      color: var(--ink-body);
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(27, 122, 134, 0.025), transparent 55%),
+        radial-gradient(ellipse at 85% 85%, rgba(6, 33, 63, 0.02), transparent 60%);
+    }
+    main { position: relative; z-index: 1; }
+    a { color: inherit; }
+
+    /* ───────── Reader shell ───────── */
+    .reader {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 64px 120px;
+    }
+
+    /* ───────── Hero ───────── */
+    .hero { padding: 24px 0 56px; border-bottom: 1px solid var(--rule); margin-bottom: 56px; }
+    .hero__label {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 9.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+    .hero__title {
+      font-family: var(--serif);
+      font-size: 56pt;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+      max-width: 18ch;
+    }
+    .hero__title em { font-style: italic; color: var(--teal); }
+    .hero__lede {
+      font-family: var(--serif);
+      font-size: 16pt;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 52ch;
+    }
+    .hero__lede em { font-style: italic; color: var(--ink); }
+    .hero__meta {
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 9.5pt;
+      letter-spacing: 0.08em;
+      color: var(--ink-mute);
+    }
+    .hero__meta span + span::before {
+      content: '·'; margin: 0 10px; color: var(--ink-mute);
+    }
+
+    /* ───────── Card grid ───────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 32px;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--rule-strong);
+    }
+    .card__shot {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top center;
+      border-bottom: 1px solid var(--rule);
+      background: var(--cream-deep);
+    }
+    .card__body {
+      padding: 24px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card__num {
+      font-family: var(--mono);
+      font-size: 9pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .card__title {
+      font-family: var(--serif);
+      font-size: 22pt;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .card__title em { font-style: italic; color: var(--teal); }
+    .card__desc {
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+    .card__cta {
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 9pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .card__cta::after { content: ' →'; }
+
+    /* ───────── Footnote ───────── */
+    .note {
+      margin-top: 72px;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+
+    @media (max-width: 720px) {
+      .reader { padding: 48px 24px 80px; }
+      .hero__title { font-size: 38pt; }
+      .hero__lede { font-size: 14pt; }
+      .card__title { font-size: 18pt; }
+    }
+
+    /* ───────── Viewer mode (when ?page= present) ───────── */
+    body.is-viewer main { padding: 0 !important; }
+    body.is-viewer .reader { display: none; }
+    .viewer {
+      display: none;
+      position: relative;
+      height: 100vh;
+      width: 100%;
+    }
+    body.is-viewer .viewer { display: block; }
+    .viewer__frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: var(--paper);
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
+
+  <aside class="site-nav" aria-label="Client portal navigation">
+    <div class="site-nav__brand">
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
+      <div class="site-nav__title">Website <em>Redesign</em></div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
+    </div>
+
+    <nav class="portal-tabs" aria-label="Portal tabs">
+      <a href="index.html" class="portal-tab">Proposal</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab is-current">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
+    </nav>
+
+<div class="portal-tabs__divider">Deep dives</div>
+    <nav class="portal-tabs portal-tabs--deep" aria-label="Deep dive tabs">
+      <a href="enrollment.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Enrollment intelligence</span></a>
+      <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
+      <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
+      <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
+      <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
+    </nav>
+
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
+
+    <div class="site-nav__footer">
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
+      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
+      Small College Consulting · April 2026
+    </div>
+  </aside>
+
+  <main>
+    <section class="viewer" aria-label="Mockup viewer">
+      <iframe class="viewer__frame" id="viewerFrame" src="about:blank" title="Mockup preview" loading="lazy"></iframe>
+    </section>
+
+    <article class="reader">
+
+      <header class="hero">
+        <span class="hero__label">Mockups</span>
+        <h1 class="hero__title">Six pages, drawn <em>in brand.</em></h1>
+        <p class="hero__lede">
+          A first pass at the pages prospective students and families will spend most of their time on — rendered in the Holy Family palette and voice, not a generic template. Click any preview to open the full page.
+        </p>
+        <div class="hero__meta">
+          <span>Concept work</span><span>Desktop, 1440&thinsp;px</span><span>Subject to revision in discovery</span>
+        </div>
+      </header>
+
+      <div class="grid">
+
+        <a class="card" href="mockups-portal.html?page=home">
+          <img class="card__shot" src="audit/mockup-qa/home-full.png" alt="Home page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">01 · Home</div>
+            <div class="card__title">The <em>front door.</em></div>
+            <div class="card__desc">Editorial hero, a clear promise for prospective students, and immediate paths into programs, admissions, and visit.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+        <a class="card" href="mockups-portal.html?page=programs">
+          <img class="card__shot" src="audit/mockup-qa/programs-full.png" alt="Programs page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">02 · Programs</div>
+            <div class="card__title">Find a <em>program.</em></div>
+            <div class="card__desc">A finder-first layout — filter by school, degree level, and modality — with teaching and outcomes grounded alongside.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+        <a class="card" href="mockups-portal.html?page=bsn">
+          <img class="card__shot" src="audit/mockup-qa/bsn-full.png" alt="BSN nursing page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">03 · BSN Nursing</div>
+            <div class="card__title">The <em>flagship program.</em></div>
+            <div class="card__desc">A program-level template for the BSN — curriculum at a glance, clinical partners, outcomes, and how to apply, in one readable page.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+        <a class="card" href="mockups-portal.html?page=admissions">
+          <img class="card__shot" src="audit/mockup-qa/admissions-full.png" alt="Admissions and aid page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">04 · Admissions &amp; aid</div>
+            <div class="card__title">How to <em>get in,</em> and what it costs.</div>
+            <div class="card__desc">Paths for first-year, transfer, adult, and graduate students — paired with affordability, steps, and next dates.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+        <a class="card" href="mockups-portal.html?page=visit">
+          <img class="card__shot" src="audit/mockup-qa/visit-full.png" alt="Visit campus page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">05 · Visit campus</div>
+            <div class="card__title">Come <em>see it.</em></div>
+            <div class="card__desc">The single strongest conversion moment in undergraduate admissions — a visit page that makes booking the easiest thing on the page.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+        <a class="card" href="mockups-portal.html?page=student-life">
+          <img class="card__shot" src="audit/mockup-qa/student-life-full.png" alt="Student experience page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">06 · Student experience</div>
+            <div class="card__title">Life <em>on campus.</em></div>
+            <div class="card__desc">Residence, faith, activities, athletics, and community — told in students' own voices, not marketing copy.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
+      </div>
+
+      <p class="note">
+        These are concept pages, not final production. They exist to show the committee how the brand holds up under real content density, and to give our discovery conversations something concrete to react to — from the [Mockups] portal.
+      </p>
+
+    </article>
+  </main>
+
+  <script>
+    (function () {
+      var MOCKUPS = {
+        'home':         { file: 'mockups/hfu-home.html',         title: 'Home' },
+        'programs':     { file: 'mockups/hfu-programs.html',     title: 'Programs' },
+        'bsn':          { file: 'mockups/hfu-bsn.html',          title: 'BSN Nursing' },
+        'admissions':   { file: 'mockups/hfu-admissions.html',   title: 'Admissions & aid' },
+        'visit':        { file: 'mockups/hfu-visit.html',        title: 'Visit campus' },
+        'student-life': { file: 'mockups/hfu-student-life.html', title: 'Student experience' }
+      };
+
+      var params = new URLSearchParams(window.location.search);
+      var slug = params.get('page');
+      var match = slug && MOCKUPS[slug];
+
+      if (match) {
+        document.body.classList.add('is-viewer');
+        document.title = match.title + ' — Holy Family Client Portal';
+        document.getElementById('viewerFrame').src = match.file;
+
+        // Highlight current page in sidebar deep nav
+        var active = document.querySelector('#mockupDeepNav a[data-slug="' + slug + '"]');
+        if (active) active.classList.add('is-current');
+      }
+    })();
+  </script>
+
+</body>
+</html>

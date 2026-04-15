@@ -1,0 +1,2869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · Holy Family University</title>
+  <meta name="description" content="A Catholic university in the tradition of the Sisters of the Holy Family of Nazareth. Founded 1954. Two campuses, four schools, 3,600 students, one family.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════
+       HFU ABOUT — editorial cover, story timeline, leadership lab.
+       Same vocabulary as the rest of the mockup series. The mood here is
+       quieter and more provostly than the home or admissions pages.
+       ═════════════════════════════════════════════════════════════════════ */
+    :root {
+      --hfu-navy:        212 82% 13%;
+      --hfu-navy-deep:   212 90% 8%;
+      --hfu-navy-soft:   212 45% 22%;
+      --hfu-blue:        204 100% 33%;
+      --hfu-blue-deep:   204 100% 26%;
+      --hfu-yellow:      48 100% 54%;
+      --hfu-yellow-soft: 48 100% 94%;
+      --hfu-yellow-deep: 44 95% 46%;
+      --hfu-mist:        202 22% 76%;
+      --hfu-rose:        335 60% 38%;
+      --hfu-rose-soft:   335 78% 94%;
+
+      --bg:              38 33% 97%;
+      --bg-alt:          38 25% 94%;
+      --bg-card:         0 0% 100%;
+      --paper:           0 0% 100%;
+      --white:           0 0% 100%;
+      --fg:              212 38% 12%;
+      --fg-muted:        212 18% 36%;
+      --fg-subtle:       212 12% 52%;
+      --border:          212 20% 88%;
+      --border-soft:     212 22% 93%;
+      --border-strong:   212 24% 78%;
+
+      --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
+      --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      --container: 1280px;
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      --section: clamp(4.5rem, 9vw, 9rem);
+
+      --r-sm: 6px;
+      --r: 12px;
+      --r-lg: 20px;
+      --r-xl: 28px;
+      --r-2xl: 40px;
+
+      --shadow-xs: 0 1px 2px hsl(var(--hfu-navy) / 0.04);
+      --shadow-sm: 0 1px 3px hsl(var(--hfu-navy) / 0.05), 0 1px 2px hsl(var(--hfu-navy) / 0.03);
+      --shadow-md: 0 4px 16px hsl(var(--hfu-navy) / 0.06), 0 2px 6px hsl(var(--hfu-navy) / 0.04);
+      --shadow-lg: 0 20px 48px hsl(var(--hfu-navy) / 0.10), 0 8px 20px hsl(var(--hfu-navy) / 0.06);
+      --shadow-xl: 0 40px 96px hsl(var(--hfu-navy) / 0.14), 0 16px 32px hsl(var(--hfu-navy) / 0.08);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: hsl(var(--bg));
+      color: hsl(var(--fg));
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: color 200ms var(--ease-out), opacity 200ms var(--ease-out); }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--fg));
+      font-variation-settings: "opsz" 60;
+    }
+    h1 { font-weight: 350; }
+    p { margin: 0; }
+    ::selection { background: hsl(var(--hfu-yellow) / 0.45); color: hsl(var(--hfu-navy)); }
+
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+    .eyebrow {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
+    }
+    .lead {
+      font-size: clamp(17px, 1.15vw, 19px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 60ch;
+    }
+
+    /* ── Utility strip ─────────────────────────────────────────────────── */
+    .util {
+      background: hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white) / 0.78);
+      font-size: 12.5px;
+      letter-spacing: 0.01em;
+    }
+    .util__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 10px var(--gutter);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .util__contact { display: flex; gap: 28px; }
+    .util__contact span { display: inline-flex; align-items: center; gap: 8px; }
+    .util__contact svg { width: 13px; height: 13px; opacity: 0.6; }
+    .util__links { display: flex; gap: 22px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; }
+    .util__links a:hover { color: hsl(var(--hfu-yellow)); }
+
+    /* ── Main nav ──────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      border-bottom: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .nav__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 22px var(--gutter);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 40px;
+    }
+    .nav__logo { height: 54px; width: auto; display: block; }
+    .nav__list {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav__list a {
+      color: hsl(var(--white) / 0.88);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+      padding: 8px 0;
+    }
+    .nav__list a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0;
+      bottom: -4px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .nav__list a:hover { color: hsl(var(--white)); }
+    .nav__list a:hover::after,
+    .nav__list a.is-active::after { transform: scaleX(1); }
+    .nav__list a.is-active { color: hsl(var(--white)); }
+    .nav__list svg { width: 10px; height: 10px; opacity: 0.6; }
+
+    .nav__actions { display: flex; gap: 14px; align-items: center; }
+    .nav__search {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
+      transition: background 200ms var(--ease-out);
+    }
+    .nav__search:hover { background: hsl(var(--white) / 0.14); }
+    .nav__search svg { width: 15px; height: 15px; }
+    .nav__burger { display: none; }
+
+    /* ── Buttons ───────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out), border-color 220ms var(--ease-out);
+      white-space: nowrap;
+    }
+    .btn svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
+    .btn:hover svg { transform: translateX(3px); }
+    .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      box-shadow: 0 1px 2px hsl(var(--hfu-navy) / 0.15), 0 4px 12px hsl(var(--hfu-yellow) / 0.35);
+    }
+    .btn--primary:hover {
+      background: hsl(var(--hfu-yellow-deep));
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px hsl(var(--hfu-navy) / 0.2), 0 8px 20px hsl(var(--hfu-yellow) / 0.4);
+    }
+    .btn--secondary {
+      background: hsl(var(--bg-card));
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--border-strong));
+    }
+    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: hsl(var(--white)); border-color: hsl(var(--hfu-navy)); }
+    .btn--ghost {
+      background: transparent;
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy) / 0.2);
+    }
+    .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
+    .btn--dark {
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+    }
+    .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
+    .btn--lg { padding: 18px 32px; font-size: 15px; }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       EDITORIAL HERO — title left, large feature photograph right.
+       Page opens like a magazine table-of-contents page rather than a
+       cinematic full-bleed. The mood is reflective, not promotional.
+       ═════════════════════════════════════════════════════════════════════ */
+    .cover {
+      padding: clamp(0.75rem, 1.5vw, 1.25rem) 0 clamp(3rem, 6vw, 5.5rem);
+      background: hsl(var(--bg));
+    }
+    .cover__crumbs {
+      max-width: var(--container);
+      margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+      padding: 0 var(--gutter);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.01em;
+    }
+    .cover__crumbs a { color: hsl(var(--fg-muted)); }
+    .cover__crumbs a:hover { color: hsl(var(--hfu-blue)); }
+    .cover__crumbs svg { width: 9px; height: 9px; opacity: 0.5; }
+    .cover__crumbs .is-current { color: hsl(var(--hfu-navy)); font-weight: 500; }
+
+    .cover__grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .cover__col {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(20px, 2.4vw, 32px);
+    }
+
+    .cover__meta {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .cover__meta span + span::before {
+      content: "·";
+      margin-right: 22px;
+      color: hsl(var(--border-strong));
+    }
+
+    .cover__title {
+      font-family: var(--display);
+      font-weight: 350;
+      font-size: clamp(3rem, 6.4vw, 5.6rem);
+      line-height: 0.97;
+      letter-spacing: -0.032em;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      text-wrap: balance;
+    }
+    .cover__title em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow-deep));
+    }
+
+    .cover__lede {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 52ch;
+      margin: 0;
+    }
+
+    .cover__ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .cover__factbar {
+      margin-top: clamp(20px, 2.4vw, 28px);
+      padding-top: 24px;
+      border-top: 1px solid hsl(var(--border));
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .cover__factbar dl { margin: 0; }
+    .cover__factbar dt {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 8px;
+    }
+    .cover__factbar dd {
+      font-family: var(--display);
+      font-size: 22px;
+      line-height: 1.15;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      font-variation-settings: "opsz" 60;
+    }
+    .cover__factbar dd em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+      font-size: 14px;
+      letter-spacing: 0;
+      margin-left: 6px;
+    }
+
+    .cover__photo {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: linear-gradient(135deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-blue) / 0.8) 100%);
+      box-shadow: var(--shadow-lg);
+    }
+    .cover__photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+    }
+    .cover__photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, hsl(var(--hfu-navy) / 0.45) 100%);
+      pointer-events: none;
+    }
+    .cover__caption {
+      position: absolute;
+      bottom: 18px;
+      left: 18px; right: 18px;
+      z-index: 1;
+      padding: 12px 16px;
+      background: hsl(var(--white) / 0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid hsl(var(--white) / 0.22);
+      border-radius: var(--r);
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: hsl(var(--white));
+    }
+    .cover__caption strong {
+      display: block;
+      font-style: normal;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 900px) {
+      .cover__grid { grid-template-columns: 1fr; gap: 36px; }
+      .cover__photo { aspect-ratio: 3 / 4; max-width: 480px; }
+      .cover__factbar { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .cover__factbar { grid-template-columns: 1fr; gap: 18px; }
+      .cover__meta { flex-wrap: wrap; gap: 12px; }
+      .cover__meta span + span::before { display: none; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Section chrome
+       ═════════════════════════════════════════════════════════════════════ */
+    .section { padding: var(--section) 0; }
+    .section--alt { background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft)); }
+    .section--navy {
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      border-top: 1px solid hsl(var(--hfu-navy-deep));
+      border-bottom: 1px solid hsl(var(--hfu-navy-deep));
+    }
+    .section--navy h2 { color: hsl(var(--white)); }
+    .section--navy h2 em { color: hsl(var(--hfu-yellow)); }
+    .section--navy .lead { color: hsl(var(--white) / 0.75); }
+    .section--navy .eyebrow { color: hsl(var(--hfu-yellow)); }
+    .section--navy .eyebrow::before { background: hsl(var(--hfu-yellow)); }
+
+    .section__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .section__head {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(1.5rem, 4vw, 3.5rem);
+      align-items: end;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+    .section__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      margin-top: 18px;
+      line-height: 1.02;
+    }
+    .section__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .source-note {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.55;
+      color: hsl(var(--fg-subtle));
+      max-width: 64ch;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       MISSION LEDE — slow, italic, single-paragraph statement
+       ═════════════════════════════════════════════════════════════════════ */
+    .mission {
+      padding: clamp(4rem, 7vw, 7rem) 0 clamp(3rem, 6vw, 5.5rem);
+      background: hsl(var(--bg));
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .mission__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 2.4fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .mission__label {
+      position: sticky;
+      top: clamp(120px, 13vw, 160px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mission__label .eyebrow { margin-bottom: 4px; }
+    .mission__label h2 {
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      color: hsl(var(--hfu-navy));
+      line-height: 1.1;
+    }
+    .mission__label h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .mission__body p {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      line-height: 1.4;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 36;
+      margin: 0 0 22px;
+      max-width: 36ch;
+    }
+    .mission__body p:last-child { margin-bottom: 0; color: hsl(var(--fg-muted)); font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+    .mission__body em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow-deep));
+    }
+    .mission__sig {
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid hsl(var(--border));
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      max-width: 52ch;
+    }
+    .mission__sig strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .mission__inner { grid-template-columns: 1fr; gap: 32px; }
+      .mission__label { position: static; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       AT A GLANCE — stat row (4 cards)
+       ═════════════════════════════════════════════════════════════════════ */
+    .stats-row {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .hfu-card {
+      position: relative;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    }
+    .c-stat {
+      padding: 40px 34px 32px;
+      display: grid;
+      grid-template-rows: 1fr auto auto auto auto;
+      gap: 0;
+      min-height: 260px;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    }
+    .c-stat:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .c-stat__num {
+      font-family: var(--display);
+      font-size: clamp(3rem, 5.2vw, 4.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: hsl(var(--hfu-navy));
+      font-weight: 350;
+      font-variation-settings: "opsz" 60;
+      font-variant-numeric: lining-nums tabular-nums;
+      align-self: end;
+      margin-top: 24px;
+    }
+    .c-stat__num .small {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.42em;
+      vertical-align: 0.55em;
+      margin-left: 2px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0;
+    }
+    .c-stat__rule {
+      height: 1px;
+      background: hsl(var(--border));
+      margin: 18px 0 14px;
+      width: 32px;
+    }
+    .c-stat__label {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.45;
+    }
+    .c-stat__caption {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+      margin-top: 10px;
+      max-width: 32ch;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       OUR STORY — vertical timeline
+       ═════════════════════════════════════════════════════════════════════ */
+    .story {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .story__intro { position: sticky; top: clamp(120px, 13vw, 160px); }
+    .story__intro h2 {
+      font-size: clamp(2rem, 3.4vw, 2.85rem);
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.024em;
+      line-height: 1.04;
+      margin: 16px 0 18px;
+    }
+    .story__intro h2 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .story__intro p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      max-width: 38ch;
+      margin-bottom: 14px;
+    }
+
+    .hfu-timeline {
+      position: relative;
+      padding-left: 40px;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .hfu-timeline > li { list-style: none; }
+    .hfu-timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px; bottom: 10px;
+      left: 13px;
+      width: 1px;
+      background: hsl(var(--border));
+    }
+    .hfu-timeline__item { position: relative; }
+    .hfu-timeline__item::before {
+      content: "";
+      position: absolute;
+      left: -32px; top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-timeline__item.is-current::before {
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+    }
+    .hfu-timeline__date {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .hfu-timeline__title {
+      font-family: var(--display);
+      font-size: 21px;
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin: 6px 0 8px;
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-timeline__body {
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 56ch;
+    }
+    .hfu-timeline__body em {
+      font-style: italic;
+      color: hsl(var(--hfu-blue));
+    }
+
+    @media (max-width: 900px) {
+      .story { grid-template-columns: 1fr; }
+      .story__intro { position: static; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       PILLARS — Faith · Scholarship · Service
+       ═════════════════════════════════════════════════════════════════════ */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .pillar {
+      padding: 36px 32px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 360px;
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    }
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: hsl(var(--border-strong));
+    }
+    .pillar__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .pillar__icon {
+      width: 52px; height: 52px;
+      border-radius: var(--r);
+      display: grid; place-items: center;
+      background: hsl(var(--hfu-yellow) / 0.18);
+      color: hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-yellow) / 0.45);
+    }
+    .pillar__icon svg { width: 24px; height: 24px; }
+    .pillar h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.1;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 60;
+    }
+    .pillar h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow-deep)); }
+    .pillar p {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      flex: 1;
+    }
+    .pillar__foot {
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .pillar__foot strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+
+    .pillar--blue   { background: linear-gradient(180deg, hsl(var(--hfu-blue) / 0.05) 0%, hsl(var(--paper)) 60%); }
+    .pillar--blue   .pillar__icon { background: hsl(var(--hfu-blue) / 0.12); border-color: hsl(var(--hfu-blue) / 0.35); color: hsl(var(--hfu-blue-deep)); }
+    .pillar--yellow { background: linear-gradient(180deg, hsl(var(--hfu-yellow) / 0.10) 0%, hsl(var(--paper)) 60%); }
+    .pillar--rose   { background: linear-gradient(180deg, hsl(var(--hfu-rose) / 0.06) 0%, hsl(var(--paper)) 60%); }
+    .pillar--rose   .pillar__icon { background: hsl(var(--hfu-rose) / 0.12); border-color: hsl(var(--hfu-rose) / 0.35); color: hsl(var(--hfu-rose)); }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       LEADERSHIP — tabs + cards
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 12px; right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+    .tabpanel { display: none; }
+    .tabpanel.is-active { display: block; }
+
+    /* President hero card */
+    .pres {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      padding: clamp(1.75rem, 3.5vw, 3rem);
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      align-items: center;
+    }
+    .pres__photo {
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r);
+      overflow: hidden;
+      background: linear-gradient(135deg, hsl(var(--hfu-navy)), hsl(var(--hfu-blue) / 0.7));
+      position: relative;
+    }
+    .pres__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .pres__photo::after {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.10) 1px, transparent 1.5px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .pres__photo-label {
+      position: absolute;
+      left: 14px; bottom: 14px;
+      padding: 6px 12px;
+      background: hsl(var(--white) / 0.16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid hsl(var(--white) / 0.24);
+      border-radius: 100px;
+      color: hsl(var(--white));
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .pres__role {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .pres__name {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3.6vw, 2.85rem);
+      line-height: 1.05;
+      color: hsl(var(--hfu-navy));
+      margin: 12px 0 8px;
+      letter-spacing: -0.022em;
+    }
+    .pres__name em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow-deep)); }
+    .pres__cred {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 16px;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 22px;
+    }
+    .pres__quote {
+      padding: 22px 24px;
+      background: hsl(var(--bg-alt));
+      border-left: 3px solid hsl(var(--hfu-yellow));
+      border-radius: 0 var(--r) var(--r) 0;
+      margin: 22px 0;
+    }
+    .pres__quote blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.5;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      font-variation-settings: "opsz" 36;
+    }
+    .pres__bio {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      margin-bottom: 14px;
+    }
+    .pres__bio:last-of-type { margin-bottom: 22px; }
+    .pres__meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      padding-top: 20px;
+      border-top: 1px solid hsl(var(--border));
+    }
+    .pres__meta dt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 6px;
+    }
+    .pres__meta dd {
+      font-family: var(--display);
+      font-size: 16px;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    @media (max-width: 900px) {
+      .pres { grid-template-columns: 1fr; }
+      .pres__photo { max-width: 360px; }
+    }
+
+    /* Cabinet & board grids */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .person {
+      padding: 22px 22px 24px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 280ms var(--ease-out), box-shadow 280ms var(--ease-out), border-color 280ms var(--ease-out);
+    }
+    .person:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: hsl(var(--border-strong));
+    }
+    .person__avatar {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--border));
+      background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow) / 0.7), hsl(var(--hfu-blue) / 0.8) 70%);
+      flex: 0 0 auto;
+    }
+    .person--blue   .person__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-blue) / 0.65), hsl(var(--hfu-navy)) 75%); }
+    .person--rose   .person__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-rose) / 0.7), hsl(var(--hfu-navy-soft)) 75%); }
+    .person--yellow .person__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow)), hsl(var(--hfu-yellow-deep)) 75%); }
+    .person__name {
+      font-family: var(--display);
+      font-size: 18px;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.2;
+      margin: 0;
+      font-variation-settings: "opsz" 36;
+    }
+    .person__role {
+      font-family: var(--body);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: hsl(var(--hfu-blue));
+      line-height: 1.45;
+    }
+    .person__bio {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      flex: 1;
+    }
+
+    .board-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      background: hsl(var(--paper));
+      overflow: hidden;
+    }
+    .board-list__row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 18px;
+      padding: 18px 22px;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      align-items: center;
+    }
+    .board-list__row:nth-last-child(1),
+    .board-list__row:nth-last-child(2) { border-bottom: none; }
+    .board-list__row:nth-child(odd) { border-right: 1px solid hsl(var(--border-soft)); }
+    .board-list__name {
+      font-family: var(--display);
+      font-size: 16px;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.25;
+      font-variation-settings: "opsz" 36;
+    }
+    .board-list__name strong { font-weight: 500; }
+    .board-list__role {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: hsl(var(--fg-subtle));
+      line-height: 1.45;
+    }
+    .board-list__role em {
+      font-style: italic;
+      color: hsl(var(--hfu-blue));
+    }
+
+    /* Past presidents */
+    .past-pres {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      background: hsl(var(--paper));
+      overflow: hidden;
+    }
+    .past-pres__row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 20px 24px;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      align-items: baseline;
+    }
+    .past-pres__row:nth-last-child(1),
+    .past-pres__row:nth-last-child(2) { border-bottom: none; }
+    .past-pres__row:nth-child(odd) { border-right: 1px solid hsl(var(--border-soft)); }
+    .past-pres__years {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .past-pres__name {
+      font-family: var(--display);
+      font-size: 17px;
+      color: hsl(var(--hfu-navy));
+      line-height: 1.25;
+      font-variation-settings: "opsz" 36;
+    }
+    .past-pres__role {
+      display: block;
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      margin-top: 3px;
+    }
+
+    @media (max-width: 900px) {
+      .people-grid { grid-template-columns: 1fr 1fr; }
+      .board-list, .past-pres { grid-template-columns: 1fr; }
+      .board-list__row, .past-pres__row { border-right: none !important; }
+      .pres__meta { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .people-grid { grid-template-columns: 1fr; }
+      .pres__meta { grid-template-columns: 1fr; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       PULLQUOTE — center, italic, with diamond endcaps
+       ═════════════════════════════════════════════════════════════════════ */
+    .hfu-pullquote {
+      padding: 64px 0;
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+      position: relative;
+      margin: 0 auto;
+      max-width: 920px;
+    }
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 8px; height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%; margin-left: -4px;
+    }
+    .hfu-pullquote::before { top: -4px; }
+    .hfu-pullquote::after  { bottom: -4px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 32ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-pullquote__by {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       RECOGNITION — accolade cards + accreditation table
+       ═════════════════════════════════════════════════════════════════════ */
+    .recog {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: start;
+    }
+    .recog__cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .recog__card {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 22px;
+      padding: 22px 24px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      align-items: center;
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out);
+    }
+    .recog__card:hover { border-color: hsl(var(--hfu-yellow-deep) / 0.4); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .recog__seal {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: hsl(var(--hfu-yellow) / 0.14);
+      border: 1px solid hsl(var(--hfu-yellow) / 0.4);
+      color: hsl(var(--hfu-navy));
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.15;
+      padding: 8px;
+      font-variation-settings: "opsz" 16;
+    }
+    .recog__seal strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 2px;
+      font-variation-settings: "opsz" 36;
+    }
+    .recog__seal--blue { background: hsl(var(--hfu-blue) / 0.08); border-color: hsl(var(--hfu-blue) / 0.3); }
+    .recog__seal--rose { background: hsl(var(--hfu-rose) / 0.08); border-color: hsl(var(--hfu-rose) / 0.3); }
+    .recog__seal--green { background: hsl(152 58% 34% / 0.10); border-color: hsl(152 58% 34% / 0.3); }
+    .recog__title {
+      font-family: var(--display);
+      font-size: 18px;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      margin: 0 0 6px;
+      font-variation-settings: "opsz" 36;
+    }
+    .recog__title em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .recog__src {
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.5;
+    }
+    .recog__src strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .recog__year {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      align-self: start;
+      margin-top: 4px;
+    }
+
+    .accred {
+      padding: 28px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+    }
+    .accred h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      color: hsl(var(--hfu-navy));
+      margin: 0 0 6px;
+      letter-spacing: -0.014em;
+    }
+    .accred h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); }
+    .accred p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      margin: 0 0 18px;
+      max-width: 48ch;
+    }
+    .accred__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .accred__list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      align-items: start;
+    }
+    .accred__list li:last-child { border-bottom: none; }
+    .accred__tag {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      padding: 4px 10px;
+      background: hsl(var(--hfu-blue) / 0.08);
+      border-radius: 100px;
+      white-space: nowrap;
+      align-self: center;
+    }
+    .accred__body {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg));
+    }
+    .accred__body strong { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .accred__body span { display: block; font-size: 12px; color: hsl(var(--fg-subtle)); margin-top: 2px; }
+
+    @media (max-width: 1100px) { .recog { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) {
+      .recog__card { grid-template-columns: 64px 1fr; gap: 16px; padding: 18px; }
+      .recog__seal { width: 64px; height: 64px; font-size: 9px; }
+      .recog__seal strong { font-size: 16px; }
+      .recog__year { grid-column: 1 / -1; margin-top: 4px; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       TWO CAMPUSES — split editorial spread
+       ═════════════════════════════════════════════════════════════════════ */
+    .campuses {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .campus {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .campus__photo {
+      aspect-ratio: 16 / 10;
+      background: linear-gradient(135deg, hsl(var(--hfu-navy)), hsl(var(--hfu-blue) / 0.7));
+      position: relative;
+      overflow: hidden;
+    }
+    .campus__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .campus__photo::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, hsl(var(--hfu-navy) / 0.55) 100%);
+    }
+    .campus__pin {
+      position: absolute;
+      top: 18px; left: 18px;
+      padding: 6px 12px 6px 10px;
+      background: hsl(var(--white) / 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid hsl(var(--white) / 0.28);
+      border-radius: 100px;
+      color: hsl(var(--white));
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
+    }
+    .campus__pin svg { width: 12px; height: 12px; }
+    .campus__body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+    }
+    .campus h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      line-height: 1.1;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .campus h3 em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-yellow-deep)); }
+    .campus__lede {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+    }
+    .campus__facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+      padding: 20px 0 0;
+      border-top: 1px solid hsl(var(--border-soft));
+      margin: 0;
+    }
+    .campus__facts dt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      margin-bottom: 4px;
+    }
+    .campus__facts dd {
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1.3;
+      color: hsl(var(--hfu-navy));
+      margin: 0;
+      font-variation-settings: "opsz" 36;
+    }
+    .campus__facts dd em { font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue)); font-size: 13px; }
+    .campus__addr {
+      padding: 18px 22px;
+      background: hsl(var(--bg-alt));
+      border-radius: var(--r);
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+    }
+    .campus__addr strong { display: block; color: hsl(var(--hfu-navy)); font-weight: 600; margin-bottom: 4px; }
+    .campus__addr a { color: hsl(var(--hfu-blue)); border-bottom: 1px solid hsl(var(--hfu-blue) / 0.3); }
+
+    @media (max-width: 900px) { .campuses { grid-template-columns: 1fr; } }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       COMMUNITY BY THE NUMBERS — composition row
+       ═════════════════════════════════════════════════════════════════════ */
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .community {
+      padding: 26px;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 220px;
+    }
+    .community__bar {
+      height: 6px;
+      background: hsl(var(--bg-alt));
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .community__bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: var(--w, 50%);
+      background: linear-gradient(90deg, hsl(var(--hfu-yellow)) 0%, hsl(var(--hfu-yellow-deep)) 100%);
+      border-radius: 100px;
+    }
+    .community__num {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .community__num .small { font-size: 0.4em; color: hsl(var(--hfu-blue)); margin-left: 2px; vertical-align: 0.3em; }
+    .community__label {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-muted));
+      line-height: 1.45;
+    }
+    .community__caption {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.5;
+      color: hsl(var(--fg-subtle));
+      margin-top: auto;
+    }
+
+    @media (max-width: 1100px) { .community-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .community-grid { grid-template-columns: 1fr; } }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       VOICE CARDS — alumni / faculty / staff perspectives
+       ═════════════════════════════════════════════════════════════════════ */
+    .c-voice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .c-voice {
+      padding: 34px 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .c-voice__mark {
+      font-family: var(--display);
+      font-size: 72px;
+      line-height: 0.3;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+      letter-spacing: -0.04em;
+    }
+    .c-voice blockquote {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+      margin: 0;
+      flex: 1;
+    }
+    .c-voice__by {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+    }
+    .c-voice__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--border));
+      background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow) / 0.7), hsl(var(--hfu-blue) / 0.8) 70%);
+      flex: 0 0 auto;
+    }
+    .c-voice__attr strong {
+      display: block;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+    }
+    .c-voice__attr span {
+      display: block;
+      font-family: var(--body);
+      font-size: 12px;
+      color: hsl(var(--fg-subtle));
+      margin-top: 2px;
+    }
+    .c-voice--blue   { background: hsl(var(--hfu-blue) / 0.06);   border-color: hsl(var(--hfu-blue) / 0.2); }
+    .c-voice--blue   .c-voice__mark { color: hsl(var(--hfu-blue)); }
+    .c-voice--blue   .c-voice__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-blue) / 0.7), hsl(var(--hfu-navy)) 75%); }
+    .c-voice--yellow { background: hsl(var(--hfu-yellow) / 0.12); border-color: hsl(var(--hfu-yellow) / 0.5); }
+    .c-voice--yellow .c-voice__mark { color: hsl(var(--hfu-yellow-deep)); }
+    .c-voice--yellow .c-voice__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-yellow)), hsl(var(--hfu-yellow-deep)) 75%); }
+    .c-voice--rose   { background: hsl(var(--hfu-rose) / 0.06);   border-color: hsl(var(--hfu-rose) / 0.25); }
+    .c-voice--rose   .c-voice__mark { color: hsl(var(--hfu-rose)); }
+    .c-voice--rose   .c-voice__avatar { background: radial-gradient(circle at 30% 30%, hsl(var(--hfu-rose) / 0.75), hsl(var(--hfu-navy-soft)) 75%); }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       VISIT INVITE — full-bleed CTA band with photo + scrim
+       ═════════════════════════════════════════════════════════════════════ */
+    .visit-invite {
+      position: relative;
+      overflow: hidden;
+      background: hsl(var(--hfu-navy));
+      isolation: isolate;
+    }
+    .visit-invite__media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .visit-invite__media img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 45%;
+    }
+    .visit-invite__media::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(100deg,
+        hsl(var(--hfu-navy) / 0.94) 0%,
+        hsl(var(--hfu-navy) / 0.72) 40%,
+        hsl(var(--hfu-navy) / 0.38) 100%);
+    }
+    .visit-invite__inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: clamp(64px, 8vw, 120px) var(--gutter);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(40px, 5vw, 80px);
+      align-items: center;
+      color: hsl(var(--white));
+    }
+    .visit-invite__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 22px;
+    }
+    .visit-invite__eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .visit-invite h2 {
+      font-size: clamp(2rem, 3.6vw, 2.85rem);
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      color: hsl(var(--white));
+      margin: 0 0 22px;
+      font-weight: 500;
+      max-width: 18ch;
+    }
+    .visit-invite h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+    }
+    .visit-invite__lede {
+      font-size: clamp(15px, 1.05vw, 17px);
+      line-height: 1.65;
+      color: hsl(var(--white) / 0.9);
+      margin: 0 0 28px;
+      max-width: 50ch;
+    }
+    .visit-invite__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .visit-invite__ctas .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy));
+      border-color: hsl(var(--hfu-yellow));
+    }
+    .visit-invite__ctas .btn--primary:hover {
+      background: hsl(var(--white));
+      border-color: hsl(var(--white));
+      color: hsl(var(--hfu-navy));
+    }
+    .visit-invite__ctas .btn--secondary {
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
+      border: 1px solid hsl(var(--white) / 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .visit-invite__ctas .btn--secondary:hover {
+      background: hsl(var(--white) / 0.2);
+      border-color: hsl(var(--white) / 0.7);
+      color: hsl(var(--white));
+    }
+    .visit-invite__meta {
+      border-top: 1px solid hsl(var(--white) / 0.18);
+      padding-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 32px;
+      margin: 0;
+    }
+    .visit-invite__meta-item dt {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 10px;
+    }
+    .visit-invite__meta-item dd {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: hsl(var(--white) / 0.92);
+      margin: 0;
+    }
+    .visit-invite__meta-item dd strong { font-weight: 600; color: hsl(var(--white)); }
+    .visit-invite__meta-item a {
+      color: hsl(var(--hfu-yellow));
+      border-bottom: 1px solid hsl(var(--hfu-yellow) / 0.4);
+    }
+    .visit-invite__meta-item a:hover { border-color: hsl(var(--hfu-yellow)); }
+
+    @media (max-width: 900px) {
+      .visit-invite__inner { grid-template-columns: 1fr; gap: 40px; }
+      .visit-invite__meta { gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      .visit-invite h2 { font-size: 1.7rem; max-width: none; }
+      .visit-invite__meta { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       FOOTER
+       ═════════════════════════════════════════════════════════════════════ */
+    .foot {
+      background: hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white) / 0.72);
+      padding: clamp(4rem, 6vw, 6rem) 0 0;
+    }
+    .foot__inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 56px;
+    }
+    .foot__brand h3 {
+      font-family: var(--display);
+      font-size: 26px;
+      color: hsl(var(--white));
+      margin: 22px 0 14px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .foot__brand p {
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 34ch;
+      margin-bottom: 22px;
+    }
+    .foot__news {
+      display: flex; gap: 8px;
+      background: hsl(var(--white) / 0.06);
+      border: 1px solid hsl(var(--white) / 0.1);
+      border-radius: 100px;
+      padding: 6px 6px 6px 18px;
+      max-width: 380px;
+    }
+    .foot__news input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: hsl(var(--white));
+      font: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+    .foot__news input::placeholder { color: hsl(var(--white) / 0.5); }
+    .foot__news button {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .foot__col h4 {
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 700;
+      color: hsl(var(--white));
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 22px;
+    }
+    .foot__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .foot__col a { font-size: 14px; color: hsl(var(--white) / 0.62); }
+    .foot__col a:hover { color: hsl(var(--white)); }
+    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(var(--white) / 0.56); margin-top: 10px; }
+    .foot__addr strong { color: hsl(var(--white) / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
+    .foot__bottom {
+      max-width: var(--container);
+      margin: 72px auto 0;
+      padding: 28px var(--gutter);
+      border-top: 1px solid hsl(var(--white) / 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: hsl(var(--white) / 0.5);
+    }
+    .foot__bottom .links { display: flex; gap: 24px; }
+    .foot__bottom a:hover { color: hsl(var(--white)); }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       Responsive
+       ═════════════════════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .section__head { grid-template-columns: 1fr; gap: 20px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .c-voice-grid { grid-template-columns: 1fr; }
+      .foot__inner { grid-template-columns: 1fr 1fr; gap: 48px; }
+    }
+    @media (max-width: 720px) {
+      .util__links { display: none; }
+      .util__contact { gap: 18px; font-size: 12px; }
+      .util__contact span:last-child { display: none; }
+
+      .nav__inner { grid-template-columns: auto 1fr auto; padding: 18px var(--gutter); }
+      .nav__list { display: none; }
+      .nav__burger {
+        display: grid; place-items: center;
+        width: 40px; height: 40px;
+        background: hsl(var(--white) / 0.08);
+        border-radius: 8px;
+        color: hsl(var(--white));
+      }
+      .nav__search { display: none; }
+      .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
+
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .hfu-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+      .hfu-tabs::-webkit-scrollbar { display: none; }
+      .hfu-tabs button { white-space: nowrap; }
+
+      .foot__inner { grid-template-columns: 1fr; gap: 40px; }
+      .foot__news { max-width: none; }
+      .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+  <link rel="stylesheet" href="mobile.css">
+</head>
+<body>
+
+<style id="aos-back-link-styles">
+  .aos-back-to-concepts {
+    position: fixed; top: 20px; left: 20px; z-index: 9999;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 16px 10px 12px; border-radius: 999px;
+    background: rgba(6, 35, 64, 0.92); color: #fff;
+    font: 500 12px/1 "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: 0.02em; text-decoration: none;
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 12px 40px rgba(6,35,64,0.22);
+    border: 1px solid rgba(255,255,255,0.10);
+    transition: transform 220ms cubic-bezier(.2,.9,.3,1.1), box-shadow 220ms ease, background 220ms ease;
+  }
+  .aos-back-to-concepts svg { width: 12px; height: 12px; display: block; }
+  .aos-back-to-concepts:hover { transform: translateX(-2px); background: #062340; box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 16px 48px rgba(6,35,64,0.30); }
+  @media print { .aos-back-to-concepts { display: none !important; } }
+  @media (max-width: 640px) {
+    .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
+  }
+</style>
+
+  <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
+  <div class="util">
+    <div class="util__inner">
+      <div class="util__contact">
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+          215 637 7700
+        </span>
+        <span>Philadelphia · Newtown · Online</span>
+        <span>215 637 7700 x4000 (Newtown)</span>
+      </div>
+      <div class="util__links">
+        <a href="#">Current Students</a>
+        <a href="#">Faculty &amp; Staff</a>
+        <a href="#">Alumni</a>
+        <a href="#">Give</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════ MAIN NAV ═════════════════════ -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="hfu-home.html" class="nav__logo-link" aria-label="Holy Family University">
+        <img class="nav__logo" src="../assets/hfu-logo.svg" alt="Holy Family University" decoding="async">
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="hfu-programs.html">Academics <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="hfu-admissions.html">Admissions &amp; Aid <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="hfu-student-life.html">Student Experience <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="hfu-about.html" class="is-active">About <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+        </ul>
+      </nav>
+      <div class="nav__actions">
+        <a href="#" class="nav__search" aria-label="Search">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="7" r="5"/><path d="m14 14-3.5-3.5"/></svg>
+        </a>
+        <a href="hfu-admissions.html" class="btn btn--primary">
+          Apply Now
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+        <button class="nav__burger" aria-label="Open menu">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+<main>
+
+  <!-- ═════════════════════ EDITORIAL HERO ═════════════════════ -->
+  <section class="cover" aria-labelledby="cover-title">
+    <nav class="cover__crumbs" aria-label="Breadcrumb">
+      <a href="hfu-home.html">Holy Family University</a>
+      <svg viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 1 3.5 3.5L3 8"/></svg>
+      <span class="is-current">About</span>
+    </nav>
+
+    <div class="cover__grid">
+      <div class="cover__col">
+        <div class="cover__meta">
+          <span>Founded 1954</span>
+          <span>Philadelphia &amp; Newtown</span>
+          <span>Catholic, four-year</span>
+        </div>
+
+        <h1 class="cover__title" id="cover-title">A Catholic university, <em>rooted in family</em> since 1954.</h1>
+
+        <p class="cover__lede">A sponsored ministry of the Sisters of the Holy Family of Nazareth — and a small, working university where 3,600 students find their place at the table, in four schools, on two campuses, with a faculty that learns their names by the second week.</p>
+
+        <div class="cover__ctas">
+          <a href="hfu-admissions.html" class="btn btn--primary">
+            Apply Now
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="hfu-visit.html" class="btn btn--secondary">
+            Plan a visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="#mission" class="btn btn--ghost">
+            Read our mission
+          </a>
+        </div>
+
+        <dl class="cover__factbar">
+          <div>
+            <dt>Charter</dt>
+            <dd>1954 <em>(by CSFN)</em></dd>
+          </div>
+          <div>
+            <dt>President</dt>
+            <dd>Anne Prisco, Ph.D. <em>6th</em></dd>
+          </div>
+          <div>
+            <dt>Carnegie</dt>
+            <dd>Master's, Smaller Programs</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="cover__photo">
+        <img src="../assets/hfu-photos/live/campus-0y3a1238.jpg" alt="Holy Family University campus, Philadelphia">
+        <figcaption class="cover__caption">
+          <strong>Philadelphia campus · September</strong>
+          The quad on the first morning of the academic year, looking east toward the Chapel of the Holy Family.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ MISSION LEDE ═════════════════════ -->
+  <section class="mission" id="mission" aria-labelledby="mission-h">
+    <div class="mission__inner">
+      <aside class="mission__label">
+        <span class="eyebrow">Our mission</span>
+        <h2 id="mission-h">What we are <em>here for.</em></h2>
+        <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); max-width: 32ch;">A working statement, kept short on purpose. The longer version sits on every syllabus, in every job description, and at the front of every cabinet meeting.</p>
+      </aside>
+      <div class="mission__body">
+        <p>Holy Family University is a Catholic university in the tradition of the <em>Sisters of the Holy Family of Nazareth.</em></p>
+        <p>We educate the whole person — mind, character, and conscience — in a community grounded in <em>faith, scholarship, and service,</em> so that our graduates leave able to think clearly, live generously, and work for the good of others.</p>
+        <p>Everything else we do — the four schools, the two campuses, the residence halls, the eighteen NCAA teams, the seventy years of teachers and nurses and counsellors and accountants we have sent into the world — is in service of that.</p>
+        <p class="mission__sig"><strong>The Mission of Holy Family University.</strong> Adopted by the Board of Trustees · revised 2018 · grounded in the founding charter of the Sisters of the Holy Family of Nazareth, 1954.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ AT A GLANCE ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="glance-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">At a glance</span>
+          <h2 id="glance-h">A small university, <em>close up.</em></h2>
+        </div>
+        <p class="lead">Six numbers that show what kind of place this is, and what kind it isn't. Sources are listed below; everything is verifiable.</p>
+      </div>
+
+      <div class="stats-row">
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">3,600<span class="small">+</span></div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Students enrolled</div>
+          <p class="c-stat__caption">Undergraduate, graduate, and doctoral, on two campuses and online.</p>
+        </article>
+
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">13:1</div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Student-to-faculty ratio</div>
+          <p class="c-stat__caption">Average undergraduate class is fifteen students. Graduate seminars run smaller.</p>
+        </article>
+
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">4</div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Schools of study</div>
+          <p class="c-stat__caption">Arts &amp; Sciences · Business &amp; Technology · Education · Nursing &amp; Health Sciences.</p>
+        </article>
+
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">71</div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Years since founding</div>
+          <p class="c-stat__caption">Chartered in 1954 by the Sisters of the Holy Family of Nazareth.</p>
+        </article>
+
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">100<span class="small">%</span></div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Internships or practicum</div>
+          <p class="c-stat__caption">Every undergraduate graduates with at least one real-world placement on the transcript.</p>
+        </article>
+
+        <article class="hfu-card c-stat">
+          <div class="c-stat__num">92<span class="small">%</span></div>
+          <div class="c-stat__rule"></div>
+          <div class="c-stat__label">Working or in graduate school</div>
+          <p class="c-stat__caption">Recent graduates, within one year of commencement (Career Development Services).</p>
+        </article>
+      </div>
+
+      <p class="source-note" style="margin-top: 28px;">Enrollment, student-faculty ratio, internship participation, and founding: HFU Fast Facts and the Office of Institutional Effectiveness. Career outcomes: Career Development Services first-destination survey. Full figures — including the complete degree count, athletics, and residential facilities — live on the Fast Facts page.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ OUR STORY · TIMELINE ═════════════════════ -->
+  <section class="section" aria-labelledby="story-h">
+    <div class="section__inner">
+      <div class="story">
+        <aside class="story__intro">
+          <span class="eyebrow">Our story</span>
+          <h2 id="story-h">Seventy-one years <em>of small steps.</em></h2>
+          <p>Holy Family began as a two-year college for women, in a Northeast Philadelphia neighborhood that didn't yet have one. It became a co-educational university with two campuses, three doctoral programs, and graduates working in every county of the Delaware Valley.</p>
+          <p>The story below is short on purpose. Every entry is a real charter date or a real new building, not marketing.</p>
+        </aside>
+
+        <ol class="hfu-timeline">
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">1954</div>
+            <h3 class="hfu-timeline__title">Holy Family College is chartered.</h3>
+            <p class="hfu-timeline__body">The Sisters of the Holy Family of Nazareth open a college on Frankford Avenue in Northeast Philadelphia, in the same neighborhood where the congregation had been ministering for decades.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">First decades</div>
+            <h3 class="hfu-timeline__title">Four-year, baccalaureate-granting status.</h3>
+            <p class="hfu-timeline__body">Holy Family expands beyond its founding configuration to grant the bachelor's degree across arts, sciences, and education — exact charter date will be drawn from the University Archives.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Late 20th century</div>
+            <h3 class="hfu-timeline__title">Co-education and the first master's programs.</h3>
+            <p class="hfu-timeline__body">The undergraduate college becomes co-educational and graduate programs open, building on Holy Family's longstanding role as a regional preparer of teachers and clinicians.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">2002</div>
+            <h3 class="hfu-timeline__title">University status. Newtown campus opens.</h3>
+            <p class="hfu-timeline__body">Holy Family is renamed a university and acquires the Newtown campus in Bucks County, expanding its physical footprint and giving the adult-learner programs a second front door.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">2010s</div>
+            <h3 class="hfu-timeline__title">Doctoral programs accredited.</h3>
+            <p class="hfu-timeline__body">Holy Family earns doctoral accreditation across counseling psychology, nursing, and education — bringing the institution to its current configuration of three doctoral programs.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">July 2021</div>
+            <h3 class="hfu-timeline__title">Anne M. Prisco becomes the 6th president.</h3>
+            <p class="hfu-timeline__body">Dr. Prisco begins a strategic plan focused on academic distinction, the student experience, and deepening the University's role as a regional partner &mdash; work that contributes to Holy Family's later Carnegie classification as an <em>Opportunity University.</em></p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">2023 &amp; 2024</div>
+            <h3 class="hfu-timeline__title">Safest College in Philadelphia. Two years running.</h3>
+            <p class="hfu-timeline__body">Niche.com names Holy Family the <em>safest college</em> in the city in back-to-back years — recognition not of marketing, but of campus culture and security operations.</p>
+          </li>
+          <li class="hfu-timeline__item is-current">
+            <div class="hfu-timeline__date">Today</div>
+            <h3 class="hfu-timeline__title">3,600 students. 71-plus programs. One family.</h3>
+            <p class="hfu-timeline__body">Holy Family enters its eighth decade with four schools, two campuses, doctoral programs in three fields, and a Tier-1 ranking for social mobility — still small enough that the dean knows your major and the chaplain knows your name.</p>
+          </li>
+        </ol>
+      </div>
+
+      <p class="source-note" style="margin-top: 36px;">Timeline drawn from the Holy Family University Archives, the Office of the President, and the published charter records of the Sisters of the Holy Family of Nazareth (Polish Province, U.S. branch). Dates are for the public charter or accreditation event, not internal milestones.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ PILLARS · FAITH · SCHOLARSHIP · SERVICE ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="pillars-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">What grounds us</span>
+          <h2 id="pillars-h">Three commitments, <em>worn in.</em></h2>
+        </div>
+        <p class="lead">Faith. Scholarship. Service. The phrase appears on every diploma — and, more usefully, in the rhythm of an actual week on campus.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <article class="pillar pillar--blue">
+          <span class="pillar__num">01 / Faith</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 7v10M19 7v10M2 12h20"/></svg>
+          </div>
+          <h3>A Catholic university, <em>open to all.</em></h3>
+          <p>The Catholic intellectual tradition is what holds the curriculum together: a belief that truth is one, that the human person is sacred, and that asking serious questions about meaning is part of an education, not a distraction from it. Students of every faith — and none — are welcomed here, and roughly forty percent identify as Catholic. The Chapel of the Holy Family hosts daily Mass; the Center for Wellness and Spirituality holds the rest of the conversation.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · Campus Ministry · Sunday liturgy · interfaith dialogue</div>
+        </article>
+
+        <article class="pillar pillar--yellow">
+          <span class="pillar__num">02 / Scholarship</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9-4 9 4-9 4-9-4z"/><path d="M3 6v6c0 2 4 4 9 4s9-2 9-4V6"/><path d="M12 10v8"/></svg>
+          </div>
+          <h3>Small classes, <em>real expectations.</em></h3>
+          <p>The undergraduate average class is fifteen; the graduate seminars are smaller. Faculty here are working clinicians, working journalists, working CPAs, working teachers — most of them with terminal degrees, all of them within reach of a student who shows up to office hours. Scholarship at Holy Family means rigor without distance: a professor who will write the recommendation in May because she has been reading your drafts since September.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · 13:1 ratio · Honors Program · capstone research</div>
+        </article>
+
+        <article class="pillar pillar--rose">
+          <span class="pillar__num">03 / Service</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/></svg>
+          </div>
+          <h3>An obligation, <em>not an extracurricular.</em></h3>
+          <p>Service is not a club at Holy Family — it is part of the curriculum. Nursing students rotate through underserved hospitals in the Delaware Valley. Education students teach in Philadelphia public schools long before student-teaching begins. Service trips, food pantries, parish partnerships, and the annual Day of Service are the visible part; the deeper part is the assumption that an education paid for with someone's tuition should produce a graduate who pays it forward.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · clinical rotations · field placements · annual Day of Service</div>
+        </article>
+      </div>
+
+      <p class="source-note" style="margin-top: 32px; text-align: center; max-width: 64ch; margin-left: auto; margin-right: auto;">"Faith, scholarship, and service" is the language used in the University's Mission Statement and on the academic seal. Each pillar is detailed further on the Mission, Spirituality, and Service pages.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ PULLQUOTE ═════════════════════ -->
+  <section class="section" aria-hidden="true" style="padding-top: clamp(2rem, 4vw, 4rem); padding-bottom: clamp(2rem, 4vw, 4rem);">
+    <div class="section__inner">
+      <figure class="hfu-pullquote">
+        <blockquote>The first question is the same in every program: <em>who are you becoming?</em></blockquote>
+        <figcaption class="hfu-pullquote__by">A working note from the Office of the Provost · 2024</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ LEADERSHIP ═════════════════════ -->
+  <section class="section" aria-labelledby="lead-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Leadership</span>
+          <h2 id="lead-h">Who is <em>responsible</em> here.</h2>
+        </div>
+        <p class="lead">A short tour of the people accountable for the University's direction — academic, fiduciary, and pastoral. Names link to fuller biographies on the Leadership page.</p>
+      </div>
+
+      <div role="tablist" class="hfu-tabs" aria-label="Leadership groups">
+        <button role="tab" data-tab="president" class="is-active" aria-selected="true" aria-controls="tab-president">President</button>
+        <button role="tab" data-tab="cabinet" aria-selected="false" aria-controls="tab-cabinet">President's Cabinet</button>
+        <button role="tab" data-tab="board" aria-selected="false" aria-controls="tab-board">Board of Trustees</button>
+        <button role="tab" data-tab="advisory" aria-selected="false" aria-controls="tab-advisory">Advisory Council</button>
+        <button role="tab" data-tab="past" aria-selected="false" aria-controls="tab-past">Past Presidents</button>
+      </div>
+
+      <!-- ── President ─────────────────────────────────────────────── -->
+      <div role="tabpanel" id="tab-president" class="tabpanel is-active" aria-labelledby="tab-president-btn">
+        <article class="pres">
+          <figure class="pres__photo">
+            <span class="pres__photo-label">Photo placeholder · live page</span>
+          </figure>
+          <div>
+            <span class="pres__role">President · since July 2021</span>
+            <h3 class="pres__name">Anne M. Prisco, <em>Ph.D.</em></h3>
+            <p class="pres__cred">6th President of Holy Family University. A career in Catholic higher-education leadership precedes her appointment.</p>
+
+            <p class="pres__bio">Dr. Prisco's tenure has been organized around three commitments: deepening academic distinction in the four schools, sharpening the residential and adult-learner experience, and putting the University on a financial footing that can support the mission for the next seventy years rather than the next seven.</p>
+            <p class="pres__bio">Full biographical detail — degrees, prior appointments, board service, and published work — lives on the President's page and will be wired through to this section in production.</p>
+
+            <div class="pres__quote">
+              <blockquote>"A small Catholic university like ours has one job: to graduate adults who can think well, work well, and live well together. Everything else — the buildings, the systems, the schedules — is in service of that job." <span style="display: block; margin-top: 8px; font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: hsl(var(--fg-subtle));">Illustrative quote · live page will use a published statement.</span></blockquote>
+            </div>
+
+            <dl class="pres__meta">
+              <div>
+                <dt>Office held</dt>
+                <dd>6th President</dd>
+              </div>
+              <div>
+                <dt>In office since</dt>
+                <dd>July 2021</dd>
+              </div>
+              <div>
+                <dt>Office location</dt>
+                <dd>Philadelphia campus</dd>
+              </div>
+            </dl>
+          </div>
+        </article>
+      </div>
+
+      <!-- ── Cabinet ─────────────────────────────────────────────── -->
+      <div role="tabpanel" id="tab-cabinet" class="tabpanel" aria-labelledby="tab-cabinet-btn">
+        <p class="lead" style="margin-bottom: 28px;">The Cabinet meets weekly. Each member is responsible for a major operational area and reports to the President. Composite portraits below — actual cabinet biographies will be wired from the directory once the site is in production.</p>
+        <div class="people-grid">
+          <article class="person person--blue">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Provost &amp; Vice President, Academic Affairs</h4>
+            <div class="person__role">Faculty appointments · curriculum · academic policy</div>
+            <p class="person__bio">Oversees the four schools and the Honors Program. Ph.D. in History; previously a tenured department chair.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Mission &amp; Ministry</h4>
+            <div class="person__role">Catholic identity · campus ministry · CSFN partnership</div>
+            <p class="person__bio">Liaison to the Sisters of the Holy Family of Nazareth and chair of the Mission Committee.</p>
+          </article>
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Enrollment Management</h4>
+            <div class="person__role">Admissions · financial aid · recruitment</div>
+            <p class="person__bio">Responsible for the undergraduate, graduate, and adult-learner enrollment funnels and the financial-aid leveraging strategy.</p>
+          </article>
+          <article class="person person--blue">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Student Affairs</h4>
+            <div class="person__role">Residence life · wellness · student conduct · athletics</div>
+            <p class="person__bio">Oversees the lived experience of every student from orientation through commencement.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Finance &amp; Administration</h4>
+            <div class="person__role">Budget · facilities · human resources · investments</div>
+            <p class="person__bio">CFO with two decades in higher-education finance; chairs the Investment Committee.</p>
+          </article>
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Marketing &amp; Communications</h4>
+            <div class="person__role">Brand · digital experience · public relations</div>
+            <p class="person__bio">Leads the integrated marketing function across both campuses and the digital channels.</p>
+          </article>
+          <article class="person person--blue">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, University Advancement</h4>
+            <div class="person__role">Philanthropy · alumni · corporate partnerships</div>
+            <p class="person__bio">Stewards the relationships that fund scholarships, capital projects, and the annual fund.</p>
+          </article>
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Chief of Staff &amp; Secretary to the Board</h4>
+            <div class="person__role">Office of the President · governance</div>
+            <p class="person__bio">Coordinates the President's office and serves as the corporate secretary for the Board of Trustees.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Vice President, Information Technology</h4>
+            <div class="person__role">Infrastructure · cybersecurity · digital learning</div>
+            <p class="person__bio">CIO responsible for the technical platform behind every academic, administrative, and student-facing system.</p>
+          </article>
+        </div>
+        <p class="source-note" style="margin-top: 28px;">The names and full biographies of the current cabinet members are listed on the President's Cabinet page; structure shown here matches the published roster.</p>
+      </div>
+
+      <!-- ── Board of Trustees ──────────────────────────────────── -->
+      <div role="tabpanel" id="tab-board" class="tabpanel" aria-labelledby="tab-board-btn">
+        <p class="lead" style="margin-bottom: 28px;">The Board of Trustees holds the University's fiduciary, strategic, and legal accountability. It includes Sisters of the Holy Family of Nazareth, alumni, regional civic leaders, and senior practitioners in healthcare, business, education, and law. The roster below shows the structure; the full membership lives on the Board page.</p>
+        <div class="board-list">
+          <div class="board-list__row">
+            <div class="board-list__name"><strong>Chair of the Board</strong></div>
+            <div class="board-list__role">Trustee · <em>Sisters of the Holy Family of Nazareth</em></div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name"><strong>Vice Chair</strong></div>
+            <div class="board-list__role">Trustee · <em>regional civic &amp; healthcare leadership</em></div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name"><strong>Treasurer</strong></div>
+            <div class="board-list__role">Trustee · <em>finance &amp; investments</em></div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name"><strong>Secretary</strong></div>
+            <div class="board-list__role">Trustee · <em>law &amp; governance</em></div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Trustee · <em>ex officio</em></div>
+            <div class="board-list__role">President of the University</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Trustee · CSFN</div>
+            <div class="board-list__role">Provincial leadership, Holy Family Province</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Trustee · alumni representative</div>
+            <div class="board-list__role">Holy Family Alumni Association</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Trustees at large</div>
+            <div class="board-list__role">Healthcare · business · education · civic leadership</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 24px;">
+          <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Executive Committee</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Chair, Vice Chair, Treasurer, Secretary, and the chairs of standing committees. Meets monthly between full board sessions.</p>
+          </div>
+          <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Standing Committees</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Academic Affairs · Finance &amp; Investment · Audit · Mission &amp; Identity · Advancement · Buildings &amp; Grounds · Trusteeship.</p>
+          </div>
+          <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Meeting cadence</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Full Board: four times annually. Executive Committee: monthly. Standing committees: as the work requires.</p>
+          </div>
+        </div>
+
+        <p class="source-note" style="margin-top: 28px;">Structure reflects the current Board bylaws; the live page will list each trustee with their corporate or institutional affiliation, as is published on the Board of Trustees page today.</p>
+      </div>
+
+      <!-- ── Advisory Council ────────────────────────────────── -->
+      <div role="tabpanel" id="tab-advisory" class="tabpanel" aria-labelledby="tab-advisory-btn">
+        <p class="lead" style="margin-bottom: 28px;">The President's Advisory Council brings senior alumni and friends of the University into the strategic conversation. The Council does not govern, but advises on enrollment, philanthropy, regional partnerships, and emerging program areas.</p>
+
+        <div class="people-grid">
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Healthcare leadership</h4>
+            <div class="person__role">Hospital systems · clinical practice · public health</div>
+            <p class="person__bio">Members from the Delaware Valley health-system network, advising on clinical placement and the Nursing &amp; Health Sciences agenda.</p>
+          </article>
+          <article class="person person--blue">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Business &amp; finance</h4>
+            <div class="person__role">Banking · accounting · regional employers</div>
+            <p class="person__bio">Practitioners who advise on the School of Business &amp; Technology, internships, and employer partnerships.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Education &amp; school leadership</h4>
+            <div class="person__role">K–12 superintendents · principals · regional educators</div>
+            <p class="person__bio">Counsel on the School of Education's PreK–12 partnerships and teacher-preparation pipeline.</p>
+          </article>
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Civic &amp; nonprofit</h4>
+            <div class="person__role">Philadelphia and Bucks County leadership</div>
+            <p class="person__bio">Civic leaders who help connect the University to the neighborhoods it serves on both campuses.</p>
+          </article>
+          <article class="person person--blue">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Distinguished alumni</h4>
+            <div class="person__role">Selected from across the schools and the decades</div>
+            <p class="person__bio">Alumni whose careers exemplify the mission and who advise the President directly on alumni engagement.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Catholic mission partners</h4>
+            <div class="person__role">Diocesan, parish, and CSFN partners</div>
+            <p class="person__bio">Members from the Archdiocese of Philadelphia and the CSFN community, supporting mission integration.</p>
+          </article>
+        </div>
+      </div>
+
+      <!-- ── Past Presidents ────────────────────────────────── -->
+      <div role="tabpanel" id="tab-past" class="tabpanel" aria-labelledby="tab-past-btn">
+        <p class="lead" style="margin-bottom: 28px;">Anne Prisco is the sixth president of Holy Family University; her predecessors include Sisters of the Holy Family of Nazareth and lay leaders. The complete published roster lives on the Past Presidents page in the University Archives — names, terms, and academic credentials. The structure below shows how the live page will read.</p>
+
+        <div class="past-pres">
+          <div class="past-pres__row">
+            <div class="past-pres__years">July 2021 — present</div>
+            <div>
+              <div class="past-pres__name">Anne M. Prisco, Ph.D.</div>
+              <span class="past-pres__role">6th President · current · degrees in economics and education, Columbia University</span>
+            </div>
+          </div>
+          <div class="past-pres__row">
+            <div class="past-pres__years">From University Archives</div>
+            <div>
+              <div class="past-pres__name">5th President</div>
+              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+            </div>
+          </div>
+          <div class="past-pres__row">
+            <div class="past-pres__years">From University Archives</div>
+            <div>
+              <div class="past-pres__name">4th President</div>
+              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+            </div>
+          </div>
+          <div class="past-pres__row">
+            <div class="past-pres__years">From University Archives</div>
+            <div>
+              <div class="past-pres__name">3rd President · CSFN</div>
+              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+            </div>
+          </div>
+          <div class="past-pres__row">
+            <div class="past-pres__years">From University Archives</div>
+            <div>
+              <div class="past-pres__name">2nd President · CSFN</div>
+              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+            </div>
+          </div>
+          <div class="past-pres__row">
+            <div class="past-pres__years">1954 — </div>
+            <div>
+              <div class="past-pres__name">Founding President · CSFN</div>
+              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="source-note" style="margin-top: 28px;">Anne Prisco's seat as 6th President is published. The earlier names and exact tenure dates will be drawn directly from the University Archives in production rather than reconstructed here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ RECOGNITION ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="recog-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Recognition</span>
+          <h2 id="recog-h">What others have <em>noticed.</em></h2>
+        </div>
+        <p class="lead">Four representative recognitions, each from a third-party source. The University does not pay for placement; we list the citing organization next to each.</p>
+      </div>
+
+      <div class="recog">
+        <div class="recog__cards">
+          <article class="recog__card">
+            <div class="recog__seal"><strong>#1</strong>Safest</div>
+            <div>
+              <h3 class="recog__title">Safest College in Philadelphia, <em>two years running.</em></h3>
+              <p class="recog__src">Recognition reflects campus-safety operations, residence-hall security, and Clery-Act crime data on both campuses. <strong>Source · Niche.com.</strong></p>
+            </div>
+            <div class="recog__year">2023 · 2024</div>
+          </article>
+
+          <article class="recog__card">
+            <div class="recog__seal recog__seal--blue">Tier 1</div>
+            <div>
+              <h3 class="recog__title"><em>Top Performer</em> on Social Mobility.</h3>
+              <p class="recog__src">Holy Family is ranked a Tier 1 institution for moving students from lower-income backgrounds into higher earning brackets within ten years of graduation. <strong>Source · Third Way.</strong></p>
+            </div>
+            <div class="recog__year">2024</div>
+          </article>
+
+          <article class="recog__card">
+            <div class="recog__seal recog__seal--green">Top<br>10</div>
+            <div>
+              <h3 class="recog__title">Top 10 in the country, <em>best salary outcomes.</em></h3>
+              <p class="recog__src">Recognition for graduate earnings relative to in-state institutional cost. <strong>Source · The Chronicle of Higher Education.</strong></p>
+            </div>
+            <div class="recog__year">2023</div>
+          </article>
+
+          <article class="recog__card">
+            <div class="recog__seal recog__seal--rose">Best<br>College</div>
+            <div>
+              <h3 class="recog__title">Best College, <em>by educational quality &amp; affordability.</em></h3>
+              <p class="recog__src">Holy Family was named a Best College based on educational quality, affordability, and alumni success. <strong>Source · MONEY Magazine.</strong></p>
+            </div>
+            <div class="recog__year">2022</div>
+          </article>
+        </div>
+
+        <aside class="accred">
+          <h3>And independently <em>accredited.</em></h3>
+          <p>Holy Family University is accredited at the institutional level by the Middle States Commission on Higher Education and individually accredited program-by-program in our regulated fields.</p>
+          <ul class="accred__list">
+            <li>
+              <span class="accred__tag">MSCHE</span>
+              <div class="accred__body">
+                <strong>Middle States Commission on Higher Education</strong>
+                <span>Institutional accreditor; covers the whole University.</span>
+              </div>
+            </li>
+            <li>
+              <span class="accred__tag">ACBSP</span>
+              <div class="accred__body">
+                <strong>Accreditation Council for Business Schools and Programs</strong>
+                <span>School of Business &amp; Technology.</span>
+              </div>
+            </li>
+            <li>
+              <span class="accred__tag">CCNE</span>
+              <div class="accred__body">
+                <strong>Commission on Collegiate Nursing Education</strong>
+                <span>Baccalaureate, master's, and doctoral degrees in nursing.</span>
+              </div>
+            </li>
+            <li>
+              <span class="accred__tag">APA</span>
+              <div class="accred__body">
+                <strong>American Psychological Association</strong>
+                <span>Doctor of Psychology in Counseling Psychology.</span>
+              </div>
+            </li>
+            <li>
+              <span class="accred__tag">JRCERT</span>
+              <div class="accred__body">
+                <strong>Joint Review Committee on Education in Radiologic Technology</strong>
+                <span>Associate degree in Radiologic Science.</span>
+              </div>
+            </li>
+            <li>
+              <span class="accred__tag">PDE</span>
+              <div class="accred__body">
+                <strong>Pennsylvania Department of Education</strong>
+                <span>Approved teacher-education programs, K–12.</span>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <p class="source-note" style="margin-top: 32px;">Recognition cards represent the most recent published rankings as of academic year 2024–25. Accreditation list reflects the current standing as posted on the Holy Family Accreditation page; disclosures and review cycles are available there in full.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TWO CAMPUSES ═════════════════════ -->
+  <section class="section" aria-labelledby="campuses-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Where we are</span>
+          <h2 id="campuses-h">Two campuses, <em>one university.</em></h2>
+        </div>
+        <p class="lead">The Philadelphia campus is the historic home — residential, urban, and the centre of undergraduate life. Newtown is the Bucks County extension — more graduate, more adult-learner, easier parking. Faculty, programs, and degrees move freely between them.</p>
+      </div>
+
+      <div class="campuses">
+        <article class="campus">
+          <div class="campus__photo">
+            <span class="campus__pin">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-4-5-8a5 5 0 0 1 10 0c0 4-5 8-5 8z"/><circle cx="8" cy="6" r="2"/></svg>
+              Philadelphia
+            </span>
+            <img src="../assets/hfu-photos/live/campus-0y3a5978.jpg" alt="Holy Family University Philadelphia campus">
+          </div>
+          <div class="campus__body">
+            <h3>Philadelphia campus, <em>since 1954.</em></h3>
+            <p class="campus__lede">A wooded campus on Frankford Avenue in Northeast Philadelphia — the historic home, where most undergraduates live, learn, eat, and play.</p>
+            <dl class="campus__facts">
+              <div>
+                <dt>Founded</dt>
+                <dd>1954</dd>
+              </div>
+              <div>
+                <dt>Residence beds</dt>
+                <dd>320 <em>across the residence halls</em></dd>
+              </div>
+              <div>
+                <dt>To Center City</dt>
+                <dd>A short ride <em>by SEPTA bus</em></dd>
+              </div>
+              <div>
+                <dt>Centerpiece</dt>
+                <dd>Chapel of the Holy Family</dd>
+              </div>
+            </dl>
+            <div class="campus__addr">
+              <strong>Visit us</strong>
+              9801 Frankford Avenue<br>Philadelphia, PA 19114<br>
+              <a href="tel:2156377700">215 637 7700</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="campus">
+          <div class="campus__photo">
+            <span class="campus__pin">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-5-4-5-8a5 5 0 0 1 10 0c0 4-5 8-5 8z"/><circle cx="8" cy="6" r="2"/></svg>
+              Newtown · Bucks County
+            </span>
+            <img src="../assets/hfu-photos/live/newtown-campus.jpg" alt="Holy Family University Newtown campus, Bucks County">
+          </div>
+          <div class="campus__body">
+            <h3>Newtown campus, <em>since 2002.</em></h3>
+            <p class="campus__lede">A suburban campus in the Bucks County township of Newtown — built around the adult-learner and graduate programs, with a quieter footprint and ample parking.</p>
+            <dl class="campus__facts">
+              <div>
+                <dt>Opened</dt>
+                <dd>2002</dd>
+              </div>
+              <div>
+                <dt>Designed for</dt>
+                <dd>Graduate &amp; adult-learner</dd>
+              </div>
+              <div>
+                <dt>Setting</dt>
+                <dd>Bucks County <em>· suburban</em></dd>
+              </div>
+              <div>
+                <dt>Programs offered</dt>
+                <dd>Education · Business · Nursing</dd>
+              </div>
+            </dl>
+            <div class="campus__addr">
+              <strong>Visit us</strong>
+              One Campus Drive<br>Newtown, PA 18940<br>
+              <a href="tel:2156377700,4000">215 637 7700, x 4000</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ COMMUNITY BY THE NUMBERS ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="community-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Who is here</span>
+          <h2 id="community-h">A community drawn <em>from the neighborhood.</em></h2>
+        </div>
+        <p class="lead">Holy Family is, by design, a regional university — a place where the kid from Mayfair and the kid from Bensalem and the kid from Trenton can find each other in the same residence hall.</p>
+      </div>
+
+      <div class="community-grid">
+        <div class="community">
+          <div class="community__bar" style="--w: 73%"></div>
+          <div class="community__num">73<span class="small">%</span></div>
+          <div class="community__label">Within a 50-mile radius</div>
+          <p class="community__caption">Most undergraduates come from a zip code within fifty miles of the University.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 52%"></div>
+          <div class="community__num">52<span class="small">%</span></div>
+          <div class="community__label">From the city of Philadelphia</div>
+          <p class="community__caption">A majority of undergraduates were raised in the city we serve.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 39%"></div>
+          <div class="community__num">39<span class="small">%</span></div>
+          <div class="community__label">From underrepresented populations</div>
+          <p class="community__caption">A community that looks like the neighborhood the University was founded to serve.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 11%"></div>
+          <div class="community__num">11<span class="small">%</span></div>
+          <div class="community__label">From New Jersey</div>
+          <p class="community__caption">Cross-river commuters and Newtown campus students.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 80%"></div>
+          <div class="community__num">8 in 10</div>
+          <div class="community__label">Receive institutional aid</div>
+          <p class="community__caption">Of full-time undergraduates — at least ten percent off published tuition, often substantially more.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 75%"></div>
+          <div class="community__num">3:1</div>
+          <div class="community__label">Female-to-male undergrads</div>
+          <p class="community__caption">A reflection of the strong nursing, education, and counseling pipelines.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 40%"></div>
+          <div class="community__num">40<span class="small">%</span></div>
+          <div class="community__label">Identify as Catholic</div>
+          <p class="community__caption">A Catholic university, open to students of every faith and none.</p>
+        </div>
+
+        <div class="community">
+          <div class="community__bar" style="--w: 92%"></div>
+          <div class="community__num">92<span class="small">%</span></div>
+          <div class="community__label">Working or in graduate school</div>
+          <p class="community__caption">Recent graduates, within one year of commencement.</p>
+        </div>
+      </div>
+
+      <p class="source-note" style="margin-top: 28px;">Composition figures are drawn from the most recent HFU Fast Facts publication and the Office of Institutional Effectiveness Fall census. Alumni outcome figure from the Career Development Services first-destination survey, Class of 2023.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ VOICES ═════════════════════ -->
+  <section class="section" aria-labelledby="voices-h">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">In their words</span>
+          <h2 id="voices-h">Three voices from <em>the family.</em></h2>
+        </div>
+        <p class="lead">A faculty member, an alumna, and a Sister of the Holy Family of Nazareth — three perspectives on what this place is. Quotes are illustrative composites for this design draft; the live site will run real attributed interviews.</p>
+      </div>
+
+      <div class="c-voice-grid">
+        <article class="hfu-card c-voice c-voice--blue">
+          <div class="c-voice__mark">"</div>
+          <blockquote>I have taught at three larger universities and one smaller. Holy Family is the only one where my undergraduates know their dean's first name — and where the dean knows theirs.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar"></div>
+            <div class="c-voice__attr">
+              <strong>Faculty member, School of Arts &amp; Sciences</strong>
+              <span>Twelve years at HFU · illustrative composite</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hfu-card c-voice c-voice--yellow">
+          <div class="c-voice__mark">"</div>
+          <blockquote>I came to Holy Family because it was the only nursing school where my mom's tuition payment didn't feel reckless. I stayed because the faculty wrote my recommendation letters in the same handwriting they used on my exams.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar"></div>
+            <div class="c-voice__attr">
+              <strong>Alumna, BSN '19</strong>
+              <span>Now a nurse practitioner in the Delaware Valley · illustrative composite</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hfu-card c-voice c-voice--rose">
+          <div class="c-voice__mark">"</div>
+          <blockquote>The Sisters founded this college so that the daughters of the neighborhood could become teachers, nurses, and citizens. Seventy-one years later, we are still doing the same work — only the names of the students have changed.</blockquote>
+          <div class="c-voice__by">
+            <div class="c-voice__avatar"></div>
+            <div class="c-voice__attr">
+              <strong>Sister of the Holy Family of Nazareth</strong>
+              <span>Mission &amp; Ministry · illustrative composite</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ VISIT INVITE (CTA) ═════════════════════ -->
+  <section class="visit-invite" aria-labelledby="visit-h">
+    <div class="visit-invite__media">
+      <img src="../assets/hfu-photos/live/students-campus.jpg" alt="">
+    </div>
+    <div class="visit-invite__inner">
+      <div>
+        <span class="visit-invite__eyebrow">Come and see</span>
+        <h2 id="visit-h">The honest test of a small university is <em>walking it.</em></h2>
+        <p class="visit-invite__lede">An hour on campus tells you more than any brochure. Pick a day, bring a parent or a friend, and we will walk you through the buildings, the chapel, the residence halls, and the nearest coffee.</p>
+        <div class="visit-invite__ctas">
+          <a href="hfu-visit.html" class="btn btn--primary btn--lg">
+            Plan a campus visit
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="hfu-admissions.html" class="btn btn--secondary btn--lg">
+            Talk to a counselor
+          </a>
+        </div>
+      </div>
+
+      <dl class="visit-invite__meta">
+        <div class="visit-invite__meta-item">
+          <dt>Office of the President</dt>
+          <dd><strong>Anne M. Prisco, Ph.D.</strong><br><a href="mailto:president@holyfamily.edu">president@holyfamily.edu</a></dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Mission &amp; Ministry</dt>
+          <dd>Center for Wellness and Spirituality<br><a href="mailto:ministry@holyfamily.edu">ministry@holyfamily.edu</a></dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Admissions &amp; Aid</dt>
+          <dd><strong>215 637 7700</strong><br><a href="mailto:admissions@holyfamily.edu">admissions@holyfamily.edu</a></dd>
+        </div>
+        <div class="visit-invite__meta-item">
+          <dt>Visit either campus</dt>
+          <dd>Open weekdays · most Saturdays<br><a href="hfu-visit.html">Schedule a visit</a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═════════════════════ FOOTER ═════════════════════ -->
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__brand">
+      <img class="nav__logo" src="../assets/hfu-logo.svg" alt="Holy Family University" decoding="async" style="height: 56px;">
+      <h3>Holy Family University</h3>
+      <p>A Catholic university in the tradition of the Sisters of the Holy Family of Nazareth, rooted in faith, scholarship, and service since 1954.</p>
+      <form class="foot__news" onsubmit="return false;">
+        <input type="email" placeholder="Get news from Holy Family">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="foot__col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="hfu-about.html">Mission</a></li>
+        <li><a href="hfu-about.html#lead-h">Leadership</a></li>
+        <li><a href="hfu-about.html#story-h">Our story</a></li>
+        <li><a href="hfu-about.html#recog-h">Accreditation</a></li>
+        <li><a href="#">Fast Facts</a></li>
+        <li><a href="#">News &amp; Media</a></li>
+      </ul>
+    </div>
+    <div class="foot__col">
+      <h4>Academics &amp; Admissions</h4>
+      <ul>
+        <li><a href="hfu-programs.html">Schools &amp; Programs</a></li>
+        <li><a href="hfu-admissions.html">Apply Now</a></li>
+        <li><a href="#">Financial Aid</a></li>
+        <li><a href="#">Graduate &amp; Adult</a></li>
+        <li><a href="#">Online Learning</a></li>
+        <li><a href="#">Course Catalogs</a></li>
+      </ul>
+    </div>
+    <div class="foot__col">
+      <h4>Visit &amp; Contact</h4>
+      <ul>
+        <li><a href="hfu-visit.html">Plan a visit</a></li>
+        <li><a href="#">Virtual Tour</a></li>
+        <li><a href="#">Directory</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+      <div class="foot__addr">
+        <strong>Philadelphia Campus</strong>
+        9801 Frankford Avenue<br>Philadelphia, PA 19114
+      </div>
+      <div class="foot__addr" style="margin-top: 14px;">
+        <strong>Newtown Campus</strong>
+        One Campus Drive<br>Newtown, PA 18940
+      </div>
+    </div>
+  </div>
+  <div class="foot__bottom">
+    <div>&copy; Holy Family University &middot; Rooted in Faith, Scholarship &amp; Service since 1954</div>
+    <div class="links">
+      <a href="#">Privacy</a>
+      <a href="#">Accessibility</a>
+      <a href="#">Title IX</a>
+      <a href="#">Consumer Info</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tabs — click + arrow keys for the leadership panel
+  (function () {
+    var tabs = document.querySelectorAll('.hfu-tabs [role="tab"]');
+    var panels = document.querySelectorAll('.tabpanel');
+    if (!tabs.length) return;
+
+    function activate(tabButton) {
+      var name = tabButton.getAttribute('data-tab');
+      if (!name) return;
+      tabs.forEach(function (t) {
+        var isMatch = t === tabButton;
+        t.classList.toggle('is-active', isMatch);
+        t.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+      panels.forEach(function (p) {
+        p.classList.toggle('is-active', p.id === 'tab-' + name);
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { activate(tab); });
+      tab.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        var list = Array.prototype.slice.call(tabs);
+        var i = list.indexOf(tab);
+        var next = e.key === 'ArrowRight'
+          ? list[(i + 1) % list.length]
+          : list[(i - 1 + list.length) % list.length];
+        next.focus();
+        activate(next);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -15,8 +15,8 @@
  */
 (function () {
   'use strict';
-  if (window.__agencyOsChatMounted) return;
-  window.__agencyOsChatMounted = true;
+  if (window.__sccHfuChatMounted) return;
+  window.__sccHfuChatMounted = true;
 
   // ── tokens ────────────────────────────────────────────────
   const HFU_NAVY = '#0B2D5B';
@@ -42,9 +42,9 @@
 
   const SUGGESTED = [
     'What are the three pillars of the proposal?',
-    'Walk me through the 10-month timeline.',
-    'How is the budget structured?',
-    'Who is the 9:47 PM student?',
+    'Walk me through the June to September 2026 timeline.',
+    'How is the $145,000 base scope structured?',
+    'Who are the four student personas?',
   ];
 
   // ── styles ────────────────────────────────────────────────

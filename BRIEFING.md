@@ -90,7 +90,7 @@ Rick Mitchell (Director of Digital Experience, Cornell UX cert, writes code hims
 
 ## Research Sources
 
-Read whichever are relevant to your task. All paths relative to `/Users/ericyerke/Documents/Agency OS ERIC/Research/Holy Family/` unless noted.
+Read whichever are relevant to your task. All paths relative to the Holy Family project folder unless noted.
 
 **The RFP and top-priority research:**
 

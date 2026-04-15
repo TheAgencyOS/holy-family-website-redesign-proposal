@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>10-Month Runway — Holy Family Client Portal</title>
+  <title>Three-Month Runway — Holy Family Client Portal</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,22 +20,23 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.08);
-      --teal-glow:   rgba(27, 122, 134, 0.18);
+      /* Warm editorial light — cream page, ink text, restrained teal accents. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.06);
+      --teal-glow:   rgba(0, 83, 87, 0.12);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
-      --risk-red:    #FF7A7A;
-      --risk-red-soft: rgba(255, 122, 122, 0.18);
+      --ink:         #FAF8F3;
+      --ink-card:    #FFFFFF;
+      --ink-card-2:  #F1EDE4;
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
+      --risk-red:    #B42318;
+      --risk-red-soft: rgba(180, 35, 24, 0.12);
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -287,7 +288,7 @@
       font-family: var(--display);
       font-size: 9pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
       text-transform: none;
       margin-bottom: 2px;
@@ -323,7 +324,7 @@
       font-family: var(--display);
       font-size: 10pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
       text-transform: none;
       margin-top: 3px;
@@ -373,7 +374,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 50%);
+      background: linear-gradient(180deg, rgba(6, 33, 63, 0.14) 0%, transparent 50%);
       border-radius: 2px;
       pointer-events: none;
     }
@@ -382,7 +383,7 @@
       box-shadow: 0 0 0 1px rgba(27,122,134,0.6), 0 0 32px -4px rgba(27,122,134,0.65);
     }
     .gantt__bar.is-active {
-      box-shadow: 0 0 0 1px var(--teal), 0 0 36px -2px rgba(27,122,134,0.8), inset 0 0 0 1px rgba(255,255,255,0.18);
+      box-shadow: 0 0 0 1px var(--teal), 0 0 36px -2px rgba(27,122,134,0.8), inset 0 0 0 1px rgba(6, 33, 63, 0.18);
     }
     .gantt__bar__label {
       position: relative;
@@ -395,7 +396,7 @@
       font-size: 6pt;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.95);
       font-weight: 500;
       white-space: nowrap;
       overflow: hidden;
@@ -409,7 +410,7 @@
       font-family: var(--display);
       font-size: 9pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.005em;
       text-transform: none;
     }
@@ -460,7 +461,7 @@
       position: relative;
       margin-top: 36px;
       padding: 36px 36px 40px;
-      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 60%);
       border: 1px solid rgba(27,122,134,0.25);
       border-radius: 8px;
       opacity: 0;
@@ -495,7 +496,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 24pt;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1.05;
       letter-spacing: -0.02em;
     }
@@ -523,7 +524,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 16pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.012em;
       text-transform: none;
       margin-top: 4px;
@@ -565,7 +566,7 @@
       border-radius: 50%;
       background: var(--teal);
     }
-    .gantt__detail-grid li b { color: white; font-weight: 500; display: inline; }
+    .gantt__detail-grid li b { color: var(--hfu-navy); font-weight: 500; display: inline; }
     .gantt__detail-risks {
       grid-column: 1 / -1;
       margin-top: 30px;
@@ -604,7 +605,7 @@
       border-radius: 50%;
       background: var(--risk-red);
     }
-    .gantt__detail-risks li b { color: white; font-weight: 500; display: inline; }
+    .gantt__detail-risks li b { color: var(--hfu-navy); font-weight: 500; display: inline; }
 
     /* Placeholder when nothing clicked */
     .gantt__detail-empty {
@@ -729,7 +730,7 @@
       font-size: 5pt;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.18);
+      color: rgba(6, 33, 63, 0.18);
       pointer-events: none;
     }
     .risks__dot {
@@ -766,7 +767,7 @@
       font-family: var(--mono);
       font-size: 7pt;
       font-weight: 500;
-      color: white;
+      color: var(--hfu-navy);
       pointer-events: none;
       letter-spacing: 0;
     }
@@ -826,7 +827,7 @@
 
     /* Risk detail card */
     .risks__detail {
-      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 60%);
       border: 1px solid rgba(27,122,134,0.25);
       border-radius: 8px;
       padding: 32px 32px 36px;
@@ -871,7 +872,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 18pt;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1.15;
       letter-spacing: -0.018em;
       margin-bottom: 18px;
@@ -914,7 +915,7 @@
       font-family: var(--display);
       font-size: 12pt;
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
       text-transform: none;
       margin-top: 4px;
@@ -944,7 +945,7 @@
       border-top: 1px solid var(--line);
     }
     .risks__detail__owner b {
-      color: white;
+      color: var(--hfu-navy);
       font-weight: 500;
       font-family: var(--display);
       font-size: 9pt;
@@ -974,7 +975,7 @@
     .gates__track {
       position: relative;
       height: 2px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(6, 33, 63, 0.08);
       margin: 48px 0 16px;
     }
     .gates__fill {
@@ -1029,7 +1030,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 11pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
       line-height: 1.2;
       margin-bottom: 10px;
@@ -1052,7 +1053,7 @@
     }
     .gates__mark__owner b {
       display: block;
-      color: white;
+      color: var(--hfu-navy);
       font-family: var(--display);
       font-size: 8.5pt;
       letter-spacing: -0.005em;
@@ -1088,7 +1089,7 @@
       color: var(--text-ghost);
       margin-bottom: 20px;
     }
-    .deps__label b { color: white; font-weight: 500; }
+    .deps__label b { color: var(--hfu-navy); font-weight: 500; }
     .deps__svg {
       width: 100%;
       height: auto;
@@ -1106,7 +1107,7 @@
       color: var(--text-dim);
       line-height: 1.6;
     }
-    .deps__note b { color: white; font-weight: 500; }
+    .deps__note b { color: var(--hfu-navy); font-weight: 500; }
     .deps__note em {
       font-family: var(--serif);
       font-style: italic;
@@ -1148,7 +1149,7 @@
       color: var(--text-ghost);
       margin-bottom: 30px;
     }
-    .budget__label b { color: white; font-weight: 500; }
+    .budget__label b { color: var(--hfu-navy); font-weight: 500; }
     .budget__bar {
       position: relative;
       display: flex;
@@ -1163,7 +1164,7 @@
       background: linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%);
       cursor: pointer;
       transition: filter 180ms ease, transform 200ms ease;
-      border-right: 1px solid rgba(255,255,255,0.55);
+      border-right: 1px solid rgba(6, 33, 63, 0.55);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1174,7 +1175,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 50%);
+      background: linear-gradient(180deg, rgba(6, 33, 63, 0.14) 0%, transparent 50%);
       pointer-events: none;
     }
     .budget__bar__seg:nth-child(1) { filter: brightness(1.0); }
@@ -1190,7 +1191,7 @@
       font-size: 6pt;
       font-weight: 500;
       letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.95);
+      color: rgba(6, 33, 63, 0.95);
       text-transform: uppercase;
       pointer-events: none;
     }
@@ -1244,7 +1245,7 @@
       padding-left: 10px;
       font-family: var(--display);
       font-weight: 500;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.005em;
     }
     .budget__table tbody td:first-child small {
@@ -1262,7 +1263,7 @@
     .budget__table tbody td:last-child {
       font-family: var(--display);
       font-weight: 600;
-      color: white;
+      color: var(--hfu-navy);
       font-size: 11pt;
       letter-spacing: -0.005em;
       padding-right: 10px;
@@ -1283,7 +1284,7 @@
       color: var(--teal);
       font-weight: 700;
     }
-    .budget__table tbody tr.is-total td:first-child { color: white; font-size: 12pt; }
+    .budget__table tbody tr.is-total td:first-child { color: var(--hfu-navy); font-size: 12pt; }
 
     /* ══════════════════════════════════════════════════════════════
        PAYMENT MILESTONES
@@ -1320,7 +1321,7 @@
       font-size: 42pt;
       line-height: 0.9;
       letter-spacing: -0.03em;
-      color: white;
+      color: var(--hfu-navy);
       margin-bottom: 10px;
     }
     .pay__card__pct em {
@@ -1348,7 +1349,7 @@
       font-family: var(--display);
       font-weight: 500;
       font-size: 11pt;
-      color: white;
+      color: var(--hfu-navy);
       line-height: 1.3;
       letter-spacing: -0.005em;
       margin-bottom: 18px;
@@ -1359,7 +1360,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 18pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.015em;
       line-height: 1;
       padding-top: 16px;
@@ -1397,7 +1398,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 24pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.02em;
       line-height: 1.08;
       max-width: 22ch;
@@ -1427,7 +1428,7 @@
       gap: 14px;
     }
     .cadence__day {
-      background: rgba(255,255,255,0.02);
+      background: rgba(6, 33, 63, 0.02);
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 22px 20px 24px;
@@ -1453,7 +1454,7 @@
       font-family: var(--display);
       font-weight: 400;
       font-size: 13pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.01em;
       margin-bottom: 16px;
       padding-bottom: 14px;
@@ -1471,7 +1472,7 @@
       font-family: var(--display);
       font-weight: 500;
       font-size: 10pt;
-      color: white;
+      color: var(--hfu-navy);
       letter-spacing: -0.005em;
       line-height: 1.3;
       margin-bottom: 10px;
@@ -1513,7 +1514,7 @@
       color: var(--text-dim);
       max-width: 72ch;
     }
-    .assumptions__body strong { color: white; font-weight: 500; }
+    .assumptions__body strong { color: var(--hfu-navy); font-weight: 500; }
     .assumptions__body em {
       font-family: var(--serif);
       font-style: italic;
@@ -1601,7 +1602,7 @@
         -webkit-overflow-scrolling: touch;
       }
       .gantt__scroll::-webkit-scrollbar { height: 4px; }
-      .gantt__scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.16); border-radius: 2px; }
+      .gantt__scroll::-webkit-scrollbar-thumb { background: rgba(6, 33, 63, 0.16); border-radius: 2px; }
       .gantt__grid {
         min-width: 720px;
         grid-template-columns: 120px repeat(10, minmax(56px, 1fr));
@@ -1690,6 +1691,8 @@
       .pay__card__amount { font-size: 18pt; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
@@ -1700,15 +1703,15 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1717,24 +1720,15 @@
       <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab is-current"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab is-current"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
@@ -1742,10 +1736,10 @@
 
   <main>
     <header class="site-topbar">
-      <span class="site-topbar__title">Deep Dive 06 · 10-month runway</span>
+      <span class="site-topbar__title">Deep Dive 06 · Project runway</span>
       <span class="site-topbar__spacer"></span>
       <a href="index.html" class="site-topbar__btn">← Proposal</a>
-      <a href="mailto:rmitchell2@holyfamily.edu?subject=10-month runway · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
+      <a href="mailto:rmitchell2@holyfamily.edu?subject=Project runway · Holy Family" class="site-topbar__btn site-topbar__btn--primary">Email Rick</a>
     </header>
 
     <div class="wrap">
@@ -1754,30 +1748,30 @@
            HERO
            ════════════════════════════════════════════════════════════ -->
       <section class="hero">
-        <div class="eyebrow" data-counter="· 06 of 07">10-month runway · Jun 2026 → Apr 2027</div>
-        <h1 class="hero__title">The plan, with every <em>dependency named.</em></h1>
-        <p class="hero__lede">Ten months. Five phases. Six decision gates where Rick holds the pen. Nine risks we've named in advance, with mitigations attached. A Gantt you can interrogate cell-by-cell, and a budget that itemizes every dollar instead of lumping it under <em>"strategy and execution."</em> If another bidder shows you a prettier timeline, ask them where the risks are.</p>
+        <div class="eyebrow" data-counter="· 06 of 07">Project runway · Jun 2026 → Nov 2026</div>
+        <h1 class="hero__title">Live for the Fall 2026 recruitment cycle, with every <em>dependency named.</em></h1>
+        <p class="hero__lede">Three months of build from early June 2026, launch on September 1, and ninety days of post-launch support through November 2026. The September 1 go-live is proposed because it puts the redesigned site in front of prospective adult and graduate applicants for the Fall 2026 recruitment cycle rather than missing it entirely &mdash; the RFP's implied March&ndash;April 2027 window would cost Holy Family a full recruiting cycle. Five phases, five decision gates where Rick holds the pen, and nine named risks with mitigations attached. If another bidder shows you a longer timeline, ask them which applicant class they&rsquo;re willing to skip.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">
-            <span class="hero__stat__label">Kickoff → launch</span>
-            <div class="hero__stat__value">10<em>mo</em></div>
-            <div class="hero__stat__foot">Jun 1 2026 → Mar 1 2027 · April buffer</div>
+            <span class="hero__stat__label">Build → launch</span>
+            <div class="hero__stat__value">3<em>mo</em></div>
+            <div class="hero__stat__foot">Jun 1 2026 → Sep 1 2026 · Fall recruitment cycle</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Post-launch support</span>
+            <div class="hero__stat__value">90<em>d</em></div>
+            <div class="hero__stat__foot">Sep 1 → Nov 30 2026 · included in base scope</div>
           </div>
           <div class="hero__stat">
             <span class="hero__stat__label">Phases · gates</span>
-            <div class="hero__stat__value">5 · 6</div>
-            <div class="hero__stat__foot">Five work phases, six sign-off gates</div>
+            <div class="hero__stat__value">5 · 5</div>
+            <div class="hero__stat__foot">Five work phases, five sign-off gates</div>
           </div>
           <div class="hero__stat">
-            <span class="hero__stat__label">Named risks</span>
-            <div class="hero__stat__value">9<em>·</em></div>
-            <div class="hero__stat__foot">Each mitigated in advance, with an owner</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Payment milestones</span>
-            <div class="hero__stat__value">4<em>×25%</em></div>
-            <div class="hero__stat__foot">Contract · G1 · G2 · launch</div>
+            <span class="hero__stat__label">Base scope · all-in</span>
+            <div class="hero__stat__value">$145<em>K</em></div>
+            <div class="hero__stat__foot">Slate integration included; add-ons priced separately</div>
           </div>
         </div>
       </section>
@@ -1787,15 +1781,15 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">The runway · ten months, five phases</div>
+          <div class="section__kicker">The runway · three months, five phases</div>
           <h2 class="section__title">A plan you can <em>interrogate</em> cell by cell.</h2>
-          <p class="section__lede">Click any phase bar to see deliverables, who's involved, and the risks specific to that window. Decision gates (G1–G6) are the six moments where Rick holds the pen and the clock stops until he signs.</p>
+          <p class="section__lede">Click any phase bar to see deliverables, who's involved, and the risks specific to that window. Decision gates (G1&ndash;G5) are the five moments where Rick holds the pen and the clock stops until he signs. The timeline lands on September 1 so the redesigned site is in front of prospective students for the Fall 2026 recruitment cycle &mdash; the single clearest enrollment argument in this plan.</p>
         </div>
 
         <div class="gantt">
           <div class="gantt__label">
-            <span>Master schedule · <b>Jun 2026 → Apr 2027</b></span>
-            <span><b>5 phases · 6 gates</b> · click any bar to expand</span>
+            <span>Master schedule · <b>Jun 2026 &rarr; Nov 2026</b></span>
+            <span><b>5 phases · 5 gates · launch Sep 1</b> · click any bar to expand</span>
           </div>
 
           <div class="gantt__scroll">
@@ -1807,54 +1801,49 @@
             <div class="gantt__month"><b>Sep</b>2026</div>
             <div class="gantt__month"><b>Oct</b>2026</div>
             <div class="gantt__month"><b>Nov</b>2026</div>
-            <div class="gantt__month"><b>Dec</b>2026</div>
-            <div class="gantt__month"><b>Jan</b>2027</div>
-            <div class="gantt__month"><b>Feb</b>2027</div>
-            <div class="gantt__month"><b>Mar</b>2027</div>
 
             <div class="gantt__row-label">Phase 01<b>Discovery &amp; Strategy</b></div>
             <div class="gantt__row-track">
-              <div class="gantt__bar" data-phase="1" style="left: 0%; width: 14%;">
-                <span class="gantt__bar__label"><b>P1 · Discovery</b><span>Jun 1 → Jul 10</span></span>
+              <div class="gantt__bar" data-phase="1" style="left: 0%; width: 16.7%;">
+                <span class="gantt__bar__label"><b>P1 · Discovery</b><span>Jun 1 &rarr; Jun 22</span></span>
               </div>
             </div>
 
-            <div class="gantt__row-label">Phase 02<b>Design</b></div>
+            <div class="gantt__row-label">Phase 02<b>Design system</b></div>
             <div class="gantt__row-track">
-              <div class="gantt__bar" data-phase="2" style="left: 14.5%; width: 19.5%;">
-                <span class="gantt__bar__label"><b>P2 · Design</b><span>Jul 13 → Sep 4</span></span>
+              <div class="gantt__bar" data-phase="2" style="left: 15.5%; width: 18.5%;">
+                <span class="gantt__bar__label"><b>P2 · Design</b><span>Jun 15 &rarr; Jul 17</span></span>
               </div>
             </div>
 
-            <div class="gantt__row-label">Phase 03<b>Development</b></div>
+            <div class="gantt__row-label">Phase 03<b>Development &amp; CMS build</b></div>
             <div class="gantt__row-track">
-              <div class="gantt__bar" data-phase="3" style="left: 24%; width: 29%;">
-                <span class="gantt__bar__label"><b>P3 · Development</b><span>Sep 7 → Nov 25</span></span>
+              <div class="gantt__bar" data-phase="3" style="left: 25%; width: 28%;">
+                <span class="gantt__bar__label"><b>P3 · Development</b><span>Jun 29 &rarr; Aug 14</span></span>
               </div>
             </div>
 
-            <div class="gantt__row-label">Phase 04<b>Migration &amp; QA</b></div>
+            <div class="gantt__row-label">Phase 04<b>Migration &amp; testing</b></div>
             <div class="gantt__row-track">
-              <div class="gantt__bar" data-phase="4" style="left: 53.5%; width: 19%;">
-                <span class="gantt__bar__label"><b>P4 · Migration</b><span>Nov 30 → Jan 22</span></span>
+              <div class="gantt__bar" data-phase="4" style="left: 41%; width: 21%;">
+                <span class="gantt__bar__label"><b>P4 · Migration</b><span>Jul 27 &rarr; Aug 28</span></span>
               </div>
             </div>
 
-            <div class="gantt__row-label">Phase 05<b>Training &amp; Launch</b></div>
+            <div class="gantt__row-label">Phase 05<b>Training, launch &amp; 90-day support</b></div>
             <div class="gantt__row-track">
-              <div class="gantt__bar" data-phase="5" style="left: 72.5%; width: 24.5%;">
-                <span class="gantt__bar__label"><b>P5 · Launch</b><span>Jan 25 → Apr 2</span></span>
+              <div class="gantt__bar" data-phase="5" style="left: 55%; width: 45%;">
+                <span class="gantt__bar__label"><b>P5 · Launch + support</b><span>Aug 18 &rarr; Nov 30</span></span>
               </div>
             </div>
 
             <!-- Decision gate pins laid across the track area -->
             <div class="gantt__gates">
-              <div class="gantt__gate" style="left: 14.2%;" data-label="G1"></div>
+              <div class="gantt__gate" style="left: 15.5%;" data-label="G1"></div>
               <div class="gantt__gate" style="left: 33.5%;" data-label="G2"></div>
-              <div class="gantt__gate" style="left: 59.5%;" data-label="G3"></div>
-              <div class="gantt__gate" style="left: 72.3%;" data-label="G4"></div>
-              <div class="gantt__gate" style="left: 90%;" data-label="G5"></div>
-              <div class="gantt__gate" style="left: 99%;" data-label="G6"></div>
+              <div class="gantt__gate" style="left: 52%;" data-label="G3"></div>
+              <div class="gantt__gate" style="left: 65%;" data-label="G4"></div>
+              <div class="gantt__gate" style="left: 74%;" data-label="G5"></div>
             </div>
           </div>
           </div><!-- /.gantt__scroll -->
@@ -2003,7 +1992,7 @@
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#1B7A86"></path>
               </marker>
               <marker id="arrowGhost" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(255,255,255,0.28)"></path>
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(6, 33, 63, 0.28)"></path>
               </marker>
               <linearGradient id="nodeGrad" x1="0" x2="1" y1="0" y2="1">
                 <stop offset="0%" stop-color="#0C1418"></stop>
@@ -2016,15 +2005,15 @@
               <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
               <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 01</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Discovery</text>
-              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">6 weeks</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(6, 33, 63, 0.62)">6 weeks</text>
             </g>
 
             <!-- Phase 2 node -->
             <g transform="translate(285, 55)">
-              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="rgba(255,255,255,0.22)" stroke-width="1"></rect>
-              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="1.2">PHASE 02</text>
+              <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="rgba(6, 33, 63, 0.22)" stroke-width="1"></rect>
+              <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(6, 33, 63, 0.5)" letter-spacing="1.2">PHASE 02</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Design</text>
-              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">8 weeks</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(6, 33, 63, 0.62)">8 weeks</text>
             </g>
 
             <!-- Phase 3 node -->
@@ -2032,7 +2021,7 @@
               <rect width="160" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
               <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 03</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Development</text>
-              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">12 weeks</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(6, 33, 63, 0.62)">12 weeks</text>
             </g>
 
             <!-- Phase 4 node -->
@@ -2040,7 +2029,7 @@
               <rect width="180" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
               <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 04</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Migration &amp; QA</text>
-              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">8 weeks</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(6, 33, 63, 0.62)">8 weeks</text>
             </g>
 
             <!-- Phase 5 node -->
@@ -2048,20 +2037,20 @@
               <rect width="170" height="70" rx="5" fill="url(#nodeGrad)" stroke="#1B7A86" stroke-width="1.25"></rect>
               <text x="14" y="26" font-family="JetBrains Mono, monospace" font-size="9" fill="#1B7A86" letter-spacing="1.2">PHASE 05</text>
               <text x="14" y="46" font-family="Roobert, Instrument Sans, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="-0.3">Launch</text>
-              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(255,255,255,0.62)">10 weeks</text>
+              <text x="14" y="60" font-family="Roobert, Instrument Sans, sans-serif" font-size="10" fill="rgba(6, 33, 63, 0.62)">10 weeks</text>
             </g>
 
             <!-- P1 → P2 (upper split, ghost — parallel start with P3) -->
-            <path d="M 200 140 C 235 140 240 90 285 90" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
-            <text x="218" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">content model</text>
+            <path d="M 200 140 C 235 140 240 90 285 90" fill="none" stroke="rgba(6, 33, 63, 0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
+            <text x="218" y="100" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(6, 33, 63, 0.52)" letter-spacing="0.6">content model</text>
 
             <!-- P1 → P3 (lower split, critical path) -->
             <path d="M 200 185 C 235 185 240 230 285 230" fill="none" stroke="#1B7A86" stroke-width="1.6" marker-end="url(#arrow)"></path>
             <text x="210" y="222" font-family="JetBrains Mono, monospace" font-size="8" fill="#1B7A86" letter-spacing="0.6">page inventory</text>
 
             <!-- P2 → P4 (upper merge, ghost — design handoff) -->
-            <path d="M 445 90 C 510 90 520 140 570 140" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
-            <text x="468" y="110" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.52)" letter-spacing="0.6">component library</text>
+            <path d="M 445 90 C 510 90 520 140 570 140" fill="none" stroke="rgba(6, 33, 63, 0.28)" stroke-width="1.25" marker-end="url(#arrowGhost)"></path>
+            <text x="468" y="110" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(6, 33, 63, 0.52)" letter-spacing="0.6">component library</text>
 
             <!-- P3 → P4 (lower merge, critical path) -->
             <path d="M 445 230 C 510 230 520 180 570 180" fill="none" stroke="#1B7A86" stroke-width="1.6" marker-end="url(#arrow)"></path>
@@ -2089,36 +2078,36 @@
         <div class="section__head">
           <div class="section__kicker">Budget · itemized</div>
           <h2 class="section__title">Every dollar <em>accounted for.</em></h2>
-          <p class="section__lede">No "strategy and execution" bucket. Hours by phase, rate by discipline, contingency disclosed, infrastructure spelled out. Hover the bar segments to highlight the corresponding row in the table.</p>
+          <p class="section__lede">No &ldquo;strategy and execution&rdquo; bucket. Cost by phase, Slate integration already included in the base, optional add-ons priced separately per Section E of the RFP, infrastructure spelled out. The base scope is priced to keep budget headroom for recruitment spend &mdash; every dollar not tied up in the next redesign is a dollar HFU can put into enrolling more students. Hover the bar segments to highlight the corresponding row in the table.</p>
         </div>
 
         <div class="budget">
           <div class="budget__label">
-            <span>Base engagement · <b>$275,000 fixed fee</b></span>
-            <span><b>1,520 hours</b> · 5 phases · 10% contingency</span>
+            <span>Base engagement · <b>$145,000 all-in</b></span>
+            <span><b>3-month build</b> · 5 phases · Slate integration included</span>
           </div>
 
           <!-- Horizontal stacked bar -->
           <div class="budget__bar" id="budgetBar">
-            <div class="budget__bar__seg" data-row="p1" style="flex: 27000;">
-              <span class="budget__bar__seg__label">P1 · 12%</span>
+            <div class="budget__bar__seg" data-row="p1" style="flex: 28000;">
+              <span class="budget__bar__seg__label">P1 · 19%</span>
             </div>
-            <div class="budget__bar__seg" data-row="p2" style="flex: 42000;">
-              <span class="budget__bar__seg__label">P2 · 18%</span>
+            <div class="budget__bar__seg" data-row="p2" style="flex: 22000;">
+              <span class="budget__bar__seg__label">P2 · 15%</span>
             </div>
-            <div class="budget__bar__seg" data-row="p3" style="flex: 88400;">
-              <span class="budget__bar__seg__label">P3 · 39%</span>
+            <div class="budget__bar__seg" data-row="p3" style="flex: 38000;">
+              <span class="budget__bar__seg__label">P3 · 26%</span>
             </div>
-            <div class="budget__bar__seg" data-row="p4" style="flex: 49400;">
-              <span class="budget__bar__seg__label">P4 · 22%</span>
+            <div class="budget__bar__seg" data-row="p4" style="flex: 34000;">
+              <span class="budget__bar__seg__label">P4 · 23%</span>
             </div>
-            <div class="budget__bar__seg" data-row="p5" style="flex: 21600;">
-              <span class="budget__bar__seg__label">P5 · 9%</span>
+            <div class="budget__bar__seg" data-row="p5" style="flex: 23000;">
+              <span class="budget__bar__seg__label">P5 · 17%</span>
             </div>
           </div>
           <div class="budget__bar__scale">
             <span>$0</span>
-            <span>Base scope: $228,400</span>
+            <span>Base scope: $145,000</span>
             <span>100%</span>
           </div>
 
@@ -2127,20 +2116,20 @@
               <tr>
                 <th>Phase</th>
                 <th>Scope</th>
-                <th>Hours</th>
+                <th>Weeks</th>
                 <th>Cost</th>
               </tr>
             </thead>
             <tbody>
-              <tr data-row="p1"><td>Phase 01 · Discovery &amp; Strategy<small>Weeks 01–06</small></td><td>Audit · IA · content model · journeys</td><td>180</td><td>$27,000</td></tr>
-              <tr data-row="p2"><td>Phase 02 · Design<small>Weeks 07–14</small></td><td>Visual system · templates · design library</td><td>280</td><td>$42,000</td></tr>
-              <tr data-row="p3"><td>Phase 03 · Development<small>Weeks 15–26</small></td><td>WordPress build · ACF Pro · integrations</td><td>520</td><td>$88,400</td></tr>
-              <tr data-row="p4"><td>Phase 04 · Content Migration &amp; Testing<small>Weeks 27–34</small></td><td>Migration · redirects · WCAG · performance</td><td>380</td><td>$49,400</td></tr>
-              <tr data-row="p5"><td>Phase 05 · Training &amp; Launch<small>Weeks 35–44</small></td><td>Training · rehearsal · cutover · handoff</td><td>160</td><td>$21,600</td></tr>
-              <tr class="is-subtotal"><td>Base scope subtotal</td><td>&nbsp;</td><td>1,520</td><td>$228,400</td></tr>
-              <tr><td>Contingency · 10%<small>Variance reserve for Phase 04</small></td><td>Not billed unless triggered</td><td>—</td><td>$22,840</td></tr>
-              <tr><td>Infrastructure + licenses<small>Pantheon · ACF Pro · Gravity Forms · Slate · SSL · monitoring · yr-1 hosting</small></td><td>Pass-through · itemized at kickoff</td><td>—</td><td>$23,760</td></tr>
-              <tr class="is-total"><td>Total base engagement</td><td>&nbsp;</td><td>1,520</td><td>$275,000</td></tr>
+              <tr data-row="p1"><td>Phase 01 · Discovery &amp; Strategy<small>Jun 1 &rarr; Jun 22, 2026</small></td><td>Audit · IA · content model · enrollment journeys</td><td>3</td><td>$28,000</td></tr>
+              <tr data-row="p2"><td>Phase 02 · Design system<small>Jun 15 &rarr; Jul 17, 2026</small></td><td>Visual system · templates · component library</td><td>5</td><td>$22,000</td></tr>
+              <tr data-row="p3"><td>Phase 03 · Development &amp; CMS build<small>Jun 29 &rarr; Aug 14, 2026</small></td><td>WordPress · ACF Pro · Slate integration · GA4</td><td>7</td><td>$38,000</td></tr>
+              <tr data-row="p4"><td>Phase 04 · Migration &amp; testing<small>Jul 27 &rarr; Aug 28, 2026</small></td><td>Content migration · redirects · WCAG 2.2 AA</td><td>5</td><td>$34,000</td></tr>
+              <tr data-row="p5"><td>Phase 05 · Training, launch &amp; 90-day support<small>Aug 18 &rarr; Nov 30, 2026</small></td><td>Training · cutover · 90-day stabilization</td><td>15</td><td>$23,000</td></tr>
+              <tr class="is-subtotal"><td>Base scope subtotal<small>Slate integration included</small></td><td>&nbsp;</td><td>~14 build + 13 support</td><td>$145,000</td></tr>
+              <tr><td>Optional add-ons (Section E)<small>Personalization · content writing · extended support · additional training · AI chatbot · AI search</small></td><td>Priced separately per RFP requirement</td><td>&mdash;</td><td>quoted on request</td></tr>
+              <tr><td>Infrastructure + licenses<small>Pantheon · ACF Pro · Gravity Forms · Slate · SSL · monitoring</small></td><td>HFU-retained vendors; pass-through if Small College Consulting fronts any</td><td>&mdash;</td><td>itemized at kickoff</td></tr>
+              <tr class="is-total"><td>Total base engagement</td><td>&nbsp;</td><td>Jun &rarr; Nov 2026</td><td>$145,000</td></tr>
             </tbody>
           </table>
         </div>
@@ -2161,25 +2150,25 @@
             <div class="pay__card__pct">25<em>%</em></div>
             <span class="pay__card__label">Milestone 01</span>
             <div class="pay__card__title">Contract execution &amp; kickoff</div>
-            <div class="pay__card__amount"><span>$</span>68,750</div>
+            <div class="pay__card__amount"><span>$</span>36,250</div>
           </div>
           <div class="pay__card">
             <div class="pay__card__pct">25<em>%</em></div>
             <span class="pay__card__label">Milestone 02 · G1</span>
             <div class="pay__card__title">Content model + IA approved</div>
-            <div class="pay__card__amount"><span>$</span>68,750</div>
+            <div class="pay__card__amount"><span>$</span>36,250</div>
           </div>
           <div class="pay__card">
             <div class="pay__card__pct">25<em>%</em></div>
             <span class="pay__card__label">Milestone 03 · G2</span>
             <div class="pay__card__title">Design system approved</div>
-            <div class="pay__card__amount"><span>$</span>68,750</div>
+            <div class="pay__card__amount"><span>$</span>36,250</div>
           </div>
           <div class="pay__card">
             <div class="pay__card__pct">25<em>%</em></div>
             <span class="pay__card__label">Milestone 04 · G5</span>
             <div class="pay__card__title">Launch · UAT signed</div>
-            <div class="pay__card__amount"><span>$</span>68,750</div>
+            <div class="pay__card__amount"><span>$</span>36,250</div>
           </div>
         </div>
       </section>
@@ -2245,16 +2234,16 @@
       <section class="assumptions">
         <div class="assumptions__label">How this plan was built</div>
         <div class="assumptions__body">
-          <strong>This isn't a gut-feel timeline.</strong> We built it using PERT-style critical-path modeling on the five phases, then ran a <em>Monte Carlo</em> simulation on Phase 4 (migration) — the biggest variance source in any higher-ed project — to stress-test the launch date across 10,000 runs. The dates and gates here anchor on Small College Consulting's two prior higher-ed redesigns delivered on comparable timelines: a 14,000-student regional Catholic university and a 4,200-student liberal arts college, both launched within two weeks of target. Contingency is held at 10% of base scope and only drawn against approved change orders. Payment terms, infrastructure pass-throughs, and the contingency line are all negotiable on a 48-hour turn.
+          <strong>This isn't a gut-feel timeline.</strong> The three-month build window is achievable because Holy Family&rsquo;s 2025 preparation work &mdash; the completed content audit, governance guidelines, analytics instrumentation (GA4, SEMRush, SiteImprove), peer competitive analysis, stakeholder surveys, and preliminary site-structure recommendations &mdash; removes most of the Discovery runway the RFP&rsquo;s 6&ndash;12 month outer bound was designed for. The September 1, 2026 launch is proposed because it aligns the new site with the Fall 2026 recruitment cycle, so adult and graduate enrollment teams have a modern tool for the next applicant class. A later launch would cost Holy Family a full recruiting cycle. Payment terms and the infrastructure pass-through line are negotiable on a 48-hour turn.
           <div class="assumptions__list">
-            <div><span>01</span>PERT modeling on all 5 phases; critical path = P1 → P3 → P4 → P5</div>
-            <div><span>02</span>Monte Carlo on Phase 4 (n=10,000) · P80 finish = Jan 24, P95 = Feb 2</div>
-            <div><span>03</span>Contingency: 10% of base scope, drawn only against approved change orders</div>
-            <div><span>04</span>Anchors: two prior higher-ed redesigns, 14K and 4.2K students, both on time</div>
-            <div><span>05</span>April buffer: 4 weeks of slack between G5 and G6, absorbs late-breaking variance</div>
-            <div><span>06</span>Rates blended: $160/hr avg across strategy, design, engineering, QA</div>
-            <div><span>07</span>Every gate pauses the clock until signed — no unsigned work proceeds</div>
-            <div><span>08</span>Payment terms and infrastructure line negotiable on 48-hour turnaround</div>
+            <div><span>01</span>Critical path = P1 &rarr; P3 &rarr; P5; design (P2) and migration (P4) run in parallel inside the build window</div>
+            <div><span>02</span>Three-month build enabled by HFU&rsquo;s 2025 prep work; Discovery compresses from 6+ weeks to 3</div>
+            <div><span>03</span>September 1 launch is the enrollment argument &mdash; Fall 2026 recruitment cycle versus a missed year</div>
+            <div><span>04</span>AI-assisted content migration compresses the Drupal &rarr; WordPress phase from the industry norm</div>
+            <div><span>05</span>90-day post-launch support (Sep 1 &rarr; Nov 30) runs inside the base $145K, not as a retainer</div>
+            <div><span>06</span>Soft-exit clause: HFU can end at any gate and retain full work product, no penalty</div>
+            <div><span>07</span>Every gate pauses the clock until signed &mdash; no unsigned work proceeds</div>
+            <div><span>08</span>Optional add-ons (personalization, content writing, extended support, chatbot, search) priced separately per Section E</div>
           </div>
         </div>
       </section>
@@ -2271,132 +2260,136 @@
     const PHASES = {
       1: {
         name: 'Discovery &amp; Strategy',
-        dates: 'Jun 1 → Jul 10 · 2026',
-        duration: '6 weeks',
+        dates: 'Jun 1 &rarr; Jun 22 &middot; 2026',
+        duration: '3 weeks',
         deliverables: [
-          '<b>Content audit</b> of all 670+ existing pages, scored for traffic, freshness, and conversion role',
-          '<b>Information architecture</b> and sitemap, tested with 8 HFU audience proxies',
-          '<b>Content model</b> in Google Docs, ready to translate into ACF Pro field groups',
-          '<b>Audience journey maps</b> for 4 personas (prospective UG, adult learner, grad, current student)',
+          '<b>Ingest of HFU\'s 2025 preparation work</b>: content audit, governance guidelines, analytics instrumentation, peer analysis, stakeholder surveys, site-structure recommendations',
+          '<b>Information architecture</b> and sitemap, tested with 8 HFU audience proxies; adult and graduate paths prioritized per RFP Section 4',
+          '<b>Content model</b> ready to translate into ACF Pro field groups',
+          '<b>Audience journey maps</b> for 4 personas, with the adult learner and graduate applicant flows mapped end-to-end through Slate',
           '<b>Technical discovery</b>: Drupal Paragraphs export plan, Slate integration points, GA4 audit',
-          '<b>Kickoff report</b> with confirmed success metrics tied to enrollment intelligence'
+          '<b>Kickoff report</b> with success metrics tied to enrollment growth &mdash; Awareness, Consideration, Decision, Conversion, per RFP Section 6'
         ],
         roles: [
-          '<b>Small College Consulting:</b> Strategy Lead · IA Director · Research Associate',
-          '<b>Holy Family:</b> Rick Mitchell · Advancement · Enrollment · IT'
+          '<b>Small College Consulting &middot; AI + Web:</b> Eric Yerke (IA, content model) &middot; James Vineburgh (engagement lead)',
+          '<b>Small College Consulting &middot; Strategy:</b> Scott Novak (strategy, advisor) &middot; Chris Coons (enrollment funnel)',
+          '<b>Holy Family:</b> Rick Mitchell &middot; Advancement &middot; Enrollment &middot; IT'
         ],
         milestones: [
-          '<b>G1 · Jul 10</b> Content strategy + IA signed by steering committee',
-          'Weekly stakeholder interviews (12 total, 45 min each)',
-          'Mid-phase checkpoint Jun 26 · IA draft reviewed'
+          '<b>G1 &middot; Jun 22</b> Content strategy + IA signed by steering committee',
+          'Week-1 stakeholder interviews (12 total, 45 min each)',
+          'Mid-phase checkpoint Jun 15 &middot; IA draft reviewed'
         ],
         risks: [
-          '<b>Stakeholder alignment delays</b> — mitigated with a structured interview calendar locked by Jun 8 and a single approving voice (Rick) for final calls',
-          '<b>Content review bottleneck</b> — mitigated by scoping content owners per section in week 01, not deferred to migration'
+          '<b>Stakeholder alignment delays</b> &mdash; mitigated with a structured interview calendar locked by Jun 8 and a single approving voice (Rick) for final calls',
+          '<b>Prior-work integration</b> &mdash; HFU\'s 2025 prep is ingested in week 01 so Discovery builds on it rather than duplicating it'
         ]
       },
       2: {
-        name: 'Design',
-        dates: 'Jul 13 → Sep 4 · 2026',
-        duration: '8 weeks',
+        name: 'Design system',
+        dates: 'Jun 15 &rarr; Jul 17 &middot; 2026',
+        duration: '5 weeks · overlaps P1 + P3',
         deliverables: [
-          '<b>Visual design system</b>: color, typography, spacing, grid, motion — documented in Figma',
-          '<b>Component library</b>: 48 production components covering every page pattern',
-          '<b>6 hero templates</b>: homepage, program landing, adult learner, news/insights, faculty, about',
+          '<b>Visual design system</b>: color, typography, spacing, grid, motion',
+          '<b>Component library</b>: production components covering every page pattern needed for launch',
+          '<b>Hero templates</b>: homepage, program landing, adult learner, news/insights, faculty, about',
+          '<b>Adult &amp; graduate hero</b> (Variant B): drafted for a 34-year-old Nursing applicant browsing on a phone &mdash; the single highest enrollment lever on the site',
           '<b>Responsive design</b> at 4 breakpoints, with mobile-first interaction specs',
-          '<b>Accessibility annotations</b>: WCAG 2.2 AA compliance checked per component',
-          '<b>Prototype handoff</b> in Figma with dev-ready specs and Storybook outline'
+          '<b>Accessibility annotations</b>: WCAG 2.2 AA compliance checked per component'
         ],
         roles: [
-          '<b>Small College Consulting:</b> Design Director · Senior Designer · UX Engineer',
-          '<b>Holy Family:</b> Rick · Advancement lead · Marketing reviewer'
+          '<b>Small College Consulting &middot; Design:</b> Eric Yerke (design lead, design system, component library)',
+          '<b>Small College Consulting &middot; Enrollment:</b> Chris Coons (enrollment review on adult/grad templates)',
+          '<b>Holy Family:</b> Rick &middot; Advancement lead &middot; Marketing reviewer'
         ],
         milestones: [
-          '<b>G2 · Sep 4</b> Design system approved by Rick + Advancement',
-          'Mid-phase: week-4 concept review (3 directions)',
-          'Week-6 component library walkthrough'
+          '<b>G2 &middot; Jul 17</b> Design system + component library approved',
+          'Week-2 concept review (3 directions)',
+          'Week-4 component library walkthrough'
         ],
         risks: [
-          '<b>Scope creep post-G2</b> — mitigated by capping component library at 48 items and routing every new ask through a written change-order',
-          '<b>Accessibility compliance debt</b> — mitigated by running a Level AA audit in week 6, before lockup'
+          '<b>Scope creep post-G2</b> &mdash; mitigated by capping component library at launch-ready items and routing every new ask through a written change-order',
+          '<b>Accessibility compliance debt</b> &mdash; mitigated by running a Level AA audit before lockup'
         ]
       },
       3: {
-        name: 'Development',
-        dates: 'Sep 7 → Nov 25 · 2026',
-        duration: '12 weeks',
+        name: 'Development &amp; CMS build',
+        dates: 'Jun 29 &rarr; Aug 14 &middot; 2026',
+        duration: '7 weeks · overlaps P2 + P4',
         deliverables: [
           '<b>WordPress build</b> on Pantheon with ACF Pro and a custom block system (mirroring Drupal Paragraphs)',
-          '<b>48 components</b> built in Storybook, wired into Gutenberg block variations',
+          '<b>Production components</b> built into Gutenberg block variations',
           '<b>6 page templates</b> feature-complete with dynamic taxonomies',
-          '<b>Slate integration</b>: form handler, lead routing, UTM parameter capture',
-          '<b>GA4 + Looker Studio</b>: enrollment funnel tracking and live dashboard',
-          '<b>Performance budget</b>: LCP <2.0s on 4G, Core Web Vitals in green'
+          '<b>Slate integration</b>: form handler, lead routing, UTM parameter capture &mdash; included in base scope',
+          '<b>GA4 + Looker Studio</b>: enrollment funnel tracking (Awareness, Consideration, Decision, Conversion) with cross-domain into Slate',
+          '<b>Performance budget</b>: LCP below 2.0s on 4G, Core Web Vitals in green'
         ],
         roles: [
-          '<b>Small College Consulting:</b> Lead Engineer · 2× Full-stack · QA Engineer · DevOps',
-          '<b>Holy Family:</b> Rick (commit access) · IT (DNS, Slate creds)'
+          '<b>Small College Consulting &middot; Engineering:</b> Eric Yerke (lead engineer, ACF, integrations) &middot; James Vineburgh (integration review)',
+          '<b>Holy Family:</b> Rick (commit access from week 01) &middot; IT (DNS, Slate creds)'
         ],
         milestones: [
-          '<b>G3 · Nov 25</b> Feature-complete staging signed by Rick + Eric',
-          'Week-4 code review checkpoint',
-          'Week-8 integration testing with Slate'
+          '<b>G3 &middot; Aug 14</b> Feature-complete staging signed by Rick',
+          'Week-2 code review checkpoint',
+          'Week-4 integration testing with Slate'
         ],
         risks: [
-          '<b>Drupal Paragraphs complexity</b> — the highest-severity risk; mitigated by a dedicated 2-week spike in week 01 to map every Paragraph type and build a 1:1 ACF equivalent',
-          '<b>Integration surprises (Slate, GA4)</b> — mitigated by securing Slate API credentials before Sep 7 and running a dry-run integration in week 3'
+          '<b>Drupal Paragraphs complexity</b> &mdash; the highest-severity risk; mitigated by a dedicated mapping spike in week 01 to map every Paragraph type and build a 1:1 ACF equivalent',
+          '<b>Integration surprises (Slate, GA4)</b> &mdash; mitigated by securing Slate API credentials before kickoff and running a dry-run integration in week 2'
         ]
       },
       4: {
-        name: 'Content Migration &amp; Testing',
-        dates: 'Nov 30 → Jan 22 · 2027',
-        duration: '8 weeks',
+        name: 'Migration &amp; testing',
+        dates: 'Jul 27 &rarr; Aug 28 &middot; 2026',
+        duration: '5 weeks · overlaps P3 + P5',
         deliverables: [
-          '<b>Content migration</b>: programmatic for 280 program + info pages, human-assisted for 120 high-touch pages',
-          '<b>Archive disposition</b>: 670 old news articles moved to archive subdomain or deleted with redirects',
+          '<b>AI-assisted content migration</b>: programmatic for ~280 program and info pages, human-assisted for ~120 high-touch pages',
+          '<b>Archive disposition</b>: legacy news moved to archive subdomain or deleted with redirects',
           '<b>Redirect map</b>: every legacy URL mapped to new destination, verified in staging',
-          '<b>WCAG 2.2 AA audit</b>: external accessibility audit from WebAIM, remediation complete',
+          '<b>WCAG 2.2 AA audit</b>: external accessibility review, remediation complete',
           '<b>Performance tuning</b>: image optimization, CDN config, critical CSS path',
-          '<b>UAT scripts</b> for 12 critical user flows, ready for HFU testing'
+          '<b>UAT scripts</b> for 12 critical user flows, including RFI, apply, and visit'
         ],
         roles: [
-          '<b>Small College Consulting:</b> Content Strategist · 2× Migration Engineers · QA Lead',
-          '<b>Holy Family:</b> Content reviewers · Accessibility coordinator'
+          '<b>Small College Consulting &middot; Migration:</b> Eric Yerke (migration tooling, WCAG pipeline)',
+          '<b>Small College Consulting &middot; Enrollment:</b> Chris Coons (adult and graduate content review)',
+          '<b>Holy Family:</b> Content reviewers &middot; Accessibility coordinator &middot; Mark Green (VP IE)'
         ],
         milestones: [
-          '<b>G4 · Jan 22</b> Migration QA signed by Mark Green',
-          'Winter break soft-freeze Dec 22 → Jan 2',
-          'Post-break audit kickoff Jan 5'
+          '<b>G4 &middot; Aug 28</b> Migration QA + WCAG 2.2 AA conformance report signed by Mark Green',
+          'Week-2 migration dry-run on first 20 pages',
+          'Week-4 external accessibility audit returns clean'
         ],
         risks: [
-          '<b>Holiday compression</b> — mitigated by locking 80% of migration work before Dec 19, leaving only cleanup and remediation post-break',
-          '<b>Content review bottleneck</b> — mitigated with a content-pairing model: each HFU reviewer owns a named page set, not "whoever has time"'
+          '<b>Content review bottleneck</b> &mdash; mitigated with a content-pairing model: each HFU reviewer owns a named page set, not "whoever has time"',
+          '<b>Accessibility regressions</b> &mdash; mitigated by axe-core in CI and a pre-lockup audit'
         ]
       },
       5: {
-        name: 'Training &amp; Launch',
-        dates: 'Jan 25 → Apr 2 · 2027',
-        duration: '10 weeks',
+        name: 'Training, launch &amp; 90-day support',
+        dates: 'Aug 18 &rarr; Nov 30 &middot; 2026',
+        duration: '~15 weeks (2 weeks to launch + 90 days support)',
         deliverables: [
           '<b>Training program</b>: 4 role-based sessions (editors, admins, analytics, SEO) with recorded walkthroughs',
-          '<b>Runbook</b>: 30-page operations manual with SLAs and escalation paths',
-          '<b>UAT cycle</b>: 2-week HFU testing window with triaged issue backlog',
+          '<b>Runbook</b>: operations manual with SLAs and escalation paths',
+          '<b>UAT cycle</b>: HFU testing window with triaged issue backlog',
           '<b>Launch rehearsal</b>: full DNS cutover dry-run on a staging clone',
-          '<b>Go-live</b>: Mar 1 2027, coordinated with Rick\'s communications team',
-          '<b>Post-launch monitoring</b>: 30-day hypercare, daily checks, handoff at G6'
+          '<b>Go-live</b>: <strong>September 1, 2026</strong>, coordinated for the Fall 2026 recruitment cycle',
+          '<b>90-day post-launch support</b> (Sep 1 &rarr; Nov 30): daily monitoring, defect resolution, analytics review, ownership transfer'
         ],
         roles: [
-          '<b>Small College Consulting:</b> Program Lead · Support Engineer · Trainer',
-          '<b>Holy Family:</b> Rick + cabinet · IT · Content team · Enrollment'
+          '<b>Small College Consulting &middot; Launch:</b> Eric Yerke (launch + 90-day support) &middot; James Vineburgh (program lead)',
+          '<b>Small College Consulting &middot; Strategy:</b> Scott Novak, Chris Coons (post-launch enrollment review)',
+          '<b>Holy Family:</b> Rick + cabinet &middot; IT &middot; Content team &middot; Enrollment'
         ],
         milestones: [
-          '<b>G5 · Mar 1</b> UAT sign-off by Rick + President\'s cabinet',
-          '<b>G6 · Apr 2</b> Launch + 30 handoff signed by steering committee',
-          'April buffer: 4 weeks of slack absorbs late variance'
+          '<b>G5 &middot; Sep 1</b> UAT sign-off + launch authorized',
+          '<b>Day 30 &middot; Oct 1</b> Stabilization review; defect count reported',
+          '<b>Day 90 &middot; Nov 30</b> Ownership transfer complete; runbook delivered'
         ],
         risks: [
-          '<b>Enrollment-season launch pressure</b> — mitigated with a March 1 launch that sits squarely before April decision deadlines, plus a go/no-go at G5 that pushes to Mar 15 if needed',
-          '<b>Key HFU team member unavailability</b> — mitigated with recorded training sessions and a shared runbook that doesn\'t depend on any one person'
+          '<b>Enrollment-cycle launch pressure</b> &mdash; mitigated with a Sep 1 launch that lands before the Fall 2026 recruitment push peaks, plus a go/no-go that can push launch by up to 10 days without losing the cycle',
+          '<b>Key HFU team member unavailability</b> &mdash; mitigated with recorded training sessions and a shared runbook that doesn\'t depend on any one person'
         ]
       }
     };
@@ -2485,7 +2478,7 @@
         id: 3, label: 'Content review bottleneck',
         x: 83, y: 66, size: 48, danger: true,
         likelihood: 'Medium-High', impact: 'High',
-        description: 'Migration projects routinely miss deadlines not because of code but because content reviewers can\'t get to their inbox fast enough. With 400 pages to review inside 8 weeks, the math is unforgiving.',
+        description: 'Migration projects routinely miss deadlines not because of code but because content reviewers can\'t get to their inbox fast enough. With ~400 pages to review inside 5 weeks, the math is unforgiving.',
         mitigation: 'Content-pairing model: in Phase 01 we name a human owner for each section, not "whoever has time". Reviewers get a named queue, a weekly SLA, and a fallback path if their queue stalls. Migration week 01 runs a friction-test on the first 20 pages so we see the bottleneck before it\'s critical.',
         owner: 'Content Strategist + HFU Advancement'
       },

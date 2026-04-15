@@ -1,0 +1,434 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   MOCKUP COMPONENT RESTORE
+   The mockup pages were assembled with HTML copied out of components.html
+   but without the component CSS. This file restores the missing styles so
+   every mockup shares the same component library.
+
+   Link AFTER the page's inline <style> block so token overrides defined
+   on the page (colors, radii, fonts) still apply.
+
+   Covers: hfu-acc (accordion), hfu-empty (empty state), hfu-tabs,
+   hfu-steps + hfu-step (stepper), hfu-timeline (vertical), hfu-pullquote,
+   hfu-table family, c-contact.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Accordion (hfu-acc) ─────────────────────────────────────────────── */
+.hfu-acc { display: flex; flex-direction: column; }
+.hfu-acc details {
+  border-top: 1px solid hsl(var(--border));
+  padding: 22px 4px;
+  transition: background 200ms var(--ease-out);
+}
+.hfu-acc details:last-child { border-bottom: 1px solid hsl(var(--border)); }
+.hfu-acc summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: hsl(var(--hfu-navy));
+  letter-spacing: -0.012em;
+}
+.hfu-acc summary::-webkit-details-marker { display: none; }
+.hfu-acc__chev {
+  width: 34px; height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid hsl(var(--border-strong));
+  transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+}
+.hfu-acc__chev svg { width: 11px; height: 11px; display: block; }
+.hfu-acc details[open] .hfu-acc__chev {
+  transform: rotate(180deg);
+  background: hsl(var(--hfu-yellow));
+  border-color: hsl(var(--hfu-yellow-deep));
+}
+.hfu-acc details > div {
+  padding-top: 14px;
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: hsl(var(--fg-muted));
+  max-width: 62ch;
+}
+
+
+/* ── Empty state (hfu-empty) ─────────────────────────────────────────── */
+.hfu-empty {
+  text-align: center;
+  padding: 48px 28px;
+  border: 1px dashed hsl(var(--border-strong));
+  border-radius: var(--r-lg);
+  background: hsl(var(--bg));
+}
+.hfu-empty__glyph {
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: hsl(var(--hfu-yellow) / 0.18);
+  color: hsl(var(--hfu-blue));
+  display: grid; place-items: center;
+  flex: 0 0 56px;
+}
+.hfu-empty__glyph svg { width: 24px; height: 24px; display: block; }
+.hfu-empty h4 {
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1.2;
+  color: hsl(var(--hfu-navy));
+  margin-bottom: 8px;
+}
+.hfu-empty p {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  color: hsl(var(--fg-muted));
+  max-width: 36ch;
+  margin: 0 auto 18px;
+}
+
+
+/* ── Tabs (hfu-tabs) ─────────────────────────────────────────────────── */
+.hfu-tabs {
+  display: inline-flex;
+  gap: 0;
+  border-bottom: 1px solid hsl(var(--border));
+  padding: 0 0 2px;
+}
+.hfu-tabs button {
+  padding: 14px 22px 16px;
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(var(--fg-muted));
+  position: relative;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 200ms var(--ease-out);
+}
+.hfu-tabs button::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; left: 12px; right: 12px;
+  height: 2px;
+  background: hsl(var(--hfu-yellow-deep));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms var(--ease-out);
+}
+.hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+.hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+.hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+
+/* ── Stepper (hfu-steps / hfu-step) ──────────────────────────────────── */
+.hfu-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: start;
+  gap: 0;
+  position: relative;
+}
+.hfu-steps__track {
+  position: absolute;
+  top: 13px; left: 10%; right: 10%;
+  height: 2px;
+  background: hsl(var(--border));
+  z-index: 0;
+}
+.hfu-steps__fill {
+  position: absolute;
+  top: 13px; left: 10%;
+  height: 2px;
+  background: hsl(var(--hfu-yellow-deep));
+  z-index: 1;
+  transition: width 400ms var(--ease-out);
+}
+.hfu-step {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.hfu-step__dot {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: hsl(var(--paper));
+  border: 2px solid hsl(var(--border-strong));
+  display: grid; place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: hsl(var(--fg-subtle));
+}
+.hfu-step.is-done .hfu-step__dot {
+  background: hsl(var(--hfu-yellow));
+  border-color: hsl(var(--hfu-yellow-deep));
+  color: hsl(var(--hfu-navy));
+}
+.hfu-step.is-current .hfu-step__dot {
+  background: hsl(var(--hfu-navy));
+  border-color: hsl(var(--hfu-navy));
+  color: hsl(var(--hfu-yellow));
+  box-shadow: 0 0 0 4px hsl(var(--hfu-navy) / 0.08);
+}
+.hfu-step__label {
+  font-family: var(--body);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--fg-muted));
+  max-width: 12ch;
+  line-height: 1.3;
+}
+.hfu-step.is-current .hfu-step__label { color: hsl(var(--hfu-navy)); font-weight: 600; }
+.hfu-step.is-done .hfu-step__label { color: hsl(var(--hfu-navy)); }
+
+
+/* ── Linear progress (hfu-progress) ──────────────────────────────────── */
+.hfu-progress {
+  height: 6px;
+  background: hsl(var(--border-soft));
+  border-radius: 100px;
+  overflow: hidden;
+  max-width: 380px;
+}
+.hfu-progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, hsl(var(--hfu-blue)), hsl(var(--hfu-yellow-deep)));
+  transition: width 400ms var(--ease-out);
+}
+
+
+/* ── Vertical timeline (hfu-timeline) ──────────────────────────────────
+   Also resets <ol>/<ul> list counters and bullets — the component is
+   often authored with <ol>, and we don't want the browser to render
+   "1." "2." etc. outside the decorative rail dot. */
+.hfu-timeline {
+  position: relative;
+  padding-left: 40px;
+  margin: 0;
+  list-style: none;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.hfu-timeline::before {
+  content: "";
+  position: absolute;
+  top: 10px; bottom: 10px;
+  left: 13px;
+  width: 1px;
+  background: hsl(var(--border));
+}
+.hfu-timeline__item { position: relative; }
+.hfu-timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -32px; top: 6px;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: hsl(var(--paper));
+  border: 2px solid hsl(var(--hfu-yellow-deep));
+}
+.hfu-timeline__item.is-current::before {
+  background: hsl(var(--hfu-yellow));
+  box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+}
+.hfu-timeline__date {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--hfu-blue));
+}
+.hfu-timeline__title {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.2;
+  color: hsl(var(--hfu-navy));
+  margin: 4px 0 6px;
+}
+.hfu-timeline__body {
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.58;
+  color: hsl(var(--fg-muted));
+  max-width: 54ch;
+}
+
+
+/* ── Pullquote (hfu-pullquote) ───────────────────────────────────────── */
+.hfu-pullquote {
+  padding: 48px 0;
+  text-align: center;
+  border-top: 1px solid hsl(var(--hfu-yellow-deep));
+  border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+  position: relative;
+}
+.hfu-pullquote::before,
+.hfu-pullquote::after {
+  content: "";
+  position: absolute;
+  width: 8px; height: 8px;
+  background: hsl(var(--hfu-yellow));
+  transform: rotate(45deg);
+  left: 50%; margin-left: -4px;
+}
+.hfu-pullquote::before { top: -4px; }
+.hfu-pullquote::after  { bottom: -4px; }
+.hfu-pullquote blockquote {
+  margin: 0 auto;
+  max-width: 30ch;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: hsl(var(--hfu-navy));
+}
+.hfu-pullquote__by {
+  margin-top: 18px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: hsl(var(--fg-subtle));
+}
+
+
+/* ── Tables (hfu-table family) ───────────────────────────────────────── */
+.hfu-table-wrap {
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--r);
+  overflow: auto;
+  background: hsl(var(--paper));
+  box-shadow: var(--shadow-xs);
+  max-height: 520px;
+  position: relative;
+}
+.hfu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--body);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: hsl(var(--fg));
+  line-height: 1.5;
+}
+.hfu-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: hsl(var(--bg-alt));
+  color: hsl(var(--hfu-navy));
+  font-family: var(--body);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid hsl(var(--border-strong));
+  white-space: nowrap;
+}
+.hfu-table th.is-num,
+.hfu-table td.is-num { text-align: right; }
+.hfu-table th.is-center,
+.hfu-table td.is-center { text-align: center; }
+.hfu-table tbody td {
+  padding: 16px 20px;
+  border-bottom: 1px solid hsl(var(--border-soft));
+  vertical-align: top;
+}
+.hfu-table tbody tr:last-child td { border-bottom: none; }
+.hfu-table tbody tr:hover td { background: hsl(var(--hfu-yellow) / 0.05); }
+.hfu-table--zebra tbody tr:nth-child(even) td { background: hsl(var(--bg)); }
+.hfu-table--zebra tbody tr:nth-child(even):hover td { background: hsl(var(--hfu-yellow) / 0.08); }
+.hfu-table--labels tbody th {
+  text-align: left;
+  padding: 16px 20px;
+  background: hsl(var(--bg));
+  border-bottom: 1px solid hsl(var(--border-soft));
+  border-right: 1px solid hsl(var(--border));
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--hfu-blue));
+  white-space: nowrap;
+}
+
+
+/* ── Contact card (c-contact) ────────────────────────────────────────── */
+.c-contact {
+  padding: 26px 26px 24px;
+  text-align: left;
+  display: flex; flex-direction: column; gap: 14px;
+  background: hsl(var(--paper, var(--bg)));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--r-lg);
+}
+.c-contact__photo {
+  width: 88px; height: 88px;
+  flex: 0 0 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, hsl(var(--hfu-yellow) / 0.5), hsl(var(--hfu-blue)) 70%);
+  border: 1px solid hsl(var(--border));
+  overflow: hidden;
+  position: relative;
+}
+.c-contact__photo::after {
+  content: attr(data-initials);
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-family: var(--display);
+  font-size: 30px;
+  color: hsl(var(--white));
+}
+.c-contact__name {
+  font-family: var(--display);
+  font-size: 19px;
+  line-height: 1.2;
+  color: hsl(var(--hfu-navy));
+}
+.c-contact__role {
+  font-family: var(--body);
+  font-size: 13px;
+  color: hsl(var(--fg-muted));
+  margin-bottom: 4px;
+}
+.c-contact__lines {
+  display: flex; flex-direction: column; gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid hsl(var(--border-soft));
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: hsl(var(--fg));
+}
+.c-contact__lines span {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: hsl(var(--fg-muted));
+}
+.c-contact__lines svg {
+  width: 12px; height: 12px;
+  flex: 0 0 12px;
+  color: hsl(var(--fg-subtle));
+  display: block;
+}
+.c-contact__lines a { color: hsl(var(--hfu-blue)); }
+
+
+/* ── Global safety: any otherwise-unconstrained inline SVG ─────────── */
+main svg:not([width]):not([height]) { max-width: 100%; }

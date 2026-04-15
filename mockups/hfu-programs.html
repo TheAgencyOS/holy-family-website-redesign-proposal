@@ -4,34 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Academics &middot; Forty-plus programs across four schools &middot; Holy Family University</title>
-  <meta name="description" content="More than 40 bachelor, master, and doctoral programs across four schools — Arts and Sciences, Business and Technology, Education, and Nursing and Health Sciences — grounded in the liberal arts and a 13:1 student-to-faculty ratio.">
+  <meta name="description" content="More than forty bachelor, master, and doctoral programs across four schools: Arts and Sciences, Business and Technology, Education, and Nursing and Health Sciences. Grounded in the liberal arts and a 13:1 student-to-faculty ratio.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    /* ═════════════════════════════════════════════════════════════════════
-       HFU STUDENT EXPERIENCE — Concept 5 (photo-forward, cinematic editorial)
-       Typography: Source Serif 4 (display) + Inter Tight (body)
-       Shared design system with the rest of the HFU mockup set
-       ═════════════════════════════════════════════════════════════════════ */
+    /* =====================================================================
+       HFU ACADEMICS INDEX
+       Editorial catalog treatment: typographic directory hero (no photo).
+       Serif oldstyle numerals pair with program names; filter bar and
+       sortable registry support the catalog metaphor end-to-end.
+       ===================================================================== */
     :root {
       /* HFU brand */
-      --hfu-navy:        212 82% 13%;   /* #06213F */
+      --hfu-navy:        212 82% 13%;
       --hfu-navy-deep:   212 90% 8%;
       --hfu-navy-soft:   212 45% 22%;
-      --hfu-blue:        204 100% 33%;  /* #0068A9 */
+      --hfu-blue:        204 100% 33%;
       --hfu-blue-deep:   204 100% 26%;
-      --hfu-yellow:      48 100% 54%;   /* #FFCC15 */
+      --hfu-yellow:      48 100% 54%;
       --hfu-yellow-soft: 48 100% 94%;
       --hfu-yellow-deep: 44 95% 46%;
-      --hfu-mist:        202 22% 76%;   /* #B2C6D1 */
+      --hfu-mist:        202 22% 76%;
 
       /* Warm editorial neutrals */
-      --bg:              38 33% 97%;    /* #FBF9F3 warm cream */
+      --bg:              38 33% 97%;
       --bg-alt:          38 25% 94%;
       --bg-card:         0 0% 100%;
+      --paper:           0 0% 100%;
+      --white:           0 0% 100%;
       --fg:              212 38% 12%;
       --fg-muted:        212 18% 36%;
       --fg-subtle:       212 12% 52%;
@@ -39,8 +42,22 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
+      /* Feedback */
+      --ok:              152 58% 34%;
+      --ok-soft:         152 58% 94%;
+      --warn:            38 90% 46%;
+      --warn-soft:       38 90% 94%;
+
+      /* Catalog rule / accent tints used only by the editorial hero */
+      --rule:            212 24% 78%;
+      --rule-soft:       212 20% 88%;
+      --hero-ink:        212 82% 13%;
+      --hero-number:     212 38% 56%;
+      --hero-tint:       204 100% 33%;
+
       --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
 
       --container: 1280px;
       --gutter: clamp(1.25rem, 4vw, 4rem);
@@ -52,11 +69,11 @@
       --r-xl: 28px;
       --r-2xl: 40px;
 
-      --shadow-xs: 0 1px 2px rgba(6, 33, 63, 0.04);
-      --shadow-sm: 0 1px 3px rgba(6, 33, 63, 0.05), 0 1px 2px rgba(6, 33, 63, 0.03);
-      --shadow-md: 0 4px 16px rgba(6, 33, 63, 0.06), 0 2px 6px rgba(6, 33, 63, 0.04);
-      --shadow-lg: 0 20px 48px rgba(6, 33, 63, 0.10), 0 8px 20px rgba(6, 33, 63, 0.06);
-      --shadow-xl: 0 40px 96px rgba(6, 33, 63, 0.14), 0 16px 32px rgba(6, 33, 63, 0.08);
+      --shadow-xs: 0 1px 2px hsl(var(--hfu-navy) / 0.04);
+      --shadow-sm: 0 1px 3px hsl(var(--hfu-navy) / 0.05), 0 1px 2px hsl(var(--hfu-navy) / 0.03);
+      --shadow-md: 0 4px 16px hsl(var(--hfu-navy) / 0.06), 0 2px 6px hsl(var(--hfu-navy) / 0.04);
+      --shadow-lg: 0 20px 48px hsl(var(--hfu-navy) / 0.10), 0 8px 20px hsl(var(--hfu-navy) / 0.06);
+      --shadow-xl: 0 40px 96px hsl(var(--hfu-navy) / 0.14), 0 16px 32px hsl(var(--hfu-navy) / 0.08);
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -116,10 +133,10 @@
       max-width: 60ch;
     }
 
-    /* ── Utility strip ─────────────────────────────────────────────────── */
+    /* Utility strip */
     .util {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.78);
+      color: hsl(var(--white) / 0.78);
       font-size: 12.5px;
       letter-spacing: 0.01em;
     }
@@ -139,13 +156,13 @@
     .util__links { display: flex; gap: 22px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; }
     .util__links a:hover { color: hsl(var(--hfu-yellow)); }
 
-    /* ── Main nav ──────────────────────────────────────────────────────── */
+    /* Main nav */
     .nav {
       position: sticky;
       top: 0;
       z-index: 50;
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
       border-bottom: 1px solid hsl(var(--hfu-navy-deep));
     }
     .nav__inner {
@@ -169,7 +186,7 @@
       font-weight: 500;
     }
     .nav__list a {
-      color: hsl(0 0% 100% / 0.88);
+      color: hsl(var(--white) / 0.88);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -188,10 +205,10 @@
       transform-origin: left;
       transition: transform 280ms var(--ease-out);
     }
-    .nav__list a:hover { color: #fff; }
+    .nav__list a:hover { color: hsl(var(--white)); }
     .nav__list a:hover::after,
     .nav__list a.is-active::after { transform: scaleX(1); }
-    .nav__list a.is-active { color: #fff; }
+    .nav__list a.is-active { color: hsl(var(--white)); }
     .nav__list svg { width: 10px; height: 10px; opacity: 0.6; }
 
     .nav__actions { display: flex; gap: 14px; align-items: center; }
@@ -201,16 +218,16 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: hsl(0 0% 100% / 0.08);
-      color: #fff;
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
       transition: background 200ms var(--ease-out);
     }
-    .nav__search:hover { background: hsl(0 0% 100% / 0.14); }
+    .nav__search:hover { background: hsl(var(--white) / 0.14); }
     .nav__search svg { width: 15px; height: 15px; }
 
     .nav__burger { display: none; }
 
-    /* ── Buttons ───────────────────────────────────────────────────────── */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -228,15 +245,15 @@
     .btn--primary {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
-      box-shadow: 0 1px 2px rgba(6, 33, 63, 0.15), 0 4px 12px rgba(255, 204, 21, 0.35);
+      box-shadow: 0 1px 2px hsl(var(--hfu-navy) / 0.15), 0 4px 12px hsl(var(--hfu-yellow) / 0.35);
     }
-    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(6, 33, 63, 0.2), 0 8px 20px rgba(255, 204, 21, 0.4); }
+    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px hsl(var(--hfu-navy) / 0.2), 0 8px 20px hsl(var(--hfu-yellow) / 0.4); }
     .btn--secondary {
       background: hsl(var(--bg-card));
       color: hsl(var(--hfu-navy));
       border: 1px solid hsl(var(--border-strong));
     }
-    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: #fff; border-color: hsl(var(--hfu-navy)); }
+    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: hsl(var(--white)); border-color: hsl(var(--hfu-navy)); }
     .btn--ghost {
       background: transparent;
       color: hsl(var(--hfu-navy));
@@ -245,1550 +262,776 @@
     .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
     .btn--dark {
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
     }
     .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
     .btn--lg { padding: 18px 32px; font-size: 15px; }
-    .btn--glass {
-      background: hsl(0 0% 100% / 0.12);
-      color: #fff;
-      border: 1px solid hsl(0 0% 100% / 0.28);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .btn--glass:hover { background: hsl(0 0% 100% / 0.2); border-color: hsl(0 0% 100% / 0.5); transform: translateY(-1px); }
 
-    /* ═════════════════════ CINEMATIC HERO ═════════════════════ */
-    .hero {
+    /* =====================================================================
+       EDITORIAL INDEX HERO  (no background photo)
+       Cream page, oversized typographic directory, filter row, 40-line list.
+       ===================================================================== */
+    .index-hero {
+      background: hsl(var(--bg));
+      border-bottom: 1px solid hsl(var(--rule-soft));
+      padding: clamp(0.75rem, 1.25vw, 1rem) 0 clamp(3rem, 5vw, 5.5rem);
       position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-      isolation: isolate;
     }
-    .hero__bg {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-    }
-    .hero__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 35%;
-      transform: scale(1.02);
-      animation: heroZoom 22s var(--ease-out) forwards;
-    }
-    @keyframes heroZoom {
-      to { transform: scale(1.08); }
-    }
-    .hero__scrim {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background:
-        linear-gradient(180deg, hsl(var(--hfu-navy-deep) / 0.65) 0%, hsl(var(--hfu-navy-deep) / 0.15) 28%, hsl(var(--hfu-navy-deep) / 0.3) 58%, hsl(var(--hfu-navy-deep) / 0.92) 100%),
-        linear-gradient(100deg, hsl(var(--hfu-navy-deep) / 0.55) 0%, transparent 52%);
-    }
-    .hero__grain {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0.35;
-      mix-blend-mode: overlay;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.08) 1px, transparent 1.6px);
-      background-size: 3px 3px;
-    }
-    .hero__inner {
+    .index-hero__inner {
       max-width: var(--container);
       margin: 0 auto;
-      width: 100%;
-      padding: 0 var(--gutter) clamp(3.5rem, 5vw, 5rem);
-      position: relative;
-      color: #fff;
+      padding: 0 var(--gutter);
     }
-    .hero__crumbs {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: hsl(0 0% 100% / 0.62);
-      margin-bottom: 24px;
-      letter-spacing: 0.01em;
-    }
-    .hero__crumbs a { color: hsl(0 0% 100% / 0.82); }
-    .hero__crumbs a:hover { color: hsl(var(--hfu-yellow)); }
-    .hero__crumbs svg { width: 9px; height: 9px; opacity: 0.6; }
-    .hero__crumbs .is-current { color: #fff; font-weight: 500; }
-    .hero__eyebrow {
-      font-family: var(--body);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: hsl(var(--hfu-yellow));
+
+    .index-hero__crumbs {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
       margin-bottom: 28px;
     }
-    .hero__eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 1.5px;
-      background: hsl(var(--hfu-yellow));
-    }
-    .hero h1 {
-      font-size: clamp(3rem, 8.4vw, 8.4rem);
-      line-height: 0.92;
-      letter-spacing: -0.032em;
-      font-variation-settings: "opsz" 60;
-      color: #fff;
-      max-width: 16ch;
-      font-weight: 350;
-      margin-bottom: 32px;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
-    }
-    .hero h1 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-      position: relative;
-      display: inline-block;
-      padding: 0 0.04em;
-    }
-    .hero__lead {
-      font-size: clamp(16px, 1.2vw, 19px);
-      line-height: 1.55;
-      color: hsl(0 0% 100% / 0.82);
-      max-width: 52ch;
-      margin-bottom: 40px;
-    }
-    .hero__ctas {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 56px;
-    }
-    .hero__stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      padding-top: 36px;
-      border-top: 1px solid hsl(0 0% 100% / 0.18);
-      max-width: 860px;
-    }
-    .hero__stat {
-      display: flex;
-      flex-direction: column;
-      padding: 0 clamp(18px, 2vw, 28px);
-      border-right: 1px solid hsl(0 0% 100% / 0.14);
-    }
-    .hero__stat:first-child { padding-left: 0; }
-    .hero__stat:last-child { border-right: none; padding-right: 0; }
-    .hero__stat .num {
-      font-family: var(--display);
-      font-size: clamp(2rem, 3.4vw, 3rem);
-      line-height: 1;
-      letter-spacing: -0.035em;
-      color: #fff;
-      margin-bottom: 8px;
-      font-variation-settings: "opsz" 60;
-      font-weight: 350;
-    }
-    .hero__stat .num .small {
-      font-size: 0.5em;
-      vertical-align: 0.4em;
-      margin-left: 2px;
-      color: hsl(var(--hfu-yellow));
-      font-weight: 400;
-    }
-    .hero__stat .label {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.64);
-      letter-spacing: 0.05em;
-      line-height: 1.4;
+    .index-hero__crumbs a { color: hsl(var(--fg-muted)); }
+    .index-hero__crumbs a:hover { color: hsl(var(--hfu-blue)); }
+    .index-hero__crumbs svg { width: 9px; height: 9px; opacity: 0.6; }
+    .index-hero__crumbs .is-current { color: hsl(var(--hfu-navy)); }
+
+    .index-hero__eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-    }
-    .hero__scroll {
-      position: absolute;
-      right: var(--gutter);
-      bottom: clamp(3.5rem, 5vw, 5rem);
+      color: hsl(var(--hfu-blue));
       display: flex;
       align-items: center;
-      gap: 12px;
-      color: hsl(0 0% 100% / 0.6);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-    }
-    .hero__scroll::before {
-      content: "";
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, hsl(0 0% 100% / 0.4), transparent);
-      animation: scrollLine 2.4s var(--ease-in-out) infinite;
-    }
-    @keyframes scrollLine {
-      0%, 100% { transform: translateY(-10px); opacity: 0.3; }
-      50% { transform: translateY(10px); opacity: 1; }
-    }
-
-    /* ═════════════════════ LIFE PILLARS ═════════════════════ */
-    .pillars {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .pillars__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .pillars__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      letter-spacing: -0.024em;
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      line-height: 1.02;
-    }
-    .pillars__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .pillars__head .lead { max-width: 46ch; }
-    .pillars__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .pillar {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 34px 32px 30px;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-    }
-    .pillar:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .pillar__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: hsl(var(--hfu-yellow) / 0.16);
-      color: hsl(var(--hfu-blue));
-      display: grid;
-      place-items: center;
-      margin-bottom: 26px;
-      position: relative;
-    }
-    .pillar__icon svg { width: 24px; height: 24px; }
-    .pillar__icon::after {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border: 1px dashed hsl(var(--hfu-yellow) / 0.5);
-      border-radius: 10px;
-      opacity: 0;
-      transition: opacity 300ms var(--ease-out);
-    }
-    .pillar:hover .pillar__icon::after { opacity: 1; }
-    .pillar h3 {
-      font-family: var(--body);
-      font-size: 19px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-    .pillar p {
-      font-size: 14.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      flex: 1;
+      gap: 14px;
       margin-bottom: 22px;
     }
-    .pillar__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
+    .index-hero__eyebrow::before,
+    .index-hero__eyebrow::after {
+      content: "";
+      flex: 0 0 36px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow-deep));
     }
-    .pillar__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .pillar:hover .pillar__link svg { transform: translateX(3px); }
-    .pillar__num {
-      position: absolute;
-      top: 26px;
-      right: 30px;
+    .index-hero__eyebrow::after { flex: 1; }
+
+    .index-hero h1 {
       font-family: var(--display);
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.04em;
+      font-size: clamp(2.6rem, 6.2vw, 5.8rem);
+      font-weight: 300;
+      line-height: 0.98;
+      letter-spacing: -0.028em;
+      color: hsl(var(--hero-ink));
+      max-width: 16ch;
       font-variation-settings: "opsz" 60;
     }
-
-    /* Four-column variant for the four schools (Section A) */
-    .pillars--four .pillars__grid { grid-template-columns: repeat(4, 1fr); }
-    .pillars--four .pillar { min-height: 300px; padding: 30px 26px 26px; }
-    .pillars--four .pillar__num { top: 24px; right: 24px; }
-
-    /* Program card grid (Section C) — reuses pillar card vocabulary with eyebrow and degree tag */
-    .programs {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-    }
-    .programs__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .programs__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      letter-spacing: -0.024em;
-      color: hsl(var(--hfu-navy));
-      line-height: 1.02;
-    }
-    .programs__head h2 em {
+    .index-hero h1 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-blue));
     }
-    .programs__head .lead { max-width: 46ch; color: hsl(var(--fg-muted)); }
-    .programs__grid {
+
+    .index-hero__meta {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-top: 36px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid hsl(var(--rule-soft));
+    }
+    .index-hero__lead {
+      font-size: clamp(16px, 1.1vw, 18px);
+      line-height: 1.55;
+      color: hsl(var(--fg-muted));
+      max-width: 62ch;
+    }
+    .index-hero__specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .index-hero__specs dt { color: hsl(var(--hfu-blue)); margin-bottom: 6px; }
+    .index-hero__specs dd {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: -0.014em;
+      text-transform: none;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+
+    /* Filter strip with three tab groups */
+    .filter-strip {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(20px, 3vw, 48px);
+      padding-bottom: 16px;
+    }
+    .filter-strip__group { min-width: 0; }
+    .filter-strip__label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* Reusable .hfu-tabs from the component library */
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      flex-wrap: wrap;
+    }
+    .hfu-tabs button {
+      padding: 14px 18px 16px;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 10px; right: 10px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+    /* The directory itself: number + program + descriptor, three-column editorial grid */
+    .directory {
+      margin-top: 52px;
+      border-top: 1px solid hsl(var(--rule));
+      padding-top: 28px;
+    }
+    .directory__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .directory__title {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .directory__count {
+      font-family: var(--body);
+      font-size: 13px;
+      color: hsl(var(--fg-muted));
+    }
+    .directory__count b {
+      color: hsl(var(--hfu-navy));
+      font-family: var(--display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 16px;
+      font-variation-settings: "opsz" 60;
+    }
+    .directory__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: clamp(24px, 3vw, 48px);
+      row-gap: 0;
+    }
+    .directory__col {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid hsl(var(--rule-soft));
+    }
+    .dir-entry {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 20px;
+      padding: 18px 0 18px;
+      border-bottom: 1px solid hsl(var(--rule-soft));
+      align-items: baseline;
+      transition: background 180ms var(--ease-out);
+    }
+    .dir-entry:hover { background: hsl(var(--hfu-yellow) / 0.06); }
+    .dir-entry__num {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 300;
+      font-style: italic;
+      color: hsl(var(--hero-number));
+      letter-spacing: -0.01em;
+      font-variant-numeric: oldstyle-nums lining-nums;
+      font-feature-settings: "onum";
+      font-variation-settings: "opsz" 60;
+      line-height: 1;
+    }
+    .dir-entry__body { min-width: 0; }
+    .dir-entry__name {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(17px, 1.25vw, 19.5px);
+      line-height: 1.18;
+      letter-spacing: -0.012em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .dir-entry__desc {
+      display: block;
+      font-family: var(--body);
+      font-size: 13px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+      margin-top: 4px;
+    }
+    .dir-entry__deg {
+      display: inline-block;
+      margin-top: 8px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .dir-entry--more {
+      grid-template-columns: 58px 1fr;
+      color: hsl(var(--hfu-blue));
+    }
+    .dir-entry--more .dir-entry__num { color: hsl(var(--hfu-blue)); }
+    .dir-entry--more .dir-entry__name { color: hsl(var(--hfu-blue)); font-style: italic; font-weight: 300; }
+
+    /* =====================================================================
+       SECTION SCAFFOLDING (for body sections below hero)
+       ===================================================================== */
+    .section {
+      padding: var(--section) 0;
+      scroll-margin-top: 32px;
+    }
+    .section + .section { border-top: 1px solid hsl(var(--border-soft)); }
+    .section--alt { background: hsl(var(--bg-alt)); }
+    .section__head {
+      max-width: var(--container);
+      margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 48px;
+      align-items: end;
+    }
+    .section__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: hsl(var(--hfu-blue));
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .section__head h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.024em;
+      color: hsl(var(--hfu-navy));
+      margin-top: 2px;
+    }
+    .section__head h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-blue));
+    }
+    .section__body {
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .prog-card {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 30px 30px 28px;
       display: flex;
       flex-direction: column;
-      min-height: 260px;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+      gap: 44px;
     }
-    .prog-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+    @media (max-width: 900px) {
+      .section__head { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* Featured-by-school: tabs + panels + program cards */
+    .school-tabs { margin-bottom: 12px; }
+    .school-panel {
+      display: none;
+      animation: panel-fade 360ms var(--ease-out);
+    }
+    .school-panel.is-active { display: block; }
+    @keyframes panel-fade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .school-panel__grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    /* .c-program card (from components.html) */
+    .c-card {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-xs);
+      transition: border-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out), transform 240ms var(--ease-out);
+      display: flex;
+      flex-direction: column;
+    }
+    .c-card:hover {
       border-color: hsl(var(--border-strong));
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
     }
-    .prog-card__eyebrow {
+    .c-program { padding: 28px 28px 24px; min-height: 280px; }
+    .c-program__top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 16px;
+    }
+    .c-program__school {
       font-family: var(--body);
       font-size: 11px;
       font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .c-program h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-program__chips {
+      display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .c-program p {
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.58;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .c-program__foot {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid hsl(var(--border-soft));
+    }
+    .c-program__foot a {
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      color: hsl(var(--hfu-blue));
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .c-program__foot a svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .c-program__foot a:hover svg { transform: translateX(3px); }
+
+    /* Chip (from library) */
+    .hfu-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 11.5px;
+      font-weight: 500;
+      background: hsl(var(--bg-alt));
+      border: 1px solid hsl(var(--border));
+      color: hsl(var(--hfu-navy));
+    }
+    .hfu-chip--blue {
+      background: hsl(var(--hfu-blue) / 0.08);
+      border-color: hsl(var(--hfu-blue) / 0.2);
+      color: hsl(var(--hfu-blue-deep));
+    }
+    .hfu-chip--yellow {
+      background: hsl(var(--hfu-yellow-soft));
+      border-color: hsl(var(--hfu-yellow-deep) / 0.3);
+      color: hsl(var(--hfu-navy));
+    }
+
+    /* hfu-table (from library) */
+    .hfu-table-wrap {
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r);
+      overflow: auto;
+      background: hsl(var(--paper));
+      box-shadow: var(--shadow-xs);
+      max-height: 620px;
+      position: relative;
+    }
+    .hfu-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-family: var(--body);
+      font-size: 14px;
+      font-variant-numeric: tabular-nums lining-nums;
+      color: hsl(var(--fg));
+      line-height: 1.5;
+    }
+    .hfu-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: hsl(var(--bg-alt));
+      color: hsl(var(--hfu-navy));
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid hsl(var(--border-strong));
+      white-space: nowrap;
+    }
+    .hfu-table th.is-num,
+    .hfu-table td.is-num { text-align: right; }
+    .hfu-table tbody td {
+      padding: 16px 20px;
+      border-bottom: 1px solid hsl(var(--border-soft));
+      vertical-align: top;
+    }
+    .hfu-table tbody tr:last-child td { border-bottom: none; }
+    .hfu-table tbody tr:hover td { background: hsl(var(--hfu-yellow) / 0.05); }
+    .hfu-table--zebra tbody tr:nth-child(even) td { background: hsl(var(--bg)); }
+    .hfu-table--zebra tbody tr:nth-child(even):hover td { background: hsl(var(--hfu-yellow) / 0.08); }
+
+    .hfu-table__sort {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+      color: inherit;
+      font: inherit;
+      padding: 0;
+      letter-spacing: inherit;
+      text-transform: inherit;
+    }
+    .hfu-table__sort:hover { color: hsl(var(--hfu-blue)); }
+    .hfu-table__caret {
+      display: inline-flex;
+      flex-direction: column;
+      opacity: 0.35;
+      line-height: 0;
+    }
+    .hfu-table__caret svg { width: 8px; height: 8px; display: block; }
+    .hfu-table thead th.is-sorted .hfu-table__caret { opacity: 1; color: hsl(var(--hfu-blue)); }
+    .hfu-table thead th.is-sorted-asc .hfu-table__caret :first-child { opacity: 0.3; }
+    .hfu-table thead th.is-sorted-desc .hfu-table__caret :last-child { opacity: 0.3; }
+
+    .hfu-table .cell-name {
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+    }
+    .hfu-table .cell-muted { color: hsl(var(--fg-muted)); }
+    .hfu-table .cell-mono {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      letter-spacing: 0.02em;
+    }
+
+    .cell-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-family: var(--body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border: 1px solid hsl(var(--border));
+      background: hsl(var(--bg));
+      color: hsl(var(--fg-muted));
+    }
+    .cell-pill--under { color: hsl(var(--hfu-blue-deep)); border-color: hsl(var(--hfu-blue) / 0.25); background: hsl(var(--hfu-blue) / 0.06); }
+    .cell-pill--grad { color: hsl(var(--hfu-navy)); border-color: hsl(var(--hfu-navy) / 0.2); background: hsl(var(--hfu-navy) / 0.06); }
+    .cell-pill--cert { color: hsl(var(--hfu-yellow-deep)); border-color: hsl(var(--hfu-yellow-deep) / 0.4); background: hsl(var(--hfu-yellow-soft)); }
+    .cell-pill--doc { color: hsl(var(--ok)); border-color: hsl(var(--ok) / 0.3); background: hsl(var(--ok-soft)); }
+
+    .table-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: hsl(var(--fg-subtle));
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .table-foot a { color: hsl(var(--hfu-blue)); }
+    .table-foot a:hover { color: hsl(var(--hfu-blue-deep)); }
+
+    /* hfu-callout (from library) — blue variant */
+    .hfu-callout {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 24px 28px;
+      border-radius: var(--r);
+      border-left: 3px solid hsl(var(--hfu-blue));
+      background: hsl(var(--hfu-blue) / 0.06);
+    }
+    .hfu-callout__icon {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-blue) / 0.12);
+      color: hsl(var(--hfu-blue));
+      display: grid; place-items: center;
+    }
+    .hfu-callout__icon svg { width: 16px; height: 16px; }
+    .hfu-callout__eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: hsl(var(--hfu-blue));
-      margin-bottom: 14px;
-    }
-    .prog-card h3 {
-      font-family: var(--display);
-      font-size: 24px;
-      font-weight: 400;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.014em;
-      line-height: 1.14;
-      margin-bottom: 12px;
-      font-variation-settings: "opsz" 60;
-    }
-    .prog-card p {
-      font-size: 14.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      flex: 1;
-      margin-bottom: 20px;
-    }
-    .prog-card__foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 16px;
-      border-top: 1px solid hsl(var(--border-soft));
-    }
-    .prog-card__degree {
-      font-family: var(--body);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: hsl(var(--fg-subtle));
-      background: hsl(var(--hfu-yellow) / 0.16);
-      color: hsl(var(--hfu-navy));
-      padding: 5px 10px;
-      border-radius: 100px;
-    }
-    .prog-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-    }
-    .prog-card__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .prog-card:hover .prog-card__link svg { transform: translateX(3px); }
-    .programs__foot {
-      max-width: var(--container);
-      margin: 48px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: center;
-    }
-
-    /* ═════════════════════ DAY IN THE LIFE GALLERY ═════════════════════ */
-    .gallery {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery::before {
-      content: "";
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.08), transparent 60%);
-      pointer-events: none;
-    }
-    .gallery__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-      position: relative;
-    }
-    .gallery__head h2 {
-      font-size: clamp(2.4rem, 4.4vw, 4rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 18px;
-      letter-spacing: -0.028em;
-      line-height: 1.02;
-    }
-    .gallery__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .gallery__head .meta {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: flex-start;
-    }
-    .gallery__head .meta p {
-      font-size: 15.5px;
-      line-height: 1.6;
-      color: hsl(var(--fg-muted));
-      max-width: 38ch;
-    }
-    .gallery__head .clock {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .gallery__head .clock .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow));
-      box-shadow: 0 0 0 3px hsl(var(--hfu-yellow) / 0.22);
-    }
-
-    .gallery__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 120px;
-      gap: 16px;
-      position: relative;
-    }
-    .shot {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r-lg);
-      box-shadow: var(--shadow-sm);
-      transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out);
-    }
-    .shot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 900ms var(--ease-out);
-    }
-    .shot:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-    }
-    .shot:hover img { transform: scale(1.06); }
-    .shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, hsl(var(--hfu-navy-deep) / 0.72) 0%, hsl(var(--hfu-navy-deep) / 0.08) 40%, transparent 65%);
-      pointer-events: none;
-    }
-    .shot__caption {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      right: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      z-index: 2;
-    }
-    .shot__cap-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      background: hsl(0 0% 100% / 0.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid hsl(0 0% 100% / 0.22);
-      border-radius: 100px;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-    .shot__cap-pill .time {
-      color: hsl(var(--hfu-yellow));
-      font-family: var(--display);
-      font-size: 12px;
-      font-weight: 500;
-      font-variation-settings: "opsz" 60;
-    }
-    .shot__cap-pill .dot-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: hsl(0 0% 100% / 0.5);
-    }
-
-    /* Bento tile sizes */
-    .shot--a { grid-column: span 6; grid-row: span 4; }  /* tall primary */
-    .shot--b { grid-column: span 6; grid-row: span 2; }  /* wide top right */
-    .shot--c { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--d { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--e { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--f { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--g { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--h { grid-column: span 12; grid-row: span 3; } /* wide panoramic */
-
-    .gallery__foot {
-      max-width: var(--container);
-      margin: 48px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .gallery__foot .note {
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      max-width: 42ch;
-      font-style: italic;
-      font-family: var(--display);
-      line-height: 1.5;
-    }
-    .gallery__foot .note em { color: hsl(var(--hfu-blue)); }
-
-    /* ═════════════════════ ATHLETICS DARK SPLIT ═════════════════════ */
-    .athletics {
-      padding: 0;
-      background: hsl(var(--hfu-navy-deep));
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .athletics::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.05) 1px, transparent 1.5px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .athletics__inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 5vw, 5rem);
-      align-items: stretch;
-      min-height: 640px;
-      position: relative;
-    }
-    .athletics__media {
-      position: relative;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      margin: clamp(4rem, 6vw, 7rem) 0;
-      box-shadow: var(--shadow-xl);
-      isolation: isolate;
-    }
-    .athletics__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(1.1) contrast(1.08);
-    }
-    .athletics__media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, transparent 40%, hsl(var(--hfu-navy-deep) / 0.78) 100%);
-    }
-    .athletics__badge {
-      position: absolute;
-      top: 26px;
-      left: 26px;
-      background: hsl(var(--hfu-yellow));
-      color: hsl(var(--hfu-navy-deep));
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 2;
-      box-shadow: var(--shadow-md);
-    }
-    .athletics__badge .live-dot {
-      width: 7px;
-      height: 7px;
-      background: hsl(var(--hfu-navy-deep));
-      border-radius: 50%;
-      animation: pulse 2s infinite var(--ease-out);
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.55; }
-    }
-    .athletics__score {
-      position: absolute;
-      bottom: 28px;
-      left: 28px;
-      right: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      z-index: 2;
-    }
-    .athletics__score .tiger {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.2vw, 2.2rem);
-      color: #fff;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__score .sub {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.72);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-    .athletics__score .roar {
-      font-family: var(--display);
-      font-size: 68px;
-      line-height: 0.8;
-      color: hsl(var(--hfu-yellow));
-      font-style: italic;
-      font-weight: 300;
-      letter-spacing: -0.04em;
-    }
-
-    .athletics__body {
-      padding: clamp(4rem, 6vw, 7rem) 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .athletics__body .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .athletics__body .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .athletics__body h2 {
-      font-size: clamp(2.4rem, 4.2vw, 4rem);
-      color: #fff;
-      margin: 24px 0 24px;
-      letter-spacing: -0.028em;
-      line-height: 1;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__body h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-    }
-    .athletics__body p {
-      font-size: 16px;
-      line-height: 1.65;
-      color: hsl(0 0% 100% / 0.78);
-      max-width: 46ch;
-      margin-bottom: 36px;
-    }
-    .athletics__sports {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
-    }
-    .sport-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.14);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: hsl(0 0% 100% / 0.92);
-      transition: all 220ms var(--ease-out);
-    }
-    .sport-chip:hover {
-      background: hsl(var(--hfu-yellow) / 0.16);
-      border-color: hsl(var(--hfu-yellow) / 0.5);
-      color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .sport-chip svg {
-      width: 12px;
-      height: 12px;
-      opacity: 0.6;
-    }
-    .athletics__cta {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .athletics__cta .sub-link {
-      color: hsl(0 0% 100% / 0.62);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--display);
-      font-style: italic;
-    }
-    .athletics__cta .sub-link svg { width: 12px; height: 12px; }
-
-    /* ═════════════════════ CLUBS GRID ═════════════════════ */
-    .clubs {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .clubs__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
-    }
-    .clubs__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 20ch;
-      line-height: 1.02;
-    }
-    .clubs__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .clubs__head .all {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-      padding: 12px 20px;
-      background: hsl(var(--hfu-yellow) / 0.14);
-      border-radius: 100px;
-      border: 1px solid hsl(var(--hfu-yellow) / 0.3);
-      transition: all 220ms var(--ease-out);
-    }
-    .clubs__head .all:hover {
-      background: hsl(var(--hfu-yellow) / 0.24);
-      border-color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .clubs__head .all svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .clubs__head .all:hover svg { transform: translateX(3px); }
-
-    .clubs__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .club {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 28px 30px 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      position: relative;
-      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
-      overflow: hidden;
-    }
-    .club::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, hsl(var(--hfu-yellow)) 0%, hsl(var(--hfu-blue)) 100%);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 400ms var(--ease-out);
-    }
-    .club:hover::before { transform: scaleX(1); }
-    .club:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .club__top {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      justify-content: space-between;
-    }
-    .club__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-    .club__icon svg { width: 22px; height: 22px; }
-    .club--faith .club__icon { background: hsl(var(--hfu-yellow) / 0.2); color: hsl(var(--hfu-yellow-deep)); }
-    .club--service .club__icon { background: hsl(var(--hfu-blue) / 0.14); color: hsl(var(--hfu-blue)); }
-    .club--culture .club__icon { background: hsl(var(--hfu-navy) / 0.1); color: hsl(var(--hfu-navy)); }
-    .club--arts .club__icon { background: hsl(335 78% 88% / 0.9); color: hsl(335 72% 42%); }
-    .club--eco .club__icon { background: hsl(155 52% 88%); color: hsl(155 60% 28%); }
-    .club--health .club__icon { background: hsl(var(--hfu-mist) / 0.5); color: hsl(var(--hfu-navy)); }
-
-    .club__members {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      background: hsl(var(--bg));
-    }
-    .club__members strong {
-      color: hsl(var(--hfu-navy));
-      font-weight: 700;
-    }
-    .club h3 {
-      font-family: var(--display);
-      font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-      line-height: 1.1;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.018em;
-      font-variation-settings: "opsz" 60;
-    }
-    .club p {
-      font-size: 14px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      flex: 1;
-    }
-    .club__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 16px;
-      border-top: 1px solid hsl(var(--border-soft));
-      margin-top: 4px;
-    }
-    .club__meet {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__meet svg { width: 11px; height: 11px; }
-    .club__join {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__join svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
-    .club:hover .club__join svg { transform: translateX(3px); }
-
-    /* ═════════════════════ HOUSING & DINING SPLIT ═════════════════════ */
-    .home {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-    }
-    .home__head {
-      max-width: var(--container);
-      margin: 0 auto 64px;
-      padding: 0 var(--gutter);
-      text-align: center;
-    }
-    .home__head .eyebrow { justify-content: center; }
-    .home__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin: 18px auto 0;
-      max-width: 24ch;
-      letter-spacing: -0.024em;
-      line-height: 1.05;
-    }
-    .home__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-    .home-card {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
-    }
-    .home-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-    .home-card__media {
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      position: relative;
-    }
-    .home-card__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 700ms var(--ease-out);
-    }
-    .home-card:hover .home-card__media img { transform: scale(1.04); }
-    .home-card__tag {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: hsl(var(--bg-card));
-      color: hsl(var(--hfu-navy));
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 100px;
-      box-shadow: var(--shadow-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .home-card__tag svg { width: 12px; height: 12px; color: hsl(var(--hfu-blue)); }
-    .home-card__body {
-      padding: 36px 38px 38px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      flex: 1;
-    }
-    .home-card h3 {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
-      color: hsl(var(--hfu-navy));
-      line-height: 1.02;
-      letter-spacing: -0.024em;
-      font-variation-settings: "opsz" 60;
-    }
-    .home-card h3 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home-card p.lead-card {
-      font-size: 15.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      max-width: 42ch;
-    }
-    .home-card__list {
-      list-style: none;
-      margin: 8px 0 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px 18px;
-    }
-    .home-card__list li {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      font-size: 13.5px;
-      color: hsl(var(--fg));
-      line-height: 1.4;
-    }
-    .home-card__list .check {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
-      display: grid;
-      place-items: center;
-      margin-top: 1px;
-    }
-    .home-card__list .check svg { width: 10px; height: 10px; }
-    .home-card__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
-    }
-    .home-card__price {
-      display: flex;
-      flex-direction: column;
-      font-family: var(--display);
-    }
-    .home-card__price .num {
-      font-size: 22px;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .home-card__price .label {
-      font-family: var(--body);
-      font-size: 11px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-    .home-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-    }
-    .home-card__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .home-card:hover .home-card__link svg { transform: translateX(3px); }
-
-    /* ═════════════════════ VOICES (warm cream) ═════════════════════ */
-    .voices {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .voices__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .voices__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      line-height: 1.02;
-    }
-    .voices__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .voices__head p {
-      font-size: 15.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.6;
-      max-width: 44ch;
-    }
-    .voices__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .voice-card {
-      padding: 38px 34px 32px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--r-lg);
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      position: relative;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
-    }
-    .voice-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .voice-card__mark {
-      font-family: var(--display);
-      font-size: 88px;
-      line-height: 0.3;
-      color: hsl(var(--hfu-yellow));
-      margin: 10px 0 -28px;
-      font-weight: 300;
-      letter-spacing: -0.04em;
-    }
-    .voice-card blockquote {
-      font-family: var(--display);
-      font-size: clamp(17px, 1.35vw, 20px);
-      line-height: 1.38;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.012em;
-      margin: 0;
-      flex: 1;
-      font-style: italic;
-      font-weight: 300;
-      font-variation-settings: "opsz" 60;
-    }
-    .voice-card__by {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
-    }
-    .voice-card__avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid hsl(var(--border));
-      box-shadow: var(--shadow-xs);
-    }
-    .voice-card__name {
-      font-size: 14.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.005em;
+      margin-bottom: 4px;
       display: block;
     }
-    .voice-card__role {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      margin-top: 3px;
+    .hfu-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      letter-spacing: -0.012em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 8px;
+      font-variation-settings: "opsz" 60;
     }
-    .voice-card__chip {
-      position: absolute;
-      top: 26px;
-      right: 26px;
-      padding: 5px 12px;
-      font-size: 10.5px;
-      font-weight: 700;
+    .hfu-callout p {
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg));
+      max-width: 70ch;
+    }
+    .hfu-callout__right {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: hsl(var(--fg-muted));
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      border-radius: 100px;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-navy));
     }
-    .voice-card--a .voice-card__chip { background: hsl(var(--hfu-blue) / 0.12); color: hsl(var(--hfu-blue)); }
-    .voice-card--b .voice-card__chip { background: hsl(var(--hfu-yellow) / 0.24); color: hsl(var(--hfu-navy)); }
-    .voice-card--c .voice-card__chip { background: hsl(335 72% 42% / 0.1); color: hsl(335 60% 38%); }
+    .hfu-callout__right b {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 400;
+      color: hsl(var(--hfu-blue));
+      letter-spacing: -0.014em;
+      font-variation-settings: "opsz" 60;
+      text-transform: none;
+    }
 
-    /* ═════════════════════ CALENDAR STRIP ═════════════════════ */
-    .calendar {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
+    /* Signature strengths: stack of three hfu-callouts */
+    .strengths {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
-    .calendar__head {
-      max-width: var(--container);
-      margin: 0 auto 48px;
-      padding: 0 var(--gutter);
+
+    /* hfu-acc accordion (from library) */
+    .hfu-acc { display: flex; flex-direction: column; }
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 22px 4px;
+      transition: background 200ms var(--ease-out);
+    }
+    .hfu-acc details:last-child { border-bottom: 1px solid hsl(var(--border)); }
+    .hfu-acc summary {
       display: grid;
       grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-    }
-    .calendar__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+      font-weight: 400;
+      line-height: 1.25;
       color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 22ch;
-      line-height: 1.02;
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
     }
-    .calendar__head h2 em {
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__chev {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
+    }
+    .hfu-acc__chev svg { width: 11px; height: 11px; }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-acc details > div {
+      padding-top: 14px;
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: hsl(var(--fg-muted));
+      max-width: 68ch;
+    }
+    .hfu-acc details > div p + p { margin-top: 10px; }
+
+    /* hfu-pullquote (from library) */
+    .hfu-pullquote {
+      padding: 56px 0;
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
+      position: relative;
+    }
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 8px; height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%; margin-left: -4px;
+    }
+    .hfu-pullquote::before { top: -4px; }
+    .hfu-pullquote::after  { bottom: -4px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 34ch;
+      font-family: var(--display);
       font-style: italic;
       font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .calendar__nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-    }
-    .calendar__nav button {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      color: hsl(var(--hfu-navy));
-      display: grid;
-      place-items: center;
-      transition: all 200ms var(--ease-out);
-    }
-    .calendar__nav button:hover {
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
-    }
-    .calendar__nav button svg { width: 14px; height: 14px; }
-    .calendar__nav .label {
-      padding: 0 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: 0.01em;
-    }
-
-    .calendar__track {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      position: relative;
-    }
-    .calendar__timeline {
-      position: relative;
-      padding-top: 26px;
-    }
-    .calendar__line {
-      position: absolute;
-      top: 76px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, hsl(var(--hfu-navy) / 0.22) 6%, hsl(var(--hfu-navy) / 0.22) 94%, transparent);
-    }
-    .calendar__row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-      position: relative;
-    }
-    .cal-item {
-      text-align: left;
-      padding: 0 2px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-    }
-    .cal-item__date {
-      width: 100px;
-      height: 100px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--r);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0;
-      transition: all 280ms var(--ease-out);
-      position: relative;
-      box-shadow: var(--shadow-xs);
-    }
-    .cal-item:hover .cal-item__date {
-      background: hsl(var(--hfu-navy));
-      border-color: hsl(var(--hfu-navy));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .cal-item__date .month {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: hsl(var(--hfu-blue));
-      font-weight: 700;
-      margin-bottom: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .month { color: hsl(var(--hfu-yellow)); }
-    .cal-item__date .day {
-      font-family: var(--display);
-      font-size: 48px;
-      line-height: 0.9;
-      color: hsl(var(--hfu-navy));
-      font-variation-settings: "opsz" 60;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .day { color: #fff; }
-    .cal-item__date .dow {
-      font-size: 10.5px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .dow { color: hsl(0 0% 100% / 0.7); }
-
-    .cal-item__body {
-      padding-right: 12px;
-    }
-    .cal-item__tag {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .cal-item h3 {
-      font-family: var(--display);
-      font-size: 17px;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
       line-height: 1.2;
+      letter-spacing: -0.018em;
       color: hsl(var(--hfu-navy));
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
       font-variation-settings: "opsz" 60;
     }
-    .cal-item__meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 12.5px;
-      color: hsl(var(--fg-muted));
+    .hfu-pullquote__by {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
     }
-    .cal-item__meta .line {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
+    .hfu-pullquote__label {
+      display: inline-block;
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      padding: 4px 10px;
+      border: 1px solid hsl(var(--hfu-blue) / 0.25);
+      border-radius: 999px;
+      background: hsl(var(--hfu-blue) / 0.06);
     }
-    .cal-item__meta svg { width: 11px; height: 11px; color: hsl(var(--hfu-blue)); opacity: 0.7; }
 
-    .calendar__foot {
-      max-width: var(--container);
-      margin: 56px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: center;
+    /* c-callout --yellow: navy-backed CTA block (from library) */
+    .c-callout {
+      padding: 52px 48px;
+      border-radius: var(--r-lg);
+      display: grid;
+      grid-template-columns: 1.3fr auto;
+      gap: 36px;
+      align-items: center;
     }
-    .calendar__foot a {
+    .c-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .c-callout h3 em { font-style: italic; font-weight: 300; }
+    .c-callout p {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+    .c-callout__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+    .c-callout--navy-bg {
+      background:
+        radial-gradient(ellipse at 80% 10%, hsl(var(--hfu-blue) / 0.28), transparent 55%),
+        hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white));
+    }
+    .c-callout--navy-bg h3 { color: hsl(var(--white)); }
+    .c-callout--navy-bg h3 em { color: hsl(var(--hfu-yellow)); }
+    .c-callout--navy-bg p { color: hsl(var(--white) / 0.78); }
+    .c-callout--navy-bg .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+    }
+    .c-callout--navy-bg .btn--glass {
+      background: hsl(var(--white) / 0.1);
+      border: 1px solid hsl(var(--white) / 0.28);
+      color: hsl(var(--white));
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-size: 14.5px;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 24px;
-      border: 1px solid hsl(var(--border-strong));
-      border-radius: 100px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      background: hsl(var(--bg-card));
-      transition: all 220ms var(--ease-out);
+      transition: background 220ms var(--ease-out), border-color 220ms var(--ease-out), transform 220ms var(--ease-out);
     }
-    .calendar__foot a:hover {
-      background: hsl(var(--hfu-navy));
-      color: #fff;
+    .c-callout--navy-bg .btn--glass:hover {
+      background: hsl(var(--white) / 0.18);
+      border-color: hsl(var(--white) / 0.48);
       transform: translateY(-1px);
     }
-    .calendar__foot svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .calendar__foot a:hover svg { transform: translateX(3px); }
+    .c-callout--navy-bg .btn--glass svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
+    .c-callout--navy-bg .btn--glass:hover svg { transform: translateX(3px); }
 
-    /* ═════════════════════ CTA MEGA ═════════════════════ */
-    .cta {
-      padding: 0 0 var(--section);
-    }
-    .cta__box {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-    .cta__inner {
-      position: relative;
-      border-radius: var(--r-2xl);
-      overflow: hidden;
-      padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem);
-      background: hsl(var(--hfu-navy));
-      color: #fff;
-    }
-    .cta__bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .cta__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      opacity: 0.25;
-    }
-    .cta__bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(130deg, hsl(var(--hfu-navy-deep)) 0%, hsl(var(--hfu-navy-deep) / 0.88) 40%, hsl(var(--hfu-navy) / 0.58) 100%);
-    }
-    .cta__content {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .cta__content .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .cta__content .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .cta__content h2 {
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.98;
-      color: #fff;
-      margin: 22px 0 0;
-      letter-spacing: -0.028em;
-      font-variation-settings: "opsz" 60;
-      font-weight: 350;
-      max-width: 14ch;
-    }
-    .cta__content h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-    }
-    .cta__side { display: flex; flex-direction: column; gap: 24px; }
-    .cta__side p {
-      font-size: 16px;
-      color: hsl(0 0% 100% / 0.78);
-      line-height: 1.6;
-    }
-    .cta__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-    .cta__buttons .btn--secondary {
-      background: transparent;
-      color: #fff;
-      border-color: hsl(0 0% 100% / 0.3);
-    }
-    .cta__buttons .btn--secondary:hover {
-      background: hsl(0 0% 100% / 0.08);
-      border-color: hsl(0 0% 100% / 0.5);
-    }
-
-    /* ═════════════════════ Footer ═════════════════════ */
+    /* Footer */
     .foot {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.72);
+      color: hsl(var(--white) / 0.72);
       padding: clamp(4rem, 6vw, 6rem) 0 0;
     }
     .foot__inner {
@@ -1802,7 +1045,7 @@
     .foot__brand h3 {
       font-family: var(--display);
       font-size: 26px;
-      color: #fff;
+      color: hsl(var(--white));
       margin: 22px 0 14px;
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -1816,8 +1059,8 @@
     .foot__news {
       display: flex;
       gap: 8px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.1);
+      background: hsl(var(--white) / 0.06);
+      border: 1px solid hsl(var(--white) / 0.1);
       border-radius: 100px;
       padding: 6px 6px 6px 18px;
       max-width: 380px;
@@ -1826,12 +1069,12 @@
       flex: 1;
       background: transparent;
       border: none;
-      color: #fff;
+      color: hsl(var(--white));
       font: inherit;
       font-size: 14px;
       outline: none;
     }
-    .foot__news input::placeholder { color: hsl(0 0% 100% / 0.5); }
+    .foot__news input::placeholder { color: hsl(var(--white) / 0.5); }
     .foot__news button {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
@@ -1844,81 +1087,39 @@
       font-family: var(--body);
       font-size: 12px;
       font-weight: 700;
-      color: #fff;
+      color: hsl(var(--white));
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 22px;
     }
     .foot__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-    .foot__col a { font-size: 14px; color: hsl(0 0% 100% / 0.62); }
-    .foot__col a:hover { color: #fff; }
-    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(0 0% 100% / 0.56); margin-top: 10px; }
-    .foot__addr strong { color: hsl(0 0% 100% / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
+    .foot__col a { font-size: 14px; color: hsl(var(--white) / 0.62); }
+    .foot__col a:hover { color: hsl(var(--white)); }
+    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(var(--white) / 0.56); margin-top: 10px; }
+    .foot__addr strong { color: hsl(var(--white) / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
 
     .foot__bottom {
       max-width: var(--container);
       margin: 72px auto 0;
       padding: 28px var(--gutter);
-      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      border-top: 1px solid hsl(var(--white) / 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
       font-size: 12.5px;
-      color: hsl(0 0% 100% / 0.5);
+      color: hsl(var(--white) / 0.5);
     }
     .foot__bottom .links { display: flex; gap: 24px; }
-    .foot__bottom a:hover { color: #fff; }
+    .foot__bottom a:hover { color: hsl(var(--white)); }
 
-    /* ═════════════════════ Mobile ═════════════════════ */
+    /* Responsive */
     @media (max-width: 1100px) {
-      .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); max-width: 14ch; }
-      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-      .hero__stat { padding: 14px 18px; border-right: 1px solid hsl(0 0% 100% / 0.14); border-bottom: 1px solid hsl(0 0% 100% / 0.14); }
-      .hero__stat:nth-child(2n) { border-right: none; padding-right: 0; }
-      .hero__stat:nth-child(1), .hero__stat:nth-child(2) { padding-top: 0; }
-      .hero__stat:nth-child(3), .hero__stat:nth-child(4) { border-bottom: none; padding-bottom: 0; }
-      .hero__stat:nth-child(2n+1) { padding-left: 0; }
-      .hero__scroll { display: none; }
-
-      .pillars__head { grid-template-columns: 1fr; gap: 28px; }
-      .pillars__grid { grid-template-columns: repeat(2, 1fr); }
-      .pillars--four .pillars__grid { grid-template-columns: repeat(2, 1fr); }
-
-      .programs__head { grid-template-columns: 1fr; gap: 28px; }
-      .programs__grid { grid-template-columns: repeat(2, 1fr); }
-
-      .gallery__head { grid-template-columns: 1fr; gap: 24px; }
-      .gallery__grid { grid-auto-rows: 100px; }
-      .shot--a { grid-column: span 12; grid-row: span 4; }
-      .shot--b { grid-column: span 12; grid-row: span 2; }
-      .shot--c { grid-column: span 6; grid-row: span 2; }
-      .shot--d { grid-column: span 6; grid-row: span 2; }
-      .shot--e { grid-column: span 6; grid-row: span 3; }
-      .shot--f { grid-column: span 6; grid-row: span 3; }
-      .shot--g { grid-column: span 12; grid-row: span 3; }
-      .shot--h { grid-column: span 12; grid-row: span 3; }
-
-      .athletics__inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
-      .athletics__media { margin: clamp(3rem, 5vw, 5rem) 0 0; aspect-ratio: 16 / 10; }
-      .athletics__body { padding: clamp(3rem, 5vw, 5rem) 0; }
-
-      .clubs__grid { grid-template-columns: repeat(2, 1fr); }
-      .clubs__head { grid-template-columns: 1fr; gap: 20px; }
-
-      .home__grid { grid-template-columns: 1fr; gap: 20px; }
-      .home-card__list { grid-template-columns: 1fr 1fr; }
-
-      .voices__head { grid-template-columns: 1fr; gap: 20px; }
-      .voices__grid { grid-template-columns: 1fr; gap: 16px; }
-
-      .calendar__head { grid-template-columns: 1fr; gap: 16px; }
-      .calendar__row { grid-template-columns: repeat(3, 1fr); gap: 28px 18px; }
-      .cal-item:nth-child(n+4) { display: none; }
-      .calendar__line { display: none; }
-
-      .cta__content { grid-template-columns: 1fr; gap: 32px; }
+      .directory__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .school-panel__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .index-hero__meta { grid-template-columns: 1fr; gap: 28px; }
+      .filter-strip { grid-template-columns: 1fr; gap: 28px; }
       .foot__inner { grid-template-columns: 1fr 1fr; gap: 48px; }
     }
 
@@ -1934,91 +1135,45 @@
         place-items: center;
         width: 40px;
         height: 40px;
-        background: hsl(0 0% 100% / 0.08);
+        background: hsl(var(--white) / 0.08);
         border-radius: 8px;
-        color: #fff;
+        color: hsl(var(--white));
       }
       .nav__search { display: none; }
       .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
 
-      .hero { min-height: 86vh; }
-      .hero__inner { padding-bottom: 3rem; }
-      .hero__crumbs { margin-bottom: 18px; font-size: 12px; flex-wrap: wrap; }
-      .hero__eyebrow { margin-bottom: 22px; font-size: 11px; }
-      .hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); max-width: none; margin-bottom: 24px; }
-      .hero__lead { font-size: 15px; margin-bottom: 28px; }
-      .hero__ctas { flex-direction: column; align-items: stretch; margin-bottom: 40px; }
-      .hero__ctas .btn { justify-content: center; }
-      .hero__stats { grid-template-columns: 1fr 1fr; padding-top: 24px; }
-      .hero__stat { padding: 12px 14px; }
-      .hero__stat .num { font-size: 1.8rem; }
+      .index-hero { padding: 0.75rem 0 clamp(2.25rem, 8vw, 3.5rem); }
+      .index-hero h1 { font-size: clamp(2.4rem, 10vw, 3.6rem); max-width: none; }
+      .index-hero__specs { grid-template-columns: 1fr 1fr; gap: 18px; }
+      .filter-strip { margin-top: 28px; }
+      .hfu-tabs button { padding: 12px 14px 14px; font-size: 12.5px; }
 
-      .pillars__grid { grid-template-columns: 1fr; }
-      .pillar { min-height: auto; padding: 28px 26px; }
-      .pillars--four .pillars__grid { grid-template-columns: 1fr; }
-      .programs__grid { grid-template-columns: 1fr; }
-      .prog-card { min-height: auto; padding: 26px 26px 24px; }
+      .directory { margin-top: 36px; }
+      .directory__grid { grid-template-columns: 1fr; }
+      .dir-entry { grid-template-columns: 44px 1fr; gap: 14px; padding: 14px 0; }
+      .dir-entry__num { font-size: 22px; }
 
-      .gallery__grid {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .shot, .shot--a, .shot--b, .shot--c, .shot--d, .shot--e, .shot--f, .shot--g, .shot--h {
-        aspect-ratio: 4 / 3;
-        height: auto;
-        min-height: 220px;
-        grid-column: auto;
-        grid-row: auto;
-      }
+      .school-panel__grid { grid-template-columns: 1fr; }
+      .c-program { min-height: auto; padding: 24px 24px 22px; }
 
-      .athletics__inner { padding: 0 var(--gutter); }
-      .athletics__media { margin: 48px 0 0; aspect-ratio: 5 / 4; }
-      .athletics__body h2 { font-size: 2.2rem; }
-      .athletics__score .roar { font-size: 48px; }
-      .athletics__score .tiger { font-size: 1.4rem; }
+      .hfu-table-wrap { max-height: 480px; }
+      .hfu-table thead th, .hfu-table tbody td { padding: 12px 14px; }
 
-      .clubs__grid { grid-template-columns: 1fr; }
-      .club { padding: 24px 24px 26px; }
+      .hfu-callout { grid-template-columns: 1fr; gap: 12px; padding: 20px 22px; }
+      .hfu-callout__right { text-align: left; flex-direction: row; align-items: baseline; gap: 12px; }
+      .hfu-callout__right b { font-size: 22px; }
 
-      .home-card__body { padding: 28px 26px 30px; }
-      .home-card__list { grid-template-columns: 1fr; gap: 12px; }
-      .home-card h3 { font-size: 1.7rem; }
-
-      .voice-card { padding: 32px 26px 28px; }
-      .voice-card blockquote { font-size: 17px; }
-      .voice-card__chip { top: 22px; right: 22px; }
-
-      .calendar__row {
-        display: flex;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scroll-snap-type: x mandatory;
-        gap: 16px;
-        padding: 0 0 14px;
-        margin: 0 calc(var(--gutter) * -1);
-        padding-left: var(--gutter);
-        padding-right: var(--gutter);
-        scrollbar-width: none;
-      }
-      .calendar__row::-webkit-scrollbar { display: none; }
-      .cal-item {
-        flex: 0 0 240px;
-        scroll-snap-align: start;
-      }
-      .cal-item:nth-child(n+4) { display: flex; }
-      .cal-item__date { width: 88px; height: 88px; }
-      .cal-item__date .day { font-size: 40px; }
-
-      .cta__inner { padding: 52px 28px; border-radius: var(--r-xl); }
-      .cta__content { gap: 28px; }
-      .cta__content h2 { font-size: 2.4rem; }
+      .c-callout { grid-template-columns: 1fr; padding: 36px 28px; gap: 24px; }
+      .c-callout__buttons { flex-direction: column; align-items: stretch; }
+      .c-callout__buttons .btn, .c-callout__buttons .btn--glass { justify-content: center; }
 
       .foot__inner { grid-template-columns: 1fr; gap: 40px; }
       .foot__news { max-width: none; }
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
+  <link rel="stylesheet" href="components-restore.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -2027,29 +1182,25 @@
     position: fixed; top: 20px; left: 20px; z-index: 9999;
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 16px 10px 12px; border-radius: 999px;
-    background: rgba(6, 35, 64, 0.92); color: #fff;
+    background: hsl(var(--hfu-navy) / 0.92); color: hsl(var(--white));
     font: 500 12px/1 "Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     letter-spacing: 0.02em; text-decoration: none;
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 12px 40px rgba(6,35,64,0.22);
-    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 2px 8px hsl(var(--hfu-navy) / 0.12), 0 12px 40px hsl(var(--hfu-navy) / 0.22);
+    border: 1px solid hsl(var(--white) / 0.10);
     transition: transform 220ms cubic-bezier(.2,.9,.3,1.1), box-shadow 220ms ease, background 220ms ease;
   }
   .aos-back-to-concepts svg { width: 12px; height: 12px; display: block; }
-  .aos-back-to-concepts:hover { transform: translateX(-2px); background: #062340; box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 16px 48px rgba(6,35,64,0.30); }
-  @media print { .aos-back-to-concepts { display: none !important; } }
+  .aos-back-to-concepts:hover { transform: translateX(-2px); background: hsl(var(--hfu-navy-deep)); box-shadow: 0 4px 12px hsl(var(--hfu-navy) / 0.18), 0 16px 48px hsl(var(--hfu-navy) / 0.30); }
+  @media print { .aos-back-to-concepts { display: none; } }
   @media (max-width: 640px) {
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
-  <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
+  <!-- ===================== UTILITY STRIP ===================== -->
   <div class="util">
     <div class="util__inner">
       <div class="util__contact">
@@ -2057,7 +1208,7 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
           215 637 7700
         </span>
-        <span>Philadelphia · Newtown · Online</span>
+        <span>Philadelphia &middot; Newtown &middot; Online</span>
         <span>215 637 7700 x4000 (Newtown)</span>
       </div>
       <div class="util__links">
@@ -2069,7 +1220,7 @@
     </div>
   </div>
 
-  <!-- ═════════════════════ MAIN NAV ═════════════════════ -->
+  <!-- ===================== MAIN NAV ===================== -->
   <header class="nav">
     <div class="nav__inner">
       <a href="#" class="nav__logo-link" aria-label="Holy Family University">
@@ -2099,338 +1250,1086 @@
   </header>
 
   <main>
-  <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="../assets/hfu-photos/academics-etc.jpg" alt="Holy Family University academic building">
-    </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__grain"></div>
 
-    <div class="hero__inner">
-      <div class="hero__crumbs">
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       EDITORIAL INDEX HERO
+       Catalog treatment. No background photo. Typographic directory.
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="index-hero" aria-labelledby="hero-title">
+    <div class="index-hero__inner">
+
+      <div class="index-hero__crumbs">
         <a href="hfu-home.html">Home</a>
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
         <span class="is-current">Academics</span>
       </div>
 
-      <span class="hero__eyebrow">Academics</span>
+      <span class="index-hero__eyebrow">Academic Catalog &middot; 2026 &ndash; 2027</span>
 
-      <h1>Four schools. Forty-plus programs. Find <em>yours.</em></h1>
+      <h1 id="hero-title">Forty-plus programs across <em>four schools.</em></h1>
 
-      <p class="hero__lead">Our academic programs, spanning the Schools of Arts and Sciences, Business and Technology, Education, and Nursing and Health Sciences are designed to foster critical thinking, professional expertise, and a deep sense of ethical responsibility.</p>
-
-      <div class="hero__ctas">
-        <a href="#majors" class="btn btn--primary btn--lg">
-          Explore Majors &amp; Minors
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-        <a href="#" class="btn btn--glass btn--lg">
-          Request Info
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">40<span class="small">+</span></div>
-          <div class="label">Bachelor, Master<br>&amp; Doctoral Programs</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">4</div>
-          <div class="label">Schools<br>of Study</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">13:1</div>
-          <div class="label">Student to<br>Faculty Ratio</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">1954</div>
-          <div class="label">Founded &middot; Sisters of the<br>Holy Family of Nazareth</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__scroll">Scroll to explore</div>
-  </section>
-
-  <!-- ═════════════════════ SECTION A · THE FOUR SCHOOLS ═════════════════════ -->
-  <section class="pillars pillars--four">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">The four schools</span>
-        <h2>Four schools. One <em>curriculum</em> built on the liberal arts.</h2>
-      </div>
-      <p class="lead">Every program is grounded in a distinctive core &mdash; values-centered, mentorship-driven, and tuned to the realities of working professionals.</p>
-    </div>
-
-    <div class="pillars__grid">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6l2 2h10v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6Z"/><path d="M7 13h10"/><path d="M7 16h6"/></svg>
-        </div>
-        <h3>School of Arts &amp; Sciences</h3>
-        <p>Liberal arts foundation across the humanities, social sciences, natural sciences, and mathematics.</p>
-        <a href="#" class="pillar__link">
-          Explore the school
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="1.5"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M3 12h18"/></svg>
-        </div>
-        <h3>School of Business &amp; Technology</h3>
-        <p>Accounting, business administration, marketing, computer science, cybersecurity, and supply chain management.</p>
-        <a href="#" class="pillar__link">
-          Explore the school
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7.5 12 3l10 4.5-10 4.5L2 7.5Z"/><path d="M6 10v4.5c0 1.5 2.7 3 6 3s6-1.5 6-3V10"/><path d="M22 7.5V14"/></svg>
-        </div>
-        <h3>School of Education</h3>
-        <p>PreK&ndash;12 teacher certification, special education, educational leadership, and counseling psychology.</p>
-        <a href="#" class="pillar__link">
-          Explore the school
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/><path d="M12 12v-3"/><path d="M10.5 10.5h3"/></svg>
-        </div>
-        <h3>School of Nursing &amp; Health Sciences</h3>
-        <p>BSN, RN-to-BSN, MSN, DNP, radiologic science, exercise science, and health humanities.</p>
-        <a href="#" class="pillar__link">
-          Explore the school
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ SECTION B · THE DISTINCTIVE CORE ═════════════════════ -->
-  <section class="pillars" style="background: hsl(var(--bg-alt)); border-top: 1px solid hsl(var(--border-soft)); border-bottom: 1px solid hsl(var(--border-soft));">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">How we teach</span>
-        <h2>How we <em>teach.</em></h2>
-      </div>
-      <p class="lead">A liberal-arts foundation, connected to workforce skills through six enduring practices.</p>
-    </div>
-
-    <div class="pillars__grid">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M14 20c0-2 2-3.5 4-3.5s3 1 3 3.5"/></svg>
-        </div>
-        <h3>Faculty mentorship</h3>
-        <p>A 13:1 student-to-faculty ratio. Full professors teach introductory courses.</p>
-        <a href="#" class="pillar__link">
-          Meet the faculty
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9l3 3v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Z"/><path d="M15 4v3h3"/><path d="M8 12h8"/><path d="M8 15h5"/></svg>
-        </div>
-        <h3>Collaborative research</h3>
-        <p>Undergraduates co-author with faculty in humanities, sciences, and nursing.</p>
-        <a href="#" class="pillar__link">
-          Research highlights
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M5 7h14l-1 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 7Z"/><path d="M12 11v6"/><path d="M9 14h6"/></svg>
-        </div>
-        <h3>Clinical placements</h3>
-        <p>Partnerships with every major Philadelphia health system in nursing, education, and psychology.</p>
-        <a href="#" class="pillar__link">
-          See our partners
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="1.5"/><path d="M8 6V4h8v2"/><path d="M3 12h18"/><path d="M12 15v3"/></svg>
-        </div>
-        <h3>Internships</h3>
-        <p>Required for most majors. Philadelphia's Catholic network opens doors across industries.</p>
-        <a href="#" class="pillar__link">
-          Internship catalog
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">05</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2.5 0 4 2 4 4 0 3-4 6-4 6s-4-3-4-6c0-2 1.5-4 4-4Z"/><circle cx="12" cy="7" r="1.5"/><path d="M5 21c0-3 3-4 7-4s7 1 7 4"/></svg>
-        </div>
-        <h3>Service-learning</h3>
-        <p>Fieldwork tied to coursework, grounded in the Sisters' charism of service.</p>
-        <a href="#" class="pillar__link">
-          Service programs
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">06</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>
-        </div>
-        <h3>Global awareness</h3>
-        <p>Study-away partnerships, languages, and a global-issues core requirement.</p>
-        <a href="#" class="pillar__link">
-          Study abroad
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ SECTION C · FEATURED PROGRAMS ═════════════════════ -->
-  <section class="programs">
-    <div class="programs__head">
-      <div>
-        <span class="eyebrow">Featured programs</span>
-        <h2 id="majors">Find your <em>program.</em></h2>
-      </div>
-      <p class="lead">A selection of what HFU is known for. Explore all forty-plus programs in the full catalog.</p>
-    </div>
-
-    <div class="programs__grid">
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Nursing</span>
-        <h3>BSN &middot; Bachelor of Science in Nursing</h3>
-        <p>Clinical judgment, evidence-based practice, and culturally-sensitive healthcare, taught alongside Philadelphia's leading hospital systems.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">B.S.</span>
-          <a href="hfu-bsn.html" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Business</span>
-        <h3>Business Administration, MBA</h3>
-        <p>A 4+1 pathway available, with accelerated formats designed for working professionals.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">M.B.A.</span>
-          <a href="#" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Education</span>
-        <h3>Counseling Psychology, M.S.</h3>
-        <p>Clinical Mental Health Counseling or School Counseling tracks, with fieldwork across the Philadelphia region.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">M.S.</span>
-          <a href="#" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Arts &amp; Sciences</span>
-        <h3>Criminal Justice, B.A.</h3>
-        <p>Greater Philadelphia's justice-system internships are included in the major.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">B.A.</span>
-          <a href="#" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Nursing</span>
-        <h3>Doctor of Nursing Practice, DNP</h3>
-        <p>Practice-focused doctoral training for advanced clinical leaders.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">D.N.P.</span>
-          <a href="#" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-
-      <article class="prog-card">
-        <span class="prog-card__eyebrow">Business &amp; Technology</span>
-        <h3>Cybersecurity and IT Management, B.A.</h3>
-        <p>An industry-aligned curriculum with certification preparation built into the coursework.</p>
-        <div class="prog-card__foot">
-          <span class="prog-card__degree">B.A.</span>
-          <a href="#" class="prog-card__link">
-            Program details
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
-    </div>
-
-    <div class="programs__foot">
-      <a href="#" class="btn btn--ghost btn--lg">
-        See all 40+ programs
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ SECTION D · CTA MEGA ═════════════════════ -->
-  <section class="cta">
-    <div class="cta__box">
-      <div class="cta__inner">
-        <div class="cta__bg">
-          <img src="../assets/hfu-photos/academics-nurses.jpg" alt="">
-        </div>
-        <div class="cta__content">
+      <div class="index-hero__meta">
+        <p class="index-hero__lead">A directory of every undergraduate major, graduate degree, and certificate offered by Holy Family University. Grounded in the liberal arts, shaped by the Sisters of the Holy Family of Nazareth, taught at a 13:1 student-to-faculty ratio.</p>
+        <dl class="index-hero__specs">
           <div>
-            <span class="eyebrow">Take the next step</span>
-            <h2>Your degree <em>starts</em> with a conversation.</h2>
+            <dt>Schools</dt>
+            <dd>Four</dd>
           </div>
-          <div class="cta__side">
-            <p>Speak with an admissions counselor about your program, your transfer credits, or your path to finishing a degree you started elsewhere.</p>
-            <div class="cta__buttons">
-              <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
-                Apply Now
+          <div>
+            <dt>Programs</dt>
+            <dd>40<span style="font-size:16px; color:hsl(var(--fg-muted));">+</span></dd>
+          </div>
+          <div>
+            <dt>Ratio</dt>
+            <dd>13:1</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- FILTER STRIP: three .hfu-tabs groups -->
+      <div class="filter-strip" role="region" aria-label="Filter programs">
+        <div class="filter-strip__group">
+          <span class="filter-strip__label" id="filter-school">Filter by school</span>
+          <div class="hfu-tabs" role="tablist" aria-labelledby="filter-school" data-filter="school">
+            <button type="button" class="is-active" role="tab" aria-selected="true" data-value="all">All</button>
+            <button type="button" role="tab" data-value="arts">Arts &amp; Sciences</button>
+            <button type="button" role="tab" data-value="business">Business &amp; Technology</button>
+            <button type="button" role="tab" data-value="education">Education</button>
+            <button type="button" role="tab" data-value="nursing">Nursing &amp; Health</button>
+          </div>
+        </div>
+
+        <div class="filter-strip__group">
+          <span class="filter-strip__label" id="filter-level">Filter by level</span>
+          <div class="hfu-tabs" role="tablist" aria-labelledby="filter-level" data-filter="level">
+            <button type="button" class="is-active" role="tab" aria-selected="true" data-value="all">All</button>
+            <button type="button" role="tab" data-value="under">Undergraduate</button>
+            <button type="button" role="tab" data-value="grad">Graduate</button>
+            <button type="button" role="tab" data-value="cert">Certificate</button>
+          </div>
+        </div>
+
+        <div class="filter-strip__group">
+          <span class="filter-strip__label" id="filter-delivery">Filter by delivery</span>
+          <div class="hfu-tabs" role="tablist" aria-labelledby="filter-delivery" data-filter="delivery">
+            <button type="button" class="is-active" role="tab" aria-selected="true" data-value="all">All</button>
+            <button type="button" role="tab" data-value="campus">On-campus</button>
+            <button type="button" role="tab" data-value="online">Online</button>
+            <button type="button" role="tab" data-value="hybrid">Hybrid</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECTORY: oversized serif oldstyle numerals 01..40+ in three columns -->
+      <div class="directory" aria-labelledby="directory-title">
+        <div class="directory__head">
+          <span class="directory__title" id="directory-title">Program Directory</span>
+          <span class="directory__count">Showing <b>42</b> programs. Sorted alphabetically within each column.</span>
+        </div>
+
+        <div class="directory__grid">
+          <!-- Column 1 -->
+          <div class="directory__col">
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">01</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Accounting</span>
+                <span class="dir-entry__desc">Audit, tax, and managerial accounting with CPA pathway.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">02</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Biology</span>
+                <span class="dir-entry__desc">Pre-health track and research with faculty co-authorship.</span>
+                <span class="dir-entry__deg">B.S. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">03</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Business Administration</span>
+                <span class="dir-entry__desc">General management core with concentration electives.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">04</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Business Administration, MBA</span>
+                <span class="dir-entry__desc">4+1 pathway available. Evening and online formats.</span>
+                <span class="dir-entry__deg">M.B.A. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">05</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Communications</span>
+                <span class="dir-entry__desc">Strategic, digital, and sports concentrations.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">06</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Computer Science</span>
+                <span class="dir-entry__desc">Software engineering, data structures, and applied AI.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">07</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Counseling Psychology</span>
+                <span class="dir-entry__desc">Clinical Mental Health or School Counseling tracks.</span>
+                <span class="dir-entry__deg">M.S. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">08</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Criminal Justice</span>
+                <span class="dir-entry__desc">Regional justice-system internships included in the major.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">09</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Cybersecurity &amp; IT Management</span>
+                <span class="dir-entry__desc">Industry-aligned curriculum with certification prep.</span>
+                <span class="dir-entry__deg">B.A. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">10</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Doctor of Education</span>
+                <span class="dir-entry__desc">Executive-format leadership doctorate for working educators.</span>
+                <span class="dir-entry__deg">Ed.D. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">11</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Doctor of Nursing Practice</span>
+                <span class="dir-entry__desc">Practice-focused doctoral training for advanced clinical leaders.</span>
+                <span class="dir-entry__deg">D.N.P. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">12</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Educational Leadership</span>
+                <span class="dir-entry__desc">Principal certification pathway for PreK&ndash;12 administrators.</span>
+                <span class="dir-entry__deg">M.Ed. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">13</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Elementary Education</span>
+                <span class="dir-entry__desc">PA teacher certification, grades PreK&ndash;4.</span>
+                <span class="dir-entry__deg">B.S. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">14</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">English</span>
+                <span class="dir-entry__desc">Literary study with writing-intensive seminars.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="directory__col">
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">15</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Exercise Science</span>
+                <span class="dir-entry__desc">Kinesiology foundation with pre-physical-therapy pathway.</span>
+                <span class="dir-entry__deg">B.S. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">16</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Finance</span>
+                <span class="dir-entry__desc">Corporate finance, investments, and financial modeling.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">17</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Health Humanities</span>
+                <span class="dir-entry__desc">Ethics, narrative medicine, and the history of care.</span>
+                <span class="dir-entry__deg">B.A. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">18</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Health Services Administration</span>
+                <span class="dir-entry__desc">Management pathway for clinical and non-clinical healthcare leaders.</span>
+                <span class="dir-entry__deg">B.S. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">19</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">History</span>
+                <span class="dir-entry__desc">Public history, archival research, and writing seminars.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">20</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Information Systems</span>
+                <span class="dir-entry__desc">Business analytics, ERP systems, and database design.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">21</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Management</span>
+                <span class="dir-entry__desc">Organizational behavior, operations, and human resources.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">22</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Marketing</span>
+                <span class="dir-entry__desc">Brand strategy, digital marketing, and consumer research.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">23</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Mathematics</span>
+                <span class="dir-entry__desc">Pure and applied tracks, teacher-certification pathway available.</span>
+                <span class="dir-entry__deg">B.S. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">24</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">MSN &middot; Family Nurse Practitioner</span>
+                <span class="dir-entry__desc">Primary-care NP preparation for practicing RNs.</span>
+                <span class="dir-entry__deg">M.S.N. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">25</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">MSN &middot; Nursing Education</span>
+                <span class="dir-entry__desc">Prepares RNs for academic and clinical teaching roles.</span>
+                <span class="dir-entry__deg">M.S.N. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">26</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Nursing, Bachelor of Science</span>
+                <span class="dir-entry__desc">Pre-licensure BSN with clinical placements across Philadelphia.</span>
+                <span class="dir-entry__deg">B.S.N. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">27</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Philosophy</span>
+                <span class="dir-entry__desc">Ethics, metaphysics, and the philosophy of the person.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">28</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Psychology</span>
+                <span class="dir-entry__desc">Research-methods focus with developmental and clinical tracks.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="directory__col">
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">29</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Radiologic Science</span>
+                <span class="dir-entry__desc">Clinical imaging training in partnership with regional hospitals.</span>
+                <span class="dir-entry__deg">B.S. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">30</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Religious Studies</span>
+                <span class="dir-entry__desc">Comparative traditions with Catholic theological foundations.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">31</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">RN to BSN</span>
+                <span class="dir-entry__desc">Online degree-completion for practicing registered nurses.</span>
+                <span class="dir-entry__deg">B.S.N. &middot; Nursing &amp; Health</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">32</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Secondary Education</span>
+                <span class="dir-entry__desc">PA teacher certification in English, math, science, or social studies.</span>
+                <span class="dir-entry__deg">B.S. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">33</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Social Work</span>
+                <span class="dir-entry__desc">CSWE-aligned preparation with 400+ field hours.</span>
+                <span class="dir-entry__deg">B.S.W. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">34</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Special Education</span>
+                <span class="dir-entry__desc">PreK&ndash;12 certification with inclusion-classroom practicum.</span>
+                <span class="dir-entry__deg">B.S. &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">35</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Supply Chain Management</span>
+                <span class="dir-entry__desc">Logistics, procurement, and operations analytics.</span>
+                <span class="dir-entry__deg">B.S. &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">36</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Theology</span>
+                <span class="dir-entry__desc">Biblical, historical, and systematic theology.</span>
+                <span class="dir-entry__deg">B.A. &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+
+            <!-- Certificates -->
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">37</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Accounting Certificate</span>
+                <span class="dir-entry__desc">Post-baccalaureate CPA-exam eligibility pathway.</span>
+                <span class="dir-entry__deg">Certificate &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">38</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Autism Endorsement</span>
+                <span class="dir-entry__desc">PA certification add-on for licensed teachers.</span>
+                <span class="dir-entry__deg">Certificate &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">39</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Cybersecurity Certificate</span>
+                <span class="dir-entry__desc">Four-course stackable credential toward a B.A. in IT.</span>
+                <span class="dir-entry__deg">Certificate &middot; Business &amp; Technology</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">40</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Pastoral Ministry Certificate</span>
+                <span class="dir-entry__desc">Evening program for parish leaders and lay ministers.</span>
+                <span class="dir-entry__deg">Certificate &middot; Arts &amp; Sciences</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">41</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">Reading Specialist</span>
+                <span class="dir-entry__desc">PA reading-specialist certification for K&ndash;12 educators.</span>
+                <span class="dir-entry__deg">Certificate &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry" href="#">
+              <span class="dir-entry__num">42</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">School Counselor Certification</span>
+                <span class="dir-entry__desc">PA school-counselor credential for M.S. graduates.</span>
+                <span class="dir-entry__deg">Certificate &middot; Education</span>
+              </span>
+            </a>
+            <a class="dir-entry dir-entry--more" href="#full-registry">
+              <span class="dir-entry__num">&rarr;</span>
+              <span class="dir-entry__body">
+                <span class="dir-entry__name">See the full registry</span>
+                <span class="dir-entry__desc">Sortable table with school, level, delivery, and credits.</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 01 &middot; FLAGSHIP PROGRAMS BY SCHOOL
+       .hfu-tabs with four panels of .c-program cards
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="flagship-title">
+    <div class="section__head">
+      <div>
+        <span class="section__num">Section 01 &middot; Flagship programs</span>
+        <h2 id="flagship-title">A few programs each school is <em>known for.</em></h2>
+      </div>
+      <p class="lead">These are not the full list; every school's flagship is open for inquiry. The full registry sits below.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="school-tabs">
+        <div class="hfu-tabs" role="tablist" aria-label="Flagship programs by school" data-school-tabs>
+          <button type="button" class="is-active" role="tab" aria-selected="true" data-panel="arts">Arts &amp; Sciences</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="business">Business &amp; Technology</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="education">Education</button>
+          <button type="button" role="tab" aria-selected="false" data-panel="nursing">Nursing &amp; Health</button>
+        </div>
+      </div>
+
+      <!-- Panel: Arts & Sciences -->
+      <div class="school-panel is-active" data-panel="arts" role="tabpanel">
+        <div class="school-panel__grid">
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-chip hfu-chip--blue">B.A.</span>
+            </div>
+            <h3>Psychology</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">4 years</span>
+            </div>
+            <p>Research-methods training, developmental and clinical tracks, and undergraduate conference presentation opportunities.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
               </a>
-              <a href="#" class="btn btn--secondary btn--lg">Request Info</a>
-              <a href="hfu-visit.html" class="btn btn--secondary btn--lg">Plan a Visit</a>
             </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-chip hfu-chip--blue">B.A.</span>
+            </div>
+            <h3>Criminal Justice</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">Internship required</span>
+            </div>
+            <p>Greater Philadelphia's justice-system internships are built into the major, from district attorneys to federal agencies.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Biology</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Pre-health track</span>
+              <span class="hfu-chip">Research</span>
+            </div>
+            <p>Pre-medical, pre-physician-assistant, and pre-physical-therapy pathways. Faculty co-authorship on published research.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">126 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Arts &amp; Sciences</span>
+              <span class="hfu-chip hfu-chip--blue">B.A.</span>
+            </div>
+            <h3>Communications</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">3 concentrations</span>
+            </div>
+            <p>Strategic, digital, and sports concentrations. A working newsroom and campus radio station anchor applied coursework.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel: Business & Technology -->
+      <div class="school-panel" data-panel="business" role="tabpanel">
+        <div class="school-panel__grid">
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-chip hfu-chip--blue">M.B.A.</span>
+            </div>
+            <h3>Business Administration, MBA</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">4+1 pathway</span>
+              <span class="hfu-chip">Online available</span>
+            </div>
+            <p>Accelerated formats for working professionals. Evening on-campus cohorts meet in Newtown and Philadelphia.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">36 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-chip hfu-chip--blue">B.A.</span>
+            </div>
+            <h3>Cybersecurity &amp; IT Management</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">Certification prep</span>
+            </div>
+            <p>Industry-aligned curriculum with CompTIA and Cisco certification preparation built into the coursework.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Accounting</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">CPA pathway</span>
+              <span class="hfu-chip">Internship required</span>
+            </div>
+            <p>Audit, tax, and managerial accounting with an explicit CPA-exam preparation sequence and Big Four internships.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Business &amp; Technology</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Computer Science</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">Applied AI</span>
+            </div>
+            <p>Foundations through software engineering, data structures, and a capstone sequence in applied machine learning.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">124 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel: Education -->
+      <div class="school-panel" data-panel="education" role="tabpanel">
+        <div class="school-panel__grid">
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-chip hfu-chip--blue">M.S.</span>
+            </div>
+            <h3>Counseling Psychology</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">2 tracks</span>
+              <span class="hfu-chip">Fieldwork</span>
+            </div>
+            <p>Clinical Mental Health Counseling or School Counseling, with placements across Philadelphia-area schools and agencies.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">60 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Elementary Education</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">PA certification</span>
+              <span class="hfu-chip">Student teaching</span>
+            </div>
+            <p>Pennsylvania teacher certification, grades PreK through 4, with clinical experience beginning in the sophomore year.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-chip hfu-chip--blue">Ed.D.</span>
+            </div>
+            <h3>Doctor of Education</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Executive format</span>
+              <span class="hfu-chip">3 years</span>
+            </div>
+            <p>Leadership doctorate for working PreK&ndash;12 and higher-education professionals. Cohort-based, with weekend residencies.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">54 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Education</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Special Education</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">PA certification</span>
+              <span class="hfu-chip">PreK&ndash;12</span>
+            </div>
+            <p>Inclusion-classroom practicum and dual certification with Elementary Education available as a four-year pathway.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">123 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Panel: Nursing & Health -->
+      <div class="school-panel" data-panel="nursing" role="tabpanel">
+        <div class="school-panel__grid">
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.N.</span>
+            </div>
+            <h3>Bachelor of Science in Nursing</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Pre-licensure</span>
+              <span class="hfu-chip">Clinical placements</span>
+            </div>
+            <p>Pre-licensure preparation with clinical rotations across Philadelphia's leading hospital systems.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">120 credits</span>
+              <a href="hfu-bsn.html">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health</span>
+              <span class="hfu-chip hfu-chip--blue">D.N.P.</span>
+            </div>
+            <h3>Doctor of Nursing Practice</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Doctoral</span>
+              <span class="hfu-chip">Practice-focused</span>
+            </div>
+            <p>Practice-focused doctoral training for advanced clinical leaders, prepared to shape systems and lead teams.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">38 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.N.</span>
+            </div>
+            <h3>RN to BSN</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">Online</span>
+              <span class="hfu-chip">12&ndash;18 months</span>
+            </div>
+            <p>Degree-completion for practicing registered nurses, built around full-time clinical schedules.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">31 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="c-card c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">Nursing &amp; Health</span>
+              <span class="hfu-chip hfu-chip--blue">B.S.</span>
+            </div>
+            <h3>Radiologic Science</h3>
+            <div class="c-program__chips">
+              <span class="hfu-chip">On-campus</span>
+              <span class="hfu-chip">Clinical imaging</span>
+            </div>
+            <p>Clinical imaging preparation developed in partnership with regional hospitals, with direct placement into diagnostic programs.</p>
+            <div class="c-program__foot">
+              <span class="c-program__school" style="color: hsl(var(--fg-muted));">124 credits</span>
+              <a href="#">Program details
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 02 &middot; FULL REGISTRY
+       Sortable .hfu-table with Program, School, Level, Delivery, Credits
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section section--alt" id="full-registry" aria-labelledby="registry-title">
+    <div class="section__head">
+      <div>
+        <span class="section__num">Section 02 &middot; Full registry</span>
+        <h2 id="registry-title">Every program, <em>sortable.</em></h2>
+      </div>
+      <p class="lead">Click any column header to sort. Scroll within the table to see the full list. All forty-plus programs, with school, level, delivery, and credits at a glance.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="hfu-table-wrap">
+        <table class="hfu-table hfu-table--zebra" id="registry">
+          <caption class="sr-only" style="position:absolute; width:1px; height:1px; overflow:hidden;">Full program registry for Holy Family University</caption>
+          <thead>
+            <tr>
+              <th scope="col" data-sort="name" aria-sort="ascending" class="is-sorted is-sorted-asc">
+                <button type="button" class="hfu-table__sort">
+                  Program
+                  <span class="hfu-table__caret">
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 1L7 5H1z"/></svg>
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 7L1 3h6z"/></svg>
+                  </span>
+                </button>
+              </th>
+              <th scope="col" data-sort="school">
+                <button type="button" class="hfu-table__sort">
+                  School
+                  <span class="hfu-table__caret">
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 1L7 5H1z"/></svg>
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 7L1 3h6z"/></svg>
+                  </span>
+                </button>
+              </th>
+              <th scope="col" data-sort="level">
+                <button type="button" class="hfu-table__sort">
+                  Level
+                  <span class="hfu-table__caret">
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 1L7 5H1z"/></svg>
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 7L1 3h6z"/></svg>
+                  </span>
+                </button>
+              </th>
+              <th scope="col" data-sort="delivery">
+                <button type="button" class="hfu-table__sort">
+                  Delivery
+                  <span class="hfu-table__caret">
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 1L7 5H1z"/></svg>
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 7L1 3h6z"/></svg>
+                  </span>
+                </button>
+              </th>
+              <th scope="col" data-sort="credits" class="is-num">
+                <button type="button" class="hfu-table__sort">
+                  Credits
+                  <span class="hfu-table__caret">
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 1L7 5H1z"/></svg>
+                    <svg viewBox="0 0 8 8" fill="currentColor"><path d="M4 7L1 3h6z"/></svg>
+                  </span>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="cell-name">Accounting</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Accounting Certificate</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Online</td><td class="is-num cell-mono">15</td></tr>
+            <tr><td class="cell-name">Autism Endorsement</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">12</td></tr>
+            <tr><td class="cell-name">Biology</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">126</td></tr>
+            <tr><td class="cell-name">Business Administration</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Business Administration, MBA</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--grad">Graduate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">36</td></tr>
+            <tr><td class="cell-name">Communications</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Computer Science</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">124</td></tr>
+            <tr><td class="cell-name">Counseling Psychology</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--grad">Graduate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">60</td></tr>
+            <tr><td class="cell-name">Criminal Justice</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Cybersecurity &amp; IT Management</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Cybersecurity Certificate</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Online</td><td class="is-num cell-mono">12</td></tr>
+            <tr><td class="cell-name">Doctor of Education</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--doc">Doctoral</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">54</td></tr>
+            <tr><td class="cell-name">Doctor of Nursing Practice</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--doc">Doctoral</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">38</td></tr>
+            <tr><td class="cell-name">Educational Leadership</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--grad">Graduate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">30</td></tr>
+            <tr><td class="cell-name">Elementary Education</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">English</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Exercise Science</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Finance</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Health Humanities</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Health Services Administration</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">History</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Information Systems</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Management</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Marketing</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Mathematics</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">MSN, Family Nurse Practitioner</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--grad">Graduate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">46</td></tr>
+            <tr><td class="cell-name">MSN, Nursing Education</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--grad">Graduate</span></td><td class="cell-muted">Online</td><td class="is-num cell-mono">36</td></tr>
+            <tr><td class="cell-name">Nursing, Bachelor of Science</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Pastoral Ministry Certificate</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">15</td></tr>
+            <tr><td class="cell-name">Philosophy</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Psychology</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Radiologic Science</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">124</td></tr>
+            <tr><td class="cell-name">Reading Specialist</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Online</td><td class="is-num cell-mono">18</td></tr>
+            <tr><td class="cell-name">Religious Studies</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">RN to BSN</td><td class="cell-muted">Nursing &amp; Health</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">Online</td><td class="is-num cell-mono">31</td></tr>
+            <tr><td class="cell-name">School Counselor Certification</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--cert">Certificate</span></td><td class="cell-muted">Hybrid</td><td class="is-num cell-mono">18</td></tr>
+            <tr><td class="cell-name">Secondary Education</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Social Work</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">123</td></tr>
+            <tr><td class="cell-name">Special Education</td><td class="cell-muted">Education</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">123</td></tr>
+            <tr><td class="cell-name">Supply Chain Management</td><td class="cell-muted">Business &amp; Technology</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+            <tr><td class="cell-name">Theology</td><td class="cell-muted">Arts &amp; Sciences</td><td><span class="cell-pill cell-pill--under">Undergrad</span></td><td class="cell-muted">On-campus</td><td class="is-num cell-mono">120</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-foot">
+        <span>42 programs shown &middot; credits listed are minimum-to-degree</span>
+        <a href="#">Download a printable program catalog (PDF) &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 03 &middot; SIGNATURE STRENGTHS
+       Three stacked .hfu-callout components (blue variant)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="strengths-title">
+    <div class="section__head">
+      <div>
+        <span class="section__num">Section 03 &middot; Signature strengths</span>
+        <h2 id="strengths-title">Programs the region <em>turns to us for.</em></h2>
+      </div>
+      <p class="lead">Three areas where Holy Family's reputation, alumni placement, and employer partnerships run deep.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="strengths">
+        <div class="hfu-callout">
+          <span class="hfu-callout__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/><path d="M12 12v-3"/><path d="M10.5 10.5h3"/></svg>
+          </span>
+          <div>
+            <span class="hfu-callout__eyebrow">Health professions</span>
+            <h3>Philadelphia's pipeline into bedside and advanced practice nursing.</h3>
+            <p>Pre-licensure BSN, accelerated RN-to-BSN, MSN pathways in family practice and nursing education, and a Doctor of Nursing Practice for clinical leaders. Placements across the region's major hospital systems.</p>
           </div>
+          <div class="hfu-callout__right">
+            <b>12</b>
+            <span>Programs in<br>Nursing &amp; Health</span>
+          </div>
+        </div>
+
+        <div class="hfu-callout">
+          <span class="hfu-callout__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-7"/></svg>
+          </span>
+          <div>
+            <span class="hfu-callout__eyebrow">STEM &amp; computing</span>
+            <h3>Applied science that connects to the lab and the workplace.</h3>
+            <p>Biology and mathematics in the liberal-arts tradition; computer science and cybersecurity with industry certification built into the curriculum; radiologic science in partnership with regional hospitals.</p>
+          </div>
+          <div class="hfu-callout__right">
+            <b>08</b>
+            <span>Programs in<br>STEM &amp; Computing</span>
+          </div>
+        </div>
+
+        <div class="hfu-callout">
+          <span class="hfu-callout__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="1.5"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M3 12h18"/></svg>
+          </span>
+          <div>
+            <span class="hfu-callout__eyebrow">Business &amp; leadership</span>
+            <h3>A business school built for working professionals across Philadelphia.</h3>
+            <p>Undergraduate accounting, finance, management, and marketing; a 4+1 MBA pathway; and applied-technology programs in information systems and cybersecurity taught by faculty who still practice.</p>
+          </div>
+          <div class="hfu-callout__right">
+            <b>11</b>
+            <span>Programs in<br>Business &amp; Tech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 04 &middot; HOW TO CHOOSE A PROGRAM
+       .hfu-acc accordion with four items
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section section--alt" aria-labelledby="choose-title">
+    <div class="section__head">
+      <div>
+        <span class="section__num">Section 04 &middot; How to choose</span>
+        <h2 id="choose-title">How to choose a <em>program.</em></h2>
+      </div>
+      <p class="lead">Four questions our admissions advisors walk prospective students through. The answers often shape everything else.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="hfu-acc">
+        <details open>
+          <summary>
+            What do I want to do after I graduate?
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            <p>Start with the profession or the field before the program. Advisors at Holy Family begin every meeting by asking what you are drawn to rather than what's on a menu. Nursing, education, psychology, accounting, and computer science are all paths into specific licensures and roles; arts and sciences majors like English, history, and philosophy sit at the foundation of law, policy, journalism, and ministry.</p>
+            <p>If you are not sure yet, a liberal-arts major paired with an internship sequence and faculty mentorship is often the right first move. You will not lose time.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            What fits the life I have right now?
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            <p>We build schedules around working life, not around a traditional calendar. Online RN-to-BSN, evening MBA cohorts, hybrid doctoral residencies, and weekend certificate sequences are all designed for students who are already in a profession. Most graduate programs can be completed at the pace that works for you, from accelerated to two or three years.</p>
+            <p>Our Newtown campus serves Bucks County commuters; our Philadelphia campus is minutes from I-95 and the Market-Frankford line.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Can I transfer credits I already have?
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            <p>Yes. Holy Family has transfer articulation agreements with regional community colleges and accepts credit for prior learning from accredited institutions. A transfer advisor will review your transcript and provide a written credit evaluation before you enroll, so there are no surprises about your time to graduation.</p>
+            <p>Adults with prior professional experience may also be eligible for credit through the Council for Adult and Experiential Learning (CAEL).</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Are there stackable credentials I can earn along the way?
+            <span class="hfu-acc__chev">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l4 4 4-4"/></svg>
+            </span>
+          </summary>
+          <div>
+            <p>Several of our certificates stack directly into degree programs. The Cybersecurity Certificate, for example, counts as four courses toward the B.A. in Cybersecurity and IT Management. The Pastoral Ministry Certificate can roll into a Religious Studies minor. Teacher-endorsement certificates add to an active PA teaching license without requiring a second degree.</p>
+            <p>This lets you earn a credential now, put it to work, and return to finish the degree on your own timeline.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 05 &middot; FACULTY PULLQUOTE
+       .hfu-pullquote (labeled illustrative)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="quote-title">
+    <div class="section__body">
+      <figure class="hfu-pullquote" id="quote-title">
+        <blockquote>We teach forty-plus programs, and in every one the first question is the same: who are you becoming?</blockquote>
+        <figcaption class="hfu-pullquote__by">Dean of a school at Holy Family University</figcaption>
+        <span class="hfu-pullquote__label">Illustrative &middot; composite of faculty voice</span>
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECTION 06 &middot; TALK TO AN ADMISSIONS COUNSELOR
+       .c-callout --navy-bg (navy background variant from library)
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="section" aria-labelledby="cta-title">
+    <div class="section__body">
+      <div class="c-callout c-callout--navy-bg">
+        <div>
+          <h3 id="cta-title">Not sure where to <em>start?</em></h3>
+          <p>An admissions counselor will walk you through the program that fits. One conversation, no pressure, and a written credit evaluation if you are transferring.</p>
+        </div>
+        <div class="c-callout__buttons">
+          <a href="hfu-admissions.html" class="btn btn--primary">
+            Talk to a counselor
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="#" class="btn--glass">
+            Request information
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -2438,7 +2337,7 @@
 
   </main>
 
-  <!-- ═════════════════════ FOOTER ═════════════════════ -->
+  <!-- ===================== FOOTER ===================== -->
   <footer class="foot">
     <div class="foot__inner">
       <div class="foot__brand">
@@ -2453,7 +2352,7 @@
       <div class="foot__col">
         <h4>Academics</h4>
         <ul>
-          <li><a href="#majors">Majors &amp; Minors</a></li>
+          <li><a href="#full-registry">Full registry</a></li>
           <li><a href="#">Schools &amp; Programs</a></li>
           <li><a href="hfu-bsn.html">BSN Nursing</a></li>
           <li><a href="#">MBA</a></li>
@@ -2500,5 +2399,109 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===================== INTERACTIONS ===================== -->
+  <script>
+    (function () {
+      // Filter tabs in the hero: single-select per group, visual only for the mockup.
+      document.querySelectorAll('.filter-strip .hfu-tabs').forEach(function (group) {
+        group.addEventListener('click', function (e) {
+          var btn = e.target.closest('button');
+          if (!btn) return;
+          group.querySelectorAll('button').forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+        });
+      });
+
+      // School tabs: swap which .school-panel is active
+      var schoolTabs = document.querySelector('[data-school-tabs]');
+      if (schoolTabs) {
+        schoolTabs.addEventListener('click', function (e) {
+          var btn = e.target.closest('button');
+          if (!btn) return;
+          var target = btn.getAttribute('data-panel');
+          schoolTabs.querySelectorAll('button').forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          document.querySelectorAll('.school-panel').forEach(function (panel) {
+            panel.classList.toggle('is-active', panel.getAttribute('data-panel') === target);
+          });
+        });
+      }
+
+      // Sortable registry table
+      var table = document.getElementById('registry');
+      if (!table) return;
+
+      var sortState = { key: 'name', dir: 'asc' };
+      var tbody = table.querySelector('tbody');
+      var headerButtons = table.querySelectorAll('thead th[data-sort]');
+
+      function compare(a, b, key, dir) {
+        var ai = columnIndex(key);
+        var av = cellValue(a.children[ai], key);
+        var bv = cellValue(b.children[ai], key);
+        if (key === 'credits') {
+          av = parseInt(av, 10) || 0;
+          bv = parseInt(bv, 10) || 0;
+          return dir === 'asc' ? av - bv : bv - av;
+        }
+        av = av.toString().toLowerCase();
+        bv = bv.toString().toLowerCase();
+        if (av < bv) return dir === 'asc' ? -1 : 1;
+        if (av > bv) return dir === 'asc' ? 1 : -1;
+        return 0;
+      }
+
+      function columnIndex(key) {
+        var map = { name: 0, school: 1, level: 2, delivery: 3, credits: 4 };
+        return map[key];
+      }
+
+      function cellValue(td, key) {
+        if (key === 'level') {
+          var pill = td.querySelector('.cell-pill');
+          return pill ? pill.textContent : td.textContent;
+        }
+        return td ? td.textContent.trim() : '';
+      }
+
+      function render() {
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+        rows.sort(function (a, b) { return compare(a, b, sortState.key, sortState.dir); });
+        rows.forEach(function (row) { tbody.appendChild(row); });
+        headerButtons.forEach(function (th) {
+          var k = th.getAttribute('data-sort');
+          th.classList.remove('is-sorted', 'is-sorted-asc', 'is-sorted-desc');
+          th.removeAttribute('aria-sort');
+          if (k === sortState.key) {
+            th.classList.add('is-sorted');
+            th.classList.add(sortState.dir === 'asc' ? 'is-sorted-asc' : 'is-sorted-desc');
+            th.setAttribute('aria-sort', sortState.dir === 'asc' ? 'ascending' : 'descending');
+          }
+        });
+      }
+
+      headerButtons.forEach(function (th) {
+        th.addEventListener('click', function () {
+          var k = th.getAttribute('data-sort');
+          if (sortState.key === k) {
+            sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+          } else {
+            sortState.key = k;
+            sortState.dir = 'asc';
+          }
+          render();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

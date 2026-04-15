@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Five directions · Holy Family redesign proposal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;900&family=Caveat:wght@400;600&family=DM+Serif+Display&family=Rubik+Mono+One&family=Bebas+Neue&family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       FIVE DIRECTIONS · V2 · genuinely different visual worlds.
+       Each direction brings its own palette, type stack, grid metaphor
+       and emotional register. Nothing shared between them.
+       ═══════════════════════════════════════════════════════════════ */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #2a2a2a;
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      color: #eee;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+
+    .stage { max-width: 11.5in; margin: 0 auto; padding: 0.5in 1in 1.5in; }
+    .intro { padding: 0.5in 0 0.3in; max-width: 7in; color: #ddd; }
+    .intro .kick { font-family: 'IBM Plex Mono', monospace; font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; color: #ffcf5b; }
+    .intro h1 { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 40pt; line-height: 1; letter-spacing: -0.02em; margin: 0.18in 0 0.2in; max-width: 16ch; }
+    .intro p { font-family: 'Inter', sans-serif; font-size: 13pt; line-height: 1.55; color: #bbb; max-width: 60ch; }
+    .intro .n { margin-top: 0.3in; font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: #888; }
+
+    .direction { margin: 0.9in 0 0; display: flex; flex-direction: column; align-items: center; }
+    .direction__label { width: 8.5in; display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0.18in; margin-bottom: 0.24in; border-bottom: 1px solid rgba(255,255,255,0.1); font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase; color: #999; }
+    .direction__label strong { color: #ffcf5b; font-weight: 500; }
+    .direction__label .note { font-family: 'Inter', sans-serif; font-size: 10pt; letter-spacing: 0; text-transform: none; color: #aaa; max-width: 4.4in; text-align: right; font-weight: 400; line-height: 1.45; }
+
+    .page { width: 8.5in; height: 11in; position: relative; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0,0,0,0.6), 0 2px 6px rgba(0,0,0,0.4); }
+    @page { size: 8.5in 11in; margin: 0; }
+    @media print { body { background: white; } .page { box-shadow: none; break-before: page; page-break-before: always; } }
+
+    /* ═════════════════════════════════════════════════════════════
+       01 · BRUTALIST DOSSIER
+       Wired '94 / declassified-report. Condensed caps, hazard yellow,
+       heavy black bars, mono captions, numeric obsession.
+       ═════════════════════════════════════════════════════════════ */
+    .d01 {
+      background: #f4f1e8;
+      color: #0a0a0a;
+      font-family: 'Archivo', sans-serif;
+      padding: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    .d01__top {
+      background: #0a0a0a;
+      color: #f4f1e8;
+      padding: 0.3in 0.5in;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .d01__top span b { color: #ffcf00; font-weight: 400; letter-spacing: 0.22em; }
+    .d01__top .stamp { border: 1.5px solid #ffcf00; color: #ffcf00; padding: 4px 10px 3px; font-weight: 700; letter-spacing: 0.24em; transform: rotate(-2deg); }
+    .d01__body { padding: 0.55in 0.5in 0.4in; display: grid; grid-template-rows: auto 1fr auto; gap: 0.28in; }
+    .d01__slug { font-family: 'Space Mono', monospace; font-size: 9pt; letter-spacing: 0.2em; text-transform: uppercase; color: #000; padding: 6px 0; border-top: 3px solid #000; border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
+    .d01__slug .mid { font-weight: 700; letter-spacing: 0.12em; }
+    .d01__hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.35in; align-items: stretch; padding-top: 0.1in; }
+    .d01__num {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 260pt;
+      line-height: 0.78;
+      letter-spacing: -0.05em;
+      color: #0a0a0a;
+      font-feature-settings: 'tnum' 1;
+      position: relative;
+    }
+    .d01__num .hl { background: #ffcf00; padding: 0 4px 12px 4px; display: inline-block; line-height: 0.78; }
+    .d01__kicker {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 14pt;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #0a0a0a;
+      color: #ffcf00;
+      padding: 10px 14px 8px;
+      align-self: flex-start;
+      margin-bottom: 0.22in;
+      display: inline-block;
+    }
+    .d01__right { display: flex; flex-direction: column; justify-content: flex-end; gap: 0.2in; }
+    .d01__callout {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 20pt;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: #0a0a0a;
+      text-transform: uppercase;
+    }
+    .d01__callout u { text-decoration: none; background: #ffcf00; padding: 0 4px; }
+    .d01__redact { padding: 14px 0; border-top: 2px solid #0a0a0a; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .d01__redact div { font-family: 'Space Mono', monospace; font-size: 8pt; letter-spacing: 0.08em; text-transform: uppercase; color: #000; line-height: 1.3; }
+    .d01__redact div b { display: block; font-family: 'Archivo Black', sans-serif; font-size: 22pt; letter-spacing: -0.01em; margin-bottom: 2px; text-transform: none; }
+    .d01__redact div .redacted { display: inline-block; background: #0a0a0a; color: #0a0a0a; user-select: none; padding: 0 6px; }
+    .d01__foot {
+      background: #0a0a0a;
+      color: #bbb;
+      padding: 0.22in 0.5in;
+      display: flex; justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 7.5pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .d01__foot .pg { color: #ffcf00; font-weight: 700; }
+
+    /* ═════════════════════════════════════════════════════════════
+       02 · RISOGRAPH ZINE
+       Two-color risograph — pink + federal blue — halftone texture,
+       handwritten marginalia, offset registration, homemade warmth.
+       ═════════════════════════════════════════════════════════════ */
+    .d02 {
+      background: #fefbf3;
+      color: #003a6b;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 0.55in 0.6in;
+      position: relative;
+      overflow: hidden;
+    }
+    .d02::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(0,58,107,0.14) 1px, transparent 1px);
+      background-size: 3px 3px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .d02__head {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: center;
+      padding-bottom: 0.18in;
+      border-bottom: 3px double #003a6b;
+      position: relative;
+    }
+    .d02__issue {
+      display: inline-block;
+      background: #ff4d8f;
+      color: #fefbf3;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 9pt;
+      letter-spacing: 0.22em;
+      padding: 6px 10px 5px;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+      mix-blend-mode: multiply;
+    }
+    .d02__mast { font-family: 'DM Serif Display', serif; font-size: 16pt; letter-spacing: 0.01em; color: #003a6b; }
+    .d02__mast em { color: #ff4d8f; font-style: italic; }
+    .d02__date { font-family: 'Space Mono', monospace; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: #003a6b; }
+    .d02__title {
+      margin-top: 0.3in;
+      font-family: 'DM Serif Display', serif;
+      font-size: 58pt;
+      line-height: 0.95;
+      letter-spacing: -0.022em;
+      color: #003a6b;
+      max-width: 12ch;
+    }
+    .d02__title b {
+      position: relative;
+      display: inline-block;
+      color: #fefbf3;
+    }
+    .d02__title b::before {
+      content: '';
+      position: absolute; inset: -4px -8px -2px -6px;
+      background: #ff4d8f;
+      mix-blend-mode: multiply;
+      z-index: -1;
+      transform: rotate(-1.5deg);
+    }
+    .d02__scribble {
+      position: absolute;
+      top: 1.35in; right: 0.5in;
+      font-family: 'Caveat', cursive;
+      font-size: 18pt;
+      line-height: 1.15;
+      color: #ff4d8f;
+      transform: rotate(6deg);
+      max-width: 2.2in;
+    }
+    .d02__scribble::before {
+      content: '';
+      position: absolute;
+      left: -14px; top: 8px;
+      width: 60px; height: 40px;
+      border: 1.5px solid #ff4d8f;
+      border-right: none; border-bottom: none;
+      border-radius: 60% 0 0 0;
+      transform: rotate(-40deg);
+    }
+    .d02__grid {
+      margin-top: 0.5in;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3in;
+    }
+    .d02__card {
+      padding: 0.2in 0.18in;
+      background: #fefbf3;
+      border: 2px solid #003a6b;
+      box-shadow: 8px 8px 0 #ff4d8f;
+      position: relative;
+    }
+    .d02__card .n {
+      position: absolute; top: -14px; left: -14px;
+      background: #003a6b; color: #fefbf3;
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: 16pt;
+      font-style: italic;
+    }
+    .d02__card h3 { font-family: 'DM Serif Display', serif; font-size: 18pt; line-height: 1.05; color: #003a6b; margin: 6px 0 8px; }
+    .d02__card h3 em { color: #ff4d8f; font-style: italic; }
+    .d02__card p { font-family: 'Space Grotesk', sans-serif; font-size: 9.5pt; line-height: 1.45; color: #003a6b; }
+    .d02__card .tag { display: inline-block; margin-top: 10px; font-family: 'Space Mono', monospace; font-size: 7pt; letter-spacing: 0.18em; text-transform: uppercase; color: #ff4d8f; border-top: 1.5px solid #ff4d8f; padding-top: 6px; }
+    .d02__foot {
+      margin-top: auto;
+      padding-top: 0.3in;
+      position: absolute; left: 0.6in; right: 0.6in; bottom: 0.4in;
+      display: flex; justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 8pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #003a6b;
+    }
+    .d02__foot .stamp {
+      font-family: 'Space Mono', monospace; font-weight: 700;
+      color: #ff4d8f;
+      border: 1.5px solid #ff4d8f;
+      padding: 4px 10px 3px;
+      transform: rotate(3deg);
+      display: inline-block;
+    }
+
+    /* ═════════════════════════════════════════════════════════════
+       03 · TECHNICAL MANUAL (Braun / Dieter Rams)
+       Stark white, Helvetica-tight, single red accent, exploded-view
+       diagrams with part numbers. A proposal as appliance manual.
+       ═════════════════════════════════════════════════════════════ */
+    .d03 {
+      background: #ffffff;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      padding: 0.55in 0.6in;
+      display: grid; grid-template-rows: auto auto 1fr auto;
+      gap: 0.24in;
+    }
+    .d03__top {
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.3in;
+      padding-bottom: 0.14in;
+      border-bottom: 1px solid #111;
+    }
+    .d03__logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Inter', sans-serif; font-weight: 700;
+      font-size: 11pt; letter-spacing: 0.02em;
+    }
+    .d03__logo::before { content: ''; width: 12px; height: 12px; background: #e02020; display: inline-block; }
+    .d03__id { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: #666; }
+    .d03__rev { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: #111; border: 1px solid #111; padding: 3px 8px; letter-spacing: 0.1em; }
+    .d03__heading {
+      display: grid; grid-template-columns: 0.4fr 1fr; gap: 0.4in; align-items: end;
+      padding-bottom: 0.2in;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .d03__sec { font-family: 'IBM Plex Mono', monospace; font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: #e02020; }
+    .d03__h { font-family: 'Inter', sans-serif; font-weight: 300; font-size: 36pt; line-height: 1.02; letter-spacing: -0.025em; color: #111; max-width: 18ch; }
+    .d03__h b { font-weight: 700; }
+    .d03__body {
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 0.45in; align-items: start;
+    }
+    /* exploded parts diagram */
+    .d03__diagram { position: relative; padding: 0.2in 0.1in; }
+    .d03__parts { display: flex; flex-direction: column; gap: 0.28in; position: relative; }
+    .d03__part {
+      display: grid; grid-template-columns: 48px 1fr auto; gap: 0.18in; align-items: center;
+      position: relative;
+    }
+    .d03__part-n {
+      width: 44px; height: 44px;
+      border: 1.5px solid #111;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'IBM Plex Mono', monospace; font-weight: 500;
+      font-size: 11pt;
+      background: #fff;
+    }
+    .d03__part--primary .d03__part-n { background: #e02020; color: #fff; border-color: #e02020; }
+    .d03__part-lbl { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11pt; color: #111; }
+    .d03__part-lbl small { display: block; font-weight: 400; font-size: 8.5pt; color: #666; margin-top: 2px; letter-spacing: 0.02em; }
+    .d03__part-code { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: 0.1em; color: #888; }
+    .d03__specs {
+      padding: 0.22in;
+      border: 1px solid #111;
+      display: flex; flex-direction: column; gap: 0.16in;
+    }
+    .d03__specs h4 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 8pt; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #e02020; margin-bottom: 0.1in;
+      padding-bottom: 8px; border-bottom: 1px solid #111;
+    }
+    .d03__row {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.2in;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted #ccc;
+      font-family: 'Inter', sans-serif;
+      font-size: 10pt;
+      color: #111;
+    }
+    .d03__row:last-child { border-bottom: none; }
+    .d03__row .k { font-weight: 500; }
+    .d03__row .v { font-family: 'IBM Plex Mono', monospace; font-size: 10pt; color: #111; font-weight: 500; }
+    .d03__row .v b { color: #e02020; font-weight: 500; }
+    .d03__warn {
+      margin-top: 0.12in;
+      padding: 0.14in;
+      border-left: 3px solid #e02020;
+      background: #fbf5f5;
+      font-family: 'Inter', sans-serif;
+      font-size: 9.5pt; line-height: 1.45; color: #111;
+    }
+    .d03__warn b { color: #e02020; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 8pt; display: block; margin-bottom: 4px; }
+    .d03__foot {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.2in;
+      padding-top: 0.14in;
+      border-top: 1px solid #111;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase; color: #666;
+    }
+    .d03__foot .r { text-align: right; }
+    .d03__foot b { color: #e02020; font-weight: 500; }
+
+    /* ═════════════════════════════════════════════════════════════
+       04 · BLUEPRINT / DRAFTING
+       Architect's drawing. Fine cyan linework on off-white, dimension
+       arrows, engineering type, title block, stamp. Proposal as plan.
+       ═════════════════════════════════════════════════════════════ */
+    .d04 {
+      background: #f3f6f0;
+      color: #0b3b5a;
+      font-family: 'Space Mono', monospace;
+      padding: 0.45in 0.45in;
+      position: relative;
+    }
+    .d04::before {
+      content: '';
+      position: absolute;
+      inset: 0.5in;
+      background-image:
+        linear-gradient(to right, rgba(11,59,90,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(11,59,90,0.08) 1px, transparent 1px);
+      background-size: 0.2in 0.2in;
+      pointer-events: none;
+    }
+    .d04__frame { position: absolute; inset: 0.5in; border: 1.5px solid #0b3b5a; pointer-events: none; }
+    .d04__inner { position: relative; padding: 0.65in 0.6in 0.55in; height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 0.2in; }
+    .d04__slug {
+      display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: baseline;
+      padding-bottom: 0.1in; border-bottom: 1px solid #0b3b5a;
+      font-size: 7.5pt; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .d04__slug b { font-weight: 700; letter-spacing: 0.24em; }
+    .d04__body { display: grid; grid-template-rows: auto 1fr; gap: 0.2in; padding: 0.15in 0; }
+    .d04__heading { display: grid; grid-template-columns: 0.4in 1fr; gap: 0.2in; align-items: start; }
+    .d04__num { font-family: 'Bebas Neue', 'Archivo', sans-serif; font-size: 40pt; line-height: 0.8; color: #0b3b5a; font-weight: 400; }
+    .d04__h {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34pt;
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      color: #0b3b5a;
+      text-transform: uppercase;
+      max-width: 18ch;
+    }
+    .d04__h em { font-style: normal; color: #d93a2a; }
+    .d04__h small { display: block; font-family: 'Space Mono', monospace; font-size: 8.5pt; font-weight: 400; color: #0b3b5a; margin-top: 10px; letter-spacing: 0.12em; text-transform: uppercase; max-width: 60ch; line-height: 1.5; }
+    .d04__plan {
+      border: 1px solid #0b3b5a;
+      padding: 0.4in 0.4in 0.3in;
+      position: relative;
+      display: grid;
+      grid-template-columns: 2.1fr 1fr;
+      gap: 0.3in;
+      align-items: stretch;
+    }
+    .d04__plan::before { content: 'SITEMAP · SECTION ELEVATION'; position: absolute; top: -7px; left: 0.3in; background: #f3f6f0; padding: 0 8px; font-size: 7pt; letter-spacing: 0.2em; color: #0b3b5a; }
+    /* the 1,601 → 650 volume diagram */
+    .d04__vol { display: flex; flex-direction: column; gap: 0.12in; justify-content: center; }
+    .d04__bar { display: grid; grid-template-columns: 48px 1fr 60px; gap: 12px; align-items: center; font-size: 8pt; letter-spacing: 0.14em; }
+    .d04__bar-lbl { color: #0b3b5a; text-transform: uppercase; }
+    .d04__bar-track {
+      height: 26px; position: relative; background: rgba(11,59,90,0.05); border: 1px solid #0b3b5a;
+    }
+    .d04__bar-fill { position: absolute; top: 0; bottom: 0; left: 0;
+      background-image: repeating-linear-gradient(-45deg, #0b3b5a 0, #0b3b5a 1px, transparent 1px, transparent 5px);
+    }
+    .d04__bar--before .d04__bar-fill { width: 100%; }
+    .d04__bar--after .d04__bar-fill { width: 40.6%; background-image: repeating-linear-gradient(-45deg, #d93a2a 0, #d93a2a 1px, transparent 1px, transparent 5px); }
+    .d04__bar-val { text-align: right; font-weight: 700; color: #0b3b5a; }
+    .d04__bar--after .d04__bar-val { color: #d93a2a; }
+    .d04__dim {
+      margin-top: 0.12in;
+      display: grid; grid-template-columns: 48px 1fr 60px; gap: 12px; align-items: center;
+      font-size: 7pt; letter-spacing: 0.14em; color: #0b3b5a;
+    }
+    .d04__dim-line {
+      height: 22px; position: relative;
+    }
+    .d04__dim-line::before, .d04__dim-line::after {
+      content: ''; position: absolute; top: 50%; width: 1px; background: #0b3b5a;
+    }
+    .d04__dim-line::before { left: 0; height: 12px; top: calc(50% - 6px); }
+    .d04__dim-line::after { right: 59.4%; height: 12px; top: calc(50% - 6px); }
+    .d04__dim-line .arrow {
+      position: absolute; top: 50%; height: 1px; background: #0b3b5a;
+      left: 6px; right: calc(59.4% + 6px); transform: translateY(-0.5px);
+    }
+    .d04__dim-line .arrow::before, .d04__dim-line .arrow::after {
+      content: ''; position: absolute; width: 6px; height: 6px; border: 1px solid #0b3b5a; border-left: 0; border-top: 0; top: -2.5px;
+    }
+    .d04__dim-line .arrow::before { left: 0; transform: rotate(135deg); }
+    .d04__dim-line .arrow::after  { right: 0; transform: rotate(-45deg); }
+    .d04__dim-label { text-align: center; position: absolute; left: 50%; top: -6px; transform: translateX(calc(-50% - 29.7%)); background: #f3f6f0; padding: 0 6px; font-size: 7pt; color: #d93a2a; font-weight: 700; }
+    .d04__legend {
+      border-left: 1px dashed #0b3b5a;
+      padding-left: 0.22in;
+      display: flex; flex-direction: column; gap: 0.14in;
+      justify-content: center;
+      font-size: 8.5pt;
+    }
+    .d04__legend h4 { font-size: 7.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: #0b3b5a; border-bottom: 1px solid #0b3b5a; padding-bottom: 6px; }
+    .d04__legend dl { display: grid; grid-template-columns: 1fr auto; gap: 6px; font-size: 8.5pt; }
+    .d04__legend dt { color: #0b3b5a; letter-spacing: 0.08em; text-transform: uppercase; font-size: 7.5pt; }
+    .d04__legend dd { text-align: right; font-weight: 700; color: #0b3b5a; }
+    .d04__legend dd b { color: #d93a2a; }
+    /* architect's title block */
+    .d04__title-block {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 0.8in; align-items: stretch;
+      border-top: 1.5px solid #0b3b5a;
+      font-size: 7pt; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .d04__tb-cell { padding: 10px 12px; border-right: 1px solid #0b3b5a; line-height: 1.4; }
+    .d04__tb-cell:last-child { border-right: none; }
+    .d04__tb-cell small { display: block; font-size: 6pt; color: #6b7d8a; margin-bottom: 3px; letter-spacing: 0.2em; }
+    .d04__tb-cell b { font-weight: 700; color: #0b3b5a; font-size: 9pt; letter-spacing: 0.08em; }
+    .d04__stamp {
+      width: 1in; height: 1in;
+      border: 1.5px solid #d93a2a;
+      border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 6.5pt; color: #d93a2a; letter-spacing: 0.2em;
+      transform: rotate(-8deg);
+      text-align: center;
+      line-height: 1.15;
+      margin: auto;
+    }
+    .d04__stamp b { font-size: 9pt; letter-spacing: 0.06em; font-weight: 700; }
+
+    /* ═════════════════════════════════════════════════════════════
+       05 · BOARDING PASS / TICKET
+       Transit-document metaphor. Perforated stub, monospace ticker,
+       stamped approvals, gate numbers, barcode. Proposal as passage.
+       ═════════════════════════════════════════════════════════════ */
+    .d05 {
+      background: #0d1821;
+      color: #e8e2d4;
+      font-family: 'IBM Plex Mono', monospace;
+      padding: 0;
+      display: grid; grid-template-rows: 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    /* ticket background — warm cream paper */
+    .d05__ticket {
+      margin: 0.5in 0.45in;
+      background: #f6efe0;
+      color: #1a1410;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 2.8in;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    }
+    .d05__ticket::before {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: calc(100% - 2.8in);
+      width: 0;
+      border-left: 1.5px dashed #1a1410;
+    }
+    /* punched holes along the tear line */
+    .d05__ticket::after {
+      content: '';
+      position: absolute;
+      top: -10px; bottom: -10px;
+      left: calc(100% - 2.8in);
+      width: 20px;
+      transform: translateX(-50%);
+      background-image: radial-gradient(circle, #0d1821 7px, transparent 8px);
+      background-size: 20px 22px;
+      background-repeat: repeat-y;
+      pointer-events: none;
+    }
+    .d05__main { padding: 0.45in 0.5in 0.35in; display: grid; grid-template-rows: auto auto 1fr auto; gap: 0.2in; }
+    .d05__brand { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.15in; border-bottom: 1.5px solid #1a1410; }
+    .d05__brand-l { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 10pt; letter-spacing: 0.24em; text-transform: uppercase; }
+    .d05__brand-l::before { content: '◢'; font-size: 16pt; color: #c8401f; transform: rotate(-20deg); }
+    .d05__brand-r { font-size: 8pt; letter-spacing: 0.16em; text-transform: uppercase; color: #6b5a42; }
+    .d05__route {
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.25in; align-items: center;
+      padding: 0.15in 0 0.1in;
+    }
+    .d05__loc small { display: block; font-size: 8pt; letter-spacing: 0.2em; text-transform: uppercase; color: #6b5a42; margin-bottom: 6px; }
+    .d05__loc b {
+      font-family: 'Rubik Mono One', 'Archivo Black', sans-serif;
+      font-size: 38pt; letter-spacing: -0.01em; color: #1a1410;
+      line-height: 1; display: block; margin-bottom: 6px;
+    }
+    .d05__loc p { font-size: 9pt; color: #1a1410; line-height: 1.3; font-weight: 500; }
+    .d05__loc--to { text-align: right; }
+    .d05__arrow {
+      font-size: 16pt; color: #c8401f;
+      text-align: center; letter-spacing: -0.1em;
+    }
+    .d05__arrow small { display: block; font-size: 7pt; letter-spacing: 0.2em; text-transform: uppercase; color: #6b5a42; margin-top: 4px; }
+    .d05__detail {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border-top: 1.5px solid #1a1410;
+      border-bottom: 1.5px solid #1a1410;
+    }
+    .d05__detail > div { padding: 0.15in 0.12in; border-right: 1px dashed #1a1410; }
+    .d05__detail > div:last-child { border-right: none; }
+    .d05__detail small { display: block; font-size: 7pt; letter-spacing: 0.2em; text-transform: uppercase; color: #6b5a42; margin-bottom: 6px; }
+    .d05__detail b { font-size: 14pt; letter-spacing: 0.02em; color: #1a1410; font-weight: 700; display: block; }
+    .d05__detail b.accent { color: #c8401f; }
+    .d05__detail p { font-size: 7.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: #6b5a42; margin-top: 4px; }
+    .d05__fare {
+      display: grid; grid-template-columns: 1fr auto; gap: 8px; font-size: 9pt;
+      padding: 0.1in 0 0.1in;
+    }
+    .d05__fare-row { display: contents; }
+    .d05__fare-row .k { letter-spacing: 0.08em; color: #1a1410; padding: 3px 0; border-bottom: 1px dotted #6b5a42; }
+    .d05__fare-row .v { text-align: right; font-weight: 700; color: #1a1410; padding: 3px 0; border-bottom: 1px dotted #6b5a42; }
+    .d05__fare-row.total .k, .d05__fare-row.total .v { border-bottom: none; border-top: 2px solid #1a1410; margin-top: 6px; padding-top: 6px; font-size: 12pt; }
+    .d05__fare-row.total .v { color: #c8401f; }
+    .d05__barcode {
+      font-family: 'Libre Barcode 39 Text', monospace;
+      font-size: 32pt; line-height: 1;
+      color: #1a1410;
+      letter-spacing: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    /* stub side */
+    .d05__stub {
+      padding: 0.45in 0.35in 0.35in 0.45in;
+      border-left: 0;
+      display: grid; grid-template-rows: auto auto auto 1fr auto;
+      gap: 0.15in;
+      background: #efe7d3;
+    }
+    .d05__stub-h { font-size: 8pt; letter-spacing: 0.22em; text-transform: uppercase; color: #6b5a42; }
+    .d05__stub-h b { color: #c8401f; font-weight: 700; letter-spacing: 0.24em; }
+    .d05__stub-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: 22pt; line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: #1a1410;
+      text-transform: uppercase;
+    }
+    .d05__stub-title em { color: #c8401f; font-style: normal; }
+    .d05__stub dl { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; font-size: 8pt; }
+    .d05__stub dt { letter-spacing: 0.14em; text-transform: uppercase; color: #6b5a42; padding: 3px 0; border-bottom: 1px dashed rgba(0,0,0,0.15); }
+    .d05__stub dd { font-weight: 700; text-align: right; color: #1a1410; padding: 3px 0; border-bottom: 1px dashed rgba(0,0,0,0.15); }
+    .d05__stub-stamp {
+      align-self: end;
+      border: 2px solid #c8401f;
+      color: #c8401f;
+      padding: 10px 14px;
+      text-align: center;
+      transform: rotate(-5deg);
+      font-size: 9pt; font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .d05__stub-stamp small { display: block; font-size: 6.5pt; font-weight: 400; letter-spacing: 0.2em; color: #c8401f; margin-top: 4px; }
+    .d05__stub-seq {
+      font-size: 7pt; letter-spacing: 0.1em; color: #6b5a42;
+      margin-top: auto;
+      text-align: center;
+    }
+    /* outer dark frame with station info */
+    .d05__chrome {
+      position: absolute;
+      left: 0; right: 0;
+      display: flex; justify-content: space-between;
+      padding: 0.2in 0.55in;
+      font-size: 7pt; letter-spacing: 0.24em; text-transform: uppercase;
+      color: #c6bba5;
+    }
+    .d05__chrome--top { top: 0; }
+    .d05__chrome--bot { bottom: 0; }
+    .d05__chrome b { color: #e8e2d4; font-weight: 400; }
+
+    /* outro */
+    .outro { max-width: 7in; margin: 1in auto 0; text-align: center; font-family: 'Inter', sans-serif; font-size: 11pt; line-height: 1.55; color: #aaa; }
+    .outro b { display: block; color: #ffcf5b; font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <div class="stage">
+
+    <section class="intro">
+      <span class="kick">Design exploration · v2</span>
+      <h1>Five different <em>documents</em>, same words.</h1>
+      <p>Round one stayed inside the original's visual vocabulary. This round throws that vocabulary out. Each of the five pages below is a different kind of document &mdash; a declassified dossier, a riso zine, an industrial manual, an architect's drawing, a boarding pass. Same 8.5&times;11 format, same proposal content, five entirely different theories of what a proposal <em>is</em>.</p>
+      <p class="n">No shared palette &middot; no shared type stack &middot; no shared chrome</p>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         DIRECTION 01 · BRUTALIST DOSSIER
+         ══════════════════════════════════════════════════════════ -->
+    <section class="direction">
+      <div class="direction__label">
+        <span><strong>Direction 01</strong> &middot; Brutalist Dossier</span>
+        <span class="note">Wired-1994 / declassified-document. Hazard-yellow highlights, Archivo Black, heavy rules. A proposal that looks like it got leaked.</span>
+      </div>
+      <div class="page d01">
+        <div class="d01__top">
+          <span><b>Classified</b> &middot; Holy Family RFP Response &middot; Dossier 04 of 22</span>
+          <span class="stamp">Priority: Enrollment</span>
+        </div>
+        <div class="d01__body">
+          <div class="d01__slug">
+            <span>File 03 / Exhibit A</span>
+            <span class="mid">SITE AUDIT &middot; HOLYFAMILY.EDU &middot; SCRAPE DATE 2026.04.11</span>
+            <span>Page 04 / 22</span>
+          </div>
+          <div class="d01__hero">
+            <div>
+              <span class="d01__kicker">The Number They Didn't Count</span>
+              <div class="d01__num"><span class="hl">1,601</span></div>
+            </div>
+            <div class="d01__right">
+              <p class="d01__callout">URLs live on the site today. The RFP cites <u>1,300</u>. We found <u>301 more</u>.</p>
+            </div>
+          </div>
+          <div class="d01__redact">
+            <div><b>670</b>News articles &middot; <span class="redacted">42 percent of site</span></div>
+            <div><b>180+</b>Top-level URL prefixes &middot; target 8</div>
+            <div><b>23</b>Duplicate RFI forms &middot; target 1</div>
+          </div>
+        </div>
+        <div class="d01__foot">
+          <span>Source: holyfamily.edu/sitemap.xml &middot; corroborated via HTTPS crawl</span>
+          <span class="pg">&gt; CONTINUE &nbsp; 05 / 22</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         DIRECTION 02 · RISOGRAPH ZINE
+         ══════════════════════════════════════════════════════════ -->
+    <section class="direction">
+      <div class="direction__label">
+        <span><strong>Direction 02</strong> &middot; Risograph Zine</span>
+        <span class="note">Pink + federal-blue two-color riso on cream. Halftone dots, hand-stamped pullquotes, 8px drop shadows. A proposal that feels made by humans who care.</span>
+      </div>
+      <div class="page d02">
+        <div class="d02__head">
+          <span class="d02__issue">Issue No. 04</span>
+          <span class="d02__mast">The Holy Family <em>Redesign Dispatch</em></span>
+          <span class="d02__date">April 2026</span>
+        </div>
+        <h2 class="d02__title">Three promises we can <b>keep</b>.</h2>
+        <div class="d02__scribble">&mdash; not just three words that sound good in a proposal.</div>
+        <div class="d02__grid">
+          <div class="d02__card">
+            <span class="n">i</span>
+            <h3>More <em>adult &amp; graduate</em> applications.</h3>
+            <p>The RFP's Section 4 top priority. Variant B hero in base scope &mdash; drafted for a 34-year-old nurse, not a 17-year-old. Four tactics, not four slogans.</p>
+            <span class="tag">See &middot; Page 10</span>
+          </div>
+          <div class="d02__card">
+            <span class="n">ii</span>
+            <h3>Your team <em>co-builds</em> &mdash; not receives.</h3>
+            <p>Shared GitHub write access in week one, not at handoff. Dual code review. A 45-minute working pair every Tuesday. No slide presentations.</p>
+            <span class="tag">See &middot; Page 20</span>
+          </div>
+          <div class="d02__card">
+            <span class="n">iii</span>
+            <h3>AI architecture, <em>drafted for you.</em></h3>
+            <p>llms.txt and full JSON-LD schema pack inside this proposal, populated with real HFU facts. When ChatGPT gets asked about Holy Family, it finds you.</p>
+            <span class="tag">See &middot; Page 15</span>
+          </div>
+        </div>
+        <div class="d02__foot">
+          <span>Small College Consulting &middot; $145K all-in &middot; Kickoff June 2026</span>
+          <span class="stamp">Soft-exit at every gate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         DIRECTION 03 · TECHNICAL MANUAL (Braun / Rams)
+         ══════════════════════════════════════════════════════════ -->
+    <section class="direction">
+      <div class="direction__label">
+        <span><strong>Direction 03</strong> &middot; Technical Manual</span>
+        <span class="note">Braun / Dieter Rams. Pure white, Inter-tight, single red accent, exploded-view parts diagram with numbered callouts. A proposal that reads like appliance documentation.</span>
+      </div>
+      <div class="page d03">
+        <div class="d03__top">
+          <span class="d03__logo">SCC &middot; Small College Consulting</span>
+          <span class="d03__id">Doc No. HFU-2026-WR &middot; Section C.2</span>
+          <span class="d03__rev">Rev. 04 · 2026-04-17</span>
+        </div>
+        <div class="d03__heading">
+          <span class="d03__sec">§ 03.2 <br>Technical<br>architecture</span>
+          <h2 class="d03__h">Six components, one <b>working system.</b></h2>
+        </div>
+        <div class="d03__body">
+          <div class="d03__diagram">
+            <div class="d03__parts">
+              <div class="d03__part d03__part--primary">
+                <span class="d03__part-n">01</span>
+                <span class="d03__part-lbl">WordPress<small>Custom block theme · Gutenberg patterns</small></span>
+                <span class="d03__part-code">CMS-01</span>
+              </div>
+              <div class="d03__part">
+                <span class="d03__part-n">02</span>
+                <span class="d03__part-lbl">Pantheon<small>Dev / Test / Live · Autopilot regression</small></span>
+                <span class="d03__part-code">HOST-02</span>
+              </div>
+              <div class="d03__part">
+                <span class="d03__part-n">03</span>
+                <span class="d03__part-lbl">ACF Pro<small>Programs, faculty, events as CPTs</small></span>
+                <span class="d03__part-code">FLD-03</span>
+              </div>
+              <div class="d03__part">
+                <span class="d03__part-n">04</span>
+                <span class="d03__part-lbl">Gravity Forms<small>One smart RFI replaces 23 duplicates</small></span>
+                <span class="d03__part-code">FRM-04</span>
+              </div>
+              <div class="d03__part d03__part--primary">
+                <span class="d03__part-n">05</span>
+                <span class="d03__part-lbl">Slate (Technolutions)<small>Source Format + Ping site-wide</small></span>
+                <span class="d03__part-code">CRM-05</span>
+              </div>
+              <div class="d03__part">
+                <span class="d03__part-n">06</span>
+                <span class="d03__part-lbl">GA4 + GTM<small>Preserved · 28 custom events · Looker</small></span>
+                <span class="d03__part-code">ANL-06</span>
+              </div>
+            </div>
+          </div>
+          <div class="d03__specs">
+            <h4>Operating specifications</h4>
+            <div class="d03__row"><span class="k">WCAG conformance</span><span class="v">2.2 AA</span></div>
+            <div class="d03__row"><span class="k">Integration to Slate</span><span class="v">webhook + Ping</span></div>
+            <div class="d03__row"><span class="k">Patch SLA (CVE)</span><span class="v">&lt; <b>24 hrs</b></span></div>
+            <div class="d03__row"><span class="k">Critical defect SLA</span><span class="v">&lt; <b>4 hrs</b></span></div>
+            <div class="d03__row"><span class="k">Go-live</span><span class="v"><b>2026-09-01</b></span></div>
+            <div class="d03__row"><span class="k">Post-launch support</span><span class="v">90 days</span></div>
+            <div class="d03__warn">
+              <b>⚠ Note · Architecture choice</b>
+              Traditional WordPress, not headless. The RFP's preference is the correct one for a two-person in-house team. Headless defers cost but adds permanent ceremony.
+            </div>
+          </div>
+        </div>
+        <div class="d03__foot">
+          <span>Scale: 1:1 &middot; Units: months</span>
+          <span>Ref: RFP § C.1–C.5</span>
+          <span class="r">Page <b>22</b> / 31</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         DIRECTION 04 · BLUEPRINT / DRAFTING
+         ══════════════════════════════════════════════════════════ -->
+    <section class="direction">
+      <div class="direction__label">
+        <span><strong>Direction 04</strong> &middot; Architect's Drawing</span>
+        <span class="note">Drafting-board aesthetic. Fine grid, Bebas engineering caps, dimension arrows, hatched fills, a title block with sheet number and an architect's stamp. A proposal that holds the same gravity as a construction document.</span>
+      </div>
+      <div class="page d04">
+        <div class="d04__frame"></div>
+        <div class="d04__inner">
+          <div class="d04__slug">
+            <span><b>HFU-A100</b> &middot; Sitemap consolidation · existing vs. proposed</span>
+            <span>Scale 1/8&quot; = 1&prime;-0&quot; &middot; Sheet 07 / 22</span>
+          </div>
+
+          <div class="d04__body">
+            <div class="d04__heading">
+              <span class="d04__num">07</span>
+              <h2 class="d04__h">1,601 &mdash; reduced to <em>650</em>
+                <small>Planning target, not a commitment to delete. Every URL receives a validated 301. News &gt; 2 years old archives with redirects preserved.</small>
+              </h2>
+            </div>
+
+            <div class="d04__plan">
+              <div class="d04__vol">
+                <div class="d04__bar d04__bar--before">
+                  <span class="d04__bar-lbl">Exist.</span>
+                  <span class="d04__bar-track"><span class="d04__bar-fill"></span></span>
+                  <span class="d04__bar-val">1,601</span>
+                </div>
+                <div class="d04__bar d04__bar--after">
+                  <span class="d04__bar-lbl">Prop.</span>
+                  <span class="d04__bar-track"><span class="d04__bar-fill"></span></span>
+                  <span class="d04__bar-val">650</span>
+                </div>
+                <div class="d04__dim">
+                  <span></span>
+                  <span class="d04__dim-line">
+                    <span class="d04__dim-label">&minus; 951 URLS · 60%</span>
+                    <span class="arrow"></span>
+                  </span>
+                  <span></span>
+                </div>
+              </div>
+              <div class="d04__legend">
+                <h4>Legend</h4>
+                <dl>
+                  <dt>News archive</dt><dd>~500</dd>
+                  <dt>Duplicate RFI</dt><dd>~22</dd>
+                  <dt>Program dup.</dt><dd>~80</dd>
+                  <dt>Test / expired</dt><dd>~40</dd>
+                  <dt>Policy consolid.</dt><dd>~30</dd>
+                  <dt>Top-level prefixes</dt><dd><b>180 &rarr; 8</b></dd>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="d04__title-block">
+            <div class="d04__tb-cell"><small>Project</small><b>Holy Family University &middot; Website Redesign</b></div>
+            <div class="d04__tb-cell"><small>Drawn by</small>Small College Consulting</div>
+            <div class="d04__tb-cell"><small>Date</small>2026-04-17</div>
+            <div class="d04__tb-cell"><small>Sheet</small><b>A-100 &middot; 07 / 22</b></div>
+            <div class="d04__tb-cell" style="padding: 4px;">
+              <div class="d04__stamp">Issued<br><b>For</b><br>Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════════
+         DIRECTION 05 · BOARDING PASS / TICKET
+         ══════════════════════════════════════════════════════════ -->
+    <section class="direction">
+      <div class="direction__label">
+        <span><strong>Direction 05</strong> &middot; Boarding Pass</span>
+        <span class="note">Transit document. Perforated stub, monospace ticker type, stamped &ldquo;boarded,&rdquo; gate numbers, barcode. The proposal is the ticket. Each page is a different leg of the journey.</span>
+      </div>
+      <div class="page d05">
+        <div class="d05__chrome d05__chrome--top">
+          <span><b>SCC EXPRESS</b> &middot; Small College Consulting &middot; Route HFU-2026</span>
+          <span>Seat 4C &middot; Boarding at Gate 1B</span>
+        </div>
+        <div class="d05__chrome d05__chrome--bot">
+          <span>Good for one engagement &middot; non-transferable &middot; kill-switch at every gate</span>
+          <span>TKT 145-00000-HFU</span>
+        </div>
+
+        <div class="d05__ticket">
+          <div class="d05__main">
+            <div class="d05__brand">
+              <span class="d05__brand-l">Boarding Pass</span>
+              <span class="d05__brand-r">Engagement &middot; June &rarr; Sept 2026</span>
+            </div>
+
+            <div class="d05__route">
+              <div class="d05__loc">
+                <small>From</small>
+                <b>DRU</b>
+                <p>Drupal, 2018<br>1,601 URLs</p>
+              </div>
+              <div class="d05__arrow">
+                ━━━&#x2708;━━━
+                <small>3 months &middot; 5 gates</small>
+              </div>
+              <div class="d05__loc d05__loc--to">
+                <small>To</small>
+                <b>WP</b>
+                <p>WordPress &middot; Sept 1<br>~650 URLs</p>
+              </div>
+            </div>
+
+            <div class="d05__detail">
+              <div><small>Kickoff</small><b>Jun 01</b><p>Discovery</p></div>
+              <div><small>Gate G2</small><b>Jul 10</b><p>Design sys.</p></div>
+              <div><small>Gate G4</small><b>Aug 28</b><p>Migration QA</p></div>
+              <div><small>Arrival</small><b class="accent">Sep 01</b><p>Go-live</p></div>
+            </div>
+
+            <div class="d05__fare">
+              <div class="d05__fare-row">
+                <span class="k">Discovery &amp; IA</span><span class="v">$ 28,000</span>
+              </div>
+              <div class="d05__fare-row">
+                <span class="k">Design system &amp; UX</span><span class="v">$ 38,000</span>
+              </div>
+              <div class="d05__fare-row">
+                <span class="k">Development &amp; CMS</span><span class="v">$ 62,000</span>
+              </div>
+              <div class="d05__fare-row">
+                <span class="k">Content migration</span><span class="v">$ 34,000</span>
+              </div>
+              <div class="d05__fare-row">
+                <span class="k">Slate + launch + 90 days</span><span class="v">$ 51,000</span>
+              </div>
+              <div class="d05__fare-row total">
+                <span class="k">Total fare (all in)</span><span class="v">$ 145,000</span>
+              </div>
+            </div>
+
+            <div class="d05__barcode">*HFU2026145K09012026*</div>
+          </div>
+
+          <div class="d05__stub">
+            <span class="d05__stub-h"><b>Stub</b> &middot; Retain for boarding</span>
+            <div class="d05__stub-title">Holy <em>Family</em> &middot; Redesign Class</div>
+            <dl>
+              <dt>Passenger</dt><dd>R. Mitchell</dd>
+              <dt>Agency</dt><dd>SCC</dd>
+              <dt>Class</dt><dd>Partnership</dd>
+              <dt>Gate</dt><dd>1B</dd>
+              <dt>Seat</dt><dd>4C</dd>
+              <dt>Boarding</dt><dd>06-01-26</dd>
+              <dt>Arrival</dt><dd>09-01-26</dd>
+              <dt>Valid for</dt><dd>90 days</dd>
+            </dl>
+            <div class="d05__stub-stamp">
+              Ready to<br>board
+              <small>Pending signature</small>
+            </div>
+            <div class="d05__stub-seq">SEQ 0001 &middot; Page 29 / 31</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="outro">
+      <b>End of v2 exploration</b>
+      Five different kinds of document &mdash; dossier, zine, manual, drawing, ticket. Point at whichever one feels like it matches the engagement. If none of them do, tell me which direction they&rsquo;re pointing away from and I&rsquo;ll go somewhere else entirely.
+    </section>
+
+  </div>
+
+</body>
+</html>

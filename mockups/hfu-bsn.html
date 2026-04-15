@@ -8,12 +8,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ═════════════════════════════════════════════════════════════════════
-       HFU STUDENT EXPERIENCE — Concept 5 (photo-forward, cinematic editorial)
-       Typography: Source Serif 4 (display) + Inter Tight (body)
+       HFU BSN — data-forward editorial program page
+       Typography: Source Serif 4 (display) + Inter Tight (body) + JetBrains Mono (meta)
        Shared design system with the rest of the HFU mockup set
        ═════════════════════════════════════════════════════════════════════ */
     :root {
@@ -27,11 +27,14 @@
       --hfu-yellow-soft: 48 100% 94%;
       --hfu-yellow-deep: 44 95% 46%;
       --hfu-mist:        202 22% 76%;   /* #B2C6D1 */
+      --hfu-rose:        335 60% 38%;
 
       /* Warm editorial neutrals */
       --bg:              38 33% 97%;    /* #FBF9F3 warm cream */
       --bg-alt:          38 25% 94%;
       --bg-card:         0 0% 100%;
+      --paper:           0 0% 100%;
+      --white:           0 0% 100%;
       --fg:              212 38% 12%;
       --fg-muted:        212 18% 36%;
       --fg-subtle:       212 12% 52%;
@@ -39,8 +42,17 @@
       --border-soft:     212 22% 93%;
       --border-strong:   212 24% 78%;
 
+      /* Semantic (callouts, status) */
+      --ok:              152 58% 34%;
+      --ok-soft:         152 58% 94%;
+      --warn:            38 90% 46%;
+      --warn-soft:       38 90% 94%;
+      --danger:          4 70% 48%;
+      --danger-soft:     4 70% 95%;
+
       --display: 'Source Serif 4', 'Times New Roman', Georgia, serif;
       --body:    'Inter Tight', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
 
       --container: 1280px;
       --gutter: clamp(1.25rem, 4vw, 4rem);
@@ -52,11 +64,11 @@
       --r-xl: 28px;
       --r-2xl: 40px;
 
-      --shadow-xs: 0 1px 2px rgba(6, 33, 63, 0.04);
-      --shadow-sm: 0 1px 3px rgba(6, 33, 63, 0.05), 0 1px 2px rgba(6, 33, 63, 0.03);
-      --shadow-md: 0 4px 16px rgba(6, 33, 63, 0.06), 0 2px 6px rgba(6, 33, 63, 0.04);
-      --shadow-lg: 0 20px 48px rgba(6, 33, 63, 0.10), 0 8px 20px rgba(6, 33, 63, 0.06);
-      --shadow-xl: 0 40px 96px rgba(6, 33, 63, 0.14), 0 16px 32px rgba(6, 33, 63, 0.08);
+      --shadow-xs: 0 1px 2px hsl(var(--hfu-navy) / 0.04);
+      --shadow-sm: 0 1px 3px hsl(var(--hfu-navy) / 0.05), 0 1px 2px hsl(var(--hfu-navy) / 0.03);
+      --shadow-md: 0 4px 16px hsl(var(--hfu-navy) / 0.06), 0 2px 6px hsl(var(--hfu-navy) / 0.04);
+      --shadow-lg: 0 20px 48px hsl(var(--hfu-navy) / 0.10), 0 8px 20px hsl(var(--hfu-navy) / 0.06);
+      --shadow-xl: 0 40px 96px hsl(var(--hfu-navy) / 0.14), 0 16px 32px hsl(var(--hfu-navy) / 0.08);
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -119,7 +131,7 @@
     /* ── Utility strip ─────────────────────────────────────────────────── */
     .util {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.78);
+      color: hsl(var(--white) / 0.78);
       font-size: 12.5px;
       letter-spacing: 0.01em;
     }
@@ -145,7 +157,7 @@
       top: 0;
       z-index: 50;
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
       border-bottom: 1px solid hsl(var(--hfu-navy-deep));
     }
     .nav__inner {
@@ -169,7 +181,7 @@
       font-weight: 500;
     }
     .nav__list a {
-      color: hsl(0 0% 100% / 0.88);
+      color: hsl(var(--white) / 0.88);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -188,10 +200,10 @@
       transform-origin: left;
       transition: transform 280ms var(--ease-out);
     }
-    .nav__list a:hover { color: #fff; }
+    .nav__list a:hover { color: hsl(var(--white)); }
     .nav__list a:hover::after,
     .nav__list a.is-active::after { transform: scaleX(1); }
-    .nav__list a.is-active { color: #fff; }
+    .nav__list a.is-active { color: hsl(var(--white)); }
     .nav__list svg { width: 10px; height: 10px; opacity: 0.6; }
 
     .nav__actions { display: flex; gap: 14px; align-items: center; }
@@ -201,16 +213,16 @@
       border-radius: 50%;
       display: grid;
       place-items: center;
-      background: hsl(0 0% 100% / 0.08);
-      color: #fff;
+      background: hsl(var(--white) / 0.08);
+      color: hsl(var(--white));
       transition: background 200ms var(--ease-out);
     }
-    .nav__search:hover { background: hsl(0 0% 100% / 0.14); }
+    .nav__search:hover { background: hsl(var(--white) / 0.14); }
     .nav__search svg { width: 15px; height: 15px; }
 
     .nav__burger { display: none; }
 
-    /* ── Buttons ───────────────────────────────────────────────────────── */
+    /* ── Buttons (hfu-btn pattern) ─────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -220,1454 +232,1325 @@
       font-size: 14.5px;
       font-weight: 600;
       letter-spacing: -0.005em;
-      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out);
+      transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), background 220ms var(--ease-out), color 220ms var(--ease-out), border-color 220ms var(--ease-out);
       white-space: nowrap;
+      border: 1px solid transparent;
     }
     .btn svg { width: 14px; height: 14px; transition: transform 300ms var(--ease-out); }
     .btn:hover svg { transform: translateX(3px); }
     .btn--primary {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
-      box-shadow: 0 1px 2px rgba(6, 33, 63, 0.15), 0 4px 12px rgba(255, 204, 21, 0.35);
+      box-shadow: 0 1px 2px hsl(var(--hfu-navy) / 0.15), 0 4px 12px hsl(var(--hfu-yellow) / 0.35);
     }
-    .btn--primary:hover { background: hsl(var(--hfu-yellow-deep)); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(6, 33, 63, 0.2), 0 8px 20px rgba(255, 204, 21, 0.4); }
+    .btn--primary:hover {
+      background: hsl(var(--hfu-yellow-deep));
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px hsl(var(--hfu-navy) / 0.2), 0 8px 20px hsl(var(--hfu-yellow) / 0.4);
+    }
     .btn--secondary {
       background: hsl(var(--bg-card));
       color: hsl(var(--hfu-navy));
-      border: 1px solid hsl(var(--border-strong));
+      border-color: hsl(var(--border-strong));
     }
-    .btn--secondary:hover { background: hsl(var(--hfu-navy)); color: #fff; border-color: hsl(var(--hfu-navy)); }
+    .btn--secondary:hover {
+      background: hsl(var(--hfu-navy));
+      color: hsl(var(--white));
+      border-color: hsl(var(--hfu-navy));
+    }
     .btn--ghost {
       background: transparent;
       color: hsl(var(--hfu-navy));
-      border: 1px solid hsl(var(--hfu-navy) / 0.2);
+      border-color: hsl(var(--hfu-navy) / 0.2);
     }
-    .btn--ghost:hover { border-color: hsl(var(--hfu-navy)); background: hsl(var(--hfu-navy) / 0.04); }
+    .btn--ghost:hover {
+      border-color: hsl(var(--hfu-navy));
+      background: hsl(var(--hfu-navy) / 0.04);
+    }
     .btn--dark {
       background: hsl(var(--hfu-navy));
-      color: #fff;
+      color: hsl(var(--white));
     }
-    .btn--dark:hover { background: hsl(var(--hfu-navy-deep)); transform: translateY(-1px); }
+    .btn--dark:hover {
+      background: hsl(var(--hfu-navy-deep));
+      transform: translateY(-1px);
+    }
     .btn--lg { padding: 18px 32px; font-size: 15px; }
-    .btn--glass {
-      background: hsl(0 0% 100% / 0.12);
-      color: #fff;
-      border: 1px solid hsl(0 0% 100% / 0.28);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-    .btn--glass:hover { background: hsl(0 0% 100% / 0.2); border-color: hsl(0 0% 100% / 0.5); transform: translateY(-1px); }
 
-    /* ═════════════════════ CINEMATIC HERO ═════════════════════ */
+    /* ═════════════════════ DATA-FORWARD SPLIT HERO ═════════════════════ */
+    /* ═════════════════════ HERO · CINEMATIC PROGRAM COVER ═════════════════════ */
     .hero {
       position: relative;
-      min-height: 85vh;
-      display: flex;
-      align-items: flex-end;
+      min-height: clamp(680px, 92vh, 880px);
+      color: hsl(var(--white));
       overflow: hidden;
       isolation: isolate;
+      background: hsl(var(--hfu-navy-deep));
     }
-    .hero__bg {
+    .hero__photo {
       position: absolute;
       inset: 0;
-      z-index: -2;
+      z-index: 0;
     }
-    .hero__bg img {
+    .hero__photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 35%;
-      transform: scale(1.02);
-      animation: heroZoom 22s var(--ease-out) forwards;
+      object-position: center 28%;
+      opacity: 0.55;
+      transform: scale(1.04);
+      animation: heroPhoto 32s ease-in-out infinite alternate;
     }
-    @keyframes heroZoom {
-      to { transform: scale(1.08); }
+    @keyframes heroPhoto {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.10); }
     }
-    .hero__scrim {
+    .hero__photo::after {
+      content: "";
       position: absolute;
       inset: 0;
-      z-index: -1;
       background:
-        linear-gradient(180deg, hsl(var(--hfu-navy-deep) / 0.65) 0%, hsl(var(--hfu-navy-deep) / 0.15) 28%, hsl(var(--hfu-navy-deep) / 0.3) 58%, hsl(var(--hfu-navy-deep) / 0.92) 100%),
-        linear-gradient(100deg, hsl(var(--hfu-navy-deep) / 0.55) 0%, transparent 52%);
+        linear-gradient(180deg, hsl(var(--hfu-navy-deep) / 0.58) 0%, hsl(var(--hfu-navy-deep) / 0.72) 42%, hsl(var(--hfu-navy-deep) / 0.94) 100%),
+        linear-gradient(90deg, hsl(var(--hfu-navy-deep) / 0.60) 0%, transparent 62%);
     }
     .hero__grain {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: 1;
       pointer-events: none;
-      opacity: 0.35;
+      opacity: 0.45;
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.06) 1px, transparent 1.5px);
+      background-size: 26px 26px;
       mix-blend-mode: overlay;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.08) 1px, transparent 1.6px);
-      background-size: 3px 3px;
     }
     .hero__inner {
+      position: relative;
+      z-index: 2;
       max-width: var(--container);
       margin: 0 auto;
-      width: 100%;
-      padding: 0 var(--gutter) clamp(3.5rem, 5vw, 5rem);
-      position: relative;
-      color: #fff;
+      padding: clamp(0.75rem, 1.25vw, 1rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem);
+      min-height: clamp(680px, 92vh, 880px);
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Breadcrumbs on dark */
     .hero__crumbs {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 13px;
-      color: hsl(0 0% 100% / 0.62);
-      margin-bottom: 24px;
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--white) / 0.62);
       letter-spacing: 0.01em;
     }
-    .hero__crumbs a { color: hsl(0 0% 100% / 0.82); }
+    .hero__crumbs a { color: hsl(var(--white) / 0.78); transition: color 220ms var(--ease-out); }
     .hero__crumbs a:hover { color: hsl(var(--hfu-yellow)); }
-    .hero__crumbs svg { width: 9px; height: 9px; opacity: 0.6; }
-    .hero__crumbs .is-current { color: #fff; font-weight: 500; }
+    .hero__crumbs svg { width: 9px; height: 9px; opacity: 0.55; }
+    .hero__crumbs .is-current { color: hsl(var(--white)); font-weight: 500; }
+
+    /* Accreditation chip — top right */
+    .hero__accred {
+      position: absolute;
+      top: clamp(1.75rem, 3vw, 2.5rem);
+      right: var(--gutter);
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 16px 9px 12px;
+      border: 1px solid hsl(var(--white) / 0.22);
+      border-radius: 100px;
+      background: hsl(var(--hfu-navy-deep) / 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--white) / 0.82);
+    }
+    .hero__accred::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 12px hsl(var(--hfu-yellow) / 0.6);
+    }
+    .hero__accred strong { color: hsl(var(--white)); font-weight: 600; letter-spacing: 0.08em; }
+
+    /* Content block — pinned to bottom of hero for drama */
+    .hero__content {
+      margin-top: auto;
+      max-width: 1040px;
+    }
     .hero__eyebrow {
       font-family: var(--body);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: hsl(var(--hfu-yellow));
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       margin-bottom: 28px;
     }
     .hero__eyebrow::before {
       content: "";
-      width: 34px;
+      width: 40px;
       height: 1.5px;
       background: hsl(var(--hfu-yellow));
     }
     .hero h1 {
-      font-size: clamp(3rem, 8.4vw, 8.4rem);
-      line-height: 0.92;
-      letter-spacing: -0.032em;
+      font-family: var(--display);
+      font-size: clamp(3.4rem, 9vw, 8.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.036em;
+      color: hsl(var(--white));
+      margin: 0 0 32px;
+      font-weight: 300;
       font-variation-settings: "opsz" 60;
-      color: #fff;
-      max-width: 16ch;
-      font-weight: 350;
-      margin-bottom: 32px;
-      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+      max-width: 14ch;
     }
     .hero h1 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-yellow));
-      position: relative;
-      display: inline-block;
-      padding: 0 0.04em;
     }
     .hero__lead {
-      font-size: clamp(16px, 1.2vw, 19px);
-      line-height: 1.55;
-      color: hsl(0 0% 100% / 0.82);
-      max-width: 52ch;
-      margin-bottom: 40px;
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 1.45;
+      color: hsl(var(--white) / 0.86);
+      max-width: 44ch;
+      margin-bottom: clamp(2.25rem, 3.5vw, 3rem);
+      font-variation-settings: "opsz" 40;
     }
-    .hero__ctas {
+
+    /* Colophon — editorial meta strip, book-credits style */
+    .hero__colophon {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 56px;
+      gap: 0;
+      padding: 22px 0;
+      border-top: 1px solid hsl(var(--white) / 0.16);
+      border-bottom: 1px solid hsl(var(--white) / 0.16);
+      margin-bottom: clamp(2rem, 3vw, 2.5rem);
+      max-width: 920px;
     }
+    .hero__colophon__cell {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0 clamp(20px, 2.4vw, 32px);
+      border-right: 1px solid hsl(var(--white) / 0.12);
+    }
+    .hero__colophon__cell:first-child { padding-left: 0; }
+    .hero__colophon__cell:last-child { border-right: 0; }
+    .hero__colophon__label {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--white) / 0.55);
+    }
+    .hero__colophon__value {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.2;
+      color: hsl(var(--white));
+      font-variation-settings: "opsz" 60;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    .hero__colophon__value em {
+      font-style: italic;
+      font-weight: 300;
+      color: hsl(var(--hfu-yellow));
+    }
+
+    /* Stats — editorial number strip, four across */
     .hero__stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      padding-top: 36px;
-      border-top: 1px solid hsl(0 0% 100% / 0.18);
-      max-width: 860px;
+      gap: clamp(20px, 3vw, 40px);
+      margin-bottom: clamp(2rem, 3vw, 2.5rem);
+      max-width: 900px;
     }
-    .hero__stat {
+    .hero-stat {
       display: flex;
       flex-direction: column;
-      padding: 0 clamp(18px, 2vw, 28px);
-      border-right: 1px solid hsl(0 0% 100% / 0.14);
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 2px solid hsl(var(--hfu-yellow));
     }
-    .hero__stat:first-child { padding-left: 0; }
-    .hero__stat:last-child { border-right: none; padding-right: 0; }
-    .hero__stat .num {
+    .hero-stat--muted {
+      border-top-color: hsl(var(--white) / 0.28);
+    }
+    .hero-stat__num {
       font-family: var(--display);
-      font-size: clamp(2rem, 3.4vw, 3rem);
-      line-height: 1;
-      letter-spacing: -0.035em;
-      color: #fff;
-      margin-bottom: 8px;
+      font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.038em;
+      color: hsl(var(--white));
+      font-weight: 300;
       font-variation-settings: "opsz" 60;
-      font-weight: 350;
+      font-variant-numeric: lining-nums tabular-nums;
     }
-    .hero__stat .num .small {
-      font-size: 0.5em;
-      vertical-align: 0.4em;
-      margin-left: 2px;
+    .hero-stat__num .small {
+      font-size: 0.38em;
+      vertical-align: 0.5em;
+      margin-left: 3px;
       color: hsl(var(--hfu-yellow));
       font-weight: 400;
-    }
-    .hero__stat .label {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.64);
-      letter-spacing: 0.05em;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-    .hero__scroll {
-      position: absolute;
-      right: var(--gutter);
-      bottom: clamp(3.5rem, 5vw, 5rem);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: hsl(0 0% 100% / 0.6);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-    }
-    .hero__scroll::before {
-      content: "";
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, hsl(0 0% 100% / 0.4), transparent);
-      animation: scrollLine 2.4s var(--ease-in-out) infinite;
-    }
-    @keyframes scrollLine {
-      0%, 100% { transform: translateY(-10px); opacity: 0.3; }
-      50% { transform: translateY(10px); opacity: 1; }
-    }
-
-    /* ═════════════════════ LIFE PILLARS ═════════════════════ */
-    .pillars {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .pillars__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .pillars__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      letter-spacing: -0.024em;
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      line-height: 1.02;
-    }
-    .pillars__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .pillars__head .lead { max-width: 46ch; }
-    .pillars__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .pillar {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 34px 32px 30px;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-    }
-    .pillar:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .pillar__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: hsl(var(--hfu-yellow) / 0.16);
-      color: hsl(var(--hfu-blue));
-      display: grid;
-      place-items: center;
-      margin-bottom: 26px;
-      position: relative;
-    }
-    .pillar__icon svg { width: 24px; height: 24px; }
-    .pillar__icon::after {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border: 1px dashed hsl(var(--hfu-yellow) / 0.5);
-      border-radius: 10px;
-      opacity: 0;
-      transition: opacity 300ms var(--ease-out);
-    }
-    .pillar:hover .pillar__icon::after { opacity: 1; }
-    .pillar h3 {
-      font-family: var(--body);
-      font-size: 19px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      margin-bottom: 10px;
       letter-spacing: -0.01em;
     }
-    .pillar p {
-      font-size: 14.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      flex: 1;
-      margin-bottom: 22px;
+    .hero-stat__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: hsl(var(--white) / 0.72);
+      font-weight: 500;
+      line-height: 1.35;
     }
-    .pillar__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-    }
-    .pillar__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .pillar:hover .pillar__link svg { transform: translateX(3px); }
-    .pillar__num {
-      position: absolute;
-      top: 26px;
-      right: 30px;
+    .hero-stat__note {
       font-family: var(--display);
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.04em;
-      font-variation-settings: "opsz" 60;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 1.4;
+      color: hsl(var(--white) / 0.5);
+      margin-top: 4px;
     }
 
-    /* ═════════════════════ DAY IN THE LIFE GALLERY ═════════════════════ */
-    .gallery {
+    /* CTAs + caption side */
+    .hero__foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: clamp(16px, 2.2vw, 28px);
+    }
+    .hero__ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero .btn--primary {
+      background: hsl(var(--hfu-yellow));
+      color: hsl(var(--hfu-navy-deep));
+      border: 1px solid hsl(var(--hfu-yellow));
+      box-shadow: 0 10px 32px hsl(var(--hfu-yellow) / 0.28);
+    }
+    .hero .btn--primary:hover {
+      background: hsl(var(--hfu-yellow-deep));
+      border-color: hsl(var(--hfu-yellow-deep));
+      transform: translateY(-1px);
+      box-shadow: 0 14px 40px hsl(var(--hfu-yellow) / 0.4);
+    }
+    .hero .btn--secondary {
+      background: hsl(var(--white) / 0.06);
+      color: hsl(var(--white));
+      border: 1px solid hsl(var(--white) / 0.28);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .hero .btn--secondary:hover {
+      background: hsl(var(--white) / 0.12);
+      border-color: hsl(var(--white) / 0.5);
+    }
+    .hero__foot-aside {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: hsl(var(--white) / 0.6);
+      max-width: 34ch;
+      padding-left: clamp(16px, 2.2vw, 28px);
+      border-left: 1px solid hsl(var(--white) / 0.14);
+    }
+
+    @media (max-width: 900px) {
+      .hero { min-height: auto; }
+      .hero__inner { min-height: auto; padding-top: clamp(5rem, 12vw, 7rem); padding-bottom: clamp(3rem, 6vw, 4rem); }
+      .hero__accred { top: 1.25rem; right: var(--gutter); }
+      .hero h1 { font-size: clamp(2.6rem, 11vw, 4.8rem); }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+      .hero__colophon dl { padding: 0 18px; }
+      .hero__foot-aside { padding-left: 0; border-left: 0; padding-top: 10px; border-top: 1px solid hsl(var(--white) / 0.14); }
+    }
+
+    /* ═════════════════════ SECTION PRIMITIVES ═════════════════════ */
+    .section {
       padding: var(--section) 0;
+      position: relative;
+    }
+    .section--alt {
       background: hsl(var(--bg-alt));
       border-top: 1px solid hsl(var(--border-soft));
       border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-      overflow: hidden;
     }
-    .gallery::before {
-      content: "";
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60%;
-      height: 60%;
-      background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.08), transparent 60%);
-      pointer-events: none;
-    }
-    .gallery__head {
+    .section__head {
       max-width: var(--container);
-      margin: 0 auto 56px;
+      margin: 0 auto clamp(2.5rem, 5vw, 4rem);
       padding: 0 var(--gutter);
       display: grid;
       grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
+      gap: 48px;
       align-items: end;
-      position: relative;
     }
-    .gallery__head h2 {
-      font-size: clamp(2.4rem, 4.4vw, 4rem);
+    .section__head--centered {
+      grid-template-columns: 1fr;
+      text-align: left;
+      max-width: 980px;
+    }
+    .section__head h2 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.024em;
       color: hsl(var(--hfu-navy));
       margin-top: 18px;
-      letter-spacing: -0.028em;
-      line-height: 1.02;
+      line-height: 1.04;
+      max-width: 20ch;
     }
-    .gallery__head h2 em {
+    .section__head h2 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-blue));
     }
-    .gallery__head .meta {
+    .section__head .lead { max-width: 46ch; }
+    .section__body {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ═════════════════════ TIMELINE (hfu-timeline) ═════════════════════ */
+    .tl-wrap {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3.5rem);
+      box-shadow: var(--shadow-sm);
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .hfu-timeline {
+      position: relative;
+      padding-left: 42px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      align-items: flex-start;
+      gap: 32px;
     }
-    .gallery__head .meta p {
-      font-size: 15.5px;
+    .hfu-timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 13px;
+      width: 1px;
+      background: hsl(var(--border));
+    }
+    .hfu-timeline__item { position: relative; }
+    .hfu-timeline__item::before {
+      content: "";
+      position: absolute;
+      left: -34px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: hsl(var(--paper));
+      border: 2px solid hsl(var(--hfu-yellow-deep));
+    }
+    .hfu-timeline__item.is-current::before {
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 0 4px hsl(var(--hfu-yellow) / 0.25);
+    }
+    .hfu-timeline__date {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .hfu-timeline__title {
+      font-family: var(--display);
+      font-size: clamp(19px, 1.5vw, 22px);
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      margin: 6px 0 8px;
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.012em;
+    }
+    .hfu-timeline__body {
+      font-family: var(--body);
+      font-size: 14.5px;
       line-height: 1.6;
       color: hsl(var(--fg-muted));
-      max-width: 38ch;
+      max-width: 56ch;
     }
-    .gallery__head .clock {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .gallery__head .clock .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow));
-      box-shadow: 0 0 0 3px hsl(var(--hfu-yellow) / 0.22);
-    }
-
-    .gallery__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 120px;
-      gap: 16px;
-      position: relative;
-    }
-    .shot {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--r-lg);
-      box-shadow: var(--shadow-sm);
-      transition: transform 420ms var(--ease-out), box-shadow 420ms var(--ease-out);
-    }
-    .shot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 900ms var(--ease-out);
-    }
-    .shot:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-lg);
-    }
-    .shot:hover img { transform: scale(1.06); }
-    .shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, hsl(var(--hfu-navy-deep) / 0.72) 0%, hsl(var(--hfu-navy-deep) / 0.08) 40%, transparent 65%);
-      pointer-events: none;
-    }
-    .shot__caption {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      right: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      z-index: 2;
-    }
-    .shot__cap-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      background: hsl(0 0% 100% / 0.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid hsl(0 0% 100% / 0.22);
-      border-radius: 100px;
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-    .shot__cap-pill .time {
-      color: hsl(var(--hfu-yellow));
-      font-family: var(--display);
-      font-size: 12px;
-      font-weight: 500;
-      font-variation-settings: "opsz" 60;
-    }
-    .shot__cap-pill .dot-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: hsl(0 0% 100% / 0.5);
-    }
-
-    /* Bento tile sizes */
-    .shot--a { grid-column: span 6; grid-row: span 4; }  /* tall primary */
-    .shot--b { grid-column: span 6; grid-row: span 2; }  /* wide top right */
-    .shot--c { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--d { grid-column: span 3; grid-row: span 2; }  /* small */
-    .shot--e { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--f { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--g { grid-column: span 4; grid-row: span 3; }  /* medium */
-    .shot--h { grid-column: span 12; grid-row: span 3; } /* wide panoramic */
-
-    .gallery__foot {
-      max-width: var(--container);
-      margin: 48px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .gallery__foot .note {
-      font-size: 13px;
-      color: hsl(var(--fg-subtle));
-      max-width: 42ch;
-      font-style: italic;
-      font-family: var(--display);
-      line-height: 1.5;
-    }
-    .gallery__foot .note em { color: hsl(var(--hfu-blue)); }
-
-    /* ═════════════════════ ATHLETICS DARK SPLIT ═════════════════════ */
-    .athletics {
-      padding: 0;
-      background: hsl(var(--hfu-navy-deep));
-      color: #fff;
-      position: relative;
-      overflow: hidden;
-    }
-    .athletics::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.05) 1px, transparent 1.5px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .athletics__inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(3rem, 5vw, 5rem);
-      align-items: stretch;
-      min-height: 640px;
-      position: relative;
-    }
-    .athletics__media {
-      position: relative;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      margin: clamp(4rem, 6vw, 7rem) 0;
-      box-shadow: var(--shadow-xl);
-      isolation: isolate;
-    }
-    .athletics__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      filter: saturate(1.1) contrast(1.08);
-    }
-    .athletics__media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, transparent 40%, hsl(var(--hfu-navy-deep) / 0.78) 100%);
-    }
-    .athletics__badge {
-      position: absolute;
-      top: 26px;
-      left: 26px;
-      background: hsl(var(--hfu-yellow));
-      color: hsl(var(--hfu-navy-deep));
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 11px;
+    .hfu-timeline__chip {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      font-family: var(--body);
+      font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 2;
-      box-shadow: var(--shadow-md);
-    }
-    .athletics__badge .live-dot {
-      width: 7px;
-      height: 7px;
-      background: hsl(var(--hfu-navy-deep));
-      border-radius: 50%;
-      animation: pulse 2s infinite var(--ease-out);
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.55; }
-    }
-    .athletics__score {
-      position: absolute;
-      bottom: 28px;
-      left: 28px;
-      right: 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      z-index: 2;
-    }
-    .athletics__score .tiger {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.2vw, 2.2rem);
-      color: #fff;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__score .sub {
-      font-size: 11.5px;
-      color: hsl(0 0% 100% / 0.72);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-    .athletics__score .roar {
-      font-family: var(--display);
-      font-size: 68px;
-      line-height: 0.8;
-      color: hsl(var(--hfu-yellow));
-      font-style: italic;
-      font-weight: 300;
-      letter-spacing: -0.04em;
-    }
-
-    .athletics__body {
-      padding: clamp(4rem, 6vw, 7rem) 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .athletics__body .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .athletics__body .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .athletics__body h2 {
-      font-size: clamp(2.4rem, 4.2vw, 4rem);
-      color: #fff;
-      margin: 24px 0 24px;
-      letter-spacing: -0.028em;
-      line-height: 1;
-      font-variation-settings: "opsz" 60;
-    }
-    .athletics__body h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-yellow));
-    }
-    .athletics__body p {
-      font-size: 16px;
-      line-height: 1.65;
-      color: hsl(0 0% 100% / 0.78);
-      max-width: 46ch;
-      margin-bottom: 36px;
-    }
-    .athletics__sports {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 40px;
-    }
-    .sport-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.14);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
-      color: hsl(0 0% 100% / 0.92);
-      transition: all 220ms var(--ease-out);
-    }
-    .sport-chip:hover {
-      background: hsl(var(--hfu-yellow) / 0.16);
-      border-color: hsl(var(--hfu-yellow) / 0.5);
-      color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .sport-chip svg {
-      width: 12px;
-      height: 12px;
-      opacity: 0.6;
-    }
-    .athletics__cta {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .athletics__cta .sub-link {
-      color: hsl(0 0% 100% / 0.62);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--display);
-      font-style: italic;
-    }
-    .athletics__cta .sub-link svg { width: 12px; height: 12px; }
-
-    /* ═════════════════════ CLUBS GRID ═════════════════════ */
-    .clubs {
-      padding: var(--section) 0;
-      position: relative;
-    }
-    .clubs__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 32px;
-      align-items: end;
-    }
-    .clubs__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
       color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 20ch;
-      line-height: 1.02;
-    }
-    .clubs__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .clubs__head .all {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.005em;
-      padding: 12px 20px;
-      background: hsl(var(--hfu-yellow) / 0.14);
+      background: hsl(var(--hfu-yellow));
       border-radius: 100px;
-      border: 1px solid hsl(var(--hfu-yellow) / 0.3);
-      transition: all 220ms var(--ease-out);
     }
-    .clubs__head .all:hover {
-      background: hsl(var(--hfu-yellow) / 0.24);
-      border-color: hsl(var(--hfu-yellow));
-      transform: translateY(-1px);
-    }
-    .clubs__head .all svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .clubs__head .all:hover svg { transform: translateX(3px); }
 
-    .clubs__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .club {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 28px 30px 30px;
+    /* ═════════════════════ ACCORDION (hfu-acc) ═════════════════════ */
+    .hfu-acc {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      position: relative;
-      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
-      overflow: hidden;
+      max-width: 920px;
+      margin: 0 auto;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: 8px clamp(1.5rem, 3vw, 2.5rem);
+      box-shadow: var(--shadow-sm);
     }
-    .club::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, hsl(var(--hfu-yellow)) 0%, hsl(var(--hfu-blue)) 100%);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 400ms var(--ease-out);
+    .hfu-acc details {
+      border-top: 1px solid hsl(var(--border));
+      padding: 26px 4px;
+      transition: background 200ms var(--ease-out);
     }
-    .club:hover::before { transform: scaleX(1); }
-    .club:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
+    .hfu-acc details:first-of-type { border-top: none; }
+    .hfu-acc summary {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 22px;
+      align-items: center;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--display);
+      font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: hsl(var(--hfu-navy));
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 60;
     }
-    .club__top {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      justify-content: space-between;
+    .hfu-acc summary::-webkit-details-marker { display: none; }
+    .hfu-acc__num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      color: hsl(var(--hfu-blue));
+      font-weight: 500;
+      min-width: 52px;
     }
-    .club__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+    .hfu-acc__chev {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      flex-shrink: 0;
+      border: 1px solid hsl(var(--border-strong));
+      transition: transform 280ms var(--ease-out), background 200ms var(--ease-out), border-color 200ms var(--ease-out);
     }
-    .club__icon svg { width: 22px; height: 22px; }
-    .club--faith .club__icon { background: hsl(var(--hfu-yellow) / 0.2); color: hsl(var(--hfu-yellow-deep)); }
-    .club--service .club__icon { background: hsl(var(--hfu-blue) / 0.14); color: hsl(var(--hfu-blue)); }
-    .club--culture .club__icon { background: hsl(var(--hfu-navy) / 0.1); color: hsl(var(--hfu-navy)); }
-    .club--arts .club__icon { background: hsl(335 78% 88% / 0.9); color: hsl(335 72% 42%); }
-    .club--eco .club__icon { background: hsl(155 52% 88%); color: hsl(155 60% 28%); }
-    .club--health .club__icon { background: hsl(var(--hfu-mist) / 0.5); color: hsl(var(--hfu-navy)); }
-
-    .club__members {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-      background: hsl(var(--bg));
+    .hfu-acc__chev svg { width: 11px; height: 11px; color: hsl(var(--hfu-navy)); }
+    .hfu-acc details[open] .hfu-acc__chev {
+      transform: rotate(180deg);
+      background: hsl(var(--hfu-yellow));
+      border-color: hsl(var(--hfu-yellow-deep));
     }
-    .club__members strong {
-      color: hsl(var(--hfu-navy));
-      font-weight: 700;
-    }
-    .club h3 {
-      font-family: var(--display);
-      font-size: clamp(1.25rem, 1.6vw, 1.5rem);
-      line-height: 1.1;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.018em;
-      font-variation-settings: "opsz" 60;
-    }
-    .club p {
-      font-size: 14px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      flex: 1;
-    }
-    .club__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 16px;
-      border-top: 1px solid hsl(var(--border-soft));
-      margin-top: 4px;
-    }
-    .club__meet {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__meet svg { width: 11px; height: 11px; }
-    .club__join {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .club__join svg { width: 11px; height: 11px; transition: transform 260ms var(--ease-out); }
-    .club:hover .club__join svg { transform: translateX(3px); }
-
-    /* ═════════════════════ HOUSING & DINING SPLIT ═════════════════════ */
-    .home {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-    }
-    .home__head {
-      max-width: var(--container);
-      margin: 0 auto 64px;
-      padding: 0 var(--gutter);
-      text-align: center;
-    }
-    .home__head .eyebrow { justify-content: center; }
-    .home__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin: 18px auto 0;
-      max-width: 24ch;
-      letter-spacing: -0.024em;
-      line-height: 1.05;
-    }
-    .home__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
+    .hfu-acc__panel {
+      padding: 18px 4px 8px 60px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 2fr 1fr;
+      gap: 36px;
     }
-    .home-card {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
-    }
-    .home-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-    .home-card__media {
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      position: relative;
-    }
-    .home-card__media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 700ms var(--ease-out);
-    }
-    .home-card:hover .home-card__media img { transform: scale(1.04); }
-    .home-card__tag {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: hsl(var(--bg-card));
-      color: hsl(var(--hfu-navy));
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border-radius: 100px;
-      box-shadow: var(--shadow-sm);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .home-card__tag svg { width: 12px; height: 12px; color: hsl(var(--hfu-blue)); }
-    .home-card__body {
-      padding: 36px 38px 38px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      flex: 1;
-    }
-    .home-card h3 {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 2.4vw, 2.4rem);
-      color: hsl(var(--hfu-navy));
-      line-height: 1.02;
-      letter-spacing: -0.024em;
-      font-variation-settings: "opsz" 60;
-    }
-    .home-card h3 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .home-card p.lead-card {
-      font-size: 15.5px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.58;
-      max-width: 42ch;
-    }
-    .home-card__list {
+    .hfu-acc__courses {
       list-style: none;
-      margin: 8px 0 0;
+      margin: 0;
       padding: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px 18px;
-    }
-    .home-card__list li {
-      display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
-      align-items: start;
-      font-size: 13.5px;
+      gap: 10px 22px;
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.5;
       color: hsl(var(--fg));
-      line-height: 1.4;
     }
-    .home-card__list .check {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
+    .hfu-acc__courses li {
       display: grid;
-      place-items: center;
-      margin-top: 1px;
+      grid-template-columns: 62px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      padding: 8px 0;
+      border-bottom: 1px solid hsl(var(--border-soft));
     }
-    .home-card__list .check svg { width: 10px; height: 10px; }
-    .home-card__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: auto;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
+    .hfu-acc__courses .code {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: hsl(var(--hfu-yellow-deep));
+      text-transform: uppercase;
     }
-    .home-card__price {
+    .hfu-acc__meta {
+      border-left: 1px solid hsl(var(--border-soft));
+      padding-left: 28px;
       display: flex;
       flex-direction: column;
-      font-family: var(--display);
+      gap: 16px;
     }
-    .home-card__price .num {
-      font-size: 22px;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .home-card__price .label {
+    .hfu-acc__meta h5 {
       font-family: var(--body);
-      font-size: 11px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.06em;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-top: 4px;
-    }
-    .home-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13.5px;
-      font-weight: 600;
       color: hsl(var(--hfu-blue));
+      margin: 0 0 4px;
     }
-    .home-card__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .home-card:hover .home-card__link svg { transform: translateX(3px); }
-
-    /* ═════════════════════ VOICES (warm cream) ═════════════════════ */
-    .voices {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .voices__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .voices__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
+    .hfu-acc__meta .val {
+      font-family: var(--display);
+      font-size: 32px;
+      line-height: 1;
       color: hsl(var(--hfu-navy));
-      margin-top: 20px;
       letter-spacing: -0.024em;
-      line-height: 1.02;
+      font-variation-settings: "opsz" 60;
+      font-weight: 350;
     }
-    .voices__head h2 em {
-      font-style: italic;
-      font-weight: 300;
+    .hfu-acc__meta .val .small {
+      font-size: 0.42em;
+      vertical-align: 0.45em;
+      margin-left: 3px;
       color: hsl(var(--hfu-blue));
     }
-    .voices__head p {
-      font-size: 15.5px;
+    .hfu-acc__meta .sub {
+      font-family: var(--body);
+      font-size: 12.5px;
       color: hsl(var(--fg-muted));
-      line-height: 1.6;
-      max-width: 44ch;
+      line-height: 1.5;
     }
-    .voices__grid {
+
+    /* ═════════════════════ TABS (hfu-tabs) ═════════════════════ */
+    .tabs-wrap {
       max-width: var(--container);
       margin: 0 auto;
       padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
     }
-    .voice-card {
-      padding: 38px 34px 32px;
-      background: hsl(var(--bg-card));
+    .hfu-tabs {
+      display: inline-flex;
+      gap: 0;
+      border-bottom: 1px solid hsl(var(--border));
+      padding: 0 0 2px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .hfu-tabs button {
+      padding: 14px 22px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 500;
+      color: hsl(var(--fg-muted));
+      position: relative;
+      transition: color 200ms var(--ease-out);
+    }
+    .hfu-tabs button::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow-deep));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 280ms var(--ease-out);
+    }
+    .hfu-tabs button:hover { color: hsl(var(--hfu-navy)); }
+    .hfu-tabs button.is-active { color: hsl(var(--hfu-navy)); font-weight: 600; }
+    .hfu-tabs button.is-active::after { transform: scaleX(1); }
+
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: grid; }
+    .tab-panel {
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+    .tab-panel__body p {
+      font-family: var(--body);
+      font-size: 15.5px;
+      line-height: 1.65;
+      color: hsl(var(--fg-muted));
+      max-width: 58ch;
+    }
+    .tab-panel__body p + p { margin-top: 14px; }
+    .tab-panel__settings {
+      list-style: none;
+      margin: 24px 0 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+    }
+    .tab-panel__settings li {
+      display: grid;
+      grid-template-columns: 12px 1fr;
+      gap: 10px;
+      align-items: baseline;
+      font-family: var(--body);
+      font-size: 14px;
+      color: hsl(var(--fg));
+      line-height: 1.45;
+    }
+    .tab-panel__settings li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      margin-top: 6px;
+    }
+
+    /* Program card (.c-program pattern) used inside tab right column */
+    .c-program {
+      background: hsl(var(--paper));
       border: 1px solid hsl(var(--border));
       border-radius: var(--r-lg);
+      padding: 28px 28px 24px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      position: relative;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+      box-shadow: var(--shadow-sm);
+      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out);
     }
-    .voice-card:hover {
+    .c-program:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .c-program__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .c-program__school {
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+    .c-program h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.014em;
+      color: hsl(var(--hfu-navy));
+      margin-bottom: 10px;
+      font-variation-settings: "opsz" 60;
+    }
+    .c-program__chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .c-program p {
+      font-size: 14px;
+      color: hsl(var(--fg-muted));
+      line-height: 1.58;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+    .c-program__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--body);
+      font-size: 12.5px;
+      color: hsl(var(--fg-subtle));
+    }
+    .c-program__foot .role {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+    }
+
+    /* ── Badges (hfu-badge pattern) ─────────────────────────────────── */
+    .hfu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      font-family: var(--body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      background: hsl(var(--hfu-yellow) / 0.2);
+      color: hsl(var(--hfu-navy));
+      border: 1px solid transparent;
+    }
+    .hfu-badge--blue { background: hsl(var(--hfu-blue) / 0.12); color: hsl(var(--hfu-blue)); }
+    .hfu-badge--navy { background: hsl(var(--hfu-navy) / 0.08); color: hsl(var(--hfu-navy)); }
+    .hfu-badge--ok   { background: hsl(var(--ok) / 0.12); color: hsl(var(--ok)); }
+
+    /* ═════════════════════ OUTCOME CARDS (.c-outcome) ═════════════════════ */
+    .outcome-card {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-sm);
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+    .c-outcome {
+      padding: clamp(2rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem);
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .c-outcome__item {
+      border-right: 1px solid hsl(var(--border-soft));
+      padding-right: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .c-outcome__item:last-child { border-right: none; padding-right: 0; }
+    .c-outcome__num {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      line-height: 1;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+      font-weight: 350;
+      letter-spacing: -0.028em;
+      margin-bottom: 4px;
+      font-variant-numeric: lining-nums;
+    }
+    .c-outcome__num .small {
+      font-size: 0.36em;
+      vertical-align: 0.55em;
+      margin-left: 3px;
+      color: hsl(var(--hfu-blue));
+    }
+    .c-outcome__label {
+      font-family: var(--body);
+      font-size: 11.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .c-outcome__caption {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg-subtle));
+      margin-top: 4px;
+    }
+
+    /* ═════════════════════ ACCREDITATION CALLOUT (hfu-callout--ok) ═════════════════════ */
+    .hfu-callout {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 22px;
+      align-items: flex-start;
+      padding: 26px 30px;
+      border-radius: var(--r-lg);
+      border-left: 3px solid hsl(var(--hfu-blue));
+      background: hsl(var(--hfu-blue) / 0.06);
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+    .hfu-callout--ok {
+      border-left-color: hsl(var(--ok));
+      background: hsl(var(--ok-soft));
+    }
+    .hfu-callout__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: hsl(var(--ok) / 0.15);
+      color: hsl(var(--ok));
+      display: grid;
+      place-items: center;
+    }
+    .hfu-callout__icon svg { width: 18px; height: 18px; }
+    .hfu-callout__eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: hsl(var(--ok));
+      margin-bottom: 6px;
+      display: block;
+      font-weight: 500;
+    }
+    .hfu-callout__body p {
+      font-family: var(--body);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: hsl(var(--fg));
+      max-width: 68ch;
+    }
+    .hfu-callout__body p + p { margin-top: 8px; }
+    .hfu-callout__body strong {
+      color: hsl(var(--hfu-navy));
+      font-weight: 600;
+    }
+    .hfu-callout__aside {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      align-self: center;
+    }
+
+    /* ═════════════════════ CREDENTIALS · ACCREDITATION REGISTER ═════════════════════ */
+    .creds__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(18px, 2.4vw, 28px);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    @media (min-width: 1100px) {
+      .creds__grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .cred {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-lg);
+      padding: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out), border-color 300ms var(--ease-out);
+    }
+    .cred:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
       border-color: hsl(var(--border-strong));
     }
-    .voice-card__mark {
-      font-family: var(--display);
-      font-size: 88px;
-      line-height: 0.3;
-      color: hsl(var(--hfu-yellow));
-      margin: 10px 0 -28px;
-      font-weight: 300;
-      letter-spacing: -0.04em;
-    }
-    .voice-card blockquote {
-      font-family: var(--display);
-      font-size: clamp(17px, 1.35vw, 20px);
-      line-height: 1.38;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.012em;
-      margin: 0;
-      flex: 1;
-      font-style: italic;
-      font-weight: 300;
-      font-variation-settings: "opsz" 60;
-    }
-    .voice-card__by {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-top: 22px;
-      border-top: 1px solid hsl(var(--border-soft));
-    }
-    .voice-card__avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid hsl(var(--border));
-      box-shadow: var(--shadow-xs);
-    }
-    .voice-card__name {
-      font-size: 14.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.005em;
-      display: block;
-    }
-    .voice-card__role {
-      font-size: 12px;
-      color: hsl(var(--fg-subtle));
-      margin-top: 3px;
-    }
-    .voice-card__chip {
-      position: absolute;
-      top: 26px;
-      right: 26px;
-      padding: 5px 12px;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 100px;
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-navy));
-    }
-    .voice-card--a .voice-card__chip { background: hsl(var(--hfu-blue) / 0.12); color: hsl(var(--hfu-blue)); }
-    .voice-card--b .voice-card__chip { background: hsl(var(--hfu-yellow) / 0.24); color: hsl(var(--hfu-navy)); }
-    .voice-card--c .voice-card__chip { background: hsl(335 72% 42% / 0.1); color: hsl(335 60% 38%); }
-
-    /* ═════════════════════ CALENDAR STRIP ═════════════════════ */
-    .calendar {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
+    .cred__mark {
       position: relative;
-    }
-    .calendar__head {
-      max-width: var(--container);
-      margin: 0 auto 48px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 32px;
-    }
-    .calendar__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      max-width: 22ch;
-      line-height: 1.02;
-    }
-    .calendar__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .calendar__nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: 100px;
-    }
-    .calendar__nav button {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      color: hsl(var(--hfu-navy));
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(145deg, hsl(var(--hfu-navy)) 0%, hsl(var(--hfu-navy-deep)) 100%);
+      color: hsl(var(--white));
       display: grid;
       place-items: center;
-      transition: all 200ms var(--ease-out);
-    }
-    .calendar__nav button:hover {
-      background: hsl(var(--hfu-yellow) / 0.2);
-      color: hsl(var(--hfu-blue));
-    }
-    .calendar__nav button svg { width: 14px; height: 14px; }
-    .calendar__nav .label {
-      padding: 0 14px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: 0.01em;
-    }
-
-    .calendar__track {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      position: relative;
-    }
-    .calendar__timeline {
-      position: relative;
-      padding-top: 26px;
-    }
-    .calendar__line {
-      position: absolute;
-      top: 76px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, hsl(var(--hfu-navy) / 0.22) 6%, hsl(var(--hfu-navy) / 0.22) 94%, transparent);
-    }
-    .calendar__row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-      position: relative;
-    }
-    .cal-item {
-      text-align: left;
-      padding: 0 2px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-    }
-    .cal-item__date {
-      width: 100px;
-      height: 100px;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--r);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0;
-      transition: all 280ms var(--ease-out);
-      position: relative;
-      box-shadow: var(--shadow-xs);
-    }
-    .cal-item:hover .cal-item__date {
-      background: hsl(var(--hfu-navy));
-      border-color: hsl(var(--hfu-navy));
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-    .cal-item__date .month {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: hsl(var(--hfu-blue));
-      font-weight: 700;
-      margin-bottom: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .month { color: hsl(var(--hfu-yellow)); }
-    .cal-item__date .day {
-      font-family: var(--display);
-      font-size: 48px;
-      line-height: 0.9;
-      color: hsl(var(--hfu-navy));
-      font-variation-settings: "opsz" 60;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .day { color: #fff; }
-    .cal-item__date .dow {
-      font-size: 10.5px;
-      color: hsl(var(--fg-subtle));
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 2px;
-      transition: color 280ms var(--ease-out);
-    }
-    .cal-item:hover .cal-item__date .dow { color: hsl(0 0% 100% / 0.7); }
-
-    .cal-item__body {
-      padding-right: 12px;
-    }
-    .cal-item__tag {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: hsl(var(--hfu-blue));
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .cal-item h3 {
-      font-family: var(--display);
-      font-size: 17px;
-      line-height: 1.2;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-      font-variation-settings: "opsz" 60;
-    }
-    .cal-item__meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 12.5px;
-      color: hsl(var(--fg-muted));
-    }
-    .cal-item__meta .line {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .cal-item__meta svg { width: 11px; height: 11px; color: hsl(var(--hfu-blue)); opacity: 0.7; }
-
-    .calendar__foot {
-      max-width: var(--container);
-      margin: 56px auto 0;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: center;
-    }
-    .calendar__foot a {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 24px;
-      border: 1px solid hsl(var(--border-strong));
-      border-radius: 100px;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: hsl(var(--hfu-navy));
-      background: hsl(var(--bg-card));
-      transition: all 220ms var(--ease-out);
-    }
-    .calendar__foot a:hover {
-      background: hsl(var(--hfu-navy));
-      color: #fff;
-      transform: translateY(-1px);
-    }
-    .calendar__foot svg {
-      width: 13px;
-      height: 13px;
-      transition: transform 260ms var(--ease-out);
-    }
-    .calendar__foot a:hover svg { transform: translateX(3px); }
-
-    /* ═════════════════════ CTA MEGA ═════════════════════ */
-    .cta {
-      padding: 0 0 var(--section);
-    }
-    .cta__box {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-    }
-    .cta__inner {
-      position: relative;
-      border-radius: var(--r-2xl);
       overflow: hidden;
-      padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem);
-      background: hsl(var(--hfu-navy));
-      color: #fff;
+      isolation: isolate;
     }
-    .cta__bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+    .cred__mark--blue {
+      background:
+        linear-gradient(145deg, hsl(var(--hfu-blue-deep) / 0.92) 0%, hsl(var(--hfu-navy-deep)) 100%);
     }
-    .cta__bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      opacity: 0.25;
-    }
-    .cta__bg::after {
+    .cred__mark::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(130deg, hsl(var(--hfu-navy-deep)) 0%, hsl(var(--hfu-navy-deep) / 0.88) 40%, hsl(var(--hfu-navy) / 0.58) 100%);
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.07) 1px, transparent 1.5px);
+      background-size: 18px 18px;
+      opacity: 0.6;
+      mix-blend-mode: overlay;
     }
-    .cta__content {
+    .cred__mark::before {
+      content: "";
+      position: absolute;
+      left: 16px; right: 16px; bottom: 16px;
+      height: 2px;
+      background: hsl(var(--hfu-yellow));
+      border-radius: 1px;
+      z-index: 2;
+    }
+    .cred__mono {
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: clamp(2.2rem, 3.6vw, 3rem);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: hsl(var(--white));
+      text-align: center;
+      z-index: 1;
+      font-variation-settings: "opsz" 60;
+    }
+    .cred__body {
+      padding: 22px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .cred__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--body);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: hsl(var(--hfu-navy));
+    }
+    .cred__dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: hsl(var(--hfu-yellow));
+      box-shadow: 0 0 10px hsl(var(--hfu-yellow) / 0.5);
+      flex: 0 0 auto;
+    }
+    .cred__name {
+      font-family: var(--display);
+      font-size: 17.5px;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: hsl(var(--hfu-navy));
+      font-weight: 400;
+      font-variation-settings: "opsz" 60;
+      margin: 2px 0 0;
+    }
+    .cred__meaning {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+      margin: 0;
+    }
+    .cred__verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: hsl(var(--hfu-blue));
+      text-decoration: none;
+      transition: color 200ms var(--ease-out);
+    }
+    .cred__verify svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
+    .cred__verify:hover { color: hsl(var(--hfu-blue-deep)); }
+    .cred__verify:hover svg { transform: translate(2px, -2px); }
+
+    .creds__footnote {
+      margin-top: clamp(2rem, 3vw, 2.5rem);
+      padding-top: 22px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: hsl(var(--fg-subtle));
+      max-width: 72ch;
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .creds__footnote-label {
+      flex: 0 0 auto;
+      font-family: var(--body);
+      font-style: normal;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow-deep));
+    }
+
+    /* ═════════════════════ PULLQUOTE (hfu-pullquote) ═════════════════════ */
+    .hfu-pullquote {
+      padding: clamp(3rem, 5vw, 4rem) var(--gutter);
+      text-align: center;
+      border-top: 1px solid hsl(var(--hfu-yellow-deep));
+      border-bottom: 1px solid hsl(var(--hfu-yellow-deep));
       position: relative;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 56px;
-      align-items: end;
+      max-width: var(--container);
+      margin: 0 auto;
     }
-    .cta__content .eyebrow { color: hsl(var(--hfu-yellow)); }
-    .cta__content .eyebrow::before { background: hsl(var(--hfu-yellow)); }
-    .cta__content h2 {
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.98;
-      color: #fff;
-      margin: 22px 0 0;
-      letter-spacing: -0.028em;
+    .hfu-pullquote::before,
+    .hfu-pullquote::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: hsl(var(--hfu-yellow));
+      transform: rotate(45deg);
+      left: 50%;
+      margin-left: -5px;
+    }
+    .hfu-pullquote::before { top: -5px; }
+    .hfu-pullquote::after { bottom: -5px; }
+    .hfu-pullquote blockquote {
+      margin: 0 auto;
+      max-width: 34ch;
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.22;
+      letter-spacing: -0.018em;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+    }
+    .hfu-pullquote__by {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+    }
+    .hfu-pullquote__tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 10px;
+      font-family: var(--body);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: hsl(var(--fg-subtle));
+      background: hsl(var(--border-soft));
+      border-radius: 100px;
+    }
+
+    /* ═════════════════════ CONTACT CARD (.c-contact) ═════════════════════ */
+    .contact-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(2.5rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .c-contact {
+      background: hsl(var(--paper));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--r-xl);
+      padding: 32px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .c-contact__photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, hsl(var(--hfu-yellow) / 0.5), hsl(var(--hfu-blue)) 70%);
+      border: 1px solid hsl(var(--border));
+      overflow: hidden;
+      position: relative;
+    }
+    .c-contact__photo::after {
+      content: attr(data-initials);
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--display);
+      font-size: 32px;
+      color: hsl(var(--white));
       font-variation-settings: "opsz" 60;
       font-weight: 350;
-      max-width: 14ch;
     }
-    .cta__content h2 em {
+    .c-contact__head {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .c-contact__name {
+      font-family: var(--display);
+      font-size: clamp(22px, 2vw, 26px);
+      line-height: 1.2;
+      color: hsl(var(--hfu-navy));
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.014em;
+    }
+    .c-contact__role {
+      font-family: var(--body);
+      font-size: 13.5px;
+      color: hsl(var(--fg-muted));
+      margin-top: 4px;
+    }
+    .c-contact__school {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-top: 8px;
+    }
+    .c-contact__lines {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid hsl(var(--border-soft));
+      font-family: var(--body);
+      font-size: 14px;
+      color: hsl(var(--fg));
+    }
+    .c-contact__lines span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: hsl(var(--fg-muted));
+    }
+    .c-contact__lines svg { width: 13px; height: 13px; color: hsl(var(--fg-subtle)); flex: 0 0 auto; }
+    .c-contact__lines a { color: hsl(var(--hfu-blue)); }
+    .c-contact__lines a:hover { color: hsl(var(--hfu-blue-deep)); }
+    .c-contact__hours {
+      margin-top: 4px;
+      padding: 12px 14px;
+      background: hsl(var(--bg));
+      border: 1px solid hsl(var(--border-soft));
+      border-radius: var(--r);
+      font-family: var(--body);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: hsl(var(--fg-muted));
+    }
+    .c-contact__hours strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-blue));
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .contact-note {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(17px, 1.4vw, 20px);
+      line-height: 1.45;
+      color: hsl(var(--fg-muted));
+      max-width: 42ch;
+      font-variation-settings: "opsz" 60;
+      letter-spacing: -0.008em;
+    }
+    .contact-note em { font-style: italic; color: hsl(var(--hfu-blue)); }
+
+    /* ═════════════════════ APPLY CTA (.c-callout--yellow navy variant) ═════════════════════ */
+    .cta-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .c-callout {
+      padding: clamp(2.5rem, 4vw, 3.5rem) clamp(2rem, 4vw, 3rem);
+      border-radius: var(--r-2xl);
+      display: grid;
+      grid-template-columns: 1.3fr auto;
+      gap: 36px;
+      align-items: center;
+    }
+    .c-callout--yellow {
+      background:
+        radial-gradient(ellipse at 85% 10%, hsl(var(--hfu-blue) / 0.28), transparent 55%),
+        hsl(var(--hfu-navy));
+      border: 1px solid hsl(var(--hfu-navy-deep));
+      color: hsl(var(--white));
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .c-callout--yellow::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.5;
+      background-image: radial-gradient(circle at 1px 1px, hsl(var(--white) / 0.05) 1px, transparent 1.5px);
+      background-size: 28px 28px;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+    .c-callout__deadline {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: hsl(var(--hfu-yellow));
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .c-callout__deadline::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: hsl(var(--hfu-yellow));
+    }
+    .c-callout h3 {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.022em;
+      margin-bottom: 14px;
+      color: hsl(var(--white));
+      font-variation-settings: "opsz" 60;
+      max-width: 18ch;
+    }
+    .c-callout h3 em {
       font-style: italic;
       font-weight: 300;
       color: hsl(var(--hfu-yellow));
     }
-    .cta__side { display: flex; flex-direction: column; gap: 24px; }
-    .cta__side p {
-      font-size: 16px;
-      color: hsl(0 0% 100% / 0.78);
+    .c-callout p {
+      font-family: var(--body);
+      font-size: 15px;
       line-height: 1.6;
+      color: hsl(var(--white) / 0.78);
+      max-width: 48ch;
     }
-    .cta__buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-    .cta__buttons .btn--secondary {
-      background: transparent;
-      color: #fff;
-      border-color: hsl(0 0% 100% / 0.3);
-    }
-    .cta__buttons .btn--secondary:hover {
-      background: hsl(0 0% 100% / 0.08);
-      border-color: hsl(0 0% 100% / 0.5);
+    .c-callout__actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
-    /* ═════════════════════ Footer ═════════════════════ */
+    /* ═════════════════════ FOOTER ═════════════════════ */
     .foot {
       background: hsl(var(--hfu-navy-deep));
-      color: hsl(0 0% 100% / 0.72);
+      color: hsl(var(--white) / 0.72);
       padding: clamp(4rem, 6vw, 6rem) 0 0;
     }
     .foot__inner {
@@ -1681,7 +1564,7 @@
     .foot__brand h3 {
       font-family: var(--display);
       font-size: 26px;
-      color: #fff;
+      color: hsl(var(--white));
       margin: 22px 0 14px;
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -1695,8 +1578,8 @@
     .foot__news {
       display: flex;
       gap: 8px;
-      background: hsl(0 0% 100% / 0.06);
-      border: 1px solid hsl(0 0% 100% / 0.1);
+      background: hsl(var(--white) / 0.06);
+      border: 1px solid hsl(var(--white) / 0.1);
       border-radius: 100px;
       padding: 6px 6px 6px 18px;
       max-width: 380px;
@@ -1705,12 +1588,12 @@
       flex: 1;
       background: transparent;
       border: none;
-      color: #fff;
+      color: hsl(var(--white));
       font: inherit;
       font-size: 14px;
       outline: none;
     }
-    .foot__news input::placeholder { color: hsl(0 0% 100% / 0.5); }
+    .foot__news input::placeholder { color: hsl(var(--white) / 0.5); }
     .foot__news button {
       background: hsl(var(--hfu-yellow));
       color: hsl(var(--hfu-navy-deep));
@@ -1723,77 +1606,53 @@
       font-family: var(--body);
       font-size: 12px;
       font-weight: 700;
-      color: #fff;
+      color: hsl(var(--white));
       text-transform: uppercase;
       letter-spacing: 0.12em;
       margin-bottom: 22px;
     }
     .foot__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-    .foot__col a { font-size: 14px; color: hsl(0 0% 100% / 0.62); }
-    .foot__col a:hover { color: #fff; }
-    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(0 0% 100% / 0.56); margin-top: 10px; }
-    .foot__addr strong { color: hsl(0 0% 100% / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
+    .foot__col a { font-size: 14px; color: hsl(var(--white) / 0.62); }
+    .foot__col a:hover { color: hsl(var(--white)); }
+    .foot__addr { font-size: 13px; line-height: 1.6; color: hsl(var(--white) / 0.56); margin-top: 10px; }
+    .foot__addr strong { color: hsl(var(--white) / 0.84); display: block; font-weight: 600; margin-bottom: 2px; }
 
     .foot__bottom {
       max-width: var(--container);
       margin: 72px auto 0;
       padding: 28px var(--gutter);
-      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      border-top: 1px solid hsl(var(--white) / 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
       font-size: 12.5px;
-      color: hsl(0 0% 100% / 0.5);
+      color: hsl(var(--white) / 0.5);
     }
     .foot__bottom .links { display: flex; gap: 24px; }
-    .foot__bottom a:hover { color: #fff; }
+    .foot__bottom a:hover { color: hsl(var(--white)); }
 
-    /* ═════════════════════ Mobile ═════════════════════ */
+    /* ═════════════════════ RESPONSIVE ═════════════════════ */
     @media (max-width: 1100px) {
-      .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); max-width: 14ch; }
-      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
-      .hero__stat { padding: 14px 18px; border-right: 1px solid hsl(0 0% 100% / 0.14); border-bottom: 1px solid hsl(0 0% 100% / 0.14); }
-      .hero__stat:nth-child(2n) { border-right: none; padding-right: 0; }
-      .hero__stat:nth-child(1), .hero__stat:nth-child(2) { padding-top: 0; }
-      .hero__stat:nth-child(3), .hero__stat:nth-child(4) { border-bottom: none; padding-bottom: 0; }
-      .hero__stat:nth-child(2n+1) { padding-left: 0; }
-      .hero__scroll { display: none; }
+      .hero__grid { grid-template-columns: 1fr; gap: clamp(2rem, 4vw, 3rem); }
+      .hero__figure-frame { min-height: 420px; }
 
-      .pillars__head { grid-template-columns: 1fr; gap: 28px; }
-      .pillars__grid { grid-template-columns: repeat(2, 1fr); }
+      .section__head { grid-template-columns: 1fr; gap: 20px; }
 
-      .gallery__head { grid-template-columns: 1fr; gap: 24px; }
-      .gallery__grid { grid-auto-rows: 100px; }
-      .shot--a { grid-column: span 12; grid-row: span 4; }
-      .shot--b { grid-column: span 12; grid-row: span 2; }
-      .shot--c { grid-column: span 6; grid-row: span 2; }
-      .shot--d { grid-column: span 6; grid-row: span 2; }
-      .shot--e { grid-column: span 6; grid-row: span 3; }
-      .shot--f { grid-column: span 6; grid-row: span 3; }
-      .shot--g { grid-column: span 12; grid-row: span 3; }
-      .shot--h { grid-column: span 12; grid-row: span 3; }
+      .hfu-acc__panel { grid-template-columns: 1fr; gap: 24px; }
+      .hfu-acc__meta { border-left: none; border-top: 1px solid hsl(var(--border-soft)); padding: 20px 0 0; flex-direction: row; flex-wrap: wrap; gap: 24px; }
 
-      .athletics__inner { grid-template-columns: 1fr; gap: 0; min-height: auto; }
-      .athletics__media { margin: clamp(3rem, 5vw, 5rem) 0 0; aspect-ratio: 16 / 10; }
-      .athletics__body { padding: clamp(3rem, 5vw, 5rem) 0; }
+      .tab-panel { grid-template-columns: 1fr; gap: 32px; }
 
-      .clubs__grid { grid-template-columns: repeat(2, 1fr); }
-      .clubs__head { grid-template-columns: 1fr; gap: 20px; }
+      .c-outcome { grid-template-columns: 1fr; gap: 18px; }
+      .c-outcome__item { border-right: none; border-bottom: 1px solid hsl(var(--border-soft)); padding-bottom: 18px; padding-right: 0; }
+      .c-outcome__item:last-child { border-bottom: none; padding-bottom: 0; }
 
-      .home__grid { grid-template-columns: 1fr; gap: 20px; }
-      .home-card__list { grid-template-columns: 1fr 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
 
-      .voices__head { grid-template-columns: 1fr; gap: 20px; }
-      .voices__grid { grid-template-columns: 1fr; gap: 16px; }
+      .c-callout { grid-template-columns: 1fr; gap: 28px; }
 
-      .calendar__head { grid-template-columns: 1fr; gap: 16px; }
-      .calendar__row { grid-template-columns: repeat(3, 1fr); gap: 28px 18px; }
-      .cal-item:nth-child(n+4) { display: none; }
-      .calendar__line { display: none; }
-
-      .cta__content { grid-template-columns: 1fr; gap: 32px; }
       .foot__inner { grid-template-columns: 1fr 1fr; gap: 48px; }
     }
 
@@ -1809,401 +1668,51 @@
         place-items: center;
         width: 40px;
         height: 40px;
-        background: hsl(0 0% 100% / 0.08);
+        background: hsl(var(--white) / 0.08);
         border-radius: 8px;
-        color: #fff;
+        color: hsl(var(--white));
       }
       .nav__search { display: none; }
       .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
 
-      .hero { min-height: 86vh; }
-      .hero__inner { padding-bottom: 3rem; }
-      .hero__crumbs { margin-bottom: 18px; font-size: 12px; flex-wrap: wrap; }
-      .hero__eyebrow { margin-bottom: 22px; font-size: 11px; }
-      .hero h1 { font-size: clamp(2.6rem, 12vw, 4.2rem); max-width: none; margin-bottom: 24px; }
-      .hero__lead { font-size: 15px; margin-bottom: 28px; }
-      .hero__ctas { flex-direction: column; align-items: stretch; margin-bottom: 40px; }
+      .hero__stats { grid-template-columns: 1fr; gap: 14px; }
+      .hero-stat__num { font-size: clamp(4rem, 15vw, 5.5rem); }
+      .hero__ctas { flex-direction: column; align-items: stretch; }
       .hero__ctas .btn { justify-content: center; }
-      .hero__stats { grid-template-columns: 1fr 1fr; padding-top: 24px; }
-      .hero__stat { padding: 12px 14px; }
-      .hero__stat .num { font-size: 1.8rem; }
+      .hero__figure-frame { min-height: 320px; }
 
-      .pillars__grid { grid-template-columns: 1fr; }
-      .pillar { min-height: auto; padding: 28px 26px; }
+      .tl-wrap { padding: 28px 22px; }
+      .hfu-timeline { padding-left: 32px; }
+      .hfu-timeline__item::before { left: -28px; }
 
-      .gallery__grid {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .shot, .shot--a, .shot--b, .shot--c, .shot--d, .shot--e, .shot--f, .shot--g, .shot--h {
-        aspect-ratio: 4 / 3;
-        height: auto;
-        min-height: 220px;
-        grid-column: auto;
-        grid-row: auto;
-      }
+      .hfu-acc { padding: 4px 18px; }
+      .hfu-acc summary { grid-template-columns: auto 1fr auto; gap: 14px; font-size: 17px; }
+      .hfu-acc__num { min-width: 40px; font-size: 10px; }
+      .hfu-acc__panel { padding: 16px 0 4px 0; }
+      .hfu-acc__courses { grid-template-columns: 1fr; gap: 6px; }
 
-      .athletics__inner { padding: 0 var(--gutter); }
-      .athletics__media { margin: 48px 0 0; aspect-ratio: 5 / 4; }
-      .athletics__body h2 { font-size: 2.2rem; }
-      .athletics__score .roar { font-size: 48px; }
-      .athletics__score .tiger { font-size: 1.4rem; }
+      .hfu-tabs { gap: 0; padding-bottom: 4px; overflow-x: auto; flex-wrap: nowrap; }
+      .hfu-tabs button { padding: 12px 16px 14px; white-space: nowrap; font-size: 13px; }
+      .tab-panel__settings { grid-template-columns: 1fr; }
 
-      .clubs__grid { grid-template-columns: 1fr; }
-      .club { padding: 24px 24px 26px; }
+      .hfu-callout { grid-template-columns: 1fr; padding: 22px 24px; }
+      .hfu-callout__aside { margin-top: 4px; }
 
-      .home-card__body { padding: 28px 26px 30px; }
-      .home-card__list { grid-template-columns: 1fr; gap: 12px; }
-      .home-card h3 { font-size: 1.7rem; }
+      .hfu-pullquote { padding: 44px 22px; }
 
-      .voice-card { padding: 32px 26px 28px; }
-      .voice-card blockquote { font-size: 17px; }
-      .voice-card__chip { top: 22px; right: 22px; }
+      .c-contact { padding: 24px 24px 22px; }
 
-      .calendar__row {
-        display: flex;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-        scroll-snap-type: x mandatory;
-        gap: 16px;
-        padding: 0 0 14px;
-        margin: 0 calc(var(--gutter) * -1);
-        padding-left: var(--gutter);
-        padding-right: var(--gutter);
-        scrollbar-width: none;
-      }
-      .calendar__row::-webkit-scrollbar { display: none; }
-      .cal-item {
-        flex: 0 0 240px;
-        scroll-snap-align: start;
-      }
-      .cal-item:nth-child(n+4) { display: flex; }
-      .cal-item__date { width: 88px; height: 88px; }
-      .cal-item__date .day { font-size: 40px; }
-
-      .cta__inner { padding: 52px 28px; border-radius: var(--r-xl); }
-      .cta__content { gap: 28px; }
-      .cta__content h2 { font-size: 2.4rem; }
+      .c-callout { padding: 36px 24px; border-radius: var(--r-xl); }
+      .c-callout__actions { flex-direction: column; align-items: stretch; }
+      .c-callout__actions .btn { justify-content: center; }
 
       .foot__inner { grid-template-columns: 1fr; gap: 40px; }
       .foot__news { max-width: none; }
       .foot__bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
-
-    /* ═════════════════════ BSN — PATHS GRID (4-up) ═════════════════════ */
-    .paths {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-    }
-    .paths__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .paths__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      letter-spacing: -0.024em;
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      line-height: 1.02;
-    }
-    .paths__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .paths__head .lead { max-width: 46ch; }
-    .paths__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-    .path {
-      position: relative;
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 28px 26px 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      min-height: 260px;
-      transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
-    }
-    .path::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: hsl(var(--hfu-yellow));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 400ms var(--ease-out);
-    }
-    .path:hover::before { transform: scaleX(1); }
-    .path:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--border-strong));
-    }
-    .path__tag {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: hsl(var(--hfu-blue));
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .path__tag .dot-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: hsl(var(--fg-subtle));
-    }
-    .path h3 {
-      font-family: var(--display);
-      font-size: clamp(1.25rem, 1.6vw, 1.45rem);
-      line-height: 1.1;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.018em;
-      font-variation-settings: "opsz" 60;
-    }
-    .path p {
-      font-size: 14px;
-      color: hsl(var(--fg-muted));
-      line-height: 1.55;
-      flex: 1;
-    }
-    .path__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: hsl(var(--hfu-blue));
-      padding-top: 14px;
-      border-top: 1px solid hsl(var(--border-soft));
-      margin-top: 4px;
-    }
-    .path__link svg { width: 12px; height: 12px; transition: transform 260ms var(--ease-out); }
-    .path:hover .path__link svg { transform: translateX(3px); }
-
-    /* ═════════════════════ BSN — CLINICAL PARTNERS ═════════════════════ */
-    .partners {
-      padding: var(--section) 0;
-      background: hsl(var(--bg));
-      position: relative;
-    }
-    .partners__head {
-      max-width: var(--container);
-      margin: 0 auto 48px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .partners__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      line-height: 1.02;
-    }
-    .partners__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .partners__head .lead { max-width: 44ch; }
-    .partners__grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    .partner {
-      background: hsl(var(--bg-alt));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r);
-      padding: 26px 24px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 118px;
-      transition: transform 260ms var(--ease-out), border-color 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
-    }
-    .partner:hover {
-      transform: translateY(-2px);
-      border-color: hsl(var(--border-strong));
-      box-shadow: var(--shadow-sm);
-    }
-    .partner__name {
-      font-family: var(--display);
-      font-size: 18px;
-      line-height: 1.2;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.012em;
-      font-variation-settings: "opsz" 60;
-    }
-    .partner__kind {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: hsl(var(--fg-subtle));
-      margin-top: auto;
-    }
-    .partners__foot {
-      max-width: var(--container);
-      margin: 36px auto 0;
-      padding: 0 var(--gutter);
-      font-family: var(--display);
-      font-style: italic;
-      font-size: 13.5px;
-      color: hsl(var(--fg-subtle));
-      line-height: 1.5;
-      max-width: 60ch;
-    }
-
-    /* ═════════════════════ BSN — CAREER OUTCOMES ═════════════════════ */
-    .outcomes {
-      padding: var(--section) 0;
-      background: hsl(var(--bg-alt));
-      border-top: 1px solid hsl(var(--border-soft));
-      border-bottom: 1px solid hsl(var(--border-soft));
-      position: relative;
-    }
-    .outcomes__head {
-      max-width: var(--container);
-      margin: 0 auto 56px;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 56px;
-      align-items: end;
-    }
-    .outcomes__head h2 {
-      font-size: clamp(2.2rem, 4vw, 3.6rem);
-      color: hsl(var(--hfu-navy));
-      margin-top: 20px;
-      letter-spacing: -0.024em;
-      line-height: 1.02;
-    }
-    .outcomes__head h2 em {
-      font-style: italic;
-      font-weight: 300;
-      color: hsl(var(--hfu-blue));
-    }
-    .outcomes__head .lead { max-width: 46ch; }
-    .outcomes__body {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: clamp(3rem, 5vw, 5rem);
-      align-items: start;
-    }
-    .outcomes__prose {
-      font-family: var(--display);
-      font-size: clamp(17px, 1.35vw, 20px);
-      line-height: 1.45;
-      color: hsl(var(--hfu-navy));
-      letter-spacing: -0.01em;
-      font-weight: 300;
-      font-variation-settings: "opsz" 60;
-    }
-    .outcomes__prose p + p { margin-top: 20px; }
-    .outcomes__prose em {
-      font-style: italic;
-      color: hsl(var(--hfu-blue));
-    }
-    .outcomes__specialties {
-      background: hsl(var(--bg-card));
-      border: 1px solid hsl(var(--border-soft));
-      border-radius: var(--r-lg);
-      padding: 32px 34px 28px;
-    }
-    .outcomes__specialties h3 {
-      font-family: var(--body);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: hsl(var(--hfu-blue));
-      margin-bottom: 22px;
-    }
-    .outcomes__specialties ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px 24px;
-    }
-    .outcomes__specialties li {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px;
-      align-items: baseline;
-      font-size: 14px;
-      color: hsl(var(--fg));
-      line-height: 1.4;
-      padding-bottom: 10px;
-      border-bottom: 1px solid hsl(var(--border-soft));
-    }
-    .outcomes__specialties li:last-child,
-    .outcomes__specialties li:nth-last-child(2) { border-bottom: none; padding-bottom: 0; }
-    .outcomes__specialties .code {
-      font-family: var(--body);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: hsl(var(--hfu-yellow-deep));
-    }
-
-    @media (max-width: 1100px) {
-      .paths__head { grid-template-columns: 1fr; gap: 28px; }
-      .paths__grid { grid-template-columns: repeat(2, 1fr); }
-
-      .partners__head { grid-template-columns: 1fr; gap: 24px; }
-      .partners__grid { grid-template-columns: repeat(3, 1fr); }
-
-      .outcomes__head { grid-template-columns: 1fr; gap: 24px; }
-      .outcomes__body { grid-template-columns: 1fr; gap: 32px; }
-    }
-
-    @media (max-width: 720px) {
-      .paths__grid { grid-template-columns: 1fr; }
-      .path { min-height: auto; padding: 24px 22px; }
-
-      .partners__grid { grid-template-columns: repeat(2, 1fr); }
-      .partner { padding: 20px 18px 18px; min-height: 104px; }
-      .partner__name { font-size: 16px; }
-
-      .outcomes__specialties { padding: 26px 24px 22px; }
-      .outcomes__specialties ul { grid-template-columns: 1fr; gap: 12px; }
-    }
   </style>
+  <link rel="stylesheet" href="components-restore.css">
+  <link rel="stylesheet" href="mobile.css">
 </head>
 <body>
 
@@ -2228,10 +1737,6 @@
     .aos-back-to-concepts { top: 12px; left: 12px; padding: 8px 12px 8px 10px; font-size: 11px; }
   }
 </style>
-<a class="aos-back-to-concepts" href="../design-concepts.html" aria-label="Back to design concepts">
-  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2L3 6l4 4"/></svg>
-  <span>Design concepts</span>
-</a>
 
 
   <!-- ═════════════════════ UTILITY STRIP ═════════════════════ -->
@@ -2242,7 +1747,7 @@
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
           215 637 7700
         </span>
-        <span>Philadelphia · Newtown · Online</span>
+        <span>Philadelphia &middot; Newtown &middot; Online</span>
         <span>215 637 7700 x4000 (Newtown)</span>
       </div>
       <div class="util__links">
@@ -2284,298 +1789,612 @@
   </header>
 
   <main>
-  <!-- ═════════════════════ CINEMATIC HERO ═════════════════════ -->
-  <section class="hero">
-    <div class="hero__bg">
-      <img src="../assets/hfu-photos/academics-nurses.jpg" alt="Two Holy Family University nursing students walking to clinical">
+
+  <!-- ═════════════════════ HERO · CINEMATIC PROGRAM COVER ═════════════════════ -->
+  <section class="hero" aria-labelledby="bsn-h1">
+    <div class="hero__photo" aria-hidden="true">
+      <img src="../assets/hfu-photos/academics-nurses.jpg" alt="">
     </div>
-    <div class="hero__scrim"></div>
-    <div class="hero__grain"></div>
+    <div class="hero__grain" aria-hidden="true"></div>
+
+    <span class="hero__accred" aria-label="CCNE accredited since 2008">
+      <strong>CCNE</strong> Accredited &middot; since 2008
+    </span>
 
     <div class="hero__inner">
-      <div class="hero__crumbs">
+      <nav class="hero__crumbs" aria-label="Breadcrumb">
         <a href="hfu-home.html">Home</a>
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
         <a href="hfu-programs.html">Academics</a>
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <a href="hfu-programs.html#majors">Programs</a>
+        <a href="hfu-programs.html#majors">Nursing &amp; Allied Health</a>
         <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m4 2 3 3-3 3"/></svg>
-        <span class="is-current">BSN Nursing</span>
-      </div>
+        <span class="is-current">BSN</span>
+      </nav>
 
-      <span class="hero__eyebrow">School of Nursing &amp; Health Sciences</span>
+      <div class="hero__content">
+        <span class="hero__eyebrow">School of Nursing &middot; Traditional Undergraduate</span>
 
-      <h1>Fifty years of nurses who <em>answer the call.</em></h1>
+        <h1 id="bsn-h1">Bachelor of Science, <em>Nursing.</em></h1>
 
-      <p class="hero__lead">The Bachelor of Science in Nursing prepares students to become nurse generalists who work in diverse healthcare settings to meet societal needs. Our curriculum focuses on clinical judgment, evidence-based practice, leadership, and culturally-sensitive care.</p>
+        <p class="hero__lead">Four years. Clinical hours in every major Philadelphia teaching hospital. A licensure-ready graduate at the end of it.</p>
 
-      <div class="hero__ctas">
-        <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
-          Apply to Nursing
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-        <a href="#" class="btn btn--glass btn--lg">
-          Download Program Guide
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v9m0 0-4-4m4 4 4-4M3 14h10"/></svg>
-        </a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <div class="num">50</div>
-          <div class="label">Years of Nursing<br>Education &middot; est. 1975</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">91<span class="small">%</span></div>
-          <div class="label">NCLEX-RN First-Time<br>Pass Rate &middot; Q2 2023</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">20<span class="small">+</span></div>
-          <div class="label">Clinical Partner<br>Health Systems</div>
-        </div>
-        <div class="hero__stat">
-          <div class="num">4</div>
-          <div class="label">Paths to<br>a BSN</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__scroll">Scroll to explore</div>
-  </section>
-
-  <!-- ═════════════════════ CURRICULUM FOCUS (pillars) ═════════════════════ -->
-  <section class="pillars">
-    <div class="pillars__head">
-      <div>
-        <span class="eyebrow">Curriculum focus</span>
-        <h2>What you&#39;ll <em>learn.</em></h2>
-      </div>
-      <p class="lead">The BSN curriculum focuses on four core competencies that define Holy Family nursing graduates.</p>
-    </div>
-
-    <div class="pillars__grid" style="grid-template-columns: repeat(4, 1fr);">
-      <article class="pillar">
-        <span class="pillar__num">01</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 2.2 1.2 4.1 3 5.2V17h6v-2.8c1.8-1.1 3-3 3-5.2a6 6 0 0 0-6-6Z"/><path d="M10 21h4"/><path d="M9 19h6"/></svg>
-        </div>
-        <h3>Clinical Judgment</h3>
-        <p>Development of clinical reasoning, critical thinking, and decision-making at the bedside.</p>
-        <a href="#" class="pillar__link">
-          Competency detail
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">02</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5Z"/><path d="M4 5a2 2 0 0 1 2-2h10"/><path d="M8 9h6"/><path d="M8 13h6"/><path d="M8 17h4"/></svg>
-        </div>
-        <h3>Evidence-Based Practice</h3>
-        <p>Integrating current research into patient care and quality-improvement work.</p>
-        <a href="#" class="pillar__link">
-          Competency detail
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">03</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/><path d="M14 20c0-2 2-3.5 4-3.5s3 1 3 3.5"/></svg>
-        </div>
-        <h3>Leadership</h3>
-        <p>Leading interdisciplinary teams, managing change, advocating for patients.</p>
-        <a href="#" class="pillar__link">
-          Competency detail
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="pillar">
-        <span class="pillar__num">04</span>
-        <div class="pillar__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
-        </div>
-        <h3>Culturally-Sensitive Care</h3>
-        <p>Delivering care across communities, languages, and health literacy levels.</p>
-        <a href="#" class="pillar__link">
-          Competency detail
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ PATHS TO A BSN (4-up) ═════════════════════ -->
-  <section class="paths">
-    <div class="paths__head">
-      <div>
-        <span class="eyebrow">Paths to a BSN</span>
-        <h2>Four <em>paths.</em> One degree.</h2>
-      </div>
-      <p class="lead">Whether you&#39;re graduating from high school, transferring in, already a nurse, or bringing a bachelor&#39;s in another field &mdash; Holy Family has a BSN path built for you.</p>
-    </div>
-
-    <div class="paths__grid">
-      <article class="path">
-        <span class="path__tag">4 years <span class="dot-sep"></span> full-time</span>
-        <h3>Traditional BSN</h3>
-        <p>Classic undergraduate path. Begin clinicals your second year. Graduate eligible for NCLEX.</p>
-        <a href="#" class="path__link">
-          Learn more
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="path">
-        <span class="path__tag">Online <span class="dot-sep"></span> flexible</span>
-        <h3>RN to BSN</h3>
-        <p>For licensed RNs with an associate&#39;s or diploma. Work while you earn the degree.</p>
-        <a href="#" class="path__link">
-          Learn more
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="path">
-        <span class="path__tag">14 months <span class="dot-sep"></span> accelerated</span>
-        <h3>Second Degree BSN &mdash; Daytime</h3>
-        <p>For students with a bachelor&#39;s in another field. Intensive daytime format.</p>
-        <a href="#" class="path__link">
-          Learn more
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-
-      <article class="path">
-        <span class="path__tag">22 months <span class="dot-sep"></span> working format</span>
-        <h3>Second Degree BSN &mdash; Evenings &amp; Weekends</h3>
-        <p>For working adults with a bachelor&#39;s. Distance-hybrid with evening and weekend clinicals.</p>
-        <a href="#" class="path__link">
-          Learn more
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-        </a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ CLINICAL PARTNERS ═════════════════════ -->
-  <section class="partners">
-    <div class="partners__head">
-      <div>
-        <span class="eyebrow">Clinical partners</span>
-        <h2>Where Holy Family <em>nurses</em> train.</h2>
-      </div>
-      <p class="lead">Our partnerships place students in every major Greater Philadelphia health system by the second year.</p>
-    </div>
-
-    <div class="partners__grid">
-      <article class="partner">
-        <div class="partner__name">Abington-Jefferson Hospital</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Einstein Medical Center</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Hospital of the University of Pennsylvania</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Jefferson Health</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Lankenau Medical Center</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Thomas Jefferson University Hospital</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">UPMC Hamot</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Virtua Hospitals</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Cooper University Health</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-      <article class="partner">
-        <div class="partner__name">Magee Rehabilitation</div>
-        <div class="partner__kind">Clinical Partner</div>
-      </article>
-    </div>
-
-    <p class="partners__foot">Rotations are coordinated each semester with the School of Nursing&#39;s clinical placement office; site assignments vary by cohort and program format.</p>
-  </section>
-
-  <!-- ═════════════════════ CAREER OUTCOMES ═════════════════════ -->
-  <section class="outcomes">
-    <div class="outcomes__head">
-      <div>
-        <span class="eyebrow">Career outcomes</span>
-        <h2>Where Holy Family <em>nurses</em> go.</h2>
-      </div>
-      <p class="lead">A BSN from Holy Family opens the full spectrum of registered-nursing careers &mdash; inpatient acute care, community health, advanced clinical specialties.</p>
-    </div>
-
-    <div class="outcomes__body">
-      <div class="outcomes__prose">
-        <p>Graduates move into <em>practice</em> across the specialties that keep a health system running &mdash; ICU, emergency, OB, pediatrics, mental health &mdash; and into the community roles that reach patients outside hospital walls: school nursing, hospice, home care, and travel nursing.</p>
-        <p>For nurses who want to keep going, the BSN is the required degree to advance into Holy Family&#39;s graduate programs, including the MSN and the Doctor of Nursing Practice. Many of our alumni return to campus for the next chapter of their careers.</p>
-      </div>
-
-      <aside class="outcomes__specialties" aria-label="Specialty practice areas">
-        <h3>Specialty practice areas</h3>
-        <ul>
-          <li><span class="code">ICU</span><span>Intensive Care</span></li>
-          <li><span class="code">ED</span><span>Emergency Department</span></li>
-          <li><span class="code">OB</span><span>OB/GYN</span></li>
-          <li><span class="code">PED</span><span>Pediatrics</span></li>
-          <li><span class="code">MH</span><span>Mental Health</span></li>
-          <li><span class="code">SCH</span><span>School Nursing</span></li>
-          <li><span class="code">TRV</span><span>Travel Nursing</span></li>
-          <li><span class="code">HOS</span><span>Hospice</span></li>
-          <li><span class="code">HH</span><span>Home Health</span></li>
-          <li><span class="code">AC</span><span>Acute Care</span></li>
-          <li><span class="code">PH</span><span>Public Health</span></li>
-          <li><span class="code">LTC</span><span>Long-term Care</span></li>
-        </ul>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ═════════════════════ CTA MEGA ═════════════════════ -->
-  <section class="cta">
-    <div class="cta__box">
-      <div class="cta__inner">
-        <div class="cta__bg">
-          <img src="../assets/hfu-photos/academics-nurses.jpg" alt="">
-        </div>
-        <div class="cta__content">
-          <div>
-            <span class="eyebrow">Ready to apply</span>
-            <h2>Join the <em>family.</em> Start with a question.</h2>
+        <div class="hero__colophon" role="group" aria-label="Program facts">
+          <div class="hero__colophon__cell">
+            <span class="hero__colophon__label">Credits</span>
+            <span class="hero__colophon__value">124 <em>sem.</em></span>
           </div>
-          <div class="cta__side">
-            <p>Our admissions team can walk you through prerequisites, transfer credits, and the path that fits your schedule and your goals.</p>
-            <div class="cta__buttons">
-              <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
-                Apply to Nursing
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-              </a>
-              <a href="hfu-visit.html" class="btn btn--secondary btn--lg">Schedule a Visit</a>
-              <a href="#" class="btn btn--ghost btn--lg">Request Info</a>
+          <div class="hero__colophon__cell">
+            <span class="hero__colophon__label">Length</span>
+            <span class="hero__colophon__value">4 years</span>
+          </div>
+          <div class="hero__colophon__cell">
+            <span class="hero__colophon__label">Start</span>
+            <span class="hero__colophon__value">Fall <em>&middot;</em> Spring</span>
+          </div>
+          <div class="hero__colophon__cell">
+            <span class="hero__colophon__label">Campus</span>
+            <span class="hero__colophon__value">Newtown</span>
+          </div>
+          <div class="hero__colophon__cell">
+            <span class="hero__colophon__label">Cohort</span>
+            <span class="hero__colophon__value">64 <em>per year</em></span>
+          </div>
+        </div>
+
+        <div class="hero__stats" aria-label="Program outcomes">
+          <article class="hero-stat">
+            <div class="hero-stat__num">91<span class="small">%</span></div>
+            <div class="hero-stat__label">NCLEX-RN<br>first-time pass</div>
+            <div class="hero-stat__note">5-year average &middot; illustrative</div>
+          </article>
+          <article class="hero-stat">
+            <div class="hero-stat__num">96<span class="small">%</span></div>
+            <div class="hero-stat__label">Employed<br>within six months</div>
+            <div class="hero-stat__note">Class of 2024 &middot; illustrative</div>
+          </article>
+          <article class="hero-stat hero-stat--muted">
+            <div class="hero-stat__num">650<span class="small">hrs</span></div>
+            <div class="hero-stat__label">Clinical hours<br>before graduation</div>
+            <div class="hero-stat__note">Across five rotations</div>
+          </article>
+          <article class="hero-stat hero-stat--muted">
+            <div class="hero-stat__num">20<span class="small">+</span></div>
+            <div class="hero-stat__label">Teaching-hospital<br>clinical partners</div>
+            <div class="hero-stat__note">Penn, Jefferson, Einstein, Cooper, Virtua</div>
+          </article>
+        </div>
+
+        <div class="hero__foot">
+          <div class="hero__ctas">
+            <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
+              Apply to Nursing
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+            </a>
+            <a href="#" class="btn btn--secondary btn--lg">
+              Request the program guide
+            </a>
+          </div>
+          <p class="hero__foot-aside">Illustrative figures throughout. Final numbers are verified with the School of Nursing in discovery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TIMELINE — YOUR FOUR YEARS, BRIEFLY ═════════════════════ -->
+  <section class="section" aria-labelledby="tl-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">The arc at a glance</span>
+        <h2 id="tl-title">Your four years, <em>briefly.</em></h2>
+      </div>
+      <p class="lead">Foundations, then clinical basics, then specialty rotations, then a capstone semester that prepares you for the NCLEX.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="tl-wrap">
+        <ol class="hfu-timeline">
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Year 1 &middot; Foundations</div>
+            <div class="hfu-timeline__title">Sciences, liberal arts core, and the nursing lens</div>
+            <p class="hfu-timeline__body">Anatomy, physiology, microbiology, developmental psychology, theology of caring. You are formed as a whole person before you are formed as a clinician.</p>
+          </li>
+          <li class="hfu-timeline__item is-current">
+            <div class="hfu-timeline__date">Year 2 &middot; Clinical basics</div>
+            <div class="hfu-timeline__title">Assessment, pharmacology, and your first clinical rotation</div>
+            <p class="hfu-timeline__body">Health assessment, pharmacology, fundamentals of nursing practice. First clinical placement at a partner hospital, typically medical-surgical.</p>
+            <span class="hfu-timeline__chip">Typical fall cohort</span>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Year 3 &middot; Specialty rotations</div>
+            <div class="hfu-timeline__title">Adult health, maternal/child, mental health, community</div>
+            <p class="hfu-timeline__body">Rotations across adult medical-surgical, obstetrics, pediatrics, psychiatric-mental health, and community/public health. Evidence-based practice and research methods run alongside.</p>
+          </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">Year 4 &middot; Capstone + NCLEX prep</div>
+            <div class="hfu-timeline__title">Leadership, preceptorship, and licensure readiness</div>
+            <p class="hfu-timeline__body">Nursing leadership and management, a final preceptored clinical with a practicing RN, and a structured NCLEX-RN preparation track through the spring semester.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ ACCORDION — CURRICULUM YEAR BY YEAR ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="cur-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">Curriculum</span>
+        <h2 id="cur-title">The curriculum, <em>year by year.</em></h2>
+      </div>
+      <p class="lead">Course lists and clinical hours for each year of the traditional BSN. Catalog-aligned.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="hfu-acc" role="list">
+        <details role="listitem">
+          <summary>
+            <span class="hfu-acc__num">Year 1</span>
+            <span>Foundations &middot; Sciences and the core</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div class="hfu-acc__panel">
+            <ul class="hfu-acc__courses">
+              <li><span class="code">BIO 211</span><span>Anatomy &amp; Physiology I</span></li>
+              <li><span class="code">BIO 212</span><span>Anatomy &amp; Physiology II</span></li>
+              <li><span class="code">BIO 230</span><span>Microbiology for Nurses</span></li>
+              <li><span class="code">PSY 101</span><span>Introduction to Psychology</span></li>
+              <li><span class="code">PSY 214</span><span>Developmental Psychology</span></li>
+              <li><span class="code">CHE 103</span><span>Chemistry for the Health Sciences</span></li>
+              <li><span class="code">ENG 101</span><span>College Writing I</span></li>
+              <li><span class="code">THE 110</span><span>Introduction to Theology</span></li>
+            </ul>
+            <div class="hfu-acc__meta">
+              <div>
+                <h5>Clinical hours</h5>
+                <div class="val">0</div>
+                <p class="sub">Pre-clinical year. Foundation sciences and the liberal-arts core precede the clinical sequence.</p>
+              </div>
             </div>
           </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span class="hfu-acc__num">Year 2</span>
+            <span>Clinical basics &middot; First rotation</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div class="hfu-acc__panel">
+            <ul class="hfu-acc__courses">
+              <li><span class="code">NUR 201</span><span>Health Assessment</span></li>
+              <li><span class="code">NUR 210</span><span>Fundamentals of Nursing</span></li>
+              <li><span class="code">NUR 215</span><span>Pharmacology I</span></li>
+              <li><span class="code">NUR 220</span><span>Pathophysiology</span></li>
+              <li><span class="code">NUR 230</span><span>Adult Health I (clinical)</span></li>
+              <li><span class="code">NUR 240</span><span>Professional Nursing Practice</span></li>
+              <li><span class="code">STA 220</span><span>Statistics for Health Sciences</span></li>
+              <li><span class="code">ETH 201</span><span>Ethics in Healthcare</span></li>
+            </ul>
+            <div class="hfu-acc__meta">
+              <div>
+                <h5>Clinical hours</h5>
+                <div class="val">180<span class="small">hrs</span></div>
+                <p class="sub">First direct-patient clinical at a partner teaching hospital, typically adult medical-surgical.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span class="hfu-acc__num">Year 3</span>
+            <span>Specialty rotations &middot; Five practice areas</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div class="hfu-acc__panel">
+            <ul class="hfu-acc__courses">
+              <li><span class="code">NUR 310</span><span>Adult Health II (clinical)</span></li>
+              <li><span class="code">NUR 320</span><span>Maternal &amp; Newborn Nursing</span></li>
+              <li><span class="code">NUR 325</span><span>Pediatric Nursing (clinical)</span></li>
+              <li><span class="code">NUR 330</span><span>Psychiatric-Mental Health (clinical)</span></li>
+              <li><span class="code">NUR 340</span><span>Community/Public Health Nursing</span></li>
+              <li><span class="code">NUR 345</span><span>Evidence-Based Practice</span></li>
+              <li><span class="code">NUR 350</span><span>Pharmacology II</span></li>
+              <li><span class="code">NUR 360</span><span>Nursing Research Methods</span></li>
+            </ul>
+            <div class="hfu-acc__meta">
+              <div>
+                <h5>Clinical hours</h5>
+                <div class="val">420<span class="small">hrs</span></div>
+                <p class="sub">Rotations span adult health, maternal/child, pediatrics, mental health, and community practice.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details role="listitem">
+          <summary>
+            <span class="hfu-acc__num">Year 4</span>
+            <span>Capstone &middot; Preceptorship &middot; NCLEX prep</span>
+            <span class="hfu-acc__chev" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+            </span>
+          </summary>
+          <div class="hfu-acc__panel">
+            <ul class="hfu-acc__courses">
+              <li><span class="code">NUR 410</span><span>Complex Adult Health (clinical)</span></li>
+              <li><span class="code">NUR 420</span><span>Nursing Leadership &amp; Management</span></li>
+              <li><span class="code">NUR 425</span><span>Healthcare Informatics</span></li>
+              <li><span class="code">NUR 430</span><span>Senior Capstone (preceptored)</span></li>
+              <li><span class="code">NUR 440</span><span>Transition to Professional Practice</span></li>
+              <li><span class="code">NUR 445</span><span>NCLEX-RN Preparation Seminar</span></li>
+              <li><span class="code">NUR 450</span><span>Quality &amp; Safety in Healthcare</span></li>
+              <li><span class="code">THE 410</span><span>Vocation &amp; Professional Ethics</span></li>
+            </ul>
+            <div class="hfu-acc__meta">
+              <div>
+                <h5>Clinical hours</h5>
+                <div class="val">360<span class="small">hrs</span></div>
+                <p class="sub">Preceptored capstone clinical with a practicing RN, plus a structured NCLEX-RN preparation track.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ TABS — SPECIALTY PATHWAYS ═════════════════════ -->
+  <section class="section" aria-labelledby="sp-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">Specialty pathways</span>
+        <h2 id="sp-title">Where our graduates <em>practice.</em></h2>
+      </div>
+      <p class="lead">Four representative concentrations our BSN graduates move into after licensure. Students can tailor electives and capstone placements toward any of them.</p>
+    </div>
+
+    <div class="section__body">
+      <div class="tabs-wrap">
+        <div class="hfu-tabs" role="tablist" aria-label="Specialty pathway tabs">
+          <button type="button" class="is-active" role="tab" aria-selected="true" data-tab="acute">Acute care</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="community">Community health</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="peds">Pediatrics</button>
+          <button type="button" role="tab" aria-selected="false" data-tab="gero">Gerontology</button>
+        </div>
+
+        <div class="tab-panel is-active" role="tabpanel" data-panel="acute">
+          <div class="tab-panel__body">
+            <p>Acute care covers the fast-paced, high-acuity settings where registered nurses manage complex medical-surgical patients, intensive care, and emergency populations. The pathway emphasizes clinical reasoning under pressure, interdisciplinary teamwork, and the technology-rich environments of teaching hospitals.</p>
+            <p>Holy Family acute-care graduates typically begin on medical-surgical floors at partner health systems and step up to telemetry, step-down, ICU, or ED within one to three years of practice.</p>
+            <ul class="tab-panel__settings">
+              <li>Medical-surgical units</li>
+              <li>Intensive care</li>
+              <li>Emergency department</li>
+              <li>Telemetry &amp; step-down</li>
+              <li>Post-anesthesia care</li>
+              <li>Cardiac catheterization</li>
+            </ul>
+          </div>
+          <article class="c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">School of Nursing &middot; Elective</span>
+              <span class="hfu-badge hfu-badge--blue">Acute</span>
+            </div>
+            <h3>Acute-care capstone track</h3>
+            <div class="c-program__chips">
+              <span class="hfu-badge hfu-badge--navy">Senior year</span>
+              <span class="hfu-badge">Preceptored</span>
+            </div>
+            <p>A guided capstone placement inside a regional teaching hospital, paired with acute-care-focused electives in pharmacology, critical-care foundations, and rapid-response teaming.</p>
+            <div class="c-program__foot">
+              <span class="role">360 clinical hrs</span>
+              <span>NUR 410 / 430</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" data-panel="community" hidden>
+          <div class="tab-panel__body">
+            <p>Community health extends nursing practice outside the hospital: home-health, public-health departments, school nursing, hospice, and community-clinic care. The pathway is particularly meaningful for students drawn to population health, health-equity work, and care of under-resourced populations.</p>
+            <p>Community placements often build on Holy Family's long-standing relationships with Philadelphia-area public-health agencies and community health centers.</p>
+            <ul class="tab-panel__settings">
+              <li>Home health agencies</li>
+              <li>Public health departments</li>
+              <li>School nursing</li>
+              <li>Hospice &amp; palliative care</li>
+              <li>Community health clinics</li>
+              <li>Occupational health</li>
+            </ul>
+          </div>
+          <article class="c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">School of Nursing &middot; Elective</span>
+              <span class="hfu-badge hfu-badge--ok">Community</span>
+            </div>
+            <h3>Community &amp; public-health track</h3>
+            <div class="c-program__chips">
+              <span class="hfu-badge hfu-badge--navy">Year 3 &ndash; 4</span>
+              <span class="hfu-badge">Field placement</span>
+            </div>
+            <p>An extended field rotation with a Philadelphia-area public-health department or community clinic, layered on the standard community/public-health nursing course in the third year.</p>
+            <div class="c-program__foot">
+              <span class="role">180 field hrs</span>
+              <span>NUR 340 +</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" data-panel="peds" hidden>
+          <div class="tab-panel__body">
+            <p>Pediatric nursing focuses on the care of infants, children, and adolescents across the continuum &mdash; from well-child clinics to pediatric intensive-care units. The pathway pairs developmental psychology with family-centered care and age-specific clinical skills.</p>
+            <p>Placements include a regional children's hospital and several pediatric specialty clinics across the network.</p>
+            <ul class="tab-panel__settings">
+              <li>Pediatric medical-surgical</li>
+              <li>Neonatal intensive care</li>
+              <li>Pediatric ICU</li>
+              <li>Pediatric emergency</li>
+              <li>Children's specialty clinics</li>
+              <li>Pediatric oncology</li>
+            </ul>
+          </div>
+          <article class="c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">School of Nursing &middot; Elective</span>
+              <span class="hfu-badge">Peds</span>
+            </div>
+            <h3>Pediatric focus track</h3>
+            <div class="c-program__chips">
+              <span class="hfu-badge hfu-badge--navy">Senior year</span>
+              <span class="hfu-badge">Specialty</span>
+            </div>
+            <p>Pediatric capstone placements paired with electives in pediatric pharmacology, growth and development, and family-centered care across the illness continuum.</p>
+            <div class="c-program__foot">
+              <span class="role">240 clinical hrs</span>
+              <span>NUR 325 / 430</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" data-panel="gero" hidden>
+          <div class="tab-panel__body">
+            <p>Gerontology prepares nurses to care for older adults across acute, long-term, and community settings. The pathway emphasizes chronic-disease management, cognitive health, palliative approaches, and the social determinants that shape aging well.</p>
+            <p>Placements span regional long-term care facilities, geriatric clinics, and memory-care units.</p>
+            <ul class="tab-panel__settings">
+              <li>Long-term care facilities</li>
+              <li>Geriatric outpatient clinics</li>
+              <li>Memory-care units</li>
+              <li>Hospice &amp; palliative care</li>
+              <li>Home-based primary care</li>
+              <li>Rehabilitation &amp; sub-acute</li>
+            </ul>
+          </div>
+          <article class="c-program">
+            <div class="c-program__top">
+              <span class="c-program__school">School of Nursing &middot; Elective</span>
+              <span class="hfu-badge hfu-badge--navy">Gero</span>
+            </div>
+            <h3>Gerontology focus track</h3>
+            <div class="c-program__chips">
+              <span class="hfu-badge hfu-badge--navy">Year 3 &ndash; 4</span>
+              <span class="hfu-badge">Emerging field</span>
+            </div>
+            <p>Capstone placements in long-term care and memory-care settings, paired with electives in gerontological pharmacology, palliative approaches, and chronic-disease management.</p>
+            <div class="c-program__foot">
+              <span class="role">200 clinical hrs</span>
+              <span>NUR 430 +</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ OUTCOME CARDS ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="out-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">Program outcomes</span>
+        <h2 id="out-title">What graduates <em>do next.</em></h2>
+      </div>
+      <p class="lead">Three outcome benchmarks for the traditional four-year BSN. Figures shown below are illustrative until confirmed with the School of Nursing.</p>
+    </div>
+
+    <div class="section__body">
+      <article class="outcome-card" aria-label="Program outcome metrics">
+        <div class="c-outcome">
+          <div class="c-outcome__item">
+            <div class="c-outcome__num">91<span class="small">%</span></div>
+            <div class="c-outcome__label">NCLEX-RN first-time<br>pass rate</div>
+            <p class="c-outcome__caption">Illustrative &mdash; pending final verification by the School of Nursing.</p>
+          </div>
+          <div class="c-outcome__item">
+            <div class="c-outcome__num">96<span class="small">%</span></div>
+            <div class="c-outcome__label">First job within<br>six months of graduation</div>
+            <p class="c-outcome__caption">Illustrative &mdash; based on recent cohorts, verification pending.</p>
+          </div>
+          <div class="c-outcome__item">
+            <div class="c-outcome__num">38<span class="small">%</span></div>
+            <div class="c-outcome__label">Admitted to graduate study<br>within three years</div>
+            <p class="c-outcome__caption">Illustrative &mdash; reflects the MSN and DNP pipeline at HFU and elsewhere.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ CREDENTIALS · PORTABLE-DEGREE REGISTER ═════════════════════ -->
+  <section class="section creds" aria-labelledby="creds-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">The credentials</span>
+        <h2 id="creds-title">What makes this degree <em>portable.</em></h2>
+      </div>
+      <p class="lead">Accreditation is the reason your BSN still counts when you move, apply to graduate school, or sit for a license in another state.</p>
+    </div>
+
+    <div class="section__body">
+      <ol class="creds__grid" role="list">
+        <li class="cred">
+          <div class="cred__mark" aria-hidden="true">
+            <span class="cred__mono">CCNE</span>
+          </div>
+          <div class="cred__body">
+            <div class="cred__status">
+              <span class="cred__dot" aria-hidden="true"></span>
+              Accredited &middot; since 2008
+            </div>
+            <h3 class="cred__name">Commission on Collegiate Nursing Education</h3>
+            <p class="cred__meaning">The national standard for baccalaureate and graduate nursing programs. The credential your future employer, state board, and graduate program will look for.</p>
+            <a class="cred__verify" href="https://www.aacnnursing.org/ccne" target="_blank" rel="noopener">
+              Verify on the CCNE registry
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10L10 4M10 4H5M10 4V9"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="cred">
+          <div class="cred__mark cred__mark--blue" aria-hidden="true">
+            <span class="cred__mono">PA<br>SBON</span>
+          </div>
+          <div class="cred__body">
+            <div class="cred__status">
+              <span class="cred__dot" aria-hidden="true"></span>
+              Approved
+            </div>
+            <h3 class="cred__name">Pennsylvania State Board of Nursing</h3>
+            <p class="cred__meaning">State-level program approval. Graduates are eligible for Pennsylvania RN licensure and for the reciprocal licensure pathways in every other state.</p>
+            <a class="cred__verify" href="https://www.pa.gov/agencies/dos/programs/bpoa/boards-commissions/nursing.html" target="_blank" rel="noopener">
+              Verify on the PA SBON registry
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10L10 4M10 4H5M10 4V9"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="cred">
+          <div class="cred__mark" aria-hidden="true">
+            <span class="cred__mono">NCLEX</span>
+          </div>
+          <div class="cred__body">
+            <div class="cred__status">
+              <span class="cred__dot" aria-hidden="true"></span>
+              Eligible to sit &middot; all 50 states
+            </div>
+            <h3 class="cred__name">NCLEX-RN Licensure Examination</h3>
+            <p class="cred__meaning">Graduates qualify to sit for the National Council Licensure Examination for Registered Nurses &mdash; the single licensure exam recognized across U.S. jurisdictions.</p>
+            <a class="cred__verify" href="https://www.ncsbn.org/nclex.htm" target="_blank" rel="noopener">
+              Learn about the NCLEX-RN
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10L10 4M10 4H5M10 4V9"/></svg>
+            </a>
+          </div>
+        </li>
+
+        <li class="cred">
+          <div class="cred__mark cred__mark--blue" aria-hidden="true">
+            <span class="cred__mono">MSCHE</span>
+          </div>
+          <div class="cred__body">
+            <div class="cred__status">
+              <span class="cred__dot" aria-hidden="true"></span>
+              Accredited &middot; institution-wide
+            </div>
+            <h3 class="cred__name">Middle States Commission on Higher Education</h3>
+            <p class="cred__meaning">The regional accreditation Holy Family holds as an institution &mdash; the credential that makes every course you take here transferable and every dollar of federal aid eligible.</p>
+            <a class="cred__verify" href="https://www.msche.org/institution/0407/" target="_blank" rel="noopener">
+              Verify on the MSCHE registry
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10L10 4M10 4H5M10 4V9"/></svg>
+            </a>
+          </div>
+        </li>
+      </ol>
+
+      <p class="creds__footnote">
+        <span class="creds__footnote-label">Full disclosure</span>
+        Program accreditation status and dates are reviewed with the School of Nursing during discovery. External registry links above are the authoritative record.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ PULLQUOTE — ALUM ═════════════════════ -->
+  <section class="section section--alt" aria-labelledby="pq-title">
+    <div class="section__body">
+      <div class="hfu-pullquote" id="pq-title">
+        <blockquote>Holy Family taught me to care for the whole person before it taught me to manage a code.</blockquote>
+        <div class="hfu-pullquote__by">Recent BSN graduate &middot; Class of 2024 &middot; illustrative</div>
+        <span class="hfu-pullquote__tag">Illustrative quote &mdash; pending alum attribution</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ CONTACT — NURSING DEAN ═════════════════════ -->
+  <section class="section" aria-labelledby="dean-title">
+    <div class="section__head">
+      <div>
+        <span class="eyebrow">Talk to the School</span>
+        <h2 id="dean-title">Meet the <em>dean.</em></h2>
+      </div>
+      <p class="lead">Questions about prerequisites, transfer credits, or which BSN path fits you best &mdash; the School of Nursing office is the best first stop.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <aside class="c-contact" aria-labelledby="dean-name">
+        <div class="c-contact__photo" data-initials="CM" aria-hidden="true"></div>
+        <div class="c-contact__head">
+          <div id="dean-name" class="c-contact__name">Carolyn Meltzer, PhD, RN</div>
+          <div class="c-contact__role">Dean, School of Nursing &amp; Allied Health</div>
+          <div class="c-contact__school">Illustrative placeholder &middot; awaiting confirmed dean</div>
+        </div>
+        <div class="c-contact__lines">
+          <span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg>
+            <a href="mailto:nursing@holyfamily.edu">nursing@holyfamily.edu</a>
+          </span>
+          <span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5C2 2.67 2.67 2 3.5 2h2.17c.35 0 .66.24.76.58L7.3 5.09a.78.78 0 0 1-.2.8L5.66 7.33a10 10 0 0 0 5 5l1.45-1.45a.78.78 0 0 1 .8-.2l2.5.87c.35.1.58.41.58.76V14.5c0 .83-.67 1.5-1.5 1.5h-1A12 12 0 0 1 2 4.5v-1Z"/></svg>
+            215 637 7700 x4000
+          </span>
+          <span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2c-2.8 0-5 2.2-5 5 0 3.6 5 7 5 7s5-3.4 5-7c0-2.8-2.2-5-5-5Z"/><circle cx="8" cy="7" r="2"/></svg>
+            Newtown Campus &middot; Nursing Building, Room 210
+          </span>
+        </div>
+        <div class="c-contact__hours">
+          <strong>Office hours</strong>
+          Tuesday &amp; Thursday, 10:00&nbsp;AM &ndash; 12:00&nbsp;PM. Additional times by appointment via the School of Nursing office.
+        </div>
+      </aside>
+
+      <p class="contact-note">Prospective students and families are welcome to <em>visit a class, shadow a clinical, or simply drop in</em> during office hours. The School of Nursing runs monthly open-house sessions on the Newtown campus through the fall and spring.</p>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ APPLY CTA ═════════════════════ -->
+  <section class="section" aria-labelledby="cta-title">
+    <div class="cta-wrap">
+      <div class="c-callout c-callout--yellow">
+        <div>
+          <div class="c-callout__deadline">
+            <span aria-hidden="true">&#9679;</span>
+            Fall 2026 priority deadline &middot; May 1
+          </div>
+          <h3 id="cta-title">Apply <em>by May 1</em> for priority review.</h3>
+          <p>Applications submitted by the May 1 priority deadline are reviewed first for scholarship, on-campus housing, and the traditional-BSN cohort. Later applications are considered on a rolling basis while seats remain.</p>
+        </div>
+        <div class="c-callout__actions">
+          <a href="hfu-admissions.html" class="btn btn--primary btn--lg">
+            Apply to Nursing
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+          </a>
+          <a href="hfu-visit.html" class="btn btn--ghost btn--lg" style="color: hsl(var(--white)); border-color: hsl(var(--white) / 0.3);">
+            Schedule a visit
+          </a>
         </div>
       </div>
     </div>
@@ -2646,5 +2465,29 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Tabs: specialty pathways
+    (function () {
+      var tabBtns = document.querySelectorAll('.hfu-tabs button[data-tab]');
+      var panels = document.querySelectorAll('.tab-panel[data-panel]');
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-tab');
+          tabBtns.forEach(function (b) {
+            var active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach(function (p) {
+            var match = p.getAttribute('data-panel') === target;
+            p.classList.toggle('is-active', match);
+            if (match) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+          });
+        });
+      });
+    })();
+  </script>
+
 </body>
 </html>

@@ -20,20 +20,22 @@
     @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.08);
-      --teal-glow:   rgba(27, 122, 134, 0.18);
+      /* Warm editorial light — cream page, ink text, restrained teal accents.
+         Per CLAUDE.md: no dark content backgrounds. */
+      --teal:        #005357;
+      --teal-deep:   #00373A;
+      --teal-soft:   rgba(0, 83, 87, 0.06);
+      --teal-glow:   rgba(0, 83, 87, 0.12);
       --hfu-navy:    #06213F;
       --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
+      --ink:         #FAF8F3;
+      --ink-card:    #FFFFFF;
+      --ink-card-2:  #F1EDE4;
+      --line:        rgba(6, 33, 63, 0.10);
+      --line-strong: rgba(6, 33, 63, 0.18);
+      --text:        rgba(6, 33, 63, 0.92);
+      --text-dim:    rgba(6, 33, 63, 0.62);
+      --text-ghost:  rgba(6, 33, 63, 0.38);
       --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -260,9 +262,9 @@
     }
     .radar-svg-wrap svg { width: 100%; height: 100%; overflow: visible; }
 
-    .radar-axis-line { stroke: rgba(255,255,255,0.12); stroke-width: 1; }
-    .radar-ring { stroke: rgba(255,255,255,0.08); stroke-width: 1; fill: none; }
-    .radar-ring--outer { stroke: rgba(255,255,255,0.18); }
+    .radar-axis-line { stroke: rgba(6, 33, 63, 0.12); stroke-width: 1; }
+    .radar-ring { stroke: rgba(6, 33, 63, 0.08); stroke-width: 1; fill: none; }
+    .radar-ring--outer { stroke: rgba(6, 33, 63, 0.18); }
     .radar-axis-label {
       font-family: var(--mono);
       font-size: 7pt;
@@ -341,7 +343,7 @@
       transition: all 180ms ease;
     }
     .radar-legend__item:hover {
-      background: rgba(255,255,255,0.03);
+      background: rgba(6, 33, 63, 0.04);
       color: var(--text);
     }
     .radar-legend__item.is-active {
@@ -407,7 +409,7 @@
       background: #EEF0F3;
     }
     .peer-card--hfu {
-      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
+      background: linear-gradient(160deg, #FFFFFF 0%, #F1EDE4 70%);
       border-color: rgba(27,122,134,0.35);
       box-shadow: 0 0 0 1px rgba(27,122,134,0.2), 0 0 24px -8px rgba(27,122,134,0.2);
     }
@@ -568,7 +570,7 @@
 
     /* Fake browser window */
     .browser {
-      background: #11141C;
+      background: var(--ink-card-2);
       padding: 8px 10px 0;
     }
     .browser__dots {
@@ -586,7 +588,7 @@
     .browser__dot:nth-child(2) { background: #E2A93A; }
     .browser__dot:nth-child(3) { background: #5DB04C; }
     .browser__url {
-      background: #1B1F2A;
+      background: var(--ink-card-2);
       border-radius: 3px;
       padding: 5px 10px;
       font-family: var(--mono);
@@ -668,13 +670,13 @@
     /* Per-school theming */
     .fauxsite--lasalle {
       background: linear-gradient(165deg, #0A1E3D 0%, #142A52 60%, #F9B800 140%);
-      color: white;
+      color: var(--hfu-navy);
     }
     .fauxsite--lasalle .fauxsite__cta {
       background: #FFC72C;
       color: #0A1E3D;
     }
-    .fauxsite--lasalle .fauxsite__nav { border-color: rgba(255,255,255,0.15); }
+    .fauxsite--lasalle .fauxsite__nav { border-color: rgba(6, 33, 63, 0.15); }
 
     .fauxsite--chc {
       background: linear-gradient(170deg, #F2E8D7 0%, #E8D9BD 100%);
@@ -687,7 +689,7 @@
     }
 
     .fauxsite--neumann {
-      background: linear-gradient(165deg, #0F0F14 0%, #1A1A22 100%);
+      background: linear-gradient(165deg, #FFFFFF 0%, #F1EDE4 100%);
       color: #E0C24C;
     }
     .fauxsite--neumann .fauxsite__headline { color: #E0C24C; }
@@ -706,11 +708,11 @@
       background: #F4F4ED;
       color: #1A3A2E;
     }
-    .fauxsite--gmu .fauxsite__nav { border-color: rgba(255,255,255,0.18); }
+    .fauxsite--gmu .fauxsite__nav { border-color: rgba(6, 33, 63, 0.18); }
 
     .fauxsite--cab {
       background: linear-gradient(165deg, #3A3A3E 0%, #28282C 100%);
-      color: rgba(255,255,255,0.6);
+      color: rgba(6, 33, 63, 0.6);
       position: relative;
     }
     .fauxsite--cab::after {
@@ -723,20 +725,20 @@
       font-weight: 900;
       font-size: 22pt;
       letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.08);
-      border: 3px solid rgba(255,255,255,0.08);
+      color: rgba(6, 33, 63, 0.08);
+      border: 3px solid rgba(6, 33, 63, 0.08);
       padding: 6px 20px;
       pointer-events: none;
     }
     .fauxsite--cab .fauxsite__cta {
-      background: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.4);
+      background: rgba(6, 33, 63, 0.12);
+      color: rgba(6, 33, 63, 0.4);
     }
-    .fauxsite--cab .fauxsite__nav { border-color: rgba(255,255,255,0.1); }
+    .fauxsite--cab .fauxsite__nav { border-color: rgba(6, 33, 63, 0.1); }
 
     .fauxsite--hfu {
       background: linear-gradient(165deg, #06213F 0%, #0A3056 100%);
-      color: white;
+      color: var(--hfu-navy);
     }
     .fauxsite--hfu .fauxsite__headline { font-size: 8.5pt; max-width: 24ch; }
     .fauxsite--hfu .fauxsite__cta {
@@ -744,7 +746,7 @@
       color: #06213F;
       font-size: 5.5pt;
     }
-    .fauxsite--hfu .fauxsite__nav { border-color: rgba(255,255,255,0.18); }
+    .fauxsite--hfu .fauxsite__nav { border-color: rgba(6, 33, 63, 0.18); }
     /* Cluttered nav items for HFU — shows the problem */
     .fauxsite--hfu .fauxsite__menu span { font-size: 4pt; }
 
@@ -798,7 +800,7 @@
       border-bottom: 1px solid var(--line);
       padding-top: 28px;
       padding-bottom: 16px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(6, 33, 63, 0.04);
       font-weight: 400;
     }
     .scorecard__table thead th:first-child {
@@ -810,7 +812,7 @@
       background: linear-gradient(180deg, rgba(27,122,134,0.1), transparent);
     }
     .scorecard__table thead th.col-archived {
-      color: rgba(255,255,255,0.22);
+      color: rgba(6, 33, 63, 0.22);
     }
     .scorecard__row {
       border-bottom: 1px solid var(--line);
@@ -818,7 +820,7 @@
     }
     .scorecard__row:last-child { border-bottom: 0; }
     .scorecard__row:hover {
-      background: rgba(255,255,255,0.025);
+      background: rgba(6, 33, 63, 0.025);
     }
     .scorecard__row:hover .scorecard__dim { color: var(--text); }
     .scorecard__dim {
@@ -857,12 +859,12 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(6, 33, 63, 0.08);
+      border: 1px solid rgba(6, 33, 63, 0.1);
     }
     .dot.is-on {
-      background: rgba(255,255,255,0.7);
-      border-color: rgba(255,255,255,0.85);
+      background: rgba(6, 33, 63, 0.7);
+      border-color: rgba(6, 33, 63, 0.85);
     }
     .scorecard__cell--hfu .dot.is-on {
       background: var(--teal);
@@ -872,7 +874,7 @@
     .scorecard__legend {
       padding: 18px 24px;
       border-top: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      background: rgba(6, 33, 63, 0.04);
       font-family: var(--mono);
       font-size: 6pt;
       letter-spacing: 0.12em;
@@ -964,7 +966,7 @@
     .navtest__bar-track {
       position: relative;
       height: 32px;
-      background: rgba(255,255,255,0.04);
+      background: rgba(6, 33, 63, 0.04);
       border-radius: 2px;
     }
     .navtest__bar {
@@ -983,8 +985,8 @@
       box-shadow: 0 0 0 1px rgba(230,107,104,0.4), 0 0 20px -4px rgba(230,107,104,0.4);
     }
     .navtest__bar--archived {
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+      background: rgba(6, 33, 63, 0.08);
+      box-shadow: 0 0 0 1px rgba(6, 33, 63, 0.1);
     }
     .navtest__bar-value {
       position: absolute;
@@ -1529,25 +1531,27 @@
       .scorecard__table { min-width: 500px; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
-  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+  <button class="mobile-menu-btn" aria-label="Open navigation" onclick="document.body.classList.toggle('nav-open')">☰</button>
   <div class="mobile-menu-backdrop" onclick="document.body.classList.remove('nav-open')"></div>
 
   <aside class="site-nav" aria-label="Client portal navigation">
     <div class="site-nav__brand">
-      <span class="site-nav__eyebrow">Holy Family &middot; Client Portal</span>
+      <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1556,26 +1560,17 @@
       <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab is-current"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
-      Small College Consulting &middot; April 2026
+      Small College Consulting · April 2026
     </div>
   </aside>
 
@@ -1595,7 +1590,7 @@
       <section class="hero">
         <div class="eyebrow" data-counter="&middot; 03 of 07">Peer landscape &middot; April 2026</div>
         <h1 class="hero__title">Where Holy Family stands against its <em>Philly Catholic peers.</em></h1>
-        <p class="hero__lede">Every Holy Family prospective student visits three of these sites on the same weekend. Here's what they see. We visited all six, audited all six, and graded all six on the dimensions that matter to a <strong>27-year-old adult learner</strong> deciding where to spend $112,000.</p>
+        <p class="hero__lede">Every prospective Holy Family student visits three of these sites on the same weekend. The shape of the peer set defines how many of them the University enrolls. We audited all six on the dimensions that matter to a <strong>27-year-old adult learner</strong> deciding where to spend $112,000 and four years of her life. The gaps we found are enrollment share Holy Family can take back for Fall 2026 &mdash; not in 2027.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">
@@ -1750,7 +1745,7 @@
           <!-- La Salle -->
           <article class="shot-card" id="shot-lasalle">
             <div class="shot-card__head">
-              <div class="shot-card__logo" style="background: #0A1E3D; color: #FFC72C;">LS</div>
+              <div class="shot-card__logo" style="background: var(--ink-card); color: #FFC72C;">LS</div>
               <div>
                 <div class="shot-card__title">La Salle University</div>
                 <div class="shot-card__title-sub">lasalle.edu</div>
@@ -1810,7 +1805,7 @@
           <!-- Neumann -->
           <article class="shot-card" id="shot-neumann">
             <div class="shot-card__head">
-              <div class="shot-card__logo" style="background: #0F0F14; color: #E0C24C;">NU</div>
+              <div class="shot-card__logo" style="background: var(--ink-card); color: #E0C24C;">NU</div>
               <div>
                 <div class="shot-card__title">Neumann University</div>
                 <div class="shot-card__title-sub">neumann.edu</div>
@@ -1870,7 +1865,7 @@
           <!-- Cabrini -->
           <article class="shot-card" id="shot-cab">
             <div class="shot-card__head">
-              <div class="shot-card__logo" style="background: #28282C; color: rgba(255,255,255,0.5);">CAB</div>
+              <div class="shot-card__logo" style="background: #28282C; color: rgba(6, 33, 63, 0.5);">CAB</div>
               <div>
                 <div class="shot-card__title">Cabrini University</div>
                 <div class="shot-card__title-sub">cabrini.edu (archived)</div>
@@ -1900,7 +1895,7 @@
           <!-- Holy Family -->
           <article class="shot-card" id="shot-hfu">
             <div class="shot-card__head">
-              <div class="shot-card__logo" style="background: #06213F; color: #FFCC15;">HFU</div>
+              <div class="shot-card__logo" style="background: var(--ink-card); color: #FFCC15;">HFU</div>
               <div>
                 <div class="shot-card__title">Holy Family University</div>
                 <div class="shot-card__title-sub">holyfamily.edu &middot; today</div>
@@ -2046,7 +2041,7 @@
         <div class="section__head">
           <div class="section__kicker">Where the gap becomes an advantage</div>
           <h2 class="section__title">Three plays where HFU can go from <em>last to first.</em></h2>
-          <p class="section__lede">The slowest places in the peer set are actually the fastest places to overtake. Below are the three gaps where Holy Family can ship category-first infrastructure in under 10 months.</p>
+          <p class="section__lede">The slowest places in the peer set are actually the fastest places to overtake. Below are the three gaps where Holy Family can ship category-first infrastructure in time for the Fall 2026 recruitment cycle &mdash; a three-month build, not a ten-month one. Every play below translates into enrollment yield the peers are not capturing today.</p>
         </div>
 
         <div class="attacks">
@@ -2087,7 +2082,7 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="position">
         <div class="position__kicker">The position</div>
-        <p class="position__body">Holy Family doesn't need to be the flashiest site on the eastern seaboard. It needs to <span class="teal">out-convert the five schools that share its prospects.</span> Based on our audit, doing that is a <b>design and infrastructure problem</b> &mdash; not a branding or budget problem. We can close the whole gap in <b>10 months.</b></p>
+        <p class="position__body">Holy Family doesn't need to be the flashiest site on the eastern seaboard. It needs to <span class="teal">out-convert the five schools that share its prospects</span> and pull enrolled students from their consideration sets. Based on our audit, doing that is a <b>design and infrastructure problem</b> &mdash; not a branding or budget problem. We can close the whole gap in <b>three months of build</b>, live on September&nbsp;1, 2026, in time for Fall 2026 recruitment.</p>
       </section>
 
       <!-- ════════════════════════════════════════════════════════════

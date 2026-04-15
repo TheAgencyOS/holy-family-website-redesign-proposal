@@ -1,0 +1,150 @@
+/*
+ * mobile.css — mobile polish layer for HFU mockups
+ * Linked LAST in <head> so rules override inline page styles + components-restore.css.
+ * Scope: pixel-perfect reflow at 320/375/390/414px. Keep changes scoped to max-width media queries
+ * so desktop composition is untouched.
+ */
+
+/* ── Global safety rails ─────────────────────────────────────────────── */
+html, body { max-width: 100%; }
+img, svg, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* The marquee/ticker scrolls horizontally on purpose — clip it on mobile so it
+   doesn't push <body> out. */
+@media (max-width: 900px) {
+  .hero__marquee,
+  .marquee,
+  .ticker,
+  [class*="marquee"] {
+    overflow: hidden !important;
+    max-width: 100%;
+  }
+}
+
+/* ── Tabs: horizontal scroll on narrow viewports ─────────────────────── */
+@media (max-width: 720px) {
+  .hfu-tabs {
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .hfu-tabs::-webkit-scrollbar { display: none; }
+  .hfu-tabs > button,
+  .hfu-tabs > a {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding-left: 14px;
+    padding-right: 14px;
+    white-space: nowrap;
+  }
+}
+
+/* ── Tables: guarantee the scroll wrap owns its width ─────────────────── */
+@media (max-width: 720px) {
+  .hfu-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .hfu-table {
+    font-size: 13px;
+  }
+  .hfu-table thead th,
+  .hfu-table tbody td,
+  .hfu-table--labels tbody th {
+    padding: 12px 14px;
+  }
+}
+
+/* ── Mobile nav: tighten paddings, wrap titles ───────────────────────── */
+@media (max-width: 640px) {
+  .hfu-topbar, .hfu-utility,
+  .hfu-utility__inner, .hfu-topbar__inner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+  .hfu-utility__links { gap: 10px; }
+  .hfu-brand__name { font-size: 13px; }
+}
+
+/* ── Hero typography scale ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hero h1, .hfu-hero h1, [class*="hero"] h1 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  .hero p, .hfu-hero p, [class*="hero"] > p {
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+}
+
+/* ── Section headings scale ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  h2 { font-size: clamp(24px, 6.6vw, 34px); line-height: 1.12; }
+  h3 { font-size: clamp(18px, 4.8vw, 22px); line-height: 1.2; }
+  .eyebrow, [class*="eyebrow"] { letter-spacing: 0.14em; font-size: 11px; }
+}
+
+/* ── Container breathing room ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hfu-container, .container, .wrap,
+  section > .inner, main > section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+@media (max-width: 380px) {
+  .hfu-container, .container, .wrap {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* ── Grids that forgot to collapse ───────────────────────────────────── */
+@media (max-width: 640px) {
+  [class*="grid--2"], [class*="grid--3"], [class*="grid--4"],
+  .hfu-grid, .two-col, .three-col, .four-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Buttons: guarantee tap target ≥44px ─────────────────────────────── */
+@media (max-width: 640px) {
+  button, .btn, [class*="btn"], a[class*="button"] {
+    min-height: 44px;
+  }
+}
+
+/* ── Images inside hero: cover without overflowing ───────────────────── */
+@media (max-width: 640px) {
+  .hero img, .hfu-hero img, [class*="hero"] > img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+/* ── Stepper / process: stack on mobile ──────────────────────────────── */
+@media (max-width: 640px) {
+  .hfu-steps, .steps {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+}
+
+/* ── Accordion / FAQ full-width ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .hfu-acc, details { max-width: 100%; }
+}

@@ -11,56 +11,65 @@
   <link rel="stylesheet" href="portal.css">
 
   <style>
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 500; font-display: block; src: url('assets/fonts/roobert/Roobert-Medium.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-Bold.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: italic; font-weight: 700; font-display: block; src: url('assets/fonts/roobert/Roobert-BoldItalic.otf') format('opentype'); }
-    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 900; font-display: block; src: url('assets/fonts/roobert/Roobert-Heavy.otf') format('opentype'); }
+    /* ══════════════════════════════════════════════════════════════════════════
+       ENROLLMENT INTELLIGENCE — light editorial redesign
+       Inspired by the modular rhythm and numbered-section language of
+       mirox.webflow.io/services, rebuilt in the Holy Family warm editorial
+       palette (cream page, ink text, teal accent, serif italic emphasis).
+       All colors route through tokens defined here, mirroring tokens.css.
+       ══════════════════════════════════════════════════════════════════════════ */
 
     :root {
-      --teal:        #1B7A86;
-      --teal-deep:   #005357;
-      --teal-soft:   rgba(27, 122, 134, 0.08);
-      --teal-glow:   rgba(27, 122, 134, 0.18);
-      --hfu-navy:    #06213F;
-      --hfu-yellow:  #FFCC15;
-      --ink:         #062434;
-      --ink-card:    #0D0F15;
-      --ink-card-2:  #11141C;
-      --line:        rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text:        rgba(255,255,255,0.88);
-      --text-dim:    rgba(255,255,255,0.62);
-      --text-ghost:  rgba(255,255,255,0.38);
-      --display:     'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      /* ── Palette — warm editorial light ───────────────────── */
+      --page:        #FAFAFA;   /* page background */
+      --paper:       #FFFFFF;   /* card / panel surface */
+      --paper-warm:  #F4F1EC;   /* alt tint, editorial warmth */
+      --paper-sage:  #F1F4F7;   /* alt tint, cool neutral */
+      --paper-ghost: #F7F6F2;   /* soft footnote surface */
+
+      --ink:         #1C1E24;   /* primary text, headings */
+      --ink-2:       #2E3138;   /* body secondary */
+      --ink-3:       #5A5E68;   /* captions, metadata */
+      --ink-4:       #8A8E98;   /* hints, disabled */
+
+      --rule:        #E6E3DD;   /* hairline dividers */
+      --rule-strong: #D7D3CA;   /* hover / active dividers */
+
+      --teal:        #1B7A86;   /* primary accent */
+      --teal-bright: #2AA0AE;   /* hover */
+      --teal-tint:   #E6F1F2;   /* 8 % wash */
+      --teal-tint-2: #DDEBEC;   /* 12 % wash */
+      --teal-line:   rgba(27,122,134,0.22);
+      --teal-glow:   rgba(27,122,134,0.10);
+
+      --display:     'Instrument Sans', -apple-system, system-ui, sans-serif;
       --body:        'Instrument Sans', -apple-system, system-ui, sans-serif;
       --serif:       'Instrument Serif', Georgia, 'Times New Roman', serif;
       --mono:        'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      --shadow-card: 0 1px 2px rgba(17,19,25,0.04), 0 8px 24px rgba(17,19,25,0.04);
+      --shadow-hi:   0 2px 4px rgba(17,19,25,0.05), 0 16px 40px rgba(17,19,25,0.06);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    h1, h2, h3, h4, h5, h6 { font-weight: 400; }
+    /* ── Override portal.css dark body so content is light ── */
     html, body {
-      background: var(--ink);
+      background: var(--page);
       font-family: var(--body);
       font-size: 10.5pt;
-      line-height: 1.6;
-      color: var(--text);
+      line-height: 1.65;
+      color: var(--ink-2);
       -webkit-font-smoothing: antialiased;
       font-variant-numeric: tabular-nums lining-nums;
       text-rendering: optimizeLegibility;
     }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    h1, h2, h3, h4, h5, h6 { font-weight: 400; color: var(--ink); }
     img { display: block; max-width: 100%; }
     a { color: var(--teal); text-decoration: none; }
     button { font-family: inherit; cursor: pointer; }
 
-    /* ══════════════════════════════════════════════════════════════
-       PAGE LAYOUT
-       ══════════════════════════════════════════════════════════════ */
     main {
-      background: var(--ink);
+      background: var(--page) !important;
       padding: 0 !important;
       gap: 0 !important;
       align-items: stretch !important;
@@ -70,25 +79,13 @@
       max-width: 1180px;
       min-width: 0;
       margin: 0 auto;
-      padding: 64px 56px 120px;
-      }
+      padding: 72px 56px 140px;
+    }
 
     /* ══════════════════════════════════════════════════════════════
-       HERO
+       SHARED PRIMITIVES — eyebrows, numbered markers, serif italic
        ══════════════════════════════════════════════════════════════ */
-    .hero { position: relative; padding-bottom: 110px; }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: -240px -200px auto -200px;
-      height: 520px;
-      background:
-        radial-gradient(ellipse 60% 80% at 20% 30%, rgba(27,122,134,0.22), transparent 60%),
-        radial-gradient(ellipse 80% 70% at 85% 20%, rgba(255,204,21,0.06), transparent 60%);
-      z-index: -1;
-      pointer-events: none;
-    }
-    .eyebrow {
+    .kicker {
       display: inline-flex;
       align-items: center;
       gap: 14px;
@@ -97,22 +94,35 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 36px;
     }
-    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--teal); }
-    .eyebrow::after  { content: attr(data-counter); margin-left: 8px; color: var(--text-ghost); }
+    .kicker::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .kicker__counter {
+      margin-left: 6px;
+      color: var(--ink-4);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+    }
 
-    .hero__title {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(48pt, 7.2vw, 96pt);
-      line-height: 0.92;
-      letter-spacing: -0.034em;
-      color: var(--text);
-      max-width: 14ch;
-      margin-bottom: 40px;
+    .num-badge {
+      font-family: var(--mono);
+      font-size: 7pt;
+      letter-spacing: 0.14em;
+      color: var(--teal);
     }
-    .hero__title em {
+
+    em.accent,
+    .hero__title em,
+    .section__title em,
+    .hero__stat__value em,
+    .calc__title em,
+    .compare__card h3 em,
+    .payback h3 em,
+    .output__big .dollar {
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
@@ -122,124 +132,151 @@
       color: var(--teal);
       font-synthesis: none;
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       HERO — oversized display + editorial stat rail
+       ══════════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      padding: 24px 0 112px;
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 44px;
+    }
+    .hero__marker {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero__marker__set {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+    }
+    .hero__marker__num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22pt;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .hero__title {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(28pt, 4vw, 46pt);
+      line-height: 1.02;
+      letter-spacing: -0.024em;
+      color: var(--ink);
+      max-width: 22ch;
+    }
+
     .hero__lede {
       max-width: 62ch;
-      font-size: 15pt;
+      font-size: 14.5pt;
       line-height: 1.55;
-      color: var(--text-dim);
+      color: var(--ink-3);
       font-weight: 400;
     }
-    .hero__lede strong { color: var(--text); font-weight: 500; }
+    .hero__lede strong { color: var(--ink); font-weight: 500; }
 
     .hero__stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0;
-      margin-top: 80px;
-      padding: 32px 0 0;
-      border-top: 1px solid var(--line);
+      margin-top: 32px;
+      padding: 36px 0 0;
+      border-top: 1px solid var(--rule);
     }
-    .hero__stat { padding-right: 24px; }
-    .hero__stat:not(:last-child) { border-right: 1px solid var(--line); padding-left: 0; }
-    .hero__stat:not(:first-child) { padding-left: 24px; }
+    .hero__stat { padding-right: 28px; }
+    .hero__stat:not(:last-child) { border-right: 1px solid var(--rule); }
+    .hero__stat:not(:first-child) { padding-left: 28px; }
     .hero__stat__label {
-      font-family: var(--mono);
-      font-size: 6.5pt;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .hero__stat__value {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: 32pt;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1;
-    }
-    .hero__stat__value em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
-      font-synthesis: none;
-    }
-    .hero__stat__foot {
-      font-family: var(--body);
-      font-size: 9pt;
-      color: var(--text-dim);
-      margin-top: 10px;
-      line-height: 1.4;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       SECTION HEADERS
-       ══════════════════════════════════════════════════════════════ */
-    .section { padding-top: 140px; }
-    .section__head { margin-bottom: 56px; max-width: 72ch; }
-    .section__kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       font-family: var(--mono);
       font-size: 6.5pt;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--teal);
-      margin-bottom: 22px;
+      color: var(--ink-4);
+      margin-bottom: 14px;
+      display: block;
     }
-    .section__kicker::before { content: ''; width: 22px; height: 1px; background: var(--teal); }
+    .hero__stat__value {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 34pt;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero__stat__foot {
+      font-family: var(--body);
+      font-size: 9pt;
+      color: var(--ink-3);
+      margin-top: 12px;
+      line-height: 1.45;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SECTION — numbered service-card rhythm (mirox-inspired)
+       ══════════════════════════════════════════════════════════════ */
+    .section {
+      padding-top: 128px;
+      scroll-margin-top: 64px;
+    }
+    .section__head {
+      margin-bottom: 56px;
+      max-width: 74ch;
+    }
+    .section__head-row {
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section__head-row .num-badge {
+      flex-shrink: 0;
+      font-size: 7.5pt;
+    }
+    .section__head-row .kicker {
+      flex: 1;
+    }
     .section__title {
       font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(32pt, 4.2vw, 52pt);
-      line-height: 1.0;
+      font-weight: 500;
+      font-size: clamp(30pt, 4.2vw, 48pt);
+      line-height: 1.02;
       letter-spacing: -0.028em;
-      color: var(--text);
-      margin-bottom: 22px;
-    }
-    .section__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
-      font-synthesis: none;
+      color: var(--ink);
+      margin: 22px 0 22px;
     }
     .section__lede {
       font-size: 13pt;
-      line-height: 1.55;
-      color: var(--text-dim);
+      line-height: 1.6;
+      color: var(--ink-3);
       max-width: 66ch;
     }
 
     /* ══════════════════════════════════════════════════════════════
-       THE FUNNEL
+       FUNNEL — horizontal stage bars on paper
        ══════════════════════════════════════════════════════════════ */
     .funnel {
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 56px 56px 48px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 56px 56px 52px;
       position: relative;
       overflow: hidden;
-    }
-    .funnel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(27,122,134,0.06), transparent 70%);
-      pointer-events: none;
+      box-shadow: var(--shadow-card);
     }
     .funnel__label {
-      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -247,57 +284,65 @@
       font-size: 6.5pt;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 32px;
+      color: var(--ink-4);
+      margin-bottom: 36px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
     }
-    .funnel__label b { color: var(--text); font-weight: 500; }
-    .funnel__rows { position: relative; display: flex; flex-direction: column; gap: 14px; }
+    .funnel__label b { color: var(--ink); font-weight: 500; }
+    .funnel__rows {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
     .funnel__row {
       display: grid;
-      grid-template-columns: 160px 1fr 140px;
-      gap: 24px;
+      grid-template-columns: 170px 1fr 150px;
+      gap: 28px;
       align-items: center;
-      padding: 14px 0;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
     }
+    .funnel__row:last-child { border-bottom: 0; }
     .funnel__stage {
       font-family: var(--mono);
       font-size: 7pt;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-dim);
+      color: var(--ink-4);
     }
     .funnel__stage b {
       display: block;
       font-family: var(--display);
       font-size: 12pt;
-      font-weight: 400;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--ink);
       letter-spacing: -0.01em;
       text-transform: none;
-      margin-top: 3px;
+      margin-top: 4px;
     }
+    .funnel__bar-wrap { position: relative; }
     .funnel__bar {
       position: relative;
-      height: 40px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-deep) 100%);
+      height: 36px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--teal) 0%, #155A63 100%);
       transform-origin: left center;
       transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 0 0 1px rgba(27,122,134,0.3), 0 0 24px -4px rgba(27,122,134,0.4);
+      box-shadow: 0 1px 2px rgba(27,122,134,0.15);
     }
     .funnel__bar::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 50%);
-      border-radius: 2px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, transparent 55%);
+      border-radius: 3px;
       pointer-events: none;
     }
     .funnel__bar--ghost {
-      background: rgba(255,255,255,0.05);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+      background: var(--paper-sage);
+      box-shadow: inset 0 0 0 1px var(--rule);
     }
-    .funnel__bar-wrap { position: relative; }
     .funnel__bar-wrap .funnel__bar + .funnel__bar {
       position: absolute;
       top: 0;
@@ -307,33 +352,23 @@
       text-align: right;
       font-family: var(--display);
       font-size: 22pt;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.015em;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.018em;
       line-height: 1;
     }
     .funnel__num small {
       display: block;
       font-size: 8pt;
       font-weight: 400;
-      color: var(--text-ghost);
-      margin-top: 4px;
+      color: var(--ink-4);
+      margin-top: 6px;
       letter-spacing: 0;
       font-family: var(--mono);
     }
-    .funnel__delta {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 7pt;
-      letter-spacing: 0.05em;
-      margin-top: 6px;
-    }
 
     /* ══════════════════════════════════════════════════════════════
-       ROI CALCULATOR
+       ROI CALCULATOR — two-panel card (inputs / outputs)
        ══════════════════════════════════════════════════════════════ */
     .calc {
       margin-top: 80px;
@@ -342,29 +377,32 @@
       gap: 28px;
     }
     .calc__panel {
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 44px 44px 48px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 48px 44px 52px;
       position: relative;
       min-width: 0;
+      box-shadow: var(--shadow-card);
     }
     .calc__panel--output {
-      background: linear-gradient(160deg, #0C1418 0%, #0D0F15 60%);
-      border-color: rgba(27,122,134,0.25);
+      background:
+        linear-gradient(170deg, var(--teal-tint) 0%, var(--paper) 60%);
+      border-color: var(--teal-line);
       overflow: hidden;
     }
     .calc__panel--output::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 80% 0%, rgba(27,122,134,0.10), transparent 70%);
+      background: radial-gradient(ellipse 70% 60% at 85% 0%, var(--teal-glow), transparent 65%);
       pointer-events: none;
     }
+    .calc__panel > * { position: relative; }
     .calc__label {
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--teal);
       margin-bottom: 22px;
@@ -373,52 +411,40 @@
     .calc__title {
       font-family: var(--display);
       font-size: 24pt;
-      font-weight: 400;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--ink);
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 38px;
-    }
-    .calc__title em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
-      font-synthesis: none;
+      line-height: 1.12;
+      margin-bottom: 40px;
     }
 
-    .slider {
-      margin-bottom: 34px;
-    }
+    .slider { margin-bottom: 34px; }
     .slider:last-child { margin-bottom: 0; }
     .slider__head {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .slider__name {
       font-family: var(--display);
       font-size: 10.5pt;
       font-weight: 500;
-      color: var(--text);
+      color: var(--ink);
     }
     .slider__name small {
       display: block;
       font-family: var(--body);
       font-weight: 400;
-      color: var(--text-ghost);
+      color: var(--ink-4);
       font-size: 8.5pt;
-      margin-top: 3px;
+      margin-top: 4px;
       letter-spacing: 0;
     }
     .slider__val {
       font-family: var(--display);
       font-size: 20pt;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--teal);
       letter-spacing: -0.015em;
       font-variant-numeric: tabular-nums;
@@ -428,10 +454,11 @@
       appearance: none;
       width: 100%;
       height: 4px;
-      background: rgba(255,255,255,0.08);
+      background: var(--paper-sage);
       border-radius: 2px;
       outline: none;
       cursor: pointer;
+      border: 1px solid var(--rule);
     }
     .slider input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -440,8 +467,8 @@
       height: 20px;
       background: var(--teal);
       border-radius: 50%;
-      border: 3px solid var(--ink);
-      box-shadow: 0 0 0 1px var(--teal), 0 0 14px rgba(27,122,134,0.6);
+      border: 3px solid var(--paper);
+      box-shadow: 0 0 0 1px var(--teal), 0 1px 4px rgba(27,122,134,0.35);
       cursor: pointer;
       transition: transform 150ms ease;
     }
@@ -451,247 +478,246 @@
       height: 20px;
       background: var(--teal);
       border-radius: 50%;
-      border: 3px solid var(--ink);
-      box-shadow: 0 0 0 1px var(--teal), 0 0 14px rgba(27,122,134,0.6);
+      border: 3px solid var(--paper);
+      box-shadow: 0 0 0 1px var(--teal), 0 1px 4px rgba(27,122,134,0.35);
       cursor: pointer;
     }
     .slider__scale {
       display: flex;
       justify-content: space-between;
-      margin-top: 8px;
+      margin-top: 10px;
       font-family: var(--mono);
       font-size: 6pt;
-      color: var(--text-ghost);
+      color: var(--ink-4);
       letter-spacing: 0.08em;
     }
 
-    /* Output panel */
+    /* ── Output panel ─────────────────────────────────────── */
     .output__kicker {
-      position: relative;
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .output__headline {
-      position: relative;
       font-family: var(--display);
       font-size: 16pt;
       font-weight: 400;
-      line-height: 1.2;
-      color: var(--text-dim);
+      line-height: 1.28;
+      color: var(--ink-3);
       margin-bottom: 36px;
     }
-    .output__headline b { color: var(--text); font-weight: 500; }
+    .output__headline b { color: var(--ink); font-weight: 500; }
     .output__big {
-      position: relative;
       font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(34pt, 5.2vw, 60pt);
-      line-height: 0.9;
+      font-weight: 500;
+      font-size: clamp(38pt, 5.4vw, 64pt);
+      line-height: 0.92;
       letter-spacing: -0.035em;
-      color: var(--text);
-      margin-bottom: 12px;
+      color: var(--ink);
+      margin-bottom: 14px;
       font-variant-numeric: tabular-nums lining-nums;
       word-break: keep-all;
       overflow-wrap: anywhere;
     }
-    .output__big .dollar { color: var(--teal); font-weight: 400; font-family: var(--serif); font-style: italic; padding-right: 0.05em; }
     .output__sub {
-      position: relative;
       font-family: var(--mono);
       font-size: 7pt;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 28px;
+      color: var(--ink-4);
+      margin-bottom: 32px;
     }
     .output__breakdown {
-      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid var(--teal-line);
     }
     .output__breakdown > div {
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-ghost);
+      color: var(--ink-4);
     }
     .output__breakdown b {
       display: block;
       font-family: var(--display);
       font-size: 18pt;
-      font-weight: 400;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--ink);
       letter-spacing: -0.015em;
       text-transform: none;
-      margin-top: 6px;
+      margin-top: 8px;
       line-height: 1.1;
     }
     .output__footnote {
-      position: relative;
-      margin-top: 28px;
+      margin-top: 30px;
       font-family: var(--body);
       font-size: 9pt;
-      color: var(--text-ghost);
-      line-height: 1.5;
+      color: var(--ink-4);
+      line-height: 1.6;
       font-style: italic;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
     }
 
     /* ══════════════════════════════════════════════════════════════
-       COMPARISON CARDS — current vs proposed
+       COMPARISON CARDS — current vs proposed (mirox service-card grid)
        ══════════════════════════════════════════════════════════════ */
     .compare {
       margin-top: 48px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 28px;
     }
     .compare__card {
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 36px 36px 40px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 44px 40px 44px;
       position: relative;
+      box-shadow: var(--shadow-card);
+      transition: transform 240ms cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 240ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .compare__card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hi);
     }
     .compare__card--new {
-      background: linear-gradient(160deg, #0C1A1C 0%, #0D0F15 70%);
-      border-color: rgba(27,122,134,0.28);
+      background:
+        linear-gradient(172deg, var(--teal-tint) 0%, var(--paper) 65%);
+      border-color: var(--teal-line);
     }
     .compare__card__tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 26px;
+      color: var(--ink-4);
+      margin-bottom: 28px;
     }
     .compare__card--new .compare__card__tag { color: var(--teal); }
-    .compare__card__tag::before { content: ''; width: 18px; height: 1px; background: currentColor; }
-    .compare__card h3 {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: 18pt;
-      color: var(--text);
-      line-height: 1.15;
-      letter-spacing: -0.018em;
-      margin-bottom: 20px;
+    .compare__card__tag::before {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: currentColor;
     }
-    .compare__card h3 em {
+    .compare__card__num {
       font-family: var(--serif);
       font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
-      font-synthesis: none;
+      color: currentColor;
+      font-size: 11pt;
+      margin-right: 4px;
+    }
+    .compare__card h3 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 20pt;
+      color: var(--ink);
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
     }
     .compare__card ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
     .compare__card li {
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 18px;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
       align-items: baseline;
       font-size: 10pt;
-      color: var(--text-dim);
-      line-height: 1.5;
-      padding-bottom: 14px;
-      border-bottom: 1px solid var(--line);
+      color: var(--ink-3);
+      line-height: 1.55;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
     }
     .compare__card li:last-child { border-bottom: 0; padding-bottom: 0; }
     .compare__card li b {
       font-family: var(--display);
-      font-weight: 400;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--ink);
       font-variant-numeric: tabular-nums;
-      font-size: 11pt;
-      letter-spacing: -0.01em;
+      font-size: 12pt;
+      letter-spacing: -0.012em;
     }
     .compare__card--new li b { color: var(--teal); }
 
     /* ══════════════════════════════════════════════════════════════
-       PAYBACK TIMELINE
+       PAYBACK TIMELINE — horizontal editorial rail
        ══════════════════════════════════════════════════════════════ */
     .payback {
-      margin-top: 120px;
-      background: var(--ink-card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 56px 56px 64px;
+      margin-top: 128px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 60px 56px 64px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow-card);
     }
     .payback::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 100% at 10% 50%, rgba(27,122,134,0.12), transparent 70%);
+      background: linear-gradient(100deg, var(--teal-tint) 0%, transparent 40%);
       pointer-events: none;
     }
+    .payback > * { position: relative; }
     .payback__head {
-      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--rule);
     }
     .payback h3 {
       font-family: var(--display);
-      font-size: 26pt;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
+      font-size: 28pt;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.022em;
+      line-height: 1.08;
       max-width: 18ch;
-    }
-    .payback h3 em {
-      font-family: var(--serif);
-      font-style: italic;
-      font-weight: 400;
-      font-size: 1.06em;
-      letter-spacing: -0.005em;
-      margin: 0 -0.01em 0 -0.015em;
-      color: var(--teal);
-      font-synthesis: none;
     }
     .payback__meta {
       text-align: right;
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-ghost);
+      color: var(--ink-4);
     }
     .payback__meta b {
       display: block;
       font-family: var(--display);
-      font-size: 28pt;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.02em;
+      font-size: 30pt;
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: -0.022em;
       text-transform: none;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .payback__track {
       position: relative;
       height: 2px;
-      background: rgba(255,255,255,0.06);
-      margin: 36px 0 20px;
+      background: var(--paper-sage);
+      border: 0;
+      margin: 40px 0 22px;
     }
     .payback__fill {
       position: absolute;
@@ -699,203 +725,183 @@
       left: 0;
       height: 100%;
       background: var(--teal);
-      box-shadow: 0 0 18px rgba(27,122,134,0.5);
+      box-shadow: 0 0 0 1px var(--teal-line);
     }
     .payback__marks {
-      position: relative;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
     .payback__mark {
       position: relative;
-      padding-top: 18px;
+      padding-top: 20px;
     }
     .payback__mark::before {
       content: '';
       position: absolute;
-      top: -20px;
+      top: -22px;
       left: 0;
       width: 1px;
-      height: 14px;
-      background: rgba(255,255,255,0.14);
+      height: 16px;
+      background: var(--rule-strong);
     }
-    .payback__mark--hit::before { background: var(--teal); box-shadow: 0 0 10px rgba(27,122,134,0.6); }
+    .payback__mark--hit::before { background: var(--teal); }
     .payback__mark__label {
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-ghost);
-      margin-bottom: 8px;
+      color: var(--ink-4);
+      margin-bottom: 10px;
     }
     .payback__mark__val {
       font-family: var(--display);
-      font-weight: 400;
-      font-size: 15pt;
-      color: var(--text);
-      letter-spacing: -0.015em;
+      font-weight: 500;
+      font-size: 16pt;
+      color: var(--ink);
+      letter-spacing: -0.016em;
       line-height: 1.1;
     }
     .payback__mark--hit .payback__mark__val { color: var(--teal); }
 
     /* ══════════════════════════════════════════════════════════════
-       RAIL OF ASSUMPTIONS (footnotes)
+       ASSUMPTIONS — editorial rail
        ══════════════════════════════════════════════════════════════ */
     .assumptions {
-      margin-top: 120px;
-      padding: 40px 0 0;
-      border-top: 1px solid var(--line);
+      margin-top: 128px;
+      padding: 48px 0 0;
+      border-top: 1px solid var(--rule);
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 48px;
+      grid-template-columns: 220px 1fr;
+      gap: 56px;
     }
     .assumptions__label {
       font-family: var(--mono);
       font-size: 6.5pt;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--teal);
     }
     .assumptions__body {
       font-family: var(--body);
-      font-size: 9.5pt;
-      line-height: 1.65;
-      color: var(--text-dim);
+      font-size: 10pt;
+      line-height: 1.7;
+      color: var(--ink-3);
       max-width: 72ch;
     }
-    .assumptions__body strong { color: var(--text); font-weight: 500; }
+    .assumptions__body strong { color: var(--ink); font-weight: 500; }
     .assumptions__list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px 32px;
-      margin-top: 18px;
+      gap: 16px 36px;
+      margin-top: 24px;
     }
     .assumptions__list div {
       display: grid;
-      grid-template-columns: 22px 1fr;
-      gap: 10px;
+      grid-template-columns: 26px 1fr;
+      gap: 12px;
       font-size: 9pt;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+      color: var(--ink-3);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
     }
     .assumptions__list span {
-      font-family: var(--mono);
-      font-size: 6.5pt;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12pt;
       color: var(--teal);
-      padding-top: 3px;
+      padding-top: 0;
+      line-height: 1;
     }
 
     /* ══════════════════════════════════════════════════════════════
        RESPONSIVE
        ══════════════════════════════════════════════════════════════ */
 
-    /* Tablet landscape + narrow desktop — sidebar still visible,
-       content column ~700-820px. Hero stats reflow 4→2x2, calc+compare stack. */
     @media (max-width: 1100px) {
       .wrap { padding: 64px 40px 130px; }
-      .hero { padding-bottom: 80px; }
-      .hero__title { font-size: clamp(40pt, 6vw, 64pt); line-height: 0.94; }
-      .hero__lede { font-size: 14pt; }
+      .hero { padding-bottom: 88px; }
+      .hero__title { font-size: clamp(38pt, 6.2vw, 60pt); line-height: 0.96; }
+      .hero__lede { font-size: 13.5pt; }
       .hero__stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 28px 0;
-        margin-top: 56px;
+        margin-top: 40px;
         padding-top: 28px;
       }
       .hero__stat { padding-right: 22px; }
       .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; }
       .hero__stat:nth-child(odd) { padding-left: 0; }
       .hero__stat:nth-child(even):not(:first-child) { padding-left: 22px; }
-      .hero__stat:nth-child(3) { border-top: 1px solid var(--line); padding-top: 28px; }
-      .hero__stat:nth-child(4) { border-top: 1px solid var(--line); padding-top: 28px; }
-      .section { padding-top: 110px; }
+      .hero__stat:nth-child(3) { border-top: 1px solid var(--rule); padding-top: 28px; }
+      .hero__stat:nth-child(4) { border-top: 1px solid var(--rule); padding-top: 28px; }
+      .section { padding-top: 112px; }
       .section__head { margin-bottom: 44px; }
-      .section__title { font-size: clamp(28pt, 4vw, 42pt); }
+      .section__title { font-size: clamp(28pt, 4.4vw, 40pt); }
+      .funnel { padding: 48px 40px 44px; }
       .calc { grid-template-columns: 1fr; gap: 28px; margin-top: 64px; }
-      .calc__panel { padding: 40px 36px 42px; }
+      .calc__panel { padding: 40px 36px 44px; }
       .output__big { font-size: clamp(36pt, 5.4vw, 56pt); }
       .compare { grid-template-columns: 1fr; gap: 22px; }
-      .compare__card { padding: 32px 32px 36px; }
-      .payback { margin-top: 96px; padding: 44px 36px 50px; }
-      .payback__marks {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 36px 22px;
-      }
-      .assumptions { margin-top: 96px; grid-template-columns: 1fr; gap: 24px; }
-      .assumptions__list { grid-template-columns: 1fr 1fr; gap: 14px 28px; }
+      .compare__card { padding: 36px 32px 38px; }
+      .payback { margin-top: 104px; padding: 48px 36px 54px; }
+      .payback h3 { font-size: 24pt; }
+      .payback__meta b { font-size: 24pt; }
+      .payback__marks { grid-template-columns: repeat(3, 1fr); gap: 40px 22px; }
+      .assumptions { margin-top: 104px; grid-template-columns: 1fr; gap: 24px; }
     }
 
-    /* Tablet portrait — sidebar collapses to hamburger (portal.css),
-       so the full viewport is available to content. */
     @media (max-width: 900px) {
-      .wrap { padding: 64px 40px 120px; }
-      .hero { padding-bottom: 80px; }
-      .hero__title { margin-bottom: 32px; }
-      .hero__lede { font-size: 14pt; }
-      .hero__stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px 0;
-        margin-top: 56px;
-        padding-top: 28px;
-      }
-      .hero__stat { padding-right: 20px; }
-      .hero__stat:nth-child(2) { border-right: 0; padding-right: 0; }
-      .hero__stat:nth-child(odd) { padding-left: 0; }
-      .hero__stat:nth-child(even):not(:first-child) { padding-left: 20px; }
-      .hero__stat:nth-child(3) { border-top: 1px solid var(--line); padding-top: 28px; }
-      .hero__stat:nth-child(4) { border-top: 1px solid var(--line); padding-top: 28px; }
-      .hero__stat__value { font-size: 28pt; }
+      .wrap { padding: 56px 36px 120px; }
+      .hero { padding-bottom: 76px; }
+      .hero__marker__num { font-size: 18pt; }
+      .hero__title { font-size: clamp(34pt, 6.4vw, 52pt); }
+      .hero__lede { font-size: 13pt; }
+      .hero__stat__value { font-size: 30pt; }
       .section { padding-top: 100px; }
       .section__head { margin-bottom: 40px; }
       .section__lede { font-size: 12pt; }
-      .funnel { padding: 44px 36px 40px; }
+      .funnel { padding: 44px 32px 40px; }
       .funnel__label {
         flex-direction: column;
         align-items: flex-start;
         gap: 6px;
         margin-bottom: 28px;
       }
-      .funnel__row { grid-template-columns: 130px 1fr 110px; gap: 18px; }
+      .funnel__row { grid-template-columns: 140px 1fr 120px; gap: 20px; }
       .funnel__stage b { font-size: 11pt; }
       .funnel__num { font-size: 19pt; }
-      .calc { margin-top: 56px; gap: 28px; }
-      .calc__panel { padding: 36px 32px 38px; }
+      .calc { margin-top: 56px; gap: 24px; }
+      .calc__panel { padding: 36px 30px 38px; }
       .calc__title { font-size: 22pt; margin-bottom: 32px; }
       .slider { margin-bottom: 30px; }
       .slider__val { font-size: 18pt; }
       .output__headline { font-size: 15pt; margin-bottom: 30px; }
       .output__breakdown b { font-size: 16pt; }
       .compare { margin-top: 40px; gap: 20px; }
-      .compare__card { padding: 30px 28px 32px; }
-      .compare__card h3 { font-size: 17pt; }
-      .compare__card li { grid-template-columns: 100px 1fr; gap: 14px; font-size: 9.5pt; }
-      .payback { margin-top: 88px; padding: 44px 36px 48px; }
+      .compare__card { padding: 32px 28px 34px; }
+      .compare__card h3 { font-size: 18pt; }
+      .compare__card li { grid-template-columns: 104px 1fr; gap: 16px; font-size: 9.5pt; }
+      .payback { margin-top: 92px; padding: 44px 32px 48px; }
       .payback__head { margin-bottom: 40px; }
       .payback h3 { font-size: 22pt; }
       .payback__meta b { font-size: 22pt; }
       .payback__marks { gap: 36px 20px; }
-      .payback__mark__val { font-size: 14pt; }
-      .assumptions {
-        margin-top: 88px;
-        grid-template-columns: 1fr;
-        gap: 18px;
-        padding-top: 32px;
-      }
+      .payback__mark__val { font-size: 15pt; }
+      .assumptions { margin-top: 92px; grid-template-columns: 1fr; gap: 18px; padding-top: 36px; }
       .assumptions__list { grid-template-columns: 1fr 1fr; gap: 14px 28px; }
     }
 
-    /* Small tablet / large phone — stack the funnel rows and
-       tighten spacing further. */
     @media (max-width: 700px) {
-      .wrap { padding: 52px 28px 96px; }
+      .wrap { padding: 48px 28px 96px; }
       .hero { padding-bottom: 64px; }
-      .hero__title { margin-bottom: 28px; }
-      .hero__lede { font-size: 13pt; }
+      .hero__marker { padding-bottom: 22px; }
+      .hero__title { max-width: 100%; }
+      .hero__lede { font-size: 12.5pt; }
       .hero__stats {
         grid-template-columns: 1fr;
         gap: 0;
-        margin-top: 48px;
+        margin-top: 40px;
       }
       .hero__stat {
         padding: 0 !important;
@@ -904,32 +910,25 @@
       .hero__stat + .hero__stat {
         margin-top: 26px;
         padding-top: 26px !important;
-        border-top: 1px solid var(--line);
+        border-top: 1px solid var(--rule);
       }
-      .hero__stat__value { font-size: 30pt; }
+      .hero__stat__value { font-size: 28pt; }
       .section { padding-top: 84px; }
       .section__head { margin-bottom: 36px; }
-      .section__kicker { margin-bottom: 18px; }
-      .section__title { margin-bottom: 18px; }
-      .section__lede { font-size: 12pt; }
+      .section__head-row { gap: 12px; padding-bottom: 18px; }
+      .section__title { margin: 18px 0 18px; }
+      .section__lede { font-size: 11.5pt; }
       .funnel { padding: 36px 24px 32px; }
-      .funnel::before { display: none; }
-      .funnel__label {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        font-size: 6pt;
-        margin-bottom: 24px;
-      }
-      .funnel__rows { gap: 20px; }
+      .funnel__label { margin-bottom: 22px; }
+      .funnel__rows { gap: 14px; }
       .funnel__row {
         grid-template-columns: 1fr;
         gap: 10px;
-        padding: 10px 0;
+        padding: 12px 0;
       }
       .funnel__stage { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
       .funnel__stage b { margin-top: 0; }
-      .funnel__bar { height: 32px; }
+      .funnel__bar { height: 30px; }
       .funnel__num {
         text-align: left;
         font-size: 20pt;
@@ -939,8 +938,8 @@
         flex-wrap: wrap;
       }
       .funnel__num small { display: inline; margin-top: 0; }
-      .calc { margin-top: 48px; gap: 22px; }
-      .calc__panel { padding: 32px 24px 32px; border-radius: 6px; }
+      .calc { margin-top: 48px; gap: 20px; }
+      .calc__panel { padding: 30px 22px 32px; border-radius: 10px; }
       .calc__title { font-size: 20pt; margin-bottom: 28px; }
       .slider { margin-bottom: 26px; }
       .slider__head { flex-wrap: wrap; gap: 6px 14px; }
@@ -951,80 +950,73 @@
       .output__breakdown { gap: 16px; padding-top: 18px; }
       .output__breakdown b { font-size: 14pt; margin-top: 4px; }
       .output__footnote { margin-top: 22px; }
-      .compare { margin-top: 36px; gap: 18px; }
-      .compare__card { padding: 26px 22px 28px; border-radius: 6px; }
-      .compare__card h3 { font-size: 16pt; margin-bottom: 18px; }
-      .compare__card__tag { margin-bottom: 20px; }
-      .compare__card ul { gap: 12px; }
+      .compare { margin-top: 32px; gap: 18px; }
+      .compare__card { padding: 28px 22px 30px; border-radius: 10px; }
+      .compare__card h3 { font-size: 16pt; margin-bottom: 20px; }
+      .compare__card__tag { margin-bottom: 22px; }
+      .compare__card ul { gap: 14px; }
       .compare__card li {
         grid-template-columns: 1fr;
         gap: 4px;
-        padding-bottom: 12px;
+        padding-bottom: 14px;
         font-size: 9.5pt;
       }
-      .compare__card li b { font-size: 11pt; }
-      .payback { margin-top: 76px; padding: 36px 24px 40px; border-radius: 6px; }
-      .payback::before { display: none; }
+      .compare__card li b { font-size: 12pt; }
+      .payback { margin-top: 80px; padding: 36px 22px 40px; border-radius: 10px; }
       .payback__head {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 14px;
         margin-bottom: 36px;
       }
       .payback h3 { font-size: 20pt; max-width: none; }
       .payback__meta { text-align: left; }
-      .payback__meta b { font-size: 20pt; }
-      .payback__track { margin: 28px 0 18px; }
-      .payback__marks {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px 20px;
-      }
+      .payback__meta b { font-size: 22pt; }
+      .payback__track { margin: 32px 0 20px; }
+      .payback__marks { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
       .payback__mark { padding-top: 16px; }
-      .payback__mark__val { font-size: 13pt; }
-      .assumptions { margin-top: 80px; padding-top: 28px; }
+      .payback__mark__val { font-size: 14pt; }
+      .assumptions { margin-top: 84px; padding-top: 32px; }
       .assumptions__list { grid-template-columns: 1fr; gap: 12px; }
-      .assumptions__body { font-size: 9pt; }
+      .assumptions__body { font-size: 9.5pt; }
     }
 
-    /* Phone — final tightening. Kill anything that wasn't shaved
-       yet and be ruthless with font sizes. */
     @media (max-width: 480px) {
-      .wrap { padding: 44px 20px 80px; }
-      .eyebrow { margin-bottom: 26px; font-size: 6.5pt; gap: 10px; }
-      .eyebrow::before { width: 22px; }
+      .wrap { padding: 40px 20px 80px; }
+      .hero__marker__set { font-size: 6pt; }
+      .hero__marker__num { font-size: 16pt; }
       .hero__title {
-        /* Override the clamp() with something that actually fits 390px */
         font-size: 32pt;
         letter-spacing: -0.028em;
-        line-height: 0.96;
-        margin-bottom: 24px;
+        line-height: 0.98;
+        margin-bottom: 0;
         max-width: 100%;
       }
       .hero__lede { font-size: 12pt; line-height: 1.55; }
-      .hero { padding-bottom: 54px; }
-      .hero__stats { margin-top: 42px; padding-top: 24px; }
+      .hero { padding-bottom: 56px; }
+      .hero__stats { margin-top: 36px; padding-top: 24px; }
       .hero__stat__label { font-size: 6pt; margin-bottom: 10px; }
       .hero__stat__value { font-size: 26pt; }
       .hero__stat__foot { font-size: 8.5pt; }
       .section { padding-top: 72px; }
-      .section__head { margin-bottom: 32px; }
+      .section__head { margin-bottom: 30px; }
       .section__title {
         font-size: 26pt;
         line-height: 1.04;
         letter-spacing: -0.024em;
       }
-      .section__lede { font-size: 11.5pt; }
-      .funnel { padding: 30px 20px 28px; border-radius: 5px; }
-      .funnel__label { margin-bottom: 20px; }
-      .funnel__rows { gap: 16px; }
-      .funnel__row { padding: 8px 0; gap: 8px; }
+      .section__lede { font-size: 11pt; }
+      .funnel { padding: 30px 18px 28px; border-radius: 8px; }
+      .funnel__label { margin-bottom: 20px; padding-bottom: 16px; }
+      .funnel__rows { gap: 14px; }
+      .funnel__row { padding: 10px 0; gap: 10px; }
       .funnel__stage { font-size: 6.5pt; }
       .funnel__stage b { font-size: 11pt; }
       .funnel__bar { height: 26px; }
       .funnel__num { font-size: 17pt; }
       .funnel__num small { font-size: 7.5pt; }
-      .calc { margin-top: 42px; gap: 18px; }
-      .calc__panel { padding: 28px 20px 30px; }
+      .calc { margin-top: 40px; gap: 16px; }
+      .calc__panel { padding: 28px 18px 30px; }
       .calc__label { margin-bottom: 18px; }
       .calc__title {
         font-size: 18pt;
@@ -1038,51 +1030,35 @@
       .slider__val { font-size: 15.5pt; }
       .slider__scale { font-size: 5.5pt; }
       .output__kicker { font-size: 6pt; margin-bottom: 14px; }
-      .output__headline {
-        font-size: 12.5pt;
-        line-height: 1.32;
-        margin-bottom: 22px;
-      }
-      .output__big {
-        font-size: 34pt;
-        letter-spacing: -0.03em;
-      }
+      .output__headline { font-size: 12.5pt; line-height: 1.32; margin-bottom: 22px; }
+      .output__big { font-size: 34pt; letter-spacing: -0.03em; }
       .output__sub { font-size: 6.5pt; margin-bottom: 18px; }
-      .output__breakdown {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        padding-top: 16px;
-      }
+      .output__breakdown { grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 16px; }
       .output__breakdown > div { font-size: 6pt; }
       .output__breakdown b { font-size: 13pt; }
-      .output__footnote { font-size: 8.5pt; margin-top: 18px; }
-      .compare { margin-top: 30px; gap: 16px; }
-      .compare__card { padding: 24px 20px 26px; }
-      .compare__card h3 { font-size: 14.5pt; line-height: 1.2; margin-bottom: 16px; }
-      .compare__card__tag { font-size: 6pt; margin-bottom: 16px; }
+      .output__footnote { font-size: 8.5pt; margin-top: 18px; padding-top: 16px; }
+      .compare { margin-top: 26px; gap: 16px; }
+      .compare__card { padding: 24px 18px 26px; }
+      .compare__card h3 { font-size: 15pt; line-height: 1.2; margin-bottom: 18px; }
+      .compare__card__tag { font-size: 6pt; margin-bottom: 18px; }
       .compare__card li { font-size: 9pt; gap: 4px; }
-      .compare__card li b { font-size: 10.5pt; }
-      .payback { margin-top: 64px; padding: 32px 22px 36px; }
+      .compare__card li b { font-size: 11pt; }
+      .payback { margin-top: 64px; padding: 30px 20px 34px; }
       .payback h3 { font-size: 18pt; }
       .payback__meta { font-size: 6pt; }
-      .payback__meta b { font-size: 18pt; }
-      .payback__head { margin-bottom: 28px; }
-      .payback__marks {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 22px 16px;
-      }
+      .payback__meta b { font-size: 20pt; }
+      .payback__head { margin-bottom: 28px; padding-bottom: 16px; }
+      .payback__marks { grid-template-columns: repeat(2, 1fr); gap: 22px 16px; }
       .payback__mark__label { font-size: 6pt; margin-bottom: 6px; }
-      .payback__mark__val { font-size: 12.5pt; }
-      .assumptions {
-        margin-top: 64px;
-        padding-top: 24px;
-        gap: 14px;
-      }
+      .payback__mark__val { font-size: 13pt; }
+      .assumptions { margin-top: 64px; padding-top: 24px; gap: 14px; }
       .assumptions__label { font-size: 6pt; }
-      .assumptions__body { font-size: 8.5pt; line-height: 1.6; }
+      .assumptions__body { font-size: 9pt; line-height: 1.6; }
       .assumptions__list div { font-size: 8.5pt; gap: 8px; }
     }
   </style>
+
+  <link rel="stylesheet" href="deep-dive-light.css">
 </head>
 <body>
 
@@ -1093,15 +1069,15 @@
     <div class="site-nav__brand">
       <span class="site-nav__eyebrow">Holy Family · Client Portal</span>
       <div class="site-nav__title">Website <em>Redesign</em></div>
-      <div class="site-nav__meta">Kickoff June 2026</div>
+      <div class="site-nav__meta">Kickoff June 2026 &middot; launch September 1, 2026</div>
     </div>
 
     <nav class="portal-tabs" aria-label="Portal tabs">
       <a href="index.html" class="portal-tab">Proposal</a>
-      <a href="design-concepts.html" class="portal-tab">Design concepts</a>
-      <a href="components.html" class="portal-tab">Component library</a>
-      <a href="research.html" class="portal-tab">Research</a>
-      <a href="the-gap-we-observed.html" class="portal-tab">The gap we observed</a>
+      <a href="what-ai-can-do.html" class="portal-tab">AI</a>
+      <a href="mockups-portal.html" class="portal-tab">Mockups</a>
+      <a href="components.html" class="portal-tab">Components</a>
+      <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
     <div class="portal-tabs__divider">Deep dives</div>
@@ -1110,24 +1086,15 @@
       <a href="ai-lab.html" class="portal-tab"><span class="portal-tab__num">02</span><span>AI migration lab</span></a>
       <a href="peers.html" class="portal-tab"><span class="portal-tab__num">03</span><span>Peer landscape</span></a>
       <a href="sitemap-atlas.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Sitemap atlas</span></a>
-      <a href="adult-learner.html" class="portal-tab"><span class="portal-tab__num">05</span><span>The 9:47 pm student</span></a>
-      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>10-month runway</span></a>
+      <a href="personas.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Student personas</span></a>
+      <a href="runway.html" class="portal-tab"><span class="portal-tab__num">06</span><span>3-month sprint</span></a>
       <a href="mission.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Whole person thesis</span></a>
     </nav>
 
-    <div class="portal-tabs__divider">Mockup concepts</div>
-    <nav class="portal-tabs portal-tabs--deep" aria-label="Mockup concept tabs">
-      <a href="mockups/hfu-admissions.html" class="portal-tab"><span class="portal-tab__num">01</span><span>Admissions &amp; aid</span></a>
-      <a href="mockups/hfu-academics.html" class="portal-tab"><span class="portal-tab__num">02</span><span>Academics &amp; programs</span></a>
-      <a href="mockups/hfu-nursing.html" class="portal-tab"><span class="portal-tab__num">03</span><span>School of Nursing</span></a>
-      <a href="mockups/hfu-student-life.html" class="portal-tab"><span class="portal-tab__num">04</span><span>Student experience</span></a>
-      <a href="mockups/hfu-visit.html" class="portal-tab"><span class="portal-tab__num">05</span><span>Visit campus</span></a>
-      <a href="mockups/hfu-redesigned-home.html" class="portal-tab"><span class="portal-tab__num">06</span><span>Home &middot; editorial</span></a>
-      <a href="mockups/hfu-mockup-2.html" class="portal-tab"><span class="portal-tab__num">07</span><span>Home &middot; contemporary</span></a>
-    </nav>
+    <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Interactive scenarios. Your assumptions, your answer.<br><br>
+      Prepared for Rick Mitchell · Director of Digital Experience<br>
       <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
@@ -1147,30 +1114,36 @@
            HERO
            ════════════════════════════════════════════════════════════ -->
       <section class="hero">
-        <div class="eyebrow" data-counter="· 01 of 07">Enrollment intelligence</div>
-        <h1 class="hero__title">Every dollar the website is <em>leaving on the table.</em></h1>
-        <p class="hero__lede">The Holy Family redesign isn't a marketing project. It's an <strong>enrollment infrastructure upgrade.</strong> Move the needle on a single funnel stage &mdash; 60,000 monthly visitors, a 1.5&nbsp;% baseline inquiry rate, a 22&nbsp;% yield &mdash; and the math starts producing real students with real tuition. This page shows you exactly how much, at any assumption you want to make.</p>
+        <div class="hero__grid">
+          <div class="hero__marker">
+            <span class="hero__marker__set">Deep Dive · Enrollment intelligence</span>
+            <span class="hero__marker__num">{ 01 / 07 }</span>
+          </div>
+          <div class="kicker">Enrollment intelligence<span class="kicker__counter">· 01 of 07</span></div>
+          <h1 class="hero__title">Every enrolled student the website is <em class="accent">leaving on the table.</em></h1>
+          <p class="hero__lede">The Holy Family redesign isn't a marketing project. It's an <strong>enrollment infrastructure upgrade,</strong> sharpened for the adult and graduate growth focus the University named in Section 4 of the RFP. Move the needle on a single funnel stage &mdash; 60,000 monthly visitors, a 1.5&nbsp;% baseline inquiry rate, a 22&nbsp;% yield &mdash; and the math starts producing real enrolled students with real tuition. This page lets you set the assumptions and watch the enrollment growth recalculate.</p>
 
-        <div class="hero__stats">
-          <div class="hero__stat">
-            <span class="hero__stat__label">Undergrad + grad</span>
-            <div class="hero__stat__value">3,700</div>
-            <div class="hero__stat__foot">Total enrollment; 600 grad, 3,100 undergrad</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Single degree LTV</span>
-            <div class="hero__stat__value">$112<em>K</em></div>
-            <div class="hero__stat__foot">Undergrad avg tuition × four years, net of aid</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Industry lift target</span>
-            <div class="hero__stat__value">30<em>%</em></div>
-            <div class="hero__stat__foot">Higher-ed redesign conversion improvement benchmark</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Projected payback</span>
-            <div class="hero__stat__value">~7<em>wk</em></div>
-            <div class="hero__stat__foot">On a $275K engagement, at the base scenario</div>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat__label">Undergrad + grad</span>
+              <div class="hero__stat__value">3,700</div>
+              <div class="hero__stat__foot">Total enrollment; 600 grad, 3,100 undergrad</div>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat__label">Single degree LTV</span>
+              <div class="hero__stat__value">$112<em class="accent">K</em></div>
+              <div class="hero__stat__foot">Undergrad avg tuition × four years, net of aid</div>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat__label">Industry lift target</span>
+              <div class="hero__stat__value">30<em class="accent">%</em></div>
+              <div class="hero__stat__foot">Higher-ed redesign conversion improvement benchmark</div>
+            </div>
+            <div class="hero__stat">
+              <span class="hero__stat__label">Projected payback</span>
+              <div class="hero__stat__value">~7<em class="accent">wk</em></div>
+              <div class="hero__stat__foot">On the $145K base-scope engagement, at the base scenario</div>
+            </div>
           </div>
         </div>
       </section>
@@ -1180,8 +1153,11 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">Funnel map · the enrollment machine</div>
-          <h2 class="section__title">From a visitor to a <em>matriculated student</em> — in five steps.</h2>
+          <div class="section__head-row">
+            <span class="num-badge">{ 01 }</span>
+            <span class="kicker">Funnel map · the enrollment machine</span>
+          </div>
+          <h2 class="section__title">From a visitor to a <em class="accent">matriculated student</em> — in five steps.</h2>
           <p class="section__lede">The current Holy Family funnel leaks at every stage. Most of it is fixable with content architecture and a smart form, not a miracle. Here is the current shape, next to where a modern redesign realistically lands.</p>
         </div>
 
@@ -1238,7 +1214,7 @@
         <div class="calc">
           <div class="calc__panel">
             <span class="calc__label">Live model · your assumptions</span>
-            <h3 class="calc__title">Change one number. <em>Watch the rest follow.</em></h3>
+            <h3 class="calc__title">Change one number. <em class="accent">Watch the rest follow.</em></h3>
 
             <div class="slider">
               <div class="slider__head">
@@ -1269,11 +1245,11 @@
 
             <div class="slider">
               <div class="slider__head">
-                <div class="slider__name">Engagement cost<small>base-scope redesign investment</small></div>
-                <div class="slider__val" id="costVal">$275,000</div>
+                <div class="slider__name">Engagement cost<small>base-scope redesign investment · proposed at $145K</small></div>
+                <div class="slider__val" id="costVal">$145,000</div>
               </div>
-              <input type="range" id="cost" min="150000" max="400000" step="5000" value="275000">
-              <div class="slider__scale"><span>$150K</span><span>$275K</span><span>$350K</span><span>$400K</span></div>
+              <input type="range" id="cost" min="100000" max="400000" step="5000" value="145000">
+              <div class="slider__scale"><span>$100K</span><span>$145K</span><span>$275K</span><span>$400K</span></div>
             </div>
           </div>
 
@@ -1300,14 +1276,17 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">Where the leak happens</div>
-          <h2 class="section__title">The current funnel has seven <em>specific</em> leaks. We built the site around fixing all of them.</h2>
+          <div class="section__head-row">
+            <span class="num-badge">{ 02 }</span>
+            <span class="kicker">Where the leak happens</span>
+          </div>
+          <h2 class="section__title">The current funnel has seven <em class="accent">specific</em> leaks. We built the site around fixing all of them.</h2>
         </div>
 
         <div class="compare">
           <div class="compare__card">
-            <div class="compare__card__tag">Current state · April 2026</div>
-            <h3>The site converts like <em>it's 2019.</em></h3>
+            <div class="compare__card__tag"><span class="compare__card__num">01</span>Current state · April 2026</div>
+            <h3>The site converts like <em class="accent">it's 2019.</em></h3>
             <ul>
               <li><b>20+ forms</b><span>Separate request-info forms fragmented across programs. No CRM routing.</span></li>
               <li><b>14.2 s</b><span>Mobile LCP on program pages. Google considers &gt;4&nbsp;s slow.</span></li>
@@ -1319,8 +1298,8 @@
           </div>
 
           <div class="compare__card compare__card--new">
-            <div class="compare__card__tag">What we ship · Q1 2027</div>
-            <h3>The site converts like <em>it's 2027.</em></h3>
+            <div class="compare__card__tag"><span class="compare__card__num">02</span>What we ship · Q1 2027</div>
+            <h3>The site converts like <em class="accent">it's 2027.</em></h3>
             <ul>
               <li><b>1 smart form</b><span>One routed form. Pre-fills from the URL. Fires into Slate in 800&nbsp;ms.</span></li>
               <li><b>&lt; 2.0 s</b><span>Target mobile LCP. We hit it on Cloudflare's edge every time.</span></li>
@@ -1337,9 +1316,16 @@
            PAYBACK TIMELINE
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
+        <div class="section__head">
+          <div class="section__head-row">
+            <span class="num-badge">{ 03 }</span>
+            <span class="kicker">Payback timeline</span>
+          </div>
+        </div>
+
         <div class="payback">
           <div class="payback__head">
-            <h3>When the redesign <em>pays for itself.</em></h3>
+            <h3>When the redesign <em class="accent">pays for itself.</em></h3>
             <div class="payback__meta">
               Payback period
               <b id="paybackBig">14 days</b>
@@ -1351,7 +1337,7 @@
           </div>
           <div class="payback__marks">
             <div class="payback__mark payback__mark--hit"><div class="payback__mark__label">Week 01 · launch</div><div class="payback__mark__val">$0</div></div>
-            <div class="payback__mark payback__mark--hit"><div class="payback__mark__label">Week 02</div><div class="payback__mark__val" id="pb2">$275K</div></div>
+            <div class="payback__mark payback__mark--hit"><div class="payback__mark__label">Week 02</div><div class="payback__mark__val" id="pb2">$145K</div></div>
             <div class="payback__mark"><div class="payback__mark__label">Week 04</div><div class="payback__mark__val" id="pb4">$549K</div></div>
             <div class="payback__mark"><div class="payback__mark__label">Q1</div><div class="payback__mark__val" id="pb12">$1.64M</div></div>
             <div class="payback__mark"><div class="payback__mark__label">H1</div><div class="payback__mark__val" id="pb26">$3.56M</div></div>
@@ -1364,7 +1350,7 @@
            ASSUMPTIONS
            ════════════════════════════════════════════════════════════ -->
       <section class="assumptions">
-        <div class="assumptions__label">The model, honestly</div>
+        <div class="assumptions__label">{ 04 } The model, honestly</div>
         <div class="assumptions__body">
           <strong>Every number on this page is interactive — drag the sliders, change the model.</strong> We built this because the competition will email you a ROI slide with numbers you can't audit. Here's ours, with the full arithmetic exposed. If any of these assumptions are wrong for Holy Family, change them and we'll ship a new model on 48 hours' notice.
           <div class="assumptions__list">

@@ -156,7 +156,7 @@ Write a single HTML fragment (no `<html>`, `<head>`, or `<body>`) to the file sp
 
 ## Research Sources
 
-All paths relative to `/Users/ericyerke/Documents/Agency OS ERIC/Research/Holy Family/`.
+All paths relative to the Holy Family project folder.
 
 **Primary research:**
 - `Copy of Website-Redesign-RFP-031826.pdf` (RFP itself; Section 9 has proposal requirements)
