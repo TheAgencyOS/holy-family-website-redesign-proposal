@@ -13,7 +13,7 @@
 | `chat/build-context.js` | The script that builds `chat/context.json`. | Yes if you want to change what context the concierge sees. |
 | `mockups/*.html` | The clickable mockup pages linked from the sidebar. | Yes, these are content. |
 | `assets/`, `tokens.css`, `components.css`, `portal.css`, `portal.js`, `styles.css`, `proposal.css` | Shared design system + assets used by `index.html` and mockups. | Yes when adjusting design tokens or shared components. |
-| Other top-level `.html` (mission, enrollment, ai-lab, runway, peers, research, sitemap-atlas, the-gap-we-observed, design-system, design-concepts, components) | Linked sub-pages from the portal sidebar. | Yes when editing those specific pages. |
+| Other top-level `.html` (mission, enrollment, ai-lab, runway, peers, research, sitemap-atlas, opportunities-we-see, design-system, design-concepts, components) | Linked sub-pages from the portal sidebar. | Yes when editing those specific pages. |
 | `_archive/old-html-versions/` | Superseded copies (`index.legacy-portal.html.backup`, `full.html`, `index-old-wrapper.html`, `index.v2.backup.html`, `index.v5.backup.html`). | **Do not.** Reference only. |
 
 ## Workflow

@@ -76,8 +76,8 @@
     position: fixed;
     right: 28px;
     bottom: 28px;
-    width: 62px;
-    height: 62px;
+    width: 54px;
+    height: 54px;
     border-radius: 999px;
     border: 0;
     cursor: pointer;
@@ -99,7 +99,7 @@
     outline: 2px solid var(--aos-teal);
     outline-offset: 4px;
   }
-  .aos-fab svg { width: 40px; height: 40px; display: block; fill: #fff; color: #fff; }
+  .aos-fab svg { width: 34px; height: 34px; display: block; fill: #fff; color: #fff; }
   .aos-fab svg path { fill: #fff; }
   .aos-fab__mark { display: block; }
   .aos-fab__close { display: none; }
