@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Migration Lab — Holy Family Client Portal</title>
+  <title>How the new site finds students — Holy Family Client Portal</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1523,6 +1523,110 @@
       .compete { padding: 22px 14px; }
       .compete__head__col, .compete__cell { padding: 18px 18px; }
     }
+
+    /* ══════════════════════════════════════════════════════════════
+       VIGNETTES — "Your team, one year from now"
+       ══════════════════════════════════════════════════════════════ */
+    .vignettes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .vignette {
+      background: var(--ink-card);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 36px 32px 32px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .vignette__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vignette__kicker::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .vignette__role {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 18pt;
+      line-height: 1.15;
+      letter-spacing: -0.018em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .vignette__role em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .vignette__when {
+      font-family: var(--body);
+      font-size: 9.5pt;
+      color: var(--text-dim);
+      margin-bottom: 22px;
+    }
+    .vignette__body {
+      font-family: var(--body);
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .vignette__body strong { font-weight: 500; color: var(--text); }
+    .vignette__body + .vignette__body { margin-top: 12px; }
+    @media (max-width: 920px) {
+      .vignettes { grid-template-columns: 1fr; gap: 18px; }
+      .vignette { padding: 28px 24px 26px; }
+      .vignette__role { font-size: 16pt; }
+    }
+
+    /* Enrollment-math callout */
+    .enrollment-math {
+      background: var(--ink-card-2);
+      border-left: 3px solid var(--teal);
+      padding: 36px 40px 36px;
+      margin-top: 0;
+    }
+    .enrollment-math__kicker {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+    }
+    .enrollment-math__body {
+      font-family: var(--body);
+      font-size: 13pt;
+      line-height: 1.5;
+      color: var(--text);
+      max-width: 64ch;
+    }
+    .enrollment-math__body em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--teal);
+      font-synthesis: none;
+    }
+    .enrollment-math__body strong { font-weight: 500; }
+    @media (max-width: 920px) {
+      .enrollment-math { padding: 28px 24px; }
+      .enrollment-math__body { font-size: 12pt; }
+    }
   </style>
 
   <link rel="stylesheet" href="deep-dive-light.css">
@@ -1582,29 +1686,29 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="hero">
         <div class="eyebrow" data-counter="· 02 of 07">AI migration lab</div>
-        <h1 class="hero__title">AI as an enrollment instrument. <em>Press play.</em></h1>
-        <p class="hero__lede">The AI work on this engagement is not a capabilities slide &mdash; it's three working demos shipped into this page. <strong>Paste a Drupal URL and watch the cleanup.</strong> Read the llms.txt we'd ship on launch day. Inspect the Schema.org payload program pages will emit. Each demo is also an enrollment lever: clean content lets prospective students find HFU in ChatGPT and Perplexity searches, and the AI concierge James built at Carnegie has produced <strong>2,300+ inbound leads since 2025</strong> with no active campaigning. That is the evidence base for AI as an enrollment tool at Holy Family, not a promise.</p>
+        <h1 class="hero__title">How the new site finds students <em>for you.</em></h1>
+        <p class="hero__lede">Every piece of AI work proposed on this engagement traces to one question: <strong>does it help Holy Family enroll more of the right students, faster?</strong> The three demos on this page are working enrollment levers, not capability slides. Clean content is how prospective students find HFU in ChatGPT and Perplexity. Schema markup is how your BSN appears in Google's course carousel. The AI concierge James built at Carnegie has produced <strong>2,300+ inbound leads since 2025</strong> with no active campaigning. That is the evidence base, not a promise.</p>
 
         <div class="hero__stats">
           <div class="hero__stat">
-            <span class="hero__stat__label">Time saved</span>
+            <span class="hero__stat__label">Carnegie precedent</span>
+            <div class="hero__stat__value">2,300<em>+</em></div>
+            <div class="hero__stat__foot">Inbound leads from James's AI concierge, 2025–present, with no active campaigns</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Launch window</span>
+            <div class="hero__stat__value">Sept 1<em>, '26</em></div>
+            <div class="hero__stat__foot">Live in time for Fall 2026 recruitment — one full cycle before the RFP's implied April 2027</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">First-mover window</span>
+            <div class="hero__stat__value">0<em>/40</em></div>
+            <div class="hero__stat__foot">Catholic mid-Atlantic peers currently publishing an llms.txt (audited April 2026)</div>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat__label">Staff capacity returned</span>
             <div class="hero__stat__value">260–560<em>hrs</em></div>
-            <div class="hero__stat__foot">Across the full Drupal → WordPress migration</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Labor cost saved</span>
-            <div class="hero__stat__value"><em>$</em>39–85<em>K</em></div>
-            <div class="hero__stat__foot">Blended senior rate of $150/hr, low to high band</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Throughput</span>
-            <div class="hero__stat__value">40–60<em>/day</em></div>
-            <div class="hero__stat__foot">Pages processed per batch-API workflow day</div>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat__label">Redirect match</span>
-            <div class="hero__stat__value">0.98<em>τ</em></div>
-            <div class="hero__stat__foot">Cosine similarity threshold for auto-mapped URLs</div>
+            <div class="hero__stat__foot">Hours the HFU team gets back from migration work — pointed at recruitment, not copy-paste</div>
           </div>
         </div>
       </section>
@@ -1614,9 +1718,9 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">Demo 01 · URL cleanup pipeline</div>
-          <h2 class="section__title">Pick a Drupal URL. Watch the AI <em>fix it in front of you.</em></h2>
-          <p class="section__lede">Four pages sampled from holyfamily.edu. Click any chip — the left panel shows what the page looks like in Drupal today. The right panel shows the cleaned HTML our pipeline emits before it lands in WordPress. The log at the bottom is the exact sequence the Claude batch job runs for every one of the 1,601 URLs we're migrating.</p>
+          <div class="section__kicker">Demo 01 · pages a student can actually find</div>
+          <h2 class="section__title">Every cleaned page is a page prospective students <em>can actually find.</em></h2>
+          <p class="section__lede">Four pages sampled from holyfamily.edu. Click any chip — left is what a prospective student's search tool sees in Drupal today: broken markup, missing metadata, no schema. Right is what lands in WordPress after the pipeline runs: indexed, citable, legible to Google, ChatGPT, and Perplexity. The log is the exact sequence Claude runs for every one of the 1,601 URLs, so no page is left invisible to the search surfaces students actually use.</p>
         </div>
 
         <div class="demo" id="demo1">
@@ -1661,9 +1765,9 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">Demo 02 · the llms.txt file we'd ship</div>
-          <h2 class="section__title">The actual file that would live at <em>holyfamily.edu/llms.txt</em> on day one.</h2>
-          <p class="section__lede">llms.txt is the robots.txt for large language models — a structured Markdown summary that ChatGPT, Claude, Perplexity, and Gemini read when they need to answer questions about your institution. Here's exactly what Small College Consulting would publish at launch.</p>
+          <div class="section__kicker">Demo 02 · the file AI assistants read first</div>
+          <h2 class="section__title">When a prospective student asks ChatGPT about Holy Family, <em>this is the file that answers.</em></h2>
+          <p class="section__lede">llms.txt is the robots.txt for large language models. ChatGPT, Claude, Perplexity, and Gemini read it first when a prospective student asks a question about your institution — <em>is the MBA accredited, how does the RN-to-BSN work, what does transfer aid look like</em>. Here is the exact file Small College Consulting would publish at <code>holyfamily.edu/llms.txt</code> on launch day. Prospective students get an accurate answer with Holy Family as the source, instead of an AI's guess that sends them to a competitor.</p>
         </div>
 
         <div class="term-wrap">
@@ -1760,9 +1864,9 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">Demo 03 · Schema.org generator</div>
-          <h2 class="section__title">Every program page would emit <em>EducationalOccupationalProgram</em> JSON-LD.</h2>
-          <p class="section__lede">Click a program — we'll show you the exact Schema.org payload that page would embed. This is what makes Holy Family's degrees appear in Google's course carousel, Perplexity's answer cards, and the "compare programs" surface inside ChatGPT.</p>
+          <div class="section__kicker">Demo 03 · why your programs appear in AI answers</div>
+          <h2 class="section__title">Why your BSN would appear in Google's course carousel, <em>Perplexity's answer cards, and ChatGPT's program comparisons.</em></h2>
+          <p class="section__lede">Click a program — we'll show the Schema.org payload that page would embed. This is the structured data that lets search engines and AI assistants cite Holy Family's degrees with confidence, instead of guessing at them or deferring to a peer institution that tagged its content properly. Every program page would emit an <code>EducationalOccupationalProgram</code> payload like this one on launch day.</p>
         </div>
 
         <div class="schema">
@@ -1797,9 +1901,9 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">The ledger · where the 260 hours come from</div>
-          <h2 class="section__title">Five stages of the migration. <em>Every one of them</em> is AI-accelerated.</h2>
-          <p class="section__lede">We're not claiming magic. This is the same migration work your bidders will quote you — content audit, schema mapping, transformation, redirects, QA. The difference is Claude does the first draft of each one in minutes, and humans spend their time reviewing instead of typing.</p>
+          <div class="section__kicker">The ledger · hours returned to the HFU team</div>
+          <h2 class="section__title">The migration hours AI gives back to your team — <em>and what they do with them.</em></h2>
+          <p class="section__lede">Five migration stages, same work any bidder will quote — content audit, schema mapping, transformation, redirects, QA. What's different is Claude drafts the first pass in minutes, so humans spend their time reviewing instead of typing. The hours returned become campaign pages launched in days, admit-cycle emails tuned this week, program pages updated the afternoon a decision changes. Time pulled out of migration plumbing is time pushed into recruitment.</p>
         </div>
 
         <div class="hours">

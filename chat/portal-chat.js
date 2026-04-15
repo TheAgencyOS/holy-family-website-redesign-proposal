@@ -41,10 +41,9 @@
   const SEND_SVG = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.4 20.6 21.5 12 3.4 3.4l-.1 6.7L15 12 3.3 13.9z"/></svg>`;
 
   const SUGGESTED = [
-    'What are the three pillars of the proposal?',
-    'Walk me through the June to September 2026 timeline.',
-    'How is the $145,000 base scope structured?',
-    'Who are the four student personas?',
+    'How can AI help us increase enrollment?',
+    'How is a September 1st completion date possible?',
+    'How will Small College Consulting provide support?',
   ];
 
   // ── styles ────────────────────────────────────────────────
