@@ -1768,7 +1768,7 @@
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--teal-bright);
+      color: var(--cream);
       font-weight: 500;
       margin-bottom: 18px;
     }
@@ -1785,15 +1785,16 @@
     .budget__hero__body {
       font-size: 15.5px;
       line-height: 1.55;
-      color: rgba(250, 249, 246, 0.78);
+      color: var(--cream);
       max-width: 46ch;
     }
     .budget__hero__body strong { color: var(--cream); font-weight: 500; }
-    .budget__hero__body em { font-family: var(--serif); font-style: italic; color: var(--teal-bright); }
+    .budget__hero__body em { font-family: var(--serif); font-style: italic; color: var(--cream); }
 
     .budget__addons {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 260px));
+      justify-content: center;
       gap: 20px;
     }
     .addon {
