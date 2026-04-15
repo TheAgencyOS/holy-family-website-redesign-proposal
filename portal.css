@@ -268,9 +268,19 @@ select:-webkit-autofill {
   .case-spread__pull, .case-spread__credit,
   .stat, .metric, .tile, .panel, .persona, .persona-card,
   .timeline__row, .drift, .commitment, .tactic,
+  .pull, .pullquote, .callout, .quote,
+  .labor, .labor__col, .budget__hero, .anchor-card,
+  .state__grid, .state__copy, .vp-card, .hero__inner,
+  .toc, .toc__list, .toc__group,
   blockquote, table, tr, thead, tfoot {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+  }
+  /* Tighter widow/orphan controls on all body copy so stray
+     words like "2029" never land on a page by themselves. */
+  p, li, blockquote, dd {
+    orphans: 4 !important;
+    widows: 4 !important;
   }
 
   /* Keep headings glued to the content that follows */

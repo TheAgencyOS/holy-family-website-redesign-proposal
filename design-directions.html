@@ -70,24 +70,33 @@
     .d01__body { padding: 0.55in 0.5in 0.4in; display: grid; grid-template-rows: auto 1fr auto; gap: 0.28in; }
     .d01__slug { font-family: 'Space Mono', monospace; font-size: 9pt; letter-spacing: 0.2em; text-transform: uppercase; color: #000; padding: 6px 0; border-top: 3px solid #000; border-bottom: 1px solid #000; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; }
     .d01__slug .mid { font-weight: 700; letter-spacing: 0.12em; }
-    .d01__hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.35in; align-items: stretch; padding-top: 0.1in; }
+    .d01__hero {
+      display: grid;
+      /* Left column sized to content (whatever the display number
+         needs), right column fills the rest. `minmax(0, 1fr)` stops
+         the right column from being starved when the left overflows. */
+      grid-template-columns: minmax(0, auto) minmax(2.2in, 1fr);
+      gap: 0.35in;
+      align-items: stretch;
+      padding-top: 0.1in;
+    }
     .d01__num {
       font-family: 'Archivo Black', sans-serif;
-      /* Clamp the display number so "1,601" fits the 1.2fr grid cell
-         at every responsive width. 260pt overflowed the page at the
-         print render width. */
-      font-size: clamp(110pt, 22vw, 180pt);
+      /* Hard cap the number at a size that guarantees "1,601"
+         fits a 4in-wide column at Archivo Black's ~0.58 advance.
+         5 glyphs × 0.58 × size ≤ 4in × 72pt/in = 288pt, so
+         size ≤ 99pt. Use 88pt for slack. */
+      font-size: 88pt;
       line-height: 0.82;
       letter-spacing: -0.05em;
       color: #0a0a0a;
       font-feature-settings: 'tnum' 1;
       position: relative;
       white-space: nowrap;
-      overflow: visible;
     }
     .d01__num .hl {
       background: #ffcf00;
-      padding: 0 6px 10px 6px;
+      padding: 0 6px 8px 6px;
       display: inline-block;
       line-height: 0.82;
     }
