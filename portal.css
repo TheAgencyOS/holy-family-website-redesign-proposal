@@ -157,6 +157,28 @@ select:-webkit-autofill {
     contain: none !important;
     clip-path: none !important;
   }
+
+  /* ── CLAMP CONTAINERS TO VIEWPORT WIDTH ──────────────────
+     Desktop layouts use max-width: 1120px on grids, heros, and
+     section heads. That wider-than-viewport authoring causes the
+     right-edge clipping we see in the PDF. Force every container,
+     grid, hero, and section wrapper to fit its parent so content
+     lands inside the paper and nothing overflows the page edge. */
+  .section, section, .section__head, .section__content,
+  .hero, .hero__inner, .hero__cta, .footer, .footer__top, .footer__bottom,
+  .anchors, .vp-grid, .mockups, .stats, .stat-grid, .commitments,
+  .tactics, .evidence, .differentiators, .timeline, .team,
+  .case-spread, .case-spread__top, .case-spread__outcomes,
+  .case-spread__prose, .case-spread__relevance,
+  .labor, .budget, .related, .closing, .sitemap, .peers,
+  [class*="__grid"], [class*="--grid"], [class*="__inner"],
+  [class*="__content"], [class*="__wrapper"], [class*="__container"] {
+    max-width: 100% !important;
+    width: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
   /* Sticky/fixed page chrome floats over content in print — drop it */
   .site-nav, .site-topbar, .site-progress, .mobile-menu-btn,
   .scroll-progress, .fab-top, .jump-to-top {
@@ -168,14 +190,36 @@ select:-webkit-autofill {
     line-height: 1.4;
   }
 
-  /* Kill all the chrome — sidebar, toggles, scroll progress, chat */
+  /* Kill all the chrome — sidebar, toggles, scroll progress, chat,
+     concierge launcher bubbles, back-to-top FAB, mobile menu. The
+     chat launcher sits in its own portal root so we nuke anything
+     that looks like a fixed/floating UI element by class substring. */
   .site-nav, .site-topbar, .site-progress, .site-keyhint,
   .mobile-menu-btn, .mobile-menu-backdrop, .jump-to-top,
-  .scroll-progress, .skip-link, .fab-top, #fabTop,
-  .portal-chat, #portal-chat, [data-concierge], .concierge {
+  .scroll-progress, .skip-link, .fab-top, #fabTop, #back-to-top,
+  .portal-chat, #portal-chat, [data-concierge], .concierge,
+  .chat-launcher, #chatLauncher, .chat-bubble, .chat-widget,
+  .portal-chat__launcher, .portal-chat__bubble,
+  #concierge, #concierge-launcher, #concierge-fab,
+  [class*="chat-launch"], [class*="chat-bubble"], [class*="-launcher"],
+  [class*="launcher-"], [class*="concierge"], [id*="chat"], [id*="concierge"],
+  .fixed-fab, [class*="fab"], [class*="float-btn"],
+  iframe[src*="chat"], iframe[src*="concierge"] {
     display: none !important;
+    visibility: hidden !important;
   }
 
+  /* Force paper to pure white. portal.css sets `color-scheme: dark`
+     at the :root level which paints the print canvas dark on every
+     margin — printBackground respects that as the default bg before
+     any element paints. Force color-scheme: light + explicit white
+     at html/body so the paper is a clean white sheet. */
+  :root, html, body {
+    color-scheme: light !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+  }
   body { display: block !important; grid-template-columns: none !important; }
   main {
     padding: 0 !important;
@@ -183,6 +227,7 @@ select:-webkit-autofill {
     display: block !important;
     max-width: 100% !important;
     width: 100% !important;
+    background: #ffffff !important;
   }
 
   /* Force reveal / intersection-observer driven elements visible —

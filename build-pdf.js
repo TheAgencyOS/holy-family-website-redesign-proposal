@@ -78,7 +78,14 @@ async function renderPage(browser, url, outPath) {
   const page = await browser.newPage();
   // Wide desktop viewport so layouts that expect 1100-1280 px render
   // at their designed width. pdf(scale) then shrinks to Letter.
-  await page.setViewport({ width: 1280, height: 1800, deviceScaleFactor: 2 });
+  // Render at 1040 CSS px with scale 0.72 and 0.35" margins:
+  //   content printed width = 1040 × 0.72 = 748.8 px
+  //   Letter content area   = (8.5 - 0.7) × 96 = 748.8 px
+  // Exact fit with text as large as we can afford. Desktop layouts
+  // designed for 1100+ will still overflow their column specs; see
+  // the `.section, .anchors, ...` max-width overrides in the print
+  // CSS for the clamp that keeps them inside viewport width.
+  await page.setViewport({ width: 1040, height: 1500, deviceScaleFactor: 2 });
   await page.goto(`http://localhost:${PORT}/${url}`, {
     waitUntil: ['load', 'networkidle0'],
     timeout: 90000,
@@ -104,8 +111,8 @@ async function renderPage(browser, url, outPath) {
     // Scale < 1 shrinks the 1280-px layout so its full width fits the
     // 8.5" Letter paper without horizontal clipping. 0.62 ≈ 710/1144
     // (Letter content width ÷ desktop canvas after margins).
-    scale: 0.62,
-    margin: { top: '0.5in', bottom: '0.5in', left: '0.55in', right: '0.55in' },
+    scale: 0.72,
+    margin: { top: '0.4in', bottom: '0.4in', left: '0.35in', right: '0.35in' },
     preferCSSPageSize: false,
   });
   await page.close();
