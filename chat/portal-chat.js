@@ -700,4 +700,27 @@
       input.focus({ preventScroll: true });
     }
   }
+
+  // ── public API ───────────────────────────────────────────
+  // Lets page-level buttons trigger the concierge with a seeded prompt.
+  //   window.hfuChat.open()
+  //   window.hfuChat.ask('How do you help us capture a lead?')
+  window.hfuChat = {
+    open: openPanel,
+    close: closePanel,
+    toggle: togglePanel,
+    ask(prompt) {
+      if (!prompt) return;
+      openPanel();
+      // If a prior message is streaming, wait briefly.
+      const fire = () => {
+        if (streaming) { setTimeout(fire, 120); return; }
+        input.value = prompt;
+        autoGrow();
+        submit();
+      };
+      // Let the panel open animation settle before injecting.
+      setTimeout(fire, 240);
+    },
+  };
 })();

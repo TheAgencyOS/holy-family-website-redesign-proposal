@@ -1995,41 +1995,51 @@
       </section>
 
       <!-- ════════════════════════════════════════════════════════════
-           COMPETITORS TABLE
+           ENROLLMENT-MATH CALLOUT
+           ════════════════════════════════════════════════════════════ -->
+      <section class="section">
+        <div class="enrollment-math">
+          <div class="enrollment-math__kicker">The enrollment math</div>
+          <p class="enrollment-math__body">One full recruitment cycle separates <strong>September 1, 2026</strong> from the RFP's implied <strong>April 2027</strong>. Fall 2026 is when prospective students are searching, touring, and applying for the class that arrives on campus in fall 2027. A site that launches after that window <em>misses the cycle entirely.</em> A site that launches in time <em>influences it.</em> Every hour AI returns to the team, every schema tag that surfaces a program, every llms.txt query that lands an answer — that is the mechanism.</p>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════════
+           VIGNETTES — your team, one year from now
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">The delta · what the others won't show you</div>
-          <h2 class="section__title">What your other bidders will say vs. <em>what we actually ship.</em></h2>
-          <p class="section__lede">Every higher-ed agency in 2026 claims "AI capabilities." Most of them mean a few ChatGPT prompts inside a Google Doc. Here is the honest side-by-side.</p>
+          <div class="section__kicker">Your team, one year from now</div>
+          <h2 class="section__title">September 2027. Twelve months after launch, <em>here is what the week looks like.</em></h2>
+          <p class="section__lede">The clearest way to describe what the AI work delivers is to describe a week a year from now — not the tools underneath it. Three roles, three small scenes, each one an enrollment outcome the current site cannot produce.</p>
         </div>
 
-        <div class="compete">
-          <div class="compete__head">
-            <div class="compete__head__col">What competitors will say about AI<b>Buzzwords, no artifact</b></div>
-            <div class="compete__head__col">What we actually ship<b>Live <em>artifacts</em>, in the proposal</b></div>
-          </div>
+        <div class="vignettes">
 
-          <div class="compete__row">
-            <div class="compete__cell">"We use AI tools in our process"</div>
-            <div class="compete__cell">Working <code>llms.txt</code> at <code>/llms.txt</code> on launch day — the one you just scrolled through</div>
-          </div>
-          <div class="compete__row">
-            <div class="compete__cell">"AI-assisted content review"</div>
-            <div class="compete__cell">Batch Claude API content audit across all <code>1,601 URLs</code>, $61 total API spend</div>
-          </div>
-          <div class="compete__row">
-            <div class="compete__cell">"Smart search &amp; AI-powered discovery"</div>
-            <div class="compete__cell">Full <code>Schema.org</code> JSON-LD on every program page — the generator above is the real one</div>
-          </div>
-          <div class="compete__row">
-            <div class="compete__cell">"Faster, AI-accelerated migration"</div>
-            <div class="compete__cell">Embeddings-based redirect mapping via sentence-transformers, <code>0.98</code> match threshold, auditable</div>
-          </div>
-          <div class="compete__row">
-            <div class="compete__cell">"Modern, AI-ready tech stack"</div>
-            <div class="compete__cell">Three interactive demos you just played with — in the proposal page, not a deck</div>
-          </div>
+          <article class="vignette">
+            <div class="vignette__kicker">Role 01</div>
+            <h3 class="vignette__role">The <em>marketing director.</em></h3>
+            <div class="vignette__when">A Monday in September 2027</div>
+            <p class="vignette__body">Undergraduate Admissions wants a landing page for a new nursing-feeder partnership with a Philadelphia high school district, live by Friday. She writes the brief Monday morning.</p>
+            <p class="vignette__body">By Thursday the page is live — with its own metadata, schema markup, and a Slate-routed inquiry form. <strong>No agency thread, no developer ticket, no waiting.</strong> The campaign runs through the fall cycle instead of the spring one.</p>
+          </article>
+
+          <article class="vignette">
+            <div class="vignette__kicker">Role 02</div>
+            <h3 class="vignette__role">The <em>admissions team.</em></h3>
+            <div class="vignette__when">Twelve months into the concierge</div>
+            <p class="vignette__body">The AI concierge has been answering the questions counselors used to field over the phone — <em>is the MBA accredited, how does the RN-to-BSN work around shift hours, what does aid look like for transfers.</em> Every qualified conversation is handed to Slate.</p>
+            <p class="vignette__body">James's prior build at Carnegie produced <strong>2,300+ inbound leads since 2025</strong> with no active campaigns. Holy Family's concierge is now a year into its own curve — and counselors spend their calls on the students who are closest to applying, not the ones still gathering basics.</p>
+          </article>
+
+          <article class="vignette">
+            <div class="vignette__kicker">Role 03</div>
+            <h3 class="vignette__role">The <em>web manager.</em></h3>
+            <div class="vignette__when">A Tuesday the budget conversation comes up</div>
+            <p class="vignette__body">Rick's team ships a microsite for a new graduate program in an afternoon — not after a three-month vendor engagement. The CMS is plain WordPress. The AI scripts are plain Python and Bash, checked into a repo Rick controls.</p>
+            <p class="vignette__body">When the team wants to change a headline, they change a headline. <strong>The dollars that used to pay for vendor hours are now pointed at recruiting students.</strong> The next redesign budget, in five to seven years, starts from a healthier baseline because the site did not quietly decay in between.</p>
+          </article>
+
         </div>
       </section>
 
@@ -2038,9 +2048,9 @@
            ════════════════════════════════════════════════════════════ -->
       <section class="section">
         <div class="section__head">
-          <div class="section__kicker">The stack, named · open-source by choice</div>
-          <h2 class="section__title">The tools your team could run <em>themselves.</em></h2>
-          <p class="section__lede">No proprietary black box. Every component below is off-the-shelf, well-documented, and something Rick's team could operate directly a year after launch. The choice was made on maintainability, not on ownership theatre.</p>
+          <div class="section__kicker">Under the hood · for Rick's technical review</div>
+          <h2 class="section__title">What your team operates <em>after we leave.</em></h2>
+          <p class="section__lede">Benefits are the argument; tooling is the receipt. Every component below is off-the-shelf, well-documented, and something Rick's team could run directly a year after launch. No proprietary black box, no vendor lock. The choice was made on maintainability, so budget stays pointed at recruitment instead of the next migration.</p>
         </div>
 
         <div class="stack">

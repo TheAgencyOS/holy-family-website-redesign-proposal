@@ -30,7 +30,7 @@
       --ink:         #06213F;
       --ink-body:    rgba(6, 33, 63, 0.78);
       --ink-soft:    rgba(6, 33, 63, 0.58);
-      --ink-mute:    rgba(6, 33, 63, 0.42);
+      --ink-mute:    rgba(6, 33, 63, 0.64); /* WCAG AA 4.5:1 on cream · was 0.42 (2.56 failed) */
       --ink-whisper: rgba(6, 33, 63, 0.28);
       --rule:        rgba(6, 33, 63, 0.10);
       --rule-soft:   rgba(6, 33, 63, 0.05);
@@ -523,6 +523,30 @@
       display: flex;
       justify-content: center;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Big chatbot conversation mock (idea 04 centerpiece) */
+    .chatbot-hero {
+      max-width: 640px;
+      margin: 0 auto 36px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 30px 30px 26px;
+      box-shadow: 0 32px 80px rgba(6, 33, 63, 0.10), 0 4px 16px rgba(6, 33, 63, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+    .chatbot-hero .chat__bar .pill__dot {
+      background: #2A7F49;
+      box-shadow: 0 0 0 3px rgba(42, 127, 73, 0.18);
+    }
+    .bubble__meta--handoff {
+      color: var(--teal-deep);
+      font-weight: 500;
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -708,42 +732,103 @@
       line-height: 1.58;
       color: var(--ink-body);
     }
-    .cadence__row__meter {
-      display: grid;
-      gap: 8px;
+    /* Deliverable column — concrete things that ship each quarter (replaces filler meter) */
+    .cadence__row__ship {
       align-self: center;
+      padding-left: 18px;
+      border-left: 2px solid var(--teal);
     }
-    .cadence__row__meter__bar {
-      display: grid;
-      grid-template-columns: var(--scc-share, 100%) var(--hfu-share, 0%);
-      height: 5px;
-      border-radius: 3px;
-      overflow: hidden;
-      background: var(--rule-soft);
-    }
-    .cadence__row__meter__bar::before {
-      content: '';
-      background: var(--ink-mute);
-      opacity: 0.55;
-    }
-    .cadence__row__meter__bar::after {
-      content: '';
-      background: var(--teal);
-    }
-    .cadence__row__meter__labels {
-      display: flex;
-      justify-content: space-between;
+    .cadence__row--hfu .cadence__row__ship { border-left-color: var(--teal-deep); }
+    .cadence__row__ship__label {
       font-family: var(--mono);
       font-size: 5.5pt;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 9px;
+      display: block;
+    }
+    .cadence__row__ship ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .cadence__row__ship li {
+      font-family: var(--body);
+      font-size: 9pt;
+      line-height: 1.42;
+      color: var(--ink-body);
+      position: relative;
+      padding-left: 12px;
+    }
+    .cadence__row__ship li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1px;
+      background: var(--teal);
+    }
+    .cadence__row--hfu .cadence__row__ship li::before { background: var(--teal-deep); }
+    .cadence__row__ship li b { color: var(--ink); font-weight: 500; }
+
+    /* Quiet handback trajectory — a single purposeful graphic at the top of the cadence */
+    .cadence__arc {
+      margin: 4px 0 6px;
+      padding: 14px 0 14px;
+      border-bottom: 1px solid var(--rule-soft);
+      display: grid;
+      grid-template-columns: 98px 220px 1fr 180px;
+      gap: 24px;
+      align-items: center;
+    }
+    .cadence__arc__label {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--ink-mute);
     }
-    .cadence__row__meter__labels b {
-      color: var(--ink-body);
+    .cadence__arc__label b { color: var(--ink); font-weight: 500; display: block; margin-bottom: 3px; }
+    .cadence__arc__title {
+      font-family: var(--display);
+      font-size: 10pt;
       font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.006em;
     }
-    .cadence__row--hfu .cadence__row__meter__labels b:last-child { color: var(--teal-deep); }
+    .cadence__arc__track {
+      position: relative;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(to right,
+        var(--teal) 0%,
+        var(--teal) 25%,
+        var(--teal-deep) 55%,
+        #1f3544 80%,
+        #0F141A 100%);
+    }
+    .cadence__arc__tick {
+      position: absolute;
+      top: -3px;
+      bottom: -3px;
+      width: 1px;
+      background: var(--paper);
+    }
+    .cadence__arc__legend {
+      font-family: var(--mono);
+      font-size: 5.5pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      text-align: right;
+      line-height: 1.5;
+    }
+    .cadence__arc__legend b { color: var(--teal-deep); font-weight: 500; }
 
     /* ══════════════════════════════════════════════════════════════
        CODA — quiet method note
@@ -979,8 +1064,282 @@
         gap: 10px;
         padding: 20px 0 18px;
       }
-      .cadence__row__meter { max-width: 220px; margin-top: 4px; }
+      .cadence__row__ship { padding-left: 14px; margin-top: 4px; }
+      .cadence__arc { grid-template-columns: 1fr; gap: 10px; }
+      .cadence__arc__legend { text-align: left; }
       .filecard__body { font-size: 8pt; padding: 18px 18px; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       JOURNEY DIAGRAM — curious student → applicant
+       ══════════════════════════════════════════════════════════════ */
+    .journey { padding: 72px 0 64px; background: var(--cream-deep, #F1EDE4); }
+    .journey__head { text-align: center; max-width: 64ch; margin: 0 auto 48px; }
+    .journey__kicker {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal, #005357);
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .journey__kicker::before,
+    .journey__kicker::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--teal, #005357);
+    }
+    .journey__title {
+      font-family: 'Roobert', 'Instrument Sans', sans-serif;
+      font-weight: 400;
+      font-size: 30pt;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink, #0F1117);
+      margin-bottom: 20px;
+    }
+    .journey__title em {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal, #005357);
+      font-synthesis: none;
+    }
+    .journey__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: rgba(15,17,23,0.66);
+      max-width: 56ch;
+      margin: 0 auto;
+    }
+    .journey__flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 16px;
+    }
+    .journey__stage {
+      position: relative;
+      padding: 28px 18px 20px;
+      text-align: left;
+    }
+    .journey__stage::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba(0,83,87,0.22);
+      z-index: 0;
+    }
+    .journey__stage:first-child::before { left: 50%; }
+    .journey__stage:last-child::before { right: 50%; }
+    .journey__dot {
+      position: relative;
+      z-index: 1;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: #FAF8F3;
+      border: 1.5px solid var(--teal, #005357);
+      color: var(--teal, #005357);
+      display: grid;
+      place-items: center;
+      font-family: 'Roobert', sans-serif;
+      font-size: 11pt;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .journey__stage--anchor .journey__dot {
+      background: var(--teal, #005357);
+      color: #FAF8F3;
+    }
+    .journey__label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(15,17,23,0.46);
+      margin-bottom: 10px;
+    }
+    .journey__what {
+      font-family: 'Roobert', sans-serif;
+      font-size: 13pt;
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      color: var(--ink, #0F1117);
+      margin-bottom: 12px;
+      min-height: 3.2em;
+    }
+    .journey__ai {
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: rgba(15,17,23,0.66);
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,83,87,0.18);
+    }
+    .journey__ai b {
+      display: block;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal, #005357);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .journey__foot {
+      text-align: center;
+      max-width: 64ch;
+      margin: 48px auto 0;
+      font-size: 11pt;
+      line-height: 1.55;
+      color: rgba(15,17,23,0.6);
+      font-style: italic;
+      font-family: 'Instrument Serif', Georgia, serif;
+    }
+    @media (max-width: 920px) {
+      .journey { padding: 56px 0 48px; }
+      .journey__title { font-size: 24pt; }
+      .journey__flow {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .journey__stage { padding: 22px 20px 20px; }
+      .journey__stage::before { display: none; }
+      .journey__what { min-height: 0; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       MISSIONS — clickable chat prompts tied to the seven ideas
+       ══════════════════════════════════════════════════════════════ */
+    .missions { padding: 72px 0 64px; }
+    .missions__head { max-width: 64ch; margin: 0 auto 40px; text-align: center; }
+    .missions__kicker {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal, #005357);
+      margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .missions__kicker::before,
+    .missions__kicker::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--teal, #005357);
+    }
+    .missions__title {
+      font-family: 'Roobert', sans-serif;
+      font-weight: 400;
+      font-size: 30pt;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink, #0F1117);
+      margin-bottom: 18px;
+    }
+    .missions__title em {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--teal, #005357);
+      font-synthesis: none;
+    }
+    .missions__lede {
+      font-size: 13pt;
+      line-height: 1.55;
+      color: rgba(15,17,23,0.66);
+      max-width: 56ch;
+      margin: 0 auto;
+    }
+    .missions__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .mission {
+      text-align: left;
+      background: #FFFFFF;
+      border: 1px solid rgba(0,83,87,0.18);
+      border-radius: 4px;
+      padding: 24px 24px 22px;
+      cursor: pointer;
+      font-family: inherit;
+      color: inherit;
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 200ms ease, background 160ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    .mission:hover {
+      border-color: var(--teal, #005357);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -18px rgba(0,83,87,0.35), 0 4px 10px -6px rgba(6,28,59,0.12);
+    }
+    .mission:focus-visible {
+      outline: 2px solid var(--teal, #005357);
+      outline-offset: 3px;
+    }
+    .mission__tag {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal, #005357);
+    }
+    .mission__title {
+      font-family: 'Roobert', sans-serif;
+      font-size: 15pt;
+      line-height: 1.2;
+      letter-spacing: -0.014em;
+      color: var(--ink, #0F1117);
+      font-weight: 400;
+    }
+    .mission__body {
+      font-size: 10.5pt;
+      line-height: 1.5;
+      color: rgba(15,17,23,0.64);
+      flex: 1;
+    }
+    .mission__foot {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 7pt;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(15,17,23,0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .mission__foot::before {
+      content: '';
+      width: 18px; height: 1px;
+      background: rgba(0,83,87,0.4);
+    }
+    .mission:hover .mission__foot { color: var(--teal, #005357); }
+    .mission:hover .mission__foot::before { background: var(--teal, #005357); }
+    @media (max-width: 920px) {
+      .missions { padding: 48px 0 40px; }
+      .missions__title { font-size: 24pt; }
+      .missions__grid { grid-template-columns: 1fr; gap: 12px; padding: 0 20px; }
+      .mission { padding: 20px 20px 18px; }
     }
   </style>
 </head>
@@ -1043,7 +1402,7 @@
             Holy Family &middot; AI for enrollment
           </span>
 
-          <h1 class="hero__title">Seven ways AI helps Holy Family <em>enroll.</em></h1>
+          <h1 class="hero__title">Seven ways AI<br>helps Holy Family <em>enroll.</em></h1>
 
           <p class="hero__lede">
             Each earns its place by answering one question: does this help Holy Family enroll more of the right students? None are experimental. Each has a working analogue in production today.
@@ -1056,6 +1415,127 @@
           </div>
         </div>
       </header>
+
+
+      <!-- ══════════════════════════════════════════════════════════════
+           JOURNEY DIAGRAM — prospect to applicant, with AI doing quiet work
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="journey" aria-label="How a prospective student becomes an applicant">
+        <div class="wrap">
+          <div class="journey__head">
+            <span class="journey__kicker">The enrollment journey</span>
+            <h2 class="journey__title">How a curious student becomes <em>an applicant.</em></h2>
+            <p class="journey__lede">Five stages every prospective student moves through — and where AI does quiet work at each one, on behalf of Holy Family's team.</p>
+          </div>
+
+          <div class="journey__flow">
+
+            <div class="journey__stage">
+              <div class="journey__dot">1</div>
+              <div class="journey__label">Curious</div>
+              <div class="journey__what">A student asks ChatGPT or Google about nursing programs near Philadelphia.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>Every program page is written in a way AI assistants can read and cite.</div>
+            </div>
+
+            <div class="journey__stage">
+              <div class="journey__dot">2</div>
+              <div class="journey__label">Finds Holy Family</div>
+              <div class="journey__what">The answer comes back with Holy Family named, and links straight to holyfamily.edu.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>Holy Family shows up in the answer — not a third-party ranking page.</div>
+            </div>
+
+            <div class="journey__stage journey__stage--anchor">
+              <div class="journey__dot">3</div>
+              <div class="journey__label">Explores</div>
+              <div class="journey__what">They land on a page built for someone like them — a working nurse, a transfer parent, an adult returner.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>Marketing ships tailored landing pages in days, not months.</div>
+            </div>
+
+            <div class="journey__stage">
+              <div class="journey__dot">4</div>
+              <div class="journey__label">Asks</div>
+              <div class="journey__what">They have a question at 11 pm — about aid, transfer credits, clinical hours — and get a real answer.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>A concierge answers in Holy Family's voice when counselors are home.</div>
+            </div>
+
+            <div class="journey__stage">
+              <div class="journey__dot">5</div>
+              <div class="journey__label">Applies</div>
+              <div class="journey__what">They request information, meet a counselor by name, and begin the application.</div>
+              <div class="journey__ai"><b>AI on HFU's side</b>A qualified lead lands in Slate with the conversation attached.</div>
+            </div>
+
+          </div>
+
+          <p class="journey__foot">Every piece of AI on this page shortens the distance between stage 1 and stage 5.</p>
+        </div>
+      </section>
+
+
+      <!-- ══════════════════════════════════════════════════════════════
+           MISSIONS — let the committee try the concierge on a real task
+           ══════════════════════════════════════════════════════════════ -->
+      <section class="missions" aria-label="Try a mission with the AI concierge">
+        <div class="wrap">
+          <div class="missions__head">
+            <span class="missions__kicker">Try a mission</span>
+            <h2 class="missions__title">Put the AI to work. <em>Pick a mission.</em></h2>
+            <p class="missions__lede">Each button opens the concierge in the corner and asks it to do one real enrollment task on Holy Family's behalf. No setup, no sign-in — just click and watch.</p>
+          </div>
+
+          <div class="missions__grid">
+
+            <button type="button" class="mission" data-mission="capture-lead"
+              data-prompt="Walk me through how the 24/7 admissions concierge described in the proposal captures a prospective student at 11 pm — what questions it asks, how it stays in Holy Family's voice, and what lands in Slate for an admissions counselor the next morning.">
+              <span class="mission__tag">Capture</span>
+              <span class="mission__title">Capture a prospective student as a lead.</span>
+              <span class="mission__body">Hear how the concierge runs the conversation a counselor would run — and what it hands off.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+            <button type="button" class="mission" data-mission="landing-page"
+              data-prompt="Walk me through how the AI page-generation workflow in the proposal would produce a landing page for a Holy Family campaign aimed at working parents who want to finish their BSN. What does the one-screen brief ask for, what shows up in the draft, what is pulled from canonical CMS fields so nothing is hallucinated, and what does the marketing team review before it publishes?">
+              <span class="mission__tag">Draft</span>
+              <span class="mission__title">Draft a landing page for working-parent nurses.</span>
+              <span class="mission__body">See what the AI page-generation workflow returns before a human touches it.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+            <button type="button" class="mission" data-mission="ai-citation"
+              data-prompt="How would the llms.txt file and schema markup in the proposal change the way ChatGPT, Claude, and Perplexity answer a prospective student who asks 'is Holy Family University a good nursing school?' What facts need to be canonical on the site for the answer to be accurate, and how does Holy Family get cited instead of a third-party ranking site?">
+              <span class="mission__tag">See</span>
+              <span class="mission__title">See what AI assistants say about Holy Family.</span>
+              <span class="mission__body">Hear how discoverability changes once the llms.txt and schema work in the proposal goes live.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+            <button type="button" class="mission" data-mission="blog-posts"
+              data-prompt="Walk me through the Monday memo from the content engine described in the proposal. How does the weekly pipeline mine real prospect questions to propose three blog drafts, how does it stay in Holy Family's voice, and how is a human always in the loop before anything publishes?">
+              <span class="mission__tag">Propose</span>
+              <span class="mission__title">Propose this week's three blog posts.</span>
+              <span class="mission__body">How the Monday memo gets three drafts to marketing — with the reasoning behind each pick.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+            <button type="button" class="mission" data-mission="transfer-student"
+              data-prompt="Walk me through how the adult-learner concierge in the proposal would handle a 34-year-old transfer student with 48 prior credits who is working full-time and considering finishing a bachelor's at Holy Family. What does the conversation cover — transfer credit, cost after aid, FAFSA calendar — and where does it hand off to a named admissions counselor?">
+              <span class="mission__tag">Counsel</span>
+              <span class="mission__title">Counsel a transfer student with 48 credits.</span>
+              <span class="mission__body">How the adult-learner concierge turns a late-evening question into a real inquiry.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+            <button type="button" class="mission" data-mission="enrollment-memo"
+              data-prompt="Describe the quarterly enrollment intelligence memo from the proposal. What does Holy Family's marketing lead see in it — which programs are gaining traction in AI search, which prospect questions are rising, which pages to update — and how does the team act on it?">
+              <span class="mission__tag">Brief</span>
+              <span class="mission__title">Brief the marketing lead on this quarter.</span>
+              <span class="mission__body">What the quarterly enrollment intelligence memo contains, and how the team acts on it.</span>
+              <span class="mission__foot">Try it</span>
+            </button>
+
+          </div>
+        </div>
+      </section>
 
 
       <!-- ── Chapter I marker ──────────────────────────────────────── -->
@@ -1261,6 +1741,30 @@
         <div class="wrap wrap--narrow">
           <span class="eyebrow eyebrow--teal">Idea 04 &nbsp;·&nbsp; 24/7 Admissions Chatbot</span>
           <h2 class="idea-04__title">A counselor who's awake when <em>the family is.</em></h2>
+
+          <figure class="chatbot-hero" aria-label="Sample admissions chatbot conversation">
+            <div class="chat__bar">
+              <span class="pill__dot"></span>
+              Admissions · holyfamily.edu · Tuesday 9:47 pm
+            </div>
+            <div class="bubble bubble--ask">
+              My daughter is finishing her associate's in nursing this May. Can she transfer to Holy Family for her BSN?
+            </div>
+            <div class="bubble bubble--ans">
+              Yes — Holy Family's <strong>RN-to-BSN track</strong> is built for exactly this. Most students transfer in around 60 credits and finish the BSN in 15 months, online, with three start dates a year.
+              <span class="bubble__meta">Cited · /academics/rn-to-bsn</span>
+            </div>
+            <div class="bubble bubble--ask">
+              What would it cost after aid? She has her federal loans maxed already.
+            </div>
+            <div class="bubble bubble--ans">
+              For a working RN with federal limits reached, Pennsylvania PHEAA grants and Holy Family institutional aid often bring the <strong>effective per-credit cost into the $400–500 range</strong>, depending on FAFSA and income.
+              <br><br>
+              To model your daughter's exact numbers, I can book you with <strong>Maria Alvarez, our graduate nursing counselor</strong>. She has Tuesday 8:15 pm or Thursday 11:00 am open.
+              <span class="bubble__meta bubble__meta--handoff">↗ Hand-off · booked in Slate</span>
+            </div>
+          </figure>
+
           <p class="idea-04__body">
             A conversational assistant built on <strong>retrieval-augmented generation over 400+ Holy Family pages</strong> — program descriptions, syllabi, financial-aid FAQs, application deadlines, student-life content. It answers in the voice of admissions (few-shot tuned to real counselor replies), captures each conversation as a <strong>structured Slate contact record</strong> with name, email, program interest, and transcript, and books a human counselor the moment a question crosses the hand-off rules — typically the first specific financial-aid or graduate-application question.
           </p>
@@ -1417,45 +1921,71 @@
             </div>
 
             <div class="cadence" aria-label="Quarterly cadence, handback at Q3">
-              <div class="cadence__head">Year one &middot; who drives the audit</div>
+              <div class="cadence__head">Year one &middot; the audit, from our hands to yours</div>
 
-              <div class="cadence__row" style="--scc-share: 100%; --hfu-share: 0%;">
+              <div class="cadence__arc" aria-hidden="true">
+                <div class="cadence__arc__label"><b>Handback</b>Q1 &rarr; Q4</div>
+                <div class="cadence__arc__title">Authored by SCC. <em>Owned</em> by Holy Family by Q4.</div>
+                <div class="cadence__arc__track">
+                  <span class="cadence__arc__tick" style="left: 33.33%"></span>
+                  <span class="cadence__arc__tick" style="left: 66.66%"></span>
+                </div>
+                <div class="cadence__arc__legend">SCC teaches<br><b>HFU runs it</b></div>
+              </div>
+
+              <div class="cadence__row">
                 <div class="cadence__row__label"><b>Q1</b>Baseline</div>
                 <h4 class="cadence__row__title">Set the <em>baseline.</em></h4>
-                <p class="cadence__row__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard.</p>
-                <div class="cadence__row__meter">
-                  <div class="cadence__row__meter__bar"></div>
-                  <div class="cadence__row__meter__labels"><b>SCC 100%</b><span>HFU 0%</span></div>
+                <p class="cadence__row__body">Citation rate, accuracy, and recency measured across four AI assistants. The first scorecard &mdash; and the first drafted llms.txt sitting at the site root.</p>
+                <div class="cadence__row__ship">
+                  <span class="cadence__row__ship__label">What ships</span>
+                  <ul>
+                    <li><b>40-answer scorecard</b> (10 × 4)</li>
+                    <li><b>First llms.txt</b> + sitemap</li>
+                    <li>Drift log indexed to CMS pages</li>
+                  </ul>
                 </div>
               </div>
 
-              <div class="cadence__row" style="--scc-share: 70%; --hfu-share: 30%;">
+              <div class="cadence__row">
                 <div class="cadence__row__label"><b>Q2</b>Fix at source</div>
                 <h4 class="cadence__row__title">Correct the <em>drift.</em></h4>
-                <p class="cadence__row__body">Re-run the audit, fix errors in the CMS (not in prompts), re-index, re-submit. HFU shadows.</p>
-                <div class="cadence__row__meter">
-                  <div class="cadence__row__meter__bar"></div>
-                  <div class="cadence__row__meter__labels"><b>SCC 70%</b><span>HFU 30%</span></div>
+                <p class="cadence__row__body">Re-run the audit, fix every error in the CMS (not in a prompt, never in a prompt), re-index, re-submit. Rick&rsquo;s team shadows every step.</p>
+                <div class="cadence__row__ship">
+                  <span class="cadence__row__ship__label">What ships</span>
+                  <ul>
+                    <li><b>CMS corrections</b> pushed</li>
+                    <li>Sitemap + llms.txt <b>re-generated</b></li>
+                    <li>Bing &amp; Google <b>re-submitted</b></li>
+                  </ul>
                 </div>
               </div>
 
-              <div class="cadence__row cadence__row--hfu" style="--scc-share: 40%; --hfu-share: 60%;">
+              <div class="cadence__row cadence__row--hfu">
                 <div class="cadence__row__label"><b>Q3</b>Handback</div>
                 <h4 class="cadence__row__title">Transfer the <em>playbook.</em></h4>
-                <p class="cadence__row__body">Prompts, rubric, dashboards, and vendor logins move to HFU. Run the audit together, side-by-side.</p>
-                <div class="cadence__row__meter">
-                  <div class="cadence__row__meter__bar"></div>
-                  <div class="cadence__row__meter__labels"><span>SCC 40%</span><b>HFU 60%</b></div>
+                <p class="cadence__row__body">Prompts binder, scoring rubric, Looker Studio template, and vendor logins move to HFU. We run the third audit together, side-by-side in the same room.</p>
+                <div class="cadence__row__ship">
+                  <span class="cadence__row__ship__label">What ships</span>
+                  <ul>
+                    <li><b>Prompts binder</b> + rubric</li>
+                    <li>Looker Studio template</li>
+                    <li>Vendor logins transferred</li>
+                  </ul>
                 </div>
               </div>
 
-              <div class="cadence__row cadence__row--hfu" style="--scc-share: 10%; --hfu-share: 90%;">
+              <div class="cadence__row cadence__row--hfu">
                 <div class="cadence__row__label"><b>Q4</b>Internal cadence</div>
                 <h4 class="cadence__row__title">Holy Family <em>owns it.</em></h4>
-                <p class="cadence__row__body">HFU runs the quarterly audit in-house. SCC on call for edge cases &mdash; no retainer required.</p>
-                <div class="cadence__row__meter">
-                  <div class="cadence__row__meter__bar"></div>
-                  <div class="cadence__row__meter__labels"><span>SCC 10%</span><b>HFU 90%</b></div>
+                <p class="cadence__row__body">HFU runs the quarterly audit in-house. SCC on call for edge cases, no retainer required &mdash; the playbook is yours and the team is trained to use it.</p>
+                <div class="cadence__row__ship">
+                  <span class="cadence__row__ship__label">What ships</span>
+                  <ul>
+                    <li>Fourth audit <b>run by HFU</b></li>
+                    <li>Edge-case escalation path</li>
+                    <li><b>No retainer required</b></li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -1497,5 +2027,39 @@
 
   <script src="portal.js" defer></script>
   <script src="chat/portal-chat.js" defer></script>
+  <script>
+    // Wire the "Try a mission" buttons to the concierge.
+    // Each button has a data-prompt describing the task.
+    (function () {
+      function wire() {
+        document.querySelectorAll('.mission[data-prompt]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var prompt = btn.getAttribute('data-prompt');
+            if (!prompt) return;
+            if (window.hfuChat && typeof window.hfuChat.ask === 'function') {
+              window.hfuChat.ask(prompt);
+            } else {
+              // Chat hasn't mounted yet — poll briefly, then give up quietly.
+              var tries = 0;
+              var iv = setInterval(function () {
+                tries += 1;
+                if (window.hfuChat && typeof window.hfuChat.ask === 'function') {
+                  clearInterval(iv);
+                  window.hfuChat.ask(prompt);
+                } else if (tries > 40) {
+                  clearInterval(iv);
+                }
+              }, 100);
+            }
+          });
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wire);
+      } else {
+        wire();
+      }
+    })();
+  </script>
 </body>
 </html>
