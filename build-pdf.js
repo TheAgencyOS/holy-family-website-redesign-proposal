@@ -115,11 +115,13 @@ async function renderPage(browser, url, outPath, opts = {}) {
   page.on('console', m => { if (String(m.text()).startsWith('PROBE')) console.log('   · ' + m.text()); });
   // Wide desktop viewport so layouts that expect 1100-1280 px render
   // at their designed width. pdf(scale) then shrinks to Letter.
-  // Render at 960 CSS px with scale 0.78 and 0.35" margins:
-  //   content printed width = 960 × 0.78 = 748.8 px
-  //   Letter content area   = (8.5 - 0.7) × 96 = 748.8 px
-  // Exact fit, with larger text than the previous 1040 × 0.72.
-  await page.setViewport({ width: 960, height: 1400, deviceScaleFactor: 2 });
+  // Render at 1020 CSS px with scale 0.80 and zero paper margins:
+  //   content printed width = 1020 × 0.80 = 816 px
+  //   Letter paper width    = 8.5 × 96    = 816 px  ← exact full bleed
+  // Regular sections add their own interior padding; the Section A–G
+  // dividers, hero, appendix cover, and other dark panels paint
+  // edge-to-edge with their section backgrounds.
+  await page.setViewport({ width: 1020, height: 1400, deviceScaleFactor: 2 });
   await page.goto(`http://localhost:${PORT}/${url}`, {
     waitUntil: ['load', 'networkidle0'],
     timeout: 90000,
@@ -206,8 +208,8 @@ async function renderPage(browser, url, outPath, opts = {}) {
     // Scale < 1 shrinks the 1280-px layout so its full width fits the
     // 8.5" Letter paper without horizontal clipping. 0.62 ≈ 710/1144
     // (Letter content width ÷ desktop canvas after margins).
-    scale: 0.78,
-    margin: { top: '0.4in', bottom: '0.4in', left: '0.35in', right: '0.35in' },
+    scale: 0.80,
+    margin: { top: '0in', bottom: '0in', left: '0in', right: '0in' },
     preferCSSPageSize: false,
   });
   await page.close();

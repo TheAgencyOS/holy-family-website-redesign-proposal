@@ -73,14 +73,24 @@
     .d01__hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0.35in; align-items: stretch; padding-top: 0.1in; }
     .d01__num {
       font-family: 'Archivo Black', sans-serif;
-      font-size: 260pt;
-      line-height: 0.78;
+      /* Clamp the display number so "1,601" fits the 1.2fr grid cell
+         at every responsive width. 260pt overflowed the page at the
+         print render width. */
+      font-size: clamp(110pt, 22vw, 180pt);
+      line-height: 0.82;
       letter-spacing: -0.05em;
       color: #0a0a0a;
       font-feature-settings: 'tnum' 1;
       position: relative;
+      white-space: nowrap;
+      overflow: visible;
     }
-    .d01__num .hl { background: #ffcf00; padding: 0 4px 12px 4px; display: inline-block; line-height: 0.78; }
+    .d01__num .hl {
+      background: #ffcf00;
+      padding: 0 6px 10px 6px;
+      display: inline-block;
+      line-height: 0.82;
+    }
     .d01__kicker {
       font-family: 'Archivo Black', sans-serif;
       font-size: 14pt;
@@ -175,13 +185,18 @@
     .d02__title b {
       position: relative;
       display: inline-block;
-      color: #fefbf3;
+      /* Deep navy on pink, WCAG AA contrast. The previous cream-
+         on-pink with mix-blend-mode: multiply rendered the word
+         "keep" nearly invisible because multiply darkened the
+         cream into the same pink as the background. */
+      color: #003a6b;
+      font-weight: inherit;
+      padding: 0 10px;
     }
     .d02__title b::before {
       content: '';
       position: absolute; inset: -4px -8px -2px -6px;
-      background: #ff4d8f;
-      mix-blend-mode: multiply;
+      background: #ffcf2d;
       z-index: -1;
       transform: rotate(-1.5deg);
     }

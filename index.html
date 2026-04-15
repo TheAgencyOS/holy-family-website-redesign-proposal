@@ -2006,7 +2006,7 @@
 
     /* ════════════════════════════════════════════════════════════════
        RFP SECTION 9 STRUCTURE
-       Response must be organised under Section A–G. Dividers below
+       Response must be organized under Section A–G. Dividers below
        precede every major section group, and flex `order` on main
        sequences the existing section blocks into the right order on
        both screen and print.
@@ -2036,8 +2036,20 @@
       text-align: left;
       border-top: 1px solid rgba(255,255,255,0.08);
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      /* Keep the divider on a single page — splitting a title
+         across pages produces half-words at the page edge. */
+      break-inside: avoid;
+      page-break-inside: avoid;
+      /* New Section → new page when we're close to the bottom. */
+      break-before: page;
+      page-break-before: always;
     }
-    .rfp-divider__inner { max-width: 1120px; margin: 0 auto; }
+    .rfp-divider__inner {
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
     .rfp-divider__eyebrow {
       font-family: var(--mono);
       font-size: 11px;
@@ -2048,12 +2060,23 @@
     }
     .rfp-divider__label {
       font-family: var(--display);
-      font-size: clamp(38px, 5.6vw, 64px);
-      line-height: 1.04;
+      /* Clamp title size so long section names like "Additional
+         information & differentiation." fit on one line at the
+         print render width (1020 CSS px × 0.80 scale). */
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
       font-weight: 400;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
       margin: 0 0 18px 0;
+      max-width: 100%;
+      word-break: normal;
+      overflow-wrap: break-word;
+      /* The global h2 rule sets color: var(--ink) — same as the
+         divider's dark background. Force cream so non-em text is
+         visible against the dark panel. */
+      color: var(--cream);
     }
+    .rfp-divider__label, .rfp-divider h2, .rfp-divider h3 { color: var(--cream) !important; }
     .rfp-divider__label em {
       font-family: var(--serif);
       font-style: italic;
@@ -2265,13 +2288,13 @@
         transition: none !important;
       }
 
-      /* Compact every section. Original 120px top/bottom padding wasted
-         ~2.5in per section × 21 sections = ~5 pages of pure padding. */
+      /* Zero paper margins → regular sections need interior padding
+         so body copy doesn't kiss the paper edge. */
       .section {
-        padding: 0.28in 0.22in !important;
+        padding: 0.42in 0.55in !important;
         break-inside: auto;
       }
-      .section:first-of-type { padding-top: 0.18in !important; }
+      .section:first-of-type { padding-top: 0.35in !important; }
       .section__head {
         margin: 0 0 0.18in 0 !important;
         max-width: 100% !important;
@@ -2308,31 +2331,56 @@
       .section__cta { margin-top: 10pt !important; }
 
       .hero {
-        /* Fill the first page and vertically centre the title + dek.
-           The height is chosen to fit tightly inside one Letter page
-           at our render scale: (11in - 0.8in top/bottom margins) / 0.78 ≈ 13.1in,
-           so we use ~12.5in to guarantee the hero occupies the full page
-           without spilling onto page 2. */
-        min-height: 12.5in !important;
-        height: 12.5in !important;
-        padding: 0 0.6in !important;
+        /* Full-bleed cover page. Zero paper margins means the hero
+           fills 8.5 × 11 exactly; min-height ~= content area / scale. */
+        min-height: 13.6in !important;
+        height: 13.6in !important;
+        padding: 0 0.8in !important;
+        margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: stretch !important;
         page-break-after: always;
       }
-      .hero__inner { margin: auto !important; }
+      .hero__inner { margin: auto !important; max-width: 100% !important; }
 
       .appendix-cover {
-        /* Same cover-height trick for the appendix divider */
-        min-height: 12.5in !important;
-        height: 12.5in !important;
-        padding: 0 1in !important;
+        min-height: 13.6in !important;
+        height: 13.6in !important;
+        padding: 0 1.1in !important;
+        margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: flex-start !important;
+      }
+
+      /* Section A–G dividers: full-bleed edge to edge, each on its
+         own fresh page (break-before only — content follows on the
+         next page naturally). */
+      .rfp-divider {
+        padding: 1.0in 0.8in !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-before: page;
+        page-break-before: always;
+      }
+      .rfp-divider__inner { max-width: 100% !important; }
+      .rfp-divider__label {
+        font-size: 34pt !important;
+        line-height: 1.08 !important;
+      }
+      .rfp-divider__lede { font-size: 13pt !important; }
+      .rfp-divider__items { font-size: 9.5pt !important; }
+
+      /* TOC page: full-bleed paper section */
+      .toc {
+        padding: 0.7in 0.7in 0.6in !important;
+        margin: 0 !important;
       }
       .hero__title { font-size: 30pt !important; line-height: 1.06 !important; }
       .hero__dek { font-size: 12pt !important; }
@@ -2510,7 +2558,7 @@
   <section class="toc" id="toc">
     <div class="toc__inner">
       <div class="toc__eyebrow reveal">Table of Contents · RFP Section 9</div>
-      <h2 class="toc__title reveal" data-delay="1">How this proposal is <em>organised</em>.</h2>
+      <h2 class="toc__title reveal" data-delay="1">How this proposal is <em>organized</em>.</h2>
       <ol class="toc__list">
         <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">Executive Summary</span><span class="toc__page" data-toc-page="letter">—</span></li>
         <li class="toc__group">Section A · Agency Information &amp; Experience</li>
