@@ -17,6 +17,8 @@ const RESEARCH_DIR = path.resolve(SITE_DIR, '..');
 const HTML_PAGES = [
   'index.html',
   'what-ai-can-do.html',
+  'opportunities-we-see.html',
+  'discovery.html',
   'mission.html',
   'enrollment.html',
   'personas.html',
@@ -27,10 +29,13 @@ const HTML_PAGES = [
   'sitemap-atlas.html',
 ];
 
+// The action-items doc is the authoritative source for pricing, timeline,
+// team, and partnership — per CLAUDE.md it wins over any older draft. Keep
+// it first so it's never truncated if the budget is hit.
 const MD_DOCS = [
+  '../2026-04-14 scc-strategy-call-action-items.md',
   '../Executive-Summary.md',
   '../2026-04-11 hfu-rfp-what-they-actually-want.md',
-  '../2026-04-10 hfu-rfp-response.md',
   '../COMPLETE-PROPOSAL.md',
   'BRIEFING.md',
 ];
@@ -97,9 +102,11 @@ for (const doc of MD_DOCS) {
   if (text) sections.push({ source: path.basename(doc), text });
 }
 
-// Budget: ~220k chars ≈ 55k tokens. gpt-4o-mini handles 128k tokens, so this
-// leaves comfortable headroom for the system prompt, history, and response.
-const CHAR_BUDGET = 220_000;
+// Budget: ~320k chars ≈ 80k tokens. gpt-4o-mini handles 128k tokens, which
+// still leaves headroom for the system prompt (~4k), 20 turns of history,
+// and a 700-token response. Bumped from 220k so the authoritative docs and
+// all proposal pages fit without tail-truncation.
+const CHAR_BUDGET = 320_000;
 let used = 0;
 const trimmed = [];
 for (const s of sections) {
