@@ -1752,8 +1752,56 @@
       color: var(--ink-2);
     }
     .member__bio em { font-family: var(--serif); font-style: italic; color: var(--teal); }
+    .member__commit {
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--ink-3);
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .member__commit strong { color: var(--ink); font-weight: 500; }
     @media (max-width: 900px) { .team { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .team { grid-template-columns: 1fr; } }
+
+    /* ── A.5 References + A.6 Subcontractors blocks ────────── */
+    .refsblock, .subsblock {
+      max-width: 1120px;
+      margin: 40px auto 0;
+      padding: 24px 28px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--teal);
+      border-radius: 10px;
+    }
+    .refsblock__label, .subsblock__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .refsblock__intro, .subsblock__body {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    .refsblock__list {
+      list-style: none;
+      margin: 14px 0 0 0;
+      padding: 0;
+    }
+    .refsblock__list li {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      padding: 8px 0;
+      border-top: 1px dashed var(--line);
+    }
+    .refsblock__list strong { color: var(--ink); }
+    .refsblock__list a { color: var(--teal); border-bottom: 1px solid rgba(27,122,134,0.35); }
 
     /* ════════════════════════════════════════════════════════════════
        BUDGET
@@ -2005,6 +2053,337 @@
     @media screen { .appendix-cover { display: none !important; } }
 
     /* ════════════════════════════════════════════════════════════════
+       RFP §9 GAP-CLOSING SECTIONS · A.1, B.5/6/8/9, C.1/4/5, D.2/3/4,
+       F.1, G.1/2/3 — appended to close Section 9 compliance gaps.
+       ════════════════════════════════════════════════════════════════ */
+
+    /* ── A.1 Agency overview ── */
+    #agency .agency__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .agency__card {
+      padding: 22px 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--teal);
+      border-radius: 10px;
+    }
+    .agency__card__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .agency__card__v {
+      font-family: var(--display);
+      font-size: 22px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .agency__card__v a { color: var(--ink); border-bottom: 1px solid rgba(27,122,134,0.35); }
+    .agency__card__v small { font-family: var(--mono); font-size: 10.5px; font-weight: 400; color: var(--ink-3); letter-spacing: 0.02em; display: block; margin-top: 4px; }
+    .agency__card__sub {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: var(--ink-3);
+    }
+    .agency__card__sub a { color: var(--teal); }
+    .agency__mission {
+      max-width: 1120px;
+      margin: 36px auto 0;
+      padding: 32px 36px;
+      background: var(--cream-deep);
+      border-radius: 14px;
+    }
+    .agency__mission__eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .agency__mission__quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.38;
+      color: var(--ink);
+      margin: 0 0 16px 0;
+    }
+    .agency__mission__body {
+      font-size: 13.5px;
+      line-height: 1.58;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    @media (max-width: 900px) { #agency .agency__grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { #agency .agency__grid { grid-template-columns: 1fr; } }
+
+    /* ── B-methodology / D-pm-qa / C-detail shared grid ── */
+    .bmeth__grid, .dpmqa__grid, .cdetail__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .bmeth__col, .dpmqa__col, .cdetail__col {
+      padding: 22px 24px 26px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .bmeth__col--risk { grid-column: 1 / -1; border-left: 4px solid var(--teal); }
+    .bmeth__head, .dpmqa__head, .cdetail__head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .bmeth__list, .dpmqa__list, .cdetail__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .bmeth__list li, .dpmqa__list li, .cdetail__list li {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-2);
+      padding: 6px 0 6px 14px;
+      position: relative;
+    }
+    .bmeth__list li::before, .dpmqa__list li::before, .cdetail__list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .bmeth__list strong, .dpmqa__list strong, .cdetail__list strong { color: var(--ink); font-weight: 500; }
+    .bmeth__list code, .dpmqa__list code, .cdetail__list code { font-family: var(--mono); font-size: 11px; color: var(--teal-deep); }
+    .bmeth__ledge {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin: 0 0 12px 0;
+    }
+    .bmeth__risks {
+      counter-reset: risk;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .bmeth__risks li {
+      counter-increment: risk;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--ink-2);
+      padding: 10px 12px 10px 32px;
+      background: var(--cream);
+      border-radius: 6px;
+      position: relative;
+    }
+    .bmeth__risks li::before {
+      content: counter(risk, decimal-leading-zero);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--teal);
+      font-weight: 600;
+    }
+    .bmeth__risks strong { color: var(--ink); font-weight: 500; }
+    .bmeth__contingency {
+      margin: 14px 0 0 0;
+      padding: 12px 14px;
+      background: var(--cream-deep);
+      border-left: 3px solid var(--teal);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-2);
+    }
+    .bmeth__contingency strong { color: var(--ink); }
+    @media (max-width: 900px) {
+      .bmeth__grid, .dpmqa__grid, .cdetail__grid { grid-template-columns: 1fr; }
+      .bmeth__risks { grid-template-columns: 1fr; }
+    }
+
+    /* ── F.1 SLA table ── */
+    .sla { max-width: 1120px; margin: 0 auto; }
+    .sla__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .sla__table th {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: left;
+      padding: 12px 14px;
+      color: var(--teal);
+      background: var(--cream-deep);
+      border-bottom: 2px solid var(--ink);
+    }
+    .sla__table td {
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      color: var(--ink-2);
+      line-height: 1.45;
+    }
+    .sla__table tr:last-child td { border-bottom: none; }
+    .sla__table td:first-child { color: var(--ink); font-weight: 500; min-width: 120px; }
+    .sla__table strong { color: var(--ink); font-weight: 500; }
+    .sla__note {
+      margin-top: 16px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--ink-3);
+    }
+    .sla__note strong { color: var(--ink); }
+
+    /* ── G.1/G.2/G.3 gblock ── */
+    .gblock {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .gblock__head {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 28px 0 12px 0;
+      padding-top: 20px;
+      border-top: 2px solid var(--ink);
+    }
+    .gblock__head:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .gblock__body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 0 0 14px 0;
+    }
+    .gblock__body strong { color: var(--ink); font-weight: 500; }
+    .gblock__body em { font-family: var(--serif); font-style: italic; color: var(--ink); }
+    .gblock__body code { font-family: var(--mono); font-size: 12px; color: var(--teal-deep); }
+    .gblock__questions {
+      margin: 12px 0 0 0;
+      padding-left: 24px;
+    }
+    .gblock__questions li {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      padding: 8px 0;
+    }
+    .gblock__questions strong { color: var(--ink); font-weight: 500; }
+
+    /* ── E.1 policy + E.2 assumptions/exclusions ── */
+    .epolicy {
+      max-width: 1120px;
+      margin: 0 auto 28px;
+      padding: 22px 26px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--teal);
+      border-radius: 10px;
+    }
+    .epolicy__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .epolicy__body {
+      font-size: 13.5px;
+      line-height: 1.58;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    .epolicy__body strong { color: var(--ink); font-weight: 500; }
+
+    .eassum {
+      max-width: 1120px;
+      margin: 40px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .eassum__col {
+      padding: 22px 24px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .eassum__label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eassum__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .eassum__list li {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-2);
+      padding: 6px 0 6px 16px;
+      position: relative;
+    }
+    .eassum__list li::before {
+      content: '·';
+      position: absolute;
+      left: 2px;
+      top: 4px;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .eassum__list strong { color: var(--ink); font-weight: 500; }
+    .eassum__list em { font-family: var(--serif); font-style: italic; color: var(--ink); }
+    .eassum__footer {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+      padding: 22px 26px;
+      background: var(--cream-deep);
+      border-radius: 10px;
+    }
+    .eassum__body {
+      font-size: 13.5px;
+      line-height: 1.58;
+      color: var(--ink-2);
+      margin: 0;
+    }
+    @media (max-width: 900px) { .eassum { grid-template-columns: 1fr; } }
+
+    /* ════════════════════════════════════════════════════════════════
        RFP SECTION 9 STRUCTURE
        Response must be organized under Section A–G. Dividers below
        precede every major section group, and flex `order` on main
@@ -2188,27 +2567,33 @@
     main > #letter               { order: 10;  }
     main > #thesis               { order: 11;  }
     main > #sec-a-divider        { order: 15;  }
-    main > #valuepack            { order: 16;  }  /* A.3 portfolio teaser */
-    main > #team                 { order: 17;  }  /* A.2 team composition */
-    main > #evidence             { order: 18;  }  /* A.4 collaboration */
+    main > #agency               { order: 16;  }  /* A.1 agency overview */
+    main > #valuepack            { order: 17;  }  /* A.3 portfolio teaser */
+    main > #team                 { order: 18;  }  /* A.2 team composition */
+    main > #evidence             { order: 19;  }  /* A.4 collaboration */
     main > #sec-b-divider        { order: 20;  }
     main > #commitments          { order: 21;  }
     main > #tactics              { order: 22;  }
     main > #mockups              { order: 23;  }
     main > #sitemap              { order: 24;  }
+    main > #b-methodology        { order: 25;  }  /* B.5 dev + B.6 migration + B.8 collab + B.9 risk */
     main > #sec-c-divider        { order: 30;  }
     main > #state                { order: 31;  }
     main > #ai-arch              { order: 32;  }
     main > #differentiators      { order: 33;  }
+    main > #c-detail             { order: 34;  }  /* C.1 security + C.4 a11y tools + C.5 integrations */
     main > #sec-d-divider        { order: 40;  }
     main > #timeline             { order: 41;  }
+    main > #d-pm-qa              { order: 42;  }  /* D.2 PM + D.3 change + D.4 QA */
     main > #sec-e-divider        { order: 50;  }
     main > #budget               { order: 51;  }
     main > #sec-f-divider        { order: 60;  }
     main > #stewardship          { order: 61;  }
+    main > #f-sla                { order: 62;  }  /* F.1 response-time SLA */
     main > #sec-g-divider        { order: 70;  }
     main > #peers                { order: 71;  }
     main > #mission              { order: 72;  }
+    main > #g-additional         { order: 73;  }  /* G.1 innovation + G.2 values + G.3 clarifications */
     main > #closing              { order: 80;  }
     /* Appendix */
     main > .appendix-cover       { order: 100; }
@@ -2549,30 +2934,46 @@
       <div class="toc__eyebrow reveal">Table of Contents · RFP Section 9</div>
       <h2 class="toc__title reveal" data-delay="1">How this proposal is <em>organized</em>.</h2>
       <ol class="toc__list">
-        <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">Executive Summary</span><span class="toc__page" data-toc-page="letter">—</span></li>
+        <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">Executive Summary · letter &amp; thesis</span><span class="toc__page" data-toc-page="letter">—</span></li>
         <li class="toc__group">Section A · Agency Information &amp; Experience</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">A.1</span><span class="toc__label">Agency overview &amp; Day-1 Value Pack</span><span class="toc__page" data-toc-page="valuepack">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">A.2</span><span class="toc__label">Team composition (full bios in Appendix)</span><span class="toc__page" data-toc-page="team">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">A.3</span><span class="toc__label">Higher-ed portfolio (full case studies in Appendix)</span><span class="toc__page" data-toc-page="case-studies">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">A.4</span><span class="toc__label">Collaborative development experience</span><span class="toc__page" data-toc-page="evidence">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.1</span><span class="toc__label">Agency overview · Small College Consulting</span><span class="toc__page" data-toc-page="agency">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.2</span><span class="toc__label">Team composition · four people, time commitment, HE experience</span><span class="toc__page" data-toc-page="team">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.3</span><span class="toc__label">Higher-ed portfolio · Day-1 Value Pack · full case studies in Appendix</span><span class="toc__page" data-toc-page="valuepack">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.4</span><span class="toc__label">Collaborative development experience · live at Holy Family</span><span class="toc__page" data-toc-page="evidence">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.5</span><span class="toc__label">References · three contactable higher-ed references</span><span class="toc__page" data-toc-page="team">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">A.6</span><span class="toc__label">Subcontractors · none</span><span class="toc__page" data-toc-page="team">—</span></li>
         <li class="toc__group">Section B · Approach &amp; Methodology</li>
         <li class="toc__item toc__item--sub"><span class="toc__num">B.1</span><span class="toc__label">Project approach &amp; three commitments</span><span class="toc__page" data-toc-page="commitments">—</span></li>
         <li class="toc__item toc__item--sub"><span class="toc__num">B.2</span><span class="toc__label">Tactics · four moves for adult &amp; grad enrollment</span><span class="toc__page" data-toc-page="tactics">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">B.3</span><span class="toc__label">Design process &amp; mockups</span><span class="toc__page" data-toc-page="mockups">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">B.4</span><span class="toc__label">Information architecture</span><span class="toc__page" data-toc-page="sitemap">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.3</span><span class="toc__label">Information architecture &amp; sitemap</span><span class="toc__page" data-toc-page="sitemap">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.4</span><span class="toc__label">Design process &amp; mockups</span><span class="toc__page" data-toc-page="mockups">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.5</span><span class="toc__label">Development methodology</span><span class="toc__page" data-toc-page="b-methodology">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.6</span><span class="toc__label">Content strategy &amp; migration</span><span class="toc__page" data-toc-page="b-methodology">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.8</span><span class="toc__label">Collaborative dev process with HFU</span><span class="toc__page" data-toc-page="b-methodology">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">B.9</span><span class="toc__label">Risk management · nine named risks</span><span class="toc__page" data-toc-page="b-methodology">—</span></li>
         <li class="toc__group">Section C · Technical Approach</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">C.1</span><span class="toc__label">State of holyfamily.edu · audit &amp; CMS recommendation</span><span class="toc__page" data-toc-page="state">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">C.2</span><span class="toc__label">AI-first content architecture · llms.txt &amp; schema</span><span class="toc__page" data-toc-page="ai-arch">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">C.3</span><span class="toc__label">Technical differentiators &amp; integrations</span><span class="toc__page" data-toc-page="differentiators">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.1</span><span class="toc__label">CMS recommendation · WordPress on Pantheon · security</span><span class="toc__page" data-toc-page="c-detail">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.2</span><span class="toc__label">Technical architecture · state of holyfamily.edu</span><span class="toc__page" data-toc-page="state">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.3</span><span class="toc__label">AI-first content architecture · llms.txt &amp; schema</span><span class="toc__page" data-toc-page="ai-arch">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.4</span><span class="toc__label">Accessibility · WCAG 2.2 AA toolkit</span><span class="toc__page" data-toc-page="c-detail">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">C.5</span><span class="toc__label">Integration capabilities · Slate · GA4 · GTM</span><span class="toc__page" data-toc-page="c-detail">—</span></li>
         <li class="toc__group">Section D · Timeline &amp; Project Management</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">D.1</span><span class="toc__label">Five gates · June → September 2026</span><span class="toc__page" data-toc-page="timeline">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">D.1</span><span class="toc__label">Proposed timeline · five gates · June → September 2026</span><span class="toc__page" data-toc-page="timeline">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">D.2</span><span class="toc__label">PM methodology, cadence &amp; tools</span><span class="toc__page" data-toc-page="d-pm-qa">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">D.3</span><span class="toc__label">Change management · written change-orders</span><span class="toc__page" data-toc-page="d-pm-qa">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">D.4</span><span class="toc__label">Quality assurance · UAT · cross-browser · bug taxonomy</span><span class="toc__page" data-toc-page="d-pm-qa">—</span></li>
         <li class="toc__group">Section E · Budget &amp; Pricing</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">E.1</span><span class="toc__label">$145,000 fixed fee · assumptions &amp; exclusions</span><span class="toc__page" data-toc-page="budget">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">E.1</span><span class="toc__label">$145,000 fixed-fee policy · phased breakdown · payment schedule</span><span class="toc__page" data-toc-page="budget">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">E.2</span><span class="toc__label">Assumptions &amp; exclusions</span><span class="toc__page" data-toc-page="budget">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">E.3</span><span class="toc__label">Value proposition</span><span class="toc__page" data-toc-page="budget">—</span></li>
         <li class="toc__group">Section F · Post-Launch Support</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">F.1</span><span class="toc__label">Ninety-day stewardship · after launch</span><span class="toc__page" data-toc-page="stewardship">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">F.1</span><span class="toc__label">Ninety-day stewardship · response-time SLA</span><span class="toc__page" data-toc-page="f-sla">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">F.2</span><span class="toc__label">Ongoing support options · $3,500/mo retainer</span><span class="toc__page" data-toc-page="stewardship">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">F.3</span><span class="toc__label">Training &amp; knowledge transfer</span><span class="toc__page" data-toc-page="stewardship">—</span></li>
         <li class="toc__group">Section G · Additional Information &amp; Differentiation</li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">G.1</span><span class="toc__label">Philadelphia Catholic peer landscape</span><span class="toc__page" data-toc-page="peers">—</span></li>
-        <li class="toc__item toc__item--sub"><span class="toc__num">G.2</span><span class="toc__label">Whole-person mission alignment</span><span class="toc__page" data-toc-page="mission">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">G.1</span><span class="toc__label">Innovation &amp; differentiation · AI · thought leadership</span><span class="toc__page" data-toc-page="g-additional">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">G.2</span><span class="toc__label">Cultural fit &amp; values · HFU mission alignment</span><span class="toc__page" data-toc-page="g-additional">—</span></li>
+        <li class="toc__item toc__item--sub"><span class="toc__num">G.3</span><span class="toc__label">Questions for clarification</span><span class="toc__page" data-toc-page="g-additional">—</span></li>
         <li class="toc__item toc__item--section"><span class="toc__num">—</span><span class="toc__label">In closing</span><span class="toc__page" data-toc-page="closing">—</span></li>
         <li class="toc__group">Appendix · excluded from the 40-page count per RFP Section 9</li>
         <li class="toc__item toc__item--sub"><span class="toc__num">Apx</span><span class="toc__label">Full case studies · Truman · CSUMB · Calhoun</span><span class="toc__page" data-toc-page="case-studies">—</span></li>
@@ -3228,36 +3629,57 @@
        ══════════════════════════════════════════════════════════════ -->
   <section class="section" id="team">
     <div class="section__head">
-      <div class="eyebrow section__eyebrow reveal">Four people on this engagement</div>
-      <h2 class="section__title reveal" data-delay="1">Small College Consulting.</h2>
-      <p class="section__lede reveal" data-delay="2">The four principals below are the same four who work with Rick Mitchell's team week one and at launch. No substitution after contract signing.</p>
+      <div class="eyebrow section__eyebrow reveal">Section A.2 · Team composition</div>
+      <h2 class="section__title reveal" data-delay="1">Four people. Same four at <em>week one</em> and at launch.</h2>
+      <p class="section__lede reveal" data-delay="2">Small College Consulting's partnership model staffs every engagement with SCC partners plus a named set of affiliate consultants drawn from SCC's national network. For Holy Family the four people below are the whole team. No substitutions after contract signing, no junior hand-off, no account manager between Rick Mitchell's team and the work.</p>
     </div>
 
     <div class="team">
       <article class="member reveal" data-delay="1">
         <div class="member__avatar"><img src="assets/team/scott-novak.webp" alt="Scott Novak headshot" loading="lazy"></div>
-        <div class="member__role">Partner · Strategic Lead</div>
+        <div class="member__role">SCC Partner · Strategic lead</div>
         <h3 class="member__name">Scott Novak</h3>
-        <p class="member__bio">30+ years in small-college enrollment. Founder of Underscore, acquired by Carnegie in 2021. <em>300+ institutions advised</em>.</p>
+        <p class="member__bio">30+ years in small-college enrollment. Founder of Underscore, acquired by Carnegie in 2021. <em>300+ institutions advised</em>, including website-strategy and enrollment architecture work for a dozen private and public higher-ed clients.</p>
+        <p class="member__commit"><strong>Time commitment:</strong> strategic oversight across gates G1–G5, present at every weekly Monday status call, on-site or video for every cabinet review.</p>
       </article>
       <article class="member reveal" data-delay="2">
         <div class="member__avatar"><img src="assets/team/chris-coons.webp" alt="Chris Coons headshot" loading="lazy"></div>
-        <div class="member__role">Partner · Enrollment</div>
+        <div class="member__role">SCC Partner · Enrollment</div>
         <h3 class="member__name">Chris Coons</h3>
-        <p class="member__bio">Prior chief enrollment officer at two small colleges. Ensures every design &amp; content decision traces to <em>RFI, application, yield</em>.</p>
+        <p class="member__bio">Prior chief enrollment officer at two small colleges. Ensures every design &amp; content decision traces back to <em>RFI, application, yield</em>. Led the enrollment-page review on four small-college redesigns in the last three years.</p>
+        <p class="member__commit"><strong>Time commitment:</strong> every weekly enrollment review, every gate signature, present for every adult &amp; graduate template walk-through.</p>
       </article>
       <article class="member reveal" data-delay="3">
         <div class="member__avatar"><img src="assets/team/james-vineburgh.jpeg" alt="James Vineburgh headshot" loading="lazy"></div>
-        <div class="member__role">Engagement Lead · AI Architect</div>
+        <div class="member__role">SCC Affiliate · Engagement lead &amp; AI architect</div>
         <h3 class="member__name">James Vineburgh</h3>
-        <p class="member__bio">Built the Carnegie admissions concierge (<em>2,300+ unattended leads</em> since 2025). Day-to-day client lead.</p>
+        <p class="member__bio">Built the Carnegie admissions concierge (<em>2,300+ unattended leads</em> since 2025) and the AI chatbot currently live on Holy Family's admissions pages. Day-to-day client lead on this engagement. Recurring presenter and author at the AMA Symposium for the Marketing of Higher Education on AI and enrollment management.</p>
+        <p class="member__commit"><strong>Time commitment:</strong> dedicates as much time as the schedule requires to hit the September 1 launch and is available whenever Holy Family wants or needs to meet or collaborate across the three-month build and the 90-day stewardship window.</p>
       </article>
       <article class="member reveal" data-delay="4">
         <div class="member__avatar"><img src="assets/team/eric-yerke.jpg" alt="Eric Yerke headshot" loading="lazy"></div>
-        <div class="member__role">Lead Designer · AI Developer</div>
+        <div class="member__role">SCC Affiliate · Lead designer &amp; AI developer</div>
         <h3 class="member__name">Eric Yerke</h3>
-        <p class="member__bio">Multi-thousand-page CMS migrations and design-system work. Owns the <em>component library</em>, migration tooling, and WCAG pipeline through day 90.</p>
+        <p class="member__bio">Multi-thousand-page CMS migrations and design-system work. Owns the <em>component library</em>, migration tooling, and WCAG 2.2 AA pipeline through day 90. Shipped multiple WordPress-on-Pantheon higher-ed builds.</p>
+        <p class="member__commit"><strong>Time commitment:</strong> dedicates as much time as the schedule requires, including every scheduled Holy Family working session, with same-day availability on demand.</p>
       </article>
+    </div>
+
+    <!-- A.5 References -->
+    <div class="refsblock reveal" data-delay="5">
+      <div class="refsblock__label">Section A.5 · References</div>
+      <p class="refsblock__intro">Three higher-education references, each directly involved in a Small College Consulting engagement detailed in the case studies in the Appendix, are available for contact:</p>
+      <ul class="refsblock__list">
+        <li><strong>Alison Schweizer</strong> — Director of Admission, Truman State University · <a href="mailto:agus@truman.edu">agus@truman.edu</a> · (660) 785-4114 · see Case 01 (Truman State, enrollment strategy &amp; digital funnel)</li>
+        <li><strong>Dr. Aaron Bryant</strong> — Associate VP for Strategic Enrollment Development, California State University, Monterey Bay · see Case 02 (CSUMB, brand &amp; recruitment platform, 15% enrollment growth)</li>
+        <li><strong>Sherika Attipoe</strong> — Asst. Director of PR &amp; Digital Media, Calhoun Community College · <a href="mailto:sherika.attipoe@calhoun.edu">sherika.attipoe@calhoun.edu</a> · (256) 306-2560 · see Case 03 (Calhoun, adult-learner enrollment campaign)</li>
+      </ul>
+    </div>
+
+    <!-- A.6 Subcontractors -->
+    <div class="subsblock reveal" data-delay="6">
+      <div class="subsblock__label">Section A.6 · Subcontractors</div>
+      <p class="subsblock__body"><strong>No subcontractors are retained for this engagement.</strong> James Vineburgh and Eric Yerke are staffed through Small College Consulting's published affiliate-consultant model, governed by SCC's partner agreements and managed day-to-day by SCC Partner Scott Novak with a single line of accountability to Rick Mitchell. Red Cactus Marketing, referenced in the CSU Monterey Bay case study in the Appendix, is not involved in the Holy Family redesign.</p>
     </div>
   </section>
 
@@ -4485,9 +4907,15 @@
 
   <section class="section section--tint" id="budget">
     <div class="section__head">
-      <div class="eyebrow section__eyebrow reveal">Budget · RFP Section E</div>
+      <div class="eyebrow section__eyebrow reveal">Section E · Budget &amp; pricing</div>
       <h2 class="section__title reveal" data-delay="1">One fixed fee. <em>No scope creep</em>.</h2>
       <p class="section__lede reveal" data-delay="2">The base scope is priced at $145,000, all-in, including Slate integration. Optional add-ons are priced separately so the committee can scope each independently.</p>
+    </div>
+
+    <!-- E.1 fixed-fee policy -->
+    <div class="epolicy reveal" data-delay="1">
+      <div class="epolicy__label">Section E.1 · Fixed-fee policy</div>
+      <p class="epolicy__body">Small College Consulting prices this engagement on a <strong>fixed-fee basis</strong>. The <strong>$145,000 base scope is all-in</strong> — covering every role listed in Section A.2 for the full three-month build and the 90-day stewardship window, with no hourly billing, no change-order markup on scoped work, and no infrastructure markup. Hourly rates are not disclosed because the engagement is not hourly; the phased breakdown below shows where the fixed fee is allocated by deliverable, and the payment schedule ties each invoice to a named, Rick-signed milestone rather than a calendar date.</p>
     </div>
 
     <div class="budget">
@@ -4518,6 +4946,40 @@
           <div class="addon__name">Extended Support (after day 90)</div>
           <div class="addon__price">$3,500<small>/mo</small></div>
         </article>
+      </div>
+    </div>
+
+    <!-- E.2 Assumptions & exclusions -->
+    <div class="eassum reveal" data-delay="5">
+      <div class="eassum__col">
+        <div class="eassum__label">Section E.2 · Assumptions</div>
+        <ul class="eassum__list">
+          <li>Holy Family's 2025 prep work (audit, governance, analytics, peer analysis, surveys, and site-structure research) is handed to SCC at kickoff and is <em>built upon</em>, not duplicated.</li>
+          <li>Slate API credentials and a test environment are available to the engineering team by the end of week 1.</li>
+          <li>Holy Family owns the Pantheon account directly; SCC is granted contributor access for the build and retains access through the 90-day stewardship window.</li>
+          <li>A steering committee with final-sign-off authority is available for the G1 review on Jun 22, the G2 review on Jul 17, and gates G3–G5 thereafter.</li>
+          <li>Holy Family provides content reviewers capable of committing 4–6 hours/week to paired review during Phase 4 migration.</li>
+          <li>The current Holy Family brand book is the canonical visual guide for the redesign.</li>
+          <li>Launch date is <strong>September 1, 2026</strong> to land before the Fall 2026 recruitment cycle; the 10-day buffer inside Phase 5 is reserved for cutover contingency, not for scope.</li>
+          <li>The Sisters of the Holy Family of Nazareth heritage and the whole-person mission are authoritative framing for all public-facing copy.</li>
+        </ul>
+      </div>
+      <div class="eassum__col">
+        <div class="eassum__label">Section E.2 · Exclusions</div>
+        <ul class="eassum__list">
+          <li><strong>Content writing</strong> beyond light editing is priced separately at $350 / page (optional add-on).</li>
+          <li><strong>Brand strategy and identity work</strong> — the engagement works within the existing Holy Family brand book, not a new one.</li>
+          <li><strong>Paid media planning and buying</strong> — recruitment advertising is not included; SCC can advise under optional ongoing support.</li>
+          <li><strong>Integrations with Banner, Workday, Blackboard, Canvas,</strong> or other back-office systems are out of scope. The base engagement covers the public site and the Slate handoff.</li>
+          <li><strong>Personalization features</strong> (RFP Section 6) are priced separately as an optional add-on; tiered pricing available on request.</li>
+          <li><strong>Hosting costs.</strong> Pantheon infrastructure, SSL, and monitoring are Holy Family's direct relationships, not SCC markups. Third-party license pass-throughs (ACF Pro, Gravity Forms) are itemized at kickoff.</li>
+          <li><strong>Ongoing support beyond day 90</strong> is the $3,500 / month optional retainer, not included in the base fee.</li>
+          <li><strong>Stakeholder availability gaps.</strong> Timeline assumes Rick Mitchell and the steering committee are available for the scheduled weekly and gate-review cadence; a pattern of &gt; 2-week delays triggers a change-order for timeline extension.</li>
+        </ul>
+      </div>
+      <div class="eassum__footer">
+        <div class="eassum__label">Section E.3 · Value proposition</div>
+        <p class="eassum__body">Every dollar in the $145K base is tied to a deliverable with a named sign-off. No &ldquo;strategy and execution&rdquo; bucket. No hidden infrastructure markup. A soft-exit clause at every gate with full IP retained by Holy Family means the University is never locked into work that isn&apos;t earning its fee. The engagement is priced deliberately to leave budget headroom for recruitment spend, because every dollar not tied up in the next redesign is a dollar Holy Family can put into enrolling more students.</p>
       </div>
     </div>
   </section>
@@ -4686,6 +5148,289 @@
       </div>
     </div>
   </footer>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       NEW RFP §9 SECTIONS · added to close Section-9 compliance gaps.
+       Flex `order` values (see top of <style>) place each of these
+       into the correct Section A–G position regardless of DOM order.
+       ══════════════════════════════════════════════════════════════ -->
+
+  <!-- A.1 Agency overview · order 16, right after sec-a-divider -->
+  <section class="section section--paper" id="agency">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section A.1 · Agency overview</div>
+      <h2 class="section__title reveal" data-delay="1">Small College Consulting. <em>Grounded in small-college reality.</em></h2>
+      <p class="section__lede reveal" data-delay="2">Small College Consulting is a higher-education strategy firm founded by practitioners who have run enrollment, marketing, and operations inside small colleges. We staff engagements with SCC partners plus a named network of affiliate consultants, giving every client a core team that has actually lived the role on the other side of the table.</p>
+    </div>
+
+    <div class="agency__grid">
+      <div class="agency__card">
+        <div class="agency__card__label">Company</div>
+        <div class="agency__card__v">Small College Consulting</div>
+        <div class="agency__card__sub">Higher-education strategy &amp; partnership</div>
+      </div>
+      <div class="agency__card">
+        <div class="agency__card__label">Headquarters</div>
+        <div class="agency__card__v">Matthews, NC<br><small>455 W. John St. · Matthews, NC 28105</small></div>
+        <div class="agency__card__sub">metro Charlotte · Eastern Time</div>
+      </div>
+      <div class="agency__card">
+        <div class="agency__card__label">Contact</div>
+        <div class="agency__card__v"><a href="mailto:info@smallcollegeconsulting.com">info@smallcollegeconsulting.com</a></div>
+        <div class="agency__card__sub"><a href="https://www.smallcollegeconsulting.com/">smallcollegeconsulting.com</a></div>
+      </div>
+      <div class="agency__card">
+        <div class="agency__card__label">Size</div>
+        <div class="agency__card__v">3 FTE</div>
+        <div class="agency__card__sub">plus a national network of affiliate consultants &amp; strategic partners</div>
+      </div>
+      <div class="agency__card">
+        <div class="agency__card__label">Higher-ed experience</div>
+        <div class="agency__card__v">30+ years</div>
+        <div class="agency__card__sub">collective leadership inside small colleges across enrollment, marketing &amp; operations</div>
+      </div>
+      <div class="agency__card">
+        <div class="agency__card__label">Focus</div>
+        <div class="agency__card__v">Small colleges, exclusively</div>
+        <div class="agency__card__sub">strategy, enrollment, AI, website and brand engagements for mission-distinct institutions</div>
+      </div>
+    </div>
+
+    <div class="agency__mission">
+      <div class="agency__mission__eyebrow">Mission · in our words</div>
+      <p class="agency__mission__quote">&ldquo;Help institutions align strategy, innovation, and mission &mdash; empowering small colleges to grow stronger, adapt with confidence, and achieve measurable, lasting success.&rdquo;</p>
+      <p class="agency__mission__body">SCC brings together deep expertise, advanced tools, and a dynamic national network to guide institutions as they shift from uncertainty to decisive action. Our services span strategic consultation, interim and fractional executive leadership, Small College AI solutions, focused assessments and strategic planning, AI-enabled decision support, the National Small College Conference, and ongoing advising. This proposal is a website engagement &mdash; but it rides on top of thirty years of enrollment, marketing, and operations leadership inside institutions that look a lot like Holy Family.</p>
+    </div>
+  </section>
+
+  <!-- B.5/B.6/B.8/B.9 methodology + risk · order 25 -->
+  <section class="section section--tint" id="b-methodology">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section B · B.5 · B.6 · B.8 · B.9</div>
+      <h2 class="section__title reveal" data-delay="1">Methodology, migration, collaboration, <em>risk</em>.</h2>
+      <p class="section__lede reveal" data-delay="2">The RFP asks for an explicit development methodology, a content-migration plan, a collaborative-development workflow with Holy Family's internal dev team, and a named risk posture. Here it is, condensed onto a single page. Deeper detail, per-phase breakdowns, and the full nine-risk matrix live in the <em>Runway</em> deep-dive in the appendix.</p>
+    </div>
+
+    <div class="bmeth__grid">
+      <div class="bmeth__col">
+        <div class="bmeth__head">B.5 · Development methodology</div>
+        <ul class="bmeth__list">
+          <li><strong>Iterative &amp; gated.</strong> Five phases, five decision gates. Not Scrum sprints, not waterfall &mdash; every gate is a Rick-signed deliverable with the clock stopped until approval.</li>
+          <li><strong>Version control:</strong> GitHub, with Holy Family's dev team holding write access from week one. Feature branches off <code>main</code>, PR required, dual review (SCC + HFU).</li>
+          <li><strong>Coding standards:</strong> WordPress coding standards + PHPCS; semantic HTML; CSS authored against the component library only; no inline JS.</li>
+          <li><strong>Performance budget:</strong> LCP &lt; 2.0s on 4G, CLS &lt; 0.1, INP &lt; 200ms, Core Web Vitals green at launch. Lighthouse run in CI on every PR.</li>
+          <li><strong>QA:</strong> see D.4 below.</li>
+        </ul>
+      </div>
+      <div class="bmeth__col">
+        <div class="bmeth__head">B.6 · Content strategy &amp; migration</div>
+        <ul class="bmeth__list">
+          <li><strong>1,601 &rarr; ~650 URLs.</strong> AI-assisted mapping with a human approver on every ambiguous page. Programmatic migration for ~280 program &amp; info pages, human-assisted for ~120 high-touch pages.</li>
+          <li><strong>Redirect strategy:</strong> every legacy URL mapped to a new destination, verified in staging, 301s live at launch, kept live indefinitely. 301 CSV delivered as a Day-1 Value Pack artifact.</li>
+          <li><strong>Content QA:</strong> paired review &mdash; each HFU reviewer owns a named page set with a named SCC counterpart; not "whoever has time."</li>
+          <li><strong>SEO / AEO / GEO:</strong> canonical URL structure, JSON-LD schema pack (EducationalOrganization, Course, Person, Event, FAQ), llms.txt at root, OpenGraph + Twitter cards. AI-answer engine optimisation drafted in this response.</li>
+        </ul>
+      </div>
+      <div class="bmeth__col">
+        <div class="bmeth__head">B.8 · Collaborative dev process with HFU</div>
+        <ul class="bmeth__list">
+          <li><strong>Shared repo week one.</strong> Holy Family's internal dev team receives commit access to the GitHub repo at kickoff, not at handoff.</li>
+          <li><strong>PR workflow:</strong> every change goes through a pull request. SCC reviews HFU PRs; HFU reviews SCC PRs. Dual approval required for merges to <code>main</code>.</li>
+          <li><strong>Tools:</strong> GitHub (code + issues + PRs), Linear (shared project board, visible to HFU), Loom (recorded walkthroughs for anyone who missed a sync), Slack or Teams for async (client preference).</li>
+          <li><strong>Knowledge transfer:</strong> continuous &mdash; weekly code-review checkpoints, recorded Loom walkthroughs of every major decision, runbook drafted alongside the build. At day 90 Holy Family's team is positioned to absorb the work internally.</li>
+          <li><strong>Integration of HFU input:</strong> Rick's team is on every PR; no SCC-only merges; the 2025 prep work is ingested in week one, not rebuilt.</li>
+        </ul>
+      </div>
+      <div class="bmeth__col bmeth__col--risk">
+        <div class="bmeth__head">B.9 · Risk management · nine named risks</div>
+        <p class="bmeth__ledge">Every project this size has risks. Most proposals hide them. We plot ours on a 3&times;3 grid and ship the mitigation with the risk. Two of nine sit in the upper-right (high likelihood &times; high impact) &mdash; both have the tightest mitigations.</p>
+        <ol class="bmeth__risks">
+          <li><strong>Drupal Paragraphs complexity</strong> (high/high) &mdash; dedicated mapping spike in week 01, 1:1 ACF equivalent built before any migration runs.</li>
+          <li><strong>Content review bottleneck</strong> (high/med) &mdash; paired review model with named page-set owners on the HFU side.</li>
+          <li><strong>Slate / GA4 integration surprises</strong> (med/high) &mdash; Slate API creds secured before kickoff, dry-run integration in week 2.</li>
+          <li><strong>Accessibility regressions</strong> (med/med) &mdash; axe-core in CI, pre-lockup WCAG 2.2 AA audit by external reviewer.</li>
+          <li><strong>Scope creep post-G2</strong> (med/med) &mdash; component library capped at G2, every new ask routed through written change-order.</li>
+          <li><strong>Stakeholder alignment delays</strong> (med/low) &mdash; interview calendar locked by Jun 8, Rick holds the single approving voice.</li>
+          <li><strong>Enrollment-cycle launch pressure</strong> (low/high) &mdash; Sep 1 launch lands before Fall peak; 10-day go/no-go buffer.</li>
+          <li><strong>Key HFU team unavailability</strong> (low/med) &mdash; recorded training, runbook not dependent on any one person.</li>
+          <li><strong>Prior-work integration friction</strong> (low/low) &mdash; HFU 2025 prep ingested week one; Discovery builds on it, doesn&apos;t duplicate.</li>
+        </ol>
+        <p class="bmeth__contingency"><strong>Contingency:</strong> 10% pool ($14,500) reserved for unforeseen scope, routed via written change-order. Rick retains sole approval authority. Soft-exit available at every gate with full IP retained.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- C.1/C.4/C.5 technical detail · order 34 -->
+  <section class="section section--paper" id="c-detail">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section C · C.1 · C.4 · C.5</div>
+      <h2 class="section__title reveal" data-delay="1">CMS security, accessibility toolkit, <em>integrations</em>.</h2>
+      <p class="section__lede reveal" data-delay="2">The RFP asks for WordPress security posture, a concrete accessibility testing toolkit, and a statement of integration capability. Here they are as a single dense block.</p>
+    </div>
+
+    <div class="cdetail__grid">
+      <div class="cdetail__col">
+        <div class="cdetail__head">C.1 · WordPress security posture</div>
+        <ul class="cdetail__list">
+          <li><strong>Managed core &amp; plugin updates</strong> on Pantheon with automated minor-release application and a staged test-deploy-promote flow for majors. No manual edits on production.</li>
+          <li><strong>Plugin governance:</strong> every plugin must pass a five-point review (actively maintained, last update &lt; 6 months, no known CVEs, license-compatible, performance budget check). Plugin count kept intentionally small &mdash; the target is 12–18 at launch.</li>
+          <li><strong>Hardening:</strong> WAF + bot filtering at the Pantheon edge, two-factor auth required for all admin accounts, disable file editing from the WordPress admin, least-privilege user roles, login rate limiting.</li>
+          <li><strong>Secrets:</strong> API credentials (Slate, GA4, Mailgun) stored in Pantheon secrets manager, never committed to the repo.</li>
+          <li><strong>TCO vs. headless:</strong> we deliberately chose traditional WordPress, not a decoupled/headless build. Rationale: Holy Family's internal team can maintain a traditional WordPress site without a JavaScript framework dependency. Headless adds ~$40K/yr in infrastructure and hiring pressure over five years.</li>
+        </ul>
+      </div>
+      <div class="cdetail__col">
+        <div class="cdetail__head">C.4 · Accessibility testing toolkit</div>
+        <ul class="cdetail__list">
+          <li><strong>Automated scanning in CI:</strong> axe-core runs on every PR against every template. Zero critical violations required to merge.</li>
+          <li><strong>Manual testing:</strong> WAVE browser extension spot-checks at the end of every phase. Pre-launch keyboard-only walkthrough and screen-reader verification using NVDA (Windows) and VoiceOver (macOS/iOS).</li>
+          <li><strong>Design-time annotations:</strong> every component in the library ships with WCAG 2.2 AA annotations &mdash; focus order, target size, contrast ratios, non-text content.</li>
+          <li><strong>External audit:</strong> independent WCAG 2.2 AA audit in Phase 4; remediation complete before G4.</li>
+          <li><strong>Training:</strong> one accessibility session for HFU content editors on day-to-day authoring (alt text, heading structure, link text, table headers). Recorded for future onboarding.</li>
+          <li><strong>Sign-off:</strong> Mark Green (VP IE) signs the conformance report at G4.</li>
+        </ul>
+      </div>
+      <div class="cdetail__col">
+        <div class="cdetail__head">C.5 · Integration capabilities</div>
+        <ul class="cdetail__list">
+          <li><strong>Slate</strong> (required): form handler, lead routing, UTM capture, cross-domain tracking into Slate Ping. Built into base scope.</li>
+          <li><strong>GA4 + GTM</strong> (required): four-stage enrollment funnel (Awareness &rarr; Consideration &rarr; Decision &rarr; Conversion) with Looker Studio dashboard shared with HFU.</li>
+          <li><strong>AI content architecture</strong>: llms.txt at root, JSON-LD schema pack on every content type.</li>
+          <li><strong>Other higher-ed systems</strong> (Banner, Workday, Blackboard, Canvas, etc.) are <em>out of scope</em> for this engagement unless added as change-orders. The base engagement focuses on the public site &rarr; Slate handoff. SCC can advise on integrations with those systems under ongoing support.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- D.2/D.3/D.4 PM + change + QA · order 42 -->
+  <section class="section section--tint" id="d-pm-qa">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section D · D.2 · D.3 · D.4</div>
+      <h2 class="section__title reveal" data-delay="1">Project management, change control, <em>QA</em>.</h2>
+      <p class="section__lede reveal" data-delay="2">How the engagement runs week-to-week, how scope changes get priced and approved, and what "done" looks like at every gate.</p>
+    </div>
+
+    <div class="dpmqa__grid">
+      <div class="dpmqa__col">
+        <div class="dpmqa__head">D.2 · PM methodology &amp; cadence</div>
+        <ul class="dpmqa__list">
+          <li><strong>Methodology:</strong> iterative &amp; gated &mdash; five phases, five decision gates (G1–G5), Rick holds the pen at each one.</li>
+          <li><strong>Weekly cadence:</strong> Monday 60-minute status call, Thursday 30-minute content sync, Wednesday code-review window, async work the rest of the week.</li>
+          <li><strong>Tools:</strong> Linear shared project board (visible to HFU), GitHub for code &amp; PRs, Loom for recorded walkthroughs, Slack or Teams for async (client preference).</li>
+          <li><strong>Status reporting:</strong> Friday written recap with progress, blockers, decisions needed, plus a Loom for anyone who missed the Monday call.</li>
+          <li><strong>Escalation:</strong> any blocker &gt; 24h escalates to the partner lead (Scott Novak). Any decision affecting the Sep 1 launch date escalates to Rick within one business day.</li>
+        </ul>
+      </div>
+      <div class="dpmqa__col">
+        <div class="dpmqa__head">D.3 · Change management</div>
+        <ul class="dpmqa__list">
+          <li><strong>Written change-orders only.</strong> No verbal approvals. Every out-of-scope ask gets a one-page change-order: what's being added, the cost, the timeline impact, and the risk impact on downstream gates.</li>
+          <li><strong>Pricing:</strong> at the same fixed-fee basis as the base engagement &mdash; no hourly markup for scoped change-orders.</li>
+          <li><strong>Approval routing:</strong> Rick Mitchell approves all change-orders; anything &gt; $10K also notifies Mark Green (VP IE). No SCC-only decisions.</li>
+          <li><strong>Contingency:</strong> 10% pool ($14,500) is the only source for scope additions that don't warrant a new change-order.</li>
+          <li><strong>Impact tracking:</strong> every approved change-order updates the Linear board with a new milestone so timeline impact is visible on every status call.</li>
+        </ul>
+      </div>
+      <div class="dpmqa__col">
+        <div class="dpmqa__head">D.4 · Quality assurance</div>
+        <ul class="dpmqa__list">
+          <li><strong>Functional testing:</strong> 12 scripted UAT flows covering RFI, apply, visit, program browse, faculty search, news, events, directory, admissions contact, admin login, content edit, media upload.</li>
+          <li><strong>Cross-browser matrix:</strong> Chrome, Safari, Firefox, Edge on macOS + Windows; Safari on iOS; Chrome on Android. Last two major versions.</li>
+          <li><strong>Performance:</strong> Lighthouse in CI on every PR. Load testing at 3&times; current peak traffic before launch.</li>
+          <li><strong>Accessibility:</strong> see C.4. WCAG 2.2 AA external audit is a G4 gate.</li>
+          <li><strong>Bug severity taxonomy:</strong> P1 blocker (site down / data loss), P2 high (feature broken, workaround exists), P3 medium (cosmetic, non-critical), P4 low (enhancement). Resolution SLAs match Section F.1.</li>
+          <li><strong>Sign-off:</strong> each gate is a written sign-off on a named deliverable set. No launch without UAT sign-off at G5.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- F.1 SLA · order 62 -->
+  <section class="section section--paper" id="f-sla">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section F.1 · Response-time commitments</div>
+      <h2 class="section__title reveal" data-delay="1">An SLA, <em>in writing</em>.</h2>
+      <p class="section__lede reveal" data-delay="2">The 90-day post-launch support period is included in the base scope. Here is what "support" actually commits us to, by issue severity. The shared channel for every request is the Linear project set up in week one; email backup is the engagement distribution list.</p>
+    </div>
+
+    <div class="sla">
+      <table class="sla__table">
+        <thead>
+          <tr>
+            <th>Severity</th>
+            <th>Definition</th>
+            <th>First response</th>
+            <th>Resolution target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>P1 · Critical</strong></td>
+            <td>Site down, RFI / application form broken, data loss, security incident</td>
+            <td>4 business hours</td>
+            <td>Resolution plan within 1 business day; full fix within 2</td>
+          </tr>
+          <tr>
+            <td><strong>P2 · High</strong></td>
+            <td>Feature broken, workaround exists; accessibility regression; broken link to an enrollment-critical page</td>
+            <td>1 business day</td>
+            <td>3 business days</td>
+          </tr>
+          <tr>
+            <td><strong>P3 · Medium</strong></td>
+            <td>Cosmetic defect, non-critical content error, analytics gap</td>
+            <td>3 business days</td>
+            <td>Next weekly release</td>
+          </tr>
+          <tr>
+            <td><strong>P4 · Low</strong></td>
+            <td>Enhancement request, nice-to-have, future-cycle idea</td>
+            <td>5 business days (acknowledgement)</td>
+            <td>Evaluated at next gate; change-order if in scope</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="sla__note"><strong>Channels:</strong> Linear project (primary) · email backup · weekly Monday status call (standing agenda). <strong>Hours:</strong> 9am–6pm Eastern, Monday–Friday; after-hours for P1 only via on-call rotation. <strong>Limitations:</strong> support covers the delivered build and named integrations (Slate, GA4, GTM, llms.txt, schema). Out-of-scope work routes through a written change-order per D.3.</p>
+    </div>
+  </section>
+
+  <!-- G.1/G.2/G.3 innovation + values + clarifications · order 73 -->
+  <section class="section section--paper" id="g-additional">
+    <div class="section__head">
+      <div class="eyebrow section__eyebrow reveal">Section G · G.1 · G.2 · G.3</div>
+      <h2 class="section__title reveal" data-delay="1">Differentiation, values, <em>questions</em>.</h2>
+      <p class="section__lede reveal" data-delay="2">What makes Small College Consulting a fit for Holy Family specifically, what we stand for, and the questions we would ask Rick Mitchell on day one.</p>
+    </div>
+
+    <div class="gblock">
+      <div class="gblock__head">G.1 · Innovation &amp; differentiation</div>
+      <p class="gblock__body">Our single clearest differentiator is already live on Holy Family's own website. Dr. James Vineburgh built the AI admissions chatbot currently running on <code>holyfamily.edu/admissions</code>, generating <strong>2,200+ unattended prospective-student inquiries</strong> grounded in the University's own content with zero campaign spend. An updated version of that chatbot is included in this proposal as a value-add, not a line item.</p>
+      <p class="gblock__body">Beyond the chatbot, the differentiator stack is: <strong>(1)</strong> an AI-first content architecture (<code>llms.txt</code>, full JSON-LD schema pack, AEO methodology) drafted inside this response, not promised for Discovery; <strong>(2)</strong> a Day-1 Value Pack of six concrete deliverables drafted before you sign; <strong>(3)</strong> an enrollment-first thesis that measures every design decision against RFI, application, yield; <strong>(4)</strong> a partnership model that staffs the engagement with two SCC partners and two named affiliates, no junior hand-off.</p>
+      <p class="gblock__body"><strong>Thought leadership:</strong> Dr. James Vineburgh is a recurring presenter and author at the AMA Symposium for the Marketing of Higher Education on AI applications and enrollment management &mdash; the Holy Family admissions chatbot is a direct product of that work. SCC runs the annual National Small College Conference, a venue dedicated entirely to small-college leadership and practice, where the firm continues to share hard-earned lessons and real successes with the sector.</p>
+
+      <div class="gblock__head">G.2 · Cultural fit &amp; values</div>
+      <p class="gblock__body">Small College Consulting's positioning, in the firm's own words: <em>&ldquo;We value the small college environment deeply and take pride in sharing proven insights, hard-earned lessons, and real successes.&rdquo;</em> Our engagements are &ldquo;grounded in deep small college experience&rdquo; and deliver &ldquo;strategic, customized solutions designed exclusively for the unique realities of small colleges.&rdquo; The partners have &ldquo;lived the realities of small college leadership&rdquo; inside enrollment, marketing, and operations roles &mdash; the same roles Holy Family is trying to empower with this redesign.</p>
+      <p class="gblock__body">That orientation is why we're pursuing Holy Family. A Franciscan-Catholic institution of 3,700 students, rooted in the Sisters of the Holy Family of Nazareth heritage, educating the whole person for a life of integrity, service, and personal excellence &mdash; this is the kind of mission-distinct institution our firm was built to serve. Our values map directly to yours: <em>clarity, resilience, and a strong sense of purpose</em> on our side &rarr; the 93% six-month employment outcome and the whole-person thesis on yours. The $145K fixed-fee, the enrollment-first thesis, and the nine-risk mitigation grid are each expressions of the same belief: <strong>that small, mission-distinct colleges deserve real strategy, real discipline, and real execution &mdash; not a diluted version of what large universities buy.</strong></p>
+      <p class="gblock__body">We want the redesign to feel recognisably Holy Family. The design directions in the Appendix are drafted for that institution specifically, not dropped in from another build.</p>
+
+      <div class="gblock__head">G.3 · Questions for clarification</div>
+      <p class="gblock__body">A short list of questions we would like to validate during the first week of Discovery. None of these block submission or kickoff; all are flagged here so Rick can route them before G1.</p>
+      <ol class="gblock__questions">
+        <li><strong>Slate access.</strong> When will SCC receive Slate API credentials and a test environment? The integration dry-run is scheduled for week 2 of Phase 3, which assumes credentials by the end of week 1.</li>
+        <li><strong>Content approval authority.</strong> Who is the final sign-off on program-page copy &mdash; the cabinet, the academic deans, or Marketing? We scope the paired-review model around this answer.</li>
+        <li><strong>Brand-guideline status.</strong> Is the current Holy Family brand book the canonical guide, or is a refresh in progress? We work within whatever you hand us; we just need to know which document is authoritative.</li>
+        <li><strong>Pantheon account ownership &amp; billing.</strong> Does Holy Family own the Pantheon account directly, or should SCC provision it and transfer at launch? Our assumption is HFU-owned, SCC gets contributor access.</li>
+        <li><strong>IT review cadence.</strong> Is there a standing security / infrastructure review committee that needs to sign off on the tech stack, and when do they meet? We can front-load the approval request.</li>
+        <li><strong>Cabinet availability in June.</strong> The G1 gate is Jun 22 and depends on steering-committee sign-off on IA &amp; content model. Who is on the steering committee and are they available that week?</li>
+        <li><strong>Accessibility coordinator.</strong> Who is the named HFU accessibility owner for the Phase 4 external audit &mdash; Mark Green (VP IE) or a delegate?</li>
+        <li><strong>Digital asset library.</strong> Where does Holy Family's current photography, video, and brand asset library live, and what rights apply? We want to avoid licensing surprises during migration.</li>
+        <li><strong>Content migration pairing.</strong> Our content-review model pairs each HFU reviewer with a named page set. How many HFU staff can commit 4–6 hours/week to content review during Phase 4?</li>
+        <li><strong>Alternative approach &mdash; personalization.</strong> RFP Section 6 references personalization capabilities. We deliberately scoped personalization out of the base fee to keep $145K all-in. Do you want us to include a recommended personalization tier in base, or keep it as a priced optional add-on?</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- (end of appended RFP §9 sections) -->
   </main>
 
   <!-- Back to top FAB -->

@@ -79,11 +79,11 @@ function startServer() {
 // into the TOC via ?toc=… query string JSON.
 async function findSectionPages(browser) {
   const anchors = [
-    'letter','valuepack','team','case-studies','evidence',
-    'commitments','tactics','mockups','sitemap',
-    'state','ai-arch','differentiators',
-    'timeline','budget','stewardship',
-    'peers','mission','closing'
+    'letter','agency','valuepack','team','evidence',
+    'commitments','tactics','mockups','sitemap','b-methodology',
+    'state','ai-arch','differentiators','c-detail',
+    'timeline','d-pm-qa','budget','stewardship','f-sla',
+    'peers','mission','g-additional','closing','case-studies'
   ];
   const tmp = path.join(OUT_DIR, 'probe-main.pdf');
   await renderPage(browser, 'index.html', tmp, { forTocProbe: true });
@@ -168,23 +168,31 @@ async function renderPage(browser, url, outPath, opts = {}) {
     // for Chrome to include it in the PDF text layer. White 6pt text
     // on the white paper satisfies both.
     if (opts.forTocProbe) {
-      const ids = ['letter','valuepack','team','case-studies','evidence',
-        'commitments','tactics','mockups','sitemap',
-        'state','ai-arch','differentiators',
-        'timeline','budget','stewardship',
-        'peers','mission','closing'];
+      const ids = ['letter','agency','valuepack','team','evidence',
+        'commitments','tactics','mockups','sitemap','b-methodology',
+        'state','ai-arch','differentiators','c-detail',
+        'timeline','d-pm-qa','budget','stewardship','f-sla',
+        'peers','mission','g-additional','closing','case-studies'];
       let added = 0;
+      // Give the section a positioning context so our absolutely
+      // positioned marker anchors inside it.
       for (const id of ids) {
         const el = document.getElementById(id);
         if (!el) { console.log('PROBE-MISS', id); continue; }
-        // Marker is a visible-but-small fingerprint. Use 5pt in a
-        // near-cream color so it lands in the text layer cleanly.
+        // Marker is absolutely positioned off-screen with !important
+        // so it beats portal.css `position: static`. Takes zero flow
+        // space, so the probe PDF paginates IDENTICALLY to the final
+        // second-pass render and TOC page numbers resolve accurately.
+        el.style.setProperty('position', 'relative', 'important');
         const mk = document.createElement('div');
         mk.textContent = 'TOCMK' + id + 'TOCMK';
         mk.setAttribute('style',
+          'position:absolute !important;' +
+          'left:0;top:0;width:1px;height:1px;' +
+          'overflow:hidden;' +
           'font-size:5pt;line-height:1;color:#FAF9F6;' +
           'background:transparent;font-family:monospace;' +
-          'margin:0;padding:0;');
+          'margin:0;padding:0;pointer-events:none;');
         el.insertBefore(mk, el.firstChild);
         added++;
       }
