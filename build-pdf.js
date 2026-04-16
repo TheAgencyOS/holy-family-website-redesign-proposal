@@ -126,6 +126,32 @@ async function renderPage(browser, url, outPath, opts = {}) {
     waitUntil: ['load', 'networkidle0'],
     timeout: 90000,
   });
+  // Rewrite every <a href> and <link href> so the printed PDF's
+  // clickable links point at the public Vercel host, not the
+  // localhost render server. Relative links resolve against a
+  // <base> tag; absolute localhost links are regex-replaced.
+  await page.evaluate(() => {
+    const PUBLIC = 'https://hfu-web-proposal.vercel.app';
+    // Inject <base> so any purely relative <a href="foo.html"> resolves
+    // to the public host when Chrome serialises the PDF link map.
+    if (!document.querySelector('base[data-hfu-base]')) {
+      const b = document.createElement('base');
+      b.href = PUBLIC + '/';
+      b.setAttribute('data-hfu-base', '1');
+      document.head.insertBefore(b, document.head.firstChild);
+    }
+    // Rewrite every anchor that still resolves to localhost.
+    document.querySelectorAll('a[href]').forEach(a => {
+      const raw = a.getAttribute('href') || '';
+      if (/^https?:\/\/localhost(:\d+)?/i.test(raw)) {
+        a.setAttribute('href', raw.replace(/^https?:\/\/localhost(:\d+)?/i, PUBLIC));
+      } else if (raw.startsWith('/') && !raw.startsWith('//')) {
+        a.setAttribute('href', PUBLIC + raw);
+      } else if (a.href && /^https?:\/\/localhost(:\d+)?/i.test(a.href)) {
+        a.setAttribute('href', a.href.replace(/^https?:\/\/localhost(:\d+)?/i, PUBLIC));
+      }
+    });
+  });
   // Print CSS should already handle reveal visibility, but force any
   // IntersectionObserver-driven class now, in case a deep-dive page
   // has its own observers that haven't fired yet.

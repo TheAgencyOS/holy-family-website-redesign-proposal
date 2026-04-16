@@ -269,12 +269,19 @@ select:-webkit-autofill {
   .stat, .metric, .tile, .panel, .persona, .persona-card,
   .timeline__row, .drift, .commitment, .tactic,
   .pull, .pullquote, .callout, .quote,
-  .labor, .labor__col, .budget__hero, .anchor-card,
-  .state__grid, .state__copy, .vp-card, .hero__inner,
-  .toc, .toc__list, .toc__group,
+  .labor__col, .anchor-card, .hero__inner,
+  .toc__item, .toc__group,
   blockquote, table, tr, thead, tfoot {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
+  }
+  /* TOC and its list can span pages — breaking is fine at item
+     boundaries. Forcing the whole TOC onto one page with
+     break-inside: avoid pushes it past the letter section and
+     leaves a huge white gap before it. */
+  .toc, .toc__list, .toc__inner {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
   }
   /* Tighter widow/orphan controls on all body copy so stray
      words like "2029" never land on a page by themselves. */
