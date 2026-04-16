@@ -584,7 +584,14 @@
       width: 100%;
       height: 100%;
       border-radius: 22px;
-      background: var(--ink-phone);
+      /* The screen simulates a real phone display, and every child
+         (status bar, URL bar, content blocks, CTAs) is authored with
+         translucent-navy inks designed for a light background. Using
+         --ink-phone (dark navy) here made them unreadable — only
+         variants like .phone--rival and .phone--asleep explicitly
+         corrected to --ink-card. Set the default to --ink-card so
+         every phone screen renders legibly. */
+      background: var(--ink-card);
       overflow: hidden;
       padding: 34px 12px 22px;
       display: flex;

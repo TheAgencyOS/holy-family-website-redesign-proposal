@@ -2036,13 +2036,6 @@
       text-align: left;
       border-top: 1px solid rgba(255,255,255,0.08);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      /* Keep the divider on a single page — splitting a title
-         across pages produces half-words at the page edge. */
-      break-inside: avoid;
-      page-break-inside: avoid;
-      /* New Section → new page when we're close to the bottom. */
-      break-before: page;
-      page-break-before: always;
     }
     .rfp-divider__inner {
       max-width: 880px;
@@ -2125,10 +2118,10 @@
     }
     .toc__title {
       font-family: var(--display);
-      font-size: clamp(38px, 5.2vw, 60px);
+      font-size: clamp(32px, 4.4vw, 52px);
       line-height: 1.04;
       color: var(--ink);
-      margin: 0 0 40px 0;
+      margin: 0 0 24px 0;
       letter-spacing: -0.032em;
     }
     .toc__title em {
@@ -2147,13 +2140,13 @@
       display: grid;
       grid-template-columns: 3.25em 1fr auto;
       gap: 1.2em;
-      padding: 14px 0;
+      padding: 7px 0;
       border-bottom: 1px solid var(--line);
       align-items: baseline;
-      font-size: 15px;
+      font-size: 13px;
     }
     .toc__item--section > .toc__label { font-weight: 500; color: var(--ink); }
-    .toc__item--sub { padding-left: 1.2em; color: var(--ink-2); font-size: 13.5px; }
+    .toc__item--sub { padding-left: 1.2em; color: var(--ink-2); font-size: 12px; }
     .toc__item--sub > .toc__num { color: var(--ink-4); }
     .toc__num {
       font-family: var(--mono);
@@ -2174,14 +2167,14 @@
     }
     .toc__page::before { content: "p. "; opacity: 0.6; }
     .toc__group {
-      margin-top: 34px;
+      margin-top: 16px;
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-3);
-      border-top: 2px solid var(--ink);
-      padding-top: 14px;
+      border-top: 1.5px solid var(--ink);
+      padding-top: 8px;
       margin-bottom: -1px;
     }
 
@@ -2343,7 +2336,9 @@
         align-items: stretch !important;
         page-break-after: always;
       }
-      .hero__inner { margin: auto !important; max-width: 100% !important; }
+      .hero__inner { margin: auto !important; max-width: 100% !important; width: 100% !important; }
+      .hero__title { max-width: 100% !important; font-size: 48pt !important; line-height: 1.02 !important; }
+      .hero__dek { max-width: 100% !important; font-size: 14pt !important; }
 
       .appendix-cover {
         min-height: 13.6in !important;
@@ -2356,18 +2351,15 @@
         align-items: flex-start !important;
       }
 
-      /* Section A–G dividers: full-bleed edge to edge, each on its
-         own fresh page (break-before only — content follows on the
-         next page naturally). */
+      /* Section A–G dividers: full-bleed edge to edge, flowing in
+         DOM order. No forced page-breaks — flex pagination with
+         break-before/inside creates ghost-blank pages. Dividers
+         remain visually prominent via their full-bleed dark panel. */
       .rfp-divider {
-        padding: 1.0in 0.8in !important;
+        padding: 0.5in 0.55in !important;
         margin: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
-        break-before: page;
-        page-break-before: always;
       }
       .rfp-divider__inner { max-width: 100% !important; }
       .rfp-divider__label {
@@ -2397,11 +2389,10 @@
       ul, ol, dl { break-inside: auto; }
       img { max-width: 100% !important; height: auto !important; }
 
-      /* Let sections flow — hard page breaks waste half of each page.
-         Only keep the appendix-cover break and the closing break. */
-      #closing { break-before: page; page-break-before: always; }
+      /* Sections flow naturally — no forced page-breaks anywhere
+         except the appendix cover. Hard breaks waste half-pages. */
 
-      /* ── Appendix · full cover page + hard breaks between sections ── */
+      /* ── Appendix cover · full-bleed ink panel cover page ── */
       .appendix-cover {
         display: flex !important;
         flex-direction: column;
@@ -2412,9 +2403,7 @@
         background: var(--ink, #0f172a) !important;
         color: var(--cream, #faf9f6) !important;
         page-break-before: always;
-        page-break-after: always;
         break-before: page;
-        break-after: page;
       }
       .appendix-cover__eyebrow {
         font-family: var(--mono, monospace);
