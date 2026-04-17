@@ -14,7 +14,6 @@ const APPENDICES = [
   { file: 'design-concepts.html',      title: 'Design concepts' },
   { file: 'design-directions.html',    title: 'Design directions' },
   { file: 'design-system.html',        title: 'Design system' },
-  { file: 'components.html',           title: 'Component library' },
   { file: 'discovery.html',            title: 'Discovery process' },
   { file: 'enrollment.html',           title: 'Enrollment intelligence' },
   { file: 'personas.html',             title: 'Student personas' },

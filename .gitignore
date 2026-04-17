@@ -48,3 +48,4 @@ test-*.pdf
 # Logs
 *.log
 npm-debug.log*
+.env*.local

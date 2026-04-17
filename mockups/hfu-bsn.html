@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mockup-id" content="hfu-bsn">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <title>BSN &middot; Bachelor of Science in Nursing &middot; Holy Family University</title>
   <meta name="description" content="The Bachelor of Science in Nursing at Holy Family University. A four-year traditional BSN, second-degree accelerated paths, and RN-to-BSN. Clinical partnerships across Greater Philadelphia. Accredited.">
@@ -276,7 +277,7 @@
       background: hsl(var(--hfu-navy-deep));
       transform: translateY(-1px);
     }
-    .btn--lg { padding: 18px 32px; font-size: 15px; }
+    .btn--lg { padding: 20px 36px; font-size: 15.5px; }
 
     /* ═════════════════════ DATA-FORWARD SPLIT HERO ═════════════════════ */
     /* ═════════════════════ HERO · CINEMATIC PROGRAM COVER ═════════════════════ */
@@ -329,7 +330,7 @@
       z-index: 2;
       max-width: var(--container);
       margin: 0 auto;
-      padding: clamp(0.75rem, 1.25vw, 1rem) var(--gutter) clamp(2.5rem, 4vw, 3.5rem);
+      padding: clamp(1.5rem, 2.5vw, 2.25rem) var(--gutter) clamp(3.5rem, 5.5vw, 5rem);
       min-height: clamp(680px, 92vh, 880px);
       display: flex;
       flex-direction: column;
@@ -395,7 +396,7 @@
       display: inline-flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
     .hero__eyebrow::before {
       content: "";
@@ -409,7 +410,7 @@
       line-height: 0.88;
       letter-spacing: -0.036em;
       color: hsl(var(--white));
-      margin: 0 0 32px;
+      margin: 0 0 clamp(2rem, 3vw, 2.75rem);
       font-weight: 300;
       font-variation-settings: "opsz" 60;
       max-width: 14ch;
@@ -426,7 +427,7 @@
       line-height: 1.45;
       color: hsl(var(--white) / 0.86);
       max-width: 44ch;
-      margin-bottom: clamp(2.25rem, 3.5vw, 3rem);
+      margin-bottom: clamp(2.75rem, 4.5vw, 3.75rem);
       font-variation-settings: "opsz" 40;
     }
 
@@ -435,17 +436,17 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0;
-      padding: 22px 0;
+      padding: clamp(20px, 2.5vw, 28px) 0;
       border-top: 1px solid hsl(var(--white) / 0.16);
       border-bottom: 1px solid hsl(var(--white) / 0.16);
-      margin-bottom: clamp(2rem, 3vw, 2.5rem);
+      margin-bottom: clamp(2.75rem, 4.5vw, 3.75rem);
       max-width: 920px;
     }
     .hero__colophon__cell {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      padding: 0 clamp(20px, 2.4vw, 32px);
+      gap: 8px;
+      padding: 0 clamp(24px, 3vw, 40px);
       border-right: 1px solid hsl(var(--white) / 0.12);
     }
     .hero__colophon__cell:first-child { padding-left: 0; }
@@ -477,15 +478,15 @@
     .hero__stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: clamp(20px, 3vw, 40px);
-      margin-bottom: clamp(2rem, 3vw, 2.5rem);
-      max-width: 900px;
+      gap: clamp(28px, 4vw, 52px);
+      margin-bottom: clamp(2.75rem, 4.5vw, 3.75rem);
+      max-width: 960px;
     }
     .hero-stat {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      padding-top: 16px;
+      gap: 12px;
+      padding-top: 20px;
       border-top: 2px solid hsl(var(--hfu-yellow));
     }
     .hero-stat--muted {
@@ -525,7 +526,7 @@
       font-size: 12px;
       line-height: 1.4;
       color: hsl(var(--white) / 0.5);
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     /* CTAs + caption side */
@@ -533,11 +534,11 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: clamp(16px, 2.2vw, 28px);
+      gap: clamp(24px, 3vw, 36px);
     }
     .hero__ctas {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
     .hero .btn--primary {
@@ -571,18 +572,21 @@
       line-height: 1.5;
       color: hsl(var(--white) / 0.6);
       max-width: 34ch;
-      padding-left: clamp(16px, 2.2vw, 28px);
+      padding-left: clamp(24px, 3vw, 36px);
       border-left: 1px solid hsl(var(--white) / 0.14);
     }
 
     @media (max-width: 900px) {
       .hero { min-height: auto; }
-      .hero__inner { min-height: auto; padding-top: clamp(5rem, 12vw, 7rem); padding-bottom: clamp(3rem, 6vw, 4rem); }
+      .hero__inner { min-height: auto; padding-top: clamp(5rem, 12vw, 7rem); padding-bottom: clamp(3.5rem, 7vw, 5rem); }
       .hero__accred { top: 1.25rem; right: var(--gutter); }
-      .hero h1 { font-size: clamp(2.6rem, 11vw, 4.8rem); }
-      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: 22px; }
-      .hero__colophon dl { padding: 0 18px; }
-      .hero__foot-aside { padding-left: 0; border-left: 0; padding-top: 10px; border-top: 1px solid hsl(var(--white) / 0.14); }
+      .hero h1 { font-size: clamp(2.6rem, 11vw, 4.8rem); margin-bottom: clamp(1.5rem, 3vw, 2.25rem); }
+      .hero__lead { margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+      .hero__colophon { padding: 18px 0; margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+      .hero__colophon__cell { padding: 0 clamp(16px, 2.5vw, 24px); gap: 6px; }
+      .hero__stats { grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 4vw, 32px); margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+      .hero-stat { padding-top: 16px; gap: 10px; }
+      .hero__foot-aside { padding-left: 0; border-left: 0; padding-top: 14px; border-top: 1px solid hsl(var(--white) / 0.14); }
     }
 
     /* ═════════════════════ SECTION PRIMITIVES ═════════════════════ */
@@ -1676,9 +1680,13 @@
       .nav__search { display: none; }
       .nav__actions .btn { padding: 12px 18px; font-size: 13px; }
 
-      .hero__stats { grid-template-columns: 1fr; gap: 14px; }
-      .hero-stat__num { font-size: clamp(4rem, 15vw, 5.5rem); }
-      .hero__ctas { flex-direction: column; align-items: stretch; }
+      .hero__colophon { flex-direction: column; gap: 16px; padding: 20px 0; }
+      .hero__colophon__cell { padding: 0; border-right: none; border-bottom: 1px solid hsl(var(--white) / 0.08); padding-bottom: 14px; flex-direction: row; justify-content: space-between; align-items: baseline; }
+      .hero__colophon__cell:last-child { border-bottom: none; padding-bottom: 0; }
+      .hero__stats { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .hero-stat { padding-top: 18px; }
+      .hero-stat__num { font-size: clamp(2.8rem, 12vw, 4rem); }
+      .hero__ctas { flex-direction: column; align-items: stretch; gap: 12px; }
       .hero__ctas .btn { justify-content: center; }
       .hero__figure-frame { min-height: 320px; }
 
@@ -1771,7 +1779,7 @@
           <li><a href="hfu-programs.html" class="is-active">Academics <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
           <li><a href="hfu-admissions.html">Admissions &amp; Aid <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
           <li><a href="hfu-student-life.html">Student Experience <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
-          <li><a href="#">About <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
+          <li><a href="hfu-about.html">About <svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 7L1 3h8z"/></svg></a></li>
         </ul>
       </nav>
       <div class="nav__actions">
@@ -2490,5 +2498,7 @@
     })();
   </script>
 
+  <script type="module" src="../lib/mockup-comments.js"></script>
+  <script src="../lib/inspect-token.js"></script>
 </body>
 </html>

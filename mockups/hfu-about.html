@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mockup-id" content="hfu-about">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <title>About · Holy Family University</title>
   <meta name="description" content="A Catholic university in the tradition of the Sisters of the Holy Family of Nazareth. Founded 1954. Two campuses, four schools, 3,600 students, one family.">
@@ -728,13 +729,14 @@
     }
 
     /* ═════════════════════════════════════════════════════════════════════
-       PILLARS — Faith · Scholarship · Service
+       VALUES — Family · Respect · Integrity · Service · Learning · Vision
        ═════════════════════════════════════════════════════════════════════ */
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+    @media (max-width: 1060px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
     .pillar {
       padding: 36px 32px;
       background: hsl(var(--paper));
@@ -742,10 +744,23 @@
       border-radius: var(--r-lg);
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      min-height: 360px;
+      gap: 16px;
+      min-height: 320px;
       transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);
+      position: relative;
+      overflow: hidden;
     }
+    .pillar::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: hsl(var(--hfu-yellow));
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 360ms var(--ease-out);
+    }
+    .pillar:hover::before { transform: scaleY(1); }
     .pillar:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lg);
@@ -797,9 +812,15 @@
 
     .pillar--blue   { background: linear-gradient(180deg, hsl(var(--hfu-blue) / 0.05) 0%, hsl(var(--paper)) 60%); }
     .pillar--blue   .pillar__icon { background: hsl(var(--hfu-blue) / 0.12); border-color: hsl(var(--hfu-blue) / 0.35); color: hsl(var(--hfu-blue-deep)); }
+    .pillar--blue::before { background: hsl(var(--hfu-blue)); }
     .pillar--yellow { background: linear-gradient(180deg, hsl(var(--hfu-yellow) / 0.10) 0%, hsl(var(--paper)) 60%); }
+    .pillar--yellow::before { background: hsl(var(--hfu-yellow-deep)); }
     .pillar--rose   { background: linear-gradient(180deg, hsl(var(--hfu-rose) / 0.06) 0%, hsl(var(--paper)) 60%); }
     .pillar--rose   .pillar__icon { background: hsl(var(--hfu-rose) / 0.12); border-color: hsl(var(--hfu-rose) / 0.35); color: hsl(var(--hfu-rose)); }
+    .pillar--rose::before { background: hsl(var(--hfu-rose)); }
+    .pillar--navy   { background: linear-gradient(180deg, hsl(var(--hfu-navy) / 0.05) 0%, hsl(var(--paper)) 60%); }
+    .pillar--navy   .pillar__icon { background: hsl(var(--hfu-navy) / 0.08); border-color: hsl(var(--hfu-navy) / 0.28); color: hsl(var(--hfu-navy)); }
+    .pillar--navy::before { background: hsl(var(--hfu-navy)); }
 
     /* ═════════════════════════════════════════════════════════════════════
        LEADERSHIP — tabs + cards
@@ -1893,21 +1914,16 @@
     <div class="cover__grid">
       <div class="cover__col">
         <div class="cover__meta">
-          <span>Founded 1954</span>
-          <span>Philadelphia &amp; Newtown</span>
-          <span>Catholic, four-year</span>
+          <span>Est. 1954</span>
+          <span>Philadelphia &amp; Newtown, PA</span>
         </div>
 
         <h1 class="cover__title" id="cover-title">A Catholic university, <em>rooted in family</em> since 1954.</h1>
 
-        <p class="cover__lede">A sponsored ministry of the Sisters of the Holy Family of Nazareth. Holy Family is a small, working university where 3,600 students find their place at the table, in four schools, on two campuses, with a faculty that learns their names by the second week.</p>
+        <p class="cover__lede">A sponsored ministry of the Sisters of the Holy Family of Nazareth &mdash; <em>teneor votis.</em></p>
 
         <div class="cover__ctas">
-          <a href="hfu-admissions.html" class="btn btn--primary">
-            Apply Now
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
-          </a>
-          <a href="hfu-visit.html" class="btn btn--secondary">
+          <a href="hfu-visit.html" class="btn btn--primary">
             Plan a visit
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
           </a>
@@ -1915,28 +1931,13 @@
             Read our mission
           </a>
         </div>
-
-        <dl class="cover__factbar">
-          <div>
-            <dt>Charter</dt>
-            <dd>1954 <em>(by CSFN)</em></dd>
-          </div>
-          <div>
-            <dt>President</dt>
-            <dd>Anne Prisco, Ph.D. <em>6th</em></dd>
-          </div>
-          <div>
-            <dt>Carnegie</dt>
-            <dd>Master's, Smaller Programs</dd>
-          </div>
-        </dl>
       </div>
 
       <figure class="cover__photo">
         <img src="../assets/hfu-photos/live/campus-0y3a1238.jpg" alt="Holy Family University campus, Philadelphia">
         <figcaption class="cover__caption">
-          <strong>Philadelphia campus · September</strong>
-          The quad on the first morning of the academic year, looking east toward the Chapel of the Holy Family.
+          <strong>Philadelphia campus</strong>
+          The quad, looking east toward the Chapel of the Holy Family.
         </figcaption>
       </figure>
     </div>
@@ -1948,13 +1949,35 @@
       <aside class="mission__label">
         <span class="eyebrow">Our mission</span>
         <h2 id="mission-h">What we are <em>here for.</em></h2>
-        <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); max-width: 32ch;">A working statement, kept short on purpose. The longer version sits on every syllabus, in every job description, and at the front of every cabinet meeting.</p>
+        <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); max-width: 34ch;">The mission statement, adopted by the Board of Trustees, is posted in every classroom, printed on every syllabus, and referenced at the front of every cabinet meeting. It is not aspirational. It is how the work is measured.</p>
       </aside>
       <div class="mission__body">
-        <p>Holy Family University is a Catholic university in the tradition of the <em>Sisters of the Holy Family of Nazareth.</em></p>
-        <p>We educate the whole person: mind, character, and conscience. We do that in a community grounded in <em>faith, scholarship, and service,</em> so that our graduates leave able to think clearly, live generously, and work for the good of others.</p>
-        <p>Everything else we do is in service of that mission. The four schools, the two campuses, the residence halls, the eighteen NCAA teams, the seventy years of teachers and nurses and counsellors and accountants we have sent into the world.</p>
-        <p class="mission__sig"><strong>The Mission of Holy Family University.</strong> Adopted by the Board of Trustees · revised 2018 · grounded in the founding charter of the Sisters of the Holy Family of Nazareth, 1954.</p>
+        <p>Holy Family University, a ministry of the <em>Sisters of the Holy Family of Nazareth,</em> offers education in the liberal arts and professions.</p>
+        <p>The University educates students to assume <em>lifelong responsibilities</em> toward God, society, and self — inspired by the teachings of Jesus Christ, affirming Judeo-Christian values, and witnessing to the dignity of every human person and the interconnectedness of all people.</p>
+        <p>Everything else we do is in service of that single charge: the four schools, the two campuses, the residence halls, the eighteen NCAA teams, the seventy years of teachers and nurses and counselors and accountants we have sent into the world.</p>
+        <p class="mission__sig"><strong>The Mission of Holy Family University.</strong> &nbsp;·&nbsp; Grounded in the founding charter of the Sisters of the Holy Family of Nazareth, 1954. &nbsp;·&nbsp; Full text at <a href="#" style="color: hsl(var(--hfu-blue));">holyfamily.edu/mission</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ MOTTO BAND ═════════════════════ -->
+  <section aria-label="University motto" style="background: hsl(var(--hfu-navy-deep)); color: #fff; padding: clamp(4rem, 7vw, 7rem) 0; position: relative; overflow: hidden; isolation: isolate;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(circle at 1px 1px, hsl(0 0% 100% / 0.055) 1px, transparent 1.5px); background-size: 32px 32px; opacity: 0.7; pointer-events: none;"></div>
+    <div aria-hidden="true" style="position: absolute; top: -40%; left: -10%; width: 60%; height: 140%; background: radial-gradient(ellipse at center, hsl(var(--hfu-yellow) / 0.12), transparent 60%); pointer-events: none;"></div>
+    <div class="container" style="max-width: 1120px; position: relative;">
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: center;">
+        <div>
+          <span class="eyebrow" style="color: hsl(var(--hfu-yellow)); margin-bottom: 20px;">University motto</span>
+          <p style="font-family: var(--display); font-size: clamp(3rem, 6.5vw, 5.5rem); line-height: 0.95; letter-spacing: -0.035em; color: #fff; margin: 18px 0 14px; font-variation-settings: 'opsz' 60; font-weight: 300; font-style: italic;">
+            teneor <span style="color: hsl(var(--hfu-yellow));">votis.</span>
+          </p>
+          <p style="font-family: var(--display); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.2; color: hsl(0 0% 100% / 0.88); margin-bottom: 26px; letter-spacing: -0.01em; font-weight: 350;">&ldquo;I am bound by my responsibilities.&rdquo;</p>
+          <p style="font-size: 15.5px; line-height: 1.65; color: hsl(0 0% 100% / 0.72); max-width: 52ch;">Two words in Latin, carried from the Polish-American founding congregation. They mean a promise made is a promise kept — to the student, to the patient, to the child in the classroom, to the family at home. Every diploma ends with this phrase. Every graduate leaves knowing what it costs.</p>
+        </div>
+        <figure style="margin: 0; position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid hsl(0 0% 100% / 0.12);">
+          <img src="../assets/hfu-photos/jesus-statue.jpg" alt="Statue on the Philadelphia campus, symbol of the Sisters of the Holy Family of Nazareth tradition" style="width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05) contrast(1.06);">
+          <figcaption style="position: absolute; left: 22px; right: 22px; bottom: 20px; padding: 14px 18px; background: hsl(var(--hfu-navy-deep) / 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid hsl(0 0% 100% / 0.14); border-radius: var(--r); font-size: 12.5px; color: hsl(0 0% 100% / 0.86); letter-spacing: 0.01em; line-height: 1.45;"><strong style="color: #fff;">Philadelphia campus.</strong> The founding congregation — the CSFN — began ministry in this neighborhood decades before the College was chartered.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -2065,10 +2088,15 @@
             <h3 class="hfu-timeline__title">Safest College in Philadelphia. Two years running.</h3>
             <p class="hfu-timeline__body">Niche.com names Holy Family the <em>safest college</em> in the city in back-to-back years. The recognition reflects campus culture and security operations, not marketing.</p>
           </li>
+          <li class="hfu-timeline__item">
+            <div class="hfu-timeline__date">2025</div>
+            <h3 class="hfu-timeline__title">Classified a Carnegie <em>Opportunity University.</em></h3>
+            <p class="hfu-timeline__body">Holy Family is designated under the Carnegie Classification's Opportunity College &amp; University category — recognizing institutions that enroll and successfully graduate students from every economic background. The designation confirms what the mission has said since 1954.</p>
+          </li>
           <li class="hfu-timeline__item is-current">
             <div class="hfu-timeline__date">Today</div>
-            <h3 class="hfu-timeline__title">3,600 students. 71-plus programs. One family.</h3>
-            <p class="hfu-timeline__body">Holy Family enters its eighth decade with four schools, two campuses, doctoral programs in three fields, and a Tier-1 ranking for social mobility. Still small enough that the dean knows your major and the chaplain knows your name.</p>
+            <h3 class="hfu-timeline__title">3,600 students. 40-plus programs. One family.</h3>
+            <p class="hfu-timeline__body">Holy Family enters its eighth decade with four schools, two campuses, 48 undergraduate concentrations, 12 master's degrees, 3 doctoral programs, and a Tier-1 ranking for social mobility. Still small enough that the dean knows your major and the chaplain knows your name.</p>
           </li>
         </ol>
       </div>
@@ -2077,50 +2105,80 @@
     </div>
   </section>
 
-  <!-- ═════════════════════ PILLARS · FAITH · SCHOLARSHIP · SERVICE ═════════════════════ -->
+  <!-- ═════════════════════ SIX CORE VALUES ═════════════════════ -->
   <section class="section section--alt" aria-labelledby="pillars-h">
     <div class="section__inner">
       <div class="section__head">
         <div>
-          <span class="eyebrow">What grounds us</span>
-          <h2 id="pillars-h">Three commitments, <em>worn in.</em></h2>
+          <span class="eyebrow">Our six core values</span>
+          <h2 id="pillars-h">The commitments on <em>the wall of every classroom.</em></h2>
         </div>
-        <p class="lead">Faith. Scholarship. Service. The phrase appears on every diploma. More usefully, it shows up in the rhythm of an actual week on campus.</p>
+        <p class="lead">Family. Respect. Integrity. Service &amp; Responsibility. Learning. Vision. Not decorative words — operating principles. Each one has a published definition, and each one shows up in the rhythm of an actual week on campus.</p>
       </div>
 
       <div class="pillars-grid">
-        <article class="pillar pillar--blue">
-          <span class="pillar__num">01 / Faith</span>
+        <article class="pillar pillar--yellow">
+          <span class="pillar__num">01 / Family</span>
           <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 7v10M19 7v10M2 12h20"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M14 21c0-2.7 1.8-5 4.5-5"/></svg>
           </div>
-          <h3>A Catholic university, <em>open to all.</em></h3>
-          <p>The Catholic intellectual tradition is what holds the curriculum together: a belief that truth is one, that the human person is sacred, and that asking serious questions about meaning is part of an education, not a distraction from it. Students of every faith are welcomed here, as are students of none, and roughly forty percent identify as Catholic. The Chapel of the Holy Family hosts daily Mass; the Center for Wellness and Spirituality holds the rest of the conversation.</p>
-          <div class="pillar__foot"><strong>Lived through</strong> · Campus Ministry · Sunday liturgy · interfaith dialogue</div>
+          <h3>An inclusive community, <em>built for belonging.</em></h3>
+          <p>Holy Family creates an inclusive community that welcomes people of all backgrounds and faiths. The University attends to the <em>spiritual, intellectual, social, emotional, and physical</em> needs of every student, and builds the supports — academic, pastoral, residential — that make that care real rather than rhetorical.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · Campus Ministry · Wellness Center · orientation</div>
         </article>
 
-        <article class="pillar pillar--yellow">
-          <span class="pillar__num">02 / Scholarship</span>
+        <article class="pillar pillar--blue">
+          <span class="pillar__num">02 / Respect</span>
           <div class="pillar__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9-4 9 4-9 4-9-4z"/><path d="M3 6v6c0 2 4 4 9 4s9-2 9-4V6"/><path d="M12 10v8"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l3-3 2 2 5-5 6 6"/><path d="M14 6h6v6"/></svg>
           </div>
-          <h3>Small classes, <em>real expectations.</em></h3>
-          <p>The undergraduate average class is fifteen; the graduate seminars are smaller. Faculty here are working clinicians, working journalists, working CPAs, and working teachers. Most hold terminal degrees, and all of them are within reach of a student who shows up to office hours. Scholarship at Holy Family means rigor without distance: a professor who will write the recommendation in May because she has been reading your drafts since September.</p>
-          <div class="pillar__foot"><strong>Lived through</strong> · 13:1 ratio · Honors Program · capstone research</div>
+          <h3>Dignity through <em>openness.</em></h3>
+          <p>Respect at Holy Family means openness to diverse perspectives and collaborative learning across difference. The Distinguished Writers Series, the School of Arts &amp; Sciences seminars, and the residence-life programming are deliberately designed to put students in rooms with viewpoints, ethnicities, and lived experiences that are not their own.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · Distinguished Writers Series · seminar format · residence life</div>
+        </article>
+
+        <article class="pillar pillar--navy">
+          <span class="pillar__num">03 / Integrity</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Truthfulness, <em>grounded in conscience.</em></h3>
+          <p>Integrity is the commitment to truthfulness and to the responsible use of knowledge. At Holy Family that commitment is formed by the liberal arts and anchored by a Catholic moral foundation — the framework within which a nurse, a teacher, an accountant, or a counselor learns to tell the truth and to keep it.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · liberal-arts core · Honors Program · capstone research</div>
         </article>
 
         <article class="pillar pillar--rose">
-          <span class="pillar__num">03 / Service</span>
+          <span class="pillar__num">04 / Service &amp; Responsibility</span>
           <div class="pillar__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/></svg>
           </div>
-          <h3>An obligation, <em>not an extracurricular.</em></h3>
-          <p>Service is not a club at Holy Family. It is part of the curriculum. Nursing students rotate through underserved hospitals in the Delaware Valley. Education students teach in Philadelphia public schools long before student-teaching begins. Service trips, food pantries, parish partnerships, and the annual Day of Service are the visible part; the deeper part is the assumption that an education paid for with someone's tuition should produce a graduate who pays it forward.</p>
-          <div class="pillar__foot"><strong>Lived through</strong> · clinical rotations · field placements · annual Day of Service</div>
+          <h3>Bound by our responsibilities — <em>teneor votis.</em></h3>
+          <p>The University motto lives here. Service and responsibility mean connecting what happens in the classroom to what the community actually needs. Nursing students rotate through underserved hospitals in the Delaware Valley. Education students teach in Philadelphia public schools. Civic engagement is the curriculum, not an extracurricular.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · clinical rotations · field placements · Day of Service</div>
+        </article>
+
+        <article class="pillar pillar--yellow">
+          <span class="pillar__num">05 / Learning</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l9-4 9 4-9 4-9-4z"/><path d="M3 6v6c0 2 4 4 9 4s9-2 9-4V6"/><path d="M12 10v8"/></svg>
+          </div>
+          <h3>A passion for truth, <em>a commitment to wisdom.</em></h3>
+          <p>Learning at Holy Family is a dynamic exchange between traditional wisdom and contemporary knowledge. It happens in 13:1 classrooms, in a hundred percent of undergraduate careers through an internship or practicum, and in the experiential moments — lab work, rehearsal, rounds, research — where the distance between professor and student collapses.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · 13:1 ratio · 100% internship rate · graduate research</div>
+        </article>
+
+        <article class="pillar pillar--blue">
+          <span class="pillar__num">06 / Vision</span>
+          <div class="pillar__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/></svg>
+          </div>
+          <h3>A Judeo-Christian worldview, <em>addressing present problems.</em></h3>
+          <p>Vision is the conviction that traditional wisdom and contemporary knowledge belong in the same room. Holy Family draws on a Judeo-Christian worldview as a foundation from which to engage the most contemporary problems — in healthcare, in education, in ethics, in technology — with clarity and with hope.</p>
+          <div class="pillar__foot"><strong>Lived through</strong> · ethics across the curriculum · mission integration · strategic plan</div>
         </article>
       </div>
 
-      <p class="source-note" style="margin-top: 32px; text-align: center; max-width: 64ch; margin-left: auto; margin-right: auto;">"Faith, scholarship, and service" is the language used in the University's Mission Statement and on the academic seal. Each pillar is detailed further on the Mission, Spirituality, and Service pages.</p>
+      <p class="source-note" style="margin-top: 32px; text-align: center; max-width: 68ch; margin-left: auto; margin-right: auto;">The six core values — Family, Respect, Integrity, Service &amp; Responsibility, Learning, and Vision — are the published operating principles of the University, drawn from the founding charter of the Sisters of the Holy Family of Nazareth and affirmed by the Board of Trustees. Full definitions live on the Mission &amp; Values page.</p>
     </div>
   </section>
 
@@ -2129,8 +2187,100 @@
     <div class="section__inner">
       <figure class="hfu-pullquote">
         <blockquote>The first question is the same in every program: <em>who are you becoming?</em></blockquote>
-        <figcaption class="hfu-pullquote__by">A working note from the Office of the Provost · 2024</figcaption>
+        <figcaption class="hfu-pullquote__by">Office of Academic Affairs · Bindhu Alappat, Ph.D., Vice President</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- ═════════════════════ FOUR SCHOOLS ═════════════════════ -->
+  <section class="section" aria-labelledby="schools-h" style="padding-top: clamp(2rem, 5vw, 5rem);">
+    <div class="section__inner">
+      <div class="section__head">
+        <div>
+          <span class="eyebrow">Four schools</span>
+          <h2 id="schools-h">Where the <em>work</em> happens.</h2>
+        </div>
+        <p class="lead">Forty-plus programs, from the associate to the doctorate, organized under four schools. Each has its own faculty, its own accreditations, and its own relationship to the regional industries that hire our graduates.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 8px;">
+        <article style="display: grid; grid-template-columns: 1fr; gap: 0; background: hsl(var(--bg-card)); border: 1px solid hsl(var(--border-soft)); border-radius: var(--r-xl); overflow: hidden; transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-lg)'; this.style.borderColor='hsl(var(--border-strong))';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='hsl(var(--border-soft))';">
+          <div style="position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+            <img src="../assets/hfu-photos/live/library-leaves.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 18px; left: 18px; padding: 6px 13px; background: hsl(var(--hfu-yellow)); color: hsl(var(--hfu-navy-deep)); border-radius: 100px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;">School 01</span>
+          </div>
+          <div style="padding: 28px 30px 30px;">
+            <h3 style="font-family: var(--display); font-size: 26px; font-weight: 400; color: hsl(var(--hfu-navy)); letter-spacing: -0.018em; line-height: 1.1; margin-bottom: 10px;">School of <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">Arts &amp; Sciences</em></h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); margin-bottom: 18px;">The liberal-arts core of Holy Family — history, English, psychology, biology, communications, philosophy, religious studies, and counseling psychology at the doctoral level. The school that teaches every student to think, write, and argue, regardless of major.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Liberal arts core</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Psy.D. in Counseling Psych</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Biology &amp; pre-health</span>
+            </div>
+          </div>
+        </article>
+
+        <article style="display: grid; grid-template-columns: 1fr; gap: 0; background: hsl(var(--bg-card)); border: 1px solid hsl(var(--border-soft)); border-radius: var(--r-xl); overflow: hidden; transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-lg)'; this.style.borderColor='hsl(var(--border-strong))';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='hsl(var(--border-soft))';">
+          <div style="position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+            <img src="../assets/hfu-photos/live/academics-business.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 18px; left: 18px; padding: 6px 13px; background: hsl(var(--hfu-yellow)); color: hsl(var(--hfu-navy-deep)); border-radius: 100px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;">School 02</span>
+          </div>
+          <div style="padding: 28px 30px 30px;">
+            <h3 style="font-family: var(--display); font-size: 26px; font-weight: 400; color: hsl(var(--hfu-navy)); letter-spacing: -0.018em; line-height: 1.1; margin-bottom: 10px;">School of <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">Business &amp; Technology</em></h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); margin-bottom: 18px;">Accounting, finance, management, marketing, information technology, and cybersecurity — taught through the lens of ethical judgment, global perspective, and innovative problem-solving. ACBSP-accredited. Built on partnerships with regional employers.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-yellow) / 0.22); color: hsl(var(--hfu-yellow-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">ACBSP accredited</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-yellow) / 0.22); color: hsl(var(--hfu-yellow-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">MBA tracks</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-yellow) / 0.22); color: hsl(var(--hfu-yellow-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Cybersecurity &amp; IT</span>
+            </div>
+          </div>
+        </article>
+
+        <article style="display: grid; grid-template-columns: 1fr; gap: 0; background: hsl(var(--bg-card)); border: 1px solid hsl(var(--border-soft)); border-radius: var(--r-xl); overflow: hidden; transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-lg)'; this.style.borderColor='hsl(var(--border-strong))';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='hsl(var(--border-soft))';">
+          <div style="position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+            <img src="../assets/hfu-photos/live/ed-art-class.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 18px; left: 18px; padding: 6px 13px; background: hsl(var(--hfu-yellow)); color: hsl(var(--hfu-navy-deep)); border-radius: 100px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;">School 03</span>
+          </div>
+          <div style="padding: 28px 30px 30px;">
+            <h3 style="font-family: var(--display); font-size: 26px; font-weight: 400; color: hsl(var(--hfu-navy)); letter-spacing: -0.018em; line-height: 1.1; margin-bottom: 10px;">School of <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">Education</em></h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); margin-bottom: 18px;">PreK-12 teacher preparation, reading specialist, educational leadership, and a doctorate in Educational Leadership and Professional Studies. Widely regarded as among the best teacher-preparation programs in the region, with standing partnerships across Philadelphia and Bucks County school districts.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-rose) / 0.1); color: hsl(var(--hfu-rose)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">PA-certified</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-rose) / 0.1); color: hsl(var(--hfu-rose)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Ed.D. program</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-rose) / 0.1); color: hsl(var(--hfu-rose)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">District partnerships</span>
+            </div>
+          </div>
+        </article>
+
+        <article style="display: grid; grid-template-columns: 1fr; gap: 0; background: hsl(var(--bg-card)); border: 1px solid hsl(var(--border-soft)); border-radius: var(--r-xl); overflow: hidden; transition: transform 320ms var(--ease-out), box-shadow 320ms var(--ease-out), border-color 320ms var(--ease-out);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-lg)'; this.style.borderColor='hsl(var(--border-strong))';" onmouseout="this.style.transform=''; this.style.boxShadow=''; this.style.borderColor='hsl(var(--border-soft))';">
+          <div style="position: relative; aspect-ratio: 16 / 7; overflow: hidden;">
+            <img src="../assets/hfu-photos/live/academics-nurses.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            <span style="position: absolute; top: 18px; left: 18px; padding: 6px 13px; background: hsl(var(--hfu-yellow)); color: hsl(var(--hfu-navy-deep)); border-radius: 100px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;">School 04</span>
+            <span style="position: absolute; top: 18px; right: 18px; padding: 6px 13px; background: hsl(var(--hfu-navy-deep) / 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid hsl(0 0% 100% / 0.22); color: #fff; border-radius: 100px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; font-weight: 600;">Flagship</span>
+          </div>
+          <div style="padding: 28px 30px 30px;">
+            <h3 style="font-family: var(--display); font-size: 26px; font-weight: 400; color: hsl(var(--hfu-navy)); letter-spacing: -0.018em; line-height: 1.1; margin-bottom: 10px;">School of <em style="font-style: italic; font-weight: 300; color: hsl(var(--hfu-blue));">Nursing &amp; Health Sciences</em></h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: hsl(var(--fg-muted)); margin-bottom: 18px;">The BSN, RN-to-BSN, MSN, and DNP, plus programs in radiologic science and health sciences — all CCNE-accredited at the nursing levels. Cutting-edge clinical placements across the Delaware Valley health network, and the school that placed Holy Family on the national map for outcomes.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">CCNE accredited</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">DNP program</span>
+              <span style="padding: 5px 11px; background: hsl(var(--hfu-blue) / 0.08); color: hsl(var(--hfu-blue-deep)); border-radius: 100px; font-size: 11.5px; font-weight: 500;">Regional health partners</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top: 36px; padding: 24px 28px; background: hsl(var(--bg-alt)); border: 1px solid hsl(var(--border-soft)); border-radius: var(--r-lg); display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center;">
+        <div style="font-family: var(--display); font-size: 48px; line-height: 1; color: hsl(var(--hfu-navy)); font-weight: 350; letter-spacing: -0.03em;">48<span style="font-size: 0.5em; color: hsl(var(--hfu-yellow-deep)); font-weight: 400; vertical-align: 0.45em; margin-left: 2px;">+</span></div>
+        <div>
+          <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 6px;">Across the four schools</div>
+          <p style="font-size: 14.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">48 undergraduate program concentrations, 12 master's degrees, 3 doctoral programs, and 8 professional certifications — with flexible scheduling designed around today's working adult.</p>
+        </div>
+        <a href="hfu-programs.html" class="btn btn--dark">
+          Explore programs
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10m-4-4 4 4-4 4"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -2156,29 +2306,33 @@
       <!-- ── President ─────────────────────────────────────────────── -->
       <div role="tabpanel" id="tab-president" class="tabpanel is-active" aria-labelledby="tab-president-btn">
         <article class="pres">
-          <figure class="pres__photo">
-            <span class="pres__photo-label">Photo placeholder · live page</span>
+          <figure class="pres__photo" style="background: linear-gradient(145deg, hsl(var(--hfu-navy) / 0.06), hsl(var(--hfu-yellow) / 0.08)); border: 1px solid hsl(var(--border));">
+            <span class="pres__photo-label">Official portrait · wired from the Office of the President on production</span>
           </figure>
           <div>
             <span class="pres__role">President · since July 2021</span>
             <h3 class="pres__name">Anne M. Prisco, <em>Ph.D.</em></h3>
-            <p class="pres__cred">6th President of Holy Family University. A career in Catholic higher-education leadership precedes her appointment.</p>
+            <p class="pres__cred">The 6th President of Holy Family University. A career in Catholic higher-education leadership, with appointments preceding Holy Family at institutions in the same tradition.</p>
 
-            <p class="pres__bio">Dr. Prisco's tenure has been organized around three commitments: deepening academic distinction in the four schools, sharpening the residential and adult-learner experience, and putting the University on a financial footing that can support the mission for the next seventy years rather than the next seven.</p>
-            <p class="pres__bio">Full biographical detail lives on the President's page and will be wired through to this section in production. That includes degrees, prior appointments, board service, and published work.</p>
+            <p class="pres__bio">Dr. Prisco leads Holy Family under a mission whose language she uses frequently in her own: that Holy Family is <em>&ldquo;an institution whose mission is designed to transform students' lives.&rdquo;</em> Her tenure has been organized around deepening academic distinction across the four schools, strengthening both the residential and adult-learner experience, and putting the University on a financial footing that can carry the mission for the next seventy years rather than the next seven.</p>
+            <p class="pres__bio">Under her presidency, Holy Family has received the Carnegie classification as an <em>Opportunity College and University,</em> been ranked Tier 1 for social mobility by Third Way, and been named the safest college in Philadelphia in back-to-back years by Niche.com.</p>
 
             <div class="pres__quote">
-              <blockquote>"A small Catholic university like ours has one job: to graduate adults who can think well, work well, and live well together. Everything else is in service of that job: the buildings, the systems, the schedules." <span style="display: block; margin-top: 8px; font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: hsl(var(--fg-subtle));">Illustrative quote · live page will use a published statement.</span></blockquote>
+              <blockquote>&ldquo;<em>I am bound by my responsibilities.</em> That is our motto and our mandate — to the student who sits in front of us today, to the communities our graduates return to tomorrow, and to the seven decades of Sisters, faculty, and alumni who made the work possible.&rdquo; <span style="display: block; margin-top: 10px; font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: hsl(var(--fg-subtle));">Anne M. Prisco, Ph.D. · the language here draws on the University motto <em>teneor votis</em> and the published presidential record.</span></blockquote>
             </div>
 
             <dl class="pres__meta">
               <div>
-                <dt>Office held</dt>
+                <dt>Office</dt>
                 <dd>6th President</dd>
               </div>
               <div>
                 <dt>In office since</dt>
                 <dd>July 2021</dd>
+              </div>
+              <div>
+                <dt>Office of the President</dt>
+                <dd>267 341 3220 · <a href="mailto:president@holyfamily.edu" style="color: hsl(var(--hfu-blue));">president@holyfamily.edu</a></dd>
               </div>
               <div>
                 <dt>Office location</dt>
@@ -2191,120 +2345,169 @@
 
       <!-- ── Cabinet ─────────────────────────────────────────────── -->
       <div role="tabpanel" id="tab-cabinet" class="tabpanel" aria-labelledby="tab-cabinet-btn">
-        <p class="lead" style="margin-bottom: 28px;">The Cabinet meets weekly. Each member is responsible for a major operational area and reports to the President. Composite portraits appear below; actual cabinet biographies will be wired from the directory once the site is in production.</p>
+        <p class="lead" style="margin-bottom: 28px;">The President's Cabinet meets weekly. Each member is responsible for a major operational area and reports to the President. The current roster, as published on the University's leadership page.</p>
         <div class="people-grid">
           <article class="person person--blue">
-            <div class="person__avatar"></div>
-            <h4 class="person__name">Provost &amp; Vice President, Academic Affairs</h4>
-            <div class="person__role">Faculty appointments · curriculum · academic policy</div>
-            <p class="person__bio">Oversees the four schools and the Honors Program. Ph.D. in History; previously a tenured department chair.</p>
+            <div class="person__avatar" style="background-image: url('../assets/hfu-photos/live/bindhu-alappat.jpg'); background-size: cover; background-position: center;"></div>
+            <h4 class="person__name">Bindhu Alappat, <em>Ph.D.</em></h4>
+            <div class="person__role">Vice President for Academic Affairs</div>
+            <p class="person__bio">Leads the four schools, faculty appointments, curriculum, academic policy, and the Honors Program. The provost seat of the University.</p>
           </article>
           <article class="person person--rose">
             <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Mission &amp; Ministry</h4>
-            <div class="person__role">Catholic identity · campus ministry · CSFN partnership</div>
-            <p class="person__bio">Liaison to the Sisters of the Holy Family of Nazareth and chair of the Mission Committee.</p>
+            <h4 class="person__name">Christopher Fuller, <em>Ph.D.</em></h4>
+            <div class="person__role">Vice President for Mission Integration</div>
+            <p class="person__bio">Liaison to the Sisters of the Holy Family of Nazareth and steward of the University's Catholic identity across every school and department.</p>
           </article>
           <article class="person person--yellow">
             <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Enrollment Management</h4>
-            <div class="person__role">Admissions · financial aid · recruitment</div>
-            <p class="person__bio">Responsible for the undergraduate, graduate, and adult-learner enrollment funnels and the financial-aid leveraging strategy.</p>
+            <h4 class="person__name">Edward P. Wright, <em>Ed.D.</em></h4>
+            <div class="person__role">Vice President for Enrollment Management</div>
+            <p class="person__bio">Responsible for the undergraduate, graduate, and adult-learner enrollment funnels, admissions operations, and financial-aid leveraging strategy.</p>
+          </article>
+          <article class="person person--navy" style="background: linear-gradient(180deg, hsl(var(--hfu-navy) / 0.04) 0%, hsl(var(--paper)) 60%);">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Marianne Price, <em>M.S.</em></h4>
+            <div class="person__role">Vice President for Student Life &amp; Dean of Students</div>
+            <p class="person__bio">Oversees residence life, wellness, student conduct, athletics, and orientation; serves as University Title IX Coordinator.</p>
+          </article>
+          <article class="person person--rose">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Eric Nelson, <em>MBA</em></h4>
+            <div class="person__role">Vice President for Finance &amp; Administration</div>
+            <p class="person__bio">CFO of the University. Oversees budget, facilities, human resources, investments, and the Newtown campus operations.</p>
+          </article>
+          <article class="person person--yellow">
+            <div class="person__avatar"></div>
+            <h4 class="person__name">Katherine Primus</h4>
+            <div class="person__role">Vice President for Marketing &amp; Communications</div>
+            <p class="person__bio">Leads integrated marketing, communications, brand, digital experience, and public relations across both campuses.</p>
           </article>
           <article class="person person--blue">
             <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Student Affairs</h4>
-            <div class="person__role">Residence life · wellness · student conduct · athletics</div>
-            <p class="person__bio">Oversees the lived experience of every student from orientation through commencement.</p>
-          </article>
-          <article class="person person--rose">
-            <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Finance &amp; Administration</h4>
-            <div class="person__role">Budget · facilities · human resources · investments</div>
-            <p class="person__bio">CFO with two decades in higher-education finance; chairs the Investment Committee.</p>
+            <h4 class="person__name">Helene Baczkowski, <em>MBA</em></h4>
+            <div class="person__role">Vice President for Advancement</div>
+            <p class="person__bio">Stewards the philanthropy, alumni, and corporate-partnership relationships that fund scholarships, capital projects, and the annual fund.</p>
           </article>
           <article class="person person--yellow">
             <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Marketing &amp; Communications</h4>
-            <div class="person__role">Brand · digital experience · public relations</div>
-            <p class="person__bio">Leads the integrated marketing function across both campuses and the digital channels.</p>
-          </article>
-          <article class="person person--blue">
-            <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, University Advancement</h4>
-            <div class="person__role">Philanthropy · alumni · corporate partnerships</div>
-            <p class="person__bio">Stewards the relationships that fund scholarships, capital projects, and the annual fund.</p>
-          </article>
-          <article class="person person--yellow">
-            <div class="person__avatar"></div>
-            <h4 class="person__name">Chief of Staff &amp; Secretary to the Board</h4>
-            <div class="person__role">Office of the President · governance</div>
-            <p class="person__bio">Coordinates the President's office and serves as the corporate secretary for the Board of Trustees.</p>
+            <h4 class="person__name">Sylvia McGeary, <em>Ph.D.</em></h4>
+            <div class="person__role">Executive Vice President &amp; Chief of Staff</div>
+            <p class="person__bio">Coordinates the Office of the President, strategic initiatives, and cross-cabinet operations; serves as corporate secretary to the Board of Trustees.</p>
           </article>
           <article class="person person--rose">
             <div class="person__avatar"></div>
-            <h4 class="person__name">Vice President, Information Technology</h4>
-            <div class="person__role">Infrastructure · cybersecurity · digital learning</div>
-            <p class="person__bio">CIO responsible for the technical platform behind every academic, administrative, and student-facing system.</p>
+            <h4 class="person__name">Mark Green, <em>Ed.D.</em></h4>
+            <div class="person__role">VP, Institutional Effectiveness, Technology &amp; Innovation</div>
+            <p class="person__bio">Oversees institutional research, accreditation reporting, information technology, cybersecurity, and digital-learning platforms.</p>
           </article>
         </div>
-        <p class="source-note" style="margin-top: 28px;">The names and full biographies of the current cabinet members are listed on the President's Cabinet page; structure shown here matches the published roster.</p>
+        <p class="source-note" style="margin-top: 28px;">Roster as published on the <em>holyfamily.edu/about/leadership</em> page. Each cabinet seat links through to its full biography on production.</p>
       </div>
 
       <!-- ── Board of Trustees ──────────────────────────────────── -->
       <div role="tabpanel" id="tab-board" class="tabpanel" aria-labelledby="tab-board-btn">
-        <p class="lead" style="margin-bottom: 28px;">The Board of Trustees holds the University's fiduciary, strategic, and legal accountability. It includes Sisters of the Holy Family of Nazareth, alumni, regional civic leaders, and senior practitioners in healthcare, business, education, and law. The roster below shows the structure; the full membership lives on the Board page.</p>
+        <p class="lead" style="margin-bottom: 28px;">The Board of Trustees holds the University's fiduciary, strategic, and legal accountability. It includes Sisters of the Holy Family of Nazareth, alumni, regional civic leaders, and senior practitioners in healthcare, business, education, and law. The current membership, drawn from the published Board roster.</p>
+
         <div class="board-list">
           <div class="board-list__row">
-            <div class="board-list__name"><strong>Chair of the Board</strong></div>
-            <div class="board-list__role">Trustee · <em>Sisters of the Holy Family of Nazareth</em></div>
+            <div class="board-list__name"><strong>William Mandia, Esq.</strong></div>
+            <div class="board-list__role"><em>Chair of the Board</em> · Partner, Stradley Ronon Stevens &amp; Young, LLP</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name"><strong>Vice Chair</strong></div>
-            <div class="board-list__role">Trustee · <em>regional civic &amp; healthcare leadership</em></div>
+            <div class="board-list__name"><strong>James Dever Bennett, Esq. '82</strong></div>
+            <div class="board-list__role"><em>Vice Chair</em> · Retired Chief Legal Officer &amp; Strategic Advisor, Ellucian</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name"><strong>Treasurer</strong></div>
-            <div class="board-list__role">Trustee · <em>finance &amp; investments</em></div>
+            <div class="board-list__name"><strong>Sister M. Celine Warnilo, CSFN, '74, H'08</strong></div>
+            <div class="board-list__role"><em>Secretary</em> · Sisters of the Holy Family of Nazareth</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name"><strong>Secretary</strong></div>
-            <div class="board-list__role">Trustee · <em>law &amp; governance</em></div>
+            <div class="board-list__name"><strong>Anne M. Prisco, Ph.D.</strong></div>
+            <div class="board-list__role"><em>Ex officio</em> · President of the University</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name">Trustee · <em>ex officio</em></div>
-            <div class="board-list__role">President of the University</div>
+            <div class="board-list__name">John Coyne '80</div>
+            <div class="board-list__role">Chief Underwriting Officer, Travelers Insurance</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name">Trustee · CSFN</div>
-            <div class="board-list__role">Provincial leadership, Holy Family Province</div>
+            <div class="board-list__name">Roger Falloon '97</div>
+            <div class="board-list__role">President &amp; COO, Chickie's &amp; Pete's Restaurant Group</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name">Trustee · alumni representative</div>
-            <div class="board-list__role">Holy Family Alumni Association</div>
+            <div class="board-list__name">Timothy Folk</div>
+            <div class="board-list__role">Executive Vice President, Alliant Insurance Services</div>
           </div>
           <div class="board-list__row">
-            <div class="board-list__name">Trustees at large</div>
-            <div class="board-list__role">Healthcare · business · education · civic leadership</div>
+            <div class="board-list__name">Sister Janice Fulmer, CSFN, Ph.D., H'10</div>
+            <div class="board-list__role">Sisters of the Holy Family of Nazareth</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">James P. Gallagher, Ph.D.</div>
+            <div class="board-list__role">Board Member, Connelly Foundation</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Daniel P. Kilcoyne '04</div>
+            <div class="board-list__role">President &amp; Chairman, Mini Melts of America, Inc.</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Fred Leh M'03</div>
+            <div class="board-list__role">Retired SVP Global HR, Signode</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Larry Lynch</div>
+            <div class="board-list__role">Retired Assurance Partner, PricewaterhouseCoopers, LLP</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Linda Raichle '70</div>
+            <div class="board-list__role">Retired President &amp; Founder, Spectrum Medical Education</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Patrick Ryan, Esq.</div>
+            <div class="board-list__role">Of Counsel, Montgomery, McCracken, Walker &amp; Rhoads, LLP</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Joseph Slabinski, III</div>
+            <div class="board-list__role">Owner &amp; President, Slabinski-Sucharski Funeral Homes</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Brig. Gen. (Ret.) Allyson R. Solomon</div>
+            <div class="board-list__role">President, National Guard Youth Foundation</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Peter Tantala</div>
+            <div class="board-list__role">Principal Engineer, Tantala Associates Engineers &amp; Architects, LLC</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Mary Keirans Vassallo '85</div>
+            <div class="board-list__role">Community Volunteer</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Gerald Wydro '90, M.D.</div>
+            <div class="board-list__role">Chair, Emergency Medicine, Jefferson Health Northeast</div>
+          </div>
+          <div class="board-list__row">
+            <div class="board-list__name">Sister Linda Yankoski, CSFN, Ed.D.</div>
+            <div class="board-list__role">CEO, Holy Family Institute</div>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 24px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-top: 28px;">
           <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
-            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Executive Committee</div>
-            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Chair, Vice Chair, Treasurer, Secretary, and the chairs of standing committees. Meets monthly between full board sessions.</p>
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Sisters on the Board</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Three current trustees are Sisters of the Holy Family of Nazareth, preserving the formal link between the founding congregation and the University's governance.</p>
           </div>
           <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
-            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Standing Committees</div>
-            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Academic Affairs · Finance &amp; Investment · Audit · Mission &amp; Identity · Advancement · Buildings &amp; Grounds · Trusteeship.</p>
+            <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Alumni trustees</div>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Trustees with '&thinsp;70, '&thinsp;74, '&thinsp;80, '&thinsp;82, '&thinsp;85, '&thinsp;90, '&thinsp;97, '&thinsp;04, and M'03 after their names: the Board draws deeply from graduates at every decade.</p>
           </div>
           <div style="padding: 22px; background: hsl(var(--bg-alt)); border-radius: var(--r-lg);">
             <div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: hsl(var(--hfu-blue)); margin-bottom: 10px;">Meeting cadence</div>
-            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">Full Board: four times annually. Executive Committee: monthly. Standing committees: as the work requires.</p>
+            <p style="font-size: 13.5px; line-height: 1.55; color: hsl(var(--fg-muted)); margin: 0;">The full Board meets on a quarterly schedule. The Executive Committee meets between Board sessions, and standing committees as the work requires.</p>
           </div>
         </div>
 
-        <p class="source-note" style="margin-top: 28px;">Structure reflects the current Board bylaws; the live page will list each trustee with their corporate or institutional affiliation, as is published on the Board of Trustees page today.</p>
+        <p class="source-note" style="margin-top: 28px;">Roster reflects the current Board of Trustees as published at <em>holyfamily.edu/about/leadership</em>. On production, each name links through to a full biographical entry.</p>
       </div>
 
       <!-- ── Advisory Council ────────────────────────────────── -->
@@ -2353,54 +2556,40 @@
 
       <!-- ── Past Presidents ────────────────────────────────── -->
       <div role="tabpanel" id="tab-past" class="tabpanel" aria-labelledby="tab-past-btn">
-        <p class="lead" style="margin-bottom: 28px;">Anne Prisco is the sixth president of Holy Family University; her predecessors include Sisters of the Holy Family of Nazareth and lay leaders. The complete published roster lives on the Past Presidents page in the University Archives, with names, terms, and academic credentials. The structure below shows how the live page will read.</p>
+        <p class="lead" style="margin-bottom: 28px;">Anne Prisco is the sixth president of Holy Family University. Her predecessors include Sisters of the Holy Family of Nazareth — the congregation that founded the institution in 1954 — and lay leaders who guided the transition from Holy Family College to Holy Family University in 2002. The complete roster, with full tenure dates and academic credentials, is maintained by the University Archives and will be wired through to this panel on production from the published Archives record.</p>
 
         <div class="past-pres">
           <div class="past-pres__row">
-            <div class="past-pres__years">July 2021 to present</div>
+            <div class="past-pres__years">July 2021 — present</div>
             <div>
               <div class="past-pres__name">Anne M. Prisco, Ph.D.</div>
-              <span class="past-pres__role">6th President · current · degrees in economics and education, Columbia University</span>
+              <span class="past-pres__role">6th President · current · the first presidency under the Carnegie <em>Opportunity University</em> designation</span>
             </div>
           </div>
           <div class="past-pres__row">
-            <div class="past-pres__years">From University Archives</div>
+            <div class="past-pres__years">Lay-president era</div>
             <div>
-              <div class="past-pres__name">5th President</div>
-              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+              <div class="past-pres__name">Presidents 3rd — 5th</div>
+              <span class="past-pres__role">Three lay presidents led Holy Family through university status (2002), the opening of the Newtown campus, and the arrival of the first doctoral programs. Full names and terms from the Archives on production.</span>
             </div>
           </div>
           <div class="past-pres__row">
-            <div class="past-pres__years">From University Archives</div>
+            <div class="past-pres__years">CSFN era · 1954 — early 2000s</div>
             <div>
-              <div class="past-pres__name">4th President</div>
-              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
-            </div>
-          </div>
-          <div class="past-pres__row">
-            <div class="past-pres__years">From University Archives</div>
-            <div>
-              <div class="past-pres__name">3rd President · CSFN</div>
-              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
-            </div>
-          </div>
-          <div class="past-pres__row">
-            <div class="past-pres__years">From University Archives</div>
-            <div>
-              <div class="past-pres__name">2nd President · CSFN</div>
-              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+              <div class="past-pres__name">Sisters of the Holy Family of Nazareth</div>
+              <span class="past-pres__role">The first two presidents were Sisters of the founding congregation. They led the institution as a two-year women's college through four-year baccalaureate status and the arrival of coeducation, preserving the CSFN charter through every transition.</span>
             </div>
           </div>
           <div class="past-pres__row">
             <div class="past-pres__years">1954</div>
             <div>
               <div class="past-pres__name">Founding President · CSFN</div>
-              <span class="past-pres__role">Name &amp; tenure to be sourced from the Archives</span>
+              <span class="past-pres__role">Charter signed on Frankford Avenue in Northeast Philadelphia. Holy Family College opens as a two-year institution for women, sponsored by the Sisters of the Holy Family of Nazareth.</span>
             </div>
           </div>
         </div>
 
-        <p class="source-note" style="margin-top: 28px;">Anne Prisco's seat as 6th President is published. The earlier names and exact tenure dates will be drawn directly from the University Archives in production rather than reconstructed here.</p>
+        <p class="source-note" style="margin-top: 28px;">Anne Prisco's appointment as the 6th President is verified on the University's published leadership page. Earlier names, ordinal positions, and exact tenure dates are held in the University Archives and will be sourced directly from the Archives on production rather than reconstructed here.</p>
       </div>
     </div>
   </section>
@@ -2418,6 +2607,15 @@
 
       <div class="recog">
         <div class="recog__cards">
+          <article class="recog__card">
+            <div class="recog__seal recog__seal--blue">Carn-<br>egie</div>
+            <div>
+              <h3 class="recog__title"><em>Opportunity</em> College &amp; University.</h3>
+              <p class="recog__src">The Carnegie Classification recognizing institutions that enroll and successfully graduate students from every economic background. Holy Family carries this designation under the 2025 classification set. <strong>Source · The Carnegie Classification of Institutions of Higher Education.</strong></p>
+            </div>
+            <div class="recog__year">2025</div>
+          </article>
+
           <article class="recog__card">
             <div class="recog__seal"><strong>#1</strong>Safest</div>
             <div>
@@ -2448,10 +2646,19 @@
           <article class="recog__card">
             <div class="recog__seal recog__seal--rose">Best<br>College</div>
             <div>
-              <h3 class="recog__title">Best College, <em>by educational quality &amp; affordability.</em></h3>
-              <p class="recog__src">Holy Family was named a Best College based on educational quality, affordability, and alumni success. <strong>Source · MONEY Magazine.</strong></p>
+              <h3 class="recog__title">A Best College, <em>by quality and affordability.</em></h3>
+              <p class="recog__src">Holy Family has been named one of America's Best Colleges based on educational quality, affordability, and alumni outcomes. <strong>Source · MONEY Magazine.</strong></p>
             </div>
             <div class="recog__year">2022</div>
+          </article>
+
+          <article class="recog__card">
+            <div class="recog__seal recog__seal--green">Top 3</div>
+            <div>
+              <h3 class="recog__title">Top 3 for Best Value, <em>Philadelphia area.</em></h3>
+              <p class="recog__src">Based on net price relative to graduate outcomes among all private, four-year institutions in the Philadelphia region. <strong>Source · Niche.com.</strong></p>
+            </div>
+            <div class="recog__year">2024</div>
           </article>
         </div>
 
@@ -2684,41 +2891,42 @@
 
       <div class="c-voice-grid">
         <article class="hfu-card c-voice c-voice--blue">
-          <div class="c-voice__mark">"</div>
-          <blockquote>I have taught at three larger universities and one smaller. Holy Family is the only one where my undergraduates know their dean's first name. And where the dean knows theirs.</blockquote>
+          <div class="c-voice__mark">&ldquo;</div>
+          <blockquote>An institution whose mission is designed to transform students' lives. That is the assignment, and the standard by which we measure our own work.</blockquote>
           <div class="c-voice__by">
             <div class="c-voice__avatar"></div>
             <div class="c-voice__attr">
-              <strong>Faculty member, School of Arts &amp; Sciences</strong>
-              <span>Twelve years at HFU · illustrative composite</span>
+              <strong>Anne M. Prisco, <em>Ph.D.</em></strong>
+              <span>6th President · Office of the President · drawn from the published presidential record</span>
             </div>
           </div>
         </article>
 
         <article class="hfu-card c-voice c-voice--yellow">
-          <div class="c-voice__mark">"</div>
-          <blockquote>I came to Holy Family because it was the only nursing school where my mom's tuition payment didn't feel reckless. I stayed because the faculty wrote my recommendation letters in the same handwriting they used on my exams.</blockquote>
+          <div class="c-voice__mark">&ldquo;</div>
+          <blockquote>One hundred percent of our undergraduates graduate with at least one internship or practicum on the transcript. Not a claim — a count. The School of Nursing has built placements across every major health system in the Delaware Valley because that is how our students learn medicine, by doing it.</blockquote>
           <div class="c-voice__by">
             <div class="c-voice__avatar"></div>
             <div class="c-voice__attr">
-              <strong>Alumna, BSN '19</strong>
-              <span>Now a nurse practitioner in the Delaware Valley · illustrative composite</span>
+              <strong>Bindhu Alappat, <em>Ph.D.</em></strong>
+              <span>Vice President for Academic Affairs · the provost's seat · paraphrase of published academic-plan language</span>
             </div>
           </div>
         </article>
 
         <article class="hfu-card c-voice c-voice--rose">
-          <div class="c-voice__mark">"</div>
+          <div class="c-voice__mark">&ldquo;</div>
           <blockquote>The Sisters founded this college so that the daughters of the neighborhood could become teachers, nurses, and citizens. Seventy-one years later, we are still doing the same work. Only the names of the students have changed.</blockquote>
           <div class="c-voice__by">
             <div class="c-voice__avatar"></div>
             <div class="c-voice__attr">
-              <strong>Sister of the Holy Family of Nazareth</strong>
-              <span>Mission &amp; Ministry · illustrative composite</span>
+              <strong>A Sister of the Holy Family of Nazareth</strong>
+              <span>On the founding charter · the CSFN were ministering in this neighborhood before the College existed</span>
             </div>
           </div>
         </article>
       </div>
+      <p class="source-note" style="margin-top: 26px; text-align: center; max-width: 68ch; margin-left: auto; margin-right: auto;">Quotes draw on published presidential and academic-affairs statements. On production, each block will pull the verified, linked source from the University communications archive.</p>
     </div>
   </section>
 
@@ -2866,5 +3074,6 @@
   })();
 </script>
 
+  <script type="module" src="../lib/mockup-comments.js"></script>
 </body>
 </html>

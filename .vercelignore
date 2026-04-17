@@ -1,0 +1,41 @@
+# ── Never upload ──────────────────────────────────────────
+node_modules
+.git
+.DS_Store
+*.log
+
+# ── PDFs at root (dev artifacts, not linked from live site) ──
+*.pdf
+!public/**/*.pdf
+!HFU-Proposal.pdf
+
+# ── Screenshot/dev PNGs at root (not referenced by site) ──
+/HFU-Proposal-page1.png
+/HFU-Proposal-preview.png
+/HFU-page.png
+/hfu-mobile-final-2.png
+/hfu-proposal-with-mockup.png
+/hfu-proposed-section.png
+/proposal-with-new-mockup.png
+/proposed-section-final.png
+/proposed-top.png
+/proposed-two-concepts.png
+/proposed-with-lede.png
+/proposed-with-real-brand.png
+/site-is-proposal.png
+
+# ── Archive of old versions ──
+_archive
+
+# ── Backup files ──
+index-backup.html
+index-pre-refinement-backup.html
+
+# ── Dev docs ──
+BRIEFING.md
+WAVE3_INSTRUCTIONS.md
+README.md
+
+# ── Build scripts ──
+build-pdf.js
+build-pdf.sh

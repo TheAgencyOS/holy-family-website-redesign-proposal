@@ -137,11 +137,7 @@ select:-webkit-autofill {
    is forced exact. Images, figures, and named block components
    must never split across pages when avoidable. */
 @media print {
-  /* Zero @page margins — the dividers, hero, and appendix cover
-     paint edge-to-edge (full-bleed section backgrounds) per RFP
-     header requirement. Regular sections add their own interior
-     padding so body copy stays inset from the paper edges. */
-  @page { size: Letter; margin: 0; }
+  @page { size: Letter; margin: 0.5in; }
 
   html, body, * {
     -webkit-print-color-adjust: exact !important;
@@ -157,7 +153,6 @@ select:-webkit-autofill {
   figure, picture, ul, ol, li, p, blockquote, pre, table {
     overflow: visible !important;
     max-height: none !important;
-    min-height: 0 !important;
     contain: none !important;
     clip-path: none !important;
   }
@@ -235,7 +230,6 @@ select:-webkit-autofill {
     padding: 0 !important;
     margin: 0 !important;
     gap: 0 !important;
-    display: block !important;
     max-width: 100% !important;
     width: 100% !important;
     background: #ffffff !important;
@@ -430,7 +424,7 @@ select:-webkit-autofill {
     letter-spacing: -0.018em;
     margin-top: 2px;
   }
-  .site-nav__title em { font-style: italic; color: var(--teal); font-weight: 400; }
+  .site-nav__title em { font-style: normal; color: var(--teal); font-weight: 500; }
   .site-nav__meta {
     font-family: var(--mono);
     font-size: 5.5pt;

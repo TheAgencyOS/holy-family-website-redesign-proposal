@@ -26,7 +26,7 @@ APPENDIX_PAGES=(
   "mission.html"
   "what-ai-can-do.html"
   "mockups-portal.html"
-  "components.html"
+  "design-system.html"
   "discovery.html"
 )
 

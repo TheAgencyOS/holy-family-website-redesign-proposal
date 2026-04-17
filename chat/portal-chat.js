@@ -108,6 +108,168 @@
     transform: rotate(90deg) scale(.92);
   }
 
+  /* ── First-visit nudge ──────────────────────────────── */
+  .aos-nudge {
+    position: fixed;
+    right: 28px;
+    bottom: 100px;
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    background: var(--aos-bg);
+    border: 1px solid var(--aos-border);
+    border-radius: 18px;
+    padding: 16px 18px 14px;
+    box-shadow:
+      0 28px 60px -22px rgba(11,45,91,0.32),
+      0 12px 28px -12px rgba(6,28,59,0.22),
+      0 0 0 1px rgba(11,45,91,0.04);
+    opacity: 0;
+    transform: translateY(8px) scale(.98);
+    transform-origin: 90% 100%;
+    transition: opacity 320ms ease, transform 360ms cubic-bezier(.2,.9,.3,1.1), visibility 320ms;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .aos-chat[data-nudge="true"] .aos-nudge {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .aos-chat[data-open="true"] .aos-nudge {
+    opacity: 0;
+    transform: translateY(8px) scale(.98);
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .aos-nudge::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    right: 17px;
+    width: 14px;
+    height: 14px;
+    background: var(--aos-bg);
+    transform: rotate(45deg);
+    border-right: 1px solid var(--aos-border);
+    border-bottom: 1px solid var(--aos-border);
+  }
+  .aos-nudge__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .aos-nudge__mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, var(--aos-navy) 0%, var(--aos-navy-deep) 100%);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .aos-nudge__mark svg { width: 20px; height: 20px; }
+  .aos-nudge__mark svg path { fill: #fff; }
+  .aos-nudge__eyebrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--aos-teal);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .aos-nudge__eyebrow i {
+    width: 5px; height: 5px; border-radius: 999px;
+    background: var(--aos-teal);
+    box-shadow: 0 0 0 3px rgba(46,158,158,0.18);
+    animation: aosDot 2.2s ease-in-out infinite;
+  }
+  .aos-nudge__close {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    border: 0;
+    background: transparent;
+    color: var(--aos-subtle);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .aos-nudge__close:hover { background: #F4F5F7; color: var(--aos-ink); }
+  .aos-nudge__close svg { width: 12px; height: 12px; }
+  .aos-nudge__title {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--aos-ink);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .aos-nudge__body {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--aos-muted);
+    margin: 0 0 12px;
+  }
+  .aos-nudge__chips {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .aos-nudge__chip {
+    text-align: left;
+    background: #fff;
+    border: 1px solid var(--aos-border);
+    color: var(--aos-ink);
+    padding: 9px 11px;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 12.5px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .aos-nudge__chip::before {
+    content: '';
+    width: 5px; height: 5px; border-radius: 999px;
+    background: var(--aos-teal);
+    flex-shrink: 0;
+    opacity: .7;
+  }
+  .aos-nudge__chip:hover {
+    border-color: rgba(11,45,91,0.3);
+    background: #FAFBFC;
+    transform: translateX(2px);
+  }
+
+  /* Subtle pulse ring on the FAB while the nudge is visible */
+  .aos-chat[data-nudge="true"] .aos-fab::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    border: 2px solid var(--aos-teal);
+    opacity: 0;
+    animation: aosPulse 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes aosPulse {
+    0%   { opacity: .55; transform: scale(1); }
+    70%  { opacity: 0;   transform: scale(1.35); }
+    100% { opacity: 0;   transform: scale(1.35); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aos-nudge { transition: opacity 160ms ease, visibility 160ms; transform: none !important; }
+    .aos-chat[data-nudge="true"] .aos-fab::before { animation: none; }
+  }
+
   /* ── Panel ──────────────────────────────────────────── */
   .aos-panel {
     position: fixed;
@@ -441,6 +603,14 @@
       border-bottom: 0;
     }
     .aos-chat[data-open="true"] .aos-fab { display: none; }
+    .aos-nudge {
+      right: 14px;
+      bottom: 88px;
+      width: auto;
+      left: 14px;
+      max-width: none;
+    }
+    .aos-nudge::after { right: 25px; }
   }
 
   /* ── Dark mode (when host page is dark) ─────────────── */
@@ -463,6 +633,9 @@
     .aos-chip { background: #1A1E28; }
     .aos-chip:hover { background: #20242F; }
     .aos-foot kbd { background: #1A1E28; }
+    .aos-nudge__chip { background: #1A1E28; }
+    .aos-nudge__chip:hover { background: #20242F; }
+    .aos-nudge__close:hover { background: #1A1E28; color: #ECEEF2; }
   }
   `;
 
@@ -539,6 +712,18 @@
         <div class="aos-foot"><b>Enter</b> to send · <kbd>⌘K</kbd> to toggle · answers grounded in the site</div>
       </div>
     </div>
+    <aside class="aos-nudge" role="region" aria-label="Proposal concierge introduction">
+      <div class="aos-nudge__head">
+        <div class="aos-nudge__mark">${MARK_SVG}</div>
+        <div class="aos-nudge__eyebrow"><i></i> New · Proposal concierge</div>
+        <button class="aos-nudge__close" type="button" aria-label="Dismiss">${CLOSE_SVG}</button>
+      </div>
+      <h3 class="aos-nudge__title">Ask anything about this proposal.</h3>
+      <p class="aos-nudge__body">Timeline, budget, the three pillars, how Phase 1 ships — grounded in every page of the response. Try one:</p>
+      <div class="aos-nudge__chips">
+        ${SUGGESTED.map((q) => `<button class="aos-nudge__chip" type="button">${escapeHtml(q)}</button>`).join('')}
+      </div>
+    </aside>
     <button class="aos-fab" type="button" aria-label="Open proposal concierge" aria-expanded="false">
       <span class="aos-fab__mark">${MARK_SVG}</span>
       <span class="aos-fab__close">${CLOSE_SVG}</span>
@@ -563,13 +748,59 @@
   const input = root.querySelector('.aos-input');
   const sendBtn = root.querySelector('.aos-send');
   const chips = root.querySelectorAll('.aos-chip');
+  const nudge = root.querySelector('.aos-nudge');
+  const nudgeClose = root.querySelector('.aos-nudge__close');
+  const nudgeChips = root.querySelectorAll('.aos-nudge__chip');
 
   // ── state ─────────────────────────────────────────────────
   const history = [];
   let streaming = false;
 
+  // ── first-visit nudge ─────────────────────────────────────
+  const NUDGE_KEY = 'aos-hfu-nudge-v1';
+  const NUDGE_DELAY = 2500;
+  let nudgeDismissed = false;
+
+  function hideNudge() {
+    if (nudgeDismissed) return;
+    nudgeDismissed = true;
+    root.setAttribute('data-nudge', 'false');
+    try { localStorage.setItem(NUDGE_KEY, '1'); } catch (e) {}
+  }
+  function showNudge() {
+    if (nudgeDismissed) return;
+    if (root.getAttribute('data-open') === 'true') return;
+    root.setAttribute('data-nudge', 'true');
+  }
+  try {
+    if (localStorage.getItem(NUDGE_KEY) === '1') nudgeDismissed = true;
+  } catch (e) {}
+  if (!nudgeDismissed) {
+    setTimeout(showNudge, NUDGE_DELAY);
+  }
+
+  nudgeClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    hideNudge();
+  });
+  nudgeChips.forEach((chip) => {
+    chip.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const q = chip.textContent.trim();
+      hideNudge();
+      window.hfuChat.ask(q);
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (nudgeDismissed) return;
+    if (root.getAttribute('data-nudge') !== 'true') return;
+    if (nudge.contains(e.target) || fab.contains(e.target)) return;
+    hideNudge();
+  });
+
   // ── behavior ──────────────────────────────────────────────
   function openPanel() {
+    hideNudge();
     root.setAttribute('data-open', 'true');
     fab.setAttribute('aria-expanded', 'true');
     setTimeout(() => input.focus({ preventScroll: true }), 220);
@@ -590,6 +821,12 @@
     if (e.key === 'Escape' && root.getAttribute('data-open') === 'true') {
       e.preventDefault();
       closePanel();
+      return;
+    }
+    if (e.key === 'Escape' && root.getAttribute('data-nudge') === 'true') {
+      e.preventDefault();
+      hideNudge();
+      return;
     }
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();

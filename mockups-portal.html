@@ -215,6 +215,66 @@
       background: var(--paper);
       display: block;
     }
+
+    /* ───────── Viewer toolbar ───────── */
+    .viewer__tools {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      background: rgba(11, 14, 19, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 12px 36px rgba(6, 33, 63, 0.28), 0 2px 8px rgba(6, 33, 63, 0.16);
+      backdrop-filter: blur(8px);
+      font-family: var(--mono);
+    }
+    .viewer__tool {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      color: rgba(255, 255, 255, 0.82);
+      font: 10.5px/1 var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 160ms ease, color 160ms ease;
+    }
+    .viewer__tool:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+    .viewer__tool.is-active {
+      background: #FFCC15;
+      color: #0b0e13;
+    }
+    .viewer__tool:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .viewer__tool:focus-visible {
+      outline: 2px solid #FFCC15;
+      outline-offset: 2px;
+    }
+    .viewer__tool-dot {
+      width: 7px; height: 7px; border-radius: 999px;
+      background: currentColor; opacity: 0.5;
+    }
+    .viewer__tool.is-active .viewer__tool-dot { opacity: 1; background: #0b0e13; }
+    body:not(.is-viewer) .viewer__tools { display: none; }
+    @media (max-width: 720px) {
+      .viewer__tools { bottom: 12px; gap: 4px; padding: 4px; }
+      .viewer__tool { padding: 8px 10px; font-size: 9.5px; letter-spacing: 0.1em; }
+    }
   </style>
 </head>
 <body>
@@ -233,7 +293,7 @@
       <a href="index.html" class="portal-tab">Proposal</a>
       <a href="what-ai-can-do.html" class="portal-tab">AI</a>
       <a href="mockups-portal.html" class="portal-tab is-current">Mockups</a>
-      <a href="components.html" class="portal-tab">Components</a>
+      <a href="design-system.html" class="portal-tab">Design system</a>
       <a href="discovery.html" class="portal-tab">Discovery</a>
     </nav>
 
@@ -251,8 +311,6 @@
     <a class="site-nav__print" href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">↓ Download proposal PDF</a>
 
     <div class="site-nav__footer">
-      Prepared for Rick Mitchell · Director of Digital Experience<br>
-      <a href="mailto:rmitchell2@holyfamily.edu">rmitchell2@holyfamily.edu</a><br><br>
       Small College Consulting · April 2026
     </div>
   </aside>
@@ -262,11 +320,22 @@
       <iframe class="viewer__frame" id="viewerFrame" src="about:blank" title="Mockup preview" loading="lazy"></iframe>
     </section>
 
+    <div class="viewer__tools" id="viewerTools" role="toolbar" aria-label="Mockup tools">
+      <button type="button" class="viewer__tool" id="toolInspect" aria-pressed="false">
+        <span class="viewer__tool-dot" aria-hidden="true"></span>
+        Inspect tokens
+      </button>
+      <button type="button" class="viewer__tool" id="toolCompare">
+        <span class="viewer__tool-dot" aria-hidden="true"></span>
+        Compare with live site
+      </button>
+    </div>
+
     <article class="reader">
 
       <header class="hero">
         <span class="hero__label">Mockups</span>
-        <h1 class="hero__title">Six pages, drawn <em>in brand.</em></h1>
+        <h1 class="hero__title">Seven pages, drawn <em>in brand.</em></h1>
         <p class="hero__lede">
           A first pass at the pages prospective students and families will spend most of their time on, rendered in the Holy Family palette and voice, not a generic template. Click any preview to open the full page.
         </p>
@@ -337,6 +406,16 @@
           </div>
         </a>
 
+        <a class="card" href="mockups-portal.html?page=about">
+          <img class="card__shot" src="assets/mockups-current/about.png" alt="About page mockup preview" loading="lazy">
+          <div class="card__body">
+            <div class="card__num">07 · About &middot; <em>new</em></div>
+            <div class="card__title">Who Holy Family <em>actually is.</em></div>
+            <div class="card__desc">The mission in its own exact words, the six core values, the motto <em>teneor votis,</em> the four schools, the real Cabinet and Board, and the recognitions that go with them. Written from the live site, not from a template.</div>
+            <div class="card__cta">Open page</div>
+          </div>
+        </a>
+
       </div>
 
       <p class="note">
@@ -354,7 +433,8 @@
         'bsn':          { file: 'mockups/hfu-bsn.html',          title: 'BSN Nursing' },
         'admissions':   { file: 'mockups/hfu-admissions.html',   title: 'Admissions & aid' },
         'visit':        { file: 'mockups/hfu-visit.html',        title: 'Visit campus' },
-        'student-life': { file: 'mockups/hfu-student-life.html', title: 'Student experience' }
+        'student-life': { file: 'mockups/hfu-student-life.html', title: 'Student experience' },
+        'about':        { file: 'mockups/hfu-about.html',        title: 'About' }
       };
 
       var params = new URLSearchParams(window.location.search);
@@ -369,10 +449,65 @@
         // Highlight current page in sidebar deep nav
         var active = document.querySelector('#mockupDeepNav a[data-slug="' + slug + '"]');
         if (active) active.classList.add('is-current');
+
+        wireViewerTools(slug);
+      }
+
+      function wireViewerTools(slug) {
+        var frame = document.getElementById('viewerFrame');
+        var inspectBtn = document.getElementById('toolInspect');
+        var compareBtn = document.getElementById('toolCompare');
+
+        // Inspect-tokens toggle:posts into iframe.
+        var inspectOn = false;
+        var inspectReady = false;
+        inspectBtn.disabled = true;
+
+        window.addEventListener('message', function (e) {
+          var data = e.data;
+          if (!data || typeof data !== 'object') return;
+          if (data.type === 'hfm:inspect-ready') {
+            inspectReady = true;
+            inspectBtn.disabled = false;
+          }
+          if (data.type === 'hfm:inspect-ack') {
+            inspectOn = !!data.on;
+            inspectBtn.classList.toggle('is-active', inspectOn);
+            inspectBtn.setAttribute('aria-pressed', String(inspectOn));
+          }
+        });
+
+        frame.addEventListener('load', function () {
+          inspectReady = false;
+          inspectOn = false;
+          inspectBtn.classList.remove('is-active');
+          inspectBtn.setAttribute('aria-pressed', 'false');
+          inspectBtn.disabled = true;
+        });
+
+        inspectBtn.addEventListener('click', function () {
+          if (!inspectReady || !frame.contentWindow) return;
+          inspectOn = !inspectOn;
+          frame.contentWindow.postMessage({ type: 'hfm:inspect', on: inspectOn }, '*');
+          inspectBtn.classList.toggle('is-active', inspectOn);
+          inspectBtn.setAttribute('aria-pressed', String(inspectOn));
+        });
+
+        // Compare-with-live-site:opens modal overlay in the portal.
+        var hasCompare = window.HfmCompare && window.HfmCompare.has && window.HfmCompare.has(slug);
+        if (!hasCompare) {
+          compareBtn.disabled = true;
+          compareBtn.title = 'No current-site capture available for this page yet.';
+        } else {
+          compareBtn.addEventListener('click', function () {
+            window.HfmCompare.open(slug);
+          });
+        }
       }
     })();
   </script>
 
+<script src="lib/compare-slider.js" defer></script>
 <script src="chat/portal-chat.js" defer></script>
 </body>
 </html>

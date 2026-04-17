@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Working portal &middot; Holy Family proposal</title>
+  <meta name="description" content="Comments and tasks for the Holy Family University redesign proposal.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-Regular.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: italic;  font-weight: 400; font-display: block; src: url('assets/fonts/roobert/Roobert-RegularItalic.otf') format('opentype'); }
+    @font-face { font-family: 'Roobert'; font-style: normal; font-weight: 600; font-display: block; src: url('assets/fonts/roobert/Roobert-SemiBold.otf') format('opentype'); }
+
+    :root {
+      --cream:         #FAF9F6;
+      --cream-deep:    #F3F0E8;
+      --cream-deeper:  #EDE9DD;
+      --paper:         #FFFFFF;
+      --ink:           #1C1E24;
+      --ink-2:         #3A3D46;
+      --ink-3:         #6B7079;
+      --ink-4:         #64686F;
+      --ink-5:         #C6CBD2;
+      --teal:          #136B73;
+      --teal-deep:     #005357;
+      --teal-bright:   #2BA5B3;
+      --teal-soft:     rgba(27, 122, 134, 0.06);
+      --teal-tint:     rgba(27, 122, 134, 0.12);
+      --rule:          rgba(28, 30, 36, 0.10);
+      --rule-soft:     rgba(28, 30, 36, 0.05);
+      --rule-strong:   rgba(28, 30, 36, 0.18);
+      --shadow-card:   0 1px 2px rgba(28, 30, 36, 0.04), 0 8px 24px rgba(28, 30, 36, 0.06);
+      --shadow-card-hover: 0 2px 4px rgba(28, 30, 36, 0.06), 0 16px 40px rgba(28, 30, 36, 0.10);
+      --shadow-teal:   0 12px 32px rgba(19, 107, 115, 0.18);
+      --shadow-pop:    0 24px 60px rgba(28, 30, 36, 0.18);
+
+      --display:       'Roobert', 'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --body:          'Instrument Sans', -apple-system, system-ui, sans-serif;
+      --serif:         'Instrument Serif', Georgia, 'Times New Roman', serif;
+      --mono:          'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      --status-todo:    #6B7079;
+      --status-progress: #136B73;
+      --status-done:    #4F8C5A;
+      --status-blocked: #B45A3C;
+
+      --priority-urgent: #B83A2A;
+      --priority-high:   #C06A1F;
+      --priority-normal: #6B7079;
+      --priority-low:    #8A8E97;
+
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--cream);
+      color: var(--ink-2);
+      font-family: var(--body);
+      font-size: 11pt;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums lining-nums;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(27, 122, 134, 0.030), transparent 55%),
+        radial-gradient(ellipse at 88% 92%, rgba(28, 30, 36, 0.025), transparent 60%);
+    }
+    main { position: relative; z-index: 1; }
+
+    a { color: inherit; }
+    h1, h2, h3, h4 { font-weight: 400; color: var(--ink); }
+    button { font-family: inherit; }
+
+    /* ───────── Skip link ───────── */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--ink); color: var(--cream); padding: 10px 16px;
+      font-family: var(--mono); font-size: 11pt; z-index: 10000;
+    }
+    .skip-link:focus { left: 12px; top: 12px; outline: 2px solid var(--teal-bright); }
+
+    /* ───────── Top bar ───────── */
+    .top {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 22px 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .top__brand {
+      display: inline-flex; align-items: center; gap: 14px;
+      text-decoration: none; color: var(--ink);
+    }
+    .top__mark {
+      width: 32px; height: 32px; border-radius: 6px;
+      background: var(--ink); color: var(--cream);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 11pt; font-weight: 500; letter-spacing: 0.02em;
+    }
+    .top__name {
+      font-family: var(--display); font-size: 11pt; letter-spacing: 0.01em;
+    }
+    .top__sep { color: var(--ink-4); }
+    .top__crumb {
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--teal);
+    }
+    .top__nav {
+      display: inline-flex; align-items: center; gap: 22px;
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .top__nav a {
+      text-decoration: none; color: inherit; padding: 6px 0;
+      border-bottom: 1px solid transparent;
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .top__nav a:hover { color: var(--ink); border-bottom-color: var(--teal); }
+
+    /* ───────── Hero strip ───────── */
+    .hero {
+      max-width: 1320px; margin: 0 auto; padding: 22px 56px 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero__eyebrow {
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 18px;
+    }
+    .hero__eyebrow::before {
+      content: ''; width: 28px; height: 1px; background: var(--teal);
+    }
+    .hero__row {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    }
+    .hero__title {
+      font-family: var(--serif);
+      font-size: clamp(36pt, 5.4vw, 60pt);
+      line-height: 1.04; letter-spacing: -0.02em;
+      color: var(--ink); max-width: 18ch;
+    }
+    .hero__title em { font-style: italic; color: var(--teal); }
+    .hero__lede {
+      font-family: var(--serif); font-size: 14.5pt; line-height: 1.55;
+      color: var(--ink-2); max-width: 46ch; margin-top: 14px;
+    }
+    .hero__cta {
+      display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; border-radius: 999px;
+      font-family: var(--body); font-size: 11pt; letter-spacing: 0.01em; font-weight: 500;
+      cursor: pointer; transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease, box-shadow .18s ease;
+      text-decoration: none; border: 1px solid transparent;
+    }
+    .btn--primary {
+      background: var(--ink); color: var(--cream); border-color: var(--ink);
+    }
+    .btn--primary:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-2px); box-shadow: var(--shadow-teal); }
+    .btn--ghost {
+      background: transparent; color: var(--ink); border-color: var(--rule-strong);
+    }
+    .btn--ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); transform: translateY(-2px); }
+    .btn__icon { width: 14px; height: 14px; }
+
+    /* ───────── Content grid ───────── */
+    .grid {
+      max-width: 1320px; margin: 0 auto; padding: 40px 56px 96px;
+      display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px;
+    }
+    @media (max-width: 1080px) {
+      .grid { grid-template-columns: 1fr; gap: 56px; }
+      .top, .hero { padding-left: 32px; padding-right: 32px; }
+      .grid { padding-left: 32px; padding-right: 32px; }
+    }
+    @media (max-width: 600px) {
+      .top, .hero, .grid { padding-left: 20px; padding-right: 20px; }
+      .top { padding-top: 16px; padding-bottom: 16px; }
+      .top__nav { display: none; }
+    }
+
+    /* ───────── Section header ───────── */
+    .panel-head {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 22px;
+      padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+    }
+    .panel-head__eyebrow {
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--teal);
+    }
+    .panel-head__title {
+      font-family: var(--serif); font-size: 28pt; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink);
+      margin-top: 4px;
+    }
+    .panel-head__title em { font-style: italic; color: var(--teal); }
+    .panel-head__sub {
+      font-size: 11pt; color: var(--ink-3); margin-top: 4px;
+    }
+    .panel-head__meta {
+      font-family: var(--mono); font-size: 9pt; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--ink-4);
+      text-align: right;
+    }
+
+    /* ───────── Kanban board ───────── */
+    .board {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+    }
+    @media (max-width: 1300px) {
+      .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px) {
+      .board { grid-template-columns: 1fr; }
+    }
+    .col {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 16px 14px 14px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 260px;
+      box-shadow: var(--shadow-card);
+    }
+    .col__head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding-bottom: 10px; border-bottom: 1px dashed var(--rule);
+    }
+    .col__title {
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-2); display: inline-flex; align-items: center; gap: 8px;
+    }
+    .col__title::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--status-todo);
+    }
+    .col[data-status="in_progress"] .col__title::before { background: var(--status-progress); }
+    .col[data-status="done"] .col__title::before { background: var(--status-done); }
+    .col[data-status="blocked"] .col__title::before { background: var(--status-blocked); }
+
+    .col__count {
+      font-family: var(--mono); font-size: 9.5pt; color: var(--ink-3);
+      background: var(--cream-deep); padding: 2px 8px; border-radius: 999px;
+    }
+    .col__cards { display: flex; flex-direction: column; gap: 10px; }
+    .col__empty {
+      color: var(--ink-4); font-size: 10.5pt; text-align: center;
+      padding: 22px 8px; border: 1px dashed var(--rule); border-radius: 8px;
+      font-family: var(--serif); font-style: italic;
+    }
+
+    .card {
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 8px;
+      padding: 12px 12px 10px; display: flex; flex-direction: column; gap: 8px;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+    .card:hover { border-color: var(--rule-strong); box-shadow: var(--shadow-card-hover); transform: translateY(-1px); }
+    .card__title {
+      font-family: var(--display); font-size: 11.5pt; line-height: 1.35; color: var(--ink); font-weight: 500;
+    }
+    .card__desc {
+      font-size: 10.5pt; color: var(--ink-3); line-height: 1.5;
+      display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;
+    }
+    .card__meta {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+      margin-top: 2px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 10px; border-radius: 999px;
+      font-family: var(--mono); font-size: 9pt; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; user-select: none;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+      border: 1px solid transparent;
+    }
+    .pill--status {
+      background: rgba(107, 112, 121, 0.10); color: var(--ink-2);
+      border-color: rgba(107, 112, 121, 0.20);
+    }
+    .pill--status[data-status="in_progress"] { background: rgba(19, 107, 115, 0.10); color: var(--teal); border-color: rgba(19, 107, 115, 0.25); }
+    .pill--status[data-status="done"]        { background: rgba(79, 140, 90, 0.12);  color: var(--status-done);   border-color: rgba(79, 140, 90, 0.25); }
+    .pill--status[data-status="blocked"]     { background: rgba(180, 90, 60, 0.12);  color: var(--status-blocked); border-color: rgba(180, 90, 60, 0.25); }
+    .pill--status:hover { filter: brightness(0.96); }
+    .pill--priority {
+      background: var(--cream-deep); color: var(--ink-3);
+      cursor: default;
+    }
+    .pill--priority[data-priority="urgent"] { color: var(--priority-urgent); background: rgba(184, 58, 42, 0.08); }
+    .pill--priority[data-priority="high"]   { color: var(--priority-high);   background: rgba(192, 106, 31, 0.08); }
+    .pill--priority[data-priority="low"]    { color: var(--priority-low); }
+
+    .card__foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding-top: 8px; border-top: 1px dashed var(--rule);
+      font-family: var(--mono); font-size: 9pt; color: var(--ink-4); letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .card__assignee { color: var(--ink-2); text-transform: none; letter-spacing: 0; font-family: var(--body); font-size: 10.5pt; }
+    .card__assignee--none { color: var(--ink-4); font-style: italic; }
+    .card__due--soon { color: var(--priority-high); }
+    .card__due--late { color: var(--priority-urgent); }
+
+    /* ───────── Comments stream ───────── */
+    .stream {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .stream__item {
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .stream__head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px;
+    }
+    .stream__author {
+      font-weight: 600; font-size: 11pt; color: var(--ink);
+    }
+    .stream__time {
+      font-family: var(--mono); font-size: 9pt; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-4);
+    }
+    .stream__where {
+      font-family: var(--mono); font-size: 9pt; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 6px;
+    }
+    .stream__where a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s ease, color .15s ease; }
+    .stream__where a:hover { border-bottom-color: var(--teal); }
+    .stream__body { font-size: 11pt; color: var(--ink-2); white-space: pre-wrap; word-wrap: break-word; }
+    .stream__resolved {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 6px;
+      font-family: var(--mono); font-size: 8.5pt; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--status-done);
+    }
+    .stream__empty, .board__empty {
+      padding: 24px 16px; border: 1px dashed var(--rule-strong); border-radius: 8px;
+      text-align: center; color: var(--ink-3); background: var(--paper);
+    }
+    .stream__empty__title, .board__empty__title {
+      font-family: var(--serif); font-style: italic; font-size: 17pt; color: var(--ink); margin-bottom: 4px;
+    }
+
+    /* ───────── Toast ───────── */
+    .toast {
+      position: fixed; right: 24px; bottom: 24px; z-index: 9999;
+      background: var(--ink); color: var(--cream);
+      padding: 12px 18px; border-radius: 999px; font-size: 11pt;
+      box-shadow: var(--shadow-pop);
+      transform: translateY(20px); opacity: 0; pointer-events: none;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+    .toast.is-on { transform: translateY(0); opacity: 1; }
+    .toast.is-error { background: #8A2A26; }
+
+    /* ───────── Modal ───────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(28, 30, 36, 0.40);
+      display: flex; align-items: flex-start; justify-content: center; padding: 80px 20px 40px;
+      opacity: 0; pointer-events: none; transition: opacity .22s ease;
+    }
+    .modal-overlay.is-on { opacity: 1; pointer-events: auto; }
+    .modal {
+      background: var(--cream); color: var(--ink);
+      border-radius: 12px; box-shadow: var(--shadow-pop);
+      width: min(560px, 100%); max-height: calc(100vh - 120px); overflow-y: auto;
+      padding: 28px 32px;
+      transform: translateY(-12px); transition: transform .22s ease;
+    }
+    .modal-overlay.is-on .modal { transform: translateY(0); }
+    .modal__head {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px;
+    }
+    .modal__eyebrow {
+      font-family: var(--mono); font-size: 9.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal);
+    }
+    .modal__title { font-family: var(--serif); font-size: 26pt; line-height: 1.1; color: var(--ink); margin-top: 6px; }
+    .modal__title em { font-style: italic; color: var(--teal); }
+    .modal__close {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--rule); background: transparent; color: var(--ink-2);
+      cursor: pointer; font-size: 16px; line-height: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .modal__close:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .field--row { flex-direction: row; gap: 12px; }
+    .field--row > * { flex: 1 1 0; min-width: 0; }
+    .field__label {
+      font-family: var(--mono); font-size: 9pt; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .input, .textarea, .select {
+      font: inherit; font-size: 11pt; color: var(--ink);
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 6px;
+      padding: 10px 12px; line-height: 1.5; width: 100%;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .input:focus, .textarea:focus, .select:focus {
+      outline: none; border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(19, 107, 115, 0.15);
+    }
+    .textarea { min-height: 88px; resize: vertical; }
+    .modal__actions {
+      display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px;
+    }
+
+    /* ───────── Loading state ───────── */
+    .loading {
+      padding: 18px; text-align: center; color: var(--ink-3); font-size: 10.5pt;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="top">
+    <a class="top__brand" href="index.html">
+      <span class="top__mark">SC</span>
+      <span class="top__name">Small College Consulting</span>
+      <span class="top__sep">·</span>
+      <span class="top__crumb">Working portal</span>
+    </a>
+    <nav class="top__nav" aria-label="Quick links">
+      <a href="index.html">Proposal</a>
+      <a href="mockups/hfu-home.html">Mockups</a>
+      <a href="HFU-Proposal.pdf" download="HFU-Website-Redesign-Proposal-SCC.pdf">PDF</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__eyebrow">Holy Family · Working portal</div>
+      <div class="hero__row">
+        <div>
+          <h1 class="hero__title">Comments &amp; <em>tasks</em>, in one place.</h1>
+          <p class="hero__lede">A live workbench for the Holy Family redesign &mdash; comments captured on every mockup page, tasks tracked here. No accounts required during the review window.</p>
+        </div>
+        <div class="hero__cta">
+          <button id="newTaskBtn" class="btn btn--primary" type="button">
+            <svg class="btn__icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 1v12M1 7h12"/></svg>
+            New task
+          </button>
+          <a class="btn btn--ghost" href="mockups/hfu-home.html">
+            Open mockups
+            <svg class="btn__icon" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <!-- ───── Tasks ───── -->
+      <section aria-labelledby="tasks-title">
+        <div class="panel-head">
+          <div>
+            <div class="panel-head__eyebrow">Section · 01</div>
+            <h2 class="panel-head__title" id="tasks-title">The <em>board</em>.</h2>
+            <div class="panel-head__sub">Lightweight kanban &mdash; click a status pill to advance a task.</div>
+          </div>
+          <div class="panel-head__meta" id="tasksMeta">— tasks</div>
+        </div>
+
+        <div class="board" id="board">
+          <div class="col" data-status="todo">
+            <div class="col__head">
+              <div class="col__title">To do</div>
+              <div class="col__count" data-count="todo">0</div>
+            </div>
+            <div class="col__cards" data-cards="todo"></div>
+          </div>
+          <div class="col" data-status="in_progress">
+            <div class="col__head">
+              <div class="col__title">In progress</div>
+              <div class="col__count" data-count="in_progress">0</div>
+            </div>
+            <div class="col__cards" data-cards="in_progress"></div>
+          </div>
+          <div class="col" data-status="blocked">
+            <div class="col__head">
+              <div class="col__title">Blocked</div>
+              <div class="col__count" data-count="blocked">0</div>
+            </div>
+            <div class="col__cards" data-cards="blocked"></div>
+          </div>
+          <div class="col" data-status="done">
+            <div class="col__head">
+              <div class="col__title">Done</div>
+              <div class="col__count" data-count="done">0</div>
+            </div>
+            <div class="col__cards" data-cards="done"></div>
+          </div>
+        </div>
+
+        <div class="board__empty" id="boardEmpty" hidden>
+          <div class="board__empty__title">No tasks yet.</div>
+          <div>Click <strong>+ New task</strong> to capture the first one. Anything from a copy tweak to a missing image is fair game.</div>
+        </div>
+      </section>
+
+      <!-- ───── Comments ───── -->
+      <aside aria-labelledby="comments-title">
+        <div class="panel-head">
+          <div>
+            <div class="panel-head__eyebrow">Section · 02</div>
+            <h2 class="panel-head__title" id="comments-title">Recent <em>comments</em>.</h2>
+            <div class="panel-head__sub">Latest feedback from across the mockup pages.</div>
+          </div>
+          <div class="panel-head__meta" id="commentsMeta">— comments</div>
+        </div>
+
+        <div class="stream" id="stream">
+          <div class="loading">Loading comments…</div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ───── Modal · new task ───── -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal">
+      <div class="modal__head">
+        <div>
+          <div class="modal__eyebrow">Add to the board</div>
+          <h3 class="modal__title" id="modalTitle">New <em>task</em>.</h3>
+        </div>
+        <button class="modal__close" type="button" aria-label="Close" id="modalClose">×</button>
+      </div>
+      <form id="taskForm" autocomplete="on">
+        <div class="field">
+          <label class="field__label" for="t-title">Title</label>
+          <input class="input" id="t-title" name="title" type="text" required maxlength="280" placeholder="Short, action-oriented title">
+        </div>
+        <div class="field">
+          <label class="field__label" for="t-desc">Description</label>
+          <textarea class="textarea" id="t-desc" name="description" maxlength="3500" placeholder="Optional context, links, acceptance criteria"></textarea>
+        </div>
+        <div class="field field--row">
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-priority">Priority</label>
+            <select class="select" id="t-priority" name="priority">
+              <option value="low">Low</option>
+              <option value="normal" selected>Normal</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-due">Due date</label>
+            <input class="input" id="t-due" name="due_date" type="date">
+          </div>
+        </div>
+        <div class="field field--row">
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-assignee">Assignee name</label>
+            <input class="input" id="t-assignee" name="assignee_name" type="text" maxlength="180" placeholder="Optional">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-assignee-email">Assignee email</label>
+            <input class="input" id="t-assignee-email" name="assignee_email" type="email" maxlength="180" placeholder="Optional">
+          </div>
+        </div>
+        <div class="field field--row">
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-creator">Your name</label>
+            <input class="input" id="t-creator" name="created_by_name" type="text" required maxlength="180">
+          </div>
+          <div class="field" style="margin-bottom:0;">
+            <label class="field__label" for="t-creator-email">Your email</label>
+            <input class="input" id="t-creator-email" name="created_by_email" type="email" maxlength="180" placeholder="Optional">
+          </div>
+        </div>
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" id="modalCancel">Cancel</button>
+          <button class="btn btn--primary" type="submit" id="taskSubmit">Create task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const STATUS_LABEL = { todo: 'To do', in_progress: 'In progress', blocked: 'Blocked', done: 'Done' };
+      const STATUS_CYCLE = { todo: 'in_progress', in_progress: 'done', done: 'todo', blocked: 'todo' };
+      const STATUSES = ['todo', 'in_progress', 'blocked', 'done'];
+      const LS_AUTHOR = 'hfu-portal-author';
+
+      const $ = (id) => document.getElementById(id);
+      const stream = $('stream');
+      const board = $('board');
+      const tasksMeta = $('tasksMeta');
+      const commentsMeta = $('commentsMeta');
+      const boardEmpty = $('boardEmpty');
+      const toast = $('toast');
+      const modal = $('modal');
+      const newTaskBtn = $('newTaskBtn');
+      const modalClose = $('modalClose');
+      const modalCancel = $('modalCancel');
+      const taskForm = $('taskForm');
+      const taskSubmit = $('taskSubmit');
+
+      let mockupsById = {};
+
+      const loadAuthor = () => {
+        try { return JSON.parse(localStorage.getItem(LS_AUTHOR) || '{}') || {}; } catch { return {}; }
+      };
+      const saveAuthor = (name, email) => {
+        try { localStorage.setItem(LS_AUTHOR, JSON.stringify({ name, email })); } catch {}
+      };
+
+      // ── Toast ──
+      let toastTimer = null;
+      function showToast(msg, isError = false) {
+        if (!toast) return;
+        clearTimeout(toastTimer);
+        toast.textContent = msg;
+        toast.classList.toggle('is-error', !!isError);
+        toast.classList.add('is-on');
+        toastTimer = setTimeout(() => toast.classList.remove('is-on'), 3000);
+      }
+
+      // ── Time formatting ──
+      function fmtTime(ts) {
+        if (!ts) return '';
+        const d = new Date(ts);
+        if (Number.isNaN(d.getTime())) return '';
+        const min = Math.round((Date.now() - d.getTime()) / 60000);
+        if (min < 1) return 'just now';
+        if (min < 60) return `${min}m ago`;
+        const hr = Math.round(min / 60);
+        if (hr < 24) return `${hr}h ago`;
+        const day = Math.round(hr / 24);
+        if (day < 14) return `${day}d ago`;
+        return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      }
+      function fmtDue(date) {
+        if (!date) return null;
+        const d = new Date(`${date}T00:00:00`);
+        if (Number.isNaN(d.getTime())) return null;
+        const now = new Date(); now.setHours(0,0,0,0);
+        const days = Math.round((d.getTime() - now.getTime()) / 86400000);
+        let cls = '';
+        if (days < 0) cls = 'card__due--late';
+        else if (days <= 3) cls = 'card__due--soon';
+        const label = days === 0 ? 'Due today' : days < 0 ? `${Math.abs(days)}d overdue` : `Due ${d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
+        return { label, cls };
+      }
+
+      // ── Element helper ──
+      function el(tag, attrs = {}, ...kids) {
+        const node = document.createElement(tag);
+        for (const [k, v] of Object.entries(attrs || {})) {
+          if (k === 'class') node.className = v;
+          else if (k === 'html') node.innerHTML = v;
+          else if (k.startsWith('on') && typeof v === 'function') node.addEventListener(k.slice(2).toLowerCase(), v);
+          else if (v != null) node.setAttribute(k, v);
+        }
+        kids.flat().forEach((k) => {
+          if (k == null || k === false) return;
+          node.appendChild(typeof k === 'string' ? document.createTextNode(k) : k);
+        });
+        return node;
+      }
+
+      // ── Tasks rendering ──
+      function renderBoard(tasks) {
+        STATUSES.forEach((s) => {
+          const wrap = board.querySelector(`[data-cards="${s}"]`);
+          const count = board.querySelector(`[data-count="${s}"]`);
+          if (!wrap) return;
+          wrap.innerHTML = '';
+          const subset = tasks.filter((t) => t.status === s);
+          count.textContent = String(subset.length);
+          if (!subset.length) {
+            wrap.appendChild(el('div', { class: 'col__empty' }, 'Nothing here yet'));
+            return;
+          }
+          subset.forEach((t) => wrap.appendChild(renderTask(t)));
+        });
+
+        const total = tasks.length;
+        tasksMeta.textContent = `${total} task${total === 1 ? '' : 's'}`;
+        boardEmpty.hidden = total > 0;
+      }
+
+      function renderTask(t) {
+        const card = el('article', { class: 'card', 'data-id': t.id });
+        card.appendChild(el('div', { class: 'card__title' }, t.title || 'Untitled'));
+        if (t.description) card.appendChild(el('div', { class: 'card__desc' }, t.description));
+
+        const meta = el('div', { class: 'card__meta' });
+        const statusPill = el(
+          'button',
+          {
+            class: 'pill pill--status',
+            type: 'button',
+            'data-status': t.status,
+            title: 'Click to advance status',
+            'aria-label': `Status: ${STATUS_LABEL[t.status] || t.status}. Click to advance.`,
+          },
+          STATUS_LABEL[t.status] || t.status
+        );
+        statusPill.addEventListener('click', () => cycleStatus(t.id, t.status, statusPill));
+        meta.appendChild(statusPill);
+
+        if (t.priority && t.priority !== 'normal') {
+          meta.appendChild(
+            el('span', { class: 'pill pill--priority', 'data-priority': t.priority }, t.priority)
+          );
+        }
+        card.appendChild(meta);
+
+        const foot = el('div', { class: 'card__foot' });
+        const assignee = t.assignee_name
+          ? el('span', { class: 'card__assignee' }, t.assignee_name)
+          : el('span', { class: 'card__assignee card__assignee--none' }, 'Unassigned');
+        foot.appendChild(assignee);
+
+        const due = fmtDue(t.due_date);
+        if (due) {
+          foot.appendChild(el('span', { class: `card__due ${due.cls}` }, due.label));
+        } else {
+          foot.appendChild(el('span', {}, fmtTime(t.created_at)));
+        }
+        card.appendChild(foot);
+        return card;
+      }
+
+      async function cycleStatus(id, current, btn) {
+        const next = STATUS_CYCLE[current] || 'todo';
+        btn.textContent = '…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(`/api/tasks?id=${encodeURIComponent(id)}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: next }),
+          });
+          const json = await res.json();
+          if (json.error) throw new Error(json.error);
+          await refreshTasks();
+        } catch (e) {
+          showToast(`Couldn't update task — ${e.message || e}`, true);
+          btn.disabled = false;
+          btn.textContent = STATUS_LABEL[current];
+        }
+      }
+
+      // ── Comments stream ──
+      function renderStream(comments) {
+        stream.innerHTML = '';
+        if (!comments.length) {
+          const empty = el('div', { class: 'stream__empty' });
+          empty.appendChild(el('div', { class: 'stream__empty__title' }, 'No comments yet.'));
+          empty.appendChild(el('div', {}, 'Open any mockup page and click a section pin (top-right of each section) to start a thread.'));
+          stream.appendChild(empty);
+          commentsMeta.textContent = '0 comments';
+          return;
+        }
+
+        comments.forEach((c) => {
+          const item = el('article', { class: 'stream__item' });
+          const mockup = c.mockups || mockupsById[c.mockup_id] || null;
+          const where = el('div', { class: 'stream__where' });
+          const sectionId = c.section_id || '';
+          const sectionLabel = c.section_label || '';
+          if (mockup) {
+            const baseHref = '/' + (mockup.url_path || '').replace(/^\//, '');
+            const href = sectionId ? `${baseHref}#${sectionId}` : baseHref;
+            const mockupName = mockup.name || mockup.id;
+            const linkText = sectionLabel ? `${mockupName} › ${sectionLabel}` : mockupName;
+            where.appendChild(el('a', { href }, linkText));
+          } else {
+            const fallback = sectionLabel
+              ? `${c.mockup_id || 'Unknown page'} › ${sectionLabel}`
+              : (c.mockup_id || 'Unknown page');
+            where.appendChild(el('span', {}, fallback));
+          }
+          item.appendChild(where);
+
+          item.appendChild(
+            el('div', { class: 'stream__head' },
+              el('div', { class: 'stream__author' }, c.author_name || 'Anonymous'),
+              el('div', { class: 'stream__time' }, fmtTime(c.created_at))
+            )
+          );
+
+          const body = el('div', { class: 'stream__body' });
+          body.textContent = c.body || '';
+          item.appendChild(body);
+
+          if (c.resolved) {
+            item.appendChild(
+              el('div', { class: 'stream__resolved' }, '● Resolved')
+            );
+          }
+
+          stream.appendChild(item);
+        });
+
+        commentsMeta.textContent = `${comments.length} comment${comments.length === 1 ? '' : 's'}`;
+      }
+
+      // ── Loaders ──
+      async function refreshTasks() {
+        try {
+          const res = await fetch('/api/tasks');
+          const json = await res.json();
+          if (json.error) throw new Error(json.error);
+          renderBoard(json.data || []);
+        } catch (e) {
+          showToast(`Could not load tasks — ${e.message || e}`, true);
+          // Render empty board on error so the layout stays intact.
+          renderBoard([]);
+        }
+      }
+
+      async function refreshComments() {
+        try {
+          const res = await fetch('/api/comments?limit=30');
+          const json = await res.json();
+          if (json.error) throw new Error(json.error);
+          renderStream(json.data || []);
+        } catch (e) {
+          stream.innerHTML = '';
+          stream.appendChild(el('div', { class: 'stream__empty' },
+            el('div', { class: 'stream__empty__title' }, 'Could not load comments.'),
+            el('div', {}, String(e.message || e))
+          ));
+        }
+      }
+
+      async function loadMockups() {
+        try {
+          const res = await fetch('/api/mockups');
+          const json = await res.json();
+          if (json.error) return;
+          (json.data || []).forEach((m) => { mockupsById[m.id] = m; });
+        } catch { /* non-fatal */ }
+      }
+
+      // ── Modal ──
+      function openModal() {
+        const author = loadAuthor();
+        if (author.name) $('t-creator').value = author.name;
+        if (author.email) $('t-creator-email').value = author.email;
+        modal.hidden = false;
+        requestAnimationFrame(() => modal.classList.add('is-on'));
+        setTimeout(() => $('t-title').focus(), 60);
+      }
+      function closeModal() {
+        modal.classList.remove('is-on');
+        setTimeout(() => { modal.hidden = true; }, 220);
+      }
+
+      newTaskBtn.addEventListener('click', openModal);
+      modalClose.addEventListener('click', closeModal);
+      modalCancel.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+      });
+
+      taskForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(taskForm).entries());
+        const payload = {
+          title: data.title.trim(),
+          description: data.description?.trim() || null,
+          priority: data.priority || 'normal',
+          due_date: data.due_date || null,
+          assignee_name: data.assignee_name?.trim() || null,
+          assignee_email: data.assignee_email?.trim() || null,
+          created_by_name: data.created_by_name.trim(),
+          created_by_email: data.created_by_email?.trim() || null,
+        };
+        if (!payload.title || !payload.created_by_name) {
+          showToast('Title and your name are required.', true);
+          return;
+        }
+        taskSubmit.disabled = true;
+        const prev = taskSubmit.textContent;
+        taskSubmit.textContent = 'Creating…';
+        try {
+          const res = await fetch('/api/tasks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const json = await res.json();
+          if (json.error) throw new Error(json.error);
+          saveAuthor(payload.created_by_name, payload.created_by_email || '');
+          showToast('Task created.');
+          taskForm.reset();
+          closeModal();
+          await refreshTasks();
+        } catch (err) {
+          showToast(`Could not create task — ${err.message || err}`, true);
+        } finally {
+          taskSubmit.disabled = false;
+          taskSubmit.textContent = prev;
+        }
+      });
+
+      // ── Init + polling ──
+      (async function init() {
+        await loadMockups();
+        await Promise.all([refreshTasks(), refreshComments()]);
+        // Poll comments every 15s, tasks every 30s — light-weight, no realtime needed.
+        setInterval(refreshComments, 15000);
+        setInterval(refreshTasks, 30000);
+      })();
+    })();
+  </script>
+</body>
+</html>
